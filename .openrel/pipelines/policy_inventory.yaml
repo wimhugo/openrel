@@ -1,0 +1,33 @@
+# OpenREL Pipeline Config
+# Auto-generated
+
+name: "policy_inventory"
+description: "Creates a JSON file with a policy inventory"
+namespace: "openrel"
+source:
+  type: "csv"
+  file: "policy_inventory.csv"
+  fields:
+    - #
+    - openrel_IRI
+    - Label
+    - Section
+    - URL
+template:
+  file: "policy_inventory_template.json"
+  fields:
+    - openrel_IRI
+    - label
+    - section
+    - url
+mapping:
+  openrel:IRI: "openrel:IRI"
+  label: "Label"
+  section: "Section"
+  url: "URL"
+  openrel_IRI: "openrel_IRI"
+github:
+  repo: "wimhugo/openrel"
+  branch: "main"
+  target_folder: "data/policy"
+schedule: "manual"
