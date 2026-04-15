@@ -21,11 +21,10 @@ template:
     - section
     - url
 mapping:
-  openrel:IRI: "openrel:IRI"
+  openrel_IRI: "openrel_IRI"
   label: "Label"
   section: "Section"
   url: "URL"
-  openrel_IRI: "openrel_IRI"
 github:
   repo: "wimhugo/openrel"
   branch: "main"
