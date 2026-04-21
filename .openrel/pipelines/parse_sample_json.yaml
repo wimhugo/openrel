@@ -1,0 +1,17 @@
+# OpenREL Pipeline Config
+# Auto-generated
+
+name: "parse_sample_json"
+description: "Test JSON parsing"
+namespace: "openrel"
+source:
+  type: "csv"
+  fields:
+template:
+  fields:
+mapping:
+github:
+  repo: "wimhugo/openrel"
+  branch: "main"
+  target_folder: ""
+schedule: "manual"
