@@ -6,7 +6,7 @@ description: "Test JSON parsing"
 namespace: "openrel"
 source:
   type: "json"
-  file: "json_input.json"
+  file: "json_input_test_array.json"
   fields:
     - policy
     - policy.IRI
