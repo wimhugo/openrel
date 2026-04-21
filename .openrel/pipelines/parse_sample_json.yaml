@@ -5,13 +5,42 @@ name: "parse_sample_json"
 description: "Test JSON parsing"
 namespace: "openrel"
 source:
-  type: "csv"
+  type: "json"
+  file: "json_input.json"
   fields:
+    - policy
+    - policy.IRI
+    - policy.label
+    - policy.description
+    - policy.permissions
+    - policy.prohibitions
+    - policy.duties
+    - policy.sources
 template:
   fields:
+    - type
+    - IRI
+    - label
+    - description
+    - action
+    - constraint.name
+    - constraint.operator
+    - constraint.rightOperand
+    - name
+    - link
 mapping:
+  type: "type"
+  IRI: "IRI"
+  label: "label"
+  description: "description"
+  action: "action"
+  constraint.name: "constraint.name"
+  constraint.operator: "constraint.operator"
+  constraint.rightOperand: "constraint.rightOperand"
+  name: "name"
+  link: "link"
 github:
   repo: "wimhugo/openrel"
   branch: "main"
-  target_folder: ""
+  target_folder: "test"
 schedule: "manual"
