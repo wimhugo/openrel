@@ -1,2 +1,2 @@
 "type","IRI","label","description","action","constraint.name"
-"permissions","openrel:policy.011BB6F601E010A7","Intellectual Property Rights","The intellectual property can be shared with others for non-commercial purposes only, meaning it cannot be sold or used for profit-generating activities.","share","purpose"
+"permissions","openrel:policy.011BB6F601E010A7","Intellectual Property Rights","Modifications or adaptations of the intellectual property are allowed only if prior consent is obtained from the rights holder.","modify","consent"
