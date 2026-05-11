@@ -1,0 +1,184 @@
+{
+  "$schema": "https://openrel.eu/schemas/meta/v1",
+  "id": "https://openrel.eu/vocab/meta/normalization-decisions",
+  "title": "OpenREL Vocabulary — Normalization Decisions and Conceptual Map",
+  "version": "1.0.0",
+  "description": "Documents the modeling decisions, merges, removals, and transformations applied to produce the normalized OpenREL vocabulary from the EOSC-RML_Policy_Snippet_Vocabulary Draft v0.2.",
+  "sections": {
+    "overview": {
+      "original_section_count": 119,
+      "machine_actionable_basis": "Sections 91-119 (29 sections)",
+      "conceptual_basis": "Sections 1-90 (90 sections, used as conceptual source only)",
+      "normalized_policies_count": 17,
+      "normalized_actions_count": 14,
+      "normalized_constraints_count": 25,
+      "normalized_agent_types": 7,
+      "normalized_sources": 40
+    },
+    "key_modeling_decisions": [
+      {
+        "decision": "Action normalization: reduce to a core set",
+        "rationale": "The draft defined over 200 unique action names, most of which are domain-specific elaborations of a small set of ODRL core actions (use, distribute, modify, archive, delete). Over-specific action naming makes policies incomparable and prevents interoperability. Variations in meaning (commercial vs. non-commercial, anonymized vs. identifiable) belong in constraints, not in action labels.",
+        "before": ["commercialUse", "nonCommercialUse", "reuseResources", "collectData", "storeData", "shareAnonymizedData", "deployAIForResearch", "useForEducation", "(200+ total)"],
+        "after": ["openrel:use (with purpose constraint)", "openrel:distribute (with attribution duty)", "openrel:archive", "openrel:anonymize (as duty)"]
+      },
+      {
+        "decision": "Replace boolean constraint values with typed references",
+        "rationale": "The draft modelled constraints as '{name: consent, operator: eq, rightOperand: true/false}'. This is not valid in ODRL. Consent is not a boolean: it is a legal classification. The rightOperand must be a typed URI (dpv:Consent) or a typed primitive. 'false' as a prohibition rightOperand is particularly problematic — it inverts the constraint polarity rather than expressing a prohibition directly.",
+        "before": "{name: consent, operator: eq, rightOperand: false}",
+        "after": "Prohibition with constraint: {leftOperand: dpv:hasLegalBasis, operator: odrl:neq, rightOperand: dpv:Consent, rightOperand_type: xsd:anyURI}",
+        "odrl_reference": "https://www.w3.org/TR/odrl-model/#constraint-class"
+      },
+      {
+        "decision": "Remove non-standard operators",
+        "rationale": "The draft used operators 'definesAs', 'isNull', and 'outside' which do not exist in the ODRL specification. These render policies uninterpretable by any ODRL-compliant engine.",
+        "replacements": {
+          "definesAs": "odrl:eq (on odrl:recipient for notification endpoint)",
+          "isNull": "Dropped — absence of a required endpoint is a policy implementation failure, not a constraint expression. Encode as a prohibition with no-endpoint condition.",
+          "outside": "odrl:or of two bounded constraints (lt start OR gt end)"
+        },
+        "odrl_operators": "https://www.w3.org/TR/odrl-vocab/#term-Operator"
+      },
+      {
+        "decision": "Introduce assigner and assignee modelling",
+        "rationale": "The draft contained no agent modelling whatsoever. Every policy lacked assigner and assignee declarations, making it impossible to determine who is granting rights to whom. This is a fundamental gap for machine-actionable policy evaluation. The normalized vocabulary defines 7 canonical agent types and requires that every instantiated policy include at minimum an assigner and an assignee.",
+        "odrl_reference": "https://www.w3.org/TR/odrl-model/#party"
+      },
+      {
+        "decision": "Deduplicate sections expressing the same pattern",
+        "rationale": "Multiple sections in the draft (particularly Sections 91-119) expressed identical logic with trivially different values. Deduplication reduces cognitive load and prevents policy drift.",
+        "merges": [
+          {"merged": ["Section 92", "Section 106", "Section 119"], "into": "openrel:policy:p002 (Security Profile Enforcement)", "reason": "Identical constraint logic; only label differed"},
+          {"merged": ["Section 103", "Section 109", "Section 114"], "into": "openrel:policy:p013 (Usage Count Limit)", "reason": "Exact duplicates"},
+          {"merged": ["Section 108", "Section 118"], "into": "openrel:policy:p017 (Connector-Restricted Access)", "reason": "Exact duplicates"},
+          {"merged": ["Section 102", "Section 107", "Section 113"], "into": "openrel:policy:p012 (Notification Duty on Access)", "reason": "Same structure; only endpoint URL differed — parameterized"},
+          {"merged": ["Section 110", "Section 115"], "into": "openrel:policy:p014 (Duration-Based Access Window)", "reason": "Same structure; only duration value differed — parameterized"},
+          {"merged": ["Section 101", "Section 111", "Section 116"], "into": "openrel:policy:p011 (Time-Bound Access Window)", "reason": "Same interval-based pattern; datetime values parameterized"},
+          {"merged": ["Section 98", "Section 104"], "into": "openrel:policy:p008 (Spatial Restriction — EU)", "reason": "Same constraint; Section 104 added GeoJSON reference"},
+          {"merged": ["Section 105", "Section 117"], "into": "openrel:policy:p015 (Access with Deletion Duty)", "reason": "Same pattern; Section 117 added interval before deletion — both captured in combined policy"}
+        ]
+      },
+      {
+        "decision": "Replace generic source links with granular references",
+        "rationale": "The draft cited 'https://eosc-portal.eu/' across 46+ sections with no article, document, or version specificity. This is not a useful reference for either human readers or machine processing. All sources have been replaced with specific document URIs, article numbers where applicable, and issuer metadata.",
+        "example": {
+          "before": "{name: EOSC Privacy Guidelines, link: https://eosc-portal.eu/}",
+          "after": "{id: openrel:source:GDPR, uri: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32016R0679, relevant_articles: {Art.5: ..., Art.6: ..., Art.32: ...}}"
+        }
+      },
+      {
+        "decision": "Use DPV for purpose, role, and legal basis expressions",
+        "rationale": "The draft used informal strings like 'nonCommercial', 'researchPurpose', 'consent=true'. The Data Privacy Vocabulary (DPV) provides a W3C-maintained taxonomy of purposes (dpv:AcademicResearch, dpv:CommercialResearch), legal bases (dpv:Consent, dpv:LegitimateInterest), and roles (dpv:Researcher, dpv:DataController). Using DPV terms makes policies interoperable with GDPR-aligned systems.",
+        "dpv_uri": "https://w3id.org/dpv"
+      },
+      {
+        "decision": "Model attribution as a duty, not a constraint",
+        "rationale": "In CC-REL and ODRL, attribution is an obligation that accompanies a permission — something the assignee must DO, not a condition on the permission itself. The draft inconsistently modelled attribution as both a constraint (rightOperand: false in prohibitions) and a duty action ('provideAttribution'). Normalized to: openrel:attribute as a duty on permissions that permit openrel:distribute.",
+        "cc_rel_reference": "https://creativecommons.org/ns#requires"
+      },
+      {
+        "decision": "Sections 1-90 as conceptual layer only",
+        "rationale": "Sections 1-90 describe policy themes and principles (IPR, personal data, ethics, AI, collaboration) but their JSON is not machine-actionable. The actions, constraints, and sources from these sections have been normalized into the canonical registries. The sections themselves are not preserved as policy entries because they do not specify targets, assigners, assignees, or operational constraints in a resolvable form. They inform the vocabulary design but do not constitute policies.",
+        "preservation": "The conceptual themes from Sections 1-90 are mapped in meta/conceptual-map.json and can be used as human-readable policy documentation or as tags on policy instances."
+      },
+      {
+        "decision": "Compound constraint composition using odrl:and / odrl:or",
+        "rationale": "The draft never combined constraints within a single permission rule. Example B (the complex policy) requires simultaneous satisfaction of six constraints. ODRL supports this via odrl:and refinements on the Constraint class. This is the correct pattern for conjunctive policy evaluation. The draft's approach of listing separate policies for each constraint dimension would require a policy enforcement engine to correlate them, which is not guaranteed.",
+        "odrl_reference": "https://www.w3.org/TR/odrl-model/#constraint-class"
+      }
+    ],
+    "sections_treatment": {
+      "removed_or_not_preserved_as_policies": {
+        "reason": "Not machine-actionable in their current form; narrative/thematic content only",
+        "sections": [
+          "Section 24 (Sustainable Research Practices)",
+          "Section 25 (Collaborative Data Governance)",
+          "Section 28 (Public Engagement and Outreach)",
+          "Section 38 (Data Curation and Management)",
+          "Section 39 (Digital Preservation Standards)",
+          "Section 40 (Compliance with Open Science Policies)",
+          "Sections 53-90 (Training, Recruitment, Metrics, Policy, Closing Remarks, etc.)"
+        ],
+        "note": "The actions, sources, and conceptual themes from these sections are captured in the actions, constraints, and sources registries. Only the JSON policy shells are not preserved, because they lack operational specificity."
+      },
+      "transformed": {
+        "description": "Sections where the JSON structure was fundamentally reworked",
+        "cases": [
+          {"section": "Section 91", "transformation": "Boolean legalBasis constraint replaced with dpv:hasLegalBasis typed URI"},
+          {"section": "Section 93", "transformation": "Purpose constraint typed via dpv:AcademicResearch; added postDuty for purpose logging"},
+          {"section": "Section 96", "transformation": "TOM array expressed via odrl:hasPart; operator 'eq' on array replaced"},
+          {"section": "Section 98", "transformation": "Informal 'eu' string replaced with GeoNames URI for typed geographic reference"},
+          {"section": "Section 99", "transformation": "Concrete identity URL replaced with type reference; 'isNull' operator removed"},
+          {"section": "Section 102", "transformation": "'definesAs' operator removed; replaced with odrl:recipient + odrl:eq"},
+          {"section": "Section 116", "transformation": "'outside' operator removed; replaced with odrl:or of two bounded constraints"},
+          {"section": "Section 117", "transformation": "Combined time interval + deletion duty into single policy with postDuty"}
+        ]
+      },
+      "merged": {
+        "description": "See key_modeling_decisions.deduplication above"
+      },
+      "preserved_unchanged_in_spirit": {
+        "description": "Sections where the core semantics were sound and only operator/typing corrections were needed",
+        "sections": ["Section 94", "Section 95", "Section 97", "Section 100", "Section 101", "Section 103", "Section 105", "Section 108", "Section 110", "Section 112"]
+      }
+    },
+    "cc_rel_integration": {
+      "description": "Creative Commons REL (CC REL) uses permits, prohibits, and requires to express conditions. These map naturally to ODRL permissions, prohibitions, and duties.",
+      "mapping": {
+        "cc:permits": "odrl:permission",
+        "cc:prohibits": "odrl:prohibition",
+        "cc:requires": "odrl:duty",
+        "cc:attributionRequired": "openrel:constraint:attribution:required + openrel:attribute (duty)",
+        "cc:sharesAlike": "openrel:constraint:shareAlike",
+        "cc:commercialUse": "dpv:hasPurpose odrl:eq dpv:CommercialResearch (in prohibition)"
+      },
+      "compatibility_note": "CC licences themselves are not modified by this vocabulary. The CC REL concepts are mapped INTO the ODRL/OpenREL model to enable interoperability with non-CC licensed data. CC-licensed data should continue to use CC licence URIs as the odrl:inheritFrom reference."
+    },
+    "odrl_namespace_extensions": {
+      "openrel_namespace": "https://openrel.eu/vocab/",
+      "custom_leftOperands": [
+        "openrel:requiresEthicsApproval",
+        "openrel:requiresTOM",
+        "openrel:dataVolumeMiB",
+        "openrel:revocationStatus",
+        "openrel:fundingSource",
+        "openrel:accessType",
+        "openrel:attributionRequired",
+        "openrel:shareAlike",
+        "openrel:dataMinimization"
+      ],
+      "custom_rightOperands": [
+        "openrel:Active",
+        "openrel:Revoked",
+        "openrel:OpenAccess",
+        "openrel:PublicFunding",
+        "openrel:EidasVerifiedIdentity",
+        "openrel:NoVerifiedIdentity"
+      ],
+      "rationale": "These extensions are necessary because ODRL's core vocabulary does not cover all EOSC-specific requirements (ethics approval, TOM, data volume, revocation status). All extensions are defined in the OpenREL namespace and documented here for pipeline transparency."
+    },
+    "github_structure_guidance": {
+      "recommended_directory_layout": {
+        "openrel-vocab/": {
+          "actions/": "actions.json — canonical action registry",
+          "constraints/": "constraints.json — canonical constraint registry",
+          "agents/": "agents.json — canonical agent type definitions",
+          "sources/": "sources.json — deduplicated source registry",
+          "policies/": "policies.json — normalized policy templates",
+          "examples/": "example-policies.json — instantiated example policies",
+          "meta/": {
+            "normalization-decisions.json": "This file",
+            "conceptual-map.json": "Mapping of Sections 1-90 to vocabulary concepts (future)",
+            "namespace.json": "OpenREL namespace declarations and prefix definitions (future)"
+          },
+          "README.md": "Human-readable overview of the vocabulary structure"
+        }
+      },
+      "pipeline_integration": {
+        "google_sheets_to_json": "The constraint registry and policy templates are designed for tabular input. Each constraint entry maps to one spreadsheet row. The policy templates use [INSTANCE] placeholders that can be populated programmatically from a Google Sheet.",
+        "github_actions": "Validation of policies against the ODRL schema can be automated via a GitHub Actions workflow using the odrl-validator tool.",
+        "identifiers": "All IDs use the openrel: prefix with the format openrel:{type}:{category}:{name}. This is stable and URI-resolvable under the openrel.eu domain."
+      }
+    }
+  }
+}

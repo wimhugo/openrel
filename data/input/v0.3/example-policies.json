@@ -1,0 +1,301 @@
+{
+  "$schema": "https://openrel.eu/schemas/policies/v1",
+  "@context": {
+    "odrl": "http://www.w3.org/ns/odrl/2/",
+    "openrel": "https://openrel.eu/vocab/",
+    "dpv": "https://w3id.org/dpv#",
+    "ids": "https://w3id.org/idsa/core/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/"
+  },
+  "id": "https://openrel.eu/vocab/examples",
+  "title": "OpenREL Example Policies",
+  "version": "1.0.0",
+  "description": "Two instantiated example policies demonstrating the normalized vocabulary in practice. Example A is simple; Example B is complex and compound. Both are derived from real patterns in the draft vocabulary.",
+  "examples": [
+    {
+      "id": "openrel:example:policy:A",
+      "label": "Example A — Non-Commercial Reuse with Attribution (Simple)",
+      "description": "A researcher is permitted to reuse a published dataset for academic purposes, provided they give attribution to the original creators. Commercial use is explicitly prohibited. The policy is modelled on CC BY-NC semantics expressed in ODRL, covering the pattern from Sections 1, 4, 7, and 10 of the draft.",
+      "odrl_type": "odrl:Set",
+      "uid": "https://openrel.eu/policies/examples/A",
+      "dcterms:issued": "2025-10-01",
+      "dcterms:modified": "2025-10-01",
+      "assigner": {
+        "uid": "https://ror.org/04wxnsj81",
+        "type": "openrel:agent:DataProvider",
+        "label": "Example Research Institute (assigner)"
+      },
+      "assignee": {
+        "uid": "https://orcid.org/0000-0001-2345-6789",
+        "type": "openrel:agent:Researcher",
+        "label": "Researcher Jane Doe (assignee)"
+      },
+      "target": {
+        "uid": "https://doi.org/10.1234/example-dataset-001",
+        "label": "Climate Research Dataset v2"
+      },
+      "permissions": [
+        {
+          "action": "openrel:use",
+          "refinement": {
+            "leftOperand": "dpv:hasPurpose",
+            "operator": "odrl:isA",
+            "rightOperand": "dpv:AcademicResearch",
+            "rightOperand_type": "xsd:anyURI"
+          },
+          "duty": {
+            "action": "openrel:attribute",
+            "description": "The assignee must credit the original creator in any publication, output, or derivative that uses this dataset. Attribution must include the dataset DOI and the name of the originating institution."
+          }
+        },
+        {
+          "action": "openrel:distribute",
+          "constraint": {
+            "leftOperand": "dpv:hasPurpose",
+            "operator": "odrl:neq",
+            "rightOperand": "dpv:CommercialResearch",
+            "rightOperand_type": "xsd:anyURI"
+          },
+          "duty": {
+            "action": "openrel:attribute"
+          }
+        },
+        {
+          "action": "openrel:modify",
+          "constraint": {
+            "leftOperand": "dpv:hasPurpose",
+            "operator": "odrl:isA",
+            "rightOperand": "dpv:AcademicResearch",
+            "rightOperand_type": "xsd:anyURI"
+          },
+          "duty": {
+            "action": "openrel:attribute"
+          }
+        }
+      ],
+      "prohibitions": [
+        {
+          "action": "openrel:use",
+          "constraint": {
+            "leftOperand": "dpv:hasPurpose",
+            "operator": "odrl:eq",
+            "rightOperand": "dpv:CommercialResearch",
+            "rightOperand_type": "xsd:anyURI"
+          },
+          "description": "Commercial use of any kind is explicitly prohibited."
+        },
+        {
+          "action": "openrel:distribute",
+          "constraint": {
+            "id": "openrel:constraint:attribution:required",
+            "leftOperand": "openrel:attributionRequired",
+            "operator": "odrl:eq",
+            "rightOperand": false,
+            "rightOperand_type": "xsd:boolean"
+          },
+          "description": "Redistribution without attribution is prohibited."
+        }
+      ],
+      "duties": [],
+      "sources_used": [
+        "openrel:source:CreativeCommons",
+        "openrel:source:FAIR",
+        "openrel:source:DPV",
+        "openrel:source:ODRL"
+      ],
+      "original_draft_coverage": ["Section 1", "Section 4", "Section 7", "Section 10", "Section 51"],
+      "cc_rel_equivalent": "CC BY-NC 4.0",
+      "machine_actionable": true,
+      "evaluation": "allow | deny",
+      "modelling_notes": [
+        "The draft modelled 'share' and 'reuse' as separate top-level actions. Normalized to openrel:use, openrel:distribute, and openrel:modify — ODRL's canonical action hierarchy.",
+        "The draft's 'constraint: {name: purpose, operator: eq, rightOperand: nonCommercial}' used an informal string. Replaced with dpv:hasPurpose neq dpv:CommercialResearch for typed, resolvable semantics.",
+        "Attribution is modelled as a duty on each permission, not as a constraint. In ODRL, attribution is an obligation accompanying a permission, not a condition blocking it.",
+        "The prohibition uses openrel:attributionRequired=false to capture the 'may not redistribute without attribution' rule as a typed boolean constraint."
+      ]
+    },
+    {
+      "id": "openrel:example:policy:B",
+      "label": "Example B — Restricted Access with Approval, Logging, and Actor Constraints (Complex)",
+      "description": "A sensitive health research dataset is accessible only to verified researchers from EU-based institutions, who hold a valid ethics approval, connect via an IDS TRUST+ certified connector, and agree to: log every access, limit their use to 24 hours, and delete all data after the access window expires. This policy combines patterns from Sections 91, 92, 94, 95, 98, 105, 107, 112, and 115 of the draft. It demonstrates compound constraint composition and multi-duty orchestration.",
+      "odrl_type": "odrl:Agreement",
+      "uid": "https://openrel.eu/policies/examples/B",
+      "dcterms:issued": "2025-10-01",
+      "dcterms:modified": "2025-10-01",
+      "assigner": {
+        "uid": "https://ror.org/03yrm5c26",
+        "type": "openrel:agent:DataProvider",
+        "label": "Health Research Institute (assigner)"
+      },
+      "assignee": {
+        "uid": "https://orcid.org/0000-0002-9876-5432",
+        "type": "openrel:agent:Researcher",
+        "label": "Researcher (assignee — must also operate via authorized connector)"
+      },
+      "target": {
+        "uid": "https://doi.org/10.5678/sensitive-health-dataset-2025",
+        "label": "Anonymised Patient Cohort Data — EU Health Study 2025"
+      },
+      "permissions": [
+        {
+          "action": "openrel:use",
+          "constraints": {
+            "odrl:and": [
+              {
+                "label": "Legal Basis",
+                "leftOperand": "dpv:hasLegalBasis",
+                "operator": "odrl:eq",
+                "rightOperand": "dpv:Consent",
+                "rightOperand_type": "xsd:anyURI",
+                "source": "openrel:constraint:legalBasis:consent"
+              },
+              {
+                "label": "Role",
+                "leftOperand": "dpv:hasRole",
+                "operator": "odrl:eq",
+                "rightOperand": "dpv:Researcher",
+                "rightOperand_type": "xsd:anyURI",
+                "source": "openrel:constraint:role:researcher"
+              },
+              {
+                "label": "Geography",
+                "leftOperand": "odrl:spatial",
+                "operator": "odrl:eq",
+                "rightOperand": "https://www.geonames.org/6255148",
+                "rightOperand_type": "xsd:anyURI",
+                "source": "openrel:constraint:spatial:eu"
+              },
+              {
+                "label": "Security Profile",
+                "leftOperand": "ids:securityLevel",
+                "operator": "odrl:eq",
+                "rightOperand": "https://w3id.org/idsa/code/TRUST_PLUS_SECURITY_PROFILE",
+                "rightOperand_type": "xsd:anyURI",
+                "source": "openrel:constraint:security:trustPlus"
+              },
+              {
+                "label": "Ethics Approval",
+                "leftOperand": "openrel:requiresEthicsApproval",
+                "operator": "odrl:eq",
+                "rightOperand": true,
+                "rightOperand_type": "xsd:boolean",
+                "source": "openrel:constraint:ethics:approvalRequired"
+              },
+              {
+                "label": "Access Duration",
+                "leftOperand": "odrl:elapsedTime",
+                "operator": "odrl:lteq",
+                "rightOperand": "PT24H",
+                "rightOperand_type": "xsd:duration",
+                "source": "openrel:constraint:duration:pt24h"
+              }
+            ]
+          },
+          "postDuties": [
+            {
+              "action": "openrel:notify",
+              "description": "Send access notification to the data provider's audit endpoint immediately upon access.",
+              "constraint": {
+                "leftOperand": "odrl:recipient",
+                "operator": "odrl:eq",
+                "rightOperand": "https://health-institute.example.org/audit/notify",
+                "rightOperand_type": "xsd:anyURI"
+              },
+              "source_policy": "openrel:policy:p012"
+            },
+            {
+              "action": "openrel:log",
+              "description": "Log the full access event (user ORCID, dataset DOI, connector URI, timestamp, duration) to the EOSC clearing house.",
+              "constraint": {
+                "leftOperand": "odrl:recipient",
+                "operator": "odrl:eq",
+                "rightOperand": "https://clearinghouse.eosc.eu/logs",
+                "rightOperand_type": "xsd:anyURI"
+              },
+              "source_policy": "openrel:policy:p016"
+            },
+            {
+              "action": "openrel:delete",
+              "description": "The assignee must delete all local copies of the dataset within 24 hours of first access.",
+              "constraint": {
+                "leftOperand": "odrl:elapsedTime",
+                "operator": "odrl:lteq",
+                "rightOperand": "PT24H",
+                "rightOperand_type": "xsd:duration"
+              },
+              "source_policy": "openrel:policy:p015"
+            }
+          ]
+        }
+      ],
+      "prohibitions": [
+        {
+          "action": "openrel:use",
+          "constraint": {
+            "leftOperand": "dpv:hasPurpose",
+            "operator": "odrl:neq",
+            "rightOperand": "dpv:AcademicResearch",
+            "rightOperand_type": "xsd:anyURI"
+          },
+          "description": "Use for any non-academic purpose is prohibited."
+        },
+        {
+          "action": "openrel:distribute",
+          "description": "The dataset may not be shared with third parties under any circumstances."
+        },
+        {
+          "action": "openrel:modify",
+          "description": "Modification or derivation of the dataset is prohibited."
+        },
+        {
+          "action": "openrel:reproduce",
+          "constraint": {
+            "leftOperand": "odrl:elapsedTime",
+            "operator": "odrl:gt",
+            "rightOperand": "PT24H",
+            "rightOperand_type": "xsd:duration"
+          },
+          "description": "Retaining any copy after the 24-hour window has elapsed is prohibited."
+        }
+      ],
+      "duties": [
+        {
+          "action": "openrel:obtainConsent",
+          "description": "The data controller must verify and document that all data in the dataset was collected under valid GDPR consent prior to granting any access.",
+          "source_policy": "openrel:policy:p001"
+        }
+      ],
+      "sources_used": [
+        "openrel:source:GDPR",
+        "openrel:source:EDPB:consent",
+        "openrel:source:EDPB:dataSecurity",
+        "openrel:source:DPV",
+        "openrel:source:IDSA:core",
+        "openrel:source:IDSA:usageControl",
+        "openrel:source:HorizonEthics",
+        "openrel:source:BBMRI:ELSI",
+        "openrel:source:HelsinkiDeclaration",
+        "openrel:source:ODRL",
+        "openrel:source:FAIR"
+      ],
+      "original_draft_coverage": [
+        "Section 91 (consent)", "Section 92 (security profile)",
+        "Section 94 (role)", "Section 95 (ethics approval)",
+        "Section 98 (spatial)", "Section 105 (deletion duty)",
+        "Section 107 (notification)", "Section 112 (logging)",
+        "Section 115 (duration)"
+      ],
+      "machine_actionable": true,
+      "evaluation": "conditional — all constraints must evaluate to true simultaneously; evaluation is conjunctive (AND logic)",
+      "modelling_notes": [
+        "All access constraints are combined using odrl:and to enforce conjunctive evaluation. The assignee must satisfy ALL conditions simultaneously.",
+        "The three postDuties (notify, log, delete) are mandatory and must be executed in sequence after access. Failure to execute any duty constitutes a policy violation.",
+        "No openrel:distribute or openrel:modify permissions are granted — the prohibitions cover all non-permitted actions by default under odrl:Agreement semantics.",
+        "The deletion duty is modelled as a postDuty on the permission (not as a separate policy) to make the causal relationship explicit: access triggers deletion.",
+        "This policy requires a policy enforcement mechanism that can evaluate all constraints in real time (e.g., an EOSC connector with usage control capabilities).",
+        "The draft's equivalent patterns (Sections 92, 94, 95, 98, 105, 107, 112, 115) would have required assembling 8 separate policy entries. This normalized compound policy expresses the same semantics in a single, interpretable structure."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,311 @@
+{
+  "$schema": "https://openrel.eu/schemas/constraints/v1",
+  "@context": {
+    "odrl": "http://www.w3.org/ns/odrl/2/",
+    "openrel": "https://openrel.eu/vocab/",
+    "dpv": "https://w3id.org/dpv#",
+    "ids": "https://w3id.org/idsa/core/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "id": "https://openrel.eu/vocab/constraints",
+  "title": "OpenREL Normalized Constraint Registry",
+  "version": "1.0.0",
+  "description": "Reusable, typed constraint definitions for use in OpenREL/ODRL policies. Operators follow the ODRL 2.2 specification. All rightOperand values are typed. Free-text constraints from the draft have been normalized into structured entries.",
+  "operator_reference": {
+    "odrl:eq": "Exact equality match",
+    "odrl:neq": "Not equal",
+    "odrl:lt": "Less than (numeric or datetime)",
+    "odrl:lteq": "Less than or equal to",
+    "odrl:gt": "Greater than",
+    "odrl:gteq": "Greater than or equal to",
+    "odrl:isA": "Type/class membership",
+    "odrl:hasPart": "Composite relationship"
+  },
+  "constraints": [
+    {
+      "id": "openrel:constraint:purpose:academicResearch",
+      "label": "Purpose — Academic Research",
+      "leftOperand": "dpv:hasPurpose",
+      "operator": "odrl:eq",
+      "rightOperand": "dpv:AcademicResearch",
+      "rightOperand_type": "xsd:anyURI",
+      "definition": "Restricts use to declared academic research purposes as classified by DPV.",
+      "source_sections": ["Section 93"],
+      "notes": "Use odrl:neq variant to express the corresponding prohibition. Replaces draft's non-typed 'purpose=nonCommercial', 'purpose=educationalResearch', 'purpose=fairUse'."
+    },
+    {
+      "id": "openrel:constraint:purpose:nonCommercial",
+      "label": "Purpose — Non-Commercial",
+      "leftOperand": "dpv:hasPurpose",
+      "operator": "odrl:neq",
+      "rightOperand": "dpv:CommercialResearch",
+      "rightOperand_type": "xsd:anyURI",
+      "definition": "Excludes commercial exploitation from permitted purposes.",
+      "source_sections": ["Section 1", "Section 4", "Section 7", "Section 10"],
+      "notes": "More precise than the draft's boolean 'nonCommercial' string. Commercial is expressed as exclusion of dpv:CommercialResearch rather than a positive claim."
+    },
+    {
+      "id": "openrel:constraint:legalBasis:consent",
+      "label": "Legal Basis — Consent",
+      "leftOperand": "dpv:hasLegalBasis",
+      "operator": "odrl:eq",
+      "rightOperand": "dpv:Consent",
+      "rightOperand_type": "xsd:anyURI",
+      "definition": "Requires GDPR-compliant explicit consent as the legal basis for processing.",
+      "source_sections": ["Section 91", "Section 2", "Section 9", "Section 47"],
+      "notes": "Replaces draft's boolean 'consent=true/false' pattern, which is not valid in ODRL. Consent is expressed as a classification via dpv:hasLegalBasis."
+    },
+    {
+      "id": "openrel:constraint:role:researcher",
+      "label": "Role — Researcher",
+      "leftOperand": "dpv:hasRole",
+      "operator": "odrl:eq",
+      "rightOperand": "dpv:Researcher",
+      "rightOperand_type": "xsd:anyURI",
+      "definition": "Restricts the permitted action to agents holding the 'Researcher' role as defined in DPV.",
+      "source_sections": ["Section 94"]
+    },
+    {
+      "id": "openrel:constraint:role:institution",
+      "label": "Role — Research Institution",
+      "leftOperand": "dpv:hasRole",
+      "operator": "odrl:eq",
+      "rightOperand": "dpv:DataController",
+      "rightOperand_type": "xsd:anyURI",
+      "definition": "Restricts the action to accredited research institutions acting as data controllers.",
+      "source_sections": ["Section 94"]
+    },
+    {
+      "id": "openrel:constraint:ethics:approvalRequired",
+      "label": "Ethics Approval Required",
+      "leftOperand": "openrel:requiresEthicsApproval",
+      "operator": "odrl:eq",
+      "rightOperand": true,
+      "rightOperand_type": "xsd:boolean",
+      "definition": "Requires documented ethics committee or IRB approval prior to access.",
+      "source_sections": ["Section 95", "Section 8", "Section 26", "Section 48"],
+      "notes": "The custom leftOperand 'openrel:requiresEthicsApproval' is defined in the OpenREL extension namespace. This replaces the draft's untyped 'ethicsApproval=true'."
+    },
+    {
+      "id": "openrel:constraint:security:trustPlus",
+      "label": "Security Profile — TRUST+",
+      "leftOperand": "ids:securityLevel",
+      "operator": "odrl:eq",
+      "rightOperand": "https://w3id.org/idsa/code/TRUST_PLUS_SECURITY_PROFILE",
+      "rightOperand_type": "xsd:anyURI",
+      "definition": "Requires the requesting connector to hold the IDS TRUST+ security certification.",
+      "source_sections": ["Section 92", "Section 106", "Section 119"],
+      "notes": "Sections 92, 106, and 119 are merged here: all express the same security profile constraint with minor label differences."
+    },
+    {
+      "id": "openrel:constraint:security:trust",
+      "label": "Security Profile — TRUST",
+      "leftOperand": "ids:securityLevel",
+      "operator": "odrl:eq",
+      "rightOperand": "https://w3id.org/idsa/code/TRUST_SECURITY_PROFILE",
+      "rightOperand_type": "xsd:anyURI",
+      "definition": "Requires the requesting connector to hold the IDS TRUST security certification.",
+      "source_sections": ["Section 106", "Section 119"]
+    },
+    {
+      "id": "openrel:constraint:security:base",
+      "label": "Security Profile — BASE",
+      "leftOperand": "ids:securityLevel",
+      "operator": "odrl:eq",
+      "rightOperand": "https://w3id.org/idsa/code/BASE_SECURITY_PROFILE",
+      "rightOperand_type": "xsd:anyURI",
+      "definition": "Requires the requesting connector to hold the IDS BASE security certification.",
+      "source_sections": ["Section 106"]
+    },
+    {
+      "id": "openrel:constraint:tom:required",
+      "label": "Technical and Organisational Measures Required",
+      "leftOperand": "openrel:requiresTOM",
+      "operator": "odrl:hasPart",
+      "rightOperand": ["encryption", "accessControl", "logging"],
+      "rightOperand_type": "xsd:string[]",
+      "definition": "Requires the data processor to implement specified Technical and Organisational Measures (TOMs) before access is granted.",
+      "source_sections": ["Section 96"],
+      "notes": "odrl:hasPart is used to express a composite requirement. The rightOperand is a typed array. Replaces the draft's untyped array without operator."
+    },
+    {
+      "id": "openrel:constraint:volume:maxMiB",
+      "label": "Maximum Data Volume (MiB)",
+      "leftOperand": "openrel:dataVolumeMiB",
+      "operator": "odrl:lteq",
+      "rightOperand": 100,
+      "rightOperand_type": "xsd:integer",
+      "definition": "Limits each access request to a maximum of 100 MiB of data.",
+      "source_sections": ["Section 97"],
+      "notes": "The rightOperand value is a template; override per policy instance. The custom leftOperand 'openrel:dataVolumeMiB' is defined in the OpenREL namespace."
+    },
+    {
+      "id": "openrel:constraint:spatial:eu",
+      "label": "Spatial — European Union",
+      "leftOperand": "odrl:spatial",
+      "operator": "odrl:eq",
+      "rightOperand": "https://www.geonames.org/6255148",
+      "rightOperand_type": "xsd:anyURI",
+      "definition": "Restricts access to requests originating within EU member states. Uses a GeoNames URI for the EU as a typed geographic identifier.",
+      "source_sections": ["Section 98", "Section 104"],
+      "notes": "Sections 98 and 104 both express location-based access; merged into one canonical constraint with GeoNames URI instead of the draft's informal string 'eu'. Section 50 (cross-border governance) is handled at policy level."
+    },
+    {
+      "id": "openrel:constraint:identity:verified",
+      "label": "Identity — Verified eIDAS",
+      "leftOperand": "dpv:hasIdentity",
+      "operator": "odrl:isA",
+      "rightOperand": "openrel:EidasVerifiedIdentity",
+      "rightOperand_type": "xsd:anyURI",
+      "definition": "Requires the agent to hold a verified digital identity issued by an eIDAS-compliant Trust Service Provider.",
+      "source_sections": ["Section 99"],
+      "notes": "The draft used a concrete identity URL as rightOperand, which is instance-specific. The canonical constraint uses a type reference; the concrete identity URI is set at policy instantiation."
+    },
+    {
+      "id": "openrel:constraint:count:max5",
+      "label": "Access Count — Maximum 5",
+      "leftOperand": "odrl:count",
+      "operator": "odrl:lteq",
+      "rightOperand": 5,
+      "rightOperand_type": "xsd:integer",
+      "definition": "Limits the total number of times a resource may be accessed to 5.",
+      "source_sections": ["Section 103", "Section 109", "Section 114"],
+      "notes": "Sections 103, 109, and 114 are exact duplicates of a count-based access constraint. Merged into one parameterizable template. Override rightOperand per policy instance."
+    },
+    {
+      "id": "openrel:constraint:duration:pt10h",
+      "label": "Access Duration — 10 Hours",
+      "leftOperand": "odrl:elapsedTime",
+      "operator": "odrl:lteq",
+      "rightOperand": "PT10H",
+      "rightOperand_type": "xsd:duration",
+      "definition": "Limits access to a maximum of 10 hours from the start of the session.",
+      "source_sections": ["Section 110"],
+      "notes": "ISO 8601 duration format. Template: override PT10H per policy instance."
+    },
+    {
+      "id": "openrel:constraint:duration:pt24h",
+      "label": "Access Duration — 24 Hours",
+      "leftOperand": "odrl:elapsedTime",
+      "operator": "odrl:lteq",
+      "rightOperand": "PT24H",
+      "rightOperand_type": "xsd:duration",
+      "definition": "Limits access to a maximum of 24 hours from provisioning.",
+      "source_sections": ["Section 115"]
+    },
+    {
+      "id": "openrel:constraint:timeInterval:template",
+      "label": "Time Interval Access Window (Template)",
+      "leftOperand": "odrl:dateTime",
+      "operator_start": "odrl:gteq",
+      "operator_end": "odrl:lteq",
+      "rightOperand_start": "YYYY-MM-DDTHH:MM:SSZ",
+      "rightOperand_end": "YYYY-MM-DDTHH:MM:SSZ",
+      "rightOperand_type": "xsd:dateTime",
+      "definition": "Restricts access to a specific datetime interval. Both bounds must be evaluated simultaneously using a logical AND.",
+      "source_sections": ["Section 101", "Section 111", "Section 116", "Section 117"],
+      "notes": "Sections 101, 111, 116, and 117 all express interval-based access; Section 117 adds a deletion duty after the interval. The draft used a non-standard 'outside' operator — replaced here with two bounded constraints (gteq start AND lteq end). The prohibition is expressed as the logical complement. Concrete values are set at policy instantiation.",
+      "implementation_note": "In ODRL, compound constraints use odrl:and / odrl:or refinements on the Constraint class."
+    },
+    {
+      "id": "openrel:constraint:revocation:active",
+      "label": "Revocation Status — Active",
+      "leftOperand": "openrel:revocationStatus",
+      "operator": "odrl:eq",
+      "rightOperand": "openrel:Active",
+      "rightOperand_type": "xsd:anyURI",
+      "definition": "Permits access only if the provider has not flagged the dataset as revoked.",
+      "source_sections": ["Section 100"],
+      "notes": "The custom leftOperand and rightOperand are defined in the OpenREL extension namespace. The revocation check must be enforced at policy evaluation time."
+    },
+    {
+      "id": "openrel:constraint:connector:authorizedURI",
+      "label": "Connector — Authorized URI (Template)",
+      "leftOperand": "odrl:system",
+      "operator": "odrl:eq",
+      "rightOperand": "https://connector.example.org/id",
+      "rightOperand_type": "xsd:anyURI",
+      "definition": "Restricts access to a specific connector identified by URI.",
+      "source_sections": ["Section 108", "Section 118"],
+      "notes": "Sections 108 and 118 are duplicates. Merged into one template. The rightOperand URI is set at policy instantiation.",
+      "template": true
+    },
+    {
+      "id": "openrel:constraint:notification:endpoint",
+      "label": "Notification Endpoint (Template)",
+      "leftOperand": "odrl:recipient",
+      "operator": "odrl:eq",
+      "rightOperand": "https://notification.example.org/usage",
+      "rightOperand_type": "xsd:anyURI",
+      "definition": "Specifies the URI of the endpoint that must receive a notification after each access event.",
+      "source_sections": ["Section 102", "Section 107", "Section 113"],
+      "notes": "Sections 102, 107, and 113 all express notification duties with different endpoint URLs. Merged into one template. The draft used 'definesAs' and 'isNull' — neither are ODRL operators. 'odrl:recipient' is the correct ODRL left operand for notify constraints. The draft operator 'isNull' is replaced by encoding absence as a prohibition with no endpoint defined.",
+      "template": true
+    },
+    {
+      "id": "openrel:constraint:log:clearinghouse",
+      "label": "Logging Target — Clearing House (Template)",
+      "leftOperand": "odrl:recipient",
+      "operator": "odrl:eq",
+      "rightOperand": "https://clearinghouse.example.org/logs",
+      "rightOperand_type": "xsd:anyURI",
+      "definition": "Specifies the URI of the clearing house or audit system that must receive each access log entry.",
+      "source_sections": ["Section 112"],
+      "template": true
+    },
+    {
+      "id": "openrel:constraint:dataMinimization",
+      "label": "Data Minimization",
+      "leftOperand": "openrel:dataMinimization",
+      "operator": "odrl:eq",
+      "rightOperand": true,
+      "rightOperand_type": "xsd:boolean",
+      "definition": "Requires that only data strictly necessary for the stated purpose is collected or stored.",
+      "source_sections": ["Section 2", "Section 9"],
+      "notes": "Replaces the draft's untyped 'dataMinimization' constraint. Expressed as a boolean compliance flag in the OpenREL namespace."
+    },
+    {
+      "id": "openrel:constraint:openAccess:required",
+      "label": "Open Access Required",
+      "leftOperand": "openrel:accessType",
+      "operator": "odrl:eq",
+      "rightOperand": "openrel:OpenAccess",
+      "rightOperand_type": "xsd:anyURI",
+      "definition": "Requires that the resource be made available under open access terms, typically in a public repository.",
+      "source_sections": ["Section 5", "Section 10", "Section 35", "Section 40"],
+      "notes": "Consolidates the draft's 'repository=openAccess', 'availability=public', 'licenseCompliance=true' patterns into a single typed constraint."
+    },
+    {
+      "id": "openrel:constraint:attribution:required",
+      "label": "Attribution Required",
+      "leftOperand": "openrel:attributionRequired",
+      "operator": "odrl:eq",
+      "rightOperand": true,
+      "rightOperand_type": "xsd:boolean",
+      "definition": "Requires that the original creator or rights holder be credited when the resource is used, shared, or published.",
+      "source_sections": ["Section 1", "Section 3", "Section 4", "Section 7", "Section 10", "Section 16", "Section 19", "Section 30", "Section 51"],
+      "notes": "The draft modelled attribution inconsistently: sometimes as a constraint ('attribution=false' in prohibitions), sometimes as an action ('provideAttribution'). Normalized here as a boolean constraint; the corresponding duty is openrel:attribute."
+    },
+    {
+      "id": "openrel:constraint:shareAlike",
+      "label": "Share-Alike Required",
+      "leftOperand": "openrel:shareAlike",
+      "operator": "odrl:eq",
+      "rightOperand": true,
+      "rightOperand_type": "xsd:boolean",
+      "definition": "Requires that derivatives be distributed under the same or a compatible licence (copyleft condition).",
+      "source_sections": ["Section 6"],
+      "notes": "Replaces draft's 'licenseType=CreativeCommonsBY-SA' which was too specific. ShareAlike is a structural condition, not a licence reference."
+    },
+    {
+      "id": "openrel:constraint:fundingSource:public",
+      "label": "Funding Source — Public",
+      "leftOperand": "openrel:fundingSource",
+      "operator": "odrl:eq",
+      "rightOperand": "openrel:PublicFunding",
+      "rightOperand_type": "xsd:anyURI",
+      "definition": "Identifies the resource as publicly funded, triggering open access obligations.",
+      "source_sections": ["Section 5", "Section 10"]
+    }
+  ]
+}

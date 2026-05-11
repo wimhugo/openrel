@@ -1,0 +1,819 @@
+{
+  "$schema": "https://openrel.eu/schemas/policies/v1",
+  "@context": {
+    "odrl": "http://www.w3.org/ns/odrl/2/",
+    "openrel": "https://openrel.eu/vocab/",
+    "dpv": "https://w3id.org/dpv#",
+    "ids": "https://w3id.org/idsa/core/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "id": "https://openrel.eu/vocab/policies",
+  "title": "OpenREL Normalized Policy Registry",
+  "version": "1.0.0",
+  "description": "Machine-actionable ODRL-aligned policy patterns derived primarily from Sections 91-119 of the draft vocabulary, with deduplication and normalization applied. Sections 1-90 are represented at the conceptual level only (see meta/conceptual-map.json). Each policy is a reusable template; instance-specific values (assigner URI, assignee URI, target URI, datetime values) are marked as [INSTANCE].",
+  "policy_template_instructions": {
+    "assigner": "Replace [ASSIGNER_URI] with the Data Provider's persistent URI (e.g., ROR, GRID, or institutional URI)",
+    "assignee": "Replace [ASSIGNEE_URI] with the Data Consumer's persistent URI (e.g., ORCID, connector URI) or a class reference (e.g., openrel:agent:PublicUser)",
+    "target": "Replace [TARGET_URI] with the dataset or resource URI (e.g., DOI, repository handle)",
+    "datetime": "Replace [DATETIME] values with ISO 8601 formatted timestamps or durations"
+  },
+  "policies": [
+    {
+      "id": "openrel:policy:p001",
+      "label": "GDPR Consent-Gated Data Use",
+      "odrl_type": "odrl:Permission",
+      "source_sections": ["Section 91", "Section 2", "Section 9", "Section 47"],
+      "derived_from": "Sections 91 (primary), 2, 9, 47 merged",
+      "assigner": "[ASSIGNER_URI]",
+      "assignee": "[ASSIGNEE_URI]",
+      "target": "[TARGET_URI]",
+      "action": "openrel:use",
+      "permissions": [
+        {
+          "action": "openrel:use",
+          "constraint": {
+            "id": "openrel:constraint:legalBasis:consent",
+            "leftOperand": "dpv:hasLegalBasis",
+            "operator": "odrl:eq",
+            "rightOperand": "dpv:Consent"
+          }
+        }
+      ],
+      "prohibitions": [
+        {
+          "action": "openrel:use",
+          "constraint": {
+            "leftOperand": "dpv:hasLegalBasis",
+            "operator": "odrl:neq",
+            "rightOperand": "dpv:Consent"
+          }
+        }
+      ],
+      "duties": [
+        {
+          "action": "openrel:obtainConsent",
+          "description": "The data controller must obtain, record, and be able to demonstrate valid consent prior to granting access."
+        }
+      ],
+      "sources": ["openrel:source:GDPR", "openrel:source:EDPB:consent", "openrel:source:DPV"],
+      "machine_actionable": true,
+      "evaluation": "allow | deny",
+      "notes": "The draft's Section 91 used a non-typed 'neq' operator in the prohibition. Normalized to odrl:neq on dpv:hasLegalBasis."
+    },
+    {
+      "id": "openrel:policy:p002",
+      "label": "Security Profile Enforcement — TRUST+",
+      "odrl_type": "odrl:Permission",
+      "source_sections": ["Section 92", "Section 106", "Section 119"],
+      "derived_from": "Sections 92, 106, 119 merged (all express identical security profile constraint)",
+      "assigner": "[ASSIGNER_URI]",
+      "assignee": "[ASSIGNEE_URI — Connector]",
+      "target": "[TARGET_URI]",
+      "permissions": [
+        {
+          "action": "openrel:use",
+          "constraint": {
+            "id": "openrel:constraint:security:trustPlus",
+            "leftOperand": "ids:securityLevel",
+            "operator": "odrl:eq",
+            "rightOperand": "https://w3id.org/idsa/code/TRUST_PLUS_SECURITY_PROFILE",
+            "rightOperand_type": "xsd:anyURI"
+          }
+        }
+      ],
+      "prohibitions": [
+        {
+          "action": "openrel:use",
+          "constraint": {
+            "leftOperand": "ids:securityLevel",
+            "operator": "odrl:neq",
+            "rightOperand": "https://w3id.org/idsa/code/TRUST_PLUS_SECURITY_PROFILE",
+            "rightOperand_type": "xsd:anyURI"
+          }
+        }
+      ],
+      "duties": [
+        {
+          "action": "openrel:use",
+          "description": "The platform must validate the connector's declared security profile against the IDS certification registry before granting access."
+        }
+      ],
+      "sources": ["openrel:source:IDSA:core", "openrel:source:IDSA:usageControl", "openrel:source:ODRL:OAC"],
+      "machine_actionable": true,
+      "evaluation": "allow | deny",
+      "parameterizable": {
+        "field": "rightOperand",
+        "options": [
+          "https://w3id.org/idsa/code/BASE_SECURITY_PROFILE",
+          "https://w3id.org/idsa/code/TRUST_SECURITY_PROFILE",
+          "https://w3id.org/idsa/code/TRUST_PLUS_SECURITY_PROFILE"
+        ]
+      }
+    },
+    {
+      "id": "openrel:policy:p003",
+      "label": "Purpose-Bound Access — Academic Research Only",
+      "odrl_type": "odrl:Permission",
+      "source_sections": ["Section 93"],
+      "assigner": "[ASSIGNER_URI]",
+      "assignee": "[ASSIGNEE_URI]",
+      "target": "[TARGET_URI]",
+      "permissions": [
+        {
+          "action": "openrel:use",
+          "constraint": {
+            "id": "openrel:constraint:purpose:academicResearch",
+            "leftOperand": "dpv:hasPurpose",
+            "operator": "odrl:eq",
+            "rightOperand": "dpv:AcademicResearch",
+            "rightOperand_type": "xsd:anyURI"
+          }
+        }
+      ],
+      "prohibitions": [
+        {
+          "action": "openrel:use",
+          "constraint": {
+            "leftOperand": "dpv:hasPurpose",
+            "operator": "odrl:neq",
+            "rightOperand": "dpv:AcademicResearch",
+            "rightOperand_type": "xsd:anyURI"
+          }
+        }
+      ],
+      "duties": [
+        {
+          "action": "openrel:log",
+          "description": "Requesters must declare and log their purpose prior to accessing the data.",
+          "target": "[LOG_ENDPOINT_URI]"
+        }
+      ],
+      "sources": ["openrel:source:ODRL:OAC", "openrel:source:DPV"],
+      "machine_actionable": true,
+      "evaluation": "allow | deny",
+      "parameterizable": {
+        "field": "rightOperand",
+        "notes": "Override with any dpv:Purpose subclass, e.g. dpv:ResearchAndDevelopment, dpv:PublicInterest"
+      }
+    },
+    {
+      "id": "openrel:policy:p004",
+      "label": "Role-Based Access — Researchers Only",
+      "odrl_type": "odrl:Permission",
+      "source_sections": ["Section 94"],
+      "assigner": "[ASSIGNER_URI]",
+      "assignee": {
+        "type": "openrel:agent:Researcher",
+        "uri": "[ASSIGNEE_URI]"
+      },
+      "target": "[TARGET_URI]",
+      "permissions": [
+        {
+          "action": "openrel:use",
+          "constraint": {
+            "id": "openrel:constraint:role:researcher",
+            "leftOperand": "dpv:hasRole",
+            "operator": "odrl:eq",
+            "rightOperand": "dpv:Researcher",
+            "rightOperand_type": "xsd:anyURI"
+          }
+        }
+      ],
+      "prohibitions": [
+        {
+          "action": "openrel:use",
+          "constraint": {
+            "leftOperand": "dpv:hasRole",
+            "operator": "odrl:neq",
+            "rightOperand": "dpv:Researcher",
+            "rightOperand_type": "xsd:anyURI"
+          }
+        }
+      ],
+      "duties": [
+        {
+          "action": "openrel:use",
+          "description": "The platform must verify the requester's role via an institutional identity provider or ORCID affiliation before granting access."
+        }
+      ],
+      "sources": ["openrel:source:DPV", "openrel:source:EOSC:Interoperability"],
+      "machine_actionable": true,
+      "evaluation": "allow | deny"
+    },
+    {
+      "id": "openrel:policy:p005",
+      "label": "Ethics Approval Gate",
+      "odrl_type": "odrl:Permission",
+      "source_sections": ["Section 95", "Section 8", "Section 26", "Section 48"],
+      "derived_from": "Section 95 (primary), merged with ethical approval requirements from Sections 8, 26, 48",
+      "assigner": "[ASSIGNER_URI]",
+      "assignee": "[ASSIGNEE_URI]",
+      "target": "[TARGET_URI]",
+      "permissions": [
+        {
+          "action": "openrel:use",
+          "constraint": {
+            "id": "openrel:constraint:ethics:approvalRequired",
+            "leftOperand": "openrel:requiresEthicsApproval",
+            "operator": "odrl:eq",
+            "rightOperand": true,
+            "rightOperand_type": "xsd:boolean"
+          }
+        }
+      ],
+      "prohibitions": [
+        {
+          "action": "openrel:use",
+          "constraint": {
+            "leftOperand": "openrel:requiresEthicsApproval",
+            "operator": "odrl:eq",
+            "rightOperand": false,
+            "rightOperand_type": "xsd:boolean"
+          }
+        }
+      ],
+      "duties": [
+        {
+          "action": "openrel:use",
+          "description": "The requester must submit a valid ethics approval certificate from a recognized IRB or ethics committee before access is granted."
+        }
+      ],
+      "sources": ["openrel:source:HorizonEthics", "openrel:source:BBMRI:ELSI", "openrel:source:HelsinkiDeclaration"],
+      "machine_actionable": true,
+      "evaluation": "conditional — requires external verification of ethics approval document"
+    },
+    {
+      "id": "openrel:policy:p006",
+      "label": "Technical and Organisational Measures (TOM) Enforcement",
+      "odrl_type": "odrl:Permission",
+      "source_sections": ["Section 96"],
+      "assigner": "[ASSIGNER_URI]",
+      "assignee": "[ASSIGNEE_URI]",
+      "target": "[TARGET_URI]",
+      "permissions": [
+        {
+          "action": "openrel:use",
+          "constraint": {
+            "id": "openrel:constraint:tom:required",
+            "leftOperand": "openrel:requiresTOM",
+            "operator": "odrl:hasPart",
+            "rightOperand": ["encryption", "accessControl", "logging"],
+            "rightOperand_type": "xsd:string[]"
+          }
+        }
+      ],
+      "prohibitions": [
+        {
+          "action": "openrel:use",
+          "constraint": {
+            "leftOperand": "openrel:requiresTOM",
+            "operator": "odrl:eq",
+            "rightOperand": "none",
+            "rightOperand_type": "xsd:string"
+          }
+        }
+      ],
+      "duties": [
+        {
+          "action": "openrel:log",
+          "description": "The data processor must document and audit the implemented TOMs. Audit records must be available on request.",
+          "target": "[LOG_ENDPOINT_URI]"
+        }
+      ],
+      "sources": ["openrel:source:EDPB:dataSecurity", "openrel:source:ISO27001", "openrel:source:GDPR"],
+      "machine_actionable": true,
+      "evaluation": "conditional — requires TOM declaration by the processor",
+      "notes": "The draft used 'odrl:eq' with an array rightOperand for the TOM values, which is not valid in ODRL 2.2. Replaced with odrl:hasPart as a composite constraint operator."
+    },
+    {
+      "id": "openrel:policy:p007",
+      "label": "Data Volume Limitation",
+      "odrl_type": "odrl:Permission",
+      "source_sections": ["Section 97"],
+      "assigner": "[ASSIGNER_URI]",
+      "assignee": "[ASSIGNEE_URI]",
+      "target": "[TARGET_URI]",
+      "permissions": [
+        {
+          "action": "openrel:use",
+          "constraint": {
+            "id": "openrel:constraint:volume:maxMiB",
+            "leftOperand": "openrel:dataVolumeMiB",
+            "operator": "odrl:lteq",
+            "rightOperand": 100,
+            "rightOperand_type": "xsd:integer"
+          }
+        }
+      ],
+      "prohibitions": [
+        {
+          "action": "openrel:use",
+          "constraint": {
+            "leftOperand": "openrel:dataVolumeMiB",
+            "operator": "odrl:gt",
+            "rightOperand": 100,
+            "rightOperand_type": "xsd:integer"
+          }
+        }
+      ],
+      "duties": [
+        {
+          "action": "openrel:log",
+          "description": "The platform must monitor and record data volume per request and enforce the limit automatically."
+        }
+      ],
+      "sources": ["openrel:source:ODRL", "openrel:source:EOSC:FAIRMetrics"],
+      "machine_actionable": true,
+      "evaluation": "allow | deny",
+      "parameterizable": {
+        "field": "rightOperand",
+        "notes": "Override 100 with the desired volume threshold in MiB."
+      }
+    },
+    {
+      "id": "openrel:policy:p008",
+      "label": "Spatial Access Restriction — European Union",
+      "odrl_type": "odrl:Permission",
+      "source_sections": ["Section 98", "Section 104"],
+      "derived_from": "Sections 98 and 104 merged — both express geographic access restriction; same logical constraint",
+      "assigner": "[ASSIGNER_URI]",
+      "assignee": "[ASSIGNEE_URI]",
+      "target": "[TARGET_URI]",
+      "permissions": [
+        {
+          "action": "openrel:use",
+          "constraint": {
+            "id": "openrel:constraint:spatial:eu",
+            "leftOperand": "odrl:spatial",
+            "operator": "odrl:eq",
+            "rightOperand": "https://www.geonames.org/6255148",
+            "rightOperand_type": "xsd:anyURI"
+          }
+        }
+      ],
+      "prohibitions": [
+        {
+          "action": "openrel:use",
+          "constraint": {
+            "leftOperand": "odrl:spatial",
+            "operator": "odrl:neq",
+            "rightOperand": "https://www.geonames.org/6255148",
+            "rightOperand_type": "xsd:anyURI"
+          }
+        }
+      ],
+      "duties": [
+        {
+          "action": "openrel:use",
+          "description": "The system must verify the geographic origin of the request via IP geolocation, connector metadata, or institutional affiliation before granting access."
+        }
+      ],
+      "sources": ["openrel:source:ODRL", "openrel:source:GDPR", "openrel:source:GeoJSON:RFC7946"],
+      "machine_actionable": true,
+      "evaluation": "allow | deny",
+      "parameterizable": {
+        "field": "rightOperand",
+        "notes": "Replace GeoNames URI with any geographic identifier. Draft used informal string 'eu' — replaced with typed GeoNames URI."
+      }
+    },
+    {
+      "id": "openrel:policy:p009",
+      "label": "Verified Identity Gate (eIDAS)",
+      "odrl_type": "odrl:Permission",
+      "source_sections": ["Section 99"],
+      "assigner": "[ASSIGNER_URI]",
+      "assignee": "[ASSIGNEE_URI]",
+      "target": "[TARGET_URI]",
+      "permissions": [
+        {
+          "action": "openrel:use",
+          "constraint": {
+            "id": "openrel:constraint:identity:verified",
+            "leftOperand": "dpv:hasIdentity",
+            "operator": "odrl:isA",
+            "rightOperand": "openrel:EidasVerifiedIdentity",
+            "rightOperand_type": "xsd:anyURI"
+          }
+        }
+      ],
+      "prohibitions": [
+        {
+          "action": "openrel:use",
+          "constraint": {
+            "leftOperand": "dpv:hasIdentity",
+            "operator": "odrl:eq",
+            "rightOperand": "openrel:NoVerifiedIdentity",
+            "rightOperand_type": "xsd:anyURI"
+          }
+        }
+      ],
+      "duties": [
+        {
+          "action": "openrel:use",
+          "description": "The platform must verify the authenticity of the declared identity through an eIDAS-compliant Trust Service Provider before access is granted."
+        }
+      ],
+      "sources": ["openrel:source:DPV", "openrel:source:eIDAS"],
+      "machine_actionable": true,
+      "evaluation": "conditional — requires identity verification against TSP",
+      "notes": "Draft used a concrete identity URL as rightOperand. Replaced with a type reference (openrel:EidasVerifiedIdentity) to maintain reusability. Concrete identity URIs are matched at evaluation time."
+    },
+    {
+      "id": "openrel:policy:p010",
+      "label": "Access Revocation Gate",
+      "odrl_type": "odrl:Permission",
+      "source_sections": ["Section 100"],
+      "assigner": "[ASSIGNER_URI]",
+      "assignee": "[ASSIGNEE_URI]",
+      "target": "[TARGET_URI]",
+      "permissions": [
+        {
+          "action": "openrel:use",
+          "constraint": {
+            "id": "openrel:constraint:revocation:active",
+            "leftOperand": "openrel:revocationStatus",
+            "operator": "odrl:eq",
+            "rightOperand": "openrel:Active",
+            "rightOperand_type": "xsd:anyURI"
+          }
+        }
+      ],
+      "prohibitions": [
+        {
+          "action": "openrel:use",
+          "constraint": {
+            "leftOperand": "openrel:revocationStatus",
+            "operator": "odrl:eq",
+            "rightOperand": "openrel:Revoked",
+            "rightOperand_type": "xsd:anyURI"
+          }
+        }
+      ],
+      "duties": [
+        {
+          "action": "openrel:use",
+          "description": "The platform must check the revocation status at every access attempt, not only at initial grant. Revocation must be enforceable in real time or near-real time."
+        }
+      ],
+      "sources": ["openrel:source:MyData", "openrel:source:ISO29146"],
+      "machine_actionable": true,
+      "evaluation": "allow | deny | revoked"
+    },
+    {
+      "id": "openrel:policy:p011",
+      "label": "Time-Bound Access Window",
+      "odrl_type": "odrl:Permission",
+      "source_sections": ["Section 101", "Section 111", "Section 116"],
+      "derived_from": "Sections 101, 111, and 116 merged — all express the same interval-based access pattern with different datetime values",
+      "assigner": "[ASSIGNER_URI]",
+      "assignee": "[ASSIGNEE_URI]",
+      "target": "[TARGET_URI]",
+      "permissions": [
+        {
+          "action": "openrel:use",
+          "constraint": {
+            "odrl:and": [
+              {
+                "leftOperand": "odrl:dateTime",
+                "operator": "odrl:gteq",
+                "rightOperand": "[START_DATETIME]",
+                "rightOperand_type": "xsd:dateTime"
+              },
+              {
+                "leftOperand": "odrl:dateTime",
+                "operator": "odrl:lteq",
+                "rightOperand": "[END_DATETIME]",
+                "rightOperand_type": "xsd:dateTime"
+              }
+            ]
+          }
+        }
+      ],
+      "prohibitions": [
+        {
+          "action": "openrel:use",
+          "constraint": {
+            "odrl:or": [
+              {
+                "leftOperand": "odrl:dateTime",
+                "operator": "odrl:lt",
+                "rightOperand": "[START_DATETIME]",
+                "rightOperand_type": "xsd:dateTime"
+              },
+              {
+                "leftOperand": "odrl:dateTime",
+                "operator": "odrl:gt",
+                "rightOperand": "[END_DATETIME]",
+                "rightOperand_type": "xsd:dateTime"
+              }
+            ]
+          }
+        }
+      ],
+      "duties": [],
+      "sources": ["openrel:source:ODRL", "openrel:source:IDSA:usageControl"],
+      "machine_actionable": true,
+      "evaluation": "allow | deny",
+      "parameterizable": {
+        "fields": ["[START_DATETIME]", "[END_DATETIME]"],
+        "format": "xsd:dateTime (ISO 8601)"
+      },
+      "notes": "The draft used a non-standard 'outside' operator in Section 116 prohibition. Replaced with odrl:or of two bounded constraints. The compound constraint uses ODRL's logical refinement pattern (odrl:and / odrl:or)."
+    },
+    {
+      "id": "openrel:policy:p012",
+      "label": "Notification Duty on Access",
+      "odrl_type": "odrl:Permission",
+      "source_sections": ["Section 102", "Section 107", "Section 113"],
+      "derived_from": "Sections 102, 107, and 113 merged — all express the same notification duty with different endpoint URLs. The draft used non-standard 'definesAs' and 'isNull' operators.",
+      "assigner": "[ASSIGNER_URI]",
+      "assignee": "[ASSIGNEE_URI]",
+      "target": "[TARGET_URI]",
+      "permissions": [
+        {
+          "action": "openrel:use",
+          "postDuty": {
+            "action": "openrel:notify",
+            "constraint": {
+              "id": "openrel:constraint:notification:endpoint",
+              "leftOperand": "odrl:recipient",
+              "operator": "odrl:eq",
+              "rightOperand": "[NOTIFICATION_ENDPOINT_URI]",
+              "rightOperand_type": "xsd:anyURI"
+            }
+          }
+        }
+      ],
+      "prohibitions": [],
+      "duties": [
+        {
+          "action": "openrel:notify",
+          "description": "A notification must be sent to the designated endpoint with metadata (user, resource, timestamp) after each access event.",
+          "target": "[NOTIFICATION_ENDPOINT_URI]"
+        }
+      ],
+      "sources": ["openrel:source:ODRL", "openrel:source:IDSA:usageControl"],
+      "machine_actionable": true,
+      "evaluation": "allow (with mandatory postDuty)",
+      "parameterizable": {
+        "field": "[NOTIFICATION_ENDPOINT_URI]",
+        "notes": "Replace with the URI of the notification or audit service."
+      },
+      "notes": "The draft's 'definesAs' operator does not exist in ODRL. Replaced with odrl:eq on odrl:recipient. The 'isNull' check is dropped — absence of a notification endpoint is a policy implementation failure, not a policy constraint."
+    },
+    {
+      "id": "openrel:policy:p013",
+      "label": "Usage Count Limit",
+      "odrl_type": "odrl:Permission",
+      "source_sections": ["Section 103", "Section 109", "Section 114"],
+      "derived_from": "Sections 103, 109, and 114 are exact duplicates. Merged into one parameterizable policy.",
+      "assigner": "[ASSIGNER_URI]",
+      "assignee": "[ASSIGNEE_URI]",
+      "target": "[TARGET_URI]",
+      "permissions": [
+        {
+          "action": "openrel:use",
+          "constraint": {
+            "id": "openrel:constraint:count:max5",
+            "leftOperand": "odrl:count",
+            "operator": "odrl:lteq",
+            "rightOperand": 5,
+            "rightOperand_type": "xsd:integer"
+          }
+        }
+      ],
+      "prohibitions": [
+        {
+          "action": "openrel:use",
+          "constraint": {
+            "leftOperand": "odrl:count",
+            "operator": "odrl:gt",
+            "rightOperand": 5,
+            "rightOperand_type": "xsd:integer"
+          }
+        }
+      ],
+      "duties": [
+        {
+          "action": "openrel:log",
+          "description": "The platform must record each access event and enforce the count limit by denying access once the threshold is reached."
+        }
+      ],
+      "sources": ["openrel:source:ODRL", "openrel:source:IDSA:usageControl"],
+      "machine_actionable": true,
+      "evaluation": "allow | deny",
+      "parameterizable": {
+        "field": "rightOperand",
+        "notes": "Override 5 with the desired maximum count."
+      }
+    },
+    {
+      "id": "openrel:policy:p014",
+      "label": "Duration-Based Access Window",
+      "odrl_type": "odrl:Permission",
+      "source_sections": ["Section 110", "Section 115"],
+      "derived_from": "Sections 110 (10h) and 115 (24h) merged — same pattern, different duration values",
+      "assigner": "[ASSIGNER_URI]",
+      "assignee": "[ASSIGNEE_URI]",
+      "target": "[TARGET_URI]",
+      "permissions": [
+        {
+          "action": "openrel:use",
+          "constraint": {
+            "leftOperand": "odrl:elapsedTime",
+            "operator": "odrl:lteq",
+            "rightOperand": "[DURATION]",
+            "rightOperand_type": "xsd:duration"
+          }
+        }
+      ],
+      "prohibitions": [
+        {
+          "action": "openrel:use",
+          "constraint": {
+            "leftOperand": "odrl:elapsedTime",
+            "operator": "odrl:gt",
+            "rightOperand": "[DURATION]",
+            "rightOperand_type": "xsd:duration"
+          }
+        }
+      ],
+      "duties": [
+        {
+          "action": "openrel:log",
+          "description": "Record access start time. Revoke access automatically upon expiry."
+        }
+      ],
+      "sources": ["openrel:source:ODRL", "openrel:source:IDSA:usageControl"],
+      "machine_actionable": true,
+      "evaluation": "allow | deny",
+      "parameterizable": {
+        "field": "[DURATION]",
+        "examples": ["PT10H (10 hours)", "PT24H (24 hours)", "P7D (7 days)"],
+        "format": "ISO 8601 duration"
+      }
+    },
+    {
+      "id": "openrel:policy:p015",
+      "label": "Access with Deletion Duty (Use Until Deletion)",
+      "odrl_type": "odrl:Permission",
+      "source_sections": ["Section 105", "Section 117"],
+      "derived_from": "Sections 105 and 117 merged — both express time-limited access followed by a deletion obligation. Section 117 adds an explicit interval before deletion.",
+      "assigner": "[ASSIGNER_URI]",
+      "assignee": "[ASSIGNEE_URI]",
+      "target": "[TARGET_URI]",
+      "permissions": [
+        {
+          "action": "openrel:use",
+          "constraint": {
+            "odrl:and": [
+              {
+                "leftOperand": "odrl:dateTime",
+                "operator": "odrl:gteq",
+                "rightOperand": "[ACCESS_START]",
+                "rightOperand_type": "xsd:dateTime"
+              },
+              {
+                "leftOperand": "odrl:dateTime",
+                "operator": "odrl:lteq",
+                "rightOperand": "[ACCESS_END]",
+                "rightOperand_type": "xsd:dateTime"
+              }
+            ]
+          },
+          "postDuty": {
+            "action": "openrel:delete",
+            "constraint": {
+              "leftOperand": "odrl:dateTime",
+              "operator": "odrl:eq",
+              "rightOperand": "[DELETION_DATETIME]",
+              "rightOperand_type": "xsd:dateTime"
+            }
+          }
+        }
+      ],
+      "prohibitions": [
+        {
+          "action": "openrel:use",
+          "constraint": {
+            "leftOperand": "odrl:dateTime",
+            "operator": "odrl:gt",
+            "rightOperand": "[ACCESS_END]",
+            "rightOperand_type": "xsd:dateTime"
+          }
+        },
+        {
+          "action": "openrel:reproduce",
+          "constraint": {
+            "leftOperand": "odrl:dateTime",
+            "operator": "odrl:gteq",
+            "rightOperand": "[DELETION_DATETIME]",
+            "rightOperand_type": "xsd:dateTime"
+          },
+          "description": "Retaining or copying data after the deletion deadline is prohibited."
+        }
+      ],
+      "duties": [
+        {
+          "action": "openrel:delete",
+          "description": "The requester must permanently delete all copies of the data by the deletion deadline.",
+          "deadline": "[DELETION_DATETIME]"
+        }
+      ],
+      "sources": ["openrel:source:ODRL", "openrel:source:IDSA:usageControl", "openrel:source:GDPR"],
+      "machine_actionable": true,
+      "evaluation": "allow | deny | duty-required",
+      "parameterizable": {
+        "fields": ["[ACCESS_START]", "[ACCESS_END]", "[DELETION_DATETIME]"],
+        "format": "xsd:dateTime (ISO 8601)"
+      }
+    },
+    {
+      "id": "openrel:policy:p016",
+      "label": "Logging Duty After Access",
+      "odrl_type": "odrl:Permission",
+      "source_sections": ["Section 112"],
+      "assigner": "[ASSIGNER_URI]",
+      "assignee": "[ASSIGNEE_URI]",
+      "target": "[TARGET_URI]",
+      "permissions": [
+        {
+          "action": "openrel:use",
+          "postDuty": {
+            "action": "openrel:log",
+            "constraint": {
+              "id": "openrel:constraint:log:clearinghouse",
+              "leftOperand": "odrl:recipient",
+              "operator": "odrl:eq",
+              "rightOperand": "[CLEARINGHOUSE_URI]",
+              "rightOperand_type": "xsd:anyURI"
+            }
+          }
+        }
+      ],
+      "prohibitions": [],
+      "duties": [
+        {
+          "action": "openrel:log",
+          "description": "A log entry (user, resource URI, timestamp, action) must be sent to the clearing house after each access event.",
+          "target": "[CLEARINGHOUSE_URI]"
+        }
+      ],
+      "sources": ["openrel:source:ODRL", "openrel:source:IDSA:usageControl"],
+      "machine_actionable": true,
+      "evaluation": "allow (with mandatory postDuty)",
+      "parameterizable": {
+        "field": "[CLEARINGHOUSE_URI]"
+      },
+      "notes": "Distinct from p012 (Notification): logging is durable and internal; notification is an outbound signal. Both can be combined in a compound policy."
+    },
+    {
+      "id": "openrel:policy:p017",
+      "label": "Connector-Restricted Access",
+      "odrl_type": "odrl:Permission",
+      "source_sections": ["Section 108", "Section 118"],
+      "derived_from": "Sections 108 and 118 are exact duplicates. Merged into one template.",
+      "assigner": "[ASSIGNER_URI]",
+      "assignee": {
+        "type": "openrel:agent:Connector",
+        "uri": "[CONNECTOR_URI]"
+      },
+      "target": "[TARGET_URI]",
+      "permissions": [
+        {
+          "action": "openrel:use",
+          "constraint": {
+            "id": "openrel:constraint:connector:authorizedURI",
+            "leftOperand": "odrl:system",
+            "operator": "odrl:eq",
+            "rightOperand": "[CONNECTOR_URI]",
+            "rightOperand_type": "xsd:anyURI"
+          }
+        }
+      ],
+      "prohibitions": [
+        {
+          "action": "openrel:use",
+          "constraint": {
+            "leftOperand": "odrl:system",
+            "operator": "odrl:neq",
+            "rightOperand": "[CONNECTOR_URI]",
+            "rightOperand_type": "xsd:anyURI"
+          }
+        }
+      ],
+      "duties": [
+        {
+          "action": "openrel:use",
+          "description": "The platform must validate the connector URI against an authorized list before granting access."
+        }
+      ],
+      "sources": ["openrel:source:IDSA:core", "openrel:source:IDSA:usageControl", "openrel:source:ODRL"],
+      "machine_actionable": true,
+      "evaluation": "allow | deny",
+      "parameterizable": {
+        "field": "[CONNECTOR_URI]"
+      }
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "$schema": "https://openrel.eu/schemas/agents/v1",
+  "@context": {
+    "odrl": "http://www.w3.org/ns/odrl/2/",
+    "openrel": "https://openrel.eu/vocab/",
+    "dpv": "https://w3id.org/dpv#",
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "vcard": "http://www.w3.org/2006/vcard/ns#"
+  },
+  "id": "https://openrel.eu/vocab/agents",
+  "title": "OpenREL Agent Definitions",
+  "version": "1.0.0",
+  "description": "Canonical agent types for use as assigner and assignee in OpenREL/ODRL policies. The draft vocabulary omitted agent modelling entirely. All policies must specify at minimum an assigner and an assignee, or reference an agent class. Concrete agent instances are set at policy instantiation.",
+  "design_notes": [
+    "In ODRL, the assigner is the party granting rights (data provider, rights holder). The assignee is the party receiving or subject to rights (user, processor, system).",
+    "Agent types here define roles and metadata, not concrete individuals. Concrete URIs are set in policy instances.",
+    "DPV roles are used where they align; custom openrel: types extend for EOSC-specific roles.",
+    "All policies in OpenREL must include at least one assigner and one assignee."
+  ],
+  "agent_types": [
+    {
+      "id": "openrel:agent:DataProvider",
+      "label": "Data Provider",
+      "odrl_role": "assigner",
+      "dpv_mapping": "dpv:DataController",
+      "definition": "An organisation or individual that holds rights over a dataset and defines the terms under which it may be accessed or used.",
+      "properties": {
+        "identifier_type": "xsd:anyURI",
+        "identifier_example": "https://ror.org/04wxnsj81",
+        "affiliation_property": "foaf:Organization",
+        "contact_property": "vcard:hasEmail"
+      },
+      "eosc_context": "Typically a research institution, repository, or data provider registered in the EOSC marketplace."
+    },
+    {
+      "id": "openrel:agent:DataConsumer",
+      "label": "Data Consumer",
+      "odrl_role": "assignee",
+      "dpv_mapping": "dpv:DataSubject",
+      "definition": "An individual, system, or organisation that seeks to access, use, or process a dataset under the terms defined by the Data Provider.",
+      "properties": {
+        "identifier_type": "xsd:anyURI",
+        "identifier_example": "https://orcid.org/0000-0001-2345-6789"
+      },
+      "eosc_context": "May be a researcher, AI agent, repository connector, or a public user. Role-specific restrictions are applied via dpv:hasRole constraints."
+    },
+    {
+      "id": "openrel:agent:Researcher",
+      "label": "Researcher",
+      "odrl_role": "assignee",
+      "dpv_mapping": "dpv:Researcher",
+      "definition": "An individual engaged in academic or scientific research, affiliated with an accredited institution.",
+      "properties": {
+        "identifier_type": "xsd:anyURI",
+        "identifier_example": "https://orcid.org/0000-0001-2345-6789",
+        "affiliation_property": "foaf:member"
+      },
+      "source_sections": ["Section 94"]
+    },
+    {
+      "id": "openrel:agent:Institution",
+      "label": "Research Institution",
+      "odrl_role": "assignee | assigner",
+      "dpv_mapping": "dpv:DataController",
+      "definition": "An accredited academic or research organisation. May act as both assigner (when providing data) and assignee (when consuming data under a data sharing agreement).",
+      "properties": {
+        "identifier_type": "xsd:anyURI",
+        "identifier_example": "https://ror.org/04wxnsj81"
+      },
+      "source_sections": ["Section 13", "Section 25", "Section 34", "Section 37"]
+    },
+    {
+      "id": "openrel:agent:AIAgent",
+      "label": "AI Agent / Automated System",
+      "odrl_role": "assignee",
+      "dpv_mapping": null,
+      "definition": "An automated system or AI component that processes data on behalf of a human principal. The human principal remains the accountable party.",
+      "properties": {
+        "identifier_type": "xsd:anyURI",
+        "identifier_example": "https://system.example.org/llm-agent-v1"
+      },
+      "source_sections": ["Section 23", "Section 43", "Section 62", "Section 86"],
+      "notes": "DPV does not currently define an AI agent role. This type is defined in the OpenREL extension namespace. The assigner must explicitly permit or prohibit this agent type."
+    },
+    {
+      "id": "openrel:agent:Connector",
+      "label": "Dataspace Connector",
+      "odrl_role": "assignee",
+      "dpv_mapping": null,
+      "definition": "A software connector in an IDS/EOSC data space that requests access to a resource on behalf of a user or organisation. Identified by a URI and may hold an IDS security profile certification.",
+      "properties": {
+        "identifier_type": "xsd:anyURI",
+        "identifier_example": "https://connector.example.org/id",
+        "security_profile_property": "ids:securityLevel"
+      },
+      "source_sections": ["Section 92", "Section 106", "Section 108", "Section 118", "Section 119"]
+    },
+    {
+      "id": "openrel:agent:PublicUser",
+      "label": "Public User",
+      "odrl_role": "assignee",
+      "dpv_mapping": "dpv:DataSubject",
+      "definition": "Any member of the public with no special affiliation or credentials. Typically assigned the broadest possible access, subject to open licence terms.",
+      "source_sections": ["Section 10", "Section 35", "Section 51", "Section 80"]
+    },
+    {
+      "id": "openrel:agent:EthicsCommittee",
+      "label": "Ethics Committee / IRB",
+      "odrl_role": "assigner",
+      "dpv_mapping": null,
+      "definition": "A body responsible for approving research activities involving human subjects or sensitive data. Acts as an upstream assigner whose approval is a prerequisite condition.",
+      "source_sections": ["Section 95", "Section 48", "Section 75"],
+      "notes": "The ethics committee is not itself a party to the ODRL policy but its approval is encoded as a constraint (openrel:constraint:ethics:approvalRequired). This agent type is defined for reference and documentation."
+    }
+  ],
+  "agent_modelling_guidance": {
+    "minimum_policy_requirement": "Every ODRL policy must declare at least one odrl:assigner and one odrl:assignee, or reference an agent class via constraint.",
+    "anonymous_policies": "Where the assignee is any party (open access), use openrel:agent:PublicUser as the assignee class reference.",
+    "connector_policies": "For machine-to-machine policies in EOSC data spaces, assigner is the Data Provider and assignee is a Connector. Identity is verified via the IDS security profile and/or connector URI constraint.",
+    "multi_party": "For collaborative research policies (Sections 13, 34, 37, 59, 81), both parties act as assigner and assignee simultaneously. Model as two symmetric policies or as a bilateral agreement expressed in the policy description."
+  }
+}
