@@ -1,0 +1,163 @@
+{
+  "$schema": "https://openrel.eu/schemas/actions/v1",
+  "@context": {
+    "odrl": "http://www.w3.org/ns/odrl/2/",
+    "openrel": "https://openrel.eu/vocab/",
+    "dpv": "https://w3id.org/dpv#",
+    "skos": "http://www.w3.org/2004/02/skos/core#"
+  },
+  "id": "https://openrel.eu/vocab/actions",
+  "title": "OpenREL Normalized Action Registry",
+  "version": "1.0.0",
+  "description": "Core reusable action set for OpenREL/ODRL policies. Variations and qualifications are expressed as constraints, not separate actions. All actions map to odrl: terms where available.",
+  "actions": [
+    {
+      "id": "openrel:use",
+      "label": "Use",
+      "odrl_mapping": "odrl:use",
+      "definition": "Generic usage of a resource. The broadest permitted action; all other actions are subsumed unless explicitly prohibited. Use constraints to express purpose, duration, or role restrictions.",
+      "scope": "permission | prohibition",
+      "notes": "Preferred action for general data access policies. Replaces the draft vocabulary's over-specific actions such as 'commercialUse', 'reuseResources', 'deployAIForResearch', 'collectData', 'storeData', etc., which are all instances of 'use' qualified by constraints.",
+      "replaces": [
+        "commercialUse", "nonCommercialUse", "reuseResources",
+        "deployAIForResearch", "useAIForAnalysis", "analyzeData",
+        "collectData", "collectDataWithConsent", "collectDataTransparently",
+        "storeData", "storeDataSecurely", "processDataForSpecificPurposes",
+        "useDataForEthicalPurposes", "useDataEquitably",
+        "useForEducation", "quoteForCommentary", "useStandardDataFormats",
+        "integrateData", "useProvenResearchMethods"
+      ]
+    },
+    {
+      "id": "openrel:read",
+      "label": "Read",
+      "odrl_mapping": "odrl:read",
+      "definition": "Read-only access to a resource without modification, redistribution, or derivation.",
+      "scope": "permission | prohibition",
+      "notes": "Narrower than 'use'. Use when access must be confined to read operations."
+    },
+    {
+      "id": "openrel:distribute",
+      "label": "Distribute",
+      "odrl_mapping": "odrl:distribute",
+      "definition": "Transfer or share a resource with third parties. Encompasses sharing, disseminating, republishing, and redistributing.",
+      "scope": "permission | prohibition",
+      "notes": "Replaces the draft vocabulary's 'share', 'shareData', 'shareOpenData', 'disseminate', 'publishOpenly', 'shareFindings', 'shareResearchOutputs', 'shareResearchFindingsWithPublic'. Variations (non-commercial, attribution-required) become constraints.",
+      "replaces": [
+        "share", "shareData", "shareOpenData", "disseminate",
+        "publishOpenly", "shareFindings", "shareResearchOutputs",
+        "shareResearchFindingsWithPublic", "shareAnonymizedData",
+        "shareAnonymizedDataPublicly", "makeDataAvailableForPublicUse",
+        "distributeUnderOpenLicenses", "coPublish", "publishOutputs",
+        "publishResearchFindings"
+      ]
+    },
+    {
+      "id": "openrel:modify",
+      "label": "Modify",
+      "odrl_mapping": "odrl:modify",
+      "definition": "Alter, adapt, transform, or derive new content from a resource.",
+      "scope": "permission | prohibition",
+      "notes": "Replaces 'adapt', 'alter', 'migrateContent', 'migrateFormats'. Share-alike conditions become a constraint.",
+      "replaces": [
+        "adapt", "alter", "modify", "migrateContent",
+        "migrateFormats", "organizeData"
+      ]
+    },
+    {
+      "id": "openrel:reproduce",
+      "label": "Reproduce",
+      "odrl_mapping": "odrl:reproduce",
+      "definition": "Copy or replicate a resource without modification.",
+      "scope": "permission | prohibition"
+    },
+    {
+      "id": "openrel:archive",
+      "label": "Archive",
+      "odrl_mapping": "odrl:archive",
+      "definition": "Store a resource in a long-term repository for preservation purposes.",
+      "scope": "permission | prohibition",
+      "notes": "Replaces 'preserveData', 'archiveData', 'storeAndArchiveDataSecurely'.",
+      "replaces": [
+        "preserveData", "archiveData", "storeAndArchiveDataSecurely"
+      ]
+    },
+    {
+      "id": "openrel:delete",
+      "label": "Delete",
+      "odrl_mapping": "odrl:delete",
+      "definition": "Permanently remove a resource or a copy of it.",
+      "scope": "duty",
+      "notes": "Most commonly appears as a postDuty after a time-bound or use-until-deletion policy (Sections 105, 117)."
+    },
+    {
+      "id": "openrel:notify",
+      "label": "Notify",
+      "odrl_mapping": "odrl:notify",
+      "definition": "Send a notification to a defined endpoint upon performing an action.",
+      "scope": "duty",
+      "notes": "Used as postDuty in access notification policies (Sections 102, 107, 113). The target endpoint is expressed as a constraint."
+    },
+    {
+      "id": "openrel:log",
+      "label": "Log",
+      "odrl_mapping": "odrl:log",
+      "definition": "Record an event to a designated logging or audit system.",
+      "scope": "duty",
+      "notes": "Used as postDuty in logging policies (Section 112). Distinct from 'notify' in that logging is internal/durable, while notify is an active outbound signal."
+    },
+    {
+      "id": "openrel:attribute",
+      "label": "Attribute",
+      "odrl_mapping": "odrl:attribute",
+      "definition": "Credit the original creator or rights holder when using, sharing, or publishing a resource.",
+      "scope": "duty",
+      "notes": "Replaces the draft's action-level 'provideAttribution', 'acknowledgeSource', 'creditContributors', 'respectMoralRights'. These are all manifestations of a single attribution duty; differences in scope are expressed as constraint modifiers.",
+      "replaces": [
+        "provideAttribution", "acknowledgeSource", "creditContributors",
+        "respectMoralRights", "acknowledgeContributions",
+        "ensureProperAttribution"
+      ]
+    },
+    {
+      "id": "openrel:obtainConsent",
+      "label": "Obtain Consent",
+      "odrl_mapping": null,
+      "definition": "Acquire and document informed consent from the data subject prior to processing, collection, or sharing of personal data.",
+      "scope": "duty",
+      "notes": "No direct ODRL core mapping; expressed as a duty in GDPR-aligned policies. Legal basis is modelled as a constraint using dpv:hasLegalBasis.",
+      "replaces": [
+        "requestConsent", "obtainConsent", "ensureConsentProvenance"
+      ]
+    },
+    {
+      "id": "openrel:anonymize",
+      "label": "Anonymize",
+      "odrl_mapping": null,
+      "definition": "Transform data so that individuals cannot be identified.",
+      "scope": "duty | permission",
+      "notes": "Replaces 'anonymizeData', 'ensureDataAnonymization'. When used as a duty, it is a prerequisite before openrel:distribute.",
+      "replaces": ["anonymizeData", "ensureDataAnonymization"]
+    },
+    {
+      "id": "openrel:encrypt",
+      "label": "Encrypt",
+      "odrl_mapping": null,
+      "definition": "Apply cryptographic protection to data at rest or in transit.",
+      "scope": "duty",
+      "notes": "Replaces 'encryptData'. Typically appears as a prerequisite duty alongside openrel:use or openrel:archive.",
+      "replaces": ["encryptData"]
+    },
+    {
+      "id": "openrel:applyLicense",
+      "label": "Apply License",
+      "odrl_mapping": null,
+      "definition": "Attach a recognized licence to a resource, defining the terms for its use and distribution.",
+      "scope": "duty | permission",
+      "notes": "Replaces 'applyLicenses', 'applyOpenLicenses', 'useOpenAccessLicenses', 'distributeUnderOpenLicenses'.",
+      "replaces": [
+        "applyLicenses", "applyOpenLicenses", "useOpenAccessLicenses"
+      ]
+    }
+  ]
+}
