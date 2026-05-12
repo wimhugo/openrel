@@ -19,7 +19,7 @@
   ],
   "agent_types": [
     {
-      "id": "openrel:agent:DataProvider",
+      "id": "openrel:agent.DataProvider",
       "label": "Data Provider",
       "odrl_role": "assigner",
       "dpv_mapping": "dpv:DataController",
@@ -33,7 +33,7 @@
       "eosc_context": "Typically a research institution, repository, or data provider registered in the EOSC marketplace."
     },
     {
-      "id": "openrel:agent:DataConsumer",
+      "id": "openrel:agent.DataConsumer",
       "label": "Data Consumer",
       "odrl_role": "assignee",
       "dpv_mapping": "dpv:DataSubject",
@@ -45,7 +45,7 @@
       "eosc_context": "May be a researcher, AI agent, repository connector, or a public user. Role-specific restrictions are applied via dpv:hasRole constraints."
     },
     {
-      "id": "openrel:agent:Researcher",
+      "id": "openrel:agent.Researcher",
       "label": "Researcher",
       "odrl_role": "assignee",
       "dpv_mapping": "dpv:Researcher",
@@ -58,7 +58,7 @@
       "source_sections": ["Section 94"]
     },
     {
-      "id": "openrel:agent:Institution",
+      "id": "openrel:agent.Institution",
       "label": "Research Institution",
       "odrl_role": "assignee | assigner",
       "dpv_mapping": "dpv:DataController",
@@ -70,7 +70,7 @@
       "source_sections": ["Section 13", "Section 25", "Section 34", "Section 37"]
     },
     {
-      "id": "openrel:agent:AIAgent",
+      "id": "openrel:agent.AIAgent",
       "label": "AI Agent / Automated System",
       "odrl_role": "assignee",
       "dpv_mapping": null,
@@ -83,7 +83,7 @@
       "notes": "DPV does not currently define an AI agent role. This type is defined in the OpenREL extension namespace. The assigner must explicitly permit or prohibit this agent type."
     },
     {
-      "id": "openrel:agent:Connector",
+      "id": "openrel:agent.Connector",
       "label": "Dataspace Connector",
       "odrl_role": "assignee",
       "dpv_mapping": null,
@@ -96,7 +96,7 @@
       "source_sections": ["Section 92", "Section 106", "Section 108", "Section 118", "Section 119"]
     },
     {
-      "id": "openrel:agent:PublicUser",
+      "id": "openrel:agent.PublicUser",
       "label": "Public User",
       "odrl_role": "assignee",
       "dpv_mapping": "dpv:DataSubject",
@@ -104,7 +104,7 @@
       "source_sections": ["Section 10", "Section 35", "Section 51", "Section 80"]
     },
     {
-      "id": "openrel:agent:EthicsCommittee",
+      "id": "openrel:agent.EthicsCommittee",
       "label": "Ethics Committee / IRB",
       "odrl_role": "assigner",
       "dpv_mapping": null,
