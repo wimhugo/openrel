@@ -1,0 +1,229 @@
+{
+"$schema": "https://openrel.eu/schemas/scenarios/v1",
+  "@context": {
+    "odrl": "http://www.w3.org/ns/odrl/2/",
+    "openrel": "https://openrel.eu/vocab/",
+    "dpv": "https://w3id.org/dpv#",
+    "ids": "https://w3id.org/idsa/core/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "id": "https://openrel.eu/vocab/scenarios",
+  "title": "OpenREL Normalised Scenario Registry",
+  "version": "1.0.0",
+  "description": "Scenario groups and individual scenarios used for deterministic policy matching.",
+  "scenarioGroups ": [
+    {
+    "id": "openrel:scenariogroup.research-only",
+    "label": "Limited to research and academic reuse.",
+    "scenarios": 
+    [
+        {
+        "id": "openrel:scenario.academic-only",
+        "label": "Your work can only be used for academic research."
+        },
+        {
+        "id": "openrel:scenario.confirmed-researcher",
+        "label": "Your work can only be used by verified researchers."
+        },
+        {
+        "id": "openrel:scenario.confirmed-rpo",
+        "label": "Your work can only be used by accredited academic and research institutions."
+        }        
+    ]
+    },   
+    {
+    "id": "openrel:scenariogroup.commercial-use",
+    "label": "Limitations to commercial applications.",
+    "scenarios": 
+    [
+        {
+        "id": "openrel:scenario.non-commercial-only",
+        "label": "Your work can only be used for non-commercial purposes."
+        }
+    ]
+    },
+    {
+    "id": "openrel:scenariogroup.funding-related",
+    "label": "Funding-related considerations.",
+    "scenarios": 
+    [
+        {
+        "id": "openrel:scenario.public-funding",
+        "label": "Your work was created through public funding."
+        }
+    ]
+    },
+    {
+    "id": "openrel:scenariogroup.legal-considerations",
+    "label": "Adherence to legislation.",
+    "scenarios": 
+    [
+        {
+        "id": "openrel:scenario.gdpr-compliance",
+        "label": "Your work can only be used if GDPR-compliant consent is obtained."
+        },
+        {
+        "id": "openrel:scenario.gdpr-controller",
+        "label": "The organisation using your work must act as the data controller as intended by GDPR."
+        }
+    ]
+    },    
+   {
+    "id": "openrel:scenariogroup.publication-status",
+    "label": "Limitations due to workflow or publication state.",
+    "scenarios": 
+    [
+        {
+        "id": "openrel:scenario.status-revoked",
+        "label": "Your work cannot be used once its publication has been revoked."
+        },
+        {
+        "id": "openrel:scenario.gdpr-controller",
+        "label": "The organisation using your work must act as the data controller as intended by GDPR."
+        }
+    ]
+    },    
+    {
+    "id": "openrel:scenariogroup.ethics-considerations",
+    "label": "Alignment with ethical considerations.",
+    "scenarios": 
+    [
+        {
+        "id": "openrel:scenario.gdpr-consent",
+        "label": "Your work can only be used if GDPR-compliant consent is obtained."
+        },
+        {
+        "id": "openrel:scenario.ethics-approval",
+        "label": "Requires documented ethics committee or IRB approval prior to access."
+        },
+        {
+        "id": "openrel:scenario.explicit-consent",
+        "label": "Your work can only be reused with explicit consent for each application of the work."
+        }                                          
+    ]
+    },
+    {
+    "id": "openrel:scenariogroup.obligations",
+    "label": "Obligations of the end user.",
+    "scenarios": 
+    [
+        {
+        "id": "openrel:scenario.attribution",
+        "label": "You want to be credited or cited when the work is reused."
+        },
+        {
+        "id": "openrel:scenario.public-repository",
+        "label": "You want derivative works to be distributed under the same licence."
+        }                                      
+    ]
+    },
+    {
+    "id": "openrel:scenariogroup.open-access",
+    "label": "Open data considerations.",
+    "scenarios": 
+    [
+        {
+        "id": "openrel:scenario.open-access",
+        "label": "You want the work to be available openly."
+        },
+        {
+        "id": "openrel:scenario.public-repository",
+        "label": "You want to deposit the work in a public repository."
+        },
+        {
+        "id": "openrel:scenario.explicit-consent",
+        "label": "Your work can only be reused with explicit consent for each application of the work."
+        }                                          
+    ]
+    },
+    {
+    "id": "openrel:scenariogroup.access-considerations",
+    "label": "Access - limitations and considerations.",
+    "scenarios": 
+    [
+        {
+        "id": "openrel:scenario.trusted-connection",
+        "label": "Your work can only be accessed via certified trusted connections."
+        },
+        {
+        "id": "openrel:scenario.ethics-approval",
+        "label": "Your work can only be accessed once ethics approval has been granted for the intended purpose."
+        },
+        {
+        "id": "openrel:scenario.european-use",
+        "label": "Your work can only be accessed if the requestor is based in the European Union."
+        },
+        {
+        "id": "openrel:scenario.strict-subset",
+        "label": "You only want to grant access to a subset of the work that is strictly necessary for the stated purpose."
+        },
+        {
+        "id": "openrel:scenario.verified-identity",
+        "label": "Your work can only be accessed if the identity of the requestor is verified."
+        }
+    ]
+    },
+    {
+    "id": "openrel:scenariogroup.technology",
+    "label": "Technology-based safeguards",
+    "scenarios": 
+    [
+        {
+        "id": "openrel:scenario.ids-trust+",
+        "label": "The requesting connector MUST hold the IDS TRUST+ security certification."
+        },
+        {
+        "id": "openrel:scenario.ids-trust",
+        "label": "The requesting connector MUST hold the IDS TRUST security certification."
+        },
+        {
+        "id": "openrel:scenario.ids-base",
+        "label": "The requesting connector MUST hold the IDS BASE security certification."
+        },
+        {
+        "id": "openrel:scenario.designated-iri",
+        "label": "Your work can only be accessed from designated connectors identified via IRI."
+        },
+        {
+        "id": "openrel:scenario.notify-irl",
+        "label": "You require notification of each access event at a designated IRL."
+        },
+        {
+        "id": "openrel:scenario.audit-irl",
+        "label": "You require notification of each access event via a clearinghouse or audit system."
+        },
+        {
+        "id": "openrel:scenario.specific-toms",
+        "label": "Your work can only be accessed if the requesting organisation implements specific Technical and Organisational Measures (TOMs)."
+        }
+    ]
+    },
+    {
+    "id": "openrel:scenariogroup.technical-limits",
+    "label": "Technical Limitations.",
+    "scenarios": 
+    [
+        {
+        "id": "openrel:scenario.tech-size",
+        "label": "Your work can only be used if download volume is smaller than 100 MB."
+        },
+        {
+        "id": "openrel:scenario.tech-session",
+        "label": "Your work can only be accessed for a maximum of 10 hours in each session."
+        },
+        {
+        "id": "openrel:scenario.tech-time",
+        "label": "Your work can only be accessed for a maximum of 24 hours after first access."
+        },
+        {
+        "id": "openrel:scenario.tech-period",
+        "label": "Your work can only be accessed between a specific start and end date/ time."
+        },
+        {
+        "id": "openrel:scenario.tech-times",
+        "label": "Your work can only be accessed a maximum of 5 times by the same researcher."
+        }
+    ]
+    }
+]
+}
