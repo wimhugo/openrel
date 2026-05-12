@@ -268,13 +268,13 @@
       ],
       "sources_used": [
         "openrel:source.GDPR",
-        "openrel:source.EDPB.consent",
-        "openrel:source.EDPB.dataSecurity",
+        "openrel:source.EDPB-consent",
+        "openrel:source.EDPB-dataSecurity",
         "openrel:source.DPV",
-        "openrel:source.IDSA.core",
-        "openrel:source.IDSA.usageControl",
+        "openrel:source.IDSA-core",
+        "openrel:source.IDSA-usageControl",
         "openrel:source.HorizonEthics",
-        "openrel:source.BBMRI.ELSI",
+        "openrel:source.BBMRI-ELSI",
         "openrel:source.HelsinkiDeclaration",
         "openrel:source.ODRL",
         "openrel:source.FAIR"
