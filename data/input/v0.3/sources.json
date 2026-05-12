@@ -17,7 +17,7 @@
   ],
   "sources": [
     {
-      "id": "openrel:source:GDPR",
+      "id": "openrel:source.GDPR",
       "label": "General Data Protection Regulation (GDPR)",
       "type": "regulation",
       "jurisdiction": "European Union",
@@ -42,27 +42,27 @@
       ]
     },
     {
-      "id": "openrel:source:EDPB:consent",
+      "id": "openrel:source.EDPB-consent",
       "label": "EDPB Guidelines on Consent (05/2020)",
       "type": "guidance",
       "jurisdiction": "European Union",
       "issuer": "European Data Protection Board",
       "uri": "https://edpb.europa.eu/our-work-tools/our-documents/guidelines/guidelines-052020-consent-under-regulation-2016679_en",
-      "relevant_to": ["openrel:constraint:legalBasis:consent"],
+      "relevant_to": ["openrel:constraint.legalBasis-consent"],
       "source_sections": ["Section 91"]
     },
     {
-      "id": "openrel:source:EDPB:dataSecurity",
+      "id": "openrel:source.EDPB-dataSecurity",
       "label": "EDPB Guidelines on Data Security Measures",
       "type": "guidance",
       "jurisdiction": "European Union",
       "issuer": "European Data Protection Board",
       "uri": "https://edpb.europa.eu/our-work-tools/our-documents/guidelines/guidelines-0102020-measures-comply-data-protection_en",
-      "relevant_to": ["openrel:constraint:tom:required"],
+      "relevant_to": ["openrel:constraint.tom-required"],
       "source_sections": ["Section 96"]
     },
     {
-      "id": "openrel:source:ODRL",
+      "id": "openrel:source.ODRL",
       "label": "ODRL Information Model 2.2",
       "type": "standard",
       "issuer": "W3C",
@@ -72,7 +72,7 @@
       "source_sections": ["Sections 91-119 (all)"]
     },
     {
-      "id": "openrel:source:DPV",
+      "id": "openrel:source.DPV",
       "label": "Data Privacy Vocabulary (DPV)",
       "type": "vocabulary",
       "issuer": "W3C DPVCG",
@@ -85,7 +85,7 @@
       "source_sections": ["Section 91", "Section 93", "Section 94", "Section 99"]
     },
     {
-      "id": "openrel:source:IDSA:core",
+      "id": "openrel:source.IDSA:core",
       "label": "IDS Reference Architecture — Core Ontology",
       "type": "standard",
       "issuer": "International Data Spaces Association",
@@ -98,7 +98,7 @@
       "source_sections": ["Section 92", "Section 106", "Section 108", "Section 118", "Section 119"]
     },
     {
-      "id": "openrel:source:IDSA:usageControl",
+      "id": "openrel:source.IDSA:usageControl",
       "label": "IDS Dataspace Connector — Usage Control Documentation",
       "type": "technical documentation",
       "issuer": "Fraunhofer ISST / IDSA",
@@ -106,7 +106,7 @@
       "source_sections": ["Section 92", "Section 100", "Section 103", "Section 105", "Section 107", "Section 108", "Section 109", "Section 110", "Section 111", "Section 112", "Section 113", "Section 114", "Section 115", "Section 116", "Section 117", "Section 118", "Section 119"]
     },
     {
-      "id": "openrel:source:ODRL:OAC",
+      "id": "openrel:source.ODRL:OAC",
       "label": "ODRL Access Control Profile (OAC)",
       "type": "profile",
       "issuer": "Beatriz Esteves / W3C ODRL CG",
@@ -114,7 +114,7 @@
       "source_sections": ["Section 92", "Section 93", "Section 94"]
     },
     {
-      "id": "openrel:source:eIDAS",
+      "id": "openrel:source.eIDAS",
       "label": "eIDAS Regulation (EU 910/2014)",
       "type": "regulation",
       "jurisdiction": "European Union",
@@ -124,16 +124,16 @@
       "source_sections": ["Section 99"]
     },
     {
-      "id": "openrel:source:ISO27001",
+      "id": "openrel:source.ISO27001",
       "label": "ISO/IEC 27001:2022 — Information Security Management",
       "type": "standard",
       "issuer": "ISO/IEC",
       "uri": "https://www.iso.org/standard/27001",
-      "relevant_to": ["openrel:constraint:tom:required", "openrel:constraint:security:trust"],
+      "relevant_to": ["openrel:constraint.tom-required", "openrel:constraint.security-trust"],
       "source_sections": ["Section 96", "Section 32"]
     },
     {
-      "id": "openrel:source:ISO14721",
+      "id": "openrel:source.ISO14721",
       "label": "ISO 14721:2012 — Open Archival Information System (OAIS)",
       "type": "standard",
       "issuer": "ISO",
@@ -141,7 +141,7 @@
       "source_sections": ["Section 39"]
     },
     {
-      "id": "openrel:source:ISO8000",
+      "id": "openrel:source.ISO8000",
       "label": "ISO 8000 — Data Quality",
       "type": "standard",
       "issuer": "ISO",
@@ -149,7 +149,7 @@
       "source_sections": ["Section 72"]
     },
     {
-      "id": "openrel:source:ISO29146",
+      "id": "openrel:source.ISO29146",
       "label": "ISO/IEC 29146:2016 — Identity Management and Revocation",
       "type": "standard",
       "issuer": "ISO/IEC",
@@ -157,7 +157,7 @@
       "source_sections": ["Section 100"]
     },
     {
-      "id": "openrel:source:CreativeCommons",
+      "id": "openrel:source.CreativeCommons",
       "label": "Creative Commons — Licences and Legal Frameworks",
       "type": "licence_framework",
       "issuer": "Creative Commons",
@@ -175,7 +175,7 @@
       "source_sections": ["Section 1", "Section 4", "Section 6", "Section 7", "Section 11", "Section 36", "Section 51", "Section 69"]
     },
     {
-      "id": "openrel:source:BerneConvention",
+      "id": "openrel:source.BerneConvention",
       "label": "Berne Convention for the Protection of Literary and Artistic Works",
       "type": "treaty",
       "issuer": "WIPO",
@@ -183,7 +183,7 @@
       "source_sections": ["Section 1", "Section 3", "Section 12"]
     },
     {
-      "id": "openrel:source:WIPO",
+      "id": "openrel:source.WIPO",
       "label": "WIPO — Intellectual Property Resources",
       "type": "institutional",
       "issuer": "World Intellectual Property Organization",
@@ -191,7 +191,7 @@
       "source_sections": ["Section 1", "Section 11", "Section 12", "Section 17", "Section 18", "Section 19", "Section 30", "Section 36", "Section 37", "Section 59", "Section 69", "Section 79"]
     },
     {
-      "id": "openrel:source:FAIR",
+      "id": "openrel:source.FAIR",
       "label": "FAIR Principles (GO FAIR Initiative)",
       "type": "framework",
       "issuer": "GO FAIR",
@@ -201,7 +201,7 @@
       "source_sections": ["Section 14", "Section 22", "Section 27", "Section 31", "Section 38", "Section 42", "Section 45", "Section 51", "Section 64", "Section 70", "Section 71"]
     },
     {
-      "id": "openrel:source:W3C:PROV",
+      "id": "openrel:source.W3C:PROV",
       "label": "W3C PROV Data Model",
       "type": "standard",
       "issuer": "W3C",
@@ -209,7 +209,7 @@
       "source_sections": ["Section 33"]
     },
     {
-      "id": "openrel:source:W3C:DWBestPractices",
+      "id": "openrel:source.W3C:DWBestPractices",
       "label": "W3C Data on the Web Best Practices",
       "type": "standard",
       "issuer": "W3C",
@@ -217,16 +217,16 @@
       "source_sections": ["Section 70"]
     },
     {
-      "id": "openrel:source:GeoJSON:RFC7946",
+      "id": "openrel:source.GeoJSON:RFC7946",
       "label": "GeoJSON Specification (RFC 7946)",
       "type": "specification",
       "issuer": "IETF",
       "uri": "https://datatracker.ietf.org/doc/html/rfc7946",
       "source_sections": ["Section 104"],
-      "relevant_to": ["openrel:constraint:spatial:eu"]
+      "relevant_to": ["openrel:constraint.spatial-eu"]
     },
     {
-      "id": "openrel:source:PlanS",
+      "id": "openrel:source.PlanS",
       "label": "Plan S — Principles for Open Access Publishing",
       "type": "policy",
       "issuer": "cOAlition S",
@@ -234,7 +234,7 @@
       "source_sections": ["Section 10", "Section 35", "Section 40"]
     },
     {
-      "id": "openrel:source:HelsinkiDeclaration",
+      "id": "openrel:source.HelsinkiDeclaration",
       "label": "WMA Declaration of Helsinki",
       "type": "ethical_framework",
       "issuer": "World Medical Association",
@@ -242,14 +242,14 @@
       "source_sections": ["Section 8", "Section 15", "Section 26", "Section 48", "Section 75"]
     },
     {
-      "id": "openrel:source:SingaporeStatement",
+      "id": "openrel:source.SingaporeStatement",
       "label": "Singapore Statement on Research Integrity",
       "type": "ethical_framework",
       "uri": "https://wcrif.org/guidance/singapore-statement",
       "source_sections": ["Section 41", "Section 76"]
     },
     {
-      "id": "openrel:source:HorizonEthics",
+      "id": "openrel:source.HorizonEthics",
       "label": "European Commission — Ethics Rules for Horizon Europe",
       "type": "guidance",
       "issuer": "European Commission",
@@ -257,7 +257,7 @@
       "source_sections": ["Section 95"]
     },
     {
-      "id": "openrel:source:BBMRI:ELSI",
+      "id": "openrel:source.BBMRI:ELSI",
       "label": "BBMRI-ERIC ELSI Guidelines for Research Data",
       "type": "guidance",
       "issuer": "BBMRI-ERIC",
@@ -265,7 +265,7 @@
       "source_sections": ["Section 95"]
     },
     {
-      "id": "openrel:source:MyData",
+      "id": "openrel:source.MyData",
       "label": "MyData Operator White Paper",
       "type": "white_paper",
       "issuer": "MyData Global",
@@ -273,7 +273,7 @@
       "source_sections": ["Section 100"]
     },
     {
-      "id": "openrel:source:EUAI",
+      "id": "openrel:source.EUAI",
       "label": "EU AI Act (Regulation EU 2024/1689)",
       "type": "regulation",
       "jurisdiction": "European Union",
@@ -283,7 +283,7 @@
       "notes": "Draft referenced 'EU AI Act Draft' from the Commission website. The regulation entered into force in August 2024."
     },
     {
-      "id": "openrel:source:UNESCO:OpenScience",
+      "id": "openrel:source.UNESCO-OpenScience",
       "label": "UNESCO Recommendation on Open Science",
       "type": "recommendation",
       "issuer": "UNESCO",
@@ -293,7 +293,7 @@
       "notes": "Draft cited 'UNESCO Open Science Recommendations' linking to the UNESCO homepage generically. Replaced with the specific UNESCO 2021 Recommendation URI."
     },
     {
-      "id": "openrel:source:EOSC:Interoperability",
+      "id": "openrel:source.EOSC-Interoperability",
       "label": "EOSC Interoperability Framework",
       "type": "framework",
       "issuer": "EOSC Association",
@@ -301,7 +301,7 @@
       "source_sections": ["Section 14", "Section 42", "Section 70", "Section 94"]
     },
     {
-      "id": "openrel:source:EOSC:Policies",
+      "id": "openrel:source.EOSC-Policies",
       "label": "EOSC Policies and Rules for Participation",
       "type": "policy",
       "issuer": "EOSC Association",
@@ -310,7 +310,7 @@
       "notes": "Replaces the draft's generic 'https://eosc-portal.eu/' for policy-related references."
     },
     {
-      "id": "openrel:source:EOSC:FAIRMetrics",
+      "id": "openrel:source.EOSC-FAIRMetrics",
       "label": "EOSC FAIR Metrics Framework",
       "type": "framework",
       "issuer": "EOSC Association",
@@ -318,7 +318,7 @@
       "source_sections": ["Section 97"]
     },
     {
-      "id": "openrel:source:OpenAIRE",
+      "id": "openrel:source.OpenAIRE",
       "label": "OpenAIRE — Open Science Infrastructure",
       "type": "institutional",
       "issuer": "OpenAIRE AMKE",
@@ -327,7 +327,7 @@
       "notes": "Draft cited OpenAIRE's licensing guide and data sharing standards. Consolidated into one institutional reference."
     },
     {
-      "id": "openrel:source:COPE",
+      "id": "openrel:source.COPE",
       "label": "COPE — Committee on Publication Ethics",
       "type": "ethical_framework",
       "issuer": "COPE",
@@ -335,7 +335,7 @@
       "source_sections": ["Section 5", "Section 8", "Section 16", "Section 41", "Section 49"]
     },
     {
-      "id": "openrel:source:ICMJE",
+      "id": "openrel:source.ICMJE",
       "label": "ICMJE Recommendations (Vancouver Guidelines)",
       "type": "guideline",
       "issuer": "International Committee of Medical Journal Editors",
@@ -343,7 +343,7 @@
       "source_sections": ["Section 13", "Section 16", "Section 34"]
     },
     {
-      "id": "openrel:source:OECD:DataPrinciples",
+      "id": "openrel:source.OECD-DataPrinciples",
       "label": "OECD Principles and Guidelines for Access to Research Data",
       "type": "guideline",
       "issuer": "OECD",
@@ -352,7 +352,7 @@
       "notes": "Specific OECD publication replacing the draft's generic 'https://www.oecd.org/' repeated across 30+ sections."
     },
     {
-      "id": "openrel:source:OECD:AIprinciples",
+      "id": "openrel:source.OECD-AIprinciples",
       "label": "OECD AI Principles",
       "type": "framework",
       "issuer": "OECD",
@@ -360,21 +360,21 @@
       "source_sections": ["Section 23", "Section 43", "Section 62", "Section 86"]
     },
     {
-      "id": "openrel:source:DORA",
+      "id": "openrel:source.DORA",
       "label": "DORA — San Francisco Declaration on Research Assessment",
       "type": "declaration",
       "uri": "https://sfdora.org/read/",
       "source_sections": ["Section 54"]
     },
     {
-      "id": "openrel:source:LeidenManifesto",
+      "id": "openrel:source.LeidenManifesto",
       "label": "Leiden Manifesto for Research Metrics",
       "type": "manifesto",
       "uri": "https://doi.org/10.1038/520429a",
       "source_sections": ["Section 54"]
     },
     {
-      "id": "openrel:source:WCAG",
+      "id": "openrel:source.WCAG",
       "label": "W3C Web Content Accessibility Guidelines (WCAG) 2.2",
       "type": "standard",
       "issuer": "W3C",
@@ -382,7 +382,7 @@
       "source_sections": ["Section 20", "Section 39", "Section 68"]
     },
     {
-      "id": "openrel:source:UN:CRPD",
+      "id": "openrel:source.UN-CRPD",
       "label": "UN Convention on the Rights of Persons with Disabilities",
       "type": "treaty",
       "issuer": "United Nations",
@@ -390,7 +390,7 @@
       "source_sections": ["Section 20"]
     },
     {
-      "id": "openrel:source:UN:SDGs",
+      "id": "openrel:source.UN-SDGs",
       "label": "UN Sustainable Development Goals Framework",
       "type": "framework",
       "issuer": "United Nations",
@@ -398,7 +398,7 @@
       "source_sections": ["Section 24", "Section 67", "Section 88"]
     },
     {
-      "id": "openrel:source:EUDataAct",
+      "id": "openrel:source.EUDataAct",
       "label": "EU Data Act (Regulation EU 2023/2854)",
       "type": "regulation",
       "jurisdiction": "European Union",
@@ -407,7 +407,7 @@
       "notes": "Not explicitly cited in the draft but highly relevant for EOSC data sharing policies and data spaces interoperability. Added as a normative source."
     },
     {
-      "id": "openrel:source:EUCopyrightDirective",
+      "id": "openrel:source.EUCopyrightDirective",
       "label": "EU Directive on Copyright in the Digital Single Market (EU 2019/790)",
       "type": "directive",
       "jurisdiction": "European Union",
