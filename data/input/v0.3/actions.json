@@ -12,7 +12,7 @@
   "description": "Core reusable action set for OpenREL/ODRL policies. Variations and qualifications are expressed as constraints, not separate actions. All actions map to odrl: terms where available.",
   "actions": [
     {
-      "id": "openrel:use",
+      "id": "openrel:action.use",
       "label": "Use",
       "odrl_mapping": "odrl:use",
       "definition": "Generic usage of a resource. The broadest permitted action; all other actions are subsumed unless explicitly prohibited. Use constraints to express purpose, duration, or role restrictions.",
@@ -29,7 +29,7 @@
       ]
     },
     {
-      "id": "openrel:read",
+      "id": "openrel:action.read",
       "label": "Read",
       "odrl_mapping": "odrl:read",
       "definition": "Read-only access to a resource without modification, redistribution, or derivation.",
@@ -37,7 +37,7 @@
       "notes": "Narrower than 'use'. Use when access must be confined to read operations."
     },
     {
-      "id": "openrel:distribute",
+      "id": "openrel:action.distribute",
       "label": "Distribute",
       "odrl_mapping": "odrl:distribute",
       "definition": "Transfer or share a resource with third parties. Encompasses sharing, disseminating, republishing, and redistributing.",
@@ -53,7 +53,7 @@
       ]
     },
     {
-      "id": "openrel:modify",
+      "id": "openrel:action.modify",
       "label": "Modify",
       "odrl_mapping": "odrl:modify",
       "definition": "Alter, adapt, transform, or derive new content from a resource.",
@@ -65,14 +65,14 @@
       ]
     },
     {
-      "id": "openrel:reproduce",
+      "id": "openrel:action.reproduce",
       "label": "Reproduce",
       "odrl_mapping": "odrl:reproduce",
       "definition": "Copy or replicate a resource without modification.",
       "scope": "permission | prohibition"
     },
     {
-      "id": "openrel:archive",
+      "id": "openrel:action.archive",
       "label": "Archive",
       "odrl_mapping": "odrl:archive",
       "definition": "Store a resource in a long-term repository for preservation purposes.",
@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "openrel:delete",
+      "id": "openrel:action.delete",
       "label": "Delete",
       "odrl_mapping": "odrl:delete",
       "definition": "Permanently remove a resource or a copy of it.",
@@ -91,7 +91,7 @@
       "notes": "Most commonly appears as a postDuty after a time-bound or use-until-deletion policy (Sections 105, 117)."
     },
     {
-      "id": "openrel:notify",
+      "id": "openrel:action.notify",
       "label": "Notify",
       "odrl_mapping": "odrl:notify",
       "definition": "Send a notification to a defined endpoint upon performing an action.",
@@ -99,7 +99,7 @@
       "notes": "Used as postDuty in access notification policies (Sections 102, 107, 113). The target endpoint is expressed as a constraint."
     },
     {
-      "id": "openrel:log",
+      "id": "openrel:action.log",
       "label": "Log",
       "odrl_mapping": "odrl:log",
       "definition": "Record an event to a designated logging or audit system.",
@@ -107,7 +107,7 @@
       "notes": "Used as postDuty in logging policies (Section 112). Distinct from 'notify' in that logging is internal/durable, while notify is an active outbound signal."
     },
     {
-      "id": "openrel:attribute",
+      "id": "openrel:action.attribute",
       "label": "Attribute",
       "odrl_mapping": "odrl:attribute",
       "definition": "Credit the original creator or rights holder when using, sharing, or publishing a resource.",
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "openrel:obtainConsent",
+      "id": "openrel:action.obtainConsent",
       "label": "Obtain Consent",
       "odrl_mapping": null,
       "definition": "Acquire and document informed consent from the data subject prior to processing, collection, or sharing of personal data.",
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "openrel:anonymize",
+      "id": "openrel:action.anonymize",
       "label": "Anonymize",
       "odrl_mapping": null,
       "definition": "Transform data so that individuals cannot be identified.",
@@ -140,7 +140,7 @@
       "replaces": ["anonymizeData", "ensureDataAnonymization"]
     },
     {
-      "id": "openrel:encrypt",
+      "id": "openrel:action.encrypt",
       "label": "Encrypt",
       "odrl_mapping": null,
       "definition": "Apply cryptographic protection to data at rest or in transit.",
@@ -149,7 +149,7 @@
       "replaces": ["encryptData"]
     },
     {
-      "id": "openrel:applyLicense",
+      "id": "openrel:action.applyLicense",
       "label": "Apply License",
       "odrl_mapping": null,
       "definition": "Attach a recognized licence to a resource, defining the terms for its use and distribution.",
