@@ -99,7 +99,7 @@
       "notes": "The custom leftOperand 'openrel:requiresEthicsApproval' is defined in the OpenREL extension namespace. This replaces the draft's untyped 'ethicsApproval=true'."
     },
     {
-      "id": "openrel:constraint:security:trustPlus",
+      "id": "openrel:constraint:security-trustPlus",
       "label": "Security Profile — TRUST+",
       "leftOperand": "ids:securityLevel",
       "operator": "odrl:eq",
