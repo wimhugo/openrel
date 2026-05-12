@@ -23,7 +23,7 @@
   },
   "constraints": [
     {
-      "id": "openrel:constraint:purpose:academicResearch",
+      "id": "openrel:constraint.purpose-academicResearch",
       "label": "Purpose — Academic Research",
       "leftOperand": "dpv:hasPurpose",
       "operator": "odrl:eq",
@@ -34,7 +34,7 @@
       "notes": "Use odrl:neq variant to express the corresponding prohibition. Replaces draft's non-typed 'purpose=nonCommercial', 'purpose=educationalResearch', 'purpose=fairUse'."
     },
     {
-      "id": "openrel:constraint:purpose:nonCommercial",
+      "id": "openrel:constraint.purpose-nonCommercial",
       "label": "Purpose — Non-Commercial",
       "leftOperand": "dpv:hasPurpose",
       "operator": "odrl:neq",
@@ -45,7 +45,7 @@
       "notes": "More precise than the draft's boolean 'nonCommercial' string. Commercial is expressed as exclusion of dpv:CommercialResearch rather than a positive claim."
     },
     {
-      "id": "openrel:constraint:legalBasis:consent",
+      "id": "openrel:constraint.legalBasis-consent",
       "label": "Legal Basis — Consent",
       "leftOperand": "dpv:hasLegalBasis",
       "operator": "odrl:eq",
@@ -56,7 +56,7 @@
       "notes": "Replaces draft's boolean 'consent=true/false' pattern, which is not valid in ODRL. Consent is expressed as a classification via dpv:hasLegalBasis."
     },
     {
-      "id": "openrel:constraint:role:researcher",
+      "id": "openrel:constraint.role-researcher",
       "label": "Role — Researcher",
       "leftOperand": "dpv:hasRole",
       "operator": "odrl:eq",
@@ -66,7 +66,7 @@
       "source_sections": ["Section 94"]
     },
     {
-      "id": "openrel:constraint:role:institution",
+      "id": "openrel:constraint.role-institution",
       "label": "Role — Research Institution",
       "leftOperand": "dpv:hasRole",
       "operator": "odrl:eq",
@@ -76,7 +76,7 @@
       "source_sections": ["Section 94"]
     },
     {
-      "id": "openrel:constraint:ethics:approvalRequired",
+      "id": "openrel:constraint.ethics-approvalRequired",
       "label": "Ethics Approval Required",
       "leftOperand": "openrel:requiresEthicsApproval",
       "operator": "odrl:eq",
@@ -87,7 +87,7 @@
       "notes": "The custom leftOperand 'openrel:requiresEthicsApproval' is defined in the OpenREL extension namespace. This replaces the draft's untyped 'ethicsApproval=true'."
     },
     {
-      "id": "openrel:constraint:security:trustPlus",
+      "id": "openrel:constraint.security-trustPlus",
       "label": "Security Profile — TRUST+",
       "leftOperand": "ids:securityLevel",
       "operator": "odrl:eq",
@@ -98,7 +98,7 @@
       "notes": "Sections 92, 106, and 119 are merged here: all express the same security profile constraint with minor label differences."
     },
     {
-      "id": "openrel:constraint:security:trust",
+      "id": "openrel:constraint.security-trust",
       "label": "Security Profile — TRUST",
       "leftOperand": "ids:securityLevel",
       "operator": "odrl:eq",
@@ -108,7 +108,7 @@
       "source_sections": ["Section 106", "Section 119"]
     },
     {
-      "id": "openrel:constraint:security:base",
+      "id": "openrel:constraint.security-base",
       "label": "Security Profile — BASE",
       "leftOperand": "ids:securityLevel",
       "operator": "odrl:eq",
@@ -118,7 +118,7 @@
       "source_sections": ["Section 106"]
     },
     {
-      "id": "openrel:constraint:tom:required",
+      "id": "openrel:constraint.tom-required",
       "label": "Technical and Organisational Measures Required",
       "leftOperand": "openrel:requiresTOM",
       "operator": "odrl:hasPart",
@@ -129,7 +129,7 @@
       "notes": "odrl:hasPart is used to express a composite requirement. The rightOperand is a typed array. Replaces the draft's untyped array without operator."
     },
     {
-      "id": "openrel:constraint:volume:maxMiB",
+      "id": "openrel:constraint.volume-maxMiB",
       "label": "Maximum Data Volume (MiB)",
       "leftOperand": "openrel:dataVolumeMiB",
       "operator": "odrl:lteq",
@@ -140,7 +140,7 @@
       "notes": "The rightOperand value is a template; override per policy instance. The custom leftOperand 'openrel:dataVolumeMiB' is defined in the OpenREL namespace."
     },
     {
-      "id": "openrel:constraint:spatial:eu",
+      "id": "openrel:constraint.spatial-eu",
       "label": "Spatial — European Union",
       "leftOperand": "odrl:spatial",
       "operator": "odrl:eq",
@@ -151,7 +151,7 @@
       "notes": "Sections 98 and 104 both express location-based access; merged into one canonical constraint with GeoNames URI instead of the draft's informal string 'eu'. Section 50 (cross-border governance) is handled at policy level."
     },
     {
-      "id": "openrel:constraint:identity:verified",
+      "id": "openrel:constraint.identity-verified",
       "label": "Identity — Verified eIDAS",
       "leftOperand": "dpv:hasIdentity",
       "operator": "odrl:isA",
@@ -162,7 +162,7 @@
       "notes": "The draft used a concrete identity URL as rightOperand, which is instance-specific. The canonical constraint uses a type reference; the concrete identity URI is set at policy instantiation."
     },
     {
-      "id": "openrel:constraint:count:max5",
+      "id": "openrel:constraint.count-max5",
       "label": "Access Count — Maximum 5",
       "leftOperand": "odrl:count",
       "operator": "odrl:lteq",
@@ -173,7 +173,7 @@
       "notes": "Sections 103, 109, and 114 are exact duplicates of a count-based access constraint. Merged into one parameterizable template. Override rightOperand per policy instance."
     },
     {
-      "id": "openrel:constraint:duration:pt10h",
+      "id": "openrel:constraint.duration-pt10h",
       "label": "Access Duration — 10 Hours",
       "leftOperand": "odrl:elapsedTime",
       "operator": "odrl:lteq",
@@ -184,7 +184,7 @@
       "notes": "ISO 8601 duration format. Template: override PT10H per policy instance."
     },
     {
-      "id": "openrel:constraint:duration:pt24h",
+      "id": "openrel:constraint.duration-pt24h",
       "label": "Access Duration — 24 Hours",
       "leftOperand": "odrl:elapsedTime",
       "operator": "odrl:lteq",
@@ -194,7 +194,7 @@
       "source_sections": ["Section 115"]
     },
     {
-      "id": "openrel:constraint:timeInterval:template",
+      "id": "openrel:constraint.timeInterval-template",
       "label": "Time Interval Access Window (Template)",
       "leftOperand": "odrl:dateTime",
       "operator_start": "odrl:gteq",
@@ -208,7 +208,7 @@
       "implementation_note": "In ODRL, compound constraints use odrl:and / odrl:or refinements on the Constraint class."
     },
     {
-      "id": "openrel:constraint:revocation:active",
+      "id": "openrel:constraint.revocation-active",
       "label": "Revocation Status — Active",
       "leftOperand": "openrel:revocationStatus",
       "operator": "odrl:eq",
@@ -219,7 +219,7 @@
       "notes": "The custom leftOperand and rightOperand are defined in the OpenREL extension namespace. The revocation check must be enforced at policy evaluation time."
     },
     {
-      "id": "openrel:constraint:connector:authorizedURI",
+      "id": "openrel:constraint.connector-authorizedURI",
       "label": "Connector — Authorized URI (Template)",
       "leftOperand": "odrl:system",
       "operator": "odrl:eq",
@@ -231,7 +231,7 @@
       "template": true
     },
     {
-      "id": "openrel:constraint:notification:endpoint",
+      "id": "openrel:constraint.notification-endpoint",
       "label": "Notification Endpoint (Template)",
       "leftOperand": "odrl:recipient",
       "operator": "odrl:eq",
@@ -243,7 +243,7 @@
       "template": true
     },
     {
-      "id": "openrel:constraint:log:clearinghouse",
+      "id": "openrel:constraint.log-clearinghouse",
       "label": "Logging Target — Clearing House (Template)",
       "leftOperand": "odrl:recipient",
       "operator": "odrl:eq",
@@ -254,7 +254,7 @@
       "template": true
     },
     {
-      "id": "openrel:constraint:dataMinimization",
+      "id": "openrel:constraint.dataMinimization",
       "label": "Data Minimization",
       "leftOperand": "openrel:dataMinimization",
       "operator": "odrl:eq",
@@ -265,7 +265,7 @@
       "notes": "Replaces the draft's untyped 'dataMinimization' constraint. Expressed as a boolean compliance flag in the OpenREL namespace."
     },
     {
-      "id": "openrel:constraint:openAccess:required",
+      "id": "openrel:constraint.openAccess-required",
       "label": "Open Access Required",
       "leftOperand": "openrel:accessType",
       "operator": "odrl:eq",
@@ -276,7 +276,7 @@
       "notes": "Consolidates the draft's 'repository=openAccess', 'availability=public', 'licenseCompliance=true' patterns into a single typed constraint."
     },
     {
-      "id": "openrel:constraint:attribution:required",
+      "id": "openrel:constraint.attribution-required",
       "label": "Attribution Required",
       "leftOperand": "openrel:attributionRequired",
       "operator": "odrl:eq",
@@ -287,7 +287,7 @@
       "notes": "The draft modelled attribution inconsistently: sometimes as a constraint ('attribution=false' in prohibitions), sometimes as an action ('provideAttribution'). Normalized here as a boolean constraint; the corresponding duty is openrel:attribute."
     },
     {
-      "id": "openrel:constraint:shareAlike",
+      "id": "openrel:constraint.shareAlike",
       "label": "Share-Alike Required",
       "leftOperand": "openrel:shareAlike",
       "operator": "odrl:eq",
@@ -298,7 +298,7 @@
       "notes": "Replaces draft's 'licenseType=CreativeCommonsBY-SA' which was too specific. ShareAlike is a structural condition, not a licence reference."
     },
     {
-      "id": "openrel:constraint:fundingSource:public",
+      "id": "openrel:constraint.fundingSourc-public",
       "label": "Funding Source — Public",
       "leftOperand": "openrel:fundingSource",
       "operator": "odrl:eq",
