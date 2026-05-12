@@ -55,7 +55,7 @@
           "description": "The data controller must obtain, record, and be able to demonstrate valid consent prior to granting access."
         }
       ],
-      "sources": [" openrel:source.GDPR", " openrel:source.EDPB.consent", " openrel:source.DPV"],
+      "sources": [" openrel:source.GDPR", " openrel:source.EDPB-consent", " openrel:source.DPV"],
       "machine_actionable": true,
       "evaluation": "allow | deny",
       "notes": "The draft's Section 91 used a non-typed 'neq' operator in the prohibition. Normalized to odrl:neq on dpv:hasLegalBasis."
@@ -98,7 +98,7 @@
           "description": "The platform must validate the connector's declared security profile against the IDS certification registry before granting access."
         }
       ],
-      "sources": [" openrel:source.IDSA:core", " openrel:source.IDSA:usageControl", " openrel:source.ODRL:OAC"],
+      "sources": [" openrel:source.IDSA-core", " openrel:source.IDSA-usageControl", " openrel:source.ODRL-OAC"],
       "machine_actionable": true,
       "evaluation": "allow | deny",
       "parameterizable": {
@@ -148,7 +148,7 @@
           "target": "[LOG_ENDPOINT_URI]"
         }
       ],
-      "sources": [" openrel:source.ODRL:OAC", " openrel:source.DPV"],
+      "sources": [" openrel:source.ODRL-OAC", " openrel:source.DPV"],
       "machine_actionable": true,
       "evaluation": "allow | deny",
       "parameterizable": {
@@ -196,7 +196,7 @@
           "description": "The platform must verify the requester's role via an institutional identity provider or ORCID affiliation before granting access."
         }
       ],
-      "sources": [" openrel:source.DPV", " openrel:source.EOSC:Interoperability"],
+      "sources": [" openrel:source.DPV", " openrel:source.EOSC-Interoperability"],
       "machine_actionable": true,
       "evaluation": "allow | deny"
     },
@@ -238,7 +238,7 @@
           "description": "The requester must submit a valid ethics approval certificate from a recognized IRB or ethics committee before access is granted."
         }
       ],
-      "sources": [" openrel:source.HorizonEthics", " openrel:source.BBMRI:ELSI", " openrel:source.HelsinkiDeclaration"],
+      "sources": [" openrel:source.HorizonEthics", " openrel:source.BBMRI-ELSI", " openrel:source.HelsinkiDeclaration"],
       "machine_actionable": true,
       "evaluation": "conditional — requires external verification of ethics approval document"
     },
@@ -280,7 +280,7 @@
           "target": "[LOG_ENDPOINT_URI]"
         }
       ],
-      "sources": [" openrel:source.EDPB:dataSecurity", " openrel:source.ISO27001", " openrel:source.GDPR"],
+      "sources": [" openrel:source.EDPB-dataSecurity", " openrel:source.ISO27001", " openrel:source.GDPR"],
       "machine_actionable": true,
       "evaluation": "conditional — requires TOM declaration by the processor",
       "notes": "The draft used 'odrl:eq' with an array rightOperand for the TOM values, which is not valid in ODRL 2.2. Replaced with odrl:hasPart as a composite constraint operator."
@@ -322,7 +322,7 @@
           "description": "The platform must monitor and record data volume per request and enforce the limit automatically."
         }
       ],
-      "sources": [" openrel:source.ODRL", " openrel:source.EOSC:FAIRMetrics"],
+      "sources": [" openrel:source.ODRL", " openrel:source.EOSC-FAIRMetrics"],
       "machine_actionable": true,
       "evaluation": "allow | deny",
       "parameterizable": {
@@ -368,7 +368,7 @@
           "description": "The system must verify the geographic origin of the request via IP geolocation, connector metadata, or institutional affiliation before granting access."
         }
       ],
-      "sources": [" openrel:source.ODRL", " openrel:source.GDPR", " openrel:source.GeoJSON:RFC7946"],
+      "sources": [" openrel:source.ODRL", " openrel:source.GDPR", " openrel:source.GeoJSON-RFC7946"],
       "machine_actionable": true,
       "evaluation": "allow | deny",
       "parameterizable": {
@@ -511,7 +511,7 @@
         }
       ],
       "duties": [],
-      "sources": [" openrel:source.ODRL", " openrel:source.IDSA:usageControl"],
+      "sources": [" openrel:source.ODRL", " openrel:source.IDSA-usageControl"],
       "machine_actionable": true,
       "evaluation": "allow | deny",
       "parameterizable": {
@@ -552,7 +552,7 @@
           "target": "[NOTIFICATION_ENDPOINT_URI]"
         }
       ],
-      "sources": [" openrel:source.ODRL", " openrel:source.IDSA:usageControl"],
+      "sources": [" openrel:source.ODRL", " openrel:source.IDSA-usageControl"],
       "machine_actionable": true,
       "evaluation": "allow (with mandatory postDuty)",
       "parameterizable": {
@@ -599,7 +599,7 @@
           "description": "The platform must record each access event and enforce the count limit by denying access once the threshold is reached."
         }
       ],
-      "sources": [" openrel:source.ODRL", " openrel:source.IDSA:usageControl"],
+      "sources": [" openrel:source.ODRL", " openrel:source.IDSA-usageControl"],
       "machine_actionable": true,
       "evaluation": "allow | deny",
       "parameterizable": {
@@ -644,7 +644,7 @@
           "description": "Record access start time. Revoke access automatically upon expiry."
         }
       ],
-      "sources": [" openrel:source.ODRL", " openrel:source.IDSA:usageControl"],
+      "sources": [" openrel:source.ODRL", " openrel:source.IDSA-usageControl"],
       "machine_actionable": true,
       "evaluation": "allow | deny",
       "parameterizable": {
@@ -720,7 +720,7 @@
           "deadline": "[DELETION_DATETIME]"
         }
       ],
-      "sources": [" openrel:source.ODRL", " openrel:source.IDSA:usageControl", " openrel:source.GDPR"],
+      "sources": [" openrel:source.ODRL", " openrel:source.IDSA-usageControl", " openrel:source.GDPR"],
       "machine_actionable": true,
       "evaluation": "allow | deny | duty-required",
       "parameterizable": {
@@ -759,7 +759,7 @@
           "target": "[CLEARINGHOUSE_URI]"
         }
       ],
-      "sources": [" openrel:source.ODRL", " openrel:source.IDSA:usageControl"],
+      "sources": [" openrel:source.ODRL", " openrel:source.IDSA-usageControl"],
       "machine_actionable": true,
       "evaluation": "allow (with mandatory postDuty)",
       "parameterizable": {
@@ -808,7 +808,7 @@
           "description": "The platform must validate the connector URI against an authorized list before granting access."
         }
       ],
-      "sources": [" openrel:source.IDSA:core", " openrel:source.IDSA:usageControl", " openrel:source.ODRL"],
+      "sources": [" openrel:source.IDSA-core", " openrel:source.IDSA-usageControl", " openrel:source.ODRL"],
       "machine_actionable": true,
       "evaluation": "allow | deny",
       "parameterizable": {
