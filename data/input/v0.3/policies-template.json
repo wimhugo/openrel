@@ -1,0 +1,42 @@
+{
+    "id": "",
+    "label": "",
+    "odrl_type": "",
+    "source_sections": [""],
+    "derived_from": "",
+    "assigner": "",
+    "assignee": "",
+    "target": "",
+    "action": "",
+    "permissions": [
+    {
+        "action": "",
+        "constraint": {
+        "id": "",
+        "leftOperand": "",
+        "operator": "",
+        "rightOperand": ""
+        }
+    }
+    ],
+    "prohibitions": [
+    {
+        "action": "",
+        "constraint": {
+        "leftOperand": "",
+        "operator": "",
+        "rightOperand": ""
+        }
+    }
+    ],
+    "duties": [
+    {
+        "action": "",
+        "description": ""
+    }
+    ],
+    "sources": [""],
+    "machine_actionable": true,
+    "evaluation": "allow | deny",
+    "notes": ""
+}
