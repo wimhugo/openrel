@@ -23,7 +23,6 @@
       "label": "GDPR Consent-Gated Data Use",
       "odrl_type": "odrl:Permission",
       "status": "openrel:status/active",
-      "status": "openrel:Permission",
       "source_sections": ["Section 91", "Section 2", "Section 9", "Section 47"],
       "derived_from": "Sections 91 (primary), 2, 9, 47 merged",
       "assigner": "[ASSIGNER_URI]",
