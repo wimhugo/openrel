@@ -787,6 +787,7 @@
       "id": "openrel:policy.p017",
       "label": "Connector-Restricted Access",
       "odrl_type": "odrl:Permission",
+      "status": "openrel:status/active",
       "source_sections": ["Section 108", "Section 118"],
       "derived_from": "Sections 108 and 118 are exact duplicates. Merged into one template.",
       "assigner": "[ASSIGNER_URI]",
