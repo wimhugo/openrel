@@ -13,31 +13,37 @@
   "states ": [
     {
     "id": "openrel:status/active",
-    "label": "Loaded from the GitHub policy file, and status is active",
+    "label": "Active",
+    "definition": "Loaded from the GitHub policy file, and status is active",
     "nextstate": ["openrel:status/deprecated"]
     },
     {
     "id": "openrel:status/deprecated",
-    "label": "Loaded from the GitHub policy file, and status is deprecated",
+    "label": "Deprecated",
+    "definition": "Loaded from the GitHub policy file, and status is deprecated",
     "nextstate": ["openrel:status/pending"]
     },
     {
     "id": "openrel:status/pending",
-    "label": "Loaded from the GitHub policy file, and status is pending - submitted / awaiting merge into GitHub repository",
+    "label": "Pending",
+    "definition": "Loaded from the GitHub policy file, and status is pending - submitted / awaiting merge into GitHub repository",
     "nextstate": ["openrel:status/active","openrel:status/rejected","openrel:status/amendment"]
     },
     {
     "id": "openrel:status/rejected",
-    "label": "Loaded from the GitHub policy file, and status is rejected - kept for reference",
+    "label": "Rejected",
+    "definition": "Loaded from the GitHub policy file, and status is rejected - kept for reference",
     },
     {
     "id": "openrel:status/amendment",
-    "label": "Loaded from the GitHub policy file, and status is amendment - referred back to creator for corrections",
+    "label": "Amendment Needed",
+    "definition": "Loaded from the GitHub policy file, and status is amendment - referred back to creator for corrections",
     "nextstate": ["openrel:status/pending"]
     },
     {
     "id": "openrel:status/draft",
-    "label": "Newly created or copied in automated curation platform, not yet submitted as a pull request to Github",
+    "label": "Draft",
+    "definition": "Newly created or copied in automated curation platform, not yet submitted as a pull request to Github",
     }
   ]
 }
