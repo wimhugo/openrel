@@ -11,6 +11,34 @@
     contextBadge: "hei_institution"
     colour: chart-5
     constraintMapping: "Role — Research Institution"
+  - profileBadge: "Verified HEI Researcher"
+    contextBadge: "verified_research"
+    colour: muted
+    constraintMapping: "Role — Researcher"
+  - profileBadge: "Higher Education Institution"
+    contextBadge: "hei_institution"
+    colour: accent
+    constraintMapping: "Role — Research Institution"
+  - profileBadge: "Research Org"
+    contextBadge: "research_org"
+    colour: destructive
+    constraintMapping: "Role — Research Institution"
+  - profileBadge: "EU Member"
+    contextBadge: "eu_member"
+    colour: primary
+    constraintMapping: "Spatial — European Union"
+  - profileBadge: "Publicly Funded Research"
+    contextBadge: "publicly_funded_research"
+    colour: pink
+    constraintMapping: "Funding Source — Public"
+  - profileBadge: "Commercial Research"
+    contextBadge: "commercial_research"
+    colour: teal
+    constraintMapping: "Purpose — Non-Commercial"
+  - profileBadge: "Commercial Application of Results"
+    contextBadge: "commercial_application_of_results"
+    colour: chart-3
+    constraintMapping: "Purpose — Non-Commercial"
 -context: "Intended Use"
   - profileBadge: "My research output will not be used commercially"
     contextBadge: "non-commercial"
