@@ -47,7 +47,7 @@
       "notes": "More precise than the draft's boolean 'nonCommercial' string. Commercial is expressed as exclusion of dpv:CommercialResearch rather than a positive claim."
     },
     {
-      "id": "openrel:constraint:legalBasis:consent",
+      "id": "openrel:constraint.legalBasis-consent",
       "label": "Legal Basis — Consent",
       "leftOperand": "dpv:hasLegalBasis",
       "operator": "odrl:eq",
