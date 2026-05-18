@@ -45,7 +45,7 @@
     colour: chart-3
     constraintMapping: "Purpose — Non-Commercial"
 -context: "Ethics Considerations "
-  - profileBadge: "I will obtain ethics approval prior to conductimg the research"
+  - profileBadge: "I will obtain ethics approval prior to conducting the research"
     contextBadge: "Ethics Approval"
     colour: chart-4
     constraintMapping: "Ethics Approval Required"
