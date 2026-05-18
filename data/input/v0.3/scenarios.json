@@ -19,8 +19,8 @@
     [
         {
         "id": "openrel:scenario.academic-only",
-        "label": "Your work can only be used for academic research.",
-        "agent": "openrel:agent.DataProvider"
+        "label": "Your work can only be used for academic research." //,
+        //"agent": "openrel:agent.DataProvider"
         },
         {
         "id": "openrel:scenario.confirmed-researcher",
@@ -32,8 +32,8 @@
         },
         {
         "id": "openrel:scenario.affirmed-research",
-        "label": "I am a researcher, or I am affiliated with a verfied research or academic institution.",
-        "agent": ["openrel:agent:DataConsumer","openrel:agent:Researcher","openrel:agent:Institution"]  
+        "label": "I am a researcher, or I am affiliated with a verfied research or academic institution."//,
+        //"agent": ["openrel:agent:DataConsumer","openrel:agent:Researcher","openrel:agent:Institution"]  
         }
     ]
     },   
