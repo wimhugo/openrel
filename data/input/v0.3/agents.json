@@ -30,7 +30,21 @@
         "affiliation_property": "foaf:Organization",
         "contact_property": "vcard:hasEmail"
       },
-      "eosc_context": "Typically a research institution, repository, or data provider registered in the EOSC marketplace."
+      "eosc_context": "Typically a research institution, repository, or data provider registered in the EOSC Marketplace."
+    },
+    {
+      "id": "openrel:agent.DataCurator",
+      "label": "Data Provider",
+      "odrl_role": "assigner",
+      "dpv_mapping": "dpv:DataController",
+      "definition": "An organisation or individual that hosts and curates the object and disseminates it to end users.",
+      "properties": {
+        "identifier_type": "xsd:anyURI",
+        "identifier_example": "https://ror.org/04wxnsj81",
+        "affiliation_property": "foaf:Organization",
+        "contact_property": "vcard:hasEmail"
+      },
+      "eosc_context": "Typically a research repository or archice registered in re3data or the EOSC Marketplace."
     },
     {
       "id": "openrel:agent.DataConsumer",
