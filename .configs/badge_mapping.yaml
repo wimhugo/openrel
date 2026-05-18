@@ -41,11 +41,11 @@
     constraintMapping: "Purpose — Non-Commercial"
 -context: "Intended Use"
   - profileBadge: "My research output will not be used commercially"
-    contextBadge: "non-commercial"
+    contextBadge: "Non-Commercial"
     colour: chart-3
     constraintMapping: "Purpose — Non-Commercial"
 -context: "Ethics Considerations "
   - profileBadge: "I will obtain ethics approval prior to conductimg the research"
-    contextBadge: "ethics-approval"
+    contextBadge: "Ethics Approval"
     colour: chart-4
     constraintMapping: "Ethics Approval Required"
