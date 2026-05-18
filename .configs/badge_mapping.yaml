@@ -1,1 +1,23 @@
-
+-context: "User"
+  - profileBadge: "Verified Researcher"
+    contextBadge: "verified_education"
+    colour: chart-4
+    constraintMapping: "Role — Researcher"
+  - profileBadge: "Verified Research Org"
+    contextBadge: "research_org"
+    colour: destructive
+    constraintMapping: "Role — Research Institution"
+  - profileBadge: "Verified HEI"
+    contextBadge: "hei_institution"
+    colour: chart-5
+    constraintMapping: "Role — Research Institution"
+-context: "Intended Use"
+  - profileBadge: "My research output will not be used commercially"
+    contextBadge: "non-commercial"
+    colour: chart-3
+    constraintMapping: "Purpose — Non-Commercial"
+-context: "Ethics Considerations "
+  - profileBadge: "I will obtain ethics approval prior to conductimg the research"
+    contextBadge: "ethics-approval"
+    colour: chart-4
+    constraintMapping: "Ethics Approval Required"
