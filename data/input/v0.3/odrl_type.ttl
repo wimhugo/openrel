@@ -1,3 +1,5 @@
+## This is a copy fo the ODRL ontology, and can also ideally be referenced directly in the web - duplicated for convenience
+
 @base <http://www.w3.org/ns/odrl/2/> .
 @prefix : <http://www.w3.org/ns/odrl/2/> .
 @prefix odrl: <http://www.w3.org/ns/odrl/2/> .
