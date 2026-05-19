@@ -10,7 +10,7 @@
   "title": "OpenREL GDPR Checklist Vocabulary",
   "version": "0.0.1",
   "description": "Describing GDPR considerations and its basis.",
-  "items ": [
+  "items": [
     {
     "id": "openrel:gdpr/phone",
     "label": "Phone",
