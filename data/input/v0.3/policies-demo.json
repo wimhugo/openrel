@@ -1122,13 +1122,13 @@
     "id": "openrel:policy/template/00",
     "label": "Blank Policy Template",
     "description": "A blank tenmplate for creation of new policy or licence instances",  
-    "odrl_type": "",
-    "source_sections": [""],
-    "derived_from": "",
+    "odrl_type": "<SELECT_FROM_ODRL_TYPE_VOCABULARY>",
+    "source_sections": ["<SELECT_FROM_SOURCES>"],
+    "derived_from": "Not Applicable",
     "status": "openrel:status/template",  
-    "assigner": "",
-    "assignee": "",
-    "target": "",
+    "assigner": "[ASSIGNER_URI]",
+    "assignee": "[ASSIGNEE_URI]",
+    "target": "[ASSET_URI",
     "action": "",
     "permissions": [
     {
@@ -1157,10 +1157,10 @@
         "description": ""
     }
     ],
-    "sources": [""],
+    "sources": ["<SELECT_FROM_SOURCES>"],
     "machine_actionable": true,
-    "evaluation": "allow | deny",
-    "notes": ""
+    "evaluation": "allow",
+    "notes": "Intended as a starting point for policies and licences created from scratch. Added by the EOSC Beyond Project Team."
     }  
   ]
 }
