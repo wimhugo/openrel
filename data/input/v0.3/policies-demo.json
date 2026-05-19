@@ -1121,6 +1121,7 @@
     {
     "id": "openrel:policy/template/00",
     "label": "Blank Policy Template",
+    "description": "A blank tenmplate for creation of new policy or licence instances",  
     "odrl_type": "",
     "source_sections": [""],
     "derived_from": "",
