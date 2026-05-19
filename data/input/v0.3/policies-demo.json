@@ -1123,7 +1123,7 @@
     "label": "Blank Policy Template",
     "description": "A blank template for creation of new policy or licence instances.",  
     "odrl_type": "<SELECT_FROM_ODRL_TYPE_VOCABULARY>",
-    "openrel_type": "<SELECT_FROM_OPENREL_TYPE_VOCABULARY>"
+    "openrel_type": "<SELECT_FROM_OPENREL_TYPE_VOCABULARY>",
     "source_sections": ["<SELECT_FROM_SOURCES>"],
     "derived_from": "Not Applicable",
     "status": "openrel:status/template",  
