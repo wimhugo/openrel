@@ -14,27 +14,38 @@
     {
     "id": "openrel:gdpr/phone",
     "label": "Phone",
-    "definition": "Deteremine if any data resembles phone numbers based on regular expressions"
+    "definition": "Deteremine if any data resembles phone numbers based on regular expressions",
+    "regex": ["^\+([1-9]\d{0,2})[\s\-]?(\d[\s\-]?){6,14}\d$]","^\+[1-9]\d{7,14}$","^\+?[1-9]\d{0,2}[\s\-()]*(\d[\s\-()]*){6,14}$","^\+(30|31|32|33|34|36|39|40|41|43|45|46|48|49|350|351|352|353|354|355|356|357|358|359|370|371|372|373|374|375|376|377|378|380|381|382|385|386|387|389|420|421)\d{6,12}$"]
+    },
+    {
+    "id": "openrel:gdpr/email",
+    "label": "E-Mail Address",
+    "definition": "Deteremine if any data resembles email addresses based on regular expressions",
+    "regex": ["^[^\s@]+@[^\s@]+\.[^\s@]{2,}$","^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"]
     },
     {
     "id": "openrel:gdpr/address",
     "label": "Address",
-    "definition": "Deteremine if any data resembles physical or postal addresses based on regular expressions"
+    "definition": "Deteremine if any data resembles physical or postal addresses based on context and regular expressions",
+    "regex": [""]
     },
     {
     "id": "openrel:gdpr/dob",
     "label": "Date of Birth",
-    "definition": "Deteremine if any data resembles dates of birth based on regular expressions and context"
+    "definition": "Deteremine if any data resembles dates of birth based on regular expressions and context",
+    "regex": ["\b(?:\d{4}[-/]\d{1,2}[-/]\d{1,2}|\d{1,2}[-/.]\d{1,2}[-/.]\d{2,4})\b"]
     },
     {
     "id": "openrel:gdpr/id",
     "label": "Identity",
-    "definition": "Determine if any data resembles personal identity numbers based on regular expressions and context"
+    "definition": "Determine if any data resembles personal identity numbers based on regular expressions and context",
+    "regex": ["\b(?:[A-Z]{6}\d{2}[A-Z]\d{2}[A-Z]\d{3}[A-Z]|\d{8}[A-Z]|[XYZ]\d{7}[A-Z]|\d{7}[A-Z]{1,2}|\d{6}[-+]\d{4}|\d{9}|\d{11}|[12]\d{2}(?:0[1-9]|1[0-2])\d{2}\d{3}\d{3}(?:\d{2})?)\b"]
     },
     {
     "id": "openrel:gdpr/name",
     "label": "Names",
-    "definition": "Determine if any data resembles names and surnames based on regular expressions and context"
+    "definition": "Determine if any data resembles names and surnames based on regular expressions and context",
+    "regex": ["\b[\p{Lu}][\p{L}'’-]+(?:\s+(?:de|van|von|da|del|di|la|le))?(?:\s+[\p{Lu}][\p{L}'’-]+){1,3}\b"]
     }
   ]
 }
