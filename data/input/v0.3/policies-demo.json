@@ -1117,6 +1117,49 @@
         "This policy requires a policy enforcement mechanism that can evaluate all constraints in real time (e.g., an EOSC connector with usage control capabilities).",
         "The draft's equivalent patterns (Sections 92, 94, 95, 98, 105, 107, 112, 115) would have required assembling 8 separate policy entries. This normalized compound policy expresses the same semantics in a single, interpretable structure."
       ]
+    },
+    {
+    "id": "openrel:policy/template/00",
+    "label": "Blank Policy Template",
+    "odrl_type": "",
+    "source_sections": [""],
+    "derived_from": "",
+    "status": "openrel:status/template",  
+    "assigner": "",
+    "assignee": "",
+    "target": "",
+    "action": "",
+    "permissions": [
+    {
+        "action": "",
+        "constraint": {
+        "id": "",
+        "leftOperand": "",
+        "operator": "",
+        "rightOperand": ""
+        }
     }
+    ],
+    "prohibitions": [
+    {
+        "action": "",
+        "constraint": {
+        "leftOperand": "",
+        "operator": "",
+        "rightOperand": ""
+        }
+    }
+    ],
+    "duties": [
+    {
+        "action": "",
+        "description": ""
+    }
+    ],
+    "sources": [""],
+    "machine_actionable": true,
+    "evaluation": "allow | deny",
+    "notes": ""
+    }  
   ]
 }
