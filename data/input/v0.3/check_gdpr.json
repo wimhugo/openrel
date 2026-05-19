@@ -1,0 +1,40 @@
+{
+"$schema": "https://openrel.eu/schemas/check_gdpr/v1",
+  "@context": {
+    "openrel": "https://openrel.eu/vocab/",
+    "dpv": "https://w3id.org/dpv#",
+    "ids": "https://w3id.org/idsa/core/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "id": "https://openrel.eu/vocab/check_gdpr",
+  "title": "OpenREL GDPR Checklist Vocabulary",
+  "version": "0.0.1",
+  "description": "Describing GDPR considerations and its basis.",
+  "items ": [
+    {
+    "id": "openrel:gdpr/phone",
+    "label": "Phone",
+    "definition": "Deteremine if any data resembles phone numbers based on regular expressions"
+    },
+    {
+    "id": "openrel:gdpr/address",
+    "label": "Address",
+    "definition": "Deteremine if any data resembles physical or postal addresses based on regular expressions"
+    },
+    {
+    "id": "openrel:gdpr/dob",
+    "label": "Date of Birth",
+    "definition": "Deteremine if any data resembles dates of birth based on regular expressions and context"
+    },
+    {
+    "id": "openrel:gdpr/id",
+    "label": "Identity",
+    "definition": "Determine if any data resembles personal identity numbers based on regular expressions and context"
+    },
+    {
+    "id": "openrel:gdpr/name",
+    "label": "Names",
+    "definition": "Determine if any data resembles names and surnames based on regular expressions and context"
+    }
+  ]
+}
