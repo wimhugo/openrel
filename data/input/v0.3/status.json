@@ -41,6 +41,12 @@
     "nextstate": ["openrel:status/pending"]
     },
     {
+    "id": "openrel:status/template",
+    "label": "A Template Instance,
+    "definition": "Loaded from the GitHub policy file, and status is 'template' - used to create new policies and licences",
+    "nextstate": ["openrel:status/draft"]
+    },
+    {
     "id": "openrel:status/draft",
     "label": "Draft",
     "definition": "Newly created or copied in automated curation platform, not yet submitted as a pull request to Github",
