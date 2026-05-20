@@ -838,6 +838,7 @@
       "description": "A researcher is permitted to reuse a published dataset for academic purposes, provided they give attribution to the original creators. Commercial use is explicitly prohibited. The policy is modelled on CC BY-NC semantics expressed in ODRL, covering the pattern from Sections 1, 4, 7, and 10 of the draft.",
       "odrl_type": "odrl:Set",
       "status": "openrel:status/pending",
+      "jurisdiction":"FR",
       "uid": "https://openrel.eu/policies/examples/A",
       "dcterms:issued": "2025-10-01",
       "dcterms:modified": "2025-10-01",
@@ -938,6 +939,7 @@
     {
       "id": "openrel:example-policy-B",
       "label": "Example B — Restricted Access with Approval, Logging, and Actor Constraints (Complex)",
+      "jurisdiction":"NL",
       "description": "A sensitive health research dataset is accessible only to verified researchers from EU-based institutions, who hold a valid ethics approval, connect via an IDS TRUST+ certified connector, and agree to: log every access, limit their use to 24 hours, and delete all data after the access window expires. This policy combines patterns from Sections 91, 92, 94, 95, 98, 105, 107, 112, and 115 of the draft. It demonstrates compound constraint composition and multi-duty orchestration.",
       "odrl_type": "odrl:Agreement",
       "status": "openrel:status/pending",
