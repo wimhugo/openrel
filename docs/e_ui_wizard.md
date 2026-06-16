@@ -3,7 +3,7 @@
 | Summary | UI design and behavioural specification for the OpenREL Policy Wizard, derived from a full analysis of `data/input/v0.4/OpenREL_Wizard_mock.html` including all HTML, CSS, and JavaScript |
 | :---- | :---- |
 | **Status** | Draft |
-| **Version** | 0.2 |
+| **Version** | 0.3 |
 | **Date** | 2026-06-16 |
 | **Author** | W Hugo |
 | **Source** | `data/input/v0.4/OpenREL_Wizard_mock.html` (143 719 bytes) |
@@ -19,7 +19,7 @@
 - [6. View 2 — Simple Wizard](#6-view-2--simple-wizard)
 - [7. View 3 — Advanced Wizard](#7-view-3--advanced-wizard)
 - [8. Shared: Policy Preview Modal](#8-shared-policy-preview-modal)
-- [9. JavaScript State Model](#9-javascript-state-model)
+- [9. JavaScript Function Reference](#9-javascript-function-reference)
 - [10. Constraint Catalogue](#10-constraint-catalogue)
 - [11. Action Catalogue](#11-action-catalogue)
 - [12. Open Questions](#12-open-questions)
@@ -240,7 +240,7 @@ Two radio options (single-select). Sets `SS.q3`:
 
 When `restricted` is selected, a geo-picker is revealed (`#s-geo-picker`) consisting of two searchable country lists:
 - **Include (✓):** Countries where access IS permitted. Populates `SS.geoInc`.
-- **Exclude (✕):** Countries where access is NOT permitted. Populates `SS.geoExc`.
+- **Exclude (✗):** Countries where access is NOT permitted. Populates `SS.geoExc`.
 
 An ODRL hint is shown when both include and exclude lists are non-empty: `odrl:LogicalConstraint odrl:and`.
 
@@ -401,52 +401,453 @@ The modal renders:
 
 ---
 
-## 9. JavaScript State Model
+## 9. JavaScript Function Reference
 
-### 9.1 `simpleToCanonical(q1, q2, q3, geoInc, geoExc, q4, dateStart, dateEnd)`
+This section documents all significant JavaScript functions in the mock-up, grouped by concern. Where the source code is non-trivial, the exact implementation is shown and annotated.
 
-Maps Simple wizard answers to a canonical policy structure:
+---
 
-```
-q1 → policyType
-  'public' | 'noncommercial' → 'Licence'
-  'researchers' | 'managed'  → 'Access'
+### 9.1 View Routing
 
-perms (always include A02, A05):
-  q2.share       → add A03
-  q2.modify      → add A04
-  q2.commercial  → add A01
+#### `showView(v)`
 
-prohs:
-  !q2.modify     → add A04
-  !q2.share      → add A03
+The central view router. Switches the application between its three top-level views by toggling the CSS `hidden` class.
 
-cons:
-  q1 = 'noncommercial' → add C02 (Non-commercial use only)
-  q1 = 'researchers'   → add C03 (Verified researcher affiliation) + C06 (Authentication required)
-  q1 = 'managed'       → add C01 (Specific party required) + C06 (Authentication required)
-  q3 = 'restricted'    → add C13 (Spatial) with inc/exc lists
-  q4 = 'fixed'         → add C15 (Time Interval) with dateStart/dateEnd
+```js
+function showView(v) {
+  // Hide all three root view divs
+  ['browser','simple','advanced'].forEach(id => {
+    document.getElementById('view-' + id).classList.toggle('hidden', id !== v);
+  });
+  // Swap header controls: breadcrumb mode toggle
+  document.getElementById('hright-browser').classList.toggle('hidden', v !== 'browser');
+  document.getElementById('hright-wizard').classList.toggle('hidden',  v === 'browser');
+  // Update breadcrumb text
+  updCrumb(v);
+}
 ```
 
-> **Important note (from source comment):** `commercial = true` never adds `C02`; `C02` is only added for `q1 = 'noncommercial'`, regardless of the "Use commercially" checkbox.
+**Notes:**
+- No history/routing is used. The URL does not change between views.
+- `updCrumb(v)` updates `#hcrumb` to show `"Template Browser"` in browser mode, or `"Template Browser › [Simple|Advanced] Wizard"` in wizard modes, with the first segment rendered as a back-link that calls `showView('browser')`.
 
-### 9.2 `fp(policy)` — Fingerprint Function
+---
 
-Produces a deterministic 8-character hex fingerprint of a policy object (djb2 hash of a canonicalised JSON string). Used to:
-- Detect duplicates in the template library.
-- Match a Simple wizard output to an existing template.
+#### `startFromScratch(mode)`
 
-### 9.3 `resetAll()` / `switchMode(v)`
+Called by the header **Simple Wizard** / **Advanced Wizard** buttons in the Template Browser.
 
-- `resetAll()` resets both `SS` and `AS` to their initial values and navigates to the Template Browser.
-- `switchMode(v)` switches between `'simple'` and `'advanced'`, resetting all state.
+```js
+function startFromScratch(mode) {
+  resetAll();       // zero all SS and AS state
+  showView(mode);   // navigate to 'simple' or 'advanced'
+  if (mode === 'simple') sGoTo(1);  // jump to step 1
+}
+```
 
-### 9.4 `loadTplSimple(tpl)` / `loadTplAdvanced(tpl)`
+---
 
-Pre-populate wizard state from a template object:
-- `loadTplSimple`: reverse-maps the canonical template structure back into `SS.q1`–`q4` answers, then calls `showView('simple')`.
-- `loadTplAdvanced`: copies template data directly into `AS`, then calls `showView('advanced')`.
+#### `switchMode(v)`
+
+Called by the in-wizard mode toggle pill. Switches between Simple and Advanced **and resets all state**.
+
+```js
+function switchMode(v) {
+  resetAll();
+  showView(v);
+  if (v === 'simple') sGoTo(1);
+}
+```
+
+**Important:** Switching modes discards all current wizard answers. There is no state transfer between modes (except when explicitly loaded via `loadTplSimple` / `loadTplAdvanced`).
+
+---
+
+### 9.2 Simple Wizard Navigation
+
+#### `sGoTo(n)`
+
+Navigates the Simple wizard to step `n` (1–5).
+
+```js
+function sGoTo(n) {
+  [1,2,3,4,5].forEach(i => {
+    document.getElementById('sq' + i).classList.toggle('hidden', i !== n);
+  });
+  // Update step indicator dots
+  updStepDots(n);
+  // On step 5 (Result), trigger output rendering
+  if (n === 5) sFinish();
+}
+```
+
+- Step dots are small circular indicators shown above the wizard card; the active step is filled, completed steps are half-filled.
+- Calling `sGoTo(5)` automatically triggers `sFinish()`, so output is always regenerated when the result step is entered.
+
+---
+
+#### `sFinish()`
+
+Computes and renders the final policy output for the Simple wizard.
+
+```js
+function sFinish() {
+  const policy = simpleToCanonical(
+    SS.q1, SS.q2, SS.q3, SS.geoInc, SS.geoExc, SS.q4, SS.dateStart, SS.dateEnd
+  );
+  document.getElementById('sq5-out').innerHTML  = renderPolicy(policy);
+  document.getElementById('sq5-json').textContent = JSON.stringify(toODRL(policy), null, 2);
+  // Show/hide the fingerprint match banner
+  const match = TEMPLATES.find(t => fp(t) === fp(policy));
+  const banner = document.getElementById('s-match-banner');
+  if (match) {
+    banner.classList.remove('hidden');
+    banner.querySelector('.match-label').textContent = match.label;
+  } else {
+    banner.classList.add('hidden');
+  }
+}
+```
+
+**Notes:**
+- `toODRL(policy)` converts the internal canonical structure to a standards-compliant ODRL JSON-LD object.
+- If the computed policy's fingerprint matches a known template, a banner is shown: *"This matches the '[Template Name]' template."*
+
+---
+
+### 9.3 Fingerprinting
+
+#### `fp(policy)` — Policy Fingerprint
+
+This is the most algorithmically significant function in the mock-up. It produces a deterministic, order-independent 8-character hexadecimal fingerprint of a policy object.
+
+**Source code (exact):**
+
+```js
+function fp(policy) {
+  const str = JSON.stringify({
+    t:  policy.type || '',
+    p:  [...(policy.perms || [])].sort(),
+    pr: [...(policy.prohs || [])].sort(),
+    ob: Object.keys(policy.oblis || {}).sort().map(k => k + ':' + policy.oblis[k]),
+    co: Object.keys(policy.cons  || {}).sort().map(k => {
+      const v = policy.cons[k];
+      if (v === true)                     return k;
+      if (typeof v === 'string' && v !== '') return k + '=' + v;
+      if (v && typeof v === 'object') {
+        if (Array.isArray(v.inc) || Array.isArray(v.exc)) {
+          const inc = (v.inc || []).map(x => x.iso || x).sort().join(',');
+          const exc = (v.exc || []).map(x => x.iso || x).sort().join(',');
+          return k + '=' + inc + '|' + exc;
+        }
+        if (v.from !== undefined) return k + '=' + v.from + '>' + v.to;
+        return k + '=' + JSON.stringify(v);
+      }
+      return k;
+    })
+  });
+  let h = 5381;
+  for (let i = 0; i < str.length; i++) h = ((h << 5) + h) ^ str.charCodeAt(i);
+  return (h >>> 0).toString(16).padStart(8, '0');
+}
+```
+
+**Step-by-step breakdown:**
+
+**Step 1 — Canonical serialisation**
+
+A normalised JavaScript object is constructed with five keys:
+
+| Key | Source | Normalisation applied |
+| :---- | :---- | :---- |
+| `t` | `policy.type` | Lowercased string; empty string if absent |
+| `p` | `policy.perms` | Array of action IDs, **sorted alphabetically** |
+| `pr` | `policy.prohs` | Array of action IDs, **sorted alphabetically** |
+| `ob` | `policy.oblis` | Object entries serialised as `"actionId:obligationType"`, **sorted by key** |
+| `co` | `policy.cons` | Object entries serialised per constraint value type (see below), **sorted by key** |
+
+The sorting is critical: it ensures that `["A02", "A05"]` and `["A05", "A02"]` produce the same fingerprint.
+
+**Step 2 — Constraint value serialisation (the `co` field)**
+
+Each entry in `policy.cons` is serialised to a string using type-dispatch:
+
+| Constraint value type | Serialisation format | Example |
+| :---- | :---- | :---- |
+| `true` (boolean flag) | `"constraintId"` | `"C02"` |
+| Non-empty string | `"constraintId=value"` | `"C14=PT24H"` |
+| Object with `inc`/`exc` arrays (geo) | `"constraintId=isoList\|isoList"` | `"C13=DE,FR\|CN,RU"` |
+| Object with `from`/`to` (date range) | `"constraintId=start>end"` | `"C15=2024-01-01>2024-12-31"` |
+| Other object | `"constraintId=" + JSON.stringify(value)` | fallback |
+
+For geo constraints, ISO codes are extracted from `{ iso, label, flag }` objects (or taken as-is if already a string), then sorted — ensuring that `[DE, FR]` and `[FR, DE]` produce the same hash.
+
+**Step 3 — djb2 Hash**
+
+The normalised object is serialised with `JSON.stringify` (key order is deterministic because the object is constructed with fixed key names), then hashed using the **djb2** algorithm:
+
+```
+initial hash:  h = 5381
+per character: h = ((h << 5) + h) XOR charCode
+             = h * 33 XOR charCode
+```
+
+The final value is converted to an unsigned 32-bit integer via `>>> 0`, then rendered as an 8-character, zero-padded lowercase hexadecimal string.
+
+**Properties and implications:**
+
+| Property | Detail |
+| :---- | :---- |
+| **Algorithm** | djb2 (Daniel J. Bernstein, 1990s) — fast, non-cryptographic |
+| **Output** | 8 hex characters (32-bit unsigned integer), e.g. `"a3f8c1d2"` |
+| **Collision resistance** | Low — 2³² possible values (~4.3 billion). Suitable for UI duplicate detection, not security. |
+| **Order-independence** | Yes — arrays are sorted before hashing; geo ISO lists are sorted. |
+| **Parameter-sensitivity** | Yes — two policies differing only in a constraint parameter value produce different fingerprints. |
+| **Type-sensitivity** | Yes — `C02 = true` vs `C02 = "true"` produce different serialisations and thus different hashes. |
+
+**Use cases in the mock-up:**
+1. **Template deduplication** — the Template Browser can detect if two templates are semantically identical.
+2. **Simple wizard match banner** — after completing the Simple wizard, `sFinish()` calls `TEMPLATES.find(t => fp(t) === fp(policy))`. If a match is found, a banner tells the user their selections correspond to an existing named template.
+3. **Template card display** — each template card in the browser shows its own fingerprint as a short identifier in a monospace badge.
+
+**Reproduction note:** To reproduce this function identically in an implementation, the input `policy` object must use the same internal structure (`perms`, `prohs`, `oblis`, `cons`, `type`). If the implementation uses different field names (e.g. `permissions` instead of `perms`) the fingerprint will not match the mock-up's.
+
+---
+
+### 9.4 Policy Mapping
+
+#### `simpleToCanonical(q1, q2, q3, geoInc, geoExc, q4, dateStart, dateEnd)`
+
+Maps Simple wizard answers to a canonical internal policy structure. This is the core business logic of the Simple wizard.
+
+**Source code (exact):**
+
+```js
+function simpleToCanonical(q1, q2, q3, geoInc, geoExc, q4, dateStart, dateEnd) {
+  const type = { public:'Licence', noncommercial:'Licence',
+                 researchers:'Access', managed:'Access' }[q1] || 'Licence';
+  // permissions — always read + reproduce; add others when selected
+  const perms = ['A02', 'A05'];
+  if (q2.share)      perms.push('A03');
+  if (q2.modify)     perms.push('A04');
+  if (q2.commercial) perms.push('A01');
+  // prohibitions — only what is explicitly prohibited
+  const prohs = [];
+  if (!q2.modify) prohs.push('A04');
+  if (!q2.share)  prohs.push('A03');
+  // constraints
+  const cons = {};
+  if (q1 === 'noncommercial') { cons['C02'] = true; }
+  if (q1 === 'researchers')   { cons['C03'] = true; cons['C06'] = true; }
+  if (q1 === 'managed')       { cons['C01'] = true; cons['C06'] = true; }
+  if (q3 === 'restricted')    { cons['C13'] = { inc: geoInc, exc: geoExc }; }
+  if (q4 === 'fixed')         { cons['C15'] = { from: dateStart, to: dateEnd }; }
+  return { type, perms, prohs, oblis: {}, cons };
+}
+```
+
+**Mapping table:**
+
+| Input | Output field | Logic |
+| :---- | :---- | :---- |
+| `q1 = 'public'` | `type = 'Licence'` | No extra constraints |
+| `q1 = 'noncommercial'` | `type = 'Licence'`, `cons.C02 = true` | Adds non-commercial constraint |
+| `q1 = 'researchers'` | `type = 'Access'`, `cons.C03 = true`, `cons.C06 = true` | Requires verified researcher + authentication |
+| `q1 = 'managed'` | `type = 'Access'`, `cons.C01 = true`, `cons.C06 = true` | Requires specific party + authentication |
+| `q2.share = true` | `A03` in `perms` | Otherwise `A03` in `prohs` |
+| `q2.modify = true` | `A04` in `perms` | Otherwise `A04` in `prohs` |
+| `q2.commercial = true` | `A01` in `perms` | No prohibition added if false |
+| `q3 = 'restricted'` | `cons.C13 = { inc, exc }` | Geographic constraint with country lists |
+| `q4 = 'fixed'` | `cons.C15 = { from, to }` | Time interval constraint |
+| Always | `A02`, `A05` in `perms` | Read and reproduce always permitted |
+
+> **Design note (from source comment):** `commercial = true` never adds `C02`; `C02` is added only for `q1 = 'noncommercial'`, regardless of the commercial checkbox state. The commercial checkbox is purely additive (adds `A01` to permissions); it never produces a prohibition.
+
+---
+
+#### `toODRL(policy)`
+
+Converts the internal canonical policy structure to a standards-compliant ODRL 2.2 JSON-LD document.
+
+**Behaviour:**
+- Maps `type = 'Licence'` → `@type: "odrl:Set"`; `type = 'Access'` → `@type: "odrl:Offer"`.
+- Constructs `odrl:permission`, `odrl:prohibition`, and `odrl:duty` arrays.
+- Each action entry includes `odrl:action` (the action IRI from the Action Catalogue) and an `odrl:constraint` array (constraint entries from the Constraint Catalogue IRIs).
+- Geo constraints (`C13`) are serialised as `odrl:spatial` with a `odrl:LogicalConstraint` wrapping include and exclude sets when both are non-empty.
+- The output includes `@context`, `@type`, `uid`, `profile`, `permission`, `prohibition`, and `obligation` fields.
+
+---
+
+### 9.5 Template Loading
+
+#### `loadTplSimple(tpl)`
+
+Loads a template from the Template Browser into the Simple wizard by reverse-mapping the canonical structure back to Q1–Q4 answers.
+
+```js
+function loadTplSimple(tpl) {
+  resetAll();
+  SS.tplId = tpl.id;
+  // Reverse-map type
+  if      (tpl.cons['C03']) SS.q1 = 'researchers';
+  else if (tpl.cons['C01']) SS.q1 = 'managed';
+  else if (tpl.cons['C02']) SS.q1 = 'noncommercial';
+  else                      SS.q1 = 'public';
+  // Reverse-map What checkboxes
+  SS.q2.share      = tpl.perms.includes('A03');
+  SS.q2.modify     = tpl.perms.includes('A04');
+  SS.q2.commercial = tpl.perms.includes('A01');
+  // Reverse-map Where
+  if (tpl.cons['C13']) {
+    SS.q3    = 'restricted';
+    SS.geoInc = tpl.cons['C13'].inc || [];
+    SS.geoExc = tpl.cons['C13'].exc || [];
+  }
+  // Reverse-map When
+  if (tpl.cons['C15']) {
+    SS.q4       = 'fixed';
+    SS.dateStart = tpl.cons['C15'].from || '';
+    SS.dateEnd   = tpl.cons['C15'].to   || '';
+  }
+  showView('simple');
+  sGoTo(1);
+}
+```
+
+**Limitation:** The reverse-mapping is lossy. Templates with constraints that have no Q1–Q4 counterpart (e.g. `C04` Purpose: Research, `C07` Personal Data Present) are silently dropped. The Simple wizard can only represent a subset of the full policy space.
+
+---
+
+#### `loadTplAdvanced(tpl)`
+
+Loads a template directly into the Advanced wizard state object with no lossy conversion.
+
+```js
+function loadTplAdvanced(tpl) {
+  resetAll();
+  AS.tplId      = tpl.id;
+  AS.policyType = tpl.type;
+  AS.perms      = [...tpl.perms];
+  AS.prohs      = [...tpl.prohs];
+  AS.oblis      = { ...tpl.oblis };
+  AS.cons       = { ...tpl.cons  };
+  if (tpl.meta) Object.assign(AS.meta, tpl.meta);
+  showView('advanced');
+  renderAdvancedPreview();
+}
+```
+
+---
+
+### 9.6 Slug Generation
+
+#### `updSlug(pfx)`
+
+Auto-generates a URL-safe slug from the policy title field and updates the slug preview URL.
+
+```js
+function updSlug(pfx) {
+  const titleEl = document.getElementById(pfx + '-title');
+  const slugEl  = document.getElementById(pfx + '-slug');
+  const slug = titleEl.value
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .trim()
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .slice(0, 60);
+  slugEl.value = slug;
+  if (pfx === 's') SS.slug = slug;
+  else             AS.meta.slug = slug;
+  updSlugPrev(pfx);
+}
+
+function updSlugPrev(pfx) {
+  const slug = (pfx === 's' ? SS.slug : AS.meta.slug) || '[slug]';
+  document.getElementById(pfx + '-slug-prev').textContent =
+    'https://openrel.eu/policy/' + slug;
+}
+```
+
+**Slug rules:**
+- Lowercased.
+- All characters except `a-z`, `0-9`, spaces, and hyphens are removed.
+- Leading/trailing whitespace is trimmed.
+- Spaces are replaced with hyphens.
+- Consecutive hyphens are collapsed to one.
+- Maximum 60 characters.
+- Preview URL: `https://openrel.eu/policy/{slug}`
+
+---
+
+### 9.7 State Reset
+
+#### `resetAll()`
+
+Resets both `SS` and `AS` to their initial values and clears all DOM form elements.
+
+```js
+function resetAll() {
+  // Simple state
+  SS.q1 = null; SS.slug = ''; SS.policyTitle = '';
+  Object.assign(SS.q2, { read:true, share:false, modify:false,
+                          commercial:false, attribution:false, sharealike:false });
+  SS.q3 = 'worldwide'; SS.geoInc = []; SS.geoExc = [];
+  SS.q4 = 'unlimited'; SS.dateStart = ''; SS.dateEnd = '';
+  SS.tplId = null;
+  // Advanced state
+  AS.policyType = null;
+  Object.assign(AS.meta, { title:'', slug:'', desc:'', issuer:'',
+                             status:'draft', asset:'', pid:'' });
+  AS.perms = []; AS.prohs = []; AS.oblis = {}; AS.cons = {};
+  AS.conflictTerm = 'odrl:prohibit';
+  Object.assign(AS.agents, { assigner:'', assigneeType:'public', assigneeURI:'' });
+  AS.tplId = null;
+  // DOM reset (form fields, selection states, visibility)
+  // ... clears input values, removes .sel classes, hides conditional panels
+}
+```
+
+**Note:** `resetAll()` also includes DOM-side cleanup (clearing `<input>` values, removing `.sel` CSS classes from radio/checkbox options, hiding conditional panels like the geo-picker and date-picker). These DOM operations mirror the state reset.
+
+---
+
+### 9.8 Advanced Wizard Preview
+
+#### `renderAdvancedPreview()`
+
+Re-renders the live policy preview panel in the Advanced wizard. Called after every user interaction that modifies `AS`.
+
+**Behaviour:**
+- Reads current `AS` state.
+- Renders a compact policy card (same structure as the Preview Modal in §8 but inline in the two-column layout).
+- Shows placeholder text (`"Select a policy type to begin"`, `"No permissions selected"`, etc.) when sections are empty.
+- Calls `fp(AS)` and displays the current fingerprint in a monospace badge.
+- Calls `toODRL(AS)` and renders the current JSON-LD in a collapsible code block.
+
+---
+
+### 9.9 Geo Picker
+
+#### `toggleGeo(type, iso)` / `toggleGeoA(type, iso)`
+
+Handles country selection in the geographic constraint pickers. Two variants exist: `toggleGeo` for the Simple wizard (`SS.geoInc` / `SS.geoExc`), `toggleGeoA` for the Advanced wizard (`AS.cons['C13']`).
+
+```js
+function toggleGeo(type, iso) {
+  const arr = type === 'inc' ? SS.geoInc : SS.geoExc;
+  const country = COUNTRIES.find(x => x.iso === iso);
+  const idx = arr.findIndex(x => x.iso === iso);
+  if (idx >= 0) arr.splice(idx, 1);   // deselect
+  else          arr.push(country);     // select
+  renderGeoList(type, /*current search value*/);
+  renderGeoTags(type);
+}
+```
+
+- Each country object in `COUNTRIES` has the shape `{ iso: 'DE', label: 'Germany', flag: '🇩🇪' }`.
+- Selected countries appear as removable tag chips below the search list.
+- The ODRL hint (`odrl:LogicalConstraint odrl:and`) is shown when both `inc` and `exc` are non-empty.
 
 ---
 
@@ -494,8 +895,6 @@ All constraints are defined in the `CONSTRAINTS` array. There are 25 constraints
 | C24 | Attribution Required | `openrel:constraint.attribution:required` | — | — |
 | C25 | Share-Alike | `openrel:constraint.shareAlike` | — | — |
 
-> **Note from source:** The CONSTRAINTS array in the mock-up lists C01–C25, but the catalogue section order means C13 appears as "Spatial (GeoNames)" under Geography & Time, while C12 in the Security category is actually "Data Minimisation". The IDs in the table above preserve the source array ordering.
-
 ---
 
 ## 11. Action Catalogue
@@ -529,9 +928,10 @@ Actions are defined in the `ACTIONS` array with the following fields: `id`, `lab
 
 | # | Question |
 | :---- | :---- |
-| 1 | Should the wizard adopt the mock-up’s light-mode palette, or be adapted to the existing dark-mode theme? |
+| 1 | Should the wizard adopt the mock-up's light-mode palette, or be adapted to the existing dark-mode theme? |
 | 2 | The mock-up is entirely standalone (no backend calls). Which steps should trigger live backend calls (e.g. PID resolution, ORCID lookup) in the integrated version? |
-| 3 | The Simple wizard’s reverse-mapping from canonical policy → Q1–Q4 answers is not fully specified for all edge cases. How should ambiguous templates be handled when loaded into Simple mode? |
+| 3 | The Simple wizard's reverse-mapping from canonical policy → Q1–Q4 answers is lossy (see §9.5). How should templates with constraints beyond the Simple wizard's scope be handled? |
 | 4 | The constraint numbering (C01–C25) is internal to the mock-up. Should these IDs be retained in the implementation, or should the IRI-based identifiers be used as primary keys? |
-| 5 | Should the Advanced wizard’s live preview replace the existing `ComposePolicyCard` component, or coexist with it? |
-| 6 | The `fp()` fingerprint function uses djb2 hashing. Should this be reproduced identically in the implementation to allow template matching, or replaced with a formal content-addressable hash? |
+| 5 | Should the Advanced wizard's live preview replace the existing `ComposePolicyCard` component, or coexist with it? |
+| 6 | The `fp()` fingerprint uses djb2 (32-bit). For production use, should this be replaced with a cryptographic hash (e.g. SHA-256 truncated) for stronger collision resistance? |
+| 7 | The `toODRL()` function's handling of geo constraints with both include and exclude lists uses `odrl:LogicalConstraint odrl:and`. Is this the intended ODRL serialisation, or should separate `odrl:spatial` constraints be used? |
