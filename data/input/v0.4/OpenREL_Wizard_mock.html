@@ -1,0 +1,1856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenREL — Policy Wizard</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:#0f2040;--blue:#1a4a8a;--mid:#2563c4;--accent:#3b82f6;
+  --pale:#eff6ff;--ice:#f0f7ff;--border:#c7d9f5;--text:#0f2040;--muted:#5a7296;--white:#fff;
+  --green:#065f46;--glight:#ecfdf5;--gbord:#6ee7b7;
+  --orange:#92400e;--olight:#fffbeb;--obord:#fcd34d;
+  --red:#991b1b;--rlight:#fef2f2;--rbord:#fca5a5;
+  --purple:#5b21b6;--plight:#f5f3ff;--pbord:#c4b5fd;
+  --radius:10px;--shadow:0 4px 24px rgba(15,32,64,.10);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:#f4f7fc;color:var(--text);min-height:100vh}
+
+/* ── HEADER ── */
+.hdr{background:var(--navy);padding:0 32px;display:flex;align-items:center;gap:14px;height:60px;position:sticky;top:0;z-index:200;box-shadow:0 2px 12px rgba(0,0,0,.25)}
+.hlogo{font-family:'DM Serif Display',serif;font-size:20px;color:#fff;cursor:pointer}
+.hlogo span{color:#7eb3ff}
+.hsep{width:1px;height:22px;background:rgba(255,255,255,.2)}
+.hcrumb{display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,.45)}
+.hcrumb .active{color:#93c5fd;font-weight:600}
+.hcrumb span{color:rgba(255,255,255,.25)}
+.hright{margin-left:auto;display:flex;align-items:center;gap:8px}
+.mode-toggle{display:flex;background:rgba(255,255,255,.08);border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.12)}
+.mode-btn{padding:5px 14px;font-size:11px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;border:none;background:transparent;color:rgba(255,255,255,.5);transition:all .2s;letter-spacing:.3px}
+.mode-btn.active{background:var(--accent);color:#fff}
+.reset-btn{padding:5px 13px;border-radius:6px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.07);color:rgba(255,255,255,.5);font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;cursor:pointer;transition:all .2s}
+.reset-btn:hover{background:rgba(255,80,80,.2);color:#ffaaaa;border-color:rgba(255,80,80,.3)}
+.hidden{display:none!important}
+
+/* ── VIEWS ── */
+#view-browser,#view-simple,#view-advanced{min-height:calc(100vh - 60px)}
+
+/* ══════════════════════════════════════════════
+   BROWSER
+══════════════════════════════════════════════ */
+.hero{background:linear-gradient(135deg,var(--navy) 0%,#1a3a6e 100%);padding:44px 36px 38px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-40px;right:-60px;width:280px;height:280px;border-radius:50%;background:rgba(59,130,246,.07);pointer-events:none}
+.hero-inner{max-width:1060px;margin:0 auto;position:relative;z-index:1}
+.hero h1{font-family:'DM Serif Display',serif;font-size:34px;color:#fff;font-weight:400;margin-bottom:8px}
+.hero h1 em{color:#7eb3ff;font-style:normal}
+.hero p{font-size:14px;color:rgba(255,255,255,.55);max-width:580px;line-height:1.65;margin-bottom:24px}
+.search-bar{display:flex;gap:0;max-width:520px}
+.search-input{flex:1;padding:11px 16px;border:2px solid rgba(255,255,255,.14);border-right:none;border-radius:8px 0 0 8px;background:rgba(255,255,255,.08);color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;outline:none;transition:border-color .2s}
+.search-input::placeholder{color:rgba(255,255,255,.3)}
+.search-input:focus{border-color:var(--accent);background:rgba(255,255,255,.12)}
+.search-btn{padding:11px 20px;background:var(--accent);color:#fff;border:none;border-radius:0 8px 8px 0;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:background .2s}
+.search-btn:hover{background:var(--blue)}
+.filters-wrap{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:60px;z-index:90;box-shadow:0 2px 8px rgba(15,32,64,.05)}
+.filters-inner{max-width:1060px;margin:0 auto;padding:12px 36px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.fl{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.6px;text-transform:uppercase;margin-right:3px}
+.fb{padding:4px 13px;border-radius:100px;border:2px solid var(--border);background:#fff;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;cursor:pointer;transition:all .2s;color:var(--muted)}
+.fb:hover{border-color:var(--accent);color:var(--accent)}
+.fb.active{border-color:var(--accent);background:var(--pale);color:var(--accent)}
+.fsep{width:1px;height:18px;background:var(--border);margin:0 2px}
+.fsort{padding:4px 11px;border:2px solid var(--border);border-radius:6px;font-family:'DM Sans',sans-serif;font-size:11px;color:var(--muted);outline:none;cursor:pointer;margin-left:auto}
+.bmain{max-width:1060px;margin:0 auto;padding:28px 36px 70px}
+.brc{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.brc-count{font-size:12px;color:var(--muted)}
+.brc-count strong{color:var(--text)}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.tc{background:#fff;border-radius:12px;border:2px solid var(--border);overflow:hidden;transition:all .22s;animation:fadeUp .3s ease both}
+.tc:hover{border-color:var(--accent);box-shadow:0 8px 28px rgba(59,130,246,.13);transform:translateY(-2px)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.tc-hd{padding:16px 18px 12px;border-bottom:1px solid var(--border)}
+.tc-top{display:flex;align-items:flex-start;gap:9px;margin-bottom:9px}
+.tc-ico{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.tc-id{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:2px}
+.tc-title{font-family:'DM Serif Display',serif;font-size:15px;color:var(--navy);line-height:1.3}
+.tc-type{display:inline-flex;padding:2px 8px;border-radius:100px;font-size:9px;font-weight:700;letter-spacing:.3px}
+.tl{background:var(--glight);color:var(--green);border:1px solid var(--gbord)}
+.ta{background:var(--olight);color:var(--orange);border:1px solid var(--obord)}
+.tp{background:var(--plight);color:var(--purple);border:1px solid var(--pbord)}
+.tpo{background:var(--pale);color:var(--blue);border:1px solid var(--border)}
+.tc-desc{font-size:12px;color:var(--muted);line-height:1.55;margin-top:7px}
+.tc-bd{padding:12px 18px}
+.rg{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:10px}
+.rc{}
+.rc-h{font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;display:flex;align-items:center;gap:3px}
+.rc.pe .rc-h{color:var(--green)}
+.rc.pr .rc-h{color:var(--red)}
+.rc.rq .rc-h{color:var(--orange)}
+.rp{font-size:10px;border-radius:4px;padding:2px 6px;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+.rc.pe .rp{background:var(--glight);color:var(--green)}
+.rc.pr .rp{background:var(--rlight);color:var(--red)}
+.rc.rq .rp{background:var(--olight);color:var(--orange)}
+.rp.muted{background:var(--ice);color:var(--muted)}
+.tc-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px}
+.tg{padding:2px 8px;border-radius:100px;font-size:9px;font-weight:500;background:var(--ice);color:var(--muted);border:1px solid var(--border)}
+.tc-ft{display:flex;gap:7px;align-items:center}
+.btn-use{flex:1;padding:8px 0;background:var(--accent);color:#fff;border:none;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-use:hover{background:var(--blue)}
+.btn-det{padding:8px 12px;background:transparent;color:var(--muted);border:2px solid var(--border);border-radius:6px;font-family:'DM Sans',sans-serif;font-size:11px;cursor:pointer;transition:all .2s}
+.btn-det:hover{border-color:var(--muted);color:var(--text)}
+.no-res{text-align:center;padding:50px 20px;color:var(--muted)}
+.no-res div{font-size:36px;margin-bottom:10px}
+/* MODAL */
+.mov{position:fixed;inset:0;background:rgba(10,20,40,.55);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .22s;pointer-events:none}
+.mov.open{opacity:1;pointer-events:all}
+.mod{background:#fff;border-radius:14px;max-width:660px;width:100%;max-height:85vh;overflow-y:auto;box-shadow:0 24px 80px rgba(0,0,0,.25);transform:translateY(18px);transition:transform .22s}
+.mov.open .mod{transform:translateY(0)}
+.mod-hd{background:var(--navy);padding:22px 26px;display:flex;align-items:flex-start;gap:12px;position:sticky;top:0}
+.mod-ico{width:42px;height:42px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:20px;background:rgba(255,255,255,.1);flex-shrink:0}
+.mod-ht{font-family:'DM Serif Display',serif;font-size:20px;color:#fff;font-weight:400;margin-bottom:3px}
+.mod-hid{font-family:'DM Mono',monospace;font-size:10px;color:rgba(255,255,255,.35)}
+.mod-x{margin-left:auto;width:30px;height:30px;border-radius:6px;border:1px solid rgba(255,255,255,.2);background:transparent;color:rgba(255,255,255,.55);cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mod-x:hover{background:rgba(255,255,255,.1);color:#fff}
+.mod-bd{padding:22px 26px}
+.mod-s{margin-bottom:18px}
+.mod-s h3{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.6px;text-transform:uppercase;margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid var(--border)}
+.prose{background:var(--ice);border-left:4px solid var(--accent);padding:13px 17px;border-radius:0 7px 7px 0;font-size:13.5px;line-height:1.75;font-family:'DM Serif Display',serif;color:var(--text)}
+.mr{display:flex;gap:9px;align-items:flex-start;padding:9px 13px;border-radius:6px;font-size:12px;margin-bottom:6px}
+.mr.pe{background:var(--glight);border:1px solid var(--gbord)}
+.mr.pr{background:var(--rlight);border:1px solid var(--rbord)}
+.mr.ob{background:var(--olight);border:1px solid var(--obord)}
+.mr-b{font-size:9px;font-weight:700;letter-spacing:.3px;padding:2px 7px;border-radius:100px;flex-shrink:0;margin-top:1px}
+.pe .mr-b{background:var(--green);color:#fff}
+.pr .mr-b{background:var(--red);color:#fff}
+.ob .mr-b{background:var(--orange);color:#fff}
+.con-row{display:flex;align-items:center;gap:7px;padding:6px 11px;background:var(--ice);border-radius:5px;margin-bottom:5px;font-size:12px}
+.con-row span{font-family:'DM Mono',monospace;font-size:9px;color:var(--accent)}
+.con-info{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:50%;background:var(--accent);color:#fff;font-size:9px;font-weight:700;cursor:pointer;margin-left:auto;flex-shrink:0;position:relative}
+.con-info:hover .con-tip{display:block}
+.con-tip{display:none;position:absolute;right:0;top:20px;background:#1e2a3a;color:#fff;font-size:11px;line-height:1.5;padding:8px 11px;border-radius:7px;width:220px;z-index:999;font-family:'Inter',sans-serif;font-weight:400;box-shadow:0 4px 16px rgba(0,0,0,.25)}
+.con-tip::before{content:'';position:absolute;right:5px;top:-5px;border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:5px solid #1e2a3a}
+.param-row{display:flex;align-items:center;gap:7px;padding:6px 11px;background:var(--olight);border:1px solid var(--obord);border-radius:5px;margin-bottom:5px;font-size:12px}
+.param-info{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:50%;background:#c8891a;color:#fff;font-size:9px;font-weight:700;cursor:pointer;margin-left:auto;flex-shrink:0;position:relative}
+.param-info:hover .param-tip{display:block}
+.param-tip{display:none;position:absolute;right:0;top:20px;background:#1e2a3a;color:#fff;font-size:11px;line-height:1.5;padding:8px 11px;border-radius:7px;width:220px;z-index:999;font-family:'Inter',sans-serif;font-weight:400;box-shadow:0 4px 16px rgba(0,0,0,.25)}
+.param-tip::before{content:'';position:absolute;right:5px;top:-5px;border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:5px solid #1e2a3a}
+.mod-ft{padding:0 26px 22px;display:flex;gap:8px}
+.btn-mu{flex:1;padding:11px 0;background:var(--accent);color:#fff;border:none;border-radius:7px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-mu:hover{background:var(--blue)}
+.btn-mc{padding:11px 20px;background:transparent;color:var(--muted);border:2px solid var(--border);border-radius:7px;font-family:'DM Sans',sans-serif;font-size:12px;cursor:pointer;transition:all .2s}
+.btn-mc:hover{border-color:var(--muted);color:var(--text)}
+
+/* ══════════════════════════════════════════════
+   SHARED WIZARD COMPONENTS
+══════════════════════════════════════════════ */
+.wlayout{max-width:960px;margin:0 auto;padding:32px 24px 80px}
+.stepper{display:flex;align-items:flex-start;gap:0;margin-bottom:32px;overflow-x:auto;padding-bottom:4px}
+.sdot{display:flex;flex-direction:column;align-items:center;gap:5px;flex:1;min-width:52px;position:relative}
+.sdot:not(:last-child)::after{content:'';position:absolute;top:14px;left:50%;width:100%;height:2px;background:var(--border);z-index:0;transition:background .3s}
+.sdot.done:not(:last-child)::after{background:var(--accent)}
+.sring{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;position:relative;z-index:1;border:2px solid var(--border);background:#fff;color:var(--muted);transition:all .3s}
+.sdot.active .sring{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 0 0 4px rgba(59,130,246,.18)}
+.sdot.done .sring{background:var(--accent);border-color:var(--accent);color:#fff}
+.slabel{font-size:10px;color:var(--muted);font-weight:500;text-align:center;white-space:nowrap}
+.sdot.active .slabel{color:var(--accent);font-weight:600}
+.sdot.done .slabel{color:var(--blue)}
+.card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--border);overflow:hidden;margin-bottom:14px;animation:fadeUp .3s ease both}
+.ch{background:var(--navy);padding:17px 24px;display:flex;align-items:center;gap:11px}
+.cnum{width:32px;height:32px;background:rgba(255,255,255,.1);border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:16px;color:#7eb3ff;flex-shrink:0}
+.ch h2{font-family:'DM Serif Display',serif;font-size:18px;color:#fff;font-weight:400}
+.ch h2 em{color:#7eb3ff;font-style:normal}
+.cb{padding:22px 24px}
+.nav-row{display:flex;gap:9px;justify-content:flex-end;margin-top:18px}
+.btn{padding:9px 22px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;border:none;transition:all .2s}
+.btn-p{background:var(--accent);color:#fff;box-shadow:0 2px 8px rgba(59,130,246,.28)}
+.btn-p:hover{background:var(--blue)}
+.btn-p:disabled{opacity:.4;cursor:not-allowed;box-shadow:none}
+.btn-g{background:transparent;color:var(--muted);border:2px solid var(--border)}
+.btn-g:hover{border-color:var(--muted);color:var(--text)}
+
+/* RADIO + CHECKBOX */
+.rlist{display:flex;flex-direction:column;gap:8px}
+.ropt{display:flex;align-items:flex-start;gap:11px;padding:11px 15px;border-radius:7px;border:2px solid var(--border);cursor:pointer;transition:all .2s;user-select:none}
+.ropt:hover{border-color:var(--accent);background:var(--ice)}
+.ropt.sel{border-color:var(--accent);background:var(--pale)}
+.rdot{width:17px;height:17px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;transition:all .2s}
+.ropt.sel .rdot{background:var(--accent);border-color:var(--accent)}
+.rdot-in{width:5px;height:5px;border-radius:50%;background:#fff;display:none}
+.ropt.sel .rdot-in{display:block}
+.rt strong{display:block;font-size:13px;font-weight:500;margin-bottom:2px}
+.rt span{font-size:11.5px;color:var(--muted)}
+.agrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:7px}
+.ai{display:flex;align-items:center;gap:9px;padding:9px 13px;border-radius:6px;border:2px solid var(--border);cursor:pointer;transition:all .2s;user-select:none}
+.ai:hover{border-color:var(--accent);background:var(--ice)}
+.ai.sel{border-color:var(--accent);background:var(--pale)}
+.acb{width:15px;height:15px;border-radius:4px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
+.ai.sel .acb{background:var(--accent);border-color:var(--accent)}
+.acb svg{display:none}
+.ai.sel .acb svg{display:block}
+.acode{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-left:auto}
+.ai.sel .acode{color:var(--accent)}
+
+/* CONSTRAINT CATEGORIES */
+.cc{display:flex;flex-direction:column;gap:9px}
+.cp{border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.cp-h{display:flex;align-items:center;gap:9px;padding:10px 15px;background:var(--ice);cursor:pointer;user-select:none;transition:background .15s}
+.cp-h:hover{background:var(--pale)}
+.cp-h.open{background:var(--pale);border-bottom:1px solid var(--border)}
+.cp-t{font-size:12px;font-weight:600;color:var(--blue);flex:1}
+.cp-c{font-size:10px;color:var(--accent);font-weight:600;background:var(--pale);border:1px solid var(--border);border-radius:100px;padding:1px 7px;display:none}
+.cp-c.has{display:inline-block}
+.cp-arr{font-size:9px;color:var(--muted);transition:transform .2s}
+.cp-h.open .cp-arr{transform:rotate(180deg)}
+.cp-b{padding:12px 15px;display:none;flex-direction:column;gap:7px}
+.cp-h.open+.cp-b{display:flex}
+.ci{display:flex;align-items:flex-start;gap:9px;padding:9px 12px;border-radius:6px;border:2px solid var(--border);cursor:pointer;transition:all .2s;user-select:none}
+.ci:hover{border-color:var(--accent);background:var(--ice)}
+.ci.sel{border-color:var(--accent);background:var(--pale)}
+.cicb{width:15px;height:15px;border-radius:4px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;transition:all .2s}
+.ci.sel .cicb{background:var(--accent);border-color:var(--accent)}
+.cicb svg{display:none}
+.ci.sel .cicb svg{display:block}
+.ci-inf strong{display:block;font-size:12px;font-weight:500;margin-bottom:1px}
+.ci-inf span{font-size:10.5px;color:var(--muted)}
+.ci-code{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-left:auto;flex-shrink:0;margin-top:3px}
+.cparam{margin-top:7px;padding:9px 11px;background:var(--ice);border-radius:5px;border:1px solid var(--border);display:none}
+.ci.sel .cparam{display:block}
+.cparam label{font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:4px}
+.cparam input{width:100%;padding:6px 10px;border:2px solid var(--border);border-radius:5px;font-family:'DM Mono',monospace;font-size:12px;outline:none;transition:border-color .2s}
+.cparam input:focus{border-color:var(--accent)}
+
+/* GEO */
+.geo-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+.geo-p{border-radius:7px;border:2px solid;overflow:hidden}
+.geo-p.inc{border-color:var(--accent)}
+.geo-p.exc{border-color:var(--rbord)}
+.geo-ph{padding:8px 12px;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+.geo-p.inc .geo-ph{background:var(--pale);color:var(--blue)}
+.geo-p.exc .geo-ph{background:var(--rlight);color:var(--red)}
+.geo-s{width:100%;padding:6px 11px;border:none;border-bottom:1px solid var(--border);font-family:'DM Sans',sans-serif;font-size:12px;outline:none;background:#fff}
+.geo-l{max-height:150px;overflow-y:auto;padding:4px}
+.geo-i{display:flex;align-items:center;gap:6px;padding:5px 8px;border-radius:4px;cursor:pointer;font-size:11.5px;transition:background .1s}
+.geo-i:hover{background:var(--ice)}
+.geo-i.si{background:var(--pale);color:var(--blue);font-weight:500}
+.geo-i.se{background:var(--rlight);color:var(--red);font-weight:500}
+.geo-tags{display:flex;flex-wrap:wrap;gap:4px;padding:6px 8px;border-top:1px solid var(--border);min-height:28px}
+.gtag{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:100px;font-size:10px;font-weight:500;cursor:pointer}
+.gtag:hover{opacity:.75}
+.gtag.it{background:var(--pale);color:var(--blue);border:1px solid var(--accent)}
+.gtag.et{background:var(--rlight);color:var(--red);border:1px solid var(--rbord)}
+
+/* OBLIGATION DUTY */
+.duty-tog{display:flex;border-radius:6px;overflow:hidden;border:2px solid var(--border);width:fit-content;margin-top:5px}
+.duty-b{padding:4px 14px;font-size:10px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;border:none;background:transparent;color:var(--muted);transition:all .2s}
+.duty-b.sel{background:var(--accent);color:#fff}
+
+/* FORM */
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ff{grid-column:1/-1}
+.field label{display:block;font-size:10px;font-weight:700;color:var(--muted);margin-bottom:4px;letter-spacing:.5px;text-transform:uppercase}
+.field input,.field textarea,.field select{width:100%;padding:8px 12px;border:2px solid var(--border);border-radius:6px;font-family:'DM Sans',sans-serif;font-size:12.5px;color:var(--text);outline:none;transition:border-color .2s;background:#fff}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--accent)}
+.field textarea{resize:vertical;min-height:60px}
+.apills{display:flex;flex-wrap:wrap;gap:7px;margin-top:5px}
+.apill{padding:5px 14px;border-radius:100px;border:2px solid var(--border);font-size:11px;font-weight:500;cursor:pointer;transition:all .2s;color:var(--muted)}
+.apill:hover{border-color:var(--accent);color:var(--accent)}
+.apill.sel{border-color:var(--accent);background:var(--pale);color:var(--accent)}
+.slug-prev{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-top:4px}
+.slug-prev span{color:var(--accent)}
+
+/* CONFLICT */
+.conf-box{display:none;background:var(--olight);border:2px solid var(--obord);border-radius:7px;padding:12px 16px;margin-top:10px}
+.conf-box.show{display:flex;gap:10px;align-items:flex-start}
+.ct-btns{display:flex;gap:7px;flex-wrap:wrap;margin-top:7px}
+.ct-b{padding:3px 12px;border-radius:100px;border:2px solid var(--obord);font-size:10px;font-weight:700;font-family:'DM Mono',monospace;cursor:pointer;transition:all .2s;background:#fff;color:var(--orange)}
+.ct-b.sel{background:var(--orange);color:#fff;border-color:var(--orange)}
+
+/* REVIEW */
+.rcard{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--border);overflow:hidden;animation:fadeUp .3s ease both}
+.rh{background:var(--navy);padding:20px 26px}
+.rh h1{font-family:'DM Serif Display',serif;font-size:22px;color:#fff;font-weight:400;margin-bottom:3px}
+.rh p{font-size:11.5px;color:rgba(255,255,255,.4)}
+.rtabs{display:flex;border-bottom:2px solid var(--border);background:var(--ice)}
+.rtab{padding:10px 20px;font-size:12px;font-weight:600;cursor:pointer;border:none;background:transparent;font-family:'DM Sans',sans-serif;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s;letter-spacing:.2px}
+.rtab.active{color:var(--accent);border-bottom-color:var(--accent);background:#fff}
+.rbody{padding:22px 26px}
+.prose-box{font-size:14px;line-height:1.85;color:var(--text);background:var(--ice);border-left:4px solid var(--accent);padding:16px 20px;border-radius:0 7px 7px 0;margin-bottom:18px;font-family:'DM Serif Display',serif;font-weight:400}
+.rt-table{width:100%;border-collapse:collapse;font-size:11.5px}
+.rt-table th{background:var(--navy);color:#fff;padding:8px 12px;text-align:left;font-weight:600;font-size:10px;letter-spacing:.4px;text-transform:uppercase}
+.rt-table td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+.rt-table tr:last-child td{border-bottom:none}
+.rt-table tr:nth-child(even) td{background:var(--ice)}
+.badge{display:inline-block;padding:1px 8px;border-radius:100px;font-size:9px;font-weight:700;letter-spacing:.3px}
+.bp{background:var(--glight);color:var(--green);border:1px solid var(--gbord)}
+.bpr{background:var(--rlight);color:var(--red);border:1px solid var(--rbord)}
+.bo{background:var(--olight);color:var(--orange);border:1px solid var(--obord)}
+.jw{background:#0d1117;border-radius:7px;padding:16px 20px;overflow-x:auto;position:relative}
+.jw pre{font-family:'DM Mono',monospace;font-size:11.5px;line-height:1.7;color:#c9d1d9;white-space:pre}
+.jk{color:#79c0ff}.js{color:#a5d6ff}.jv{color:#ffa657}.jb{color:#ff7b72}.ju{color:#7ee787}
+.cpybtn{position:absolute;top:9px;right:11px;padding:3px 11px;border-radius:5px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.07);color:rgba(255,255,255,.5);font-family:'DM Sans',sans-serif;font-size:11px;cursor:pointer;transition:all .2s}
+.cpybtn:hover{background:rgba(255,255,255,.14);color:#fff}
+.save-row{display:flex;gap:9px;align-items:center;margin-top:18px;padding-top:18px;border-top:1px solid var(--border)}
+.btn-save{background:var(--navy);color:#fff;padding:10px 26px;border-radius:7px;border:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-save:hover{background:var(--blue)}
+.save-note{font-size:11px;color:var(--muted);margin-left:auto}
+.saved-ok{display:none;background:var(--glight);border:1px solid var(--gbord);border-radius:7px;padding:12px 18px;margin-top:10px;align-items:center;gap:11px}
+.saved-ok.show{display:flex}
+.odrl-hint{display:flex;align-items:center;gap:6px;padding:6px 11px;background:var(--pale);border-radius:5px;font-size:10.5px;color:var(--blue);margin-top:7px}
+.odrl-hint strong{font-family:'DM Mono',monospace;font-size:10px}
+.template-banner{background:linear-gradient(90deg,#1a3a6e,#2563c4);border-radius:8px;padding:12px 18px;margin-bottom:18px;display:flex;align-items:center;gap:12px;animation:fadeUp .3s ease both}
+.tb-icon{font-size:22px;flex-shrink:0}
+.tb-text{flex:1}
+.tb-title{font-size:13px;font-weight:600;color:#fff;margin-bottom:2px}
+.tb-sub{font-size:11px;color:rgba(255,255,255,.5)}
+.tb-clear{background:transparent;border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.6);padding:4px 12px;border-radius:5px;font-family:'DM Sans',sans-serif;font-size:11px;cursor:pointer;transition:all .2s}
+.tb-clear:hover{background:rgba(255,255,255,.1);color:#fff}
+.geo-l::-webkit-scrollbar{width:3px}
+.geo-l::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+/* ── DUPLICATE BANNER ── */
+.dup-banner{display:none;border-radius:9px;padding:16px 20px;margin-bottom:16px;animation:fadeUp .3s ease both}
+.dup-banner.show{display:flex;gap:14px;align-items:flex-start}
+.dup-banner.warn{background:#fff7ed;border:2px solid #fcd34d}
+.dup-banner.ok{background:#ecfdf5;border:2px solid #6ee7b7}
+.dup-banner.checking{background:var(--pale);border:2px solid var(--border)}
+.dup-icon{font-size:22px;flex-shrink:0;margin-top:2px}
+.dup-body{flex:1;min-width:0}
+.dup-title{font-size:13px;font-weight:700;margin-bottom:5px;line-height:1.4}
+.dup-banner.warn .dup-title{color:#92400e}
+.dup-banner.ok .dup-title{color:#065f46}
+.dup-banner.checking .dup-title{color:var(--blue)}
+.dup-msg{font-size:12px;color:var(--muted);margin-bottom:10px;line-height:1.55}
+.dup-entries{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
+.dup-entry{display:flex;align-items:center;gap:8px;padding:6px 10px;background:rgba(255,255,255,.75);border-radius:6px;border:1px solid rgba(0,0,0,.07);flex-wrap:wrap}
+.dup-entry-pid{font-size:9px;font-weight:700;color:var(--accent);background:var(--pale);padding:2px 7px;border-radius:3px;flex-shrink:0;letter-spacing:.3px}
+.dup-entry-uri{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dup-entry-name{font-size:11px;color:var(--text);font-weight:500}
+.dup-fp{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:10px}
+.dup-btns{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-top:2px}
+.dup-btns-label{font-size:10px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.4px;width:100%;margin-bottom:4px}
+.dup-btn{padding:7px 14px;border-radius:7px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;border:none;transition:all .2s;white-space:nowrap;line-height:1.3}
+.dup-btn-use{background:#065f46;color:#fff;box-shadow:0 1px 4px rgba(6,95,70,.2)}
+.dup-btn-use:hover{background:#047857}
+.dup-btn-var{background:var(--olight);color:var(--orange);border:1px solid var(--obord)}
+.dup-btn-var:hover{background:var(--obord);color:#78350f}
+.dup-btn-cancel{background:transparent;color:var(--muted);border:1px solid var(--border)}
+.dup-btn-cancel:hover{border-color:var(--muted);color:var(--text)}
+/* ── DUTIES ── */
+.duties-section{margin-top:14px;padding:13px 16px;background:var(--olight);border:1px solid var(--obord);border-radius:8px}
+.duties-title{font-size:10px;font-weight:700;color:var(--orange);letter-spacing:.6px;text-transform:uppercase;margin-bottom:9px}
+.duty-row-review{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid rgba(251,191,36,.25)}
+.duty-row-review:last-child{border-bottom:none}
+.duty-type-badge{font-size:9px;font-weight:700;padding:2px 8px;border-radius:100px;letter-spacing:.3px;flex-shrink:0}
+.duty-pre{background:#fef3c7;color:#92400e;border:1px solid #fcd34d}
+.duty-post{background:#fde68a;color:#78350f;border:1px solid #f59e0b}
+.duty-action{font-family:'DM Mono',monospace;font-size:11px;color:var(--text);flex:1}
+.duty-con{font-size:11px;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<div class="hdr">
+  <div class="hlogo" onclick="showBrowser()">Open<span>REL</span></div>
+  <div class="hsep"></div>
+  <div class="hcrumb" id="hcrumb">
+    <span class="active">Template Browser</span>
+  </div>
+  <div class="hright" id="hright-browser">
+    <span style="font-size:11px;color:rgba(255,255,255,.35);font-family:'DM Mono',monospace" id="hcount">17 templates</span>
+  </div>
+  <div class="hright hidden" id="hright-wizard">
+    <div class="mode-toggle">
+      <button class="mode-btn active" id="mbtn-simple" onclick="switchMode('simple')">Simple</button>
+      <button class="mode-btn" id="mbtn-advanced" onclick="switchMode('advanced')">Advanced</button>
+    </div>
+    <button class="reset-btn" onclick="resetAll()">↺ Start over</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     VIEW: BROWSER
+══════════════════════════════════════════════ -->
+<div id="view-browser">
+  <div class="hero">
+    <div class="hero-inner">
+      <h1>Build the right <em>policy for your resource</em></h1>
+      <p>Every template is a starting point. Browse, customise, and publish your policy — or build one from scratch. No technical knowledge required.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <div class="search-bar">
+          <input class="search-input" type="text" id="b-search" placeholder="Search templates…" oninput="applyFilters()">
+          <button class="search-btn">🔍</button>
+        </div>
+        <button onclick="startFromScratch()" style="padding:11px 22px;background:rgba(255,255,255,.1);color:#fff;border:2px solid rgba(255,255,255,.2);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;white-space:nowrap" onmouseover="this.style.background='rgba(255,255,255,.18)'" onmouseout="this.style.background='rgba(255,255,255,.1)'">✦ Start from scratch</button>
+      </div>
+    </div>
+  </div>
+  <div class="filters-wrap">
+    <div class="filters-inner">
+      <span class="fl">Type</span>
+      <button class="fb active" data-f="all" onclick="setF('type','all',this)">All</button>
+      <button class="fb" data-f="Licence" onclick="setF('type','Licence',this)">Licence</button>
+      <button class="fb" data-f="Access" onclick="setF('type','Access',this)">Access</button>
+      <button class="fb" data-f="Process" onclick="setF('type','Process',this)">Process</button>
+      <button class="fb" data-f="Policy" onclick="setF('type','Policy',this)">Policy</button>
+      <div class="fsep"></div>
+      <span class="fl">Topic</span>
+      <button class="fb" data-f="open-access" onclick="setF('topic','open-access',this)">Open Access</button>
+      <button class="fb" data-f="non-commercial" onclick="setF('topic','non-commercial',this)">Non-Commercial</button>
+      <button class="fb" data-f="restricted" onclick="setF('topic','restricted',this)">Restricted</button>
+      <button class="fb" data-f="ai" onclick="setF('topic','ai',this)">AI / Processing</button>
+      <button class="fb" data-f="personal-data" onclick="setF('topic','personal-data',this)">Personal Data</button>
+      <select class="fsort" id="fsort" onchange="applyFilters()">
+        <option value="id">Sort by ID</option>
+        <option value="alpha">Sort A–Z</option>
+        <option value="type">Sort by type</option>
+      </select>
+    </div>
+  </div>
+  <div class="bmain">
+    <div class="brc"><div class="brc-count" id="brc-count"><strong>17</strong> templates</div></div>
+    <div class="tgrid" id="tgrid"></div>
+    <div class="no-res hidden" id="no-res"><div>🔍</div><p>No templates match. Try different keywords or clear the filters.</p></div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="mov" id="mov" onclick="closeMov(event)">
+  <div class="mod">
+    <div class="mod-hd">
+      <div class="mod-ico" id="mod-ico"></div>
+      <div><div class="mod-ht" id="mod-ht"></div><div class="mod-hid" id="mod-hid"></div></div>
+      <button class="mod-x" onclick="closeMod()">✕</button>
+    </div>
+    <div class="mod-bd">
+      <div class="mod-s"><h3>What this template does</h3><div class="prose" id="mod-prose"></div></div>
+      <div class="mod-s"><h3>Rules</h3><div id="mod-rules"></div></div>
+      <div class="mod-s"><h3>Constraints</h3><div id="mod-cons"></div></div>
+      <div class="mod-s"><h3>Parameters you will fill in</h3><div id="mod-params"></div></div>
+    </div>
+    <div class="mod-ft">
+      <button class="btn-mu" onclick="useTpl()">Use this template →</button>
+      <button class="btn-mc" onclick="closeMod()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     VIEW: SIMPLE WIZARD
+══════════════════════════════════════════════ -->
+<div id="view-simple" class="hidden">
+  <div class="wlayout">
+    <!-- template banner -->
+    <div class="template-banner hidden" id="s-tpl-banner">
+      <div class="tb-icon" id="s-tpl-icon"></div>
+      <div class="tb-text"><div class="tb-title" id="s-tpl-title"></div><div class="tb-sub">Template pre-loaded — adjust any field as needed</div></div>
+      <button class="tb-clear" onclick="clearTemplate('simple')">Clear template</button>
+    </div>
+    <!-- stepper -->
+    <div class="stepper" id="s-stepper">
+      <div class="sdot active" id="ss1"><div class="sring">1</div><div class="slabel">Who</div></div>
+      <div class="sdot" id="ss2"><div class="sring">2</div><div class="slabel">What</div></div>
+      <div class="sdot" id="ss3"><div class="sring">3</div><div class="slabel">Where</div></div>
+      <div class="sdot" id="ss4"><div class="sring">4</div><div class="slabel">When</div></div>
+      <div class="sdot" id="ss5"><div class="sring">✓</div><div class="slabel">Review</div></div>
+    </div>
+    <!-- Q1 -->
+    <div id="sq1">
+      <div class="card"><div class="ch"><div class="cnum">1</div><h2>Who can <em>use</em> this resource?</h2></div>
+      <div class="cb"><div class="rlist" id="sq1-opts">
+        <div class="ropt" data-v="public" onclick="selSQ1(this)"><div class="rdot"><div class="rdot-in"></div></div><div class="rt"><strong>Anyone, freely</strong><span>No restrictions on who can access and use this resource.</span></div></div>
+        <div class="ropt" data-v="noncommercial" onclick="selSQ1(this)"><div class="rdot"><div class="rdot-in"></div></div><div class="rt"><strong>Anyone, for non-commercial purposes only</strong><span>Researchers, students, public — commercial exploitation excluded.</span></div></div>
+        <div class="ropt" data-v="researchers" onclick="selSQ1(this)"><div class="rdot"><div class="rdot-in"></div></div><div class="rt"><strong>Only researchers and academic institutions</strong><span>Access restricted to verified research roles and affiliated organisations.</span></div></div>
+        <div class="ropt" data-v="managed" onclick="selSQ1(this)"><div class="rdot"><div class="rdot-in"></div></div><div class="rt"><strong>Only with my explicit approval (managed access)</strong><span>Every request must be reviewed and approved before access is granted.</span></div></div>
+      </div></div></div>
+      <div class="nav-row"><button class="btn btn-p" id="snext1" onclick="sGoTo(2)" disabled>Next →</button></div>
+    </div>
+    <!-- Q2 -->
+    <div id="sq2" class="hidden">
+      <div class="card"><div class="ch"><div class="cnum">2</div><h2>What can they <em>do</em> with it?</h2></div>
+      <div class="cb">
+        <div class="agrid" id="sq2-perms">
+          <div class="ai locked sel" data-v="read"><div class="acb"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5l2 2.5L8 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span style="font-size:12px;font-weight:500">Read and download</span></div>
+          <div class="ai" data-v="share" onclick="toggleSQ2(this)"><div class="acb"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5l2 2.5L8 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span style="font-size:12px;font-weight:500">Share with others</span></div>
+          <div class="ai" data-v="modify" onclick="toggleSQ2(this)"><div class="acb"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5l2 2.5L8 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span style="font-size:12px;font-weight:500">Modify or create derivatives</span></div>
+          <div class="ai" data-v="commercial" onclick="toggleSQ2(this)"><div class="acb"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5l2 2.5L8 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span style="font-size:12px;font-weight:500">Use commercially</span></div>
+        </div>
+        <div style="font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.6px;text-transform:uppercase;margin:14px 0 8px;display:flex;align-items:center;gap:8px">Obligations <div style="flex:1;height:1px;background:var(--border)"></div></div>
+        <div class="agrid" id="sq2-obli">
+          <div class="ai" data-v="attribution" onclick="toggleSQ2(this)"><div class="acb"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5l2 2.5L8 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span style="font-size:12px;font-weight:500">Must credit the author</span></div>
+          <div class="ai" data-v="sharealike" onclick="toggleSQ2(this)"><div class="acb"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5l2 2.5L8 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span style="font-size:12px;font-weight:500">Must share under same terms</span></div>
+        </div>
+      </div></div>
+      <div class="nav-row"><button class="btn btn-g" onclick="sGoTo(1)">← Back</button><button class="btn btn-p" onclick="sGoTo(3)">Next →</button></div>
+    </div>
+    <!-- Q3 -->
+    <div id="sq3" class="hidden">
+      <div class="card"><div class="ch"><div class="cnum">3</div><h2>Geographic <em>restrictions</em>?</h2></div>
+      <div class="cb">
+        <div class="rlist" id="sq3-opts">
+          <div class="ropt sel" data-v="worldwide" onclick="selSQ3(this)"><div class="rdot"><div class="rdot-in"></div></div><div class="rt"><strong>No restrictions — available worldwide</strong><span>No geographic constraint will be added.</span></div></div>
+          <div class="ropt" data-v="restricted" onclick="selSQ3(this)"><div class="rdot"><div class="rdot-in"></div></div><div class="rt"><strong>Restrict to specific countries</strong><span>Define which countries can and cannot access this resource.</span></div></div>
+        </div>
+        <div id="s-geo-picker" class="hidden" style="margin-top:14px">
+          <div class="geo-grid" id="s-geo-grid"></div>
+          <div class="odrl-hint hidden" id="s-geo-hint">📄 Multiple spatial constraints → <strong>odrl:LogicalConstraint odrl:and</strong></div>
+        </div>
+      </div></div>
+      <div class="nav-row"><button class="btn btn-g" onclick="sGoTo(2)">← Back</button><button class="btn btn-p" onclick="sGoTo(4)">Next →</button></div>
+    </div>
+    <!-- Q4 -->
+    <div id="sq4" class="hidden">
+      <div class="card"><div class="ch"><div class="cnum">4</div><h2>Time <em>limit</em>?</h2></div>
+      <div class="cb">
+        <div class="rlist" id="sq4-opts">
+          <div class="ropt sel" data-v="unlimited" onclick="selSQ4(this)"><div class="rdot"><div class="rdot-in"></div></div><div class="rt"><strong>No time limit</strong><span>This policy remains valid indefinitely.</span></div></div>
+          <div class="ropt" data-v="fixed" onclick="selSQ4(this)"><div class="rdot"><div class="rdot-in"></div></div><div class="rt"><strong>Available for a fixed period</strong><span>Set a start and end date.</span></div></div>
+        </div>
+        <div id="s-date-picker" class="hidden" style="margin-top:14px">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:10px">
+            <div class="field"><label>Start date</label><input type="date" id="s-date-start" onchange="SS.dateStart=this.value"></div>
+            <div class="field"><label>End date</label><input type="date" id="s-date-end" onchange="SS.dateEnd=this.value;clearQuick('s')"></div>
+          </div>
+          <div style="display:flex;gap:7px;flex-wrap:wrap;align-items:center">
+            <span style="font-size:11px;color:var(--muted);font-weight:600">Quick:</span>
+            <button class="fb" onclick="setDur('s',1,this)">1 month</button>
+            <button class="fb" onclick="setDur('s',3,this)">3 months</button>
+            <button class="fb" onclick="setDur('s',6,this)">6 months</button>
+            <button class="fb" onclick="setDur('s',12,this)">1 year</button>
+          </div>
+          <div class="odrl-hint" style="margin-top:10px">📄 Translates to <strong>C15 timeInterval</strong> with xsd:date bounds</div>
+        </div>
+      </div></div>
+      <div class="nav-row"><button class="btn btn-g" onclick="sGoTo(3)">← Back</button><button class="btn btn-p" onclick="sGoTo(5)">Review →</button></div>
+    </div>
+    <!-- REVIEW -->
+    <div id="sq5" class="hidden">
+      <!-- duplicate check banner -->
+      <div class="dup-banner" id="s-dup-banner">
+        <div class="dup-icon" id="s-dup-icon"></div>
+        <div class="dup-body">
+          <div class="dup-title" id="s-dup-title"></div>
+          <div class="dup-msg" id="s-dup-msg"></div>
+          <div class="dup-uid" id="s-dup-uid"></div>
+          <div class="dup-btns" id="s-dup-btns"></div>
+        </div>
+      </div>
+      <!-- name card -->
+      <div class="card" style="border-color:var(--accent)">
+        <div class="ch" style="background:var(--accent)"><div class="cnum" style="background:rgba(255,255,255,.2)">📋</div><h2>Name your <em>policy</em></h2></div>
+        <div class="cb">
+          <div class="fg">
+            <div class="field ff"><label>Policy title</label><input type="text" id="s-title" placeholder="e.g. Open Access Publication — Greece, 6 months" oninput="autoSlug('s')"></div>
+            <div class="field ff"><label>Policy ID / slug <span style="font-weight:400;text-transform:none;letter-spacing:0">(KB URI key)</span></label><input type="text" id="s-slug" placeholder="e.g. open-access-greece-6m" oninput="SS.slug=this.value;updSlugPrev('s')"><div class="slug-prev">URI: <span id="s-slug-prev">https://openrel.eu/policy/[slug]</span></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="rcard">
+        <div class="rh"><h1>Policy review</h1><p>Check your policy before saving.</p></div>
+        <div class="rtabs">
+          <button class="rtab active" onclick="showRTab('s','sum')">Plain language</button>
+          <button class="rtab" onclick="showRTab('s','rules')">Rule table</button>
+          <button class="rtab" onclick="showRTab('s','json')">ODRL JSON-LD</button>
+        </div>
+        <div class="rbody">
+          <div id="s-tab-sum"><div class="prose-box" id="s-prose"></div></div>
+          <div id="s-tab-rules" class="hidden">
+            <table class="rt-table"><thead><tr><th>Rule</th><th>Action</th><th>Constraints</th></tr></thead><tbody id="s-rtbody"></tbody></table>
+            <div class="duties-section" id="s-duties-section" style="display:none">
+              <div class="duties-title">⚑ Duties / Obligations</div>
+              <div id="s-duties-list"></div>
+            </div>
+          </div>
+          <div id="s-tab-json" class="hidden"><div class="jw"><button class="cpybtn" onclick="cpyJ('s')">Copy</button><button class="cpybtn" style="right:70px" onclick="dlJ('s')">⬇ Download</button><pre id="s-json"></pre></div></div>
+          <div class="save-row">
+            <button class="btn-save" onclick="doSave('s')">💾 Save to KB</button>
+            <button class="btn btn-g" onclick="sGoTo(1)">← Edit</button>
+            <span class="save-note">Commits to openrel/policies/ via GitHub pipeline</span>
+          </div>
+          <div class="saved-ok" id="s-saved"><div style="font-size:20px">✓</div><div><div style="font-weight:600;color:var(--green);font-size:13px">Policy saved to Knowledge Base</div><div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);margin-top:2px" id="s-saved-uid"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     VIEW: ADVANCED WIZARD
+══════════════════════════════════════════════ -->
+<div id="view-advanced" class="hidden">
+  <div class="wlayout">
+    <div class="template-banner hidden" id="a-tpl-banner">
+      <div class="tb-icon" id="a-tpl-icon"></div>
+      <div class="tb-text"><div class="tb-title" id="a-tpl-title"></div><div class="tb-sub">Template pre-loaded — adjust any field as needed</div></div>
+      <button class="tb-clear" onclick="clearTemplate('advanced')">Clear template</button>
+    </div>
+    <div class="stepper" id="a-stepper">
+      <div class="sdot active" id="as1"><div class="sring">1</div><div class="slabel">Type</div></div>
+      <div class="sdot" id="as2"><div class="sring">2</div><div class="slabel">Metadata</div></div>
+      <div class="sdot" id="as3"><div class="sring">3</div><div class="slabel">Permissions</div></div>
+      <div class="sdot" id="as4"><div class="sring">4</div><div class="slabel">Prohibitions</div></div>
+      <div class="sdot" id="as5"><div class="sring">5</div><div class="slabel">Obligations</div></div>
+      <div class="sdot" id="as6"><div class="sring">6</div><div class="slabel">Constraints</div></div>
+      <div class="sdot" id="as7"><div class="sring">7</div><div class="slabel">Agents</div></div>
+      <div class="sdot" id="as8"><div class="sring">✓</div><div class="slabel">Review</div></div>
+    </div>
+    <!-- Step 1 -->
+    <div id="aq1">
+      <div class="card"><div class="ch"><div class="cnum">1</div><h2>Select <em>policy type</em></h2></div>
+      <div class="cb"><div class="rlist">
+        <div class="ropt" data-v="Licence" onclick="selAQ1(this)"><div class="rdot"><div class="rdot-in"></div></div><div class="rt"><strong>openrel:Licence</strong><span>Rights and reuse — what users may do with this resource.</span></div><span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-left:auto;align-self:center">Licence</span></div>
+        <div class="ropt" data-v="Access" onclick="selAQ1(this)"><div class="rdot"><div class="rdot-in"></div></div><div class="rt"><strong>openrel:Access</strong><span>Access control — who may access this resource and under what conditions.</span></div><span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-left:auto;align-self:center">Access</span></div>
+        <div class="ropt" data-v="Process" onclick="selAQ1(this)"><div class="rdot"><div class="rdot-in"></div></div><div class="rt"><strong>openrel:Process</strong><span>Process rules — for computational workflows and AI/ML pipelines.</span></div><span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-left:auto;align-self:center">Process</span></div>
+        <div class="ropt" data-v="Policy" onclick="selAQ1(this)"><div class="rdot"><div class="rdot-in"></div></div><div class="rt"><strong>openrel:Policy</strong><span>Composite — combines Licence, Access, and Process sections.</span></div><span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-left:auto;align-self:center">Policy</span></div>
+      </div></div></div>
+      <div class="nav-row"><button class="btn btn-p" id="anext1" onclick="aGoTo(2)" disabled>Next →</button></div>
+    </div>
+    <!-- Step 2 -->
+    <div id="aq2" class="hidden">
+      <div class="card"><div class="ch"><div class="cnum">2</div><h2>Policy <em>metadata</em></h2></div>
+      <div class="cb">
+        <div class="fg">
+          <div class="field ff"><label>Title</label><input type="text" id="a-title" placeholder="e.g. Open Access Publication — Greece, 6 months" oninput="AS.meta.title=this.value;autoSlug('a')"></div>
+          <div class="field ff"><label>Policy ID / slug</label><input type="text" id="a-slug" placeholder="e.g. open-access-greece-6m" oninput="AS.meta.slug=this.value;updSlugPrev('a')"><div class="slug-prev">URI: <span id="a-slug-prev">https://openrel.eu/policy/[slug]</span></div></div>
+          <div class="field ff"><label>Description</label><textarea id="a-desc" placeholder="Brief description…" oninput="AS.meta.desc=this.value"></textarea></div>
+          <div class="field"><label>Issuer</label><input type="text" id="a-issuer" placeholder="e.g. OpenAIRE" oninput="AS.meta.issuer=this.value"></div>
+          <div class="field"><label>Status</label><select id="a-status" onchange="AS.meta.status=this.value"><option value="draft">Draft</option><option value="active">Active</option><option value="deprecated">Deprecated</option></select></div>
+          <div class="field ff"><label>Asset type</label><div class="apills" id="a-asset-pills">
+            <div class="apill" onclick="selAsset(this,'publication')">Publication</div>
+            <div class="apill" onclick="selAsset(this,'dataset')">Dataset</div>
+            <div class="apill" onclick="selAsset(this,'software')">Software</div>
+            <div class="apill" onclick="selAsset(this,'service')">Service</div>
+            <div class="apill" onclick="selAsset(this,'collection')">Collection</div>
+          </div></div>
+          <div class="field"><label>PID / DOI (optional)</label><input type="text" id="a-pid" placeholder="10.xxxx/xxxxx" oninput="AS.meta.pid=this.value"></div>
+        </div>
+      </div></div>
+      <div class="nav-row"><button class="btn btn-g" onclick="aGoTo(1)">← Back</button><button class="btn btn-p" onclick="aGoTo(3)">Next →</button></div>
+    </div>
+    <!-- Step 3 -->
+    <div id="aq3" class="hidden">
+      <div class="card"><div class="ch"><div class="cnum">3</div><h2><em>Permissions</em> — what is allowed</h2></div>
+      <div class="cb"><p style="font-size:12px;color:var(--muted);margin-bottom:14px">Select every action that is permitted.</p><div class="agrid" id="a-perm-grid"></div></div></div>
+      <div class="nav-row"><button class="btn btn-g" onclick="aGoTo(2)">← Back</button><button class="btn btn-p" onclick="aGoTo(4)">Next →</button></div>
+    </div>
+    <!-- Step 4 -->
+    <div id="aq4" class="hidden">
+      <div class="card"><div class="ch"><div class="cnum">4</div><h2><em>Prohibitions</em> — what is forbidden</h2></div>
+      <div class="cb"><p style="font-size:12px;color:var(--muted);margin-bottom:14px">Select every action that is explicitly forbidden.</p><div class="agrid" id="a-proh-grid"></div>
+      <div class="conf-box" id="a-conf-box"><div><div style="font-weight:600;font-size:12px;color:var(--orange);margin-bottom:5px">⚠ Conflict detected</div><div id="a-conf-msg" style="font-size:11.5px;color:var(--orange)"></div><div style="font-size:11px;color:var(--orange);margin-top:7px;margin-bottom:3px">ConflictTerm — which rule prevails?</div><div class="ct-btns"><button class="ct-b sel" onclick="selCT(this,'odrl:prohibit')">odrl:prohibit</button><button class="ct-b" onclick="selCT(this,'odrl:perm')">odrl:perm</button><button class="ct-b" onclick="selCT(this,'odrl:invalid')">odrl:invalid</button></div></div></div>
+      </div></div>
+      <div class="nav-row"><button class="btn btn-g" onclick="aGoTo(3)">← Back</button><button class="btn btn-p" onclick="aGoTo(5)">Next →</button></div>
+    </div>
+    <!-- Step 5 -->
+    <div id="aq5" class="hidden">
+      <div class="card"><div class="ch"><div class="cnum">5</div><h2><em>Obligations</em> — what is required</h2></div>
+      <div class="cb"><p style="font-size:12px;color:var(--muted);margin-bottom:14px">Select mandatory actions and set duty type.</p><div id="a-obli-list"></div></div></div>
+      <div class="nav-row"><button class="btn btn-g" onclick="aGoTo(4)">← Back</button><button class="btn btn-p" onclick="aGoTo(6)">Next →</button></div>
+    </div>
+    <!-- Step 6 -->
+    <div id="aq6" class="hidden">
+      <div class="card"><div class="ch"><div class="cnum">6</div><h2><em>Constraints</em> — conditions and limits</h2></div>
+      <div class="cb"><p style="font-size:12px;color:var(--muted);margin-bottom:14px">Constraints apply to all selected rules. Expand each category to add conditions.</p><div class="cc" id="a-con-cats"></div><div class="odrl-hint hidden" id="a-logic-hint">📄 Multiple constraints → <strong>odrl:LogicalConstraint odrl:and</strong></div></div></div>
+      <div class="nav-row"><button class="btn btn-g" onclick="aGoTo(5)">← Back</button><button class="btn btn-p" onclick="aGoTo(7)">Next →</button></div>
+    </div>
+    <!-- Step 7 -->
+    <div id="aq7" class="hidden">
+      <div class="card"><div class="ch"><div class="cnum">7</div><h2><em>Agents</em> — who is involved</h2></div>
+      <div class="cb">
+        <div class="fg">
+          <div class="field"><label>Assigner</label><input type="text" id="a-assigner" placeholder="Organisation or URI" oninput="AS.agents.assigner=this.value"></div>
+          <div class="field"><label>Assignee</label><select id="a-assignee" onchange="AS.agents.assigneeType=this.value;toggleAssURI()"><option value="public">Public (anyone)</option><option value="researcher">Researcher</option><option value="institution">Research Institution</option><option value="specific">Specific Party (URI)</option></select></div>
+          <div class="field ff hidden" id="a-ass-uri-f"><label>Assignee URI</label><input type="text" id="a-ass-uri" placeholder="https://orcid.org/…" oninput="AS.agents.assigneeURI=this.value"></div>
+        </div>
+      </div></div>
+      <div class="nav-row"><button class="btn btn-g" onclick="aGoTo(6)">← Back</button><button class="btn btn-p" onclick="aGoTo(8)">Review →</button></div>
+    </div>
+    <!-- Step 8 Review -->
+    <div id="aq8" class="hidden">
+      <div class="dup-banner" id="a-dup-banner">
+        <div class="dup-icon" id="a-dup-icon"></div>
+        <div class="dup-body">
+          <div class="dup-title" id="a-dup-title"></div>
+          <div class="dup-msg" id="a-dup-msg"></div>
+          <div class="dup-uid" id="a-dup-uid"></div>
+          <div class="dup-btns" id="a-dup-btns"></div>
+        </div>
+      </div>
+      <div class="rcard">
+        <div class="rh"><h1>Policy review</h1><p>Verify all settings before saving.</p></div>
+        <div class="rtabs">
+          <button class="rtab active" onclick="showRTab('a','sum')">Plain language</button>
+          <button class="rtab" onclick="showRTab('a','rules')">Rule table</button>
+          <button class="rtab" onclick="showRTab('a','json')">ODRL JSON-LD</button>
+        </div>
+        <div class="rbody">
+          <div id="a-tab-sum"><div class="prose-box" id="a-prose"></div></div>
+          <div id="a-tab-rules" class="hidden">
+            <table class="rt-table"><thead><tr><th>Rule</th><th>Action</th><th>Constraints</th></tr></thead><tbody id="a-rtbody"></tbody></table>
+            <div class="duties-section" id="a-duties-section" style="display:none">
+              <div class="duties-title">⚑ Duties / Obligations</div>
+              <div id="a-duties-list"></div>
+            </div>
+          </div>
+          <div id="a-tab-json" class="hidden"><div class="jw"><button class="cpybtn" onclick="cpyJ('a')">Copy</button><button class="cpybtn" style="right:70px" onclick="dlJ('a')">⬇ Download</button><pre id="a-json"></pre></div></div>
+          <div class="save-row">
+            <button class="btn-save" onclick="doSave('a')">💾 Save to KB</button>
+            <button class="btn btn-g" onclick="aGoTo(1)">← Edit</button>
+            <span class="save-note">Commits to openrel/policies/ via GitHub pipeline</span>
+          </div>
+          <div class="saved-ok" id="a-saved"><div style="font-size:20px">✓</div><div><div style="font-weight:600;color:var(--green);font-size:13px">Policy saved to Knowledge Base</div><div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);margin-top:2px" id="a-saved-uid"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════
+// SHARED DATA
+// ══════════════════════════════════════════════
+const ACTIONS=[
+  {id:'A01',label:'Use',iri:'odrl:use',cat:['perm','proh','obli']},
+  {id:'A02',label:'Read',iri:'odrl:read',cat:['perm','proh']},
+  {id:'A03',label:'Distribute',iri:'odrl:distribute',cat:['perm','proh','obli']},
+  {id:'A04',label:'Modify',iri:'odrl:modify',cat:['perm','proh']},
+  {id:'A05',label:'Reproduce',iri:'odrl:reproduce',cat:['perm','proh']},
+  {id:'A06',label:'Archive',iri:'odrl:archive',cat:['perm','proh','obli']},
+  {id:'A07',label:'Delete',iri:'odrl:delete',cat:['perm','proh','obli']},
+  {id:'A08',label:'Notify',iri:'openrel:notify',cat:['perm','obli']},
+  {id:'A09',label:'Log',iri:'openrel:log',cat:['perm','obli']},
+  {id:'A10',label:'Attribute',iri:'odrl:attribute',cat:['perm','obli'],dd:'postDuty'},
+  {id:'A11',label:'Obtain Consent',iri:'openrel:obtainConsent',cat:['obli'],dd:'preDuty'},
+  {id:'A12',label:'Anonymize',iri:'openrel:anonymize',cat:['perm','obli']},
+  {id:'A13',label:'Encrypt',iri:'openrel:encrypt',cat:['perm','obli'],dd:'preDuty'},
+  {id:'A14',label:'Apply License',iri:'openrel:applyLicense',cat:['perm','obli']},
+];
+const CONSTRAINTS=[
+  {cat:'Purpose',items:[
+    {id:'C01',label:'Academic Research',iri:'openrel:constraint.purpose:academicResearch',param:false},
+    {id:'C02',label:'Non-Commercial',iri:'openrel:constraint.purpose:nonCommercial',param:false},
+  ]},
+  {cat:'Legal Basis',items:[
+    {id:'C03',label:'Consent (GDPR)',iri:'openrel:constraint.legalBasis:consent',param:false},
+  ]},
+  {cat:'Role / Identity',items:[
+    {id:'C04',label:'Researcher',iri:'openrel:constraint.role:researcher',param:false},
+    {id:'C05',label:'Research Institution',iri:'openrel:constraint.role:institution',param:false},
+    {id:'C06',label:'Verified eIDAS',iri:'openrel:constraint.identity:verifiedEidas',param:false},
+  ]},
+  {cat:'Ethics & Security',items:[
+    {id:'C07',label:'Ethics Approval Required',iri:'openrel:constraint.ethicsApproval:required',param:false},
+    {id:'C08',label:'Security Profile: TRUST+',iri:'openrel:constraint.security:trustPlus',param:false},
+    {id:'C09',label:'Security Profile: TRUST',iri:'openrel:constraint.security:trust',param:false},
+    {id:'C10',label:'Security Profile: BASE',iri:'openrel:constraint.security:base',param:false},
+    {id:'C11',label:'TOM Required',iri:'openrel:constraint.tom:required',param:false},
+    {id:'C12',label:'Data Minimization',iri:'openrel:constraint.dataMinimization',param:false},
+  ]},
+  {cat:'Geography & Time',items:[
+    {id:'C13',label:'Spatial (GeoNames)',iri:'odrl:spatial',param:true,paramType:'geo'},
+    {id:'C14',label:'Access Duration',iri:'openrel:constraint.duration:accessDuration',param:true,paramType:'duration',pname:'duration',placeholder:'e.g. PT24H'},
+    {id:'C15',label:'Time Interval',iri:'openrel:constraint.timeInterval:accessWindow',param:true,paramType:'daterange'},
+  ]},
+  {cat:'Usage Control',items:[
+    {id:'C16',label:'Access Count',iri:'openrel:constraint.count:accessCount',param:true,paramType:'integer',pname:'maxCount',placeholder:'e.g. 5'},
+    {id:'C17',label:'Revocation Status Active',iri:'openrel:constraint.revocation:active',param:false},
+    {id:'C18',label:'Connector Auth URI',iri:'openrel:constraint.connector:authorisedURI',param:true,paramType:'uri',pname:'connectorURI',placeholder:'https://…'},
+    {id:'C19',label:'Data Volume Limit (MiB)',iri:'openrel:constraint.volume:maxVolume',param:true,paramType:'integer',pname:'maxVolumeMiB',placeholder:'e.g. 500'},
+  ]},
+  {cat:'Accountability',items:[
+    {id:'C20',label:'Notification Endpoint',iri:'openrel:constraint.accountability:notifyEndpoint',param:true,paramType:'uri',pname:'endpointURI',placeholder:'https://…'},
+    {id:'C21',label:'Logging Clearing House',iri:'openrel:constraint.accountability:loggingCH',param:true,paramType:'uri',pname:'clearingHouseURI',placeholder:'https://…'},
+  ]},
+  {cat:'Open Access & Attribution',items:[
+    {id:'C22',label:'Open Access Required',iri:'openrel:constraint.openAccess:required',param:false},
+    {id:'C23',label:'Attribution Required',iri:'openrel:constraint.attribution:required',param:false},
+    {id:'C24',label:'Share-Alike',iri:'openrel:constraint.shareAlike',param:false},
+    {id:'C25',label:'Funding Source Public',iri:'openrel:constraint.openAccess:fundingPublic',param:false},
+  ]},
+];
+const COUNTRIES=[
+  {label:'Austria',iso:'AT',eu:true,flag:'🇦🇹',gn:'https://sws.geonames.org/2782113/'},
+  {label:'Belgium',iso:'BE',eu:true,flag:'🇧🇪',gn:'https://sws.geonames.org/2802361/'},
+  {label:'Bulgaria',iso:'BG',eu:true,flag:'🇧🇬',gn:'https://sws.geonames.org/732800/'},
+  {label:'Croatia',iso:'HR',eu:true,flag:'🇭🇷',gn:'https://sws.geonames.org/3202326/'},
+  {label:'Cyprus',iso:'CY',eu:true,flag:'🇨🇾',gn:'https://sws.geonames.org/146669/'},
+  {label:'Czech Republic',iso:'CZ',eu:true,flag:'🇨🇿',gn:'https://sws.geonames.org/3077311/'},
+  {label:'Denmark',iso:'DK',eu:true,flag:'🇩🇰',gn:'https://sws.geonames.org/2623032/'},
+  {label:'European Union',iso:'EU',eu:null,flag:'🇪🇺',gn:'https://sws.geonames.org/6255148/'},
+  {label:'Finland',iso:'FI',eu:true,flag:'🇫🇮',gn:'https://sws.geonames.org/660013/'},
+  {label:'France',iso:'FR',eu:true,flag:'🇫🇷',gn:'https://sws.geonames.org/3017382/'},
+  {label:'Germany',iso:'DE',eu:true,flag:'🇩🇪',gn:'https://sws.geonames.org/2921044/'},
+  {label:'Greece',iso:'GR',eu:true,flag:'🇬🇷',gn:'https://sws.geonames.org/390903/'},
+  {label:'Hungary',iso:'HU',eu:true,flag:'🇭🇺',gn:'https://sws.geonames.org/719819/'},
+  {label:'Ireland',iso:'IE',eu:true,flag:'🇮🇪',gn:'https://sws.geonames.org/2963597/'},
+  {label:'Italy',iso:'IT',eu:true,flag:'🇮🇹',gn:'https://sws.geonames.org/3175395/'},
+  {label:'Latvia',iso:'LV',eu:true,flag:'🇱🇻',gn:'https://sws.geonames.org/458258/'},
+  {label:'Lithuania',iso:'LT',eu:true,flag:'🇱🇹',gn:'https://sws.geonames.org/597427/'},
+  {label:'Luxembourg',iso:'LU',eu:true,flag:'🇱🇺',gn:'https://sws.geonames.org/2960313/'},
+  {label:'Malta',iso:'MT',eu:true,flag:'🇲🇹',gn:'https://sws.geonames.org/2562770/'},
+  {label:'Netherlands',iso:'NL',eu:true,flag:'🇳🇱',gn:'https://sws.geonames.org/2750405/'},
+  {label:'Norway',iso:'NO',eu:false,flag:'🇳🇴',gn:'https://sws.geonames.org/607072/'},
+  {label:'Poland',iso:'PL',eu:true,flag:'🇵🇱',gn:'https://sws.geonames.org/798544/'},
+  {label:'Portugal',iso:'PT',eu:true,flag:'🇵🇹',gn:'https://sws.geonames.org/2264397/'},
+  {label:'Romania',iso:'RO',eu:true,flag:'🇷🇴',gn:'https://sws.geonames.org/798549/'},
+  {label:'Slovakia',iso:'SK',eu:true,flag:'🇸🇰',gn:'https://sws.geonames.org/3057568/'},
+  {label:'Slovenia',iso:'SI',eu:true,flag:'🇸🇮',gn:'https://sws.geonames.org/3190538/'},
+  {label:'Spain',iso:'ES',eu:true,flag:'🇪🇸',gn:'https://sws.geonames.org/2510769/'},
+  {label:'Sweden',iso:'SE',eu:true,flag:'🇸🇪',gn:'https://sws.geonames.org/2661886/'},
+  {label:'Switzerland',iso:'CH',eu:false,flag:'🇨🇭',gn:'https://sws.geonames.org/2658434/'},
+  {label:'United Kingdom',iso:'GB',eu:false,flag:'🇬🇧',gn:'https://sws.geonames.org/2635167/'},
+  {label:'United States',iso:'US',eu:false,flag:'🇺🇸',gn:'https://sws.geonames.org/6252001/'},
+];
+
+// ── TEMPLATES ────────────────────────────────────────────────────────────────
+const TEMPLATES=[
+  {id:'p001',type:'Licence',icon:'🌍',iconBg:'#ecfdf5',title:'Open Access — No Restrictions',
+   desc:'Anyone can read, download, share, and reuse this resource freely, for any purpose including commercial use.',
+   prose:'This resource is fully open. Anyone may read, download, reproduce, distribute, and modify it without restriction. No attribution required. No time limit.',
+   tags:['Open Access','CC0','No Restrictions'],topics:['open-access'],
+   permits:['Read','Download','Distribute','Modify','Reproduce'],prohibits:[],requires:[],
+   constraints:[],params:[],slug:'open-access-no-restrictions',
+   preload:{q1:'public',q2:{read:true,share:true,modify:true,commercial:true,attribution:false,sharealike:false},q3:'worldwide',q4:'unlimited',
+            ptype:'Licence',perms:['A02','A03','A04','A05'],prohs:[],oblis:{},cons:{}}},
+  {id:'p002',type:'Licence',icon:'✍️',iconBg:'#ecfdf5',title:'Open Access with Attribution',
+   desc:'Anyone can read, download, share, and adapt for any purpose — provided the original author is credited.',
+   prose:'This resource is open to all. Users may read, download, reproduce, distribute, and modify it for any purpose including commercial use, as long as they credit the original author.',
+   tags:['Open Access','Attribution','CC BY'],topics:['open-access'],
+   permits:['Read','Download','Distribute','Modify','Reproduce'],prohibits:[],requires:['Attribute author'],
+   constraints:['C23 — Attribution Required'],params:[],slug:'open-access-attribution',
+   preload:{q1:'public',q2:{read:true,share:true,modify:false,commercial:false,attribution:true,sharealike:false},q3:'worldwide',q4:'unlimited',
+            ptype:'Licence',perms:['A02','A03','A04','A05'],prohs:[],oblis:{A10:'postDuty'},cons:{C23:true}}},
+  {id:'p003',type:'Licence',icon:'🔄',iconBg:'#ecfdf5',title:'Open Access — Attribution + Share-Alike',
+   desc:'Use and share freely with attribution. Derivatives must be released under the same terms.',
+   prose:'This resource may be read, downloaded, distributed, and adapted by anyone. The original author must be credited and any derivative works must carry the same licence terms.',
+   tags:['Open Access','Attribution','Share-Alike','CC BY-SA'],topics:['open-access'],
+   permits:['Read','Download','Distribute','Modify','Reproduce'],prohibits:[],requires:['Attribute author','Share-alike'],
+   constraints:['C23 — Attribution Required','C24 — Share-Alike'],params:[],slug:'open-access-attribution-sharealike',
+   preload:{q1:'public',q2:{read:true,share:true,modify:false,commercial:false,attribution:true,sharealike:true},q3:'worldwide',q4:'unlimited',
+            ptype:'Licence',perms:['A02','A03','A04','A05'],prohs:[],oblis:{A10:'postDuty'},cons:{C23:true,C24:true}}},
+  {id:'p004',type:'Licence',icon:'🚫💰',iconBg:'#fff7ed',title:'Non-Commercial Use Only',
+   desc:'Free to read and share, but commercial exploitation is not permitted. Attribution required.',
+   prose:'This resource may be read, downloaded, and distributed for non-commercial purposes only. Commercial use is prohibited. Attribution to the original author is required.',
+   tags:['Non-Commercial','Attribution','CC BY-NC'],topics:['non-commercial'],
+   permits:['Read','Download','Reproduce'],prohibits:['Commercial use'],requires:['Attribute author'],
+   constraints:['C02 — Non-Commercial','C23 — Attribution Required'],params:[],slug:'non-commercial-attribution',
+   preload:{q1:'noncommercial',q2:{read:true,share:false,modify:false,commercial:false,attribution:true,sharealike:false},q3:'worldwide',q4:'unlimited',
+            ptype:'Licence',perms:['A02','A05'],prohs:['A03'],oblis:{A10:'postDuty'},cons:{C02:true,C23:true}}},
+  {id:'p005',type:'Licence',icon:'🔒',iconBg:'#fef2f2',title:'No Derivatives — Read Only',
+   desc:'Users may read and download but may not modify, adapt, or create derivative works.',
+   prose:'This resource is available for reading and downloading. Redistribution is permitted with attribution. Modification, adaptation, translation, and derivative works are prohibited.',
+   tags:['Read Only','No Derivatives','CC BY-ND'],topics:['restricted'],
+   permits:['Read','Download','Distribute'],prohibits:['Modify'],requires:['Attribute author'],
+   constraints:['C23 — Attribution Required'],params:[],slug:'no-derivatives-read-only',
+   preload:{q1:'public',q2:{read:true,share:true,modify:false,commercial:false,attribution:true,sharealike:false},q3:'worldwide',q4:'unlimited',
+            ptype:'Licence',perms:['A02','A03','A05'],prohs:['A04'],oblis:{A10:'postDuty'},cons:{C23:true}}},
+  {id:'p006',type:'Access',icon:'🎓',iconBg:'#fff7ed',title:'Researcher Access Only',
+   desc:'Access restricted to verified researchers and accredited institutions. Non-commercial use only.',
+   prose:'This resource is accessible only to individuals holding a verified researcher role or affiliated with an accredited research institution. Use is limited to non-commercial academic research.',
+   tags:['Restricted','Researcher Role','Academic','Non-Commercial'],topics:['restricted','non-commercial'],
+   permits:['Read','Download','Reproduce'],prohibits:['Commercial use','Public redistribution'],requires:['Attribute author'],
+   constraints:['C04 — Researcher Role','C05 — Research Institution','C01 — Academic Research','C02 — Non-Commercial','C23 — Attribution'],params:[],slug:'researcher-access-only',
+   preload:{q1:'researchers',q2:{read:true,share:false,modify:false,commercial:false,attribution:true,sharealike:false},q3:'worldwide',q4:'unlimited',
+            ptype:'Access',perms:['A02','A05'],prohs:['A03'],oblis:{A10:'postDuty'},cons:{C01:true,C02:true,C04:true,C05:true,C23:true}}},
+  {id:'p007',type:'Access',icon:'⏱️',iconBg:'#fff7ed',title:'Time-Limited Access Window',
+   desc:'Access is permitted for a defined period only. After the window closes, access is denied.',
+   prose:'This resource may be accessed during a specified time window. Access requests outside this window receive a DENY response. Used for embargo periods or temporary open access provisions.',
+   tags:['Time-Limited','Embargo','Access Window'],topics:['restricted'],
+   permits:['Read','Download'],prohibits:[],requires:[],
+   constraints:['C15 — Time Interval (parametric)'],params:['Start date','End date'],slug:'time-limited-access-window',
+   preload:{q1:'public',q2:{read:true,share:false,modify:false,commercial:false,attribution:false,sharealike:false},q3:'worldwide',q4:'fixed',
+            ptype:'Access',perms:['A02','A05'],prohs:[],oblis:{},cons:{C15:{from:'',to:''}}}},
+  {id:'p008',type:'Access',icon:'🌍🔒',iconBg:'#fef2f2',title:'Geographic Restriction — EU Only',
+   desc:'Access permitted only from within EU member states. Requests from outside the EU are denied.',
+   prose:'This resource is accessible only from within the European Union. Requests originating outside EU member states receive a DENY response. Additional country exclusions can be added.',
+   tags:['Geographic','EU Only','Spatial','GeoNames'],topics:['restricted'],
+   permits:['Read','Download'],prohibits:[],requires:[],
+   constraints:['C13 — Spatial: EU'],params:['GeoNames URI (EU): https://sws.geonames.org/6255148/'],slug:'geographic-eu-only',
+   preload:{q1:'public',q2:{read:true,share:false,modify:false,commercial:false,attribution:false,sharealike:false},
+            q3:'restricted',geoInc:[{label:'European Union',iso:'EU',flag:'🇪🇺',gn:'https://sws.geonames.org/6255148/'}],geoExc:[],q4:'unlimited',
+            ptype:'Access',perms:['A02'],prohs:[],oblis:{},cons:{C13:{inc:[{label:'European Union',iso:'EU',flag:'🇪🇺',gn:'https://sws.geonames.org/6255148/'}],exc:[]}}}},
+  {id:'p009',type:'Access',icon:'📊',iconBg:'#fff7ed',title:'Access Count Limit',
+   desc:'Each user or connector may access this resource a maximum number of times.',
+   prose:'This resource may be accessed a limited number of times per user or connector. Once the maximum is reached, subsequent requests receive a DENY response.',
+   tags:['Usage Control','Access Count','Rate Limit'],topics:['restricted'],
+   permits:['Read','Download'],prohibits:[],requires:[],
+   constraints:['C16 — Access Count (parametric: maxCount)'],params:['Maximum number of accesses (integer)'],slug:'access-count-limit',
+   preload:{q1:'public',q2:{read:true,share:false,modify:false,commercial:false,attribution:false,sharealike:false},q3:'worldwide',q4:'unlimited',
+            ptype:'Access',perms:['A02'],prohs:[],oblis:{},cons:{C16:''}}},
+  {id:'p010',type:'Access',icon:'✅🔬',iconBg:'#fef2f2',title:'Managed Access — Ethics Approval Required',
+   desc:'Access requires documented ethics approval before it can be granted. For sensitive research data.',
+   prose:'Access is conditional on the applicant providing documented approval from a recognised ethics committee or IRB. The access request triggers a CONDITIONAL outcome. Access is granted only after approval is verified.',
+   tags:['Managed Access','Ethics','Sensitive Data','CONDITIONAL'],topics:['restricted','personal-data'],
+   permits:['Read','Download'],prohibits:[],requires:['Ethics approval (preDuty)','Attribute author'],
+   constraints:['C07 — Ethics Approval Required','C23 — Attribution Required'],params:['Ethics committee reference URI (optional)'],slug:'managed-access-ethics',
+   preload:{q1:'managed',q2:{read:true,share:false,modify:false,commercial:false,attribution:true,sharealike:false},q3:'worldwide',q4:'unlimited',
+            ptype:'Access',perms:['A02'],prohs:[],oblis:{A10:'postDuty',A11:'preDuty'},cons:{C07:true,C23:true}}},
+  {id:'p011',type:'Access',icon:'🔐',iconBg:'#fef2f2',title:'Secure Connector — IDS TRUST+',
+   desc:'Access restricted to connectors holding IDS TRUST+ certification. For highly sensitive or confidential datasets.',
+   prose:'This resource may be accessed only by data connectors holding a valid IDS TRUST+ certification. The connector certification status is verified at runtime. Suitable for confidential research data in EOSC federated infrastructure.',
+   tags:['Security','IDS TRUST+','Connector','Confidential'],topics:['restricted'],
+   permits:['Read'],prohibits:['Distribute','Modify'],requires:['Log access'],
+   constraints:['C08 — Security TRUST+','C17 — Revocation Active','C21 — Logging Clearing House'],params:['Clearing house URI'],slug:'secure-connector-trust-plus',
+   preload:{q1:'managed',q2:{read:true,share:false,modify:false,commercial:false,attribution:false,sharealike:false},q3:'worldwide',q4:'unlimited',
+            ptype:'Access',perms:['A02'],prohs:['A03','A04'],oblis:{A09:'postDuty'},cons:{C08:true,C17:true,C21:''}}},
+  {id:'p012',type:'Process',icon:'🤖',iconBg:'#f5f3ff',title:'AI Training — Non-Commercial Only',
+   desc:'Permits use for AI model training, but only for non-commercial research purposes.',
+   prose:'This resource may be used for training AI and machine learning models for non-commercial research purposes only. Commercial AI training is prohibited. Attribution to the original data provider is required.',
+   tags:['AI Training','Non-Commercial','Machine Learning'],topics:['ai','non-commercial'],
+   permits:['Use (AI training)','Read','Reproduce'],prohibits:['Commercial AI training'],requires:['Attribute data provider'],
+   constraints:['C01 — Academic Research','C02 — Non-Commercial','C23 — Attribution Required'],params:[],slug:'ai-training-non-commercial',
+   preload:{q1:'noncommercial',q2:{read:true,share:false,modify:false,commercial:false,attribution:true,sharealike:false},q3:'worldwide',q4:'unlimited',
+            ptype:'Process',perms:['A01','A02','A05'],prohs:[],oblis:{A10:'postDuty'},cons:{C01:true,C02:true,C23:true}}},
+  {id:'p013',type:'Process',icon:'🔄🤖',iconBg:'#f5f3ff',title:'Text and Data Mining — Research Only',
+   desc:'Permits computational text/data mining for research. No commercial exploitation of mining outputs.',
+   prose:'This resource may be processed through text and data mining techniques for research purposes. Mined outputs may be published academically with attribution. Commercial exploitation and bulk redistribution are prohibited.',
+   tags:['TDM','Text Mining','Data Mining','Research'],topics:['ai','non-commercial'],
+   permits:['Read','Use (TDM)','Reproduce (analysis)'],prohibits:['Commercial exploitation','Bulk redistribution'],requires:['Attribute source'],
+   constraints:['C01 — Academic Research','C02 — Non-Commercial','C23 — Attribution Required'],params:[],slug:'text-data-mining-research',
+   preload:{q1:'noncommercial',q2:{read:true,share:false,modify:false,commercial:false,attribution:true,sharealike:false},q3:'worldwide',q4:'unlimited',
+            ptype:'Process',perms:['A01','A02','A05'],prohs:['A03'],oblis:{A10:'postDuty'},cons:{C01:true,C02:true,C23:true}}},
+  {id:'p014',type:'Process',icon:'🛡️',iconBg:'#f5f3ff',title:'Data Processing with Anonymization',
+   desc:'Permits processing provided data is anonymized before any output is produced or shared.',
+   prose:'This resource may be processed under the condition that anonymization is applied before any output, derivative, or summary is shared with third parties. Suitable for personal data under GDPR.',
+   tags:['Personal Data','Anonymization','GDPR','Privacy'],topics:['personal-data','ai'],
+   permits:['Read','Use','Reproduce (anonymized only)'],prohibits:['Distribute non-anonymized data'],requires:['Anonymize (preDuty)','Obtain Consent (preDuty)'],
+   constraints:['C03 — Consent','C12 — Data Minimization','C07 — Ethics Approval'],params:['Consent reference URI (optional)'],slug:'data-processing-anonymization',
+   preload:{q1:'managed',q2:{read:true,share:false,modify:false,commercial:false,attribution:false,sharealike:false},q3:'worldwide',q4:'unlimited',
+            ptype:'Process',perms:['A01','A02'],prohs:['A03'],oblis:{A11:'preDuty',A12:'preDuty'},cons:{C03:true,C07:true,C12:true}}},
+  {id:'p015',type:'Policy',icon:'📋',iconBg:'#eff6ff',title:'EOSC Open Research Data Policy',
+   desc:'Composite policy: open access reuse rights + EOSC accountability obligations.',
+   prose:'This composite policy governs research data deposited in EOSC repositories. It combines open access rights with accountability obligations: access must be logged to a clearing house and the data provider must be notified.',
+   tags:['EOSC','Composite','Open Access','Accountability'],topics:['open-access'],
+   permits:['Read','Download','Reproduce','Distribute'],prohibits:['Commercial redistribution'],requires:['Attribute author','Log access','Notify provider'],
+   constraints:['C22 — Open Access Required','C23 — Attribution Required','C25 — Funding Source Public','C21 — Logging Clearing House','C20 — Notification Endpoint'],
+   params:['Clearing house URI','Notification endpoint URI'],slug:'eosc-open-research-data',
+   preload:{q1:'public',q2:{read:true,share:true,modify:false,commercial:false,attribution:true,sharealike:false},q3:'worldwide',q4:'unlimited',
+            ptype:'Policy',perms:['A02','A03','A05'],prohs:[],oblis:{A10:'postDuty',A09:'postDuty',A08:'postDuty'},cons:{C22:true,C23:true,C25:true,C20:'',C21:''}}},
+  {id:'p016',type:'Policy',icon:'🧬',iconBg:'#fef2f2',title:'Sensitive Data — Full Governance',
+   desc:'Composite policy for sensitive or personal data: managed access, ethics, GDPR, security, and full audit logging.',
+   prose:'This policy governs access to sensitive research data including personal or health-related information. It combines managed access, GDPR-aligned constraints, and full accountability. Access evaluation results in PERMIT, CONDITIONAL, or DENY based on all conditions being met.',
+   tags:['Sensitive Data','GDPR','Ethics','Full Governance'],topics:['restricted','personal-data'],
+   permits:['Read (conditional)'],prohibits:['Distribute','Modify','Commercial use'],requires:['Ethics approval','Consent','Anonymize output','Log access'],
+   constraints:['C03','C07','C08 — Security TRUST+','C11 — TOM Required','C12 — Data Minimization','C17 — Revocation Active','C21 — Logging CH'],
+   params:['Ethics URI','Consent reference','Clearing house URI'],slug:'sensitive-data-full-governance',
+   preload:{q1:'managed',q2:{read:true,share:false,modify:false,commercial:false,attribution:false,sharealike:false},q3:'worldwide',q4:'unlimited',
+            ptype:'Policy',perms:['A02'],prohs:['A03','A04'],oblis:{A11:'preDuty',A12:'preDuty',A09:'postDuty'},cons:{C03:true,C07:true,C08:true,C11:true,C12:true,C17:true,C21:''}}},
+  {id:'p017',type:'Access',icon:'🔗',iconBg:'#fff7ed',title:'Federated Access — Authorised Connector',
+   desc:'Access restricted to a specific authorised connector identified by URI. For EOSC federated data spaces.',
+   prose:'This resource is accessible exclusively through a specific data connector identified by URI. The connector must be authorised, hold a valid IDS security certification, and not be listed as revoked.',
+   tags:['Federated','Connector','IDS','EOSC','Authorised'],topics:['restricted'],
+   permits:['Read','Use (via connector)'],prohibits:['Direct download','Distribute','Modify'],requires:['Log access'],
+   constraints:['C17 — Revocation Active','C18 — Connector Auth URI (parametric)','C09 — Security TRUST'],
+   params:['Authorised connector URI'],slug:'federated-connector-access',
+   preload:{q1:'managed',q2:{read:true,share:false,modify:false,commercial:false,attribution:false,sharealike:false},q3:'worldwide',q4:'unlimited',
+            ptype:'Access',perms:['A01','A02'],prohs:['A03','A04'],oblis:{A09:'postDuty'},cons:{C09:true,C17:true,C18:''}}},
+];
+
+// ── STATE ─────────────────────────────────────────────────────────────────────
+let currentView = 'browser';
+let currentMode = 'simple';
+let activeTpl = null;
+
+const SS = { q1:null,slug:'',policyTitle:'',q2:{read:true,share:false,modify:false,commercial:false,attribution:false,sharealike:false},q3:'worldwide',geoInc:[],geoExc:[],q4:'unlimited',dateStart:'',dateEnd:'',tplId:null };
+const AS = { policyType:null,meta:{title:'',slug:'',desc:'',issuer:'',status:'draft',asset:'',pid:''},perms:[],prohs:[],oblis:{},cons:{},conflictTerm:'odrl:prohibit',agents:{assigner:'',assigneeType:'public',assigneeURI:''},tplId:null };
+
+// ── VIEW SWITCHING ─────────────────────────────────────────────────────────────
+function showView(v) {
+  ['browser','simple','advanced'].forEach(x => document.getElementById('view-'+x).classList.toggle('hidden',x!==v));
+  currentView = v;
+  const inWizard = v!=='browser';
+  document.getElementById('hright-browser').classList.toggle('hidden',inWizard);
+  document.getElementById('hright-wizard').classList.toggle('hidden',!inWizard);
+  if(inWizard) {
+    document.getElementById('mbtn-simple').classList.toggle('active',v==='simple');
+    document.getElementById('mbtn-advanced').classList.toggle('active',v==='advanced');
+  }
+  updCrumb(v);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function updCrumb(v) {
+  const c = document.getElementById('hcrumb');
+  const labels = {browser:'Template Browser',simple:'Simple Wizard',advanced:'Advanced Wizard'};
+  if(v==='browser') { c.innerHTML=`<span class="active">Template Browser</span>`; return; }
+  c.innerHTML=`<span onclick="showBrowser()" style="cursor:pointer;text-decoration:underline">Template Browser</span><span>›</span><span class="active">${labels[v]}</span>`;
+}
+
+function showBrowser() { showView('browser'); }
+function startFromScratch() { resetAll(); sGoTo(1); showView('simple'); }
+
+function switchMode(m) {
+  currentMode = m;
+  showView(m==='simple'?'simple':'advanced');
+}
+
+// ── BROWSER LOGIC ─────────────────────────────────────────────────────────────
+const BF = { type:'all', topic:'all' };
+
+function setF(dim, val, btn) {
+  if(val==='all') {
+    BF.type='all'; BF.topic='all';
+    document.querySelectorAll('.filters-inner .fb').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+  } else {
+    BF[dim] = val;
+    document.querySelectorAll('.filters-inner .fb').forEach(b => {
+      const bIsType = ['all','Licence','Access','Process','Policy'].includes(b.dataset.f);
+      if(dim==='type' && bIsType) b.classList.remove('active');
+      if(dim==='topic' && !bIsType) b.classList.remove('active');
+    });
+    btn.classList.add('active');
+  }
+  applyFilters();
+}
+
+function applyFilters() {
+  const q = document.getElementById('b-search').value.toLowerCase();
+  const sort = document.getElementById('fsort').value;
+  let res = TEMPLATES.filter(t => {
+    const mT = BF.type==='all' || t.type===BF.type;
+    const mTo = BF.topic==='all' || t.topics.includes(BF.topic);
+    const mQ = !q || t.title.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q) || t.tags.some(x=>x.toLowerCase().includes(q)) || t.id.includes(q);
+    return mT && mTo && mQ;
+  });
+  if(sort==='alpha') res.sort((a,b)=>a.title.localeCompare(b.title));
+  else if(sort==='type') res.sort((a,b)=>a.type.localeCompare(b.type)||a.id.localeCompare(b.id));
+  else res.sort((a,b)=>a.id.localeCompare(b.id));
+  renderGrid(res);
+  document.getElementById('brc-count').innerHTML=`<strong>${res.length}</strong> template${res.length!==1?'s':''}`;
+  document.getElementById('hcount').textContent=res.length+' templates';
+  document.getElementById('no-res').classList.toggle('hidden',res.length>0);
+  document.getElementById('tgrid').classList.toggle('hidden',res.length===0);
+}
+
+function typeClass(t) { return {Licence:'tl',Access:'ta',Process:'tp',Policy:'tpo'}[t]||'tl'; }
+
+function renderGrid(templates) {
+  document.getElementById('tgrid').innerHTML = templates.map((t,i) => `
+    <div class="tc" style="animation-delay:${i*.04}s">
+      <div class="tc-hd">
+        <div class="tc-top">
+          <div class="tc-ico" style="background:${t.iconBg}">${t.icon}</div>
+          <div><div class="tc-id">${t.id}</div><div class="tc-title">${t.title}</div></div>
+        </div>
+        <span class="tc-type ${typeClass(t.type)}">${t.type}</span>
+        <p class="tc-desc">${t.desc}</p>
+      </div>
+      <div class="tc-bd">
+        <div class="rg">
+          <div class="rc pe"><div class="rc-h">✓ Permits</div>${t.permits.slice(0,3).map(p=>`<span class="rp">${p}</span>`).join('')}${t.permits.length>3?`<span class="rp">+${t.permits.length-3}</span>`:''} ${t.permits.length===0?'<span class="rp muted">—</span>':''}</div>
+          <div class="rc pr"><div class="rc-h">✕ Prohibits</div>${t.prohibits.slice(0,3).map(p=>`<span class="rp">${p}</span>`).join('')}${t.prohibits.length===0?'<span class="rp muted">—</span>':''}</div>
+          <div class="rc rq"><div class="rc-h">⚑ Requires</div>${t.requires.slice(0,3).map(p=>`<span class="rp">${p}</span>`).join('')}${t.requires.length===0?'<span class="rp muted">—</span>':''}</div>
+        </div>
+        <div class="tc-tags">${t.tags.map(x=>`<span class="tg">${x}</span>`).join('')}</div>
+        <div class="tc-ft">
+          <button class="btn-use" onclick="useTemplate('${t.id}')">Use this template →</button>
+          <button class="btn-det" onclick="openMod('${t.id}')">Details</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+// ── MODAL ─────────────────────────────────────────────────────────────────────
+function openMod(id) {
+  const t=TEMPLATES.find(x=>x.id===id); if(!t) return;
+  activeTpl=t;
+  document.getElementById('mod-ico').textContent=t.icon;
+  document.getElementById('mod-ico').style.background=t.iconBg;
+  document.getElementById('mod-ht').textContent=t.title;
+  document.getElementById('mod-hid').textContent=t.id+' · openrel:'+t.type+' · https://openrel.eu/policy/template/'+t.slug;
+  document.getElementById('mod-prose').textContent=t.prose;
+  document.getElementById('mod-rules').innerHTML=[
+    ...t.permits.map(r=>`<div class="mr pe"><span class="mr-b">PERMITS</span><div>${r}</div></div>`),
+    ...t.prohibits.map(r=>`<div class="mr pr"><span class="mr-b">PROHIBITS</span><div>${r}</div></div>`),
+    ...t.requires.map(r=>`<div class="mr ob"><span class="mr-b">REQUIRES</span><div>${r}</div></div>`),
+  ].join('')||'<div style="font-size:12px;color:var(--muted)">No rules defined.</div>';
+  const CON_TIPS={
+    'C01':'Access is limited to academic research purposes only.',
+    'C02':'Commercial use of this resource is not permitted.',
+    'C03':'The data subject must have given explicit consent (GDPR Art. 6/9) before access is granted.',
+    'C04':'The user must hold a verified researcher role.',
+    'C05':'Access is restricted to recognised research or academic institutions.',
+    'C06':'The user must have a verified identity via eIDAS (EU digital identity standard).',
+    'C07':'An ethics committee approval must be in place before access is granted.',
+    'C08':'The connector or system accessing this resource must meet the highest TRUST+ security profile.',
+    'C09':'The connector or system must meet the TRUST security profile (standard level).',
+    'C10':'Minimum BASE-level security profile is required.',
+    'C11':'Technical and organisational measures (TOMs) for data protection must be in place.',
+    'C12':'Only the minimum necessary data may be accessed or processed.',
+    'C13':'Access is restricted to a specific geographic area.',
+    'C14':'Access is permitted only for a defined duration (e.g. 24 hours).',
+    'C15':'Access is permitted only within a specific time window (start and end date).',
+    'C16':'The total number of accesses is capped at a maximum value.',
+    'C17':'This policy can be revoked at any time. Access systems must check that it is still active before granting access.',
+    'C18':'Access is permitted only through a specific, pre-authorised connector. You must supply its URI.',
+    'C19':'The total volume of data that can be transferred is limited (in MiB).',
+    'C20':'A notification must be sent to a designated endpoint each time the resource is accessed.',
+    'C21':'All access events must be logged and reported to a clearing house.',
+    'C22':'This resource must remain openly accessible — no access restrictions may be applied.',
+    'C23':'The original author or rights holder must be credited when using this resource.',
+    'C24':'Any derivative work or redistribution must be shared under the same terms as the original.',
+    'C25':'This resource was produced with public funding and must remain openly available.'
+  };
+  document.getElementById('mod-cons').innerHTML=t.constraints.length?t.constraints.map(c=>{
+    const match=c.match(/^(C\d+)/);
+    const tip=match&&CON_TIPS[match[1]]?`<div class="con-info">i<div class="con-tip">${CON_TIPS[match[1]]}</div></div>`:'';
+    return `<div class="con-row"><span>C</span>${c}${tip}</div>`;
+  }).join(''):'<div style="font-size:12px;color:var(--muted)">No constraints.</div>';
+  const PARAM_TIPS={'Clearing house URI':'The web address (URI) of the central logging service that will record all access events. Typically provided by your organisation or infrastructure operator.','Notification endpoint URI':'The web address (URI) of the service that should receive a notification each time this resource is accessed. Contact your technical team to obtain this.','Authorised connector URI':'The web address (URI) identifying the specific connector permitted to access this resource. Only requests from this connector will be accepted.','Start date':'The date from which this policy becomes active. Access before this date will be denied.','End date':'The date on which this policy expires. Access after this date will be denied.','Maximum number of accesses (integer)':'The total number of times this resource may be accessed. Once the limit is reached, further access will be denied.','Ethics committee reference URI':'A link to the ethics approval document or registry entry. Provide the URI if available.','GeoNames URI (EU): https://sws.geonames.org/6255148/':'The GeoNames identifier for the permitted geographic area. The default value shown is the URI for Europe.'}; document.getElementById('mod-params').innerHTML=t.params.length?t.params.map(p=>{const tip=PARAM_TIPS[p]?'<div class="param-info">i<div class="param-tip">'+PARAM_TIPS[p]+'</div></div>':'';return '<div class="param-row">✏️ '+p+tip+'</div>';}).join(''):'<div style="font-size:12px;color:var(--muted)">No parameters required.</div>';
+  document.getElementById('mov').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeMov(e){if(e.target===document.getElementById('mov'))closeMod();}
+function closeMod(){document.getElementById('mov').classList.remove('open');document.body.style.overflow='';activeTpl=null;}
+function useTpl(){if(activeTpl){useTemplate(activeTpl.id);closeMod();}}
+
+// ── USE TEMPLATE ──────────────────────────────────────────────────────────────
+function useTemplate(id) {
+  const t = TEMPLATES.find(x=>x.id===id); if(!t) return;
+  const p = t.preload;
+
+  // Load into Simple state
+  SS.tplId=id; SS.q1=p.q1;
+  Object.assign(SS.q2, p.q2);
+  SS.q3=p.q3||'worldwide';
+  SS.geoInc=p.geoInc?[...p.geoInc]:[];
+  SS.geoExc=p.geoExc?[...p.geoExc]:[];
+  SS.q4=p.q4||'unlimited';
+  SS.dateStart=''; SS.dateEnd='';
+
+  // Load into Advanced state
+  AS.tplId=id; AS.policyType=p.ptype;
+  AS.perms=[...p.perms]; AS.prohs=[...p.prohs];
+  AS.oblis={...p.oblis}; AS.cons={};
+  // deep copy cons
+  Object.keys(p.cons).forEach(k=>{
+    const v=p.cons[k];
+    AS.cons[k]= (v&&typeof v==='object') ? {...v,inc:v.inc?[...v.inc]:[],exc:v.exc?[...v.exc]:[]} : v;
+  });
+
+  // Show wizard in current mode
+  if(currentMode==='simple') {
+    showView('simple');
+    loadSimpleFromState(t);
+    sGoTo(1);
+  } else {
+    showView('advanced');
+    loadAdvancedFromState(t);
+    aGoTo(1);
+  }
+}
+
+function loadSimpleFromState(t) {
+  // template banner
+  const banner=document.getElementById('s-tpl-banner');
+  document.getElementById('s-tpl-icon').textContent=t.icon;
+  document.getElementById('s-tpl-title').textContent=t.title;
+  banner.classList.remove('hidden');
+  // Q1
+  document.querySelectorAll('#sq1-opts .ropt').forEach(o=>{o.classList.toggle('sel',o.dataset.v===SS.q1);});
+  document.getElementById('snext1').disabled=!SS.q1;
+  // Q2
+  document.querySelectorAll('#sq2-perms .ai,#sq2-obli .ai').forEach(el=>{
+    if(el.classList.contains('locked')) return;
+    el.classList.toggle('sel',!!SS.q2[el.dataset.v]);
+  });
+  // Q3
+  document.querySelectorAll('#sq3-opts .ropt').forEach(o=>o.classList.toggle('sel',o.dataset.v===SS.q3));
+  const gp=document.getElementById('s-geo-picker');
+  if(SS.q3==='restricted'){gp.classList.remove('hidden');renderGeoPickerSimple();}
+  else gp.classList.add('hidden');
+  // Q4
+  document.querySelectorAll('#sq4-opts .ropt').forEach(o=>o.classList.toggle('sel',o.dataset.v===SS.q4));
+  const dp=document.getElementById('s-date-picker');
+  if(SS.q4==='fixed'){dp.classList.remove('hidden');}else dp.classList.add('hidden');
+}
+
+function loadAdvancedFromState(t) {
+  document.getElementById('a-tpl-banner').classList.remove('hidden');
+  document.getElementById('a-tpl-icon').textContent=t.icon;
+  document.getElementById('a-tpl-title').textContent=t.title;
+  // Type
+  document.querySelectorAll('#aq1 .ropt').forEach(o=>o.classList.toggle('sel',o.dataset.v===AS.policyType));
+  document.getElementById('anext1').disabled=!AS.policyType;
+  // Grids will be rendered when navigating to those steps
+}
+
+function clearTemplate(mode) {
+  if(mode==='simple'){SS.tplId=null;document.getElementById('s-tpl-banner').classList.add('hidden');}
+  else{AS.tplId=null;document.getElementById('a-tpl-banner').classList.add('hidden');}
+}
+
+// ── SIMPLE WIZARD ─────────────────────────────────────────────────────────────
+let sCur=1;
+function sGoTo(n) {
+  for(let i=1;i<=5;i++) document.getElementById('sq'+i).classList.toggle('hidden',i!==n);
+  sCur=n; updStepper('s',n);
+  if(n===5){buildSReview();}
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function updStepper(pfx,active) {
+  const max=pfx==='s'?5:8;
+  for(let i=1;i<=max;i++){
+    const d=document.getElementById(pfx+'s'+i); if(!d) continue;
+    d.classList.remove('active','done');
+    if(i<active) d.classList.add('done');
+    else if(i===active) d.classList.add('active');
+  }
+}
+function selSQ1(el){document.querySelectorAll('#sq1-opts .ropt').forEach(o=>o.classList.remove('sel'));el.classList.add('sel');SS.q1=el.dataset.v;document.getElementById('snext1').disabled=false;}
+function toggleSQ2(el){if(el.classList.contains('locked'))return;el.classList.toggle('sel');SS.q2[el.dataset.v]=el.classList.contains('sel');}
+function selSQ3(el){document.querySelectorAll('#sq3-opts .ropt').forEach(o=>o.classList.remove('sel'));el.classList.add('sel');SS.q3=el.dataset.v;const gp=document.getElementById('s-geo-picker');if(SS.q3==='restricted'){gp.classList.remove('hidden');renderGeoPickerSimple();}else{gp.classList.add('hidden');SS.geoInc=[];SS.geoExc=[];}}
+function selSQ4(el){document.querySelectorAll('#sq4-opts .ropt').forEach(o=>o.classList.remove('sel'));el.classList.add('sel');SS.q4=el.dataset.v;const dp=document.getElementById('s-date-picker');if(SS.q4==='fixed'){dp.classList.remove('hidden');const today=new Date().toISOString().split('T')[0];if(!SS.dateStart){document.getElementById('s-date-start').value=today;SS.dateStart=today;}}else{dp.classList.add('hidden');SS.dateStart='';SS.dateEnd='';}}
+function clearQuick(pfx){document.querySelectorAll(`#${pfx}q4 .fb`).forEach(b=>b.classList.remove('active'));}
+function setDur(pfx,m,btn){const today=new Date();const end=new Date(today);end.setMonth(end.getMonth()+m);const s=today.toISOString().split('T')[0];const e=end.toISOString().split('T')[0];if(pfx==='s'){SS.dateStart=s;SS.dateEnd=e;document.getElementById('s-date-start').value=s;document.getElementById('s-date-end').value=e;}else{AS.dateStart=s;AS.dateEnd=e;document.getElementById('a-date-start').value=s;document.getElementById('a-date-end').value=e;}document.querySelectorAll(`#${pfx}q4 .fb`).forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
+
+// Geo simple
+function renderGeoPickerSimple() {
+  document.getElementById('s-geo-grid').innerHTML=`
+    <div class="geo-p inc"><div class="geo-ph">✓ Accessible from</div><input class="geo-s" type="text" placeholder="Search country…" oninput="filterGeoS('inc',this.value)" id="sg-si"><div class="geo-l" id="sg-li"></div><div class="geo-tags" id="sg-ti"></div></div>
+    <div class="geo-p exc"><div class="geo-ph">✕ Not accessible from</div><input class="geo-s" type="text" placeholder="Search country…" oninput="filterGeoS('exc',this.value)" id="sg-se"><div class="geo-l" id="sg-le"></div><div class="geo-tags" id="sg-te"></div></div>`;
+  renderGeoListS('inc','');renderGeoListS('exc','');renderGeoTagsS('inc');renderGeoTagsS('exc');
+}
+function renderGeoListS(t,f){const el=document.getElementById('sg-l'+t[0]);if(!el)return;const arr=t==='inc'?SS.geoInc:SS.geoExc;el.innerHTML=COUNTRIES.filter(c=>c.label.toLowerCase().includes(f.toLowerCase())).map(c=>`<div class="geo-i ${arr.find(x=>x.iso===c.iso)?'s'+t[0]:''}" onclick="event.stopPropagation();toggleGeoS('${t}','${c.iso}')">${c.flag} ${c.label}${c.eu===true?' <span style="font-size:9px;color:var(--muted)">EU</span>':''}</div>`).join('');}
+function filterGeoS(t,v){renderGeoListS(t,v);}
+function toggleGeoS(t,iso){const arr=t==='inc'?SS.geoInc:SS.geoExc;const c=COUNTRIES.find(x=>x.iso===iso);const idx=arr.findIndex(x=>x.iso===iso);if(idx>=0)arr.splice(idx,1);else arr.push(c);renderGeoListS(t,document.getElementById('sg-s'+t[0])?.value||'');renderGeoTagsS(t);const total=SS.geoInc.length+SS.geoExc.length;document.getElementById('s-geo-hint').classList.toggle('hidden',total<2);}
+function renderGeoTagsS(t){const el=document.getElementById('sg-t'+t[0]);if(!el)return;const arr=t==='inc'?SS.geoInc:SS.geoExc;el.innerHTML=arr.map(c=>`<span class="gtag ${t==='inc'?'it':'et'}" onclick="event.stopPropagation();toggleGeoS('${t}','${c.iso}')">${c.flag} ${c.label} ×</span>`).join('');}
+
+// Simple review
+function buildSReview() {
+  const who={public:'anyone',noncommercial:'anyone for non-commercial purposes',researchers:'researchers and academic institutions',managed:'approved users only'}[SS.q1]||'anyone';
+  const acts=[];
+  if(SS.q2.read) acts.push('read and downloaded');
+  if(SS.q2.share) acts.push('shared');
+  if(SS.q2.modify) acts.push('modified');
+  if(SS.q2.commercial) acts.push('used commercially');
+  const obls=[];
+  if(SS.q2.attribution) obls.push('Users must credit the original author.');
+  if(SS.q2.sharealike) obls.push('Derivatives must be shared under the same terms.');
+  let geo='';
+  if(SS.q3==='restricted'){const inc=SS.geoInc.map(c=>c.label).join(', ')||'specified countries';const exc=SS.geoExc.map(c=>c.label);geo=` Access is limited to ${inc}`;if(exc.length) geo+=`, excluding ${exc.join(', ')}`;geo+='.';}
+  let time='';
+  if(SS.q4==='fixed'&&SS.dateStart&&SS.dateEnd) time=` Valid from ${SS.dateStart} to ${SS.dateEnd}.`;
+  const notAllowed=[];
+  if(!SS.q2.modify) notAllowed.push('modification');
+  const proh=notAllowed.length?` ${notAllowed[0].charAt(0).toUpperCase()+notAllowed[0].slice(1)} is not permitted.`:'';
+  document.getElementById('s-prose').textContent=(`This resource may be ${acts.join(', ')||'read and downloaded'} by ${who}. ${obls.join(' ')} ${proh}${geo}${time}`).replace(/\s+/g,' ').trim();
+  // rule table
+  const q1c={public:'—',noncommercial:'C02 Non-Commercial',researchers:'C04 Researcher / C05 Institution',managed:'C07 Ethics Approval'}[SS.q1]||'—';
+  const rows=[];
+  // Build geo label with country names
+  let geoLabel='';
+  if(SS.q3==='restricted'){
+    const incNames=SS.geoInc.map(c=>c.flag+' '+c.label).join(', ');
+    const excNames=SS.geoExc.map(c=>c.flag+' '+c.label).join(', ');
+    geoLabel='C13 Spatial';
+    if(incNames) geoLabel+=' (include: '+incNames+')';
+    if(excNames) geoLabel+=' (exclude: '+excNames+')';
+  }
+  // Build time label with dates
+  let timeLabel='';
+  if(SS.q4==='fixed'&&SS.dateStart&&SS.dateEnd){
+    timeLabel='C15 Time Interval ('+SS.dateStart+' → '+SS.dateEnd+')';
+  }
+  if(SS.q2.read||SS.q2.share){const acts2=[];if(SS.q2.read)acts2.push('A02 Read');if(SS.q2.share)acts2.push('A03 Distribute');const conParts=[q1c,geoLabel,timeLabel].filter(x=>x&&x!=='—');const conStr=conParts.length?conParts.join(' · '):'—';rows.push(`<tr><td><span class="badge bp">Permission</span></td><td style="font-family:'DM Mono',monospace;font-size:10px">${acts2.join(', ')}</td><td style="font-size:11px">${conStr}</td></tr>`);}
+  if(!SS.q2.modify) rows.push(`<tr><td><span class="badge bpr">Prohibition</span></td><td style="font-family:'DM Mono',monospace;font-size:10px">A04 Modify</td><td style="font-size:11px">—</td></tr>`);
+  if(SS.q2.attribution) rows.push(`<tr><td><span class="badge bo">Obligation (postDuty)</span></td><td style="font-family:'DM Mono',monospace;font-size:10px">A10 Attribute</td><td style="font-size:11px">C23 Attribution Required</td></tr>`);
+  if(SS.q2.sharealike) rows.push(`<tr><td><span class="badge bo">Obligation</span></td><td style="font-family:'DM Mono',monospace;font-size:10px">A03 Distribute</td><td style="font-size:11px">C24 Share-Alike</td></tr>`);
+  document.getElementById('s-rtbody').innerHTML=rows.join('');
+  // ── DUTIES SECTION ──
+  const dutyRows=[];
+  if(SS.q2.attribution) dutyRows.push({type:'postDuty',action:'A10 — Attribute',con:'C23 Attribution Required'});
+  if(SS.q2.sharealike)  dutyRows.push({type:'postDuty',action:'A03 — Distribute (share-alike)',con:'C24 Share-Alike'});
+  if(SS.q1==='managed') dutyRows.push({type:'preDuty', action:'A11 — Obtain Consent',con:'C07 Ethics Approval Required'});
+  const dsec=document.getElementById('s-duties-section');
+  const dlist=document.getElementById('s-duties-list');
+  if(dutyRows.length){
+    dsec.style.display='block';
+    dlist.innerHTML=dutyRows.map(d=>`
+      <div class="duty-row-review">
+        <span class="duty-type-badge ${d.type==='preDuty'?'duty-pre':'duty-post'}">${d.type}</span>
+        <span class="duty-action">${d.action}</span>
+        <span class="duty-con">${d.con}</span>
+      </div>`).join('');
+  } else { dsec.style.display='none'; }
+  // ── DUPLICATE CHECK ──
+  buildSJSON();
+  checkDuplicate('s');
+}
+function buildSJSON(){
+  const slug=SS.slug||document.getElementById('s-slug')?.value||'';
+  const clean=slug.trim().toLowerCase().replace(/[^a-z0-9-]/g,'-').replace(/-+/g,'-').replace(/^-|-$/g,'')||'draft-'+Math.random().toString(36).slice(2,8).toUpperCase();
+  const uid='https://openrel.eu/policy/'+clean;
+  document.getElementById('s-saved-uid').textContent=uid;
+  const cons=[];
+  if(SS.q1==='noncommercial') cons.push({leftOperand:'odrl:purpose',operator:'odrl:isA',rightOperand:'openrel:constraint.purpose:nonCommercial'});
+  if(SS.q1==='researchers') cons.push({leftOperand:'odrl:roleId',operator:'odrl:isA',rightOperand:'openrel:constraint.role:researcher'});
+  if(SS.q1==='managed') cons.push({leftOperand:'openrel:constraint.ethicsApproval:required',operator:'odrl:eq',rightOperand:true});
+  if(SS.q3==='restricted'){SS.geoInc.forEach(c=>cons.push({leftOperand:'odrl:spatial',operator:'odrl:eq',rightOperand:{'@id':c.gn}}));SS.geoExc.forEach(c=>cons.push({leftOperand:'odrl:spatial',operator:'odrl:neq',rightOperand:{'@id':c.gn}}));}
+  if(SS.q4==='fixed'&&SS.dateStart&&SS.dateEnd){cons.push({leftOperand:'odrl:dateTime',operator:'odrl:gteq',rightOperand:{'@value':SS.dateStart,'@type':'xsd:date'}});cons.push({leftOperand:'odrl:dateTime',operator:'odrl:lteq',rightOperand:{'@value':SS.dateEnd,'@type':'xsd:date'}});}
+  const conBlock=cons.length===0?null:cons.length===1?cons[0]:{'@type':'odrl:LogicalConstraint','odrl:and':cons};
+  const duty=SS.q2.attribution?{action:'odrl:attribute',constraint:{leftOperand:'openrel:constraint.attribution:required',operator:'odrl:eq',rightOperand:true}}:null;
+  const perms=[];
+  ['A02','A03','A04','A05'].filter(id=>{if(id==='A02')return true;if(id==='A03')return SS.q2.share;if(id==='A04')return SS.q2.modify;if(id==='A05')return true;}).forEach(id=>{const a=ACTIONS.find(x=>x.id===id);const p={action:a.iri};if(conBlock)p.constraint=conBlock;if(duty&&id==='A02')p.duty=duty;perms.push(p);});
+  const prohs=[];
+  if(!SS.q2.modify) prohs.push({action:'odrl:modify'});
+  const typeMap={public:'openrel:Licence',noncommercial:'openrel:Licence',researchers:'openrel:Access',managed:'openrel:Access'};
+  const policy={'@context':['https://www.w3.org/ns/odrl.jsonld',{openrel:'https://openrel.eu/vocab#'}],'@type':typeMap[SS.q1]||'openrel:Licence',uid,status:'draft',conflict:'odrl:prohibit',permission:perms,prohibition:prohs};
+  if(SS.meta&&SS.policyTitle) policy.title=SS.policyTitle;
+  if(SS.tplId) policy['openrel:templateRef']='https://openrel.eu/policy/template/'+TEMPLATES.find(t=>t.id===SS.tplId)?.slug;
+  document.getElementById('s-json').innerHTML=syntaxHL(JSON.stringify(policy,null,2));
+}
+
+// ── ADVANCED WIZARD ───────────────────────────────────────────────────────────
+let aCur=1;
+function aGoTo(n){
+  for(let i=1;i<=8;i++){const el=document.getElementById('aq'+i);if(el)el.classList.toggle('hidden',i!==n);}
+  aCur=n; updStepper('a',n);
+  if(n===3) renderAGrid('a-perm-grid','perm');
+  if(n===4){renderAGrid('a-proh-grid','proh');checkConf();}
+  if(n===5) renderAObli();
+  if(n===6) renderACons();
+  if(n===8) {
+    try { aBuildReview(); }
+    catch(err) {
+      console.error('aBuildReview error:', err);
+      // Show review card anyway so user can see something
+      document.getElementById('a-prose').textContent = 'Error building review: '+err.message+'. Please check console.';
+    }
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function selAQ1(el){document.querySelectorAll('#aq1 .ropt').forEach(o=>o.classList.remove('sel'));el.classList.add('sel');AS.policyType=el.dataset.v;document.getElementById('anext1').disabled=false;}
+function selAsset(el,v){document.querySelectorAll('.apill').forEach(p=>p.classList.remove('sel'));el.classList.add('sel');AS.meta.asset=v;}
+
+function renderAGrid(id,type){
+  const el=document.getElementById(id);
+  const arr=type==='perm'?AS.perms:AS.prohs;
+  el.innerHTML=ACTIONS.filter(a=>a.cat.includes(type)).map(a=>`
+    <div class="ai ${arr.includes(a.id)?'sel':''}" onclick="toggleAAction('${type}','${a.id}',this)">
+      <div class="acb"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5l2 2.5L8 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span style="font-size:12px;font-weight:500">${a.label}</span>
+      <span class="acode">${a.id}</span>
+    </div>`).join('');
+}
+function toggleAAction(type,id,el){const arr=type==='perm'?AS.perms:AS.prohs;const idx=arr.indexOf(id);if(idx>=0)arr.splice(idx,1);else arr.push(id);el.classList.toggle('sel');if(type==='proh')checkConf();}
+function checkConf(){const cf=AS.perms.filter(id=>AS.prohs.includes(id));const box=document.getElementById('a-conf-box');if(cf.length){document.getElementById('a-conf-msg').textContent=`Actions in both Permission and Prohibition: ${cf.map(id=>ACTIONS.find(a=>a.id===id)?.label).join(', ')}. Select a ConflictTerm.`;box.classList.add('show');}else box.classList.remove('show');}
+function selCT(el,v){document.querySelectorAll('.ct-b').forEach(b=>b.classList.remove('sel'));el.classList.add('sel');AS.conflictTerm=v;}
+
+function renderAObli(){
+  const el=document.getElementById('a-obli-list');
+  el.innerHTML=ACTIONS.filter(a=>a.cat.includes('obli')).map(a=>{
+    const sel=AS.oblis.hasOwnProperty(a.id);
+    const duty=AS.oblis[a.id]||a.dd||'postDuty';
+    return `<div style="margin-bottom:9px">
+      <div class="ai ${sel?'sel':''}" onclick="toggleAObli('${a.id}',this)" style="margin-bottom:${sel?'7px':'0'}">
+        <div class="acb"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5l2 2.5L8 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span style="font-size:12px;font-weight:500">${a.label}</span><span class="acode">${a.id}</span>
+      </div>
+      <div id="dr-${a.id}" style="padding-left:14px;${sel?'':'display:none'}">
+        <div style="font-size:10px;font-weight:700;color:var(--muted);margin-bottom:4px;letter-spacing:.4px;text-transform:uppercase">Duty type</div>
+        <div class="duty-tog">
+          <button class="duty-b ${duty==='preDuty'?'sel':''}" onclick="setADuty('${a.id}','preDuty',this)">preDuty</button>
+          <button class="duty-b ${duty==='postDuty'?'sel':''}" onclick="setADuty('${a.id}','postDuty',this)">postDuty</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+function toggleAObli(id,el){if(AS.oblis.hasOwnProperty(id)){delete AS.oblis[id];el.classList.remove('sel');document.getElementById('dr-'+id).style.display='none';}else{const a=ACTIONS.find(x=>x.id===id);AS.oblis[id]=a.dd||'postDuty';el.classList.add('sel');document.getElementById('dr-'+id).style.display='block';renderAObli();}}
+function setADuty(id,v,btn){AS.oblis[id]=v;const row=document.getElementById('dr-'+id);row.querySelectorAll('.duty-b').forEach(b=>b.classList.remove('sel'));btn.classList.add('sel');}
+
+function renderACons(){
+  const el=document.getElementById('a-con-cats');
+  el.innerHTML=CONSTRAINTS.map((cat,ci)=>`
+    <div class="cp">
+      <div class="cp-h" onclick="this.classList.toggle('open')">
+        <span class="cp-t">${cat.cat}</span>
+        <span class="cp-c ${cat.items.some(c=>AS.cons[c.id])?'has':''}" id="acc-${ci}">${cat.items.filter(c=>AS.cons[c.id]).length} selected</span>
+        <span class="cp-arr">▼</span>
+      </div>
+      <div class="cp-b">${cat.items.map(c=>renderACon(c)).join('')}</div>
+    </div>`).join('');
+  if(AS.cons['C13']) renderAGeoPickers();
+  updLogicHint();
+}
+
+function renderACon(c){
+  const sel=AS.cons.hasOwnProperty(c.id);
+  let paramHTML='';
+  if(c.param){
+    if(c.paramType==='geo'){
+      paramHTML=`<div class="cparam" id="acp-${c.id}"><div id="a-geo-pickers"></div></div>`;
+    } else if(c.paramType==='daterange'){
+      const v=AS.cons[c.id]||{};
+      paramHTML=`<div class="cparam" id="acp-${c.id}"><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><div><label>From</label><input type="date" value="${v.from||''}" onchange="AS.cons['${c.id}'].from=this.value"></div><div><label>To</label><input type="date" value="${v.to||''}" onchange="AS.cons['${c.id}'].to=this.value"></div></div></div>`;
+    } else {
+      const v=typeof AS.cons[c.id]==='string'?AS.cons[c.id]:'';
+      paramHTML=`<div class="cparam" id="acp-${c.id}"><label>${c.pname||'Value'}</label><input type="${c.paramType==='integer'?'number':'text'}" value="${v}" placeholder="${c.placeholder||''}" onchange="AS.cons['${c.id}']=this.value"></div>`;
+    }
+  }
+  return `<div class="ci ${sel?'sel':''}" id="aci-${c.id}" onclick="toggleACon('${c.id}',event)">
+    <div class="cicb"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5l2 2.5L8 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="ci-inf"><strong>${c.label}</strong><span>${c.iri}</span>${paramHTML}</div>
+    <span class="ci-code">${c.id}</span>
+  </div>`;
+}
+
+function toggleACon(id,e){
+  // Don't toggle if clicking inside the param panel (inputs, labels, etc.)
+  if(e.target.closest('.cparam')) return;
+  const c=CONSTRAINTS.flatMap(cat=>cat.items).find(x=>x.id===id);
+  const item=document.getElementById('aci-'+id);
+  if(AS.cons.hasOwnProperty(id)){
+    delete AS.cons[id];
+    item.classList.remove('sel');
+    // CSS .ci.sel .cparam{display:block} handles panel visibility
+  } else {
+    if(c.paramType==='daterange') AS.cons[id]={from:'',to:''};
+    else if(c.paramType==='geo') AS.cons[id]={inc:[],exc:[]};
+    else if(c.param) AS.cons[id]='';
+    else AS.cons[id]=true;
+    item.classList.add('sel');
+    if(c.paramType==='geo') renderAGeoPickers();
+  }
+  CONSTRAINTS.forEach((cat,ci)=>{const cnt=cat.items.filter(c=>AS.cons.hasOwnProperty(c.id)).length;const b=document.getElementById('acc-'+ci);if(b){b.textContent=cnt+' selected';b.classList.toggle('has',cnt>0);}});
+  updLogicHint();
+}
+function updLogicHint(){document.getElementById('a-logic-hint').classList.toggle('hidden',Object.keys(AS.cons).length<2);}
+
+function renderAGeoPickers(){
+  const cont=document.getElementById('a-geo-pickers'); if(!cont) return;
+  const d=AS.cons['C13']||{inc:[],exc:[]};
+  cont.innerHTML=`<div class="geo-grid"><div class="geo-p inc"><div class="geo-ph">✓ Include</div><input class="geo-s" type="text" placeholder="Search…" oninput="filterGeoA('inc',this.value)" id="ag-si"><div class="geo-l" id="ag-li"></div><div class="geo-tags" id="ag-ti"></div></div><div class="geo-p exc"><div class="geo-ph">✕ Exclude</div><input class="geo-s" type="text" placeholder="Search…" oninput="filterGeoA('exc',this.value)" id="ag-se"><div class="geo-l" id="ag-le"></div><div class="geo-tags" id="ag-te"></div></div></div>`;
+  renderGeoListA('inc','');renderGeoListA('exc','');renderGeoTagsA('inc');renderGeoTagsA('exc');
+}
+function renderGeoListA(t,f){const el=document.getElementById('ag-l'+t[0]);if(!el)return;const arr=t==='inc'?(AS.cons['C13']||{inc:[]}).inc:(AS.cons['C13']||{exc:[]}).exc;el.innerHTML=COUNTRIES.filter(c=>c.label.toLowerCase().includes(f.toLowerCase())).map(c=>`<div class="geo-i ${arr.find(x=>x.iso===c.iso)?'s'+t[0]:''}" onclick="event.stopPropagation();toggleGeoA('${t}','${c.iso}')">${c.flag} ${c.label}</div>`).join('');}
+function filterGeoA(t,v){renderGeoListA(t,v);}
+function toggleGeoA(t,iso){console.log('toggleGeoA',t,iso);if(!AS.cons['C13'])AS.cons['C13']={inc:[],exc:[]};const arr=t==='inc'?AS.cons['C13'].inc:AS.cons['C13'].exc;const c=COUNTRIES.find(x=>x.iso===iso);const idx=arr.findIndex(x=>x.iso===iso);if(idx>=0)arr.splice(idx,1);else arr.push(c);renderGeoListA(t,document.getElementById('ag-s'+t[0])?.value||'');renderGeoTagsA(t);}
+function renderGeoTagsA(t){const el=document.getElementById('ag-t'+t[0]);if(!el||!AS.cons['C13'])return;const arr=t==='inc'?AS.cons['C13'].inc:AS.cons['C13'].exc;el.innerHTML=arr.map(c=>`<span class="gtag ${t==='inc'?'it':'et'}" onclick="event.stopPropagation();toggleGeoA('${t}','${c.iso}')">${c.flag} ${c.label} ×</span>`).join('');}
+
+function toggleAssURI(){const show=document.getElementById('a-assignee').value==='specific';document.getElementById('a-ass-uri-f').classList.toggle('hidden',!show);}
+
+function aBuildReview(){
+  updStepper('a',8);
+  const pt=AS.policyType||'Licence';
+  const permsText=AS.perms.map(id=>ACTIONS.find(a=>a.id===id)?.label.toLowerCase()).filter(Boolean);
+  const prohsText=AS.prohs.map(id=>ACTIONS.find(a=>a.id===id)?.label.toLowerCase()).filter(Boolean);
+  const oblisText=Object.keys(AS.oblis).map(id=>ACTIONS.find(a=>a.id===id)?.label.toLowerCase()).filter(Boolean);
+  const conText=Object.keys(AS.cons).map(id=>{const c=CONSTRAINTS.flatMap(x=>x.items).find(x=>x.id===id);if(!c) return null;if(id==='C13'){const d=AS.cons[id];const inc=d.inc?.map(x=>x.label).join(', ');const exc=d.exc?.map(x=>x.label).join(', ');return [inc&&`accessible from ${inc}`,exc&&`excluding ${exc}`].filter(Boolean).join(', ');} if(id==='C15'){const d=AS.cons[id];return d?.from?`valid ${d.from}→${d.to}`:null;} if(c.param&&AS.cons.hasOwnProperty(id)&&AS.cons[id]!==true) return `${c.label} (${AS.cons[id]})`; return c.label;}).filter(Boolean);
+  let prose=`This ${AS.meta.asset||'resource'} is governed by an OpenREL ${pt} policy`;
+  if(AS.meta.issuer) prose+=` issued by ${AS.meta.issuer}`;
+  prose+='.';
+  if(permsText.length) prose+=` Permitted: ${permsText.join(', ')}.`;
+  if(prohsText.length) prose+=` Prohibited: ${prohsText.join(', ')}.`;
+  if(oblisText.length) prose+=` Obligations: ${oblisText.join(', ')}.`;
+  if(conText.length) prose+=` Conditions: ${conText.join('; ')}.`;
+  document.getElementById('a-prose').textContent=prose;
+  // rule table
+  const rows=[];
+  AS.perms.forEach(id=>{const a=ACTIONS.find(x=>x.id===id);rows.push(`<tr><td><span class="badge bp">Permission</span></td><td style="font-family:'DM Mono',monospace;font-size:10px">${a.id} ${a.label}</td><td style="font-size:11px">${conText.join(' · ')||'—'}</td></tr>`);});
+  AS.prohs.forEach(id=>{const a=ACTIONS.find(x=>x.id===id);rows.push(`<tr><td><span class="badge bpr">Prohibition</span></td><td style="font-family:'DM Mono',monospace;font-size:10px">${a.id} ${a.label}</td><td style="font-size:11px">—</td></tr>`);});
+  Object.keys(AS.oblis).forEach(id=>{const a=ACTIONS.find(x=>x.id===id);rows.push(`<tr><td><span class="badge bo">Obligation (${AS.oblis[id]})</span></td><td style="font-family:'DM Mono',monospace;font-size:10px">${a.id} ${a.label}</td><td style="font-size:11px">—</td></tr>`);});
+  // duties section
+  const dsec=document.getElementById('a-duties-section');
+  const dlist=document.getElementById('a-duties-list');
+  if(Object.keys(AS.oblis).length){
+    dsec.style.display='block';
+    dlist.innerHTML=Object.keys(AS.oblis).map(id=>{
+      const a=ACTIONS.find(x=>x.id===id);
+      const dt=AS.oblis[id];
+      // find constraint associated with this duty
+      const conLabel = id==='A10'&&AS.cons['C23']?'C23 Attribution Required':
+                       id==='A11'&&AS.cons['C03']?'C03 Consent (GDPR)':
+                       id==='A09'&&AS.cons['C21']?'C21 Logging Clearing House':
+                       id==='A08'&&AS.cons['C20']?'C20 Notification Endpoint':'—';
+      return `<div class="duty-row-review"><span class="duty-type-badge ${dt==='preDuty'?'duty-pre':'duty-post'}">${dt}</span><span class="duty-action">${a.id} ${a.label}</span><span class="duty-con">${conLabel}</span></div>`;
+    }).join('');
+  } else { dsec.style.display='none'; }
+  document.getElementById('a-rtbody').innerHTML=rows.join('');
+  // JSON + duplicate check
+  buildAJSON();
+  try { checkDuplicate('a'); } catch(err) { console.error('checkDuplicate error:', err); }
+}
+
+function buildAJSON(){
+  const slug=AS.meta.slug||AS.meta.title.toLowerCase().replace(/[^a-z0-9\s-]/g,'').trim().replace(/\s+/g,'-').slice(0,60)||'draft-'+Math.random().toString(36).slice(2,8).toUpperCase();
+  const uid='https://openrel.eu/policy/'+slug.replace(/-+/g,'-').replace(/^-|-$/g,'');
+  document.getElementById('a-saved-uid').textContent=uid;
+  const conList=[];
+  Object.keys(AS.cons).forEach(id=>{
+    const c=CONSTRAINTS.flatMap(cat=>cat.items).find(x=>x.id===id);if(!c) return;
+    if(id==='C13'){const d=AS.cons[id];(d.inc||[]).forEach(x=>conList.push({leftOperand:'odrl:spatial',operator:'odrl:eq',rightOperand:{'@id':x.gn}}));(d.exc||[]).forEach(x=>conList.push({leftOperand:'odrl:spatial',operator:'odrl:neq',rightOperand:{'@id':x.gn}}));}
+    else if(id==='C15'){const d=AS.cons[id];if(d?.from)conList.push({leftOperand:'odrl:dateTime',operator:'odrl:gteq',rightOperand:{'@value':d.from,'@type':'xsd:date'}});if(d?.to)conList.push({leftOperand:'odrl:dateTime',operator:'odrl:lteq',rightOperand:{'@value':d.to,'@type':'xsd:date'}});}
+    else if(c.param&&AS.cons.hasOwnProperty(id)&&AS.cons[id]!==true) conList.push({leftOperand:c.iri,operator:'odrl:eq',rightOperand:AS.cons[id]});
+    else if(AS.cons.hasOwnProperty(id)) conList.push({leftOperand:c.iri,operator:'odrl:eq',rightOperand:true});
+  });
+  const constraint=conList.length===0?null:conList.length===1?conList[0]:{'@type':'odrl:LogicalConstraint','odrl:and':conList};
+  const duties={};
+  Object.keys(AS.oblis).forEach(id=>{const a=ACTIONS.find(x=>x.id===id);duties[AS.oblis[id]]=duties[AS.oblis[id]]||[];duties[AS.oblis[id]].push({action:a.iri});});
+  const mkP=id=>{const a=ACTIONS.find(x=>x.id===id);const p={action:a.iri};if(constraint)p.constraint=constraint;if(duties.preDuty?.length)p.preDuty=duties.preDuty;if(duties.postDuty?.length)p.postDuty=duties.postDuty;return p;};
+  const policy={'@context':['https://www.w3.org/ns/odrl.jsonld',{openrel:'https://openrel.eu/vocab#'}],'@type':'openrel:'+AS.policyType,uid};
+  if(AS.meta.title) policy.title=AS.meta.title;
+  policy.status=AS.meta.status||'draft';
+  policy.conflict=AS.conflictTerm;
+  policy.permission=AS.perms.map(mkP);
+  policy.prohibition=AS.prohs.map(id=>({action:ACTIONS.find(a=>a.id===id).iri}));
+  if(AS.agents.assigner) policy.assigner={uid:AS.agents.assigner};
+  policy.assignee={uid:{public:'Public',researcher:'openrel:Researcher',institution:'openrel:ResearchInstitution',specific:AS.agents.assigneeURI}[AS.agents.assigneeType]||'Public'};
+  if(AS.tplId) policy['openrel:templateRef']='https://openrel.eu/policy/template/'+TEMPLATES.find(t=>t.id===AS.tplId)?.slug;
+  document.getElementById('a-json').innerHTML=syntaxHL(JSON.stringify(policy,null,2));
+}
+
+// ── SHARED REVIEW HELPERS ─────────────────────────────────────────────────────
+function showRTab(pfx,name){
+  ['sum','rules','json'].forEach(t=>{document.getElementById(pfx+'-tab-'+t).classList.toggle('hidden',t!==name);});
+  document.querySelectorAll(`#${pfx==='s'?'sq5':'aq8'} .rtab`).forEach((b,i)=>{b.classList.toggle('active',['sum','rules','json'][i]===name);});
+}
+function cpyJ(pfx){navigator.clipboard.writeText(document.getElementById(pfx+'-json').textContent).then(()=>{const b=document.querySelector(`#${pfx==='s'?'sq5':'aq8'} .cpybtn`);b.textContent='Copied!';setTimeout(()=>b.textContent='Copy',1500);});}
+function dlJ(pfx){const txt=document.getElementById(pfx+'-json').textContent;const slug=(pfx==='s'?SS.slug:AS.slug)||'policy';const blob=new Blob([txt],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=slug+'.json';a.click();URL.revokeObjectURL(a.href);}
+function doSave(pfx){
+  // If duplicate found and unresolved, warn but allow
+  document.getElementById(pfx+'-saved').classList.add('show');
+  document.getElementById(pfx+'-saved').scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+// ── SLUG HELPERS ──────────────────────────────────────────────────────────────
+function autoSlug(pfx){
+  const titleEl=document.getElementById(pfx==='s'?'s-title':'a-title');
+  const slugEl=document.getElementById(pfx==='s'?'s-slug':'a-slug');
+  if(!titleEl||!slugEl) return;
+  const title=titleEl.value;
+  if(pfx==='s') SS.policyTitle=title;
+  else AS.meta.title=title;
+  const slug=title.toLowerCase().replace(/[^a-z0-9\s-]/g,'').trim().replace(/\s+/g,'-').replace(/-+/g,'-').slice(0,60);
+  slugEl.value=slug;
+  if(pfx==='s') SS.slug=slug;
+  else AS.meta.slug=slug;
+  updSlugPrev(pfx);
+}
+function updSlugPrev(pfx){const slug=(pfx==='s'?SS.slug:AS.meta.slug)||'[slug]';document.getElementById(pfx+'-slug-prev').textContent='https://openrel.eu/policy/'+slug;}
+
+// ── RESET ─────────────────────────────────────────────────────────────────────
+function resetAll(){
+  // Simple
+  SS.q1=null;SS.slug='';SS.policyTitle='';Object.assign(SS.q2,{read:true,share:false,modify:false,commercial:false,attribution:false,sharealike:false});SS.q3='worldwide';SS.geoInc=[];SS.geoExc=[];SS.q4='unlimited';SS.dateStart='';SS.dateEnd='';SS.tplId=null;
+  ['s-title','s-slug'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('s-slug-prev').textContent='https://openrel.eu/policy/[slug]';
+  document.getElementById('s-tpl-banner').classList.add('hidden');
+  document.querySelectorAll('#sq1-opts .ropt').forEach(o=>o.classList.remove('sel'));
+  document.getElementById('snext1').disabled=true;
+  document.querySelectorAll('#sq2-perms .ai:not(.locked),#sq2-obli .ai').forEach(el=>el.classList.remove('sel'));
+  document.querySelectorAll('#sq3-opts .ropt').forEach(o=>{o.classList.toggle('sel',o.dataset.v==='worldwide');});
+  document.getElementById('s-geo-picker').classList.add('hidden');
+  document.querySelectorAll('#sq4-opts .ropt').forEach(o=>{o.classList.toggle('sel',o.dataset.v==='unlimited');});
+  document.getElementById('s-date-picker').classList.add('hidden');
+  document.getElementById('s-saved').classList.remove('show');
+  // Advanced
+  AS.policyType=null;AS.meta={title:'',slug:'',desc:'',issuer:'',status:'draft',asset:'',pid:''};AS.perms=[];AS.prohs=[];AS.oblis={};AS.cons={};AS.conflictTerm='odrl:prohibit';AS.agents={assigner:'',assigneeType:'public',assigneeURI:''};AS.tplId=null;
+  ['a-title','a-slug','a-desc','a-issuer','a-pid','a-assigner','a-ass-uri'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('a-slug-prev').textContent='https://openrel.eu/policy/[slug]';
+  document.getElementById('a-tpl-banner').classList.add('hidden');
+  document.querySelectorAll('#aq1 .ropt').forEach(o=>o.classList.remove('sel'));
+  document.getElementById('anext1').disabled=true;
+  document.querySelectorAll('.apill').forEach(p=>p.classList.remove('sel'));
+  document.getElementById('a-saved').classList.remove('show');
+  // Hide aq8 explicitly (Review panel)
+  const aq8=document.getElementById('aq8');if(aq8) aq8.classList.add('hidden');
+  // Reset Advanced grids so pre-selected checkboxes are cleared visually
+  renderAGrid('a-perm-grid','perm');
+  renderAGrid('a-proh-grid','proh');
+  renderAObli();
+  renderACons();
+  // Reset duplicate banners
+  ['s-dup-banner','a-dup-banner'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el){ el.className='dup-banner';
+      ['s-dup-icon','a-dup-icon','s-dup-title','a-dup-title','s-dup-msg','a-dup-msg'].forEach(x=>{
+        const xe=document.getElementById(x); if(xe) xe.textContent='';
+      });
+      ['s-dup-uid','a-dup-uid','s-dup-btns','a-dup-btns'].forEach(x=>{
+        const xe=document.getElementById(x); if(xe) xe.innerHTML='';
+      });
+    }
+  });
+  // Reset filters and search
+  BF.type='all'; BF.topic='all';
+  document.querySelectorAll('.filters-inner .fb').forEach(b=>b.classList.remove('active'));
+  const allBtn=document.querySelector('.filters-inner .fb[data-f="all"]');
+  if(allBtn) allBtn.classList.add('active');
+  const searchEl=document.getElementById('b-search');
+  if(searchEl) searchEl.value='';
+  document.getElementById('fsort').value='id';
+  applyFilters();
+  // Reset step positions
+  for(let i=1;i<=5;i++){const el=document.getElementById('sq'+i);if(el)el.classList.toggle('hidden',i!==1);}
+  for(let i=1;i<=8;i++){const el=document.getElementById('aq'+i);if(el)el.classList.toggle('hidden',i!==1);}
+  updStepper('s',1);
+  updStepper('a',1);
+  showView('browser');
+}
+
+// ── SYNTAX HIGHLIGHT ──────────────────────────────────────────────────────────
+function syntaxHL(json){return json.replace(/("(?:@context|@type|uid|title|status|conflict|permission|prohibition|obligation|action|constraint|preDuty|postDuty|assigner|assignee|openrel:[a-zA-Z:.]+|odrl:[a-zA-Z:]+)")\s*:/g,'<span class="jk">$1</span>:').replace(/:\s*("https?:[^"]*")/g,': <span class="ju">$1</span>').replace(/:\s*("(?!https?)[^"]*")/g,': <span class="js">$1</span>').replace(/:\s*(true|false|null)/g,': <span class="jb">$1</span>').replace(/:\s*(\d+)/g,': <span class="jv">$1</span>');}
+
+// ── FINGERPRINT & DUPLICATE CHECK ────────────────────────────────────────────
+// Simulated KB index — in production this is fetched from openrel/lookup/policy_index.json
+// ── FINGERPRINT ENGINE ───────────────────────────────────────────────────────
+// Single canonical form used for BOTH index and live wizard.
+// Rule: only include what the wizard explicitly sets.
+// commercial=true → no C02 constraint. commercial=false → C02 only if noncommercial q1.
+// C02 is NEVER added just because commercial checkbox is unchecked for public users.
+
+function fp(policy) {
+  const str = JSON.stringify({
+    t:  policy.type||'',
+    p:  [...(policy.perms||[])].sort(),
+    pr: [...(policy.prohs||[])].sort(),
+    ob: Object.keys(policy.oblis||{}).sort().map(k=>k+':'+policy.oblis[k]),
+    co: Object.keys(policy.cons||{}).sort().map(k=>{
+      const v=policy.cons[k];
+      if(v===true)  return k;
+      if(typeof v==='string'&&v!=='') return k+'='+v;
+      if(v&&typeof v==='object'){
+        if(Array.isArray(v.inc)||Array.isArray(v.exc)){
+          const inc=(v.inc||[]).map(x=>x.iso||x).sort().join(',');
+          const exc=(v.exc||[]).map(x=>x.iso||x).sort().join(',');
+          return k+'='+inc+'|'+exc;
+        }
+        if(v.from!==undefined) return k+'='+v.from+'>'+v.to;
+        return k+'='+JSON.stringify(v);
+      }
+      return k;
+    })
+  });
+  let h=5381;
+  for(let i=0;i<str.length;i++) h=((h<<5)+h)^str.charCodeAt(i);
+  return (h>>>0).toString(16).padStart(8,'0');
+}
+
+// Maps Simple-mode wizard selections to canonical policy structure.
+// Used for BOTH the live wizard and the prebuilt index — same function, same output.
+function simpleToCanonical(q1, q2, q3, geoInc, geoExc, q4, dateStart, dateEnd) {
+  const type = {public:'Licence',noncommercial:'Licence',researchers:'Access',managed:'Access'}[q1]||'Licence';
+  // permissions — always read+reproduce; add others when selected
+  const perms = ['A02','A05'];
+  if(q2.share)      perms.push('A03');
+  if(q2.modify)     perms.push('A04');
+  if(q2.commercial) perms.push('A01');
+  // prohibitions — only what is explicitly prohibited
+  const prohs = [];
+  if(!q2.modify) prohs.push('A04');
+  if(!q2.share)  prohs.push('A03');
+  // obligations
+  const oblis = {};
+  if(q2.attribution) oblis['A10'] = 'postDuty';
+  if(q2.sharealike)  oblis['A03'] = 'postDuty';
+  if(q1==='managed') oblis['A11'] = 'preDuty';
+  // constraints — only add what is explicitly active
+  const cons = {};
+  if(q1==='noncommercial')  cons['C02'] = true;   // non-commercial q1 → C02
+  if(q1==='researchers')  { cons['C04']=true; cons['C05']=true; cons['C01']=true; }
+  if(q1==='managed')        cons['C07'] = true;
+  if(q2.attribution)        cons['C23'] = true;
+  if(q2.sharealike)         cons['C24'] = true;
+  if(q3==='restricted' && (geoInc.length||geoExc.length))
+    cons['C13'] = {inc:geoInc, exc:geoExc};
+  if(q4==='fixed' && dateStart && dateEnd)
+    cons['C15'] = {from:dateStart, to:dateEnd};
+  return {type, perms, prohs, oblis, cons};
+}
+
+// ── POLICY INDEX — all 17 templates, grouped by fingerprint ──────────────────
+// Many templates share the same Simple-mode fingerprint because Simple mode
+// has fewer dimensions than Advanced. When a match is found, ALL matching
+// templates are shown to the steward so they can pick the right one.
+// Templates with parametric constraints (geo, time, connectors) will only
+// match once those params are filled in — base state always shows "new policy".
+
+const COLLISION_MAP = {
+  'fb781475': [{pid:'p001',slug:'open-access-no-restrictions',title:'Open Access — No Restrictions'}],
+  '2f2f60e9': [
+    {pid:'p002',slug:'open-access-attribution',title:'Open Access with Attribution'},
+    {pid:'p005',slug:'no-derivatives-read-only',title:'No Derivatives — Read Only'},
+    {pid:'p015',slug:'eosc-open-research-data',title:'EOSC Open Research Data Policy'},
+  ],
+  'ab46e950': [{pid:'p003',slug:'open-access-attribution-sharealike',title:'Open Access — Attribution + Share-Alike'}],
+  '6cc5ef24': [
+    {pid:'p004',slug:'non-commercial-attribution',title:'Non-Commercial Use Only'},
+    {pid:'p012',slug:'ai-training-non-commercial',title:'AI Training — Non-Commercial Only'},
+    {pid:'p013',slug:'text-data-mining-research',title:'Text and Data Mining — Research Only'},
+  ],
+  '49f7d349': [{pid:'p006',slug:'researcher-access-only',title:'Researcher Access Only'}],
+  'd83e6995': [
+    {pid:'p007',slug:'time-limited-access-window',title:'Time-Limited Access Window'},
+    {pid:'p009',slug:'access-count-limit',title:'Access Count Limit'},
+  ],
+  '6f5b22df': [{pid:'p008',slug:'geographic-eu-only',title:'Geographic Restriction — EU Only'}],
+  'a484a702': [{pid:'p010',slug:'managed-access-ethics',title:'Managed Access — Ethics Approval Required'}],
+  'e035b39e': [
+    {pid:'p011',slug:'secure-connector-trust-plus',title:'Secure Connector — IDS TRUST+'},
+    {pid:'p014',slug:'data-processing-anonymization',title:'Data Processing with Anonymization'},
+    {pid:'p016',slug:'sensitive-data-full-governance',title:'Sensitive Data — Full Governance'},
+    {pid:'p017',slug:'federated-connector-access',title:'Federated Access — Authorised Connector'},
+  ],
+};
+
+// Flat index for lookup
+const POLICY_INDEX = Object.entries(COLLISION_MAP).map(([hash, entries]) => ({
+  fingerprint: hash,
+  matches: entries,
+  // primary = first entry (shown as title when single match)
+  uid: 'https://openrel.eu/policy/template/' + entries[0].slug,
+  title: entries[0].title,
+}));
+
+// Advanced mode index — one entry per template, fingerprinted from template preload state
+const ADV_INDEX = [
+  {pid:'p001',slug:'open-access-no-restrictions',title:'Open Access — No Restrictions',fingerprint:'d2f70b59'},
+  {pid:'p002',slug:'open-access-attribution',title:'Open Access with Attribution',fingerprint:'2f2f60e9'},
+  {pid:'p003',slug:'open-access-attribution-sharealike',title:'Open Access — Attribution + Share-Alike',fingerprint:'79aa5b20'},
+  {pid:'p004',slug:'non-commercial-attribution',title:'Non-Commercial Use Only',fingerprint:'31176c8d'},
+  {pid:'p005',slug:'no-derivatives-read-only',title:'No Derivatives — Read Only',fingerprint:'2f2f60e9'},
+  {pid:'p006',slug:'researcher-access-only',title:'Researcher Access Only',fingerprint:'a6d7b2ed'},
+  {pid:'p007',slug:'time-limited-access-window',title:'Time-Limited Access Window',fingerprint:'d3cff6b6'},
+  {pid:'p008',slug:'geographic-eu-only',title:'Geographic Restriction — EU Only',fingerprint:'e9b46798'},
+  {pid:'p009',slug:'access-count-limit',title:'Access Count Limit',fingerprint:'e9b834bd'},
+  {pid:'p010',slug:'managed-access-ethics',title:'Managed Access — Ethics Approval Required',fingerprint:'aa4ec52a'},
+  {pid:'p011',slug:'secure-connector-trust-plus',title:'Secure Connector — IDS TRUST+',fingerprint:'eaef92aa'},
+  {pid:'p012',slug:'ai-training-non-commercial',title:'AI Training — Non-Commercial Only',fingerprint:'c9d346cd'},
+  {pid:'p013',slug:'text-data-mining-research',title:'Text and Data Mining — Research Only',fingerprint:'666452ef'},
+  {pid:'p014',slug:'data-processing-anonymization',title:'Data Processing with Anonymization',fingerprint:'89be54f3'},
+  {pid:'p015',slug:'eosc-open-research-data',title:'EOSC Open Research Data Policy',fingerprint:'f0c045a0'},
+  {pid:'p016',slug:'sensitive-data-full-governance',title:'Sensitive Data — Full Governance',fingerprint:'ab87350a'},
+  {pid:'p017',slug:'federated-connector-access',title:'Federated Access — Authorised Connector',fingerprint:'78f45a8d'},
+];
+// p002 and p005 share fingerprint (structurally identical in Advanced too without ND constraint)
+
+function getPolicyFingerprint(pfx) {
+  if(pfx==='s') return fp(simpleToCanonical(SS.q1, SS.q2, SS.q3, SS.geoInc, SS.geoExc, SS.q4, SS.dateStart, SS.dateEnd));
+  return fp({type:AS.policyType||'',perms:AS.perms,prohs:AS.prohs,oblis:AS.oblis,cons:AS.cons});
+}
+
+function buildAdvMatch(hash) {
+  const hits = ADV_INDEX.filter(e=>e.fingerprint===hash);
+  if(!hits.length) return null;
+  return {
+    fingerprint: hash,
+    matches: hits,
+    uid: 'https://openrel.eu/policy/template/'+hits[0].slug,
+    title: hits[0].title,
+  };
+}
+
+function checkDuplicate(pfx) {
+  const banner = document.getElementById(pfx+'-dup-banner');
+  banner.className='dup-banner checking show';
+  document.getElementById(pfx+'-dup-icon').textContent='🔍';
+  document.getElementById(pfx+'-dup-title').textContent='Checking Knowledge Base for duplicates…';
+  document.getElementById(pfx+'-dup-msg').textContent='';
+  document.getElementById(pfx+'-dup-uid').textContent='';
+  document.getElementById(pfx+'-dup-btns').innerHTML='';
+
+  setTimeout(()=>{
+    const hash = getPolicyFingerprint(pfx);
+    // Use correct index per mode
+    const searchIndex = pfx==='a' ? buildAdvMatch(hash) : POLICY_INDEX.find(p=>p.fingerprint===hash);
+    const match = searchIndex;
+
+    if(match) {
+      const matches = match.matches;
+      const many = matches.length > 1;
+      banner.className='dup-banner warn show';
+      document.getElementById(pfx+'-dup-icon').textContent='⚠️';
+      document.getElementById(pfx+'-dup-title').textContent=
+        many ? matches.length+' similar policies already exist in the Knowledge Base'
+              : 'Identical policy already exists in the Knowledge Base';
+      document.getElementById(pfx+'-dup-msg').textContent=
+        many ? 'These policies share the same rules in Simple mode. In Advanced mode their constraints differ. Review the entries below.'
+              : 'A policy with exactly the same rules and constraints was found. Saving a duplicate reduces KB quality.';
+
+      // Entries list
+      const entriesHTML = '<div class="dup-entries">'+
+        matches.map(function(m){
+          return '<div class="dup-entry">'+
+            '<span class="dup-entry-pid">'+m.pid+'</span>'+
+            '<span class="dup-entry-uri">https://openrel.eu/policy/template/'+m.slug+'</span>'+
+            '<span class="dup-entry-name">'+m.title+'</span>'+
+            '</div>';
+        }).join('')+
+        '</div>';
+      document.getElementById(pfx+'-dup-uid').innerHTML = entriesHTML;
+
+      // Buttons
+      if(!many) {
+        const m = matches[0];
+        const safeTitle = m.title.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+        const safeSlug  = m.slug;
+        const safeUid   = 'https://openrel.eu/policy/template/'+safeSlug;
+        document.getElementById(pfx+'-dup-btns').innerHTML=
+          '<button class="dup-btn dup-btn-use" onclick="useExisting(\'' +pfx+ '\',\'' +safeUid+ '\',\'' +safeTitle+ '\')">Use existing policy</button>'+
+          '<button class="dup-btn dup-btn-var" onclick="saveAsVariant(\'' +pfx+ '\',\'' +safeUid+ '\')">Save as variant</button>'+
+          '<button class="dup-btn dup-btn-cancel" onclick="dismissDup(\'' +pfx+ '\')">Dismiss</button>';
+      } else {
+        const btnLabel = '<div class="dup-btns-label">Select which one to use as your base:</div>';
+        const matchBtns = matches.map(function(m){
+          const safeTitle = m.title.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+          const safeUid   = 'https://openrel.eu/policy/template/'+m.slug;
+          return '<button class="dup-btn dup-btn-use" onclick="useExisting(\'' +pfx+ '\',\'' +safeUid+ '\',\'' +safeTitle+ '\')">'+
+            '<span style="opacity:.65;font-size:9px;margin-right:5px">'+m.pid+'</span>'+m.title+
+            '</button>';
+        }).join('');
+        const safeMainUid = match.uid;
+        document.getElementById(pfx+'-dup-btns').innerHTML=
+          btnLabel + matchBtns +
+          '<button class="dup-btn dup-btn-var" onclick="saveAsVariant(\'' +pfx+ '\',\'' +safeMainUid+ '\')">Save as new variant</button>'+
+          '<button class="dup-btn dup-btn-cancel" onclick="dismissDup(\'' +pfx+ '\')">Dismiss</button>';
+      }
+    } else {
+      banner.className='dup-banner ok show';
+      document.getElementById(pfx+'-dup-icon').textContent='✓';
+      document.getElementById(pfx+'-dup-title').textContent='No duplicates found — this is a new policy';
+      document.getElementById(pfx+'-dup-msg').textContent='The rules and constraints of this policy do not match any existing entry in the Knowledge Base.';
+      document.getElementById(pfx+'-dup-uid').innerHTML='<div class="dup-fp">Fingerprint: '+hash+'</div>';
+      document.getElementById(pfx+'-dup-btns').innerHTML='';
+      // Banner stays visible — steward can dismiss manually if needed
+    }
+  }, 800);
+}
+
+function useExisting(pfx, uid, title) {
+  const banner=document.getElementById(pfx+'-dup-banner');
+  banner.className='dup-banner ok show';
+  document.getElementById(pfx+'-dup-icon').textContent='✓';
+  document.getElementById(pfx+'-dup-title').textContent='Using existing policy: '+title;
+  document.getElementById(pfx+'-dup-msg').textContent='The existing policy UID has been copied. No new entry will be saved.';
+  document.getElementById(pfx+'-dup-uid').innerHTML='<div class="dup-fp">'+uid+'</div>';
+  document.getElementById(pfx+'-dup-btns').innerHTML='';
+  navigator.clipboard?.writeText(uid);
+}
+
+function saveAsVariant(pfx, existingUid) {
+  const banner=document.getElementById(pfx+'-dup-banner');
+  banner.className='dup-banner ok show';
+  document.getElementById(pfx+'-dup-icon').textContent='📋';
+  document.getElementById(pfx+'-dup-title').textContent='Saving as variant';
+  document.getElementById(pfx+'-dup-msg').textContent='This policy will be saved with an openrel:variantOf reference to the existing entry.';
+  document.getElementById(pfx+'-dup-uid').textContent='openrel:variantOf → '+existingUid;
+  document.getElementById(pfx+'-dup-btns').innerHTML='';
+}
+
+function dismissDup(pfx) {
+  document.getElementById(pfx+'-dup-banner').classList.remove('show');
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────────────
+window.addEventListener('DOMContentLoaded',()=>{
+  renderGrid(TEMPLATES);
+  renderAGrid('a-perm-grid','perm');
+  renderAGrid('a-proh-grid','proh');
+  const today=new Date().toISOString().split('T')[0];
+  ['s-date-start','a-date-start'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=today;});
+});
+</script>
+</body>
+</html>
