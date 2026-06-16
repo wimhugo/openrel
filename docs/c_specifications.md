@@ -154,6 +154,9 @@ Step data is serialised to `localStorage` under `wf_{instanceId}_{stepId}`. On S
 
 ### 5.1 Policy Data Structure
 
+Policies follow an ODRL-compatible structure, extended by OpenREL to accommodate additional concerns (privacy, ethics, data subject rights) not strictly covered by ODRL's creator-rights focus. Actions and constraints have been expanded beyond native ODRL definitions to address these broader licensing and policy requirements.
+
+
 | Field | Type | Description |
 | :-- | :-- | :-- |
 | `id` | string | Unique policy identifier (CURIE or URI) |
