@@ -9,6 +9,7 @@
 | :---- | :---- | :---- | :---: |
 | 2026-06-16 | W Hugo | Initial reverse-engineered documentation from codebase | 0.1 |
 | 2026-06-16 | W Hugo | Added Annex D: System Architecture (C1 + C2) | 0.3 |
+| 2026-06-16 | W Hugo | Added Annex E: Policy Wizard UI Specification | 0.4 |
 
 | Licence | [CC 4.0 BY](https://creativecommons.org/licenses/by/4.0/deed.en) |
 | :---- | :---- |
@@ -47,3 +48,13 @@ The platform integrates with GitHub as its primary data backbone: policies, voca
 Covers the C4 model architecture of the OpenREL platform:
 - **C1 — System Context:** OpenREL as a single unit; key external actors (Users, Administrators) and systems (GitHub, ORCID, External Vocabularies).
 - **C2 — Container Diagram:** Decomposition into KB Manager, KB User, Auth Service, App Database, and Backend Functions; data flows between containers and external systems.
+
+### E — Policy Wizard UI Specification
+[docs/e_ui_wizard.md](./e_ui_wizard.md)
+
+UI design and behavioural specification derived from the mock-up at `data/input/v0.4/OpenREL_Wizard_mock.html`:
+- **Design System:** Colour tokens, typography (DM Serif Display / DM Sans / DM Mono), and layout constants from the mock-up.
+- **Wizard Steps:** Detailed specification of all 6 steps — User Context, Resource Identification, Checklist Evaluation, Intended Use, Policy Composition, Review & Submit.
+- **UI Components:** Status badges, step progress sidebar, policy cards, and form field patterns.
+- **Integration Mapping:** Cross-reference of mock-up steps to existing React components in `KBWorkflow`.
+- **Open Questions:** 6 integration decisions requiring confirmation before implementation begins.
