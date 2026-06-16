@@ -14,7 +14,7 @@
 The following forces shaped the overall design of the OpenREL platform:
 
 ### 1.1 Open Standards Alignment
-OpenREL is designed around ODRL (Open Digital Rights Language) as the canonical policy model. All policies, actions, and constraints follow ODRL vocabulary and structure. This allows interoperability with other rights management systems and ensures policies are machine-readable.
+OpenREL is designed around ODRL as the foundational policy model, but intentionally extends it. While ODRL focuses on creator (IP) rights, OpenREL incorporates additional concerns—such as the rights of data subjects, privacy legislation, and ethical considerations—that ODRL cannot capture in its native form. By extending actions and constraints, OpenREL ensures that these broader governance requirements remain machine-readable and interoperable.
 
 ### 1.2 GitHub as the Single Source of Truth
 Rather than a proprietary database for policy content, OpenREL uses a GitHub repository as its data backbone. JSON files in a configurable folder are the authoritative source for policies, actions, constraints, scenarios, agents, and vocabulary terms. This provides:
