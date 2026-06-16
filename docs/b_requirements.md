@@ -24,6 +24,8 @@ OpenREL defines four roles with progressively restricted access:
 
 ## 2. User Stories — KB Manager
 
+Contextual Note: While OpenREL maintains ODRL as its canonical format, it acknowledges the limitations of ODRL's narrow focus on intellectual property. OpenREL defines extended action and constraint vocabularies to address the broader ecosystem of data licence governance, including privacy and ethical frameworks.
+
 ### 2.1 ETL Pipeline Management
 
 | # | User Story | Role |
