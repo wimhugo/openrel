@@ -9,7 +9,8 @@
 | :---- | :---- | :---- | :---: |
 | 2026-06-16 | W Hugo | Initial reverse-engineered documentation from codebase | 0.1 |
 | 2026-06-16 | W Hugo | Added Annex D: System Architecture (C1 + C2) | 0.3 |
-| 2026-06-16 | W Hugo | Added Annex E: Policy Wizard UI Specification | 0.4 |
+| 2026-06-16 | W Hugo | Added Annex E: Policy Wizard UI Specification (v0.1) | 0.4 |
+| 2026-06-16 | W Hugo | Rewrote Annex E based on full mock-up source analysis | 0.5 |
 
 | Licence | [CC 4.0 BY](https://creativecommons.org/licenses/by/4.0/deed.en) |
 | :---- | :---- |
@@ -20,7 +21,7 @@
 
 ## Overview
 
-OpenREL is a dual-mode web application for managing, searching, composing, and reasoning about data licensing policies. It extends the ODRL (Open Digital Rights Language) standard to capture concerns such as data subject rights, privacy legislation, and ethical considerations that fall outside of ODRL's traditional focus on creator (IP) rights.
+OpenREL is a dual-mode web application for managing, searching, composing, and reasoning about data licensing policies. It extends the ODRL (Open Digital Rights Language) standard to capture concerns such as data subject rights, privacy legislation, and ethical considerations that fall outside of ODRL’s traditional focus on creator (IP) rights.
 
 The platform is structured as two tightly integrated containers:
 
@@ -52,9 +53,10 @@ Covers the C4 model architecture of the OpenREL platform:
 ### E — Policy Wizard UI Specification
 [docs/e_ui_wizard.md](./e_ui_wizard.md)
 
-UI design and behavioural specification derived from the mock-up at `data/input/v0.4/OpenREL_Wizard_mock.html`:
-- **Design System:** Colour tokens, typography (DM Serif Display / DM Sans / DM Mono), and layout constants from the mock-up.
-- **Wizard Steps:** Detailed specification of all 6 steps — User Context, Resource Identification, Checklist Evaluation, Intended Use, Policy Composition, Review & Submit.
-- **UI Components:** Status badges, step progress sidebar, policy cards, and form field patterns.
-- **Integration Mapping:** Cross-reference of mock-up steps to existing React components in `KBWorkflow`.
-- **Open Questions:** 6 integration decisions requiring confirmation before implementation begins.
+Faithful UI specification derived from a full analysis of all HTML, CSS, and JavaScript in `data/input/v0.4/OpenREL_Wizard_mock.html`:
+- **Three-view architecture:** Template Browser, Simple Wizard, Advanced Wizard — switched via `showView(v)`.
+- **Simple Wizard:** 4-question flow — **Who** (access audience), **What** (permitted actions), **Where** (geographic restriction), **When** (time limit) — mapped to a canonical policy via `simpleToCanonical()`.
+- **Advanced Wizard:** Full ODRL editor with 8 named sections: Policy Type, Metadata, Permissions, Prohibitions, Obligations, Constraints, Agents, Conflict Term. Live preview panel.
+- **Constraint Catalogue:** 25 constraints (C01–C25) across 7 categories with IRIs and parameter types.
+- **Action Catalogue:** 18 actions (A01–A18) with ODRL/OpenREL IRIs.
+- **JavaScript State Model:** `SS` and `AS` state objects, `fp()` fingerprint function, template load/reverse-map logic.
