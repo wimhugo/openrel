@@ -7,7 +7,8 @@
 
 | Date | Authors | Description | Version |
 | :---- | :---- | :---- | :---: |
-| 2026-06-16 | W Hugo | Initial reverse-engineered documentation from codebase | 0.2 |
+| 2026-06-16 | W Hugo | Initial reverse-engineered documentation from codebase | 0.1 |
+| 2026-06-16 | W Hugo | Added Annex D: System Architecture (C1 + C2) | 0.3 |
 
 | Licence | [CC 4.0 BY](https://creativecommons.org/licenses/by/4.0/deed.en) |
 | :---- | :---- |
@@ -39,7 +40,10 @@ The platform integrates with GitHub as its primary data backbone: policies, voca
 
 ### C — Specifications
 [docs/c_specifications.md](./c_specifications.md)
-5. Policy Composition Specification
-6. Faceted Search Specification
-7. Provenance Specification
-8. Backend Functions Reference
+
+### D — System Architecture
+[docs/d_architecture.md](./d_architecture.md)
+
+Covers the C4 model architecture of the OpenREL platform:
+- **C1 — System Context:** OpenREL as a single unit; key external actors (Users, Administrators) and systems (GitHub, ORCID, External Vocabularies).
+- **C2 — Container Diagram:** Decomposition into KB Manager, KB User, Auth Service, App Database, and Backend Functions; data flows between containers and external systems.
