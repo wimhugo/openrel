@@ -75,7 +75,7 @@ odrl:action
 # Foundational Actions
 # These Actions are root concepts in OpenREL
 # They include two types 
-#	(1) Defined by OpenREL and as a result, an extension of other vocabularies such as ODRL
+#	(1) Defined by OpenREL and as a result, creating new concpets not present in other vocabularies such as ODRL
 #	(2) Extended and modified by OpenREL, in which case the preferred definition is the OpenREL one.
 #		In these cases, the extension often includes harmonisation (mapping between similar vocabularies)
 # -------------------------------------------------------------------------------------------------------------
@@ -118,10 +118,10 @@ openrel:modify
 	rdfs:label "Modify"@en ;	
 	skos:definition "Alter or adapt a resource resulting in a new ((minor) version that is regarded as the same object, but updated or improved."@en ;
 	# deprecated skos:definition "Alter, adapt, transform, or derive new content from a resource."@en ;
-	skos:broaderMatch odrl:modify ;
 	skos:note "odrl: To change existing content of the Asset. A new asset is not created by this action."@en ;
 	skos:note "odrl: This action will modify an asset which is typically updated from time to time without creating a new asset. If the result from modifying the asset should be a new asset the actions derive or extract should be used. (Note that the notion of whether or not the change is significant enough to qualify as a new asset is subjective)."@en ;
-	:includedIn odrl:use ;
+	odrl:includedIn odrl:use ;
+	skos:exactMatch odrl:modify ;
 	# Extensions by OpenREL
 	rdfs:isDefinedBy openrel: .
 	## Discussion - any modification that results in content that is not resolvable with the same PID is a new asset. The problem emerges from a diversity of
@@ -132,15 +132,126 @@ openrel:modify
 openrel:derive
 	a :Action, skos:Concept ;
 	rdfs:label "Derive"@en ;	
-	skos:definition "To create a new derivative asset from one or more asseta and to edit or modify the derivative."@en ;
-	skos:broaderMatch odrl:modify ;
+	skos:definition "To create a new derivative asset from one or more assets and to edit or modify the derivative."@en ;
 	skos:note "odrl: To create a new derivative Asset from this Asset and to edit or modify the derivative."@en ;
 	skos:note "odrl: A new asset is created and may have significant overlaps with the original Asset. (Note that the notion of whether or not the change is significant enough to qualify as a new asset is subjective). To the derived Asset a next policy may be applied."@en ;
-	:includedIn odrl:use ;
+	skos:exactMatch odrl:derive ;
+	odrl:includedIn odrl:use ;
 	# Extensions by OpenREL
 	rdfs:isDefinedBy openrel: .
 	## Discussion - any modification that results in content that is not resolvable with the same PID is a new asset (a derived asset)
 
+openrel:reproduce
+	a :Action, skos:Concept ;
+	rdfs:label "Reproduce"@en ;	
+	skos:definition "Copy or replicate a resource without modification, in any form."@en ;
+	skos:note "To make duplicate copies the Asset in any material form."@en ;
+	odrl:includedIn odrl:use ;
+	skos:exactMatch odrl:reproduce ;
+	# Extensions by OpenREL
+	rdfs:isDefinedBy openrel: .
+
+openrel:archive
+	a :Action, skos:Concept ;
+	rdfs:label "Archive"@en ;	
+	skos:definition "Store a resource in a long-term repository or archive for preservation purposes."@en ;
+	skos:note "odrl: To store the Asset (in a non-transient form)."@en ;
+	skos:note "odrl: Temporal constraints may be used for temporal conditions."@en ;
+	odrl:includedIn odrl:use ;
+	skos:exactMatch odrl:reproduce ;
+	# Extensions by OpenREL
+	rdfs:isDefinedBy openrel: .
+
+openrel:delete
+	a :Action, skos:Concept ;
+	rdfs:label "Delete"@en ;	
+	skos:definition "Permanently remove a resource and/ or any copies of it."@en ;
+	skos:note "odrl: To permanently remove all copies of the Asset after it has been used."@en ;
+	skos:note "odrl: Use a constraint to define under which conditions the Asset must be deleted."@en ;
+	odrl:includedIn odrl:use ;
+	skos:exactMatch odrl:delete ;
+	# Extensions by OpenREL
+	rdfs:isDefinedBy openrel: .
+
+openrel:notify
+	a :Action, skos:Concept ;
+	rdfs:label "Notify"@en ;	
+	skos:definition "Send a notification to a defined endpoint upon performing an action."@en ;
+	odrl:includedIn odrl:use ;
+	skos:narrowMatch odrl:inform ;
+	# Extensions by OpenREL
+	rdfs:isDefinedBy openrel: .
+
+openrel:log
+	a :Action, skos:Concept ;
+	rdfs:label "Log"@en ;	
+	skos:definition "Record an event to a designated logging or audit system."@en ;
+	odrl:includedIn odrl:use ;
+	skos:narrowMatch odrl:inform ;
+	# Extensions by OpenREL
+	rdfs:isDefinedBy openrel: .
+
+openrel:attribute
+	a :Action, skos:Concept ;
+	rdfs:label "Attribute"@en ;	
+	skos:definition "Credit the original creator or rights holder when using a resource."@en ;
+	skos:note "odrl: To attribute the use of the Asset."@en ;
+	skos:note "odrl: May link to an Asset with the attribution information. May link to a Party with the role “attributedParty” function."@en ;
+	odrl:includedIn odrl:use ;
+	skos:exactMatch odrl:attribute ;
+	# Extensions by OpenREL
+	rdfs:isDefinedBy openrel: .
+
+openrel:sensitiveDataConsent
+	a :Action, skos:Concept ;
+	rdfs:label "Sensitive Data Consent"@en ;	
+	skos:definition "Acquire and record informed consent from the data subject prior to, after, or both prior to and after processing, collection, or sharing of personal data, specifically in the case of sensitive data."@en ;
+	skos:note "A permission to use in general can have a duty to obtain consent, and a permission to publish can explicitly require a duty to obtain consent. It can also specify the duty to record such consent."@en ;
+	skos:note "odrl: To obtain verifiable consent to perform the requested action in relation to the Asset."@en ;
+	skos:note "odrl: May be used as a Duty to ensure that the Assigner or a Party is authorized to approve such actions on a case-by-case basis. May link to a Party with the role “consentingParty” function."@en ;
+	odrl:includedIn odrl:obtainConsent ;
+	skos:broadMatch odrl:obtainConsent ;
+	# Extensions by OpenREL
+	rdfs:isDefinedBy openrel: .
+	## Discussion - Consent in the case of OpenREL is defined more specifically as applicable to sensitive data
+	## Also - separate duties - pre- and post-use consent requests, and the duty to provide evidence of consent.
+	## Recommendation: create a new action and label as a narrower action.
+	# Amended definition is already included here
+
+openrel:anonymize
+	a :Action, skos:Concept ;
+	rdfs:label "Anonymize"@en ;	
+	skos:definition "Transform data so that specific subject entities and their sensitive or privileged data cannot be identified."@en ;
+	skos:note "Subject entities include individuals, legal entities such as institutions and companies, sensitive ecosystems and endangered species, and vulnerable indigenous peoples and cultures."@en ;
+	skos:note "odrl: To anonymize all or parts of the Asset."@en ;
+	skos:note "odrl: For example, to remove identifying particulars for statistical or for other comparable purposes, or to use the Asset without stating the author/source."@en ;
+	odrl:includedIn odrl:use ;
+	skos:exactMatch odrl:attribute ;
+	# Extensions by OpenREL
+	rdfs:isDefinedBy openrel: .
+
+openrel:encrypt
+	a :Action, skos:Concept ;
+	rdfs:label "Encrypt"@en ;	
+	skos:definition "Transform data so that specific subject entities and their sensitive or privileged data cannot be identified."@en ;
+	skos:note "odrl: To convert the Asset into a different format."@en ;
+	skos:note "odrl: Typically used to convert the Asset into a different format for consumption on/transfer to a third party system."@en ;
+	odrl:includedIn odrl:use ;
+	skos:broadMatch odrl:transform ;
+	# Extensions by OpenREL
+	rdfs:isDefinedBy openrel: .
+
+openrel:applyLicence
+	a :Action, skos:Concept ;
+	rdfs:label "Apply Licence"@en ;	
+	skos:definition "Attach a recognised licence to a resource, defining the terms for its use and distribution."@en ;
+	skos:note "The odrl:licence action is deprecated and replaced by ordl:grantUse"@en ;
+	skos:note "odrl: This action enables the assignee to create policies for the use of the Asset for third parties. The nextPolicy is recommended to be agreed with the third party. Use of temporal constraints is recommended."@en ;
+	odrl:includedIn odrl:use ;
+	skos:exactMatch odrl:licence ;
+	skos:broadMatch odrl:grantUse ;
+	# Extensions by OpenREL
+	rdfs:isDefinedBy openrel: .
 
 
 # -------------------------------------------------------------------------------------------------------------
