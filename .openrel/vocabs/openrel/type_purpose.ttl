@@ -1,0 +1,67 @@
+
+openrel:researchUse 
+  a skos:Concept ;
+  skos:exactMatch duo:0000042 ;
+  skos:prefLabel "GRU" ;	
+  rdfs:label "General Research Use"@en ;
+  rdfs:definition "This data use permission indicates that use is allowed for general research use for any research purpose."@en ;
+.
+
+openrel:specificDiscipline 
+  a skos:Concept ;
+  skos:prefLabel "SD" ;	
+  rdfs:label "Specific Discipline"@en ;
+  rdfs:definition "This data use permission indicates that use is allowed or disallowed for general research use in a specific scientific discipline."@en ;
+  skos:note "Right operands may ionclude one or more scientific disciplines selected from a widely used vocabulary."@en ;
+.
+
+openrel:clinicalCareUse 
+  a skos:Concept ;
+  skos:exactMatch duo:0000042 ;
+  skos:prefLabel "CC" ;	
+  rdfs:label "Clinical Care Use"@en ;
+  rdfs:definition "This data use modifier indicates that use is allowed for clinical use and care."@en ;
+.
+
+openrel:clinicalCareUse 
+  a skos:Concept ;
+  skos:exactMatch duo:0000006 ;
+  skos:prefLabel "HMB" ;	
+  rdfs:label "Health or Medical or Biomedical Research"@en ;
+  rdfs:definition "This data use permission indicates that use is allowed/ not allowed for health/medical/biomedical purposes; does not include the study of population origins or ancestry."@en ;
+.
+
+openrel:geneticStudies 
+  a skos:Concept ;
+  skos:exactMatch duo:0000016 ;
+  skos:prefLabel "GSO" ;	
+  rdfs:label "Genetic Studies"@en ;
+  rdfs:definition "This data use modifier indicates that use is limited to genetic studies only (i.e., studies that include genotype research alone or both genotype and phenotype research, but not phenotype research exclusively)."@en ;
+.
+
+openrel:diseaseSpecific 
+  a skos:Concept ;
+  skos:exactMatch duo:0000007 ;
+  skos:prefLabel "DS" ;	
+  rdfs:label "Disease Specific Research"@en ;
+  rdfs:definition "This data use permission indicates that use is allowed provided it is related to the specified disease."@en ;
+.
+
+openrel:populationResearch 
+  a skos:Concept ;
+  skos:closeMatch duo:0000044 ;
+  skos:exactMatch duo:0000011 ;
+  skos:prefLabel "POA" ;	
+  rdfs:label "Population Origins or Ancestry Research"@en ;
+  rdfs:definition "This data use modifier indicates use for purposes of population, origin, or ancestry research is prohibited or allowed"@en ;
+.
+
+openrel:generalMethods 
+  a skos:Concept ;
+  skos:closeMatch duo:0000015 ;
+  skos:prefLabel "MDS" ;	
+  rdfs:label "General Methods Research"@en ;
+  rdfs:definition "This data use modifier indicates that use does/ does not allow methods development research (e.g., development of software or algorithms)."@en ;
+.
+
+DUO:0000012	RS	research specific restrictions	This data use modifier indicates that use is limited to studies of a certain research type.
