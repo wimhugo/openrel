@@ -12,7 +12,7 @@
 
 # context
 @base <http://www.w3.org/ns/openrel/0/> .
-@prefix : <http://www.w3.org/ns/openrel/0/> .
+@prefix : <http://www.w3.org/ns/openrel/0/> . 
 # RDF-related
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -57,31 +57,35 @@ openrel:typeAgent
 
 openrel:ai-agent
   a skos:Concept ;
-  skos:prefLabel "Any AI-based (class of) agent or process seeking to use or access an Asset."@en ;
+  skos:prefLabel "AI Agent"@en ;
+  skos:definition "Any AI-based (class of) agent or process seeking to use or access an Asset."@en ;
   skos:broadMatch dcat-ap:agent ;
   skos:broadMatch foaf:Group ;
-  skos:inScheme openrel:checklisAPI .
+  skos:inScheme openrel:typeAgent .
 
 openrel:research-organisation
   a skos:Concept ;
-  skos:prefLabel "Any (class of) agent or process seeking to use or access an Asset that can be verified by independent means as a research-performing or academic institution."@en ;
+  skos:prefLabel "Research Organisation"@en ;
+  skos:definition "Any (class of) agent or process seeking to use or access an Asset that can be verified by independent means as a research-performing or academic institution."@en ;
   skos:note "A separate vocabulary defines recognised options for means of identification."@en ;
   skos:broadMatch foaf:Group ;
-  skos:inScheme openrel:checklisAPI .
+  skos:inScheme openrel:typeAgent .
 
 openrel:researcher
   a skos:Concept ;
-  skos:prefLabel "Any (class of) agent or process seeking to use or access an Asset that can be verified by independent means as a researcher."@en ;
+  skos:prefLabel "Researcher"@en ;
+  skos:definition "Any (class of) agent or process seeking to use or access an Asset that can be verified by independent means as a researcher."@en ;
   skos:note "A separate vocabulary defines recognised options for means of identification."@en ;
   skos:broadMatch foaf:Group ;
-  skos:inScheme openrel:checklisAPI .
+  skos:inScheme openrel:typeAgent .
 
 openrel:curator
   a skos:Concept ;
-  skos:prefLabel "Any (class of) agent or process charged with curation, publication, archiving, dissemination, and/or preservation of an Asset."@en ;
+  skos:prefLabel "Curator"@en ;
+  skos:definition "Any (class of) agent or process charged with curation, publication, archiving, dissemination, and/or preservation of an Asset."@en ;
   skos:note "Curators are identified and provided with requisite permissions by the Catalogue (dcat:catalogue) hosting the Asset."@en ;
   skos:broadMatch foaf:Group ;
-  skos:inScheme openrel:checklisAPI .
+  skos:inScheme openrel:typeAgent .
 
 
 
