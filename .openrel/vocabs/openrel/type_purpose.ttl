@@ -12,7 +12,7 @@ openrel:specificDiscipline
   skos:prefLabel "SD" ;	
   rdfs:label "Specific Discipline"@en ;
   rdfs:definition "This data use permission indicates that use is allowed or disallowed for general research use in a specific scientific discipline."@en ;
-  skos:note "Right operands may ionclude one or more scientific disciplines selected from a widely used vocabulary."@en ;
+  skos:note "Right operands may include one or more scientific disciplines selected from a widely used vocabulary."@en ;
 .
 
 openrel:clinicalCareUse 
