@@ -88,7 +88,7 @@ odrl:action
 # Foundational Actions
 # These Actions are root concepts in OpenREL
 # They include two types 
-#	(1) Defined by OpenREL and as a result, creating new concpets not present in other vocabularies such as ODRL
+#	(1) Defined by OpenREL and as a result, creating new concepts not present in other vocabularies such as ODRL
 #	(2) Extended and modified by OpenREL, in which case the preferred definition is the OpenREL one.
 #		In these cases, the extension often includes harmonisation (mapping between similar vocabularies)
 # -------------------------------------------------------------------------------------------------------------
@@ -99,7 +99,7 @@ openrel:use
 	skos:definition "To use the Asset"@en ;
 	skos:note "Use is the most generic action for all non-third-party usage. More specific types of the use action can be expressed by more targeted actions."@en ;
 	# skos:note "This action is always evaluated at the consumer side."@en
-	rdfs:comment "To use a resource in any possible way. Includes all other actions."@en ;
+	rdfs:comment "To use a resource in any possible way. Includes all other use-related actions."@en ;
 	skos:exactMatch odrl:use ;
 	skos:exactMatch ids:use ;
 	# Extensions by OpenREL
