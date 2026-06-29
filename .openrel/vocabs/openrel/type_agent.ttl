@@ -86,7 +86,3 @@ openrel:curator
   skos:note "Curators are identified and provided with requisite permissions by the Catalogue (dcat:catalogue) hosting the Asset."@en ;
   skos:broadMatch foaf:Group ;
   skos:inScheme openrel:typeAgent .
-
-
-
-odrl:action
