@@ -271,6 +271,15 @@ openrel:applyLicence
 	# Extensions by OpenREL
 	rdfs:isDefinedBy openrel: .
 
+openrel:trademarkUse
+	a :Action, skos:Concept ;
+	rdfs:label "Trademark Use"@en ;	
+	skos:definition "The license grants/ does not grant permission to use the trade names, trademarks, service marks, or product names of the Licensor, except as required for reasonable and customary use in describing the origin of the Work and reproducing the content of the notice file."@en ;
+	skos:note "Originally defined by DALICC as a property."@en ;
+	skos:exactMatch dalicc:trademarkNotice ;
+	# Extensions by OpenREL
+	rdfs:isDefinedBy openrel: .
+
 
 # -------------------------------------------------------------------------------------------------------------
 # Supported Actions
@@ -348,7 +357,7 @@ odrl:append
 	rdfs:label "Append"@en ;
 	skos:definition "The act of adding to the end of an asset."@en ;
     owl:deprecated true ;
-	skos:exactMatch :modify .
+	skos:exactMatch odrl:modify .
 
 odrl:appendTo
 	a :Action, skos:Concept ;
@@ -357,7 +366,7 @@ odrl:appendTo
 #	skos:broaderTransitive odrl:writeTo ;
 	skos:definition "The act of appending data to the Asset without modifying the Asset in any other way."@en ;
     owl:deprecated true ;
-	skos:exactMatch :modify .
+	skos:exactMatch odrl:modify .
 
 odrl:concurrentUse
 	a :Action, skos:Concept ;
@@ -603,6 +612,7 @@ odrl:watermark
 
 idsc:AGGREGATE_BY_CONSUMER
     a odrl:Action ;
+	rdfs:isDefinedBy idsc: ;
     rdfs:comment "Data will be part of another piece of data so that it is not distinguishable anymore."@en ;
     rdfs:label "aggregate by consumer"@en ;
     skos:broadMatch odrl:aggregate ;
@@ -611,11 +621,113 @@ idsc:AGGREGATE_BY_CONSUMER
 
 idsc:AGGREGATE_BY_PROVIDER
     a odrl:Action ;
+	rdfs:isDefinedBy idsc: ;
     rdfs:comment "Data will be part of another piece of data so that it is not distinguishable anymore."@en ;
     rdfs:label "aggregate by provider"@en ;
     skos:broadMatch odrl:aggregate ;
     odrl:includedIn idsc:AGGREGATE_BY_CONSUMER ;
     skos:note "This action is always evaluated at the provider side."@en .
+
+# ---------- DALICC
+
+dalicc:addStatement
+    a odrl:Action ;
+	rdfs:isDefinedBy dalicc: ;
+    rdfs:comment "The Assignee may add his own copyright statement, notices to his modifications and may provide additional or different license terms and conditions for use, reproduction, or distribution of his modifications, or for any such Derivative Works as a whole, provided use, reproduction, and distribution of the Work otherwise complies with the conditions stated in this License."@en ;
+    rdfs:label "Add Statement"@en ;
+    skos:note "Used in 24 DALICC-encoded licences. No equivalent in ODRL. Implied if 'share alike' is not present."@en .
+
+dalicc:attachoffer
+    a odrl:Action ;
+	rdfs:isDefinedBy dalicc: ;
+    rdfs:comment "The Assignee may add a written offer for permissions according to the license."@en ;
+    rdfs:label "Attach Offer"@en ;
+    skos:note "Not used in any DALICC license encoding. No skos matches."@en .
+
+dalicc:chargeDistributionFee
+    a odrl:Action ;
+	rdfs:isDefinedBy dalicc: ;
+    rdfs:comment "The distribution of the Licensed Material [to a third party] is provided on a [costly] cost recovery basis."@en ;
+    rdfs:label "Charge Distribution Fee"@en ;
+	skos:broadMatch openrel:distribute ;
+	skos:broadMatch odrl:sell ;
+    skos:note "Used in 334 DALICC encodings."@en .
+
+dalicc:chargeLicenseFee
+    a odrl:Action ;
+	rdfs:isDefinedBy dalicc: ;
+    rdfs:comment "The Licensed Material is available for use at monetary cost [to a third party]."@en ;
+    rdfs:label "Charge License Fee"@en ;
+	skos:broadMatch openrel:distribute ;
+	skos:broadMatch odrl:sell ;
+    skos:note "Used in 21 DALICC encodings."@en .
+
+dalicc:chargeOffer
+    a odrl:Action ;
+	rdfs:isDefinedBy dalicc: ;
+    rdfs:comment "The Assignee may charge a fee for the physical act of transferring a copy, and you may at your option offer warranty protection in exchange for a fee."@en ;
+    rdfs:label "Charge Distribution with Offer"@en ;
+	skos:broadMatch openrel:distribute ;
+	skos:broadMatch odrl:sell ;
+    skos:note "Not used in any DALICC encodings."@en .
+
+dalicc:modificationNotice
+    a odrl:Action ;
+	rdfs:isDefinedBy dalicc: ;
+    rdfs:comment "A notice that indicates if the Assignee modified the Licensed Material and retains an indication of any previous modifications."@en ;
+    rdfs:label "Modification Notice"@en ;
+	skos:broadMatch openrel:notify ;
+	skos:broadMatch odrl:inform ;
+    skos:note "Not used in any DALICC encodings."@en .
+
+dalicc:permissionNotice
+	a odrl:Action ;
+	rdfs:isDefinedBy dalicc: ;
+    rdfs:comment "The permission notices which are in the License shall be included [in subsequent licences]."@en ;
+    rdfs:label "Permission Notice"@en ;
+	skos:closeMatch cc:shareAlike ;
+	skos:exactMatch http://creativecommons.org/ns#Notice
+    skos:note "Not used in any DALICC license encoding. Add skos matches."@en .
+
+dalicc:promote
+	a odrl:Action ;
+	rdfs:isDefinedBy dalicc: ;
+    rdfs:comment "The Assigner permits [/does not permit] the Assignee to use the licensed work for promotional purposes.."@en ;
+    rdfs:label "Promote"@en ;
+    skos:note "Not used in any DALICC license encoding. No skos matches. More useful as a prohibition."@en .
+
+dalicc:publish
+    a odrl:Action ;
+	rdfs:isDefinedBy dalicc: ;
+    rdfs:comment "The Assigner permits the Assignee to prepare and issue (a book, journal) for public sale to make it generally known, to make available online."@en ;
+    rdfs:label "Publish"@en ;
+	skos:broadMatch openrel:distribute ;
+    skos:note "Not used in any DALICC license encoding. Add skos matches."@en .
+
+dalicc:redistribute
+    a odrl:Action ;
+	rdfs:isDefinedBy dalicc: ;
+    rdfs:comment "The Assigner permits/prohibits the Assignees to redistribute the Asset."@en ;
+    rdfs:label "Redistribute"@en ;
+	skos:broadMatch openrel:distribute ;
+    skos:note "Not used in any DALICC license encoding. Add skos matches."@en .
+
+dalicc:royaltyFree
+    a odrl:Action ;
+	rdfs:isDefinedBy dalicc: ;
+    rdfs:comment "Refers to the right to use copyright material or intellectual property without the need to pay royalties or license fees for each use, per each copy or volume sold or some time period of use or sales."@en ;
+    rdfs:label "Royalty Free"@en ;
+    skos:note "Not used in any DALICC encodings. By implication, any grant of use is royalty-free unless stated otherwise. Spelling mistake in DALICC vocabulary documentation - 'dalicc:royalityFree'."@en .
+
+dalicc:sellCopy
+    a odrl:Action ;
+	rdfs:isDefinedBy dalicc: ;
+    rdfs:comment "The Assignee may sell the copies of the License[d] Material."@en ;
+    rdfs:label "Sell Copy"@en ;
+	skos:broadMatch openrel:reproduce ;
+	skos:broadMatch odrl:sell ;
+    skos:note "Not used in any DALICC license encoding. Add skos matches."@en .
+
 
 
 
