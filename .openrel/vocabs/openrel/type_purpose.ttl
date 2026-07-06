@@ -9,10 +9,12 @@ openrel:researchUse
 
 openrel:specificDiscipline 
   a skos:Concept ;
+  skos:closeMatch DUO:0000012 ;
   skos:prefLabel "SD" ;	
   rdfs:label "Specific Discipline"@en ;
   rdfs:definition "This data use permission indicates that use is allowed or disallowed for general research use in a specific scientific discipline."@en ;
   skos:note "Right operands may include one or more scientific disciplines selected from a widely used vocabulary."@en ;
+  skos:note "DUO: DUO:0000012  - This data use modifier indicates that use is limited to studies of a certain research type."@en ;
 .
 
 openrel:clinicalCareUse 
@@ -63,5 +65,3 @@ openrel:generalMethods
   rdfs:label "General Methods Research"@en ;
   rdfs:definition "This data use modifier indicates that use does/ does not allow methods development research (e.g., development of software or algorithms)."@en ;
 .
-
-DUO:0000012	RS	research specific restrictions	This data use modifier indicates that use is limited to studies of a certain research type.
