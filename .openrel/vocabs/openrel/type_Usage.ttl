@@ -1,0 +1,219 @@
+# -------------------------------------------------------------------------------------------------------------
+# OpenREL - Open Rights Encoding language
+# Version 0.4 (Draft)
+# Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/ EUDAT)
+# This Version: 6 July 2026
+# -------------------------------------------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------------------------------------------
+# Usage Types 
+# In OpenREL, Usage Types are used to unambigously identify 
+# constraints on usage options as leftOperands
+# -------------------------------------------------------------------------------------------------------------
+
+# context
+@base <http://www.w3.org/ns/openrel/0/> .
+@prefix : <http://www.w3.org/ns/openrel/0/> . 
+# RDF-related
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+# general content
+@prefix schema: <http://schema.org/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+# rdmi-related
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcatap: <http://data.europa.eu/r5r/> .
+@prefix r3d: <https://schema.re3data.org/4-0/re3dataV4-0.xsd> .
+@prefix coar: <http://purl.org/coar/> .
+# rights-related
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix dalicc: <https://dalicc.net/ns#> .
+@prefix dalicclib: <https://dalicc.net/licenselibrary/> .
+@prefix ids: <https://w3id.org/idsa/core/> .
+@prefix idsc: <https://w3id.org/idsa/code/> .
+@prefix osl: <http://opensource.org/licenses/> .
+@prefix spdx: <http://spdx.org/rdf/terms#>  .
+@prefix spdxlicense: <http://spdx.org/licenses/> .
+
+# -------------------------------------------------------------------------------------------------------------
+# Definition of Scheme and Provenance
+# ----------------------------------------------------- -------------------------------------------------------
+
+openrel:typeUsage
+  a skos:ConceptScheme ;
+  skos:prefLabel "Types of Usage"@en ;
+  dct:title "Types of Agents"@en ;
+  dct:description "Types of Usage applicable to Actions and Constraints."@en ;
+  dct:created "2026-07-06T00:00:00+00:00"^^xsd:datetime ;
+  dct:creator <https://orcid.org/0000-0002-0255-5101> ;
+  owl:versionInfo "0.1" .
+# -------------------------------------------------------------------------------------------------------------_
+# Definition of Terms
+# ----------------------------------------------------- --------------------------------------------------------
+
+#-----------OpenREL
+
+openrel:connector
+  a skos:Concept ;
+  skos:prefLabel "Connector"@en ;
+  skos:definition "Restricts access to a specific connector identified by IRI. Parameter: connectorURI (xsd:anyURI)."@en ;
+  skos:exactMatch idsc:CONNECTOR_RESTRICTED_DATA_USAGE ;
+  skos:inScheme openrel:typeUsage .
+
+openrel:ipRange
+  a skos:Concept ;
+  skos:prefLabel "IP Range"@en ;
+  skos:definition "Restricts access to a range of IP addresses, expressed as type of IP as a unit of measure."@en ;
+  skos:inScheme openrel:typeUsage .
+
+openrel:connector
+  a skos:Concept ;
+  skos:prefLabel "Connector"@en ;
+  skos:definition "Restricts access to a specific connector identified by IRI. Parameter: connectorURI (xsd:anyURI)."@en ;
+  skos:exactMatch idsc:CONNECTOR_RESTRICTED_DATA_USAGE ;
+  skos:inScheme openrel:typeUsage .
+
+openrel:application
+  a skos:Concept ;
+  skos:prefLabel "Application"@en ;
+  skos:definition "Restricts access to a system or application in addition to other usage constraints."@en ;
+  skos:exactMatch idsc:APPLICATION_RESTRICTED_DATA_USAGE ;
+  skos:inScheme openrel:typeUsage .
+
+openrel:accessDuration
+  a skos:Concept ;
+  skos:prefLabel "Access Duration"@en ;
+  skos:definition "Limits access to a maximum elapsed time from provisioning. Canonical constraint — value is set as a parameter at policy authoring time. Parameter: duration (xsd:duration, ISO 8601)."@en ;
+  skos:exactMatch idsc:DURATION_RESTRICTED_DATA_USAGE ;
+  skos:note "Predefined profiles in the Knowledge Base, for example: PT10H (10 hours), PT24H (24 hours)."@en ;
+  skos:inScheme openrel:typeUsage .
+
+openrel:accessWindow
+  a skos:Concept ;
+  skos:prefLabel "Access Iinterval"@en ;
+  skos:definition "Restricts access to a specific datetime interval. Both bounds must be evaluated simultaneously using a logical AND. Parameters: dateTimeFrom (xsd:dateTime), dateTimeTo (xsd:dateTime)."@en ;
+  skos:exactMatch idsc:INTERVAL_RESTRICTED_DATA_USAGE ;
+  skos:inScheme openrel:typeUsage .
+
+openrel:spatialCoverage
+  a skos:Concept ;
+  skos:prefLabel "Spatial Coverage"@en ;
+  skos:definition "Restricts or allows access based on a spatial coverage. Any valid geographical coverage (e.g. geonames IRI, bounding box, polygon) with any valid spatial operand."@en ;
+  skos:exactMatch idsc:LOCATION_RESTRICTED_DATA_USAGE ;
+  skos:inScheme openrel:typeUsage .
+
+openrel:userRole
+  a skos:Concept ;
+  skos:prefLabel "User Role"@en ;
+  skos:definition "The party that is afforded access has to fill a specific role. These can, for example, be associated with the Agent Type vocabulary (type_agent.ttl)."@en ;
+  skos:exactMatch idsc:ROLE_RESTRICTED_DATA_USAGE ;
+  skos:inScheme openrel:typeUsage .
+
+openrel:userRole
+  a skos:Concept ;
+  skos:prefLabel "User Role"@en ;
+  skos:definition "The party that is afforded access has to fill a specific role. These can, for example, be associated with the Agent Type vocabulary (type_agent.ttl)."@en ;
+  skos:exactMatch idsc:ROLE_RESTRICTED_DATA_USAGE ;
+  skos:inScheme openrel:typeUsage .
+
+openrel:purpose
+  a skos:Concept ;
+  skos:prefLabel "Purpose"@en ;
+  skos:definition "Use is allowed for a specific purpose. These can, for example, be associated with the Purpose Type vocabulary (type_purpose.ttl)."@en ;
+  skos:exactMatch idsc:ROLE_RESTRICTED_DATA_USAGE ;
+  skos:inScheme openrel:typeUsage .
+
+openrel:usageCount
+  a skos:Concept ;
+  skos:prefLabel "Usage Count"@en ;
+  skos:definition "Use is allowed for a specific number of access events. These are expressed as an integer number."@en ;
+  skos:exactMatch idsc:RESTRICTED_NUMBER_OF_USAGES ;
+  skos:inScheme openrel:typeUsage .
+
+openrel:securityLevel
+  a skos:Concept ;
+  skos:prefLabel "Security Level"@en ;
+  skos:definition "Use is allowed if the connector complies with a specific (Data Spaces) security certification level. "@en ;
+  skos:note "Right operand corresponds to IDSC Security Guarantee vocabulary (https://github.com/International-Data-Spaces-Association/InformationModel/blob/develop/codes/SecurityGuarantee.ttl). "@en ;
+  skos:exactMatch idsc:SECURITY_LEVEL_RESTRICTED_POLICY ;
+  skos:inScheme openrel:typeUsage .
+
+#-----------IDSC
+# Duplicated for convenience
+
+idsc:ALLOW_DATA_USAGE
+	a ids:UsagePolicyClass ;
+	rdfs:label "Allow data usage"@en;
+	rdfs:comment "This policy restricts the usage of the data to a specific Data Consumer, regardless of how many connectors they have and without any further usage restriction."@en.
+
+idsc:CONNECTOR_RESTRICTED_DATA_USAGE
+	a ids:UsagePolicyClass ;
+	rdfs:label "Connector restricted data usage"@en;
+	rdfs:comment "This policy restrict the usage of the data to a specific IDS connector."@en .
+
+idsc:APPLICATION_RESTRICTED_DATA_USAGE
+	a ids:UsagePolicyClass ;
+	rdfs:label "System restricted data usage"@en;
+	rdfs:comment "This policy restricts the usage of the data to a specific system or application inside an IDS Connector."@en.
+
+idsc:INTERVAL_RESTRICTED_DATA_USAGE
+	a ids:UsagePolicyClass ;
+	rdfs:label "Interval restricted data usage"@en;
+	rdfs:comment "This policy restricts the usage of the data to a specific (time) interval."@en.
+
+idsc:DURATION_RESTRICTED_DATA_USAGE
+	a ids:UsagePolicyClass ;
+	rdfs:label "Duration restricted data usage"@en;
+	rdfs:comment "This policy restricts the usage of the data to a specific duration."@en.
+
+idsc:EVENT_RESTRICTED_DATA_USAGE
+	a ids:UsagePolicyClass ;
+	rdfs:label "Event restricted data usage"@en;
+	rdfs:comment """This policy restricts the usage of data assets limited to specific events.
+					The ODRL language defines an identified event as a context for exercising the action of the Rule. 
+					Events are temporal periods of time. A Data Provider may want to restrict the usage of the data to a specific event when the exact time and date of the event is not clear in advance. 
+					Therefore, the event condition can be specified in a policy."""@en.
+
+idsc:LOCATION_RESTRICTED_DATA_USAGE
+	a ids:UsagePolicyClass ;
+	rdfs:label "Location restricted data usage"@en;
+	rdfs:comment "This policy restricts the usage of the data to a specific location, e.g., expressed via location areas, geographic points or geographic bounding polygons."@en.
+
+idsc:PREPATUAL_DATA_SALE 
+	a ids:UsagePolicyClass ;
+	rdfs:label "Prepatual data sale"@en;
+	rdfs:comment "This policy restricts the transfer of a Data Asset against a one-off payment in a given currency."@en.
+	
+idsc:DATA_RENTAL 
+	a ids:UsagePolicyClass ;
+	rdfs:label "Data rental"@en;
+	rdfs:comment "This policy restricts transfer of data in return for a monthly fee. The ending is not specified. Nevertheless, the policy ends when a notice of termination has been made by any of the policy partners."@en.
+
+idsc:ROLE_RESTRICTED_DATA_USAGE
+	a ids:UsagePolicyClass ;
+	rdfs:label "Role restricted data usage"@en;
+	rdfs:comment """This policy restricts the usage of the data to a specific role. 
+					For example, you can instantiate a policy of this class that allows only the members of the engineering department to use your data. 
+					This policy class faces few limitations, i.e., in order to evaluate the conditions, it requires that the user roles are available and follow a common vocabulary"""@en.
+
+idsc:PURPOSE_RESTRICTED_DATA_USAGE
+	a ids:UsagePolicyClass ;
+	rdfs:label "Purpose restricted data usage"@en;
+	rdfs:comment "This policy restricts the usage of data assets limited to specific purposes."@en.
+
+idsc:RESTRICTED_NUMBER_OF_USAGES
+	a ids:UsagePolicyClass ;
+	rdfs:label "Restricted number of usages"@en;
+	rdfs:comment """This policy restricts the usage of data assets limited to numeric count of executions of actions. 
+					A mechanism is needed that counts the usage of data in order to enforce the policy."""@en .
+
+idsc:SECURITY_LEVEL_RESTRICTED_POLICY
+	a ids:UsagePolicyClass ;
+	rdfs:label "Security level restricted policy"@en;
+	rdfs:comment "This policy restricts the usage of data assets limited to a security level the consumer must conform to."@en.
