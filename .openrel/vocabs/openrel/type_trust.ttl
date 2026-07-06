@@ -44,7 +44,7 @@
 # Definition of Scheme and Provenance
 # ----------------------------------------------------- -------------------------------------------------------
 
-openrel:typeTrust
+openrel:trustType
   a skos:ConceptScheme ;
   skos:prefLabel "Types of Trusted Connectors"@en ;
   dct:title "Types of Trusted Connectors"@en ;
@@ -62,7 +62,7 @@ openrel:base
   skos:definition "IDSC: Default security profile of a certified IDS Connector."@en ;
   skos:exactMatch idsc:BASE_SECURITY_PROFILE ;
   rdfs:isDefinedBy idsc: ;
-  skos:inScheme openrel:typeTrust .
+  skos:inScheme openrel:trustType .
 
 openrel:trust
   a skos:Concept ;
@@ -70,7 +70,7 @@ openrel:trust
   skos:definition "The Security Profile TRUST as defined by the IDS certification criteria."@en ;
   skos:exactMatch idsc:TRUST_SECURITY_PROFILE ;
   rdfs:isDefinedBy idsc: ;
-  skos:inScheme openrel:typeTrust .
+  skos:inScheme openrel:trustType .
 
 openrel:trust-plus
   a skos:Concept ;
@@ -78,4 +78,4 @@ openrel:trust-plus
   skos:definition "The Security Profile TRUST+ as defined by the IDS certification criteria."@en ;
   skos:exactMatch idsc:TRUST_PLUS_SECURITY_PROFILE ;
   rdfs:isDefinedBy idsc: ;
-  skos:inScheme openrel:typeTrust .
+  skos:inScheme openrel:trustType .
