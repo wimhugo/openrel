@@ -102,6 +102,7 @@ openrel:use
 	rdfs:comment "To use a resource in any possible way. Includes all other use-related actions."@en ;
 	skos:exactMatch odrl:use ;
 	skos:exactMatch ids:use ;
+	skos:closeMatch idsc:ALLOW_DATA_USAGE ;
 	# Extensions by OpenREL
 	rdfs:isDefinedBy openrel: .
 
