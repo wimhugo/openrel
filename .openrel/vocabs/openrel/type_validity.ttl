@@ -1,0 +1,90 @@
+# -------------------------------------------------------------------------------------------------------------
+# OpenREL - Open Rights Encoding language
+# Version 0.4 (Draft)
+# Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/ EUDAT)
+# This Version: 6 July 2026
+# -------------------------------------------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------------------------------------------
+# Validity Types 
+# In OpenREL, Validity Types are used to unambigously identify one or more validity limitations to the scope of
+# a rule set.
+# Used to model and map DALICC properties
+# -------------------------------------------------------------------------------------------------------------
+
+# context
+@base <http://www.w3.org/ns/openrel/0/> .
+@prefix : <http://www.w3.org/ns/openrel/0/> . 
+# RDF-related
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+# general content
+@prefix schema: <http://schema.org/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+# rdmi-related
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcatap: <http://data.europa.eu/r5r/> .
+@prefix r3d: <https://schema.re3data.org/4-0/re3dataV4-0.xsd> .
+@prefix coar: <http://purl.org/coar/> .
+# rights-related
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix dalicc: <https://dalicc.net/ns#> .
+@prefix dalicclib: <https://dalicc.net/licenselibrary/> .
+@prefix ids: <https://w3id.org/idsa/core/> .
+@prefix idsc: <https://w3id.org/idsa/code/> .
+@prefix osl: <http://opensource.org/licenses/> .
+@prefix spdx: <http://spdx.org/rdf/terms#>  .
+@prefix spdxlicense: <http://spdx.org/licenses/> .
+
+# -------------------------------------------------------------------------------------------------------------
+# Definition of Scheme and Provenance
+# ----------------------------------------------------- -------------------------------------------------------
+
+openrel:typeValidity
+  a skos:ConceptScheme ;
+  skos:prefLabel "Types of Rule Set Validity"@en ;
+  dct:title "Types of Validity"@en ;
+  dct:description "Types of Valsidity applicable to Rule Sets."@en ;
+  dct:created "2026-07-06T00:00:00+00:00"^^xsd:datetime ;
+  dct:creator <https://orcid.org/0000-0002-0255-5101> ;
+  owl:versionInfo "0.1" .
+# -------------------------------------------------------------------------------------------------------------
+# Definition of Terms
+# ----------------------------------------------------- --------------------------------------------------------
+
+dalicc:patentFree
+  a skos:Concept ;
+  skos:prefLabel "Patent Free"@en ;
+  skos:definition "DALICC: The license applies only to those patent claims licensable by such Contributor that are necessarily infringed by their Contribution(s) alone or by combination of their Contribution(s) with the Licensed Material to which such Contribution(s) was submitted."@en ;
+  skos:inScheme openrel:typeValidity .
+
+dalicc:irrevocable
+  a skos:Concept ;
+  skos:prefLabel "Irrevocable"@en ;
+  skos:definition "DALICC: The license cannot be terminated for any reason or only that the license cannot be terminated for convenience, but still may be terminated for breach."@en ;
+  skos:inScheme openrel:typeValidity .
+
+dalicc:perpetual
+  a skos:Concept ;qa`
+  skos:prefLabel "Perpetual"@en ;
+  skos:definition "DALICC: A perpetual license allows to use the licensed work indefinitely."@en ;
+  skos:inScheme openrel:typeValidity .
+
+dalicc:worldwide
+  a skos:Concept ;
+  skos:prefLabel "Worldwide"@en ;
+  skos:definition "DALICC: The license terms are valid throughout the world."@en ;
+  skos:inScheme openrel:typeValidity .
+
+
+
+
+
+
+
