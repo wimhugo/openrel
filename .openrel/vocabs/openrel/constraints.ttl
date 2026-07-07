@@ -140,5 +140,13 @@ openrel:context
 	skos:note "Context-based Constraints may apply to any Action, but usually in relation to a prohibition. Context vocabulary can be obtained from .openrel/vocabs/openrel/type_context.ttl"@en ;
 	skos:inScheme openrel:constraintScheme .
 
+openrel:tom
+	a rdfs:Class, owl:Class, skos:Concept ;
+	rdfs:isDefinedBy openrel: ;
+	rdfs:label "Technical and Organisation Measures"@en 
+	skos:definition "Constraint defined for definition of technical, organisational, legal, and physical measures required to safeguard sensitive data."@en ;
+	skos:note "Any class or subclass defined by DPV in TOM (https://www.w3.org/community/reports/dpvcg/CG-FINAL-dpv-20240801/modules/TOM.html) is a valid left operand when describing this constraint. Additional vocabulary, focused on non-personal sensitive data can be obtained from .openrel/vocabs/openrel/type_tom.ttl"@en ;
+	skos:inScheme openrel:constraintScheme .
+
 
 
