@@ -39,6 +39,8 @@
 @prefix osl: <http://opensource.org/licenses/> .
 @prefix spdx: <http://spdx.org/rdf/terms#>  .
 @prefix spdxlicense: <http://spdx.org/licenses/> .
+@prefix dpv: <https://w3id.org/dpv> .
+@prefix ropa: <https://w3id.org/dpv-ropa#> .
 
 # -------------------------------------------------------------------------------------------------------------
 # Definition of Scheme and Provenance
@@ -70,7 +72,7 @@ openrel:notify-clearinghouse
   rdfs:isDefinedBy openrel: ;
   skos:closeMatch idsc:REMOTE_NOTIFICATION ;
   skos:note "IDSC: This policy restricts the usage of data assets with the obligation to notify a specific party about the data usage."@en.
-  skos:inScheme openrel:trustType .
+  skos:inScheme openrel:notification-target-type .
 
 openrel:notify-external-log
   a skos:Concept ;
@@ -79,7 +81,7 @@ openrel:notify-external-log
   rdfs:isDefinedBy openrel: ;
   skos:exactMatch idsc:REMOTE_NOTIFICATION ;
   skos:note "IDSC: This policy restricts the usage of data assets with the obligation to notify a specific party about the data usage."@en.
-  skos:inScheme openrel:trustType .
+  skos:inScheme openrel:notification-target-type .
 
 openrel:notify-local-log
   a skos:Concept ;
@@ -88,4 +90,22 @@ openrel:notify-local-log
   skos:exactMatch idsc:LOCAL_LOGGING ;
   rdfs:isDefinedBy idsc: ;
   skos:note "This policy restricts the usage of data assets with the obligation to log prior specified processes, such as the data access. Rightoperand can also be a template or specification."@en ;
-  skos:inScheme openrel:trustType .
+  skos:inScheme openrel:notification-target-type .
+
+openrel:notify-ropa 
+  a skos:Concept ;
+  skos:exactMatch ropa:ROPA ;
+  rdfs:isDefinedBy ropa: ;
+  rdfs:prefLabel "Register of Processing Activities (ROPA)"@en ;
+  skos:definition "All instances of use must be logged in a register of processing activity to comply with GDPR, and the vocabulary defined by ROPA may be used to describe these activities."@en ;
+  skos:note "ROPA: A ROPA is a document maintained by Data Controllers detailing processing activities carried out under their responsibility"@en ;
+  skos:inScheme openrel:notification-target-type .
+
+
+
+
+
+
+
+
+
