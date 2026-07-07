@@ -1,11 +1,105 @@
+# -------------------------------------------------------------------------------------------------------------
+# OpenREL - Open Rights Encoding language
+# Version 0.4 (Draft)
+# Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/ EUDAT)
+# This Version: 1 July 2026
+# -------------------------------------------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------------------------------------------
+# Purpose Types
+# In OpenREL, Purpose Types are defined to clarify or constrain purpose of use
+# Aligned with DUO and DPV
+# -------------------------------------------------------------------------------------------------------------
+
+# context
+@base <http://www.w3.org/ns/openrel/0/> .
+@prefix : <http://www.w3.org/ns/openrel/0/> .
+# RDF-related
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+# general content
+@prefix schema: <http://schema.org/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+# rdmi-related
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcatap: <http://data.europa.eu/r5r/> .
+# rights-related
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix dalicc: <https://dalicc.net/ns#> .
+@prefix dalicclib: <https://dalicc.net/licenselibrary/> .
+@prefix ids: <https://w3id.org/idsa/core/> .
+@prefix idsc: <https://w3id.org/idsa/code/> .
+@prefix osl: <http://opensource.org/licenses/> .
+@prefix spdx: <http://spdx.org/rdf/terms#>  .
+@prefix spdxlicense: <http://spdx.org/licenses/> .
+@prefix dpv: <https://w3id.org/dpv> .
+
+# -------------------------------------------------------------------------------------------------------------
+# Definition of Scheme and Provenance
+# ----------------------------------------------------- -------------------------------------------------------
+
+openrel:type-purpose
+  a skos:ConceptScheme ;
+  skos:prefLabel "Types of Usage Purpose"@en ;
+  dct:title "Types of Usage Purpose"@en ;
+  dct:description "Types of Usage Purpose applicable to Actions and Constraints."@en ;
+  dct:created "2026-07-07T00:00:00+00:00"^^xsd:datetime ;
+  dct:creator <https://orcid.org/0000-0002-0255-5101> ;
+  owl:versionInfo "0.1" .
+
+# --------------------------------------------------------------------------------------------------------------
+# Definition of Terms
+# --------------------------------------------------------------------------------------------------------------
+
+#-----------OpenREL Research and development concepts
 
 openrel:researchUse 
   a skos:Concept ;
   skos:exactMatch duo:0000042 ;
-  skos:prefLabel "GRU" ;	
-  rdfs:label "General Research Use"@en ;
+  skos:exactMatch dpv:ResearchAndDevelopment ;
+  skos:prefLabel "General Research Use" ;	
+  rdfs:label "GRU"@en ;
   rdfs:definition "This data use permission indicates that use is allowed for general research use for any research purpose."@en ;
+  skos:note "DPV: Performing research and developing new methods,products, or services"@en ;
+  skos:inScheme openrel:type-purpose .
 .
+
+openrel:academicResearch 
+  a skos:Concept ;
+  skos:exactMatch dpv:AcademicResearch ;
+  skos:broader openrel:researchUse ;
+  skos:prefLabel "Academic Research" ;	
+  rdfs:label "Academic Research Use"@en ;
+  rdfs:definition "This data use permission indicates that use is allowed for academic research use for any research purpose."@en ;
+  skos:note "DPV: Research conducted in an academic context e.g. within universities"@en ;
+  skos:inScheme openrel:type-purpose .
+.
+
+openrel:commercialResearch 
+  a skos:Concept ;
+  skos:exactMatch dpv:CommercialResearch ;
+  skos:broader openrel:researchUse ;
+  skos:prefLabel "Commercial Research" ;	
+  rdfs:label "Commercial Research Use"@en ;
+  rdfs:definition "This data use permission indicates that use is allowed for commercial research use for any research purpose."@en ;
+  skos:note "DPV: Research conducted in a commercial setting e.g. in a company"@en ;
+  skos:inScheme openrel:type-purpose .
+
+openrel:nonCommercialResearch 
+  a skos:Concept ;
+  skos:exactMatch dpv:NonCommercialResearch ;
+  skos:broader openrel:researchUse ;
+  skos:prefLabel "Non-Commercial Research" ;	
+  rdfs:label "Non-Commercial Research Use"@en ;
+  rdfs:definition "This data use permission indicates that use is allowed for non-commercial research use for any research purpose."@en ;
+  skos:note "DPV: Research conducted in a non-commercial setting e.g. for a non-profit-organisation (NGO)"@en ;
+  skos:inScheme openrel:type-purpose .
 
 openrel:specificDiscipline 
   a skos:Concept ;
@@ -15,6 +109,7 @@ openrel:specificDiscipline
   rdfs:definition "This data use permission indicates that use is allowed or disallowed for general research use in a specific scientific discipline."@en ;
   skos:note "Right operands may include one or more scientific disciplines selected from a widely used vocabulary."@en ;
   skos:note "DUO: DUO:0000012  - This data use modifier indicates that use is limited to studies of a certain research type."@en ;
+  skos:inScheme openrel:type-purpose .
 .
 
 openrel:clinicalCareUse 
@@ -23,6 +118,7 @@ openrel:clinicalCareUse
   skos:prefLabel "CC" ;	
   rdfs:label "Clinical Care Use"@en ;
   rdfs:definition "This data use modifier indicates that use is allowed for clinical use and care."@en ;
+  skos:inScheme openrel:type-purpose .
 .
 
 openrel:clinicalCareUse 
@@ -31,6 +127,7 @@ openrel:clinicalCareUse
   skos:prefLabel "HMB" ;	
   rdfs:label "Health or Medical or Biomedical Research"@en ;
   rdfs:definition "This data use permission indicates that use is allowed/ not allowed for health/medical/biomedical purposes; does not include the study of population origins or ancestry."@en ;
+  skos:inScheme openrel:type-purpose .
 .
 
 openrel:geneticStudies 
@@ -39,6 +136,7 @@ openrel:geneticStudies
   skos:prefLabel "GSO" ;	
   rdfs:label "Genetic Studies"@en ;
   rdfs:definition "This data use modifier indicates that use is limited to genetic studies only (i.e., studies that include genotype research alone or both genotype and phenotype research, but not phenotype research exclusively)."@en ;
+  skos:inScheme openrel:type-purpose .
 .
 
 openrel:diseaseSpecific 
@@ -47,6 +145,7 @@ openrel:diseaseSpecific
   skos:prefLabel "DS" ;	
   rdfs:label "Disease Specific Research"@en ;
   rdfs:definition "This data use permission indicates that use is allowed provided it is related to the specified disease."@en ;
+  skos:inScheme openrel:type-purpose .
 .
 
 openrel:populationResearch 
@@ -56,6 +155,7 @@ openrel:populationResearch
   skos:prefLabel "POA" ;	
   rdfs:label "Population Origins or Ancestry Research"@en ;
   rdfs:definition "This data use modifier indicates use for purposes of population, origin, or ancestry research is prohibited or allowed"@en ;
+  skos:inScheme openrel:type-purpose .
 .
 
 openrel:generalMethods 
@@ -64,4 +164,10 @@ openrel:generalMethods
   skos:prefLabel "MDS" ;	
   rdfs:label "General Methods Research"@en ;
   rdfs:definition "This data use modifier indicates that use does/ does not allow methods development research (e.g., development of software or algorithms)."@en ;
+  skos:inScheme openrel:type-purpose .
 .
+
+
+
+
+
