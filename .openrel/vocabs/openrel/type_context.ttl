@@ -1,0 +1,100 @@
+# -------------------------------------------------------------------------------------------------------------
+# OpenREL - Open Rights Encoding language
+# Version 0.4 (Draft)
+# Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/ EUDAT)
+# This Version: 1 July 2026
+# -------------------------------------------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------------------------------------------
+# Context Types 
+# In OpenREL, Context Types are used to unambigously identify context options and scenarios applicable to agents
+# The Context Types are typically used to define prohibitions.
+# -------------------------------------------------------------------------------------------------------------
+
+# context
+@base <http://www.w3.org/ns/openrel/0/> .
+@prefix : <http://www.w3.org/ns/openrel/0/> . 
+# RDF-related
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+# general content
+@prefix schema: <http://schema.org/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+# rdmi-related
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcatap: <http://data.europa.eu/r5r/> .
+@prefix r3d: <https://schema.re3data.org/4-0/re3dataV4-0.xsd> .
+@prefix coar: <http://purl.org/coar/> .
+# rights-related
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix dalicc: <https://dalicc.net/ns#> .
+@prefix dalicclib: <https://dalicc.net/licenselibrary/> .
+@prefix ids: <https://w3id.org/idsa/core/> .
+@prefix idsc: <https://w3id.org/idsa/code/> .
+@prefix osl: <http://opensource.org/licenses/> .
+@prefix spdx: <http://spdx.org/rdf/terms#>  .
+@prefix spdxlicense: <http://spdx.org/licenses/> .
+
+# -------------------------------------------------------------------------------------------------------------
+# Definition of Scheme and Provenance
+# ----------------------------------------------------- -------------------------------------------------------
+
+openrel:typeContext
+  a skos:ConceptScheme ;
+  skos:prefLabel "Types of Context"@en ;
+  dct:title "Types of Context"@en ;
+  dct:description "Types of Context applicable to actions and constraints."@en ;
+  dct:created "2026-07-07T00:00:00+00:00"^^xsd:datetime ;
+  dct:creator <https://orcid.org/0000-0002-0255-5101> ;
+  owl:versionInfo "0.1" .
+# -------------------------------------------------------------------------------------------------------------
+# Definition of Terms
+# ----------------------------------------------------- --------------------------------------------------------
+
+openrel:context-eidas
+  a skos:Concept ;
+  skos:prefLabel "EIDAS Verified"@en ;
+  skos:definition "Research credentials is verified via EIDAS signed assertion(s)."@en ;
+  skos:note "Whether someone is a bona fide researcher is not a legal identity question; it is an attribute or status determined by an organisation or community."@en ;
+  skos:inScheme openrel:typeContext .
+
+openrel:context-orcid
+  a skos:Concept ;
+  skos:prefLabel "ORCID Verified"@en ;
+  skos:definition "Research credentials is verified via existence of an ORCID."@en ;
+  skos:note "A relatively weak self-assertion of status as a researcher, but often confirms recent output and affiliations."@en ;
+  skos:inScheme openrel:typeContext .
+
+openrel:context-edugain
+  a skos:Concept ;
+  skos:prefLabel "eduGAIN Verified"@en ;
+  skos:definition "Research credentials is verified through authentication via eduGAIN."@en ;
+  skos:note "A relatively strong assertion of status as a researcher, but not always possible even if an account exists and authenticates."@en ;
+  skos:inScheme openrel:typeContext .
+
+openrel:context-skg
+  a skos:Concept ;
+  skos:prefLabel "SKG Verified"@en ;
+  skos:definition "Research credentials of the organisation or the researcher is verified via inclusion in SKG records, such as OpenAIRE or OpenAlex."@en ;
+  skos:note "A relatively strong assertion of status as a researcher, but not always possible."@en ;
+  skos:inScheme openrel:typeContext .
+
+openrel:context-cordis
+  a skos:Concept ;
+  skos:prefLabel "EU CORDIS Verified"@en ;
+  skos:definition "Research credentials of the organisation is verfied via CORDIS as a beneficiary of an EU-funded project."@en ;
+  skos:note "A strong assertion of status as a research organisation in the EU context."@en ;
+  skos:inScheme openrel:typeContext .
+
+openrel:context-ror
+  a skos:Concept ;
+  skos:prefLabel "ROR Verified"@en ;
+  skos:definition "Research credentials of the organisation is verified via ROR."@en ;
+  skos:note "A self-assertion of status as a research organisation."@en ;
+  skos:inScheme openrel:typeContext .
