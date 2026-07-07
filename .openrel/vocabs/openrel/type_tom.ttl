@@ -77,3 +77,12 @@ openrel:dataMinimisation
   skos:broadMatch dpv:TechnicalMeasure ;
   skos:inScheme openrel:type-tom .
 
+openrel:blindProcessing
+  a skos:Concept ;
+  skos:prefLabel "Blind Data Processing"@en ;
+  skos:definition "Constrains processing to visibility of code and the derived asset, a human cannot see the original asset."@en ;
+  skos:note "Typical implementation requires an algorithm or code to be developed based on a simulated dataset, which is then used to create a derived asset witghout the original asset being viewed by the human processor."@en ;
+  skos:broadMatch dpv:TechnicalMeasure ;
+  skos:inScheme openrel:type-tom .
+
+
