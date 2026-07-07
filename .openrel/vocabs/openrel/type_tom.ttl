@@ -7,8 +7,8 @@
 
 # -------------------------------------------------------------------------------------------------------------
 # Technical and Operational Measure Types
-# In OpenREL, DPV TOM is used to define left operands for description of tecchnical, organisational, legal, and 
-# physical measures required to safeguard sensitive data - whuch is not limited only to personal data.
+# In OpenREL, DPV TOM is used to define left operands for description of technical, organisational, legal, and 
+# physical measures required to safeguard sensitive data - which is not limited only to personal data.
 # OpenREL only defines measures here that are not included in DPV TOM.
 # -------------------------------------------------------------------------------------------------------------
 
