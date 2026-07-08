@@ -3,15 +3,19 @@
 
 Licences often require the end user to record any modifications as text within the asset without modifying the licence or removing earlier comments - very common in software licences, and good practice for all asset types.
 
-There is a nuance here that is important: ODRL provides two Actions that are related and applicable: odrl:derive and odrl:modify. OpenREL has amended and clarified the distinction some more for a specific reason, and that concerns the relation between an asset and its persistent identifier. These depend on the intention of the asset woner or curator, as explained below. (2)
+There is a nuance here that is important: ODRL provides two Actions that are related and applicable: odrl:derive and odrl:modify. OpenREL has amended and clarified the distinction some more for a specific reason, and that concerns the relation between an asset and its persistent identifier. These depend on the intention of the asset owner or curator, as explained below. (2)
 
 |Best Practice Case| Description| ODRL Interpretation| OpenREL Interpretation|
 |:-----|:-----|:-----|:-----|
 |Checksum|The asset is considered to be derived from the original if a modification results in a checksum change, even for very minor changes such as a correction of a typographical error.|odrl:modify|openrel:derive|
+|Semantic Equivalence| The modified or derived asset is semantically equivalent to the original asset| odrl:derive |openrel:modify|
+|Citation Equivalence| Any results based on the original asset remain achievable with the modified or derived asset. This is commonly the case for e.g. datasets where the metadata or semantic linking has been improved, or code that has been optimised or ported but respects the same input and output specifications| odrl:modify| openrel:modify|
+|Role Equivalence| The PID resolves to a potentially very different asset over time, but the role of the asset remains the same - for example a data policy or a list of recommended sources of information|odrl:derive|openrel:derive or openrel:modify|
 
 ## Sources
 
-1. [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/)
+(1) [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/)
+(2) Hugo, W., Van de Sompel, H., & Hakala, J. (2025). The PID Landscape - a Technical View (1.1). Zenodo. [https://doi.org/10.5281/zenodo.14881287](https://doi.org/10.5281/zenodo.14881287) 
 
 ## Encoding Example
 
