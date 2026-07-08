@@ -25,9 +25,9 @@ The OpenREL NamedConstraint Class extends this :
 ```
 openrel:NamedConstraint
 	a rdfs:Class, owl:Class, skos:Concept ;
-  rdfs:subClassOf odrl:Constraint ;
-  rdfs:isDefinedBy openrel: ;
+  	rdfs:subClassOf odrl:Constraint ;
+  	rdfs:isDefinedBy openrel: ;
 	rdfs:label "Named Constraint"@en ;
-  skos:definition "A subclass that extends the properties of the ODRL Constraint Class."@en ;
+  	skos:definition "A subclass that extends the properties of the ODRL Constraint Class."@en ;
 	skos:note "ODRL: A boolean expression that refines the semantics of an Action and Party/Asset Collection or declare the conditions applicable to a Rule."@en .
 ```
