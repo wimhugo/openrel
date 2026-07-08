@@ -9,14 +9,16 @@ This is a common use case, and in some cases, permits the recovery of e.g. distr
 ## Encoding Example
 
 
-`  [ a odrl:Permission ;`
-`      odrl:action openrel:costRecovery `
-`        [ a odrl:Constraint ;`
-`            odrl:leftOperand openrel:leftOperand.revenuSource ;`
-`            odrl:operator odrl:eq ;`
-`            odrl:rightOperand trsp:distributionFee ; `
-`        ],`            
-`  ] ;`
+```
+  [ a odrl:Permission ;
+      odrl:action openrel:costRecovery 
+        [ a odrl:Constraint ;
+            odrl:leftOperand openrel:leftOperand.revenuSource ;
+            odrl:operator odrl:eq ;`
+            odrl:rightOperand trsp:distributionFee ;
+        ],           
+  ] ;
+```
 
 
 The example encodes the following human-readable statement: 
