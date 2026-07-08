@@ -1,0 +1,113 @@
+# -------------------------------------------------------------------------------------------------------------
+# OpenREL - Open Rights Encoding language
+# Version 0.4 (Draft)
+# Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/ EUDAT)
+# This Version: 6 July 2026
+# -------------------------------------------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------------------------------------------
+# Revenue SOurce Types
+# Defined by TRSP and reproduced here for convenience
+# https://github.com/wimhugo/kb-attributes-eden-fidelis-trsp/blob/main/.configs/vocabs/attr/revenue-source-type.ttl
+# -------------------------------------------------------------------------------------------------------------
+
+# context
+@base <http://www.w3.org/ns/openrel/0/> .
+@prefix : <http://www.w3.org/ns/openrel/0/> . 
+# RDF-related
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+# general content
+@prefix schema: <http://schema.org/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+# rdmi-related
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcatap: <http://data.europa.eu/r5r/> .
+@prefix r3d: <https://schema.re3data.org/4-0/re3dataV4-0.xsd> .
+@prefix coar: <http://purl.org/coar/> .
+@prefix trsp: <https://github.com/wimhugo/kb-attributes-eden-fidelis-trsp/> .
+@prefix posi: <https://purl.org/trsp/posi/> .
+@prefix fair: <https://w3id.org/fair/principles/terms/> .
+# rights-related
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix dalicc: <https://dalicc.net/ns#> .
+@prefix dalicclib: <https://dalicc.net/licenselibrary/> .
+@prefix ids: <https://w3id.org/idsa/core/> .
+@prefix idsc: <https://w3id.org/idsa/code/> .
+@prefix osl: <http://opensource.org/licenses/> .
+@prefix spdx: <http://spdx.org/rdf/terms#>  .
+@prefix spdxlicense: <http://spdx.org/licenses/> .
+@prefix dpv: <https://w3id.org/dpv> .
+@prefix ropa: <https://w3id.org/dpv-ropa#> .
+
+# -------------------------------------------------------------------------------------------------------------
+# Definition of Scheme and Provenance
+# ----------------------------------------------------- -------------------------------------------------------
+
+trsp:revenue-method-type-scheme
+  a skos:ConceptScheme ;
+  skos:prefLabel "Revenue Source Type"@en ;
+  dct:title "Revenue Source Type"@en ;
+  dct:description "Types of revenue permitted (or prohibited)."@en ;
+  dct:created "2026-07-06T00:00:00+00:00"^^xsd:datetime ;
+  dct:creator <https://orcid.org/0000-0002-0255-5101> ;
+  owl:versionInfo "0.4" .
+# -------------------------------------------------------------------------------------------------------------
+# Definition of Terms
+# ----------------------------------------------------- --------------------------------------------------------
+
+trsp:free
+  a skos:Concept ;
+  skos:prefLabel "Free"@en ;
+  skos:broadMatch fair:A1_1 ;
+  rdfs:seeAlso fair:A1_1 ;
+  skos:inScheme trsp:revenue-source-type-scheme .
+
+trsp:subscription
+  a skos:Concept ;
+  skos:prefLabel "Subscription"@en ;
+  skos:exactMatch <http://purl.org/cerif/frapo/Subscription> ;
+  rdfs:seeAlso <http://purl.org/cerif/frapo/Subscription> ;
+  skos:inScheme trsp:revenue-source-type-scheme .
+
+trsp:payPerUse
+  a skos:Concept ;
+  skos:prefLabel "Pay per use"@en ;
+  skos:inScheme trsp:revenue-source-type-scheme .
+
+trsp:licence
+  a skos:Concept ;
+  skos:prefLabel "Use Upon Licence Payment"@en ;
+  skos:inScheme trsp:revenue-source-type-scheme .
+
+trsp:structural
+  a skos:Concept ;
+  skos:prefLabel "Structural Income or Budget Allocation"@en ;
+  skos:inScheme trsp:revenue-source-type-scheme .
+
+trsp:membership
+  a skos:Concept ;
+  skos:prefLabel "Membership"@en ;
+  skos:exactMatch <http://www.w3.org/ns/org#Membership> ;
+  rdfs:seeAlso <http://www.w3.org/ns/org#Membership> ;
+  skos:broadMatch r3d:dataAccessRestrictions_institutionalMembership ;
+  rdfs:seeAlso r3:dataAccessRestrictions_institutionalMembership ;
+  skos:broadMatch posi:G3 ;
+  rdfs:seeAlso posi:G3 ;
+  skos:inScheme trsp:revenue-source-type-scheme .
+
+trsp:grants
+  a skos:Concept ;
+  skos:prefLabel "Grants"@en ;
+  skos:exactMatch <http://w3id.org/roh#grants> ;
+  rdfs:seeAlso <http://w3id.org/roh#grants> ;
+  skos:inScheme trsp:revenue-source-type-scheme .
+
+
+
