@@ -6,4 +6,4 @@
 | # | Use Case | Description |
 |:-------|:------------------------|:------------------------------------------------|
 |[001]([docs/examples/example_001.md](https://github.com/wimhugo/openrel/blob/main/docs/examples/example_001.md))|Non-Commercial Use|This is a common use case, and in some instances, permits the recovery of e.g. distribution costs.|
-|002|Record Changes|Licences often require the end user to record any modifications as text within the asset without modifying the licence or removing earlier comments - very common in software licences|
+|002|Record Changes|Licences often require the end user to record any modifications as text within the asset without modifying the licence or removing earlier comments - very common in software licences, and good practice in case of all resources.|
