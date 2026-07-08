@@ -89,6 +89,14 @@ openrel:liabilityLimitation
         skos:note "OpenREL, in response to DALICC property 'noWarrantyNotice'. and 'WarrantyDisclaimer'."@en ;
         rdfs:isDefinedBy dalicc: .
 
+openrel:validityType
+        a rdfs:Property, skos:Concept ;
+        rdfs:label "Validity Type"@en ;        
+        skos:definition "A range of validity types typically included into licences. Values are sourced from the Validity Type vocabulary (https://github.com/wimhugo/openrel/blob/main/.openrel/vocabs/openrel/type_validity.ttl)."@en ;
+        skos:exactMatch dalicc:validityType ;
+        skos:note "DALICC. Modified by OpenREL to refer to vocabulary terms in the 'Licence Type Vocabulary'."@en ;
+        rdfs:isDefinedBy dalicc: .
+
 # --------- Dublin Core
 
 dct:subject
