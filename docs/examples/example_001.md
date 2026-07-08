@@ -30,4 +30,12 @@ This example encodes the permission to recover dustribution costs. It utilises t
 |Concept|Description|Source|
 |:-------|:------|:-----|
 |openrel:costRecovery|Action to recover costs invilved in creating and distributing a derived asset. |[OpenREL Actions](https://github.com/wimhugo/openrel/edit/main/.openrel/vocabs/openrel/actions.ttl)| 
-|openrel:revenueSource| OpenREL defines a Left Operand that can indicate one or more types of revenue source. Options for types of cost recovery (Right Operand) is based on 'Revenue Source Types' associated with RDMI, as defined by [TRSP](https://github.com/wimhugo/kb-attributes-eden-fidelis-trsp/blob/main/.configs/vocabs/attr/revenue-source-type.ttl)|OpenREL Left Operands|
+|openrel:revenueSource| OpenREL defines a Left Operand that can indicate one or more types of revenue source. |OpenREL Left Operands|
+|trsp:distributionFee | Options for types of cost recovery (Right Operand) is based on 'Revenue Source Types' associated with RDMI, as defined by [TRSP](https://github.com/wimhugo/kb-attributes-eden-fidelis-trsp)|[TRSP Revenue Sources](https://github.com/wimhugo/kb-attributes-eden-fidelis-trsp/blob/main/.configs/vocabs/attr/revenue-source-type.ttl)|
+
+
+
+
+
+
+
