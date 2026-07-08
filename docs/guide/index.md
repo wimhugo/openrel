@@ -13,5 +13,5 @@
 
 ## Annexures
 
-A. Encoding Examples
-B. Popular Licences
+1. Encoding Examples
+2. Popular Licences
