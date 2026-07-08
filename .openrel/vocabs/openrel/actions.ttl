@@ -295,6 +295,16 @@ openrel:promote
 	skos:exactMatch dalicc:promote ;
 	.
 
+openrel:costRecovery
+	a odrl:Action ;
+	rdfs:isDefinedBy openrel: ;
+    rdfs:comment "The Assigner permits [/does not permit] the Assignee to revicer costs of permitted actions related to third party use."@en ;
+    rdfs:label "Cost Recovery"@en ;
+    skos:note "Generalises some DALICC encodings, for example 'dalicc:ChargeDistibution'. No ODRL matches."@en 
+	# Extensions by OpenREL
+	skos:exactMatch dalicc:promote ;
+	.
+
 openrel:assentTo
 	a :Action, skos:Concept ;
 	rdfs:label "Assent To"@en ;	
