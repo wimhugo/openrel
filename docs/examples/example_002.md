@@ -12,6 +12,8 @@ There is a nuance here that is important: ODRL provides two Actions that are rel
 |Citation Equivalence| Any results based on the original asset remain achievable with the modified or derived asset. This is commonly the case for e.g. datasets where the metadata or semantic linking has been improved, or code that has been optimised or ported but respects the same input and output specifications| odrl:modify| openrel:modify|
 |Role Equivalence| The PID resolves to a potentially very different asset over time, but the role of the asset remains the same - for example a data policy or a list of recommended sources of information|odrl:derive|openrel:derive or openrel:modify|
 
+Any work that combines two or more assets will always be encoded as permission to derive a new asset, and will have a new persistent identifier as a matter of course.
+
 ## Sources
 
 (1) [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/)
