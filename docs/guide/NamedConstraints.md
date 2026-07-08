@@ -10,7 +10,7 @@ The approach has its downsides, in that a policy or licence is not composed in a
 
 We will follow a hybrid approach in OpenREL, by defining a set of '**Named Constraints**' - Constraints that can be referenced via IRI and extend the properties of the ODRL Constraint class. These Named Constraints assist with consistent implementation of encodings that are commonly used and/ or are complex to create, and can be easily referenced as Logical Constraints.
 
-##Class Definitions
+## Class Definitions
 
 The ODRL Constraint Class is defined as follows:
 
