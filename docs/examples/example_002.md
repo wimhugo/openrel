@@ -17,6 +17,7 @@ Any work that combines two or more assets will always be encoded as permission t
 ## Sources
 
 (1) [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/)
+
 (2) Hugo, W., Van de Sompel, H., & Hakala, J. (2025). The PID Landscape - a Technical View (1.1). Zenodo. [https://doi.org/10.5281/zenodo.14881287](https://doi.org/10.5281/zenodo.14881287) 
 
 ## Encoding Example
@@ -24,27 +25,52 @@ Any work that combines two or more assets will always be encoded as permission t
 
 ```
   [ a odrl:Permission ;
-      odrl:action openrel:costRecovery 
-        [ a odrl:Constraint ;
-            odrl:leftOperand openrel:revenueSource ;
-            odrl:operator odrl:eq ;`
-            odrl:rightOperand trsp:distributionFee ;
-        ],           
-  ] ;
+      odrl:action odrl:modify ;
+      odrl:duty 
+          [ a odrl:Duty ;
+              odrl:action cc:Attribution ],
+          [ a odrl:Duty ;
+              odrl:action openrel:notify 
+                  odrl:constraint
+                  [ a odrl:Constraint ;
+                      odrl:leftOperand openrel:notificationType ;
+                      odrl:operator odrl:eq ;
+                      odrl:rightOperand openrel:record-in-asset 
+                  ],
+          ]   
+  ],
+
+  [ a odrl:Permission ;
+      odrl:action odrl:derive ;
+      odrl:duty [ a odrl:Duty ;
+              odrl:action openrel:attribute ],
+          [ a odrl:Duty ;
+              odrl:action openrel:notify 
+                  odrl:constraint
+                  [ a odrl:Constraint ;
+                      odrl:leftOperand openrel:notificationType ;
+                      odrl:operator odrl:eq ;
+                      odrl:rightOperand openrel:record-in-asset 
+                  ],
+  ]
 ```
 
 
 The example encodes the following human-readable statement: 
 
->"You are permitted to recover costs of making derived works available to third parties, but in doing so, you must only charge a distribution fee and not recover any other costs." 
+>"You are permitted to create modified or derived works from the asset, but in doing so, you must cite the original source, and record any changes you make in the derived or modified work or its metadata."
 
-This example encodes the permission to recover dustribution costs. It utilises the following vocabulary concepts:
+In practice, for datasets, this typically involves recording provenence in the asset metadata, and in source code, adding comments to the original licence and change statements to reflect modifications.
+
+This example encodes the dutoes to attibute (cite) and to record changess. It utilises the following vocabulary concepts:
 
 |Concept|Description|Source|
 |:-------|:------|:-----|
-|openrel:costRecovery|Action to recover costs invilved in creating and distributing a derived asset. |[OpenREL Actions](https://github.com/wimhugo/openrel/edit/main/.openrel/vocabs/openrel/actions.ttl)| 
-|openrel:revenueSource| OpenREL defines a Left Operand that can indicate one or more types of revenue source. |OpenREL Left Operands|
-|trsp:distributionFee | Options for types of cost recovery (Right Operand) is based on 'Revenue Source Types' associated with RDMI, as defined by [TRSP](https://github.com/wimhugo/kb-attributes-eden-fidelis-trsp)|[TRSP Revenue Sources](https://github.com/wimhugo/kb-attributes-eden-fidelis-trsp/blob/main/.configs/vocabs/attr/revenue-source-type.ttl)|
+|openrel:modiy|Action to modify an asset. |[OpenREL Actions](https://github.com/wimhugo/openrel/edit/main/.openrel/vocabs/openrel/actions.ttl)| 
+|openrel:derive|Action to derive a new asset. |[OpenREL Actions](https://github.com/wimhugo/openrel/edit/main/.openrel/vocabs/openrel/actions.ttl)| 
+|openrel:attribute| Creative Commons defines the action of attribution, as does ODRL. The OpenREL definition contains these and other relavant mappings, enabling crosswalks of the encoding. |[OpenREL Actions](https://github.com/wimhugo/openrel/edit/main/.openrel/vocabs/openrel/actions.ttl)|
+|openrel:notificationType| OpenREL defines a Left Operand that can indicate one or more types of notification that is required. |OpenREL Left Operands|
+|openrel:record-in-asset  |OpenREL provides a vocabulary for definition of a number of notification types and targets |[OpenREL Notification Types]([https://github.com/wimhugo/kb-attributes-eden-fidelis-trsp/blob/main/.configs/vocabs/attr/revenue-source-type.ttl](https://github.com/wimhugo/openrel/blob/main/.openrel/vocabs/openrel/type_notification-purpose.ttl)|
 
 
 
