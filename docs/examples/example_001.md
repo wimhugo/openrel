@@ -13,7 +13,7 @@ This is a common use case, and in some cases, permits the recovery of e.g. distr
   [ a odrl:Permission ;
       odrl:action openrel:costRecovery 
         [ a odrl:Constraint ;
-            odrl:leftOperand openrel:leftOperand.revenuSource ;
+            odrl:leftOperand openrel:revenueSource ;
             odrl:operator odrl:eq ;`
             odrl:rightOperand trsp:distributionFee ;
         ],           
@@ -29,4 +29,5 @@ This example encodes the permission to recover dustribution costs. It utilises t
 
 |Concept|Description|Source|
 |:-------|:------|:-----|
-|openrel:costRecovery|Action to recover costs invilved in creating and distributing a derbibved asset. Options for types of cost revocery is based on 'Revenue Source Types' associated with RDMI, as defined by [TRSP](https://github.com/wimhugo/kb-attributes-eden-fidelis-trsp/blob/main/.configs/vocabs/attr/revenue-source-type.ttl)|[OpenREL Actions](https://github.com/wimhugo/openrel/edit/main/.openrel/vocabs/openrel/actions.ttl)| 
+|openrel:costRecovery|Action to recover costs invilved in creating and distributing a derived asset. |[OpenREL Actions](https://github.com/wimhugo/openrel/edit/main/.openrel/vocabs/openrel/actions.ttl)| 
+|openrel:revenueSource| OpenREL defines a Left Operand that can indicate one or more types of revenue source. Options for types of cost recovery (Right Operand) is based on 'Revenue Source Types' associated with RDMI, as defined by [TRSP](https://github.com/wimhugo/kb-attributes-eden-fidelis-trsp/blob/main/.configs/vocabs/attr/revenue-source-type.ttl)|OpenREL Left Operands|
