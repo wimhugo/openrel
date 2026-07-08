@@ -70,7 +70,7 @@ This example encodes the dutoes to attibute (cite) and to record changess. It ut
 |openrel:derive|Action to derive a new asset. |[OpenREL Actions](https://github.com/wimhugo/openrel/edit/main/.openrel/vocabs/openrel/actions.ttl)| 
 |openrel:attribute| Creative Commons defines the action of attribution, as does ODRL. The OpenREL definition contains these and other relavant mappings, enabling crosswalks of the encoding. |[OpenREL Actions](https://github.com/wimhugo/openrel/edit/main/.openrel/vocabs/openrel/actions.ttl)|
 |openrel:notificationType| OpenREL defines a Left Operand that can indicate one or more types of notification that is required. |OpenREL Left Operands|
-|openrel:record-in-asset  |OpenREL provides a vocabulary for definition of a number of notification types and targets |[OpenREL Notification Types]([https://github.com/wimhugo/kb-attributes-eden-fidelis-trsp/blob/main/.configs/vocabs/attr/revenue-source-type.ttl](https://github.com/wimhugo/openrel/blob/main/.openrel/vocabs/openrel/type_notification-purpose.ttl)|
+|openrel:record-in-asset  |OpenREL provides a vocabulary for definition of a number of notification types and targets |[OpenREL Notification Types](https://github.com/wimhugo/openrel/blob/main/.openrel/vocabs/openrel/type_notification-purpose.ttl)|
 
 
 
