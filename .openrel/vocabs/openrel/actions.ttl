@@ -132,14 +132,16 @@ openrel:modify
 	a :Action, skos:Concept ;
 	rdfs:label "Modify"@en ;	
 	skos:definition "Alter or adapt a resource resulting in a new ((minor) version that is regarded as the same object, but updated or improved."@en ;
+	odrl:includedIn odrl:use ;
 	# deprecated skos:definition "Alter, adapt, transform, or derive new content from a resource."@en ;
+	# Extensions by OpenREL
 	skos:note "odrl: To change existing content of the Asset. A new asset is not created by this action."@en ;
 	skos:note "odrl: This action will modify an asset which is typically updated from time to time without creating a new asset. If the result from modifying the asset should be a new asset the actions derive or extract should be used. (Note that the notion of whether or not the change is significant enough to qualify as a new asset is subjective)."@en ;
 	skos:note "OpenREL has a narrowerr definition than ODRL, restricting the use of the term to assets that are odified in such a way that it retains its asset identifier and is not regarded as a derived asset. If a new asset is derived, use openrel:derive." ;
-	odrl:includedIn odrl:use ;
+	skos:exactMatch dalicc:ModifiedWorks ;
 	skos:broadMatch odrl:modify ;
-	# Extensions by OpenREL
-	rdfs:isDefinedBy openrel: .
+	rdfs:isDefinedBy openrel: ;
+	.
 	## Discussion - any modification that results in content that is not resolvable with the same PID is a new asset. The problem emerges from a diversity of
 	# repository practices - some maintain checksum integrity, others allow versioning with a stable PID.
 	## Recommendation: include odrl:derive as openrel:derive
