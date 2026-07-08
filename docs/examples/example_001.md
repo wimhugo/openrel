@@ -1,4 +1,4 @@
-# 	Non-Commercial Use
+# 	Non-Commercial Use Permitting Distribution Cost Recovery
 
 This is a common use case, and in some cases, permits the recovery of e.g. distribution costs.
 
