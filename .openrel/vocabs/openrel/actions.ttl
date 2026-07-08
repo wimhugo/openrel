@@ -272,7 +272,8 @@ openrel:applyLicence
 	skos:exactMatch odrl:licence ;
 	skos:broadMatch odrl:grantUse ;
 	# Extensions by OpenREL
-	rdfs:isDefinedBy openrel: .
+	rdfs:isDefinedBy openrel: 
+	.
 
 openrel:trademarkUse
 	a :Action, skos:Concept ;
@@ -281,7 +282,18 @@ openrel:trademarkUse
 	skos:note "Originally defined by DALICC as a property."@en ;
 	skos:exactMatch dalicc:trademarkNotice ;
 	# Extensions by OpenREL
-	rdfs:isDefinedBy openrel: .
+	rdfs:isDefinedBy openrel: 
+	.
+
+openrel:promote
+	a odrl:Action ;
+	rdfs:isDefinedBy openrel: ;
+    rdfs:comment "The Assigner permits [/does not permit] the Assignee to use the asset for promotional purposes."@en ;
+    rdfs:label "Promote"@en ;
+    skos:note "Used in several DALICC encodings. No ODRL matches. More useful as a prohibition."@en 
+	# Extensions by OpenREL
+	skos:exactMatch dalicc:promote ;
+	.
 
 openrel:assentTo
 	a :Action, skos:Concept ;
