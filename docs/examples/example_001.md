@@ -8,20 +8,20 @@ This is a common use case, and in some cases, permits the recovery of e.g. distr
 
 ## Encoding Example
 
-`
-  [ a odrl:Permission ;
-      odrl:action openrel:costRecovery 
-        [ a odrl:Constraint ;
-            odrl:leftOperand openrel:leftOperand.revenuSource ;
-            odrl:operator odrl:eq ;
-            odrl:rightOperand trsp:distributionFee ; 
-        ],            
-  ] ;
-`
+
+`  [ a odrl:Permission ;`
+`      odrl:action openrel:costRecovery `
+`        [ a odrl:Constraint ;`
+`            odrl:leftOperand openrel:leftOperand.revenuSource ;`
+`            odrl:operator odrl:eq ;`
+`            odrl:rightOperand trsp:distributionFee ; `
+`        ],`            
+`  ] ;`
+
 
 The example encodes the following human-readable statement: 
 
->"You are permitted to revicer costs of making derived works available to third parties, but in doing so, you must only charge a distribution fee and not recover any other costs." 
+>"You are permitted to recover costs of making derived works available to third parties, but in doing so, you must only charge a distribution fee and not recover any other costs." 
 
 This example encodes the permission to recover dustribution costs. It utilises the following vocabulary concepts:
 
