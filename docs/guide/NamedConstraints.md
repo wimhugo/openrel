@@ -8,3 +8,26 @@ The approach has its downsides, in that a policy or licence is not composed in a
 
 We will follow a hybrid approach in OpenREL, by defining a set of '**Named Constraints**' - Constraints that can be referenced via IRI and extend the properties of the ODRL Constraint class. These Named Constraints assist with consistent implementation of encodings that are commonly used and/ or are complex to create.
 
+##Class Definitions
+
+The ODRL Constraint Class is defined as follows:
+
+```
+:Constraint
+	a rdfs:Class, owl:Class, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Constraint"@en ;
+	skos:definition "A boolean expression that refines the semantics of an Action and Party/Asset Collection or declare the conditions applicable to a Rule."@en .
+```
+
+The OpenREL NamedConstraint Class extends this :
+
+```
+openrel:NamedConstraint
+	a rdfs:Class, owl:Class, skos:Concept ;
+  rdfs:subClassOf odrl:Constraint ;
+  rdfs:isDefinedBy openrel: ;
+	rdfs:label "Named Constraint"@en ;
+  skos:definition "A subclass that extends the properties of the ODRL Constraint Class."@en ;
+	skos:note "ODRL: A boolean expression that refines the semantics of an Action and Party/Asset Collection or declare the conditions applicable to a Rule."@en .
+```
