@@ -30,7 +30,7 @@ Any work that combines two or more assets will always be encoded as permission t
           [ a odrl:Duty ;
               odrl:action cc:Attribution ],
           [ a odrl:Duty ;
-              odrl:action openrel:notify 
+              odrl:action openrel:notify ;
                   odrl:constraint
                   [ a odrl:Constraint ;
                       odrl:leftOperand openrel:notificationType ;
@@ -45,7 +45,7 @@ Any work that combines two or more assets will always be encoded as permission t
       odrl:duty [ a odrl:Duty ;
               odrl:action openrel:attribute ],
           [ a odrl:Duty ;
-              odrl:action openrel:notify 
+              odrl:action openrel:notify ;
                   odrl:constraint
                   [ a odrl:Constraint ;
                       odrl:leftOperand openrel:notificationType ;
