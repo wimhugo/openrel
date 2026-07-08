@@ -101,10 +101,15 @@ openrel:notify-ropa
   skos:note "ROPA: A ROPA is a document maintained by Data Controllers detailing processing activities carried out under their responsibility"@en ;
   skos:inScheme openrel:notification-target-type .
 
-
-
-
-
+openrel:record-in-asset 
+  a skos:Concept ;
+  skos:closeMatch dalicc:modificationNotice ;
+  rdfs:isDefinedBy openrel: ;
+  rdfs:prefLabel "Record in Asset"@en ;
+  skos:definition "All instances of use must be recorded in human-readable form within the licenced asset. Records of previous modification must be retained."@en ;
+  skos:note "DALICC: A notice that indicates if the Assignee modified the Licensed Material and retains an indication of any previous modifications."@en ;
+  skos:note "This captures the requirement to annotate e.g. source code, where the original licence is displayed as comments, with additional comments to indicate changes."@en ;
+  skos:inScheme openrel:notification-target-type .
 
 
 
