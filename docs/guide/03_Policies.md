@@ -43,7 +43,7 @@ A **typical life cycle** may include:
 ## Motivation for Additional Subclasses
 
 OpenREL has defined three additional Policy subclasses, and each of these have a specialisation that is not addressed by existing IDRL classes and subclasses.
-
+ 
 
 | OpenREL Policy subclass | Uniqueness Criterion | Motivation                                                                                                                                 | Typical issuer                          | Example                                                                                                                            |
 | -------------------- | -------------------- |-------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
