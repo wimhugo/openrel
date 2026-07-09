@@ -6,6 +6,12 @@ Prodromos Tsiavos, OpenAIRE
 09-07-2026
 [CC BY 4.0]([url](https://spdx.org/licenses/CC-BY-4.0.html))
 
+## TL;DR 
+
+ODRL defines policy subclasses, but these extend semantics to describe the life cycle role of a policy rather than its narrower specialisation in terms of content, and for this reason, OpenREL extends the Policy (Set) Class with the Licence, Access Rules, and Process Rules subclasses.
+
+## Context
+
 A Policy is the foundational class defined in ODRL for encoding of sets of rules (permissions, prohibitions, and duties), and can be elaborated with constraints.
 
 A Policy allows a number of properties to be defined, and it can be made into a custom policy for a very specific Asset (e.g. a specific dataset), and made applicable to a very specific Party (e.g. an individual or institution).
@@ -26,9 +32,9 @@ These Policy subclasses, with the exception of the Privacy Policy, are aimed at 
 
 A **typical life cycle** may include:
 
-1. A request in respect of an Asset by an Assignee is encoded as a *Request Policy* and forwarded to the Assigner. This request may include permissions, for example, that the Assigner may or may not grant. (The scope of permissions may already be published for the Asset in an existing Policy).
+1. A request in respect of an Asset by an Assignee is encoded as a *Request Policy* and forwarded to the Assigner. This request may include permissions, for example, that the Assigner may or may not grant. (The scope of permissions may already be published for the Asset in an existing Policy). A Request Policy may include some of the elements of *User Context* defined by OpenREL, more about that later.
 2. The Assigner produces an *Offer*, which may or may not grant all of the permissions requested, contain additional prohibitions and duties, and impose constraints. In the context of research data management use cases, this Offer Policy is equivalent to a standardised licence applicable to an Asset Collection (e.g. all our publicly available non-senstive data is subject to a CC BY 4.0 licence).
-3. If a negotiation (automated or manual) leads to a match, this can be encoded in an *Agreement* Policy. The Agreement is specific: it describes the Assignee, the Assigner, and the Asset unambigously, and as such, may be viewed as a custom instance of a general licence applicable to an Asset Collection. FOr example, sensitive data licences may be created as a general template, but require that the specific Asset, Assigner and Assignee be recorded in a custom licence agreement with only that scope.
+3. If a negotiation (automated or manual) is successful, this match can be encoded in an *Agreement* Policy. The Agreement is specific: it describes the Assignee, the Assigner, and the Asset unambigously, and as such, may be viewed as a custom instance of a general licence applicable to an Asset Collection. FOr example, sensitive data licences may be created as a general template, but require that the specific Asset, Assigner and Assignee be recorded in a custom licence agreement with only that scope.
 
 
 
