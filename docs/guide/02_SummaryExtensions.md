@@ -36,6 +36,34 @@ These vocabularies are used to describe very general classes and concepts.
 |FOAF |foaf: |<http://xmlns.com/foaf/0.1/> |
 |VCARD |vcard: |<http://www.w3.org/2006/vcard/ns#> |
 
+### Research Data Management Infrastructure
+
+These vocabularies are used widely in the research data (output) management landscape, and are not widely applicable outside of the domain.
+
+|Label|Prefix|Source|
+|:--------|:--------|:--------|
+|DUBLIN CORE |dct: |<http://purl.org/dc/terms/> |
+|DCAT |dcat: |<http://www.w3.org/ns/dcat#> |
+|DCAT-AP |dcatap: |<http://data.europa.eu/r5r/> |
+|@re3data |r3d: |<https://schema.re3data.org/4-0/re3dataV4-0.xsd> |
+|COAR |coar: |<http://purl.org/coar/> |
+
+### Rights-Related
+
+ODRL and ccREL are foundational in this context, but there are also inmportant contributions from others. The IDSC vocabulary and its OpenREL mappings provide interoperability with the emergent European Data Spaces. Personal data privacy concerns are well defined in DPV, and is extended by ROPA. SPDX and OSL provide licence-level metadata terms and vocabulary, but not rule encoding.
+
+|Label|Prefix|Source|
+|:--------|:--------|:--------|
+|ODRL |odrl: |<http://www.w3.org/ns/odrl/2/> |
+|ccREL |cc: |<http://creativecommons.org/ns#> |
+|DALICC |dalicc: |<https://dalicc.net/ns#> |
+|IDSA |ids: |<https://w3id.org/idsa/core/> |
+|IDSC |idsc: |<https://w3id.org/idsa/code/> |
+|OSL |osl: |<http://opensource.org/licenses/> |
+|SPDX |spdx: |<http://spdx.org/rdf/terms#>  |
+|DPV |dpv: |<https://w3id.org/dpv> |
+|ROPA |ropa: |<https://w3id.org/dpv-ropa#> |
+
 
 
 
