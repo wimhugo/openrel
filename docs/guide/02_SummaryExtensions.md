@@ -67,7 +67,7 @@ ODRL and ccREL are foundational in this context, but there are also important co
 
 ODRL is in prpcess of being extended (ODRL 3.0 [^1]), but the published scope of these extensions deal with relations between Assets and Asset Collections, and dynamic resolution of Right Operands. These proposals do not cover the extensions included into OpenREL.
 
-[1] https://spec.knows.idlab.ugent.be/odrl3proposal/latest/
+[^1] https://spec.knows.idlab.ugent.be/odrl3proposal/latest/
 
 
 
