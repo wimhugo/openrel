@@ -43,13 +43,13 @@ The extension of properties is simple: providing a name and a description for th
 |Constraint Name (Title)|rdfs:label|A suitable short label or title for the named constraint|
 |Constraint Definition|skos:definition|A definition of the purpose and usage of the constraint|
 
-There is a new property that is udeful in some constraint definitions, and that is the ability to designate a target (IRL) for the fulfillment of the constraint. A very good example of this is offered by a variety of notification-related constraints, where the IRL can be utilised to identify the endpoint where notifications must be made. Similarly, a constraint may require adherence to a profile of measures, and these measures may be documented as a machine-readable resource at an external endpoint. To accommodate this, we define an additional (new) property for Named Constraints:
+There is a new property that is useful for some constraint definitions, and that is the ability to designate a target (IRL) for the fulfillment of the constraint. A very good example of this is offered by a variety of notification-related constraints, where the IRL can be utilised to identify the endpoint where notifications must be made. Similarly, a constraint may require adherence to a profile of measures, and these measures may be documented as a machine-readable resource at an external endpoint. To accommodate this, we define an additional (new) property for Named Constraints:
 
 |Property| IRI| Description|
 |:-------|:-------|:-------|
 |Applicable Endpoint|openrel:applicableEndpoint|An endpoint that is used to fulfill the criteria of or inform the adherence to the named constraint.|
 
-
+ODRL defines a target (odrl:target), but this property is semantically different - it is intended to define the target of the policy.
 
 
 
