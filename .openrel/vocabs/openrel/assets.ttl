@@ -100,7 +100,8 @@ odrl:partOf
 # These Asset Collections are subclasses of the ODRL Asset Collection Class
 # -------------------------------------------------------------------------------------------------------------
 
-None
+# None
 
 
-	rdfs:isDefinedBy openrel: .
+
+
