@@ -65,7 +65,7 @@ openrel:agentDelegation
         skos:note "OpenREL internal — EU AI Act / agentic workflow governance"@en ;
         rdfs:isDefinedBy openrel: .
 
-openrel: subPolicyOf
+openrel:subPolicyOf
         a rdfs:Property, skos:Concept ;
         rdfs:label "Sublicence of"@en ;        
         skos:definition "The licence is based on an original licence that allows derived licences to be granted to third parties.."@en ;
@@ -96,6 +96,15 @@ openrel:validityType
         skos:exactMatch dalicc:validityType ;
         skos:note "DALICC. Modified by OpenREL to refer to vocabulary terms in the 'Licence Type Vocabulary'."@en ;
         rdfs:isDefinedBy dalicc: .
+
+openrel:hasPolicy
+	a rdf:Property , owl:ObjectProperty, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Target Policy"@en ;
+	skos:definition "Identifies an ODRL Policy for which the identified Asset is the target Asset [or Asset Collection] to all the Rules."@en ;
+	skos:note "The Asset [or Asset Collection] being identified MUST be inferred to be the target Asset of all of the Rules of the Policy."@en ;
+    rdfs:domain :AssetCollection ;
+	rdfs:range openrel:PolicyCollection .
 
 # --------- Dublin Core
 
