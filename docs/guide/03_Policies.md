@@ -39,12 +39,12 @@ A **typical life cycle** may include:
 
 ## Motivation for Additional Subclasses
 
-OpenREL has defined three additional Policy subclasses, and each of these have a specific specialsiation that cannot be addressed by 
+OpenREL has defined three additional Policy subclasses, and each of these have a specific specialsiation that cannot be addressed by existing IDRL classes and subclasses.
 
 
 | OpenREL Policy subclass | Motivation                                                                                                                                 | Typical issuer                          | Example                                                                                                                            |
 | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-
+|Licence|A ***Licence*** Policy subclass introduces additional properties that are not typically applicable to other Policy subclasses, and takes its broad scope from the properties associated specifically with licences. | Generally applicable, but Agreements may be made that are specific.|SPDX, for example, makes a distinction between the legal, human-readable, and machine-readable representations of a licence, and in some cases, such licences are legally enforceable in a specific jurisdiction (for example, in the case of some Creative Commons licences).|
 
 
 
