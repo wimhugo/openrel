@@ -21,7 +21,7 @@ These vocabularies are foundational to RDF encodings and are used whenever appro
 
 |Label|Prefix|Source|
 |:--------|:--------|:--------|
-|RDF| rdf: |<http://www.w3.org/1999/02/22-rdf-syntax-ns#> |
+|RDF| rdf: |<[http://www.w3.org/1999/02/22-rdf-syntax-ns#](http://www.w3.org/1999/02/22-rdf-syntax-ns#))> |
 |SKOS| skos: |<http://www.w3.org/2004/02/skos/core#> |
 |OWL| owl: |<http://www.w3.org/2002/07/owl#> |
 |XSD| xsd: |<http://www.w3.org/2001/XMLSchema#> |
@@ -65,7 +65,7 @@ ODRL and ccREL are foundational in this context, but there are also important co
 |ROPA |ropa: |<https://w3id.org/dpv-ropa#> |
 |LFS |lfs: |<https://lfs.labs.dansdemo.nl/docs#/> |
 
-ODRL is in prpcess of being extended (ODRL 3.0 [^1]), but the published scope of these extensions deal with relations between Assets and Asset Collections, and dynamic resolution of Right Operands. These proposals do not cover the extensions included into OpenREL.
+ODRL is in process of being extended (ODRL 3.0 [^1]), but the published scope of these extensions deal with relations between Assets and Asset Collections, and dynamic resolution of Right Operands. These proposals do not cover the extensions included into OpenREL.
 
 [^1]: https://spec.knows.idlab.ugent.be/odrl3proposal/latest/
 
