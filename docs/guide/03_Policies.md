@@ -9,8 +9,9 @@
 
 ## Summary
 
-ODRL defines Policy subclasses, but the semantics largely aim to describe the *life cycle role* of a Policy rather than its narrower specialisation in terms of content or origin. For this reason, OpenREL extends the Policy (Set) Class with the Licence, Access Rule, and Process Rule subclasses. It also affords the capability to evaluate access requests based on a combination of policy, licence, access, and process rules.
+ODRL defines Policy subclasses, but the semantics largely aim to describe the *life cycle role* of a Policy rather than its narrower specialisation in terms of content or origin. For this reason, OpenREL extends the Policy (Set) Class with the ***Licence***, ***Access Rule***, and ***Process Rule*** subclasses. It also affords the capability to evaluate access requests based on a combination of policy, licence, access, and process rules.
 
+OpenREL also defines a new subclass of Policy (***Policy Collection***) that allows one or more Policy instances to be combined in a single instance.
 
 ## Context
 
@@ -62,8 +63,16 @@ OpenREL provides vocabulary to encode several categories of user context, for ex
 
 Using OpenREL vocabulary, user context can be encoded as one or more constraints with resolved Right Operands and persisted as an Assertion Policy that is unique to the end user. These can be included into Requests, and matched with an Offer or an existing Rule Set to determine compliance. It can be used pre-emptively to filter Rule Sets (policies, licences, access rules, process rules, and other combinations of rules) so that end users understand what types of Assets and Asset collections are available to them. A specific use case involves filtering of catalogue content to reflect whether access will be possible, and what should be changed to gain access in cases where it will not currently be possible.
 
+## Policy Collection
 
+A ***Policy Collection*** allows the combination of Policy instances (which can be of any Policy subclass) into a single instance. There are two use cases for this:
 
+1. **Record of Negotiation**: As described above, a negotiation between parties to arrange access to and use of an Asset may require several inputs and outputs, including a Request, an Offer, an Agreement, and any number of Tickets. It may be convenient to reference all of these artefacts in a single instance for record purposes.
+2. **Ease of Processing**: In some cases, access or use will depend on satisfying the constraints included in a Licence, Access Rules, and Process Rules, and finding all of these via the Asset reference may be cumbersome. The Policy Collection allows combination of refeences to all of these instances to assist with processing.
+
+A Policy Collection has the same properties as a Policy, and in addition, can include a new property to indicate its constitutent Policies. This is reformulated as openrel:hasPolicy, based on the odrl:hasPolicy property. A policy Collection cannot be open-ended, and has to indicate the Asset Collection to which it applies. For example, a Policy Collection must specify the catalogue (asset collection) that it applies to in the context of an institution and its software platform(s). It corresponds to a statement such as
+
+>"This Policy Collection applies to all datasets containing personal data, hosted by [Institution] in its [Repository] using [Software Platform]".
 
 
 
