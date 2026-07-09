@@ -13,7 +13,7 @@ These extensions fall into the following categories:
 
 ## Scope of Vocabulary
 
-The vocabularies that are referenced and reused in OpenREL is summarised in the table below.
+The vocabularies that are referenced and reused in OpenREL are summarised in the tables below.
 
 ### RDF-Related
 
@@ -25,3 +25,24 @@ These vocabularies are foundational to RDF encodings and are used whenever appro
 |SKOS| skos: |<http://www.w3.org/2004/02/skos/core#> |
 |OWL| owl: |<http://www.w3.org/2002/07/owl#> |
 |XSD| xsd: |<http://www.w3.org/2001/XMLSchema#> |
+
+### General Content
+
+These vocabularies are used to describe very general classes and concepts.
+
+|Label|Prefix|Source|
+|:--------|:--------|:--------|
+|SCHEMA |schema: |<http://schema.org/> |
+|FOAF |foaf: |<http://xmlns.com/foaf/0.1/> |
+|VCARD |vcard: |<http://www.w3.org/2006/vcard/ns#> |
+
+
+
+
+
+
+
+
+
+
+
