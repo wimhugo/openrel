@@ -2,7 +2,7 @@
 # OpenREL - Open Rights Encoding language
 # Version 0.4 (Draft)
 # Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/ EUDAT)
-# This Version: 1 July 2026
+# This Version: 10 July 2026
 # -------------------------------------------------------------------------------------------------------------
 
 # -------------------------------------------------------------------------------------------------------------
@@ -28,6 +28,8 @@
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix dcatap: <http://data.europa.eu/r5r/> .
+@prefix r3d: <https://schema.re3data.org/4-0/re3dataV4-0.xsd> .
+@prefix coar: <http://purl.org/coar/> .
 # rights-related
 @prefix odrl: <http://www.w3.org/ns/odrl/2/> .
 @prefix cc: <http://creativecommons.org/ns#> .
@@ -38,13 +40,16 @@
 @prefix osl: <http://opensource.org/licenses/> .
 @prefix spdx: <http://spdx.org/rdf/terms#>  .
 @prefix spdxlicense: <http://spdx.org/licenses/> .
+@prefix dpv: <https://w3id.org/dpv> .
+@prefix ropa: <https://w3id.org/dpv-ropa#> .
 
 openrel:ActionScheme
   a skos:ConceptScheme ;
   skos:prefLabel "OpenREL Actions and Mappings"@en ;
   dct:title "OpenREL Actions and Mappings"@en ;
   dct:description "Actions defined by OpenREL, and extensions to ODRL and other vocabularies, including mappings."@en ;
-  dct:created "2026-06-29T00:00:00+00:00"^^xsd:datetime ;
+  dct:created "2026-06-29T00:00:00+00:00"^^xsd:datetime ;  
+  dct:modified "2026-07-10T00:00:00+00:00"^^xsd:datetime ;
   dct:creator <https://orcid.org/0000-0002-0255-5101> ;  # Wim Hugo
   dct:creator "Melios Katsamakis" ;
   dct:contributor <https://orcid.org/0000-0003-2459-6817> ; # Prodromos Tsiavos
