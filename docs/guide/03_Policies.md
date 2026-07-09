@@ -9,9 +9,7 @@
 
 ## Summary
 
-ODRL defines Policy subclasses, but the semantics largely aim to describe the *life cycle role* of a Policy rather than its narrower specialisation in terms of content or origin. For this reason, OpenREL extends the Policy (Set) Class with the ***Licence***, ***Access Rule***, and ***Process Rule*** subclasses. It also affords the capability to evaluate access requests based on a combination of policy, licence, access, and process rules.
-
-OpenREL also defines a new subclass of Policy (***Policy Collection***) that allows one or more Policy instances to be combined in a single instance.
+ODRL defines Policy subclasses, but the semantics largely aim to describe the *life cycle role* of a Policy rather than its narrower specialisation in terms of content or origin. For this reason, OpenREL extends the Policy (Set) Class with the ***Licence***, ***Access Rule***, and ***Process Rule*** subclasses. It also affords the capability to evaluate access requests based on a combination of policy, licence, access, and process rules. To support this requirement, OpenREL also defines a new subclass of Policy (***Policy Collection***) that allows one or more Policy instances to be combined by reference in a single instance.
 
 [RDF Turtle representation](https://github.com/wimhugo/openrel/blob/main/.openrel/vocabs/openrel/policies.ttl)
 
