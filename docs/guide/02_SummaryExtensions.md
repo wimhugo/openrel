@@ -50,7 +50,7 @@ These vocabularies are used widely in the research data (output) management land
 
 ### Rights-Related
 
-ODRL and ccREL are foundational in this context, but there are also inmportant contributions from others. The IDSC vocabulary and its OpenREL mappings provide interoperability with the emergent European Data Spaces. Personal data privacy concerns are well defined in DPV, and is extended by ROPA. SPDX and OSL provide licence-level metadata terms and vocabulary, but not rule encoding.
+ODRL and ccREL are foundational in this context, but there are also important contributions from others. The IDSC vocabulary and its OpenREL mappings provide interoperability with the emergent European Data Spaces. Personal data privacy concerns are well defined in DPV, and is extended by ROPA. SPDX and OSL provide licence-level metadata terms and vocabulary, but not rule encoding.
 
 |Label|Prefix|Source|
 |:--------|:--------|:--------|
@@ -63,7 +63,7 @@ ODRL and ccREL are foundational in this context, but there are also inmportant c
 |SPDX |spdx: |<http://spdx.org/rdf/terms#>  |
 |DPV |dpv: |<https://w3id.org/dpv> |
 |ROPA |ropa: |<https://w3id.org/dpv-ropa#> |
-
+|LFS |lfs: |<https://lfs.labs.dansdemo.nl/docs#/> |
 
 
 
