@@ -21,7 +21,7 @@ These vocabularies are foundational to RDF encodings and are used whenever appro
 
 |Label|Prefix|Source|
 |:--------|:--------|:--------|
-|RDF| rdf: |<[http://www.w3.org/1999/02/22-rdf-syntax-ns#](http://www.w3.org/1999/02/22-rdf-syntax-ns#))> |
+|RDF| rdf: |<http://www.w3.org/1999/02/22-rdf-syntax-ns#> |
 |SKOS| skos: |<http://www.w3.org/2004/02/skos/core#> |
 |OWL| owl: |<http://www.w3.org/2002/07/owl#> |
 |XSD| xsd: |<http://www.w3.org/2001/XMLSchema#> |
