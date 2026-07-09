@@ -106,6 +106,39 @@ openrel:hasPolicy
     rdfs:domain :AssetCollection ;
 	rdfs:range openrel:PolicyCollection .
 
+# --------- ODRL
+
+odrl:permission
+	a rdf:Property , owl:ObjectProperty, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Has Permission"@en ;
+	skos:definition "Relates an individual Permission to a Policy."@en ;
+	rdfs:domain odrl:Policy ;
+	rdfs:range odrl:Permission 
+  # openREL Extensions
+  skos:note "ODRL: the ability to perform an Action over an Asset"@en ;
+  .
+
+odrl:prohibition
+	a rdf:Property , owl:ObjectProperty, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Has Prohibition"@en ;
+	skos:definition "Relates an individual Prohibition to a Policy."@en ;
+	rdfs:domain odrl:Policy ;
+	rdfs:range odrl:Prohibition
+  # openREL Extensions
+  skos:note "ODRL: the inability to perform an Action over an Asset"@en ;
+  .
+
+odrl:duty
+	a rdf:Property , owl:ObjectProperty, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Has Duty"@en ;
+	skos:definition "Relates an individual Duty to a Permission."@en ;
+	skos:note "A Duty is a pre-condition which must be fulfilled in order to receive the Permission."@en ;
+	rdfs:domain odrl:Permission ;
+	rdfs:range odrl:Duty .
+
 # --------- Dublin Core
 
 dct:subject
