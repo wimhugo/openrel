@@ -1,6 +1,6 @@
 # Summary of Main Extensions and Additions
 
-OpenREL is intended as an extension for existing vocabularies that address aspects of rights management already, primarily ODRL and ccREL, but there are several others that are in scope and have been incorporated or linked where applicable.
+OpenREL is intended as an extension to existing vocabularies that address aspects of rights management, primarily ODRL and ccREL,together with several others that are in scope and have been incorporated or linked where applicable.
 
 ## Extension Types
 
