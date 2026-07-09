@@ -23,9 +23,11 @@ There are two motivations for these extensions:
 - It allows any API development to present a full complement of Actions from all relevant sources, assisting with creation of new policies, matching and coparing existing ones, and helping users with understanding teh scope of available Actions.
 - It allows crosswalks from Policies that may have been encoded using a different vocabulary to a common one for pruposes of reuse and comparison.
 
-RDF Turtle representation
+## Design Approach: Action or Constraint?
 
-##Context
+There is a common tendency to define Actions that are quite specific, for example dalicc:modificationNotice and dalicc:attributionNotice both describe actions that require a notice to be provided, and a separate action is defined for each type of notice.
+
+OpenREL generalises these Actions to one that can be tailored for a specific purpose using Left and Rights Operands expressed in a Constraint. For example, OpenREL defines an Action (openrel:Notify) which can be refined by way of one or more constraints to indicate all of the duties that require notification - to an external or internal log, to a usage event log, to a clearinghouse, an attribution note, or any other target for such notification. This arrangement allows simpler extension by defining new concepts (vocabulary) rather than defining new classes. 
 
 
 
