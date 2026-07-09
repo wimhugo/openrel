@@ -1,0 +1,106 @@
+# -------------------------------------------------------------------------------------------------------------
+# OpenREL - Open Rights Encoding language
+# Version 0.4 (Draft)
+# Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/ EUDAT)
+# This Version: 10 July 2026
+# -------------------------------------------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------------------------------------------
+# Assets and Asset Collections
+# In OpenREL, Assets and Asset Collections are modelled on ODRL. 
+# OpenREL defines Asset Collections specific to Research Data (Output) Management
+# -------------------------------------------------------------------------------------------------------------
+
+# context
+@base <http://www.w3.org/ns/openrel/0/> .
+@prefix : <http://www.w3.org/ns/openrel/0/> .
+# RDF-related
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+# general content
+@prefix schema: <http://schema.org/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+# rdmi-related
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcatap: <http://data.europa.eu/r5r/> .
+@prefix r3d: <https://schema.re3data.org/4-0/re3dataV4-0.xsd> .
+@prefix coar: <http://purl.org/coar/> .
+# rights-related
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix dalicc: <https://dalicc.net/ns#> .
+@prefix dalicclib: <https://dalicc.net/licenselibrary/> .
+@prefix ids: <https://w3id.org/idsa/core/> .
+@prefix idsc: <https://w3id.org/idsa/code/> .
+@prefix osl: <http://opensource.org/licenses/> .
+@prefix spdx: <http://spdx.org/rdf/terms#>  .
+@prefix spdxlicense: <http://spdx.org/licenses/> .
+@prefix dpv: <https://w3id.org/dpv> .
+@prefix ropa: <https://w3id.org/dpv-ropa#> .
+
+openrel:AssetScheme
+  a skos:ConceptScheme ;
+  skos:prefLabel "OpenREL Assets, Collections, and Mappings"@en ;
+  dct:title "OpenREL Assets, Collections, and Mappingss"@en ;
+  dct:description "Asset Collections defined by OpenREL, and extensions to ODRL and other vocabularies, including mappings."@en ;
+  dct:created "2026-06-29T00:00:00+00:00"^^xsd:datetime ;  
+  dct:modified "2026-07-10T00:00:00+00:00"^^xsd:datetime ;
+  dct:creator <https://orcid.org/0000-0002-0255-5101> ;  # Wim Hugo
+  dct:creator "Melios Katsamakis" ;
+  dct:contributor <https://orcid.org/0000-0003-2459-6817> ; # Prodromos Tsiavos
+  owl:versionInfo "0.4" .
+  ## Discussion
+  # Decide whether to define this as a concept scheme with an interlinked vocabulary of terms
+
+# -------------------------------------------------------------------------------------------------------------
+# Object/ Class Definition
+# -------------------------------------------------------------------------------------------------------------
+
+odrl:Asset
+	a rdfs:Class , owl:Class, skos:Concept;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Asset"@en ;
+	skos:definition "A resource or a collection of resources that are the subject of a Rule."@en ;
+    skos:note "The Asset entity can be any form of identifiable resource, such as data/information, content/media, applications, or services. Furthermore, it can be used to represent other Asset entities that are needed to undertake the Policy expression, such as with the Duty entity. To describe more details about the Asset, it is recommended to use Dublin Core [[dcterms]] elements or other content metadata."@en .
+
+odrl:AssetCollection
+	a rdfs:Class , owl:Class, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:subClassOf :Asset ;
+	rdfs:label "Asset Collection"@en ;
+	skos:definition "An Asset that is collection of individual resources"@en .
+
+odrl:partOf
+	a rdf:Property , owl:ObjectProperty, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Part Of"@en ;
+	skos:definition "Identifies an Asset/PartyCollection that the Asset/Party is a member of."@en ;
+	rdfs:domain [
+		a owl:Class ;
+		owl:unionOf ( :Asset :Party ) ;
+	] ;
+	rdfs:range [
+		a owl:Class ;
+		owl:unionOf ( :AssetCollection :PartyCollection ) ;
+	] .
+
+# -------------------------------------------------------------------------------------------------------------
+# Property Definition to reference an asset
+# -------------------------------------------------------------------------------------------------------------
+
+# None
+
+# -------------------------------------------------------------------------------------------------------------
+# Foundational Asset Collections
+# These Asset Collections are subclasses of the ODRL Asset Collection Class
+# -------------------------------------------------------------------------------------------------------------
+
+None
+
+
+	rdfs:isDefinedBy openrel: .
