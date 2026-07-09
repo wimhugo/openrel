@@ -8,7 +8,7 @@ Prodromos Tsiavos, OpenAIRE
 
 ## TL;DR 
 
-ODRL defines policy subclasses, but these extend semantics to describe the life cycle role of a policy rather than its narrower specialisation in terms of content, and for this reason, OpenREL extends the Policy (Set) Class with the Licence, Access Rules, and Process Rules subclasses.
+ODRL defines policy subclasses, but these define semantics to describe the ***life cycle role*** of a Policy rather than its narrower specialisation in terms of content, and for this reason, OpenREL extends the Policy (Set) Class with the Licence, Access Rule, and Process Rule subclasses. 
 
 ## Context
 
