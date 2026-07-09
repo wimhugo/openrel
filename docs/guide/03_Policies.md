@@ -13,7 +13,7 @@ ODRL defines Policy subclasses, but the semantics largely aim to describe the *l
 
 OpenREL also defines a new subclass of Policy (***Policy Collection***) that allows one or more Policy instances to be combined in a single instance.
 
-[RDF Turtle representation]([url](https://github.com/wimhugo/openrel/blob/main/.openrel/vocabs/openrel/policies.ttl))
+[RDF Turtle representation](https://github.com/wimhugo/openrel/blob/main/.openrel/vocabs/openrel/policies.ttl)
 
 ## Context
 
