@@ -7,7 +7,7 @@
 >[CC BY 4.0](https://spdx.org/licenses/CC-BY-4.0.html)
 ---
 
-[RDF Turtle Representation] (https://github.com/wimhugo/openrel/blob/main/.openrel/vocabs/openrel/actions.ttl)
+[RDF Turtle Representation](https://github.com/wimhugo/openrel/blob/main/.openrel/vocabs/openrel/actions.ttl)
 
 ## Summary
 
