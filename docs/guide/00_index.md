@@ -10,9 +10,9 @@
 ## Table of Contents
 
 1. Rationale and Context
-2. Summary of Main Extensions and Additions
+2. [Summary of Main Extensions and Additions](https://github.com/wimhugo/openrel/blob/main/docs/guide/02_SummaryExtensions.md)
 3. [Policies](https://github.com/wimhugo/openrel/blob/main/docs/guide/03_Policies.md)
-4. Rules
+4. [Rules](https://github.com/wimhugo/openrel/blob/main/docs/guide/04_Rules.md)
 5. Actions
 6. Constraints and Named Constraints
 7. Logical Constraints
