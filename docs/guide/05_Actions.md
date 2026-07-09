@@ -17,7 +17,11 @@ OpenREL has defined a number of additional Actions to assist especially with enc
 
 ## Extension Types
 
-OpenREL has made extension to existing ODRL Action classes, specifically in respect of mappings from e.g. ccREL, IDSC, DUO, and DPV.
+OpenREL has made extension to existing ODRL Action classes, specifically in respect of mappings from ccREL, DALICC, IDSC, DUO, and DPV. In cases where DALICC defined a new action (one that cannot be mapped to an existing ODRL Action), OpenREL redefined the DALICC Action and included it into the vocabulary.
+
+There are two motivations for these extensions:
+- It allows any API development to present a full complement of Actions from all relevant sources, assisting with creation of new policies, matching and coparing existing ones, and helping users with understanding teh scope of available Actions.
+- It allows crosswalks from Policies that may have been encoded using a different vocabulary to a common one for pruposes of reuse and comparison.
 
 RDF Turtle representation
 
