@@ -76,9 +76,9 @@ odrl:Agreement
 	rdfs:label "Agreement"@en ;
 	skos:definition "A Policy that grants the assignee a Rule over an Asset from an assigner."@en ;
 	skos:note "An Agreement Policy MUST contain at least one Permission or Prohibition rule, a Party with Assigner function, and a Party with Assignee function (in the same Permission or Prohibition). The Agreement Policy will grant the terms of the Policy from the Assigner to the Assignee."@en 
-  # OpenREL Extensions
-  owl:disjointWith openrel:Licence, openrel:AccessRules, openrel:ProcessRules ;
-  .
+  	# OpenREL Extensions
+  	owl:disjointWith openrel:Licence, openrel:AccessRules, openrel:ProcessRules ;
+  	.
 
 odrl:Assertion
 	a rdfs:Class , owl:Class, skos:Concept ;
@@ -88,10 +88,10 @@ odrl:Assertion
 	rdfs:label "Assertion"@en ;
 	skos:definition "A Policy that asserts a Rule over an Asset from parties."@en ;
 	skos:note "For example, a party (an assignee or assigner) can claim what terms they have over an Asset. An Assertion Policy does not grant such permissions/prohibitions but only asserts the parties claims. An Assetion Policy  MUST contain a target Asset, a Party with any functional role, and at least one of a Permission or Prohibition rule."@en ;
-  skos:scopeNote "Non-Normative"@en ;
-  # OpenREL Extensions
-  owl:disjointWith openrel:Licence, openrel:AccessRules, openrel:ProcessRules ;
-  .
+  	skos:scopeNote "Non-Normative"@en ;
+  	# OpenREL Extensions
+  	owl:disjointWith openrel:Licence, openrel:AccessRules, openrel:ProcessRules ;
+  	.
 
 odrl:Offer
 	a rdfs:Class , owl:Class, skos:Concept ;
@@ -101,9 +101,9 @@ odrl:Offer
 	rdfs:label "Offer"@en ;
 	skos:definition "A Policy that proposes a Rule over an Asset from an assigner."@en ;
 	skos:note "An Offer Policy MUST contain at least one Permission or Prohibition rule and a Party with Assigner function (in the same Permission or Prohibition). The Offer Policy MAY contain a Party with Assignee function, but MUST not grant any privileges to that Party."@en ;
-  # OpenREL Extensions
-  owl:disjointWith openrel:Licence, openrel:AccessRules, openrel:ProcessRules ;
-  .
+  	# OpenREL Extensions
+  	owl:disjointWith openrel:Licence, openrel:AccessRules, openrel:ProcessRules ;
+  	.
 
 odrl:Privacy
 	a rdfs:Class , owl:Class, skos:Concept ;
@@ -113,10 +113,10 @@ odrl:Privacy
 	rdfs:label "Privacy Policy"@en ;
 	skos:definition "A Policy that expresses a Rule over an Asset containing personal information."@en ;
 	skos:note "A Privacy Policy  MUST contain a target Asset, a Party with Assigner  is, a Party with Assignee function, and at least one of a Permission or Prohibition rule that MUST include a Duty. The target Asset SHOULD contain or relate to personal information about the Assignee. The Duty MUST describe obligations on the Assigner about managing the Asset. The Assignee is being granted the terms of the Privacy policy from the Assigner."@en ;
-  skos:scopeNote "Non-Normative"@en ;
-  # OpenREL Extensions
-  owl:disjointWith openrel:Licence, openrel:AccessRules, openrel:ProcessRules ;
-  .
+  	skos:scopeNote "Non-Normative"@en ;
+  	# OpenREL Extensions
+  	owl:disjointWith openrel:Licence, openrel:AccessRules, openrel:ProcessRules ;
+  	.
 
 odrl:Request
 	a rdfs:Class , owl:Class, skos:Concept ;
@@ -126,10 +126,10 @@ odrl:Request
 	rdfs:label "Request"@en ;
 	skos:definition "A Policy that proposes a Rule over an Asset from an assignee."@en ;
 	skos:note "A Request Policy  MUST contain a target Asset, a Party with Assignee function, and at least one of a Permission or Prohibition rule. The Request MAY also contain the Party with Assigner function if this is known. No privileges are granted to any Party."@en ;
-  skos:scopeNote "Non-Normative"@en ;
-  # OpenREL Extensions
-  owl:disjointWith openrel:Licence, openrel:AccessRules, openrel:ProcessRules ;
-  .
+  	skos:scopeNote "Non-Normative"@en ;
+  	# OpenREL Extensions
+ 	owl:disjointWith openrel:Licence, openrel:AccessRules, openrel:ProcessRules ;
+    .
 
 odrl:Set
 	a rdfs:Class , owl:Class, skos:Concept ;
@@ -139,9 +139,9 @@ odrl:Set
 	rdfs:label "Set"@en ;
 	skos:definition "A Policy that expresses a Rule over an Asset."@en ;
 	skos:note "A Set Policy MUST contain a target Asset, and at least one Rule. A Set Policy is the default Policy subclass. The Set is aimed at scenarios where there is an open criteria for the semantics of the policy expressions and typically refined by other systems/profiles that process the information at a later time. No privileges are granted to any Party (if defined)."@en ;
-  # OpenREL Extensions
-  owl:disjointWith openrel:Licence, openrel:AccessRules, openrel:ProcessRules ;
-  .
+  	# OpenREL Extensions
+ 	owl:disjointWith openrel:Licence, openrel:AccessRules, openrel:ProcessRules ;
+  	.
 
 odrl:Ticket
 	a rdfs:Class , owl:Class, skos:Concept ;
@@ -151,7 +151,7 @@ odrl:Ticket
 	rdfs:label "Ticket"@en ;
 	skos:definition "A Policy that grants the holder a Rule over an Asset from an assigner."@en ;
 	skos:note "A Ticket Policy MUST contain a target Asset and at least one of a Permission or Prohibition rule.  The Ticket MAY contain the Party with Assigner function and MUST NOT contain an Assignee. The Ticket Policy will grant the terms of the Policy to the holder of that Ticket. The holder of the Ticket MAY remain unknown or MAY have to be identified at some later stage."@en ;
-  skos:scopeNote "Non-Normative"@en .
+  	skos:scopeNote "Non-Normative"@en .
 
 # --------OpenREL
 
@@ -163,8 +163,11 @@ openrel:Licence
 	rdfs:label "Licence"@en ;
 	skos:definition "A Policy that is generally imnterpreted as a licence, specifies additional properties of a licence, and has a legal code representation."@en ;
 	skos:note "The Licence Policy subclass introduces additional properties that are not typically applicable to other Policy subclasses, and takes its broad scope from the properties associated specifically with licences. It could be viewed as a special case (non-negotiable) of an Offer or an Agreement that will not be modified."@en ;
-  skos:note "Unique to Assets or Asset Collections." @en ;
-  skos:scopeNote "Non-Normative"@en .
+  	skos:note "Unique to Assets or Asset Collections." @en ;
+	skos:note "ccREL: a set of requests/permissions to users of a Work, e.g. a copyright license, the public domain, information for distributors."@en ;
+  	skos:scopeNote "Non-Normative"@en 
+	skos:closeMatch ccrel:License ;
+	.
 
 openrel:AccessRules
 	a rdfs:Class , owl:Class, skos:Concept ;
@@ -174,8 +177,8 @@ openrel:AccessRules
 	rdfs:label "Access Rule(s)"@en ;
 	skos:definition "A Policy that defines conditions of access that are not generally considered to be part of a licence, but depends on the context."@en ;
 	skos:note "Such access rules may include, for example, the terms and conditions of use associated with a specific repository, data service, or institution. It is usually policy-driven."@en ;
-  skos:note "Unique to an Institution, Repository, or Catalogue." @en ;
-  skos:scopeNote "Non-Normative"@en .
+ 	skos:note "Unique to an Institution, Repository, or Catalogue." @en ;
+  	skos:scopeNote "Non-Normative"@en .
 
 openrel:ProcessRules
 	a rdfs:Class , owl:Class, skos:Concept ;
@@ -185,19 +188,19 @@ openrel:ProcessRules
 	rdfs:label "Process Rule(s)"@en ;
 	skos:definition "A Policy that defines formalities associated with the process of gaining access that do not concern access or licences"@en ;
 	skos:note "Such process rules may include, or example, steps related to interaction of a software platform or dissemination channel with an Assignee."@en ;
-  skos:note "Unique to a software platform or dissemination channel." @en ;
-  skos:scopeNote "Non-Normative"@en .
+ 	skos:note "Unique to a software platform or dissemination channel." @en ;
+ 	skos:scopeNote "Non-Normative"@en .
 
 openrel:PolicyCollection
 	a rdfs:Class , owl:Class, skos:Concept ;
 	rdfs:isDefinedBy openrel: ;
-  rdfs:subClassOf odrl:Policy ;
+  	rdfs:subClassOf odrl:Policy ;
 	owl:disjointWith odrl:Agreement, odrl:Offer, odrl:Privacy, odrl:Request, odrl:Assertion , odrl:Ticket, openrel:AccessRules, openrel:ProcessRules ;
 	rdfs:label "Policy Collection"@en ;
 	skos:definition "A collection that includes one or more policies"@en ;
 	skos:note "A policy collection references one or more policies via IRI."@en ;
-  skos:note "Can be used to define all policies applicable to an asset collection, or to collectively reference the policies involved in a negotiation process." @en ;
-  skos:scopeNote "Non-Normative"@en .
+  	skos:note "Can be used to define all policies applicable to an asset collection, or to collectively reference the policies involved in a negotiation process." @en ;
+  	skos:scopeNote "Non-Normative"@en .
 
 
 
