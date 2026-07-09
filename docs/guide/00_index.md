@@ -1,5 +1,12 @@
 # Guidelines to Using OpenREL
 
+>Wim Hugo, DANS/ EUDAT | 
+>Melios Katsamakis, OpenAIRE | 
+>Prodromos Tsiavos, OpenAIRE | 
+>09-07-2026 | 
+>[CC BY 4.0](https://spdx.org/licenses/CC-BY-4.0.html)
+---
+
 ## Table of Contents
 
 1. Rationale and Context
@@ -17,5 +24,5 @@
 
 ## Annexures
 
-1. Encoding Examples
-2. Popular Licences
+### Encoding Examples {#A}
+### Popular Licences {#B}
