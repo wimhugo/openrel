@@ -1,14 +1,17 @@
 ## Policies
 
-Wim Hugo, DANS/ EUDAT
-Melios Katsamakis, OpenAIRE
-Prodromos Tsiavos, OpenAIRE
-09-07-2026
-[CC BY 4.0](https://spdx.org/licenses/CC-BY-4.0.html)
+>Wim Hugo, DANS/ EUDAT
+>Melios Katsamakis, OpenAIRE
+>Prodromos Tsiavos, OpenAIRE
+>09-07-2026
+>[CC BY 4.0](https://spdx.org/licenses/CC-BY-4.0.html)
 
 ## Summary
 
-ODRL defines Policy subclasses, but the semantics largely aim to describe the ***life cycle role*** of a Policy rather than its narrower specialisation in terms of content or origin. For this reason, OpenREL extends the Policy (Set) Class with the Licence, Access Rule, and Process Rule subclasses. It also affords the capability to evaluate access requests based on a combination of policy, licence, access, and process rules.
+ODRL defines Policy subclasses, but the semantics largely aim to describe the ==life cycle role== of a Policy rather than its narrower specialisation in terms of content or origin. For this reason, OpenREL extends the Policy (Set) Class with the Licence, Access Rule, and Process Rule subclasses. It also affords the capability to evaluate access requests based on a combination of policy, licence, access, and process rules.
+
+term
+: definition
 
 ## Context
 
