@@ -2,7 +2,7 @@
 # OpenREL - Open Rights Encoding language
 # Version 0.4 (Draft)
 # Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE) and Wim Hugo (DANS/ EUDAT)
-# This Version: 1 July 2026
+# This Version: 9 July 2026
 # -------------------------------------------------------------------------------------------------------------
 
 # context
@@ -22,6 +22,8 @@
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix dcatap: <http://data.europa.eu/r5r/> .
+@prefix r3d: <https://schema.re3data.org/4-0/re3dataV4-0.xsd> .
+@prefix coar: <http://purl.org/coar/> .
 # rights-related
 @prefix odrl: <http://www.w3.org/ns/odrl/2/> .
 @prefix cc: <http://creativecommons.org/ns#> .
@@ -32,6 +34,8 @@
 @prefix osl: <http://opensource.org/licenses/> .
 @prefix spdx: <http://spdx.org/rdf/terms#>  .
 @prefix spdxlicense: <http://spdx.org/licenses/> .
+@prefix dpv: <https://w3id.org/dpv> .
+@prefix ropa: <https://w3id.org/dpv-ropa#> .
 
 # -------------------------------------------------------------------------------------------------------------
 # Metadata
@@ -46,6 +50,7 @@ openrel:
 	dct:description "OpenREL supports the machine-readable expression of licences, access conditions, obligations and reuse policies for EOSC resources. "@en ;
 	rdfs:comment "This is the RDF ontology for OpenREL Version 0.4"@en ;
     dct:created "2026-06-20T00:00:00+00:00"^^xsd:datetime ;
+    dct:updated "2026-07-09T00:00:00+00:00"^^xsd:datetime ;
 	dct:license <https://spdx.org/licenses/CC-BY-4.0.html/> .
 
 # -------------------------------------------------------------------------------------------------------------
