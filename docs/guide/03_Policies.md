@@ -52,7 +52,7 @@ OpenREL has defined three additional Policy subclasses, and each of these have a
 
 User context broadly refers to the characterisation of the user (requestor, Assignee), and OpenREL makes explicit provision for encoding this, since it forms an important part of determining whether access can be granted - especially for sensitive data.
 
-OpenREL provides vocabulary to encode several categories of user context:
+OpenREL provides vocabulary to encode several categories of user context, for example:
 
 1. Researcher status: verification of user status, based on a number of verification methods.
 2. Affiliation (with an academic or research-performing organisation).
