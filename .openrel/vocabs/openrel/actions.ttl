@@ -88,10 +88,8 @@ odrl:action
 	# Extensions by OpenREL
 	#	None
 
-
 # -------------------------------------------------------------------------------------------------------------
-# Foundational Actions
-# These Actions are root concepts in OpenREL
+# Foundational Action Instances
 # They include two types 
 #	(1) Defined by OpenREL and as a result, creating new concepts not present in other vocabularies such as ODRL
 #	(2) Extended and modified by OpenREL, in which case the preferred definition is the OpenREL one.
