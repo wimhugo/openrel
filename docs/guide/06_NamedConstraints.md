@@ -1,4 +1,4 @@
-# Named Constraints
+# Constraints and Named Constraints
 
 ODRL makes provision for the description of a *Constraint*, and such a Constraint can have a UID, which by implication allows them to become nodes in a graph that can be referenced by *Actions*.
 
@@ -51,7 +51,23 @@ There is a new property that is useful for some constraint definitions, and that
 
 ODRL defines a target (odrl:target), but this property is semantically different - it is intended to define the target of the policy.
 
+Named Constraints (and Constraints) can also be categorised in terms of the intent of the Constraint. This is useful for grouping Named Constraints for the purposes of understanding the scope of available instances. Since the category has no impact on the properties of the Named COnstraint, OpenREL implements these categories as a Concept Scheme coupled to a property of Named Constraints: openrel:constraintType.
 
+|Property| IRI| Description|
+|:-------|:-------|:-------|
+|Constraint Category|openrel:constraintType|A value from a vocabulary (Concept Scheme) that defines the named constraint category.|
 
+## Named Constraint Types
 
+The Named Constraint Types that can be used for categorisation are defined in a Concept Scheme, and summarised below.
 
+|Concept| IRI| Description|
+|:-------|:-------|:-------|
+|Role|openrel:role|Named Constraint defined on the basis of an Agent Role|
+|Usage|openrel:usage|Constraint defined on the basis of usage characteristics.|	
+|Access|openrel:access|Constraint defined on the basis of allowable access types.|
+|Purpose|openrel:purpose|Purpose-based Constraints may apply to any Action. Purpose typology can be obtained from .openrel/vocabs/openrel/type_agent.ttl|
+|Notification|openrel:notification|Constraint defined for elaboration of notification duties.|
+|Consent|openrel:consent|Constraint defined for definition of consent-related duties.|
+|Context|openrel:context|Constraint defined for definition of agent-related context.|
+|Technical and Organisation Measures|openrel:tom|onstraint defined for definition of technical, organisational, legal, and physical measures required to safeguard sensitive data.|
