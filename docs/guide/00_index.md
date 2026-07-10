@@ -21,6 +21,7 @@
 10. Right Operands and Type Vocabularies
 11. Assets and Asset Collections
 12. Parties and Party Collections (Agents)
+13. Customising OpenREL
 
 ## Annexures
 
