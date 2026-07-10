@@ -14,7 +14,7 @@
 3. [Policies](https://github.com/wimhugo/openrel/blob/main/docs/guide/03_Policies.md)
 4. [Rules](https://github.com/wimhugo/openrel/blob/main/docs/guide/04_Rules.md)
 5. [Actions](https://github.com/wimhugo/openrel/blob/main/docs/guide/05_Actions.md)
-6. Constraints and Named Constraints
+6. [Constraints and Named Constraints](https://github.com/wimhugo/openrel/blob/main/docs/guide/06_NamedConstraints.md)
 7. Logical Constraints
 8. Left Operands
 9. Operands
