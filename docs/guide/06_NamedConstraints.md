@@ -59,7 +59,7 @@ Named Constraints (and Constraints) can also be categorised in terms of the inte
 
 ## Named Constraint Types
 
-The Named Constraint Types that can be used for categorisation are defined in a Concept Scheme, and summarised below.
+The Named Constraint Types that can be used for categorisation are defined in a [Concept Scheme](https://github.com/wimhugo/openrel/blob/main/.openrel/vocabs/openrel/type_constraint.ttl), and summarised below.
 
 |Concept| IRI| Description|
 |:-------|:-------|:-------|
