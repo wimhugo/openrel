@@ -1,103 +1,57 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dalicc: <https://dalicc.net/ns#> .
 @prefix ids: <https://w3id.org/idsa/core/> .
 @prefix idsc: <https://w3id.org/idsa/code/> .
-@prefix dalicc: <https://dalicc.net/ns#> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
 
-dalicc:ModifiedWorks
-    a skos:Concept ;    rdfs:label "ModifiedWorks" ;    skos:exactMatch openrel:modify
-.
+a     a skos:Concept ;    rdfs:label "a" ;    skos:exactMatch odrl:append ;    skos:exactMatch odrl:appendTo .
 
-dalicc:trademarkNotice
-    a skos:Concept ;    rdfs:label "trademarkNotice" ;    skos:exactMatch openrel:trademarkUse
-.
+dalicc:ModifiedWorks     a skos:Concept ;    rdfs:label "ModifiedWorks" ;    skos:exactMatch openrel:modify .
 
-ids:use
-    a skos:Concept ;    rdfs:label "use" ;    skos:exactMatch openrel:use
-.
+dalicc:trademarkNotice     a skos:Concept ;    rdfs:label "trademarkNotice" ;    skos:exactMatch openrel:trademarkUse .
 
-idsc:ALLOW_DATA_USAGE
-    a skos:Concept ;    rdfs:label "ALLOW_DATA_USAGE" ;    skos:closeMatch openrel:use
-.
+ids:use     a skos:Concept ;    rdfs:label "use" ;    skos:exactMatch openrel:use .
 
-idsc:ANONYMIZE
-    a skos:Concept ;    rdfs:label "ANONYMIZE" ;    skos:exactMatch openrel:anonymize
-.
+idsc:ALLOW_DATA_USAGE     a skos:Concept ;    rdfs:label "ALLOW_DATA_USAGE" ;    skos:closeMatch openrel:use .
 
-idsc:DELETE
-    a skos:Concept ;    rdfs:label "DELETE" ;    skos:exactMatch openrel:delete
-.
+idsc:ANONYMIZE     a skos:Concept ;    rdfs:label "ANONYMIZE" ;    skos:exactMatch openrel:anonymize .
 
-idsc:GRANT_USE
-    a skos:Concept ;    rdfs:label "GRANT_USE" ;    skos:exactMatch odrl:grantUse
-.
+idsc:DELETE     a skos:Concept ;    rdfs:label "DELETE" ;    skos:exactMatch openrel:delete .
 
-idsc:LOG
-    a skos:Concept ;    rdfs:label "LOG" ;    skos:narrowMatch openrel:log
-.
+idsc:GRANT_USE     a skos:Concept ;    rdfs:label "GRANT_USE" ;    skos:exactMatch odrl:grantUse .
 
-idsc:NEXT_POLICY
-    a skos:Concept ;    rdfs:label "NEXT_POLICY" ;    skos:exactMatch odrl:nextPolicy
-.
+idsc:LOG     a skos:Concept ;    rdfs:label "LOG" ;    skos:narrowMatch openrel:log .
 
-odrl:anonymize
-    a skos:Concept ;    rdfs:label "anonymize" ;    skos:exactMatch openrel:anonymize
-.
+idsc:NEXT_POLICY     a skos:Concept ;    rdfs:label "NEXT_POLICY" ;    skos:exactMatch odrl:nextPolicy .
 
-odrl:attribute
-    a skos:Concept ;    rdfs:label "attribute" ;    skos:exactMatch openrel:attribute
-.
+net/ns     a skos:Concept ;    rdfs:label "ns" ;    skos:exactMatch openrel:modify .
 
-odrl:delete
-    a skos:Concept ;    rdfs:label "delete" ;    skos:exactMatch openrel:delete
-.
+odrl:anonymize     a skos:Concept ;    rdfs:label "anonymize" ;    skos:exactMatch openrel:anonymize .
 
-odrl:derive
-    a skos:Concept ;    rdfs:label "derive" ;    skos:broadMatch openrel:derive
-.
+odrl:attribute     a skos:Concept ;    rdfs:label "attribute" ;    skos:exactMatch openrel:attribute .
 
-odrl:display
-    a skos:Concept ;    rdfs:label "display" ;    skos:exactMatch openrel:read
-.
+odrl:delete     a skos:Concept ;    rdfs:label "delete" ;    skos:exactMatch openrel:delete .
 
-odrl:distribute
-    a skos:Concept ;    rdfs:label "distribute" ;    skos:exactMatch openrel:distribute
-.
+odrl:derive     a skos:Concept ;    rdfs:label "derive" ;    skos:broadMatch openrel:derive .
 
-odrl:grantUse
-    a skos:Concept ;    rdfs:label "grantUse" ;    skos:narrowMatch openrel:applyLicence
-.
+odrl:display     a skos:Concept ;    rdfs:label "display" ;    skos:exactMatch openrel:read .
 
-odrl:inform
-    a skos:Concept ;    rdfs:label "inform" ;    skos:narrowMatch openrel:notify ;    skos:narrowMatch openrel:log
-.
+odrl:distribute     a skos:Concept ;    rdfs:label "distribute" ;    skos:exactMatch openrel:distribute .
 
-odrl:licence
-    a skos:Concept ;    rdfs:label "licence" ;    skos:exactMatch openrel:applyLicence
-.
+odrl:grantUse     a skos:Concept ;    rdfs:label "grantUse" ;    skos:narrowMatch openrel:applyLicence .
 
-odrl:modify
-    a skos:Concept ;    rdfs:label "modify" ;    skos:narrowMatch openrel:modify
-.
+odrl:inform     a skos:Concept ;    rdfs:label "inform" ;    skos:narrowMatch openrel:notify ;    skos:narrowMatch openrel:log .
 
-odrl:modify .
-    a skos:Concept ;    rdfs:label "modify ." ;    skos:exactMatch odrl:append ;    skos:exactMatch odrl:appendTo
-.
+odrl:licence     a skos:Concept ;    rdfs:label "licence" ;    skos:exactMatch openrel:applyLicence .
 
-odrl:read
-    a skos:Concept ;    rdfs:label "read" ;    skos:exactMatch openrel:read
-.
+odrl:modify     a skos:Concept ;    rdfs:label "modify" ;    skos:narrowMatch openrel:modify ;    skos:exactMatch odrl:append ;    skos:exactMatch odrl:appendTo .
 
-odrl:reproduce
-    a skos:Concept ;    rdfs:label "reproduce" ;    skos:exactMatch openrel:reproduce ;    skos:exactMatch openrel:archive
-.
+odrl:read     a skos:Concept ;    rdfs:label "read" ;    skos:exactMatch openrel:read .
 
-odrl:transform
-    a skos:Concept ;    rdfs:label "transform" ;    skos:narrowMatch openrel:encrypt
-.
+odrl:reproduce     a skos:Concept ;    rdfs:label "reproduce" ;    skos:exactMatch openrel:reproduce ;    skos:exactMatch openrel:archive .
 
-odrl:use
-    a skos:Concept ;    rdfs:label "use" ;    skos:exactMatch openrel:use
-.
+odrl:transform     a skos:Concept ;    rdfs:label "transform" ;    skos:narrowMatch openrel:encrypt .
+
+odrl:use     a skos:Concept ;    rdfs:label "use" ;    skos:exactMatch openrel:use .
