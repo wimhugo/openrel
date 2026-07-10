@@ -15,5 +15,5 @@ Vocabularies that can be used to encode rights-, access-, sensitive data-related
 | -------- | -------- | -------- | -------- |
 |ODRL| odrl:textToSpeech|To have a text Asset read out loud.|ODRL is relatively free of context-specific class definitions, with one or two exceptions - such as this one. It is just one of many possible transformations of content and should be made more flexible, since each context may want to encode a different set of applicable transformations|
 [ccREL|cc:CommercialUse| |This is just one of many potential ways in which revenue can be generated from disseminated, derived or modified Assets - it is, for example, also possible to have non-commercial revenue by recovering dissemination and packaging costs.|
-|DALICC|dalicc:attributionNotice|Notification that attribution was done|Ptentially just one of many notification duties, one these may well be very context-specific.|
+|DALICC|dalicc:attributionNotice|Notification that attribution was done|Potentially just one of many notification duties, and these may well be very context-specific.|
 
