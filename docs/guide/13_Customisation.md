@@ -9,8 +9,10 @@
 
 ## Context
 
-Vocabularies that can be used to encode rights-, access-, sensitive data-related policies and licences (e.g. ODRL, DPV, IDSC, DALICC, and ccREL) often entrench context-specific considerations into RDF Classes. Some examples are:
+Vocabularies that can be used to encode rights-, access-, sensitive data-related policies and licences (e.g. ODRL, DPV, IDSC, DALICC, and ccREL) often entrench context-specific considerations into RDF Classes. The implication is that if a new context is identified or is different from what is encodable already, classes have to be added to the vocabulary to accomodate the new context, spawning a new version and for stable vocabualries, a potentially lengthy review and release process. Some examples are:
 
 |Vocabulary|IRI|Description|Issue|
 | -------- | -------- | -------- | -------- |
-|ODRL| odrl:textToSpeech|To have a text Asset read out loud.|ODRL is relatively free of context-specific class definitions, with one or two exxceptions - such as this one. One can generalise the action of 'Text-to-Speech' as odrl:transform with a constraint, because if it is permitted, it need not be mentioned - all uses are implied if not explicitly prohibited or constrained. A more flexible and extensible encoding would add a left Operand (Transformation Type) and limit or allow the types of transformation with a cepomncept scheme of which 'Text-To-Speech' is one member.|
+|ODRL| odrl:textToSpeech|To have a text Asset read out loud.|ODRL is relatively free of context-specific class definitions, with one or two exxceptions - such as this one. It is just one of many possible transformations of content and should be made more flexible, since each context may want to encode a different set of applicable transformations|
+[ccREL|cc:CommercialUse| |This is just one of many potential ways in which revenue can be generated from disseminated, derived or modified Assets - it is, for example, also possible to have non-commercial revenue by recovering dissemination and packaging costs.|
+
