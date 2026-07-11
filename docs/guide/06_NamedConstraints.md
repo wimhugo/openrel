@@ -72,7 +72,7 @@ The Named Constraint Types that can be used for categorisation are defined in a 
 
 |Concept| IRI| Description|Example Vocabulary|
 |:-------|:-------|:-------|:---------|
-|Role|openrel:role|Named Constraint defined on the basis of an Agent Role|[Agent Types](.openrel/vocabs/openrel/type_agent.ttl)|
+|Role|openrel:role|Named Constraint defined on the basis of an Agent Role|[Agent Types](../../.openrel/vocabs/openrel/type_agent.ttl)|
 |Usage|openrel:usage|Constraint defined on the basis of usage characteristics.|.openrel/vocabs/openrel/type_usage.ttl|
 |Access|openrel:access|Constraint defined on the basis of allowable access types.|.openrel/vocabs/openrel/type_access.ttl|
 |Purpose|openrel:purpose|Purpose-based Constraints may apply to any Action.| .openrel/vocabs/openrel/type_purpose.ttl|
