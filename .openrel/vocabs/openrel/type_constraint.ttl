@@ -88,7 +88,7 @@ openrel:purpose
 	rdfs:isDefinedBy openrel: ;
 	rdfs:label "Purpose"@en 
 	skos:definition "Constraint defined on the basis of allowable purposes and research types."@en ;
-	skos:note "Purpose-based Constraints may apply to any Action. Purpose typology can be obtained from .openrel/vocabs/openrel/type_agent.ttl"@en ;
+	skos:note "Purpose-based Constraints may apply to any Action. Purpose typology can be obtained from .openrel/vocabs/openrel/type_purpose.ttl"@en ;
 	skos:inScheme openrel:constraint-type .
 
 openrel:notification
