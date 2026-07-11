@@ -68,7 +68,9 @@ Named Constraints (and Constraints) can also be categorised in terms of the inte
 
 ## Named Constraint Types
 
-The Named Constraint Types that can be used for categorisation are defined in a [Concept Scheme](https://github.com/wimhugo/openrel/blob/main/.openrel/vocabs/openrel/type_constraint.ttl), and summarised below.
+The Named Constraint Types that can be used for categorisation are defined in a [Concept Scheme](https://github.com/wimhugo/openrel/blob/main/.openrel/vocabs/openrel/type_constraint.ttl), and summarised below. Each of these constraint types, in turn, can make use of a default (example) vocabulary to further qualify the constraint. This aspect delivers significant flexibility and customisability, since implementors of OpenREL are free to subsititute or expand these vocabularies.
+
+The vocabularies are significant interoperability resources, since many of the concepts defined in them are mapped to or originally defined in vocabularies that are focused on the same topic, such as DPV, IDSC, DUO, and the like.
 
 |Concept| IRI| Description|Example Vocabulary|
 |:-------|:-------|:-------|:---------|
@@ -79,7 +81,7 @@ The Named Constraint Types that can be used for categorisation are defined in a 
 |Notification|openrel:notification|Constraint defined for elaboration of notification duties.|[Notification Target Types](../../.openrel/vocabs/openrel/type_notification-target.ttl)|
 |Consent|openrel:consent|Constraint defined for definition of consent-related duties.|[Consent Types](../../.openrel/vocabs/openrel/type_consent.ttl)|
 |Context|openrel:context|Constraint defined for definition of agent-related context.|[Context Types](../../.openrel/vocabs/openrel/type_context.ttl)|
-|Technical and Organisation Measures|openrel:tom|onstraint defined for definition of technical, organisational, legal, and physical measures required to safeguard sensitive data.|[TOM Types](../../.openrel/vocabs/openrel/type_tom.ttl)|
+|Technical and Organisation Measures|openrel:tom|Constraint defined for technical, organisational, legal, and physical measures required to safeguard (usually sensitive) data.|[TOM Types](../../.openrel/vocabs/openrel/type_tom.ttl)|
 
 
 
