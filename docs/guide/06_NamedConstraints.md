@@ -13,7 +13,7 @@ ODRL makes provision for the description of a *Constraint*, and such a Constrain
 
 This approach is useful, because some instances of Constraints (for example, that any number of Use-related subclasses are acceptable for non-commerical purposes) occur in many policies and licences, and one would like to avoid duplication and ensure consistent encoding of these Constraints. From this perspective, one should avoid the option that allows repetitive local definition of a Constraint wherever it is required.
 
-Moreover, referenceable and reusable constraints are far simpler to incorporate into Logical Constraints - those that have to be satisfied together, or in sequence, and so on.
+Moreover, referenceable and reusable constraints are far simpler to incorporate into *Logical Constraints* - those that have to be satisfied together, or in sequence, and so on.
 
 The approach has its downsides, in that a policy or licence is not composed in a single location, but finds its rule content spread in a graph. If all policies and licences are contained in the same graph, this is OK, but if it is spread over many graphs, it becomes cumbersome to complile the machine-readable version of a policy or licence - even though it is technically possible.
 
