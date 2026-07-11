@@ -45,7 +45,7 @@ openrel:NamedConstraint
 
 ## Properties
 
-The extension of properties is simple: providing a name and a description for the constraint is the most important extension. These can easily be provided by existing and well-known properties.
+The extension of properties is simple: providing a name and a description for the constraint are the most important extensions. These can easily be provided by existing and well-known properties.
 
 |Property| IRI| Description|
 |:-------|:-------|:-------|
