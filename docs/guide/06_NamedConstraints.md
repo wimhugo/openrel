@@ -60,7 +60,7 @@ There is a new property that is useful for some constraint definitions, and that
 
 ODRL defines a target (odrl:target), but this property is semantically different - it is intended to define the target of the policy.
 
-Named Constraints (and Constraints) can also be categorised in terms of the intent of the Constraint. This is useful for grouping Named Constraints for the purposes of understanding the scope of available instances. Since the category has no impact on the properties of the Named COnstraint, OpenREL implements these categories as a Concept Scheme coupled to a property of Named Constraints: openrel:constraintType.
+Named Constraints (and Constraints) can also be categorised in terms of the intent of the Constraint. This is useful for grouping Named Constraints for the purposes of understanding the scope of available instances. Since the category has no impact on the properties of the Named Constraint, OpenREL implements these categories as a Concept Scheme coupled to a property of Named Constraints: openrel:constraintType.
 
 |Property| IRI| Description|
 |:-------|:-------|:-------|
