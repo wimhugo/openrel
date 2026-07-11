@@ -70,13 +70,19 @@ Named Constraints (and Constraints) can also be categorised in terms of the inte
 
 The Named Constraint Types that can be used for categorisation are defined in a [Concept Scheme](https://github.com/wimhugo/openrel/blob/main/.openrel/vocabs/openrel/type_constraint.ttl), and summarised below.
 
-|Concept| IRI| Description|
-|:-------|:-------|:-------|
-|Role|openrel:role|Named Constraint defined on the basis of an Agent Role|
-|Usage|openrel:usage|Constraint defined on the basis of usage characteristics.|	
-|Access|openrel:access|Constraint defined on the basis of allowable access types.|
-|Purpose|openrel:purpose|Purpose-based Constraints may apply to any Action. Purpose typology can be obtained from .openrel/vocabs/openrel/type_agent.ttl|
-|Notification|openrel:notification|Constraint defined for elaboration of notification duties.|
-|Consent|openrel:consent|Constraint defined for definition of consent-related duties.|
-|Context|openrel:context|Constraint defined for definition of agent-related context.|
-|Technical and Organisation Measures|openrel:tom|onstraint defined for definition of technical, organisational, legal, and physical measures required to safeguard sensitive data.|
+|Concept| IRI| Description|Example Vocabulary|
+|:-------|:-------|:-------|:---------|
+|Role|openrel:role|Named Constraint defined on the basis of an Agent Role|.openrel/vocabs/openrel/type_agent.ttl|
+|Usage|openrel:usage|Constraint defined on the basis of usage characteristics.|.openrel/vocabs/openrel/type_usage.ttl|
+|Access|openrel:access|Constraint defined on the basis of allowable access types.|.openrel/vocabs/openrel/type_access.ttl|
+|Purpose|openrel:purpose|Purpose-based Constraints may apply to any Action.| .openrel/vocabs/openrel/type_purpose.ttl|
+|Notification|openrel:notification|Constraint defined for elaboration of notification duties.|.openrel/vocabs/openrel/type_notification-target.ttl|
+|Consent|openrel:consent|Constraint defined for definition of consent-related duties.|.openrel/vocabs/openrel/type_consent.ttl|
+|Context|openrel:context|Constraint defined for definition of agent-related context.|.openrel/vocabs/openrel/type_context.ttl|
+|Technical and Organisation Measures|openrel:tom|onstraint defined for definition of technical, organisational, legal, and physical measures required to safeguard sensitive data.|.openrel/vocabs/openrel/type_tom.ttl|
+
+
+
+
+
+
