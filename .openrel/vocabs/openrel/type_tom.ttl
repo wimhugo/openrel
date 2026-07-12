@@ -52,7 +52,7 @@ openrel:type-tom
   skos:prefLabel "Types of Technical and Organisational Measures"@en ;
   dct:title "Types of Technical and Orgnisational Measures"@en ;
   dct:description "Types of technical, organisational, legal, and physical measures that could be required to safeguard sensitive data, including personal data."@en ;
-  skos:note "DPV provides a coprehensive set of classes for description of technical, organisational, legal, and physical measures used to safeguard personal data, and tehse are used by preference - OpenREL extends these with concepts that identify non-personal data measures."@en ;
+  skos:note "DPV, IDSC, and ODRL provide a comprehensive set of classes for description of technical, organisational, legal, and physical measures used to safeguard personal data, and tehse are used by preference - OpenREL extends these with concepts that identify non-personal data measures or measures that are not well described."@en ;
   dct:created "2026-07-07T00:00:00+00:00"^^xsd:datetime ;
   dct:creator <https://orcid.org/0000-0002-0255-5101> ;
   owl:versionInfo "0.1" .
@@ -60,6 +60,8 @@ openrel:type-tom
 # -------------------------------------------------------------------------------------------------------------
 # Definition of Terms - extensions by OpenREL of DPV TOM
 # ----------------------------------------------------- --------------------------------------------------------
+
+#------ OpenREL
 
 openrel:limitResolution
   a skos:Concept ;
@@ -84,5 +86,12 @@ openrel:blindProcessing
   skos:note "Typical implementation requires an algorithm or code to be developed based on a simulated dataset, which is then used to create a derived asset witghout the original asset being viewed by the human processor."@en ;
   skos:broadMatch dpv:TechnicalMeasure ;
   skos:inScheme openrel:type-tom .
+
+#------- DPV
+#------- Duplicated for convenience and API support
+
+
+
+
 
 
