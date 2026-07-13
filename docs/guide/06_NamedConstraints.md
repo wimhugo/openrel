@@ -66,6 +66,21 @@ Named Constraints (and Constraints) can also be categorised in terms of the inte
 |:-------|:-------|:-------|
 |Constraint Category|openrel:constraintType|A value from a vocabulary (Concept Scheme) that defines the named constraint category.|
 
+## Scenarios
+
+Scnearios are used to describe contextual information about the Asset or Asset Collection, the Party or Party Collection, the Assigner, or the Assignee. The primary use of Scenarios is to capture, in human-readable form, any conditions, limitations, duties, or contextual information that may influence the composition of or compliance with a Policy (Policy, Licence, Access Rules, Process Rules, Assertion, Offer, Agreement, Privacy, ...). The encoded language of these Policies are not easily interpreted by end users, and Scenarios are used to bridge this gap. Scenarios are defined in OpenREL as a hierarchy of instances in a [Concept Scheme](../../.openrel/vocabs/openrel) (vocabulary). 
+
+Some examples will be useful: 
+
+- An end user may be affiliated with a Research Performing Organisation (university, research institute, commercial research organisation) and sometimes apply derived results for commercial gain. This end-user context can be defines as one or more Scenario statements (instances) that are mapped to Named Constraints to indicate how such a Scenario is encoded in practice.
+- Assets created by a project may have to be published as Open or Managed Access because it is funded publicly by the Horizon Europe project and does not contain any sensitive information.
+
+To map Scenarios to Named Constraints, we add a property as follows:
+
+|Property| IRI| Description|
+|:-------|:-------|:-------|
+|Scenario|openrel:scenario|A value from a vocabulary (Concept Scheme) that defines the applicable scenario(s) for the Named Constraint.|
+
 ## Named Constraint Types
 
 The Named Constraint Types that can be used for categorisation are defined in a [Concept Scheme](https://github.com/wimhugo/openrel/blob/main/.openrel/vocabs/openrel/type_constraint.ttl), and summarised below. Each of these constraint types, in turn, can make use of a default (example) vocabulary to further qualify the constraint. This aspect delivers significant flexibility and customisability, since implementors of OpenREL are free to subsititute or expand these vocabularies.
