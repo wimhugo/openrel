@@ -91,6 +91,17 @@ openrel:blindProcessing
 #------- Duplicated for convenience and API support
 
 
+#------- ODRL
+#------- Duplicated for convenience and API support
+
+
+#------- IDSC
+#------- Duplicated for convenience and API support
+
+
+
+
+
 
 
 
