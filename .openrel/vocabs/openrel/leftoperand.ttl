@@ -2,12 +2,14 @@
 # OpenREL - Open Rights Encoding language
 # Version 0.4 (Draft)
 # Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/ EUDAT)
-# This Version: 1 July 2026
+# Created: 1 July 2026
+# This Version: 12 July 2026
 # -------------------------------------------------------------------------------------------------------------
 
 # -------------------------------------------------------------------------------------------------------------
 # Left Operands
 # In OpenREL, Left Operands are modelled on ODRL. OpenREL defines a set of additional Left Operands
+# IDSC Left Operands are also included
 # -------------------------------------------------------------------------------------------------------------
 
 # context
