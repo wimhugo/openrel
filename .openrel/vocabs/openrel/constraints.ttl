@@ -89,7 +89,7 @@ openrel:constraint
 	] .
 
 openrel:applicableEndpoint
-	a rdf:Property , owl:ObjectProperty, skos:Concept, odrl:constraint ;
+	a rdf:Property , owl:ObjectProperty, skos:Concept;
 	rdfs:isDefinedBy openrel: ;
 	rdfs:label "Has Applicable Endpoint"@en ;
 	skos:definition "Endpoint Associated with an OpenREL Named Constraint"@en ;
@@ -99,7 +99,7 @@ openrel:applicableEndpoint
     .
 
 openrel:constraintType
-	a rdf:Property , owl:ObjectProperty, skos:Concept, odrl:constraint ;
+	a rdf:Property , owl:ObjectProperty, skos:Concept ;
 	rdfs:isDefinedBy openrel: ;
 	rdfs:label "Has Applicable Constraint Type"@en ;
 	skos:definition "An optional categorisation of an OpenREL Named Constraint in terms of rationale."@en ;
@@ -109,7 +109,7 @@ openrel:constraintType
  	.
 
 openrel:scenario
-	a rdf:Property , owl:ObjectProperty, skos:Concept, odrl:constraint ;
+	a rdf:Property , owl:ObjectProperty, skos:Concept;
 	rdfs:isDefinedBy openrel: ;
 	rdfs:label "Has Applicable Scenario"@en ;
 	skos:definition "This named constraint supports a specific scenario or context"@en ;
