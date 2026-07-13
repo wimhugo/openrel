@@ -8,7 +8,7 @@
 # -------------------------------------------------------------------------------------------------------------
 # Scenario Types 
 # In OpenREL, Scenario Types are used to model the human-readable contextual aspects of end users, assets, and 
-# organisations for the purposes of mapping to encoded language
+# organisations for the purposes of mapping to encoded language or examples
 # -------------------------------------------------------------------------------------------------------------
 
 # context
