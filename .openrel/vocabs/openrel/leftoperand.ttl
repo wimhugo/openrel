@@ -245,7 +245,7 @@ odrl:device
 	skos:definition "An identified device used for exercising the action of the Rule."@en ;
 	skos:note "See System Device." ;
 	owl:deprecated true ;
-	skos:exactMatch :systemDevice 
+	skos:exactMatch odrl:systemDevice 
 	.
 
 odrl:elapsedTime
@@ -429,7 +429,7 @@ odrl:system
 	skos:definition "An identified computing system used for exercising the action of the Rule."@en ;
 	owl:deprecated true ;
 	skos:note "See System Device" ;
-	skos:exactMatch :systemDevice 
+	skos:exactMatch odrl:systemDevice 
 	.
 
 odrl:systemDevice
