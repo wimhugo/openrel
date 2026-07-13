@@ -1,0 +1,17 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix openrel: <https://openrel.org/ns#> .
+
+openrel:policy.p009
+    rdf:type openrel:Licence ;
+    dc:title "CC BY 4.0 — Attribution Required" ;
+    odrl:status openrel:status/active ;
+    odrl:assigner "{\"@id\":\"[ASSIGNER_URI]\"}" ;
+    odrl:target "{\"@id\":\"[TARGET_URI]\"}" ;
+    odrl:permission "{\"odrl:action\":{\"@id\":\"openrel:action.use\"},\"odrl:duty\":[{\"odrl:action\":{\"@id\":\"openrel:action.attribute\"},\"dc:description\":\"Credit the original creator. Retain copyright notice.\"}]}" ;
+    openrel:evaluation "permit | deny" ;
+    openrel:machineActionable "true" .
