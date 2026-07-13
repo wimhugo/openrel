@@ -102,11 +102,40 @@ openrel:constraintType
 	a rdf:Property , owl:ObjectProperty, skos:Concept, odrl:constraint ;
 	rdfs:isDefinedBy openrel: ;
 	rdfs:label "Has Applicable Constraint Type"@en ;
-	skos:definition "An optional categorisation of an OpenREL Named Constraint"@en ;
+	skos:definition "An optional categorisation of an OpenREL Named Constraint in terms of rationale."@en ;
 	skos:note "Named Constraints MAY have designated endpoints for purposes of notification, specification, or compliance checklists."@en ;
 	rdfs:domain openrel:NamedConstraint ;
 	rdfs:range skos:Concept ; #
  	.
+
+openrel:scenario
+	a rdf:Property , owl:ObjectProperty, skos:Concept, odrl:constraint ;
+	rdfs:isDefinedBy openrel: ;
+	rdfs:label "Has Applicable Scenario"@en ;
+	skos:definition "This named constraint supports a specific scenario or context"@en ;
+	skos:note "Scenarios reflect the context of the user (Assignee) or owner (Assigner) and are used to categorise Named Constraints in terms of application."@en ;
+	rdfs:domain openrel:NamedConstraint ;
+	rdfs:range skos:Concept ; #
+ 	.
+
+# -------------------------------------------------------------------------------------------------------------
+# Named Constraint Instances (Individuals)
+# -------------------------------------------------------------------------------------------------------------
+
+openrel:academicUseOnly 
+	a openrel:NamedConstraint ;
+	rdfs:label "Academic Use Only"@en ;
+	skos:definition "Asset MUST only be used for Academic Research or Applications"@en ;
+	skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
+	skos:note "Linked to several scenarios related to academic and research use and validation."@en ;
+	openrel:constraintType openrel:purpose ;
+	openrel:scnario openrel:research-only, openrel:academic-only, openrel:confirmed-researcher, openrel:confirmed-rpo, openrel:affirmed-research ;
+	openrel:usePurpose odrl:eq openrel:academicResearch ;
+	.
+
+
+
+
 
 
 
