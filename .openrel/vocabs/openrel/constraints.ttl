@@ -55,7 +55,7 @@ openrel:constraintScheme
 # Class Definition
 # -------------------------------------------------------------------------------------------------------------
 
-openrel:Constraint
+odrl:Constraint
 	a rdfs:Class, owl:Class, skos:Concept, odrl:Constraint ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Constraint"@en ;
