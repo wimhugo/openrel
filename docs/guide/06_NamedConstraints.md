@@ -68,7 +68,7 @@ Named Constraints (and Constraints) can also be categorised in terms of the inte
 
 ## Scenarios
 
-Scnearios are used to describe contextual information about the Asset or Asset Collection, the Party or Party Collection, the Assigner, or the Assignee. The primary use of Scenarios is to capture, in human-readable form, any conditions, limitations, duties, or contextual information that may influence the composition of or compliance with a Policy (Policy, Licence, Access Rules, Process Rules, Assertion, Offer, Agreement, Privacy, ...). The encoded language of these Policies are not easily interpreted by end users, and Scenarios are used to bridge this gap. Scenarios are defined in OpenREL as a hierarchy of instances in a [Concept Scheme](../../.openrel/vocabs/openrel) (vocabulary). 
+Scnearios are used to describe contextual information about the Asset or Asset Collection, the Party or Party Collection, the Assigner, or the Assignee. The primary use of Scenarios is to capture, in human-readable form, any conditions, limitations, duties, or contextual information that may influence the composition of or compliance with a Policy (Policy, Licence, Access Rules, Process Rules, Assertion, Offer, Agreement, Privacy, ...). The encoded language of these Policies are not easily interpreted by end users, and Scenarios are used to bridge this gap. Scenarios are defined in OpenREL as a hierarchy of instances in a [Concept Scheme](../../.openrel/vocabs/openrel/type_scenario.ttl) (vocabulary). 
 
 Some examples will be useful: 
 
