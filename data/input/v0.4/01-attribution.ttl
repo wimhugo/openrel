@@ -10,8 +10,14 @@ openrel:policy.p009
     rdf:type openrel:Licence ;
     dc:title "CC BY 4.0 — Attribution Required" ;
     odrl:status openrel:status/active ;
-    odrl:assigner "{\"@id\":\"[ASSIGNER_URI]\"}" ;
-    odrl:target "{\"@id\":\"[TARGET_URI]\"}" ;
-    odrl:permission "{\"odrl:action\":{\"@id\":\"openrel:action.use\"},\"odrl:duty\":[{\"odrl:action\":{\"@id\":\"openrel:action.attribute\"},\"dc:description\":\"Credit the original creator. Retain copyright notice.\"}]}" ;
+    odrl:assigner [ASSIGNER_URI] ;
+    odrl:target [TARGET_URI] ;
+    odrl:permission [
+        odrl:action openrel:action.use ;
+        odrl:duty [
+            odrl:action openrel:action.attribute ;
+            dc:description "Credit the original creator. Retain copyright notice."
+        ]
+    ] ;
     openrel:evaluation "permit | deny" ;
     openrel:machineActionable "true" .
