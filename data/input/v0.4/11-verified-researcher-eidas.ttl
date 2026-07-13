@@ -1,0 +1,29 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix openrel: <https://openrel.org/ns#> .
+
+openrel:policy.p011
+    rdf:type openrel:Access ;
+    dc:title "Researcher-Only Access with eIDAS Verification" ;
+    odrl:assigner [ASSIGNER_URI] ;
+    odrl:assignee [ASSIGNEE_URI] ;
+    odrl:target [TARGET_URI] ;
+    odrl:permission [
+        odrl:action openrel:action.read ;
+        odrl:constraint openrel:constraint.role:researcher ;
+        odrl:constraint openrel:constraint.identity:verifiedEidas
+    ] ;
+    odrl:prohibition [
+        odrl:action openrel:action.read ;
+        odrl:constraint [
+            odrl:leftOperand openrel:leftOperand.role ;
+            odrl:operator odrl:neq ;
+            odrl:rightOperand openrel:role.researcher
+        ]
+    ] ;
+    openrel:evaluation "permit | deny" ;
+    openrel:machineActionable "true" .
