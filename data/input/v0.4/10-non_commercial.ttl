@@ -103,7 +103,8 @@ dalicclib:CC-BY-NC-4.0 a odrl:Set ;
             odrl:action dalicc:ModifiedWorks ],
         [ a odrl:Permission ;
             odrl:action dalicc:chargeDistributionFee ] ;
-    odrl:prohibition [ a odrl:Prohibition ;
+    odrl:prohibition 
+        [ a odrl:Prohibition ;
             odrl:action cc:CommercialUse ],
         [ a odrl:Prohibition ;
             odrl:action dalicc:ChangeLicense ],
@@ -113,3 +114,24 @@ dalicclib:CC-BY-NC-4.0 a odrl:Set ;
             dct:type dalicc:CreativeWork,
                 dcmitype:Dataset ] ;
     foaf:logo <https://licensebuttons.net/l/by-nc/4.0/88x31.png> .
+
+
+# OpenREL Named Constraint Example
+# Non-Commercial Use
+
+odrl:permission [
+    odrl:action openrel:action.use ;
+    openRel:namedConstraint openrel:nonCommercialUseOnly ;
+    ]
+] ;
+
+
+openrel:nonCommercialUseOnly 
+    [ a openrel:namedConstraint ;
+        rdfs:label "Non-Commercial Use Constraint"@en ;
+        skos:definition "A general-purpose non-commercial use constraint that is reusable and referenceable";@en ;
+        openrel:constraintType openrel:purpose ;
+        odrl:leftOperand openrel:usePurpose ;
+        odrl:operator odrl:eq ;
+        odrl:rightOperand openrel:nonCommercial ;
+        ].
