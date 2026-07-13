@@ -103,7 +103,7 @@ openrel:usageLimitation
 	skos:scopeNote "Non-Normative"@en ;
 	.
 
-openrel:accessCateory
+openrel:accessCategory
 	a odrl:LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy openrel: ;
 	rdfs:label "Access Limitations"@en ;
