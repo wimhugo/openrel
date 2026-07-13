@@ -221,8 +221,10 @@ openrel:attribute
 	skos:definition "Credit the original creator or rights holder when using a resource."@en ;
 	skos:note "odrl: To attribute the use of the Asset."@en ;
 	skos:note "odrl: May link to an Asset with the attribution information. May link to a Party with the role “attributedParty” function."@en ;
+	skos:note "ccREL: credit be given to copyright holder and/or author."@en ;	
 	odrl:includedIn odrl:use ;
 	skos:exactMatch odrl:attribute ;
+	skos:exactMatch cc:Attribution ;
 	# Extensions by OpenREL
 	rdfs:isDefinedBy openrel: .
 
