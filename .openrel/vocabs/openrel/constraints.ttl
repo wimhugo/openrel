@@ -62,7 +62,7 @@ odrl:Constraint
 	skos:definition "A boolean expression that refines the semantics of an Action and Party/Asset Collection or declare the conditions applicable to a Rule."@en .
 
 openrel:NamedConstraint
-	a rdfs:Class, owl:Class, skos:Concept odrl:Constraint ;
+	a rdfs:Class, owl:Class, skos:Concept, odrl:Constraint ;
   	rdfs:subClassOf odrl:Constraint ;
   	rdfs:isDefinedBy openrel: ;
 	rdfs:label "Named Constraint"@en ;
