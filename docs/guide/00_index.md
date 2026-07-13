@@ -22,6 +22,8 @@
 11. Assets and Asset Collections
 12. Parties and Party Collections (Agents)
 13. [Customising OpenREL](https://github.com/wimhugo/openrel/edit/main/docs/guide/13_Customisation.md)
+14. Custom Vocabularies
+15. Scenarios
 
 ## Annexures
 
