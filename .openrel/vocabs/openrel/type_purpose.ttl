@@ -91,14 +91,16 @@ openrel:commercialResearch
   skos:note "DPV: Research conducted in a commercial setting e.g. in a company"@en ;
   skos:inScheme openrel:type-purpose .
 
-openrel:nonCommercialResearch 
+openrel:nonCommercial 
   a skos:Concept ;
-  skos:exactMatch dpv:NonCommercialResearch ;
+  skos:narrowMatch dpv:NonCommercialResearch ;
+  skos:exactMacth cc:CommercialUse ;
   skos:broader openrel:researchUse ;
   skos:prefLabel "Non-Commercial Research" ;	
   rdfs:label "Non-Commercial Research Use"@en ;
   rdfs:definition "This data use permission indicates that use is allowed for non-commercial research use for any research purpose."@en ;
   skos:note "DPV: Research conducted in a non-commercial setting e.g. for a non-profit-organisation (NGO)"@en ;
+  skos:note "ccREL: Xxercising rights for commercial purposes (but usually implemented as a Prohibition)"@en ;
   skos:inScheme openrel:type-purpose .
 
 openrel:specificDiscipline 
