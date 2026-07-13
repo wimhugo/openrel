@@ -1,3 +1,7 @@
+
+# OpenREL Example
+
+
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
@@ -27,3 +31,34 @@ openrel:policy.p011
     ] ;
     openrel:evaluation "permit | deny" ;
     openrel:machineActionable "true" .
+
+
+# Named Constraint Examples
+
+odrl:permission [
+    odrl:action openrel:use ;
+    odrl:namedconstraint openrel:verifiedResearcher ;
+    odrl:namedconstraint openrel:eidasVerifiedResearcher
+] ;
+
+openrel:eidasVerifiedResearcher 
+    [ a openrel:namedConstraint ;
+        rdfs:label "eIDAS Verfied Researcher"@en ;
+        skos:definition "End User has been verified as a Researcher via eIDAS.";@en ;
+        openrel:constraintType openrel:context ;
+        odrl:leftOperand openrel:contextLimitation ;
+        odrl:operator odrl:eq ;
+        odrl:rightOperand openrel:context-eidas ;
+        ]
+        .
+
+openrel:verifiedResearcher 
+    [ a openrel:namedConstraint ;
+        rdfs:label "Asserted Researcher"@en ;
+        skos:definition "A general assertion or inference that the end user has the role of a researcher.";@en ;
+        openrel:constraintType openrel:role ;
+        odrl:leftOperand openrel:agentRole ;
+        odrl:operator odrl:eq ;
+        odrl:rightOperand openrel:researcher ;
+        ]
+        .
