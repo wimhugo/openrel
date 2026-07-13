@@ -74,10 +74,10 @@ openrel:consentRequired
 	rdfs:label "Consent Required"@en ;
 	skos:definition "Requires one or more types of consent to be provided."@en ;
 	skos:note "Example: Ethics clearance is a prerequisite for access to the Asset, or informed consent from the subject(s) is required prior to release."@en ;
-  	skos:note "Values of the Right Operand can be selected from openrel:typeConsent vocabulary"@en ;
-  	skos:note "More than one constraint can be encoded as Logical Constraints using OpenREL Named Constraints."@en ;
- 	skos:scopeNote "Non-Normative"@en 
-  	.
+	skos:note "Values of the Right Operand can be selected from openrel:typeConsent vocabulary"@en ;
+	skos:note "More than one constraint can be encoded as Logical Constraints using OpenREL Named Constraints."@en ;
+	skos:scopeNote "Non-Normative"@en 
+	.
 
 openrel:agentRole
 	a odrl:LeftOperand, owl:NamedIndividual, skos:Concept ;
@@ -85,9 +85,9 @@ openrel:agentRole
 	rdfs:label "Agent Role Constraint"@en ;
 	skos:definition "Requires the Assignee to hold a specific Agent Role."@en ;
 	skos:note "Example: Action is limited to bona fide researchers and/ or curators."@en ;
-  	skos:note "Values of the Right Operand can be selected from openrel:typeAgent vocabulary"@en ;
-  	skos:note "More than one constraint can be encoded as Logical Constraints using OpenREL Named Constraints."@en ;
-  	skos:scopeNote "Non-Normative"@en ;
+	skos:note "Values of the Right Operand can be selected from openrel:typeAgent vocabulary"@en ;
+	skos:note "More than one constraint can be encoded as Logical Constraints using OpenREL Named Constraints."@en ;
+	skos:scopeNote "Non-Normative"@en ;
 	.
 
 openrel:usageLimitation
@@ -96,9 +96,9 @@ openrel:usageLimitation
 	rdfs:label "Technical Usage Limitations"@en ;
 	skos:definition "Requires the Asset to be used only within technical limitations in respect of volume, access events, endpoints, and similar considerations."@en ;
 	skos:note "Example: Asset can only be used once, or can only be used by a specific application endpoint."@en ;
-  	skos:note "Values of the Right Operand can be selected from openrel:typeUse vocabulary"@en ;
-  	skos:note "More than one constraint can be encoded as Logical Constraints using OpenREL Named Constraints."@en ;
-  	skos:scopeNote "Non-Normative"@en ;
+	skos:note "Values of the Right Operand can be selected from openrel:typeUse vocabulary"@en ;
+	skos:note "More than one constraint can be encoded as Logical Constraints using OpenREL Named Constraints."@en ;
+	skos:scopeNote "Non-Normative"@en ;
 	.
 
 openrel:accessCateory
@@ -107,9 +107,9 @@ openrel:accessCateory
 	rdfs:label "Access Limitations"@en ;
 	skos:definition "Requires the Asset to be used or distributed with typical provisions associated with ab Access Category."@en ;
 	skos:note "Example: Derived assets must also be Open Access."@en ;
-  	skos:note "Values of the Right Operand can be selected from openrel:typeAccess vocabulary"@en ;
-  	skos:note "More than one constraint can be encoded as Logical Constraints using OpenREL Named Constraints."@en ;
-  	skos:scopeNote "Non-Normative"@en ;
+	skos:note "Values of the Right Operand can be selected from openrel:typeAccess vocabulary"@en ;
+	skos:note "More than one constraint can be encoded as Logical Constraints using OpenREL Named Constraints."@en ;
+	skos:scopeNote "Non-Normative"@en ;
 	.
 
 openrel:notificationDuty
@@ -118,9 +118,9 @@ openrel:notificationDuty
 	rdfs:label "Notification Duty"@en ;
 	skos:definition "Requires that use or dissemination of the Asset be notified to one or more endpoints or targets."@en ;
 	skos:note "Example: Each time the Assets is used, such use must be notified, or a citation for a derived Asset must be recorded at a specific endpoint."@en ;
-  	skos:note "Values of the Right Operand can be selected from openrel:typeAccess vocabulary"@en ;
-  	skos:note "More than one constraint can be encoded as Logical Constraints using OpenREL Named Constraints."@en ;
-  	skos:scopeNote "Non-Normative"@en ;
+	skos:note "Values of the Right Operand can be selected from openrel:typeAccess vocabulary"@en ;
+	skos:note "More than one constraint can be encoded as Logical Constraints using OpenREL Named Constraints."@en ;
+	skos:scopeNote "Non-Normative"@en ;
 	.
 
 openrel:contextLimitation
@@ -129,9 +129,9 @@ openrel:contextLimitation
 	rdfs:label "Context Limitation"@en ;
 	skos:definition "Requires that the Assignee or Assignee context be qualified as a specific type."@en ;
 	skos:note "Examples: Can only be used by Assignees in a research and development context, or only be participants in a Horizon Europe project."@en ;
-  	skos:note "Values of the Right Operand can be selected from openrel:typeContext vocabulary"@en ;
-  	skos:note "More than one constraint can be encoded as Logical Constraints using OpenREL Named Constraints."@en ;
-  	skos:scopeNote "Non-Normative"@en ;
+	skos:note "Values of the Right Operand can be selected from openrel:typeContext vocabulary"@en ;
+	skos:note "More than one constraint can be encoded as Logical Constraints using OpenREL Named Constraints."@en ;
+	skos:scopeNote "Non-Normative"@en ;
 	.
 
 openrel:tomLimitation
@@ -140,9 +140,9 @@ openrel:tomLimitation
 	rdfs:label "TOM Limitation"@en ;
 	skos:definition "Requires that the use or dissemination of the Asset occure with specific technical, organisational, legal, or physical measures in place."@en ;
 	skos:note "Examples: Can only be distributed to endpoints meeting a certified security classification, or Asset spatial resolution must be limited to 20km."@en ;
-  	skos:note "Values of the Right Operand can be selected from openrel:typeContext vocabulary"@en ;
-  	skos:note "More than one constraint can be encoded as Logical Constraints using OpenREL Named Constraints."@en ;
-  	skos:scopeNote "Non-Normative"@en ;
+	skos:note "Values of the Right Operand can be selected from openrel:typeContext vocabulary"@en ;
+	skos:note "More than one constraint can be encoded as Logical Constraints using OpenREL Named Constraints."@en ;
+	skos:scopeNote "Non-Normative"@en ;
 	.
 
 # ---------ODRL extended by OpenREL
@@ -153,11 +153,11 @@ openrel:usePurpose
 	rdfs:label "Purpose"@en ;
 	skos:definition "A defined purpose for exercising the action of the Rule, in OpenREL constrained to specific Right Operands."@en ;
 	skos:note "Example: Educational use, non-commercial use, Genetic Research only."@en ;
-  	skos:scopeNote "Non-Normative"@en 
-  	# OpenREL Extensions
+	skos:scopeNote "Non-Normative"@en 
+	# OpenREL Extensions
 	skos:broadMatch odrl:purpose
-  	skos:note "Values of the Right Operand can be selected from openrel:typePurpose vocabulary, which is aligned with and mapped to inter alia DUO, IDSC, and DPV."@en ;
-  	skos:note "More than one constraint can be encoded as Logical Constraints using OpenREL Named Constraints."@en ;
+	skos:note "Values of the Right Operand can be selected from openrel:typePurpose vocabulary, which is aligned with and mapped to inter alia DUO, IDSC, and DPV."@en ;
+	skos:note "More than one constraint can be encoded as Logical Constraints using OpenREL Named Constraints."@en ;
 	.
 
 
@@ -169,8 +169,8 @@ odrl:absolutePosition
 	rdfs:label "Absolute Asset Position"@en ;
 	skos:definition "A point in space or time defined with absolute coordinates for the positioning of the target Asset."@en ;
 	skos:note "Example: The upper left corner of a picture may be constrained to a specific position of the canvas rendering it."@en ;
-  	skos:scopeNote "Non-Normative"@en 
-  	.
+	skos:scopeNote "Non-Normative"@en 
+	.
 
 odrl:absoluteSpatialPosition
 	a odrl:LeftOperand, owl:NamedIndividual, skos:Concept ;
@@ -179,8 +179,8 @@ odrl:absoluteSpatialPosition
 	rdfs:label "Absolute Spatial Asset Position"@en ;
 	skos:definition "The absolute spatial positions of four corners of a rectangle on a 2D-canvas or the eight corners of a cuboid in a 3D-space for the target Asset to fit."@en ;
 	skos:note "Example: The upper left corner of a picture may be constrained to a specific position of the canvas rendering it. Note: see also the Left Operand Relative Spatial Asset Position. "@en ;
-  	skos:scopeNote "Non-Normative"@en 
-  	.
+	skos:scopeNote "Non-Normative"@en 
+	.
 
 odrl:absoluteTemporalPosition
 	a :LeftOperand, owl:NamedIndividual, skos:Concept ;
@@ -189,8 +189,8 @@ odrl:absoluteTemporalPosition
 	rdfs:label "Absolute Temporal Asset Position"@en ;
 	skos:definition "The absolute temporal positions in a media stream the target Asset has to fit."@en ;
 	skos:note "Use with Actions including the target Asset in a larger media stream. The fragment part of a Media Fragment URI (https://www.w3.org/TR/media-frags/) may be used for the right operand. See the Left Operand realativeTemporalPosition. <br />Example: The MP3 music file must be positioned between second 192 and 250 of the temporal length of a stream."@en ;
-  	skos:scopeNote "Non-Normative"@en 
-  	.
+	skos:scopeNote "Non-Normative"@en 
+	.
 
 odrl:absoluteSize
 	a odrl:LeftOperand, owl:NamedIndividual, skos:Concept ;
@@ -198,16 +198,16 @@ odrl:absoluteSize
 	rdfs:label "Absolute Asset Size"@en ;
 	skos:definition "Measure(s) of one or two axes for 2D-objects or measure(s) of one to tree axes for 3D-objects of the target Asset."@en ;
 	skos:note "Example: The image can be resized in width to a maximum of 1000px."@en ;
-  	skos:scopeNote "Non-Normative"@en 
- 	.
+	skos:scopeNote "Non-Normative"@en 
+	.
 
 odrl:count
 	a odrl:LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Count"@en ;
 	skos:definition "Numeric count of executions of the action of the Rule."@en ;
-  	skos:scopeNote "Non-Normative"@en 
-  	.
+	skos:scopeNote "Non-Normative"@en 
+	.
 
 odrl:dateTime
 	a odrl:LeftOperand, owl:NamedIndividual, skos:Concept ;
@@ -215,8 +215,8 @@ odrl:dateTime
 	rdfs:label "Datetime"@en ;
 	skos:definition "The date (and optional time and timezone) of exercising the action of the Rule. Right operand value MUST be an xsd:date or xsd:dateTime as defined by [[xmlschema11-2]]."@en ;
 	skos:note "The use of Timezone information is strongly recommended. The Rule may be exercised before (with operator lt/lteq) or after (with operator gt/gteq) the date(time) defined by the Right operand. <br />Example: <code>dateTime gteq 2017-12-31T06:00Z</code> means the Rule can only be exercised after (and including) 6:00AM on the 31st Decemeber 2017 UTC time."@en ;
-  	skos:scopeNote "Non-Normative"@en 
-  	.
+	skos:scopeNote "Non-Normative"@en 
+	.
 
 odrl:delayPeriod
 	a odrl:LeftOperand, owl:NamedIndividual, skos:Concept ;
@@ -425,10 +425,10 @@ odrl:system
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "System"@en ;
 	skos:definition "An identified computing system used for exercising the action of the Rule."@en ;
-  	owl:deprecated true ;
+	owl:deprecated true ;
 	skos:note "See System Device" ;
 	skos:exactMatch :systemDevice 
-  	.
+	.
 
 odrl:systemDevice
 	a odrl:LeftOperand, owl:NamedIndividual, skos:Concept ;
