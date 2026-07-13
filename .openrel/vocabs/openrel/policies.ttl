@@ -47,7 +47,7 @@ openrel:PolicyScheme
   a skos:ConceptScheme ;
   skos:prefLabel "OpenREL Policies"@en ;
   dct:title "OpenREL Policies"@en ;
-  dct:description "OpenREL defines the subclasses of Licence, Access Rules, and Process Rules."@en ;
+  dct:description "OpenREL additionally defines the subclasses of Licence, Access Rules, and Process Rules."@en ;
   dct:created "2026-06-29T00:00:00+00:00"^^xsd:datetime ;  
   dct:modified "2026-07-10T00:00:00+00:00"^^xsd:datetime ;
   dct:creator <https://orcid.org/0000-0002-0255-5101> ;  # Wim Hugo
