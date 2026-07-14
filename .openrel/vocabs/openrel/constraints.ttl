@@ -88,6 +88,21 @@ openrel:constraint
 		owl:unionOf ( :Constraint :LogicalConstraint ) ;
 	] .
 
+openrel:namedConstraint
+	a rdf:Property , owl:ObjectProperty, skos:Concept;
+	rdfs:isDefinedBy openrel: ;
+	rdfs:label "Has Applicable Named Constraint"@en ;
+	skos:definition "Rule has a Named Constraint"@en ;
+	rdfs:domain [
+		a owl:Class ;
+		owl:unionOf ( :Policy :Rule ) ;
+	] ;
+	rdfs:range [
+		a owl:Class ;
+		owl:unionOf ( :Constraint :LogicalConstraint :NamedConstraint) ;
+	] 
+	.
+
 openrel:applicableEndpoint
 	a rdf:Property , owl:ObjectProperty, skos:Concept;
 	rdfs:isDefinedBy openrel: ;
@@ -129,10 +144,29 @@ openrel:academicUseOnly
 	skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
 	skos:note "Linked to several scenarios related to academic and research use and validation."@en ;
 	openrel:constraintType openrel:purpose ;
-	openrel:scnario openrel:research-only, openrel:academic-only, openrel:confirmed-researcher, openrel:confirmed-rpo, openrel:affirmed-research ;
+	openrel:scenario openrel:research-only, openrel:academic-only, openrel:confirmed-researcher, openrel:confirmed-rpo, openrel:affirmed-research ;
 	openrel:usePurpose odrl:eq openrel:academicResearch ;
 	.
 
+openrel:notifyInAsset 
+	a openrel:NamedConstraint ;
+	rdfs:label "Notification in Asset"@en ;
+	skos:definition "Changes and modifications must be added in the Asset using human-readable text, without removing the current licence information."@en ;
+	skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
+	openrel:constraintType openrel:notification ;
+	openrel:scenario openrel:attribution ;
+	openrel:notificationDuty odrl:eq openrel:record-in-asset ;
+	.
+
+openrel:allowDistrubutionFee 
+	a openrel:NamedConstraint ;
+	rdfs:label "Allow Distribution Fee"@en ;
+	skos:definition "Allow the legitimate and reasonable costs of distrbution of the asset or its derivations - not regarded as commercial use."@en ;
+	skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
+	openrel:constraintType openrel:revenue ;
+	openrel:scenario openrel:non-commercial-only ;
+	openrel:revenuePermitted odrl:eq trsp:distributionCost ;
+	.
 
 
 
