@@ -28,17 +28,17 @@ Duties are far more useful if it indicates the Party Collection or Party that is
 
 The applicatiuon of these options depend on the nature of the Policy that is being defined. In cases where the Policy subclass is equivalent to an Agreement (or a 'Contract') or an Assertion, being very specific is a necessity, and designating an Assignee as a specific Party is the best course of Action. For subclasses such as Offers or Licences, indicating the Party Collection is more appropriate, and standardising the Party Collection definitions using a Concept Scheme is good practice.
 
-|Policy Subclass|Party Defined|Party Collection Defined|
-|---------|---------|---------|
-|Set|Not Applicable||
-|Request|Assignee = IRI|Not Applicable|
-|Offer|Assigner = IRI|Not Applicable|
-|Agreement|Assignee = IRI, Assigner = IRI|Not Applicable|
-|Ticket|Assignee = IRI, Assigner = IRI|Not Applicable|
-|Privacy|Assignee = IRI, Assigner = IRI|Not Applicable|
-|Assertion|Assignee = IRI|Not Applicable|
-|Licence|Not Applicable|Role = Agent Type|
-|Access Rules|Not Applicable|Role = Agent Type|
-|Process Rules|Not Applicable|Role = Agent Type|
-|Policy Collection|Inherited|Inherited|
+|Policy Subclass|Party Defined|Party Collection Defined|Asset Defined|
+|---------|---------|---------|---------|
+|Set|Not Applicable|Not Applicable|Target Asset|
+|Request|Assignee = IRI|Not Applicable|Target Asset|
+|Offer|Assigner = IRI|Not Applicable|Target Asset|
+|Agreement|Assignee = IRI, Assigner = IRI|Not Applicable|Target Asset|
+|Ticket|Assignee = IRI|Not Applicable|Target Asset|
+|Privacy|Assignee = IRI, Assigner = IRI|Not Applicable|Target Asset|
+|Assertion|Assignee = IRI|Not Applicable|Target Asset|
+|Licence|Not Applicable|Role = Agent Type|Not Applicable OR Target Asset Collection|
+|Access Rules|Not Applicable|Role = Agent Type|Not Applicable OR Target Asset Collection|
+|Process Rules|Not Applicable|Role = Agent Type|Not Applicable|
+|Policy Collection|Inherited|Inherited|Inherited|
 
