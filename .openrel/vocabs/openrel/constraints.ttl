@@ -226,6 +226,19 @@ openrel:consentPrior
 	]	
 	.
 
+openrel:consentLegal 
+	[ a openrel:NamedConstraint ;
+		rdfs:label "Consent Required on Legal Basis"@en ;
+		skos:definition "Allow reuse of the Asset or Asset Collection based on legal basis consent."@en ;
+		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
+		openrel:constraintType openrel:consent ;
+		openrel:scenario openrel:gdpr-controller, openrel:gdpr-compliance, openrel:consent-gdpr ;
+		odrl:leftOperand openrel:consentRequired ;
+		odrl:operand odrl:eq 
+		odrl:rightOperand openrel:consent-legal ;
+	]	
+	.
+
 openrel:euUseOnly 
 	[ a openrel:NamedConstraint ;
 		rdfs:label "Allow EU-wide Use"@en ;
