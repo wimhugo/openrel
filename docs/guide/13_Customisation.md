@@ -31,15 +31,14 @@ The applicatiuon of these options depend on the nature of the Policy that is bei
 |Policy Subclass|Party Defined|Party Collection Defined|
 |---------|---------|---------|
 |Set|Not Applicable||
-|Request|Assignee = IRI||
-|Offer|Assigner = IRI||
-|Agreement|Assignee = IRI
-Assigner = IRI||
-|Ticket|Assignee = IRI,Assigner = IRI||
-|Privacy|Assignee = IRI,Assigner = IRI||
-|Assertion|Assignee = IRI||
-|Licence|Not Applicable||
-|Access Rules|Not Applicable||
-|Process Rules|Not Applicable||
+|Request|Assignee = IRI|Not Applicable|
+|Offer|Assigner = IRI|Not Applicable|
+|Agreement|Assignee = IRI, Assigner = IRI|Not Applicable|
+|Ticket|Assignee = IRI, Assigner = IRI|Not Applicable|
+|Privacy|Assignee = IRI, Assigner = IRI|Not Applicable|
+|Assertion|Assignee = IRI|Not Applicable|
+|Licence|Not Applicable|Role = Agent Type|
+|Access Rules|Not Applicable|Role = Agent Type|
+|Process Rules|Not Applicable|Role = Agent Type|
 |Policy Collection|Inherited|Inherited|
 
