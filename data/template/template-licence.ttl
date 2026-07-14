@@ -1,12 +1,48 @@
-# Context
+# Context and Input Licences
+# --------------------------------------------------------------------------------------------------------------------------------
+# Title: The machine-readable representation of "Creative Commons Attribution 4.0 International"@en in the DALICC license library
+# Author: DALICC
+# Source: https://dalicc.net/licenselibrary/CC-BY-4.0
+# Licensed under: Attribution 4.0 International (CC BY 4.0) 
+# Amended by and aligned with OpenREL
+# --------------------------------------------------------------------------------------------------------------------------------
+# OpenREL - Open Rights Encoding language
+# Version 0.4 (Draft)
+# Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/ EUDAT)
+# This Version: 14 July 2026
 
+# context
+@base <http://www.w3.org/ns/openrel/0/> .
+@prefix : <http://www.w3.org/ns/openrel/0/> .
+# RDF-related
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+# general content
+@prefix schema: <http://schema.org/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+# rdmi-related
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcatap: <http://data.europa.eu/r5r/> .
+# rights-related
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix dalicc: <https://dalicc.net/ns#> .
+@prefix dalicclib: <https://dalicc.net/licenselibrary/> .
+@prefix ids: <https://w3id.org/idsa/core/> .
+@prefix idsc: <https://w3id.org/idsa/code/> .
+@prefix osl: <http://opensource.org/licenses/> .
+@prefix spdx: <http://spdx.org/rdf/terms#>  .
+@prefix spdxlicense: <http://spdx.org/licenses/> .
+@prefix dpv: <https://w3id.org/dpv> .
 
-
-# Provenance
-
-
-
+# --------------------------------------------------------------------------------------------------------------------------------
 # Licence Metadata
+# --------------------------------------------------------------------------------------------------------------------------------
 
 <> a odrl:Set ;
     skos:exactMatch spdx:<> ;
@@ -33,7 +69,10 @@
     dct:source <https://creativecommons.org/licenses/by-nc/4.0/> ;
     dct:title "Creative Commons Attribution-NonCommercial 4.0 International"@en ;
 
-    #   Rules
+
+# --------------------------------------------------------------------------------------------------------------------------------
+#   Rules
+# --------------------------------------------------------------------------------------------------------------------------------
     
     odrl:permission 
         [ a odrl:Permission ;
@@ -54,28 +93,19 @@
                     odrl:action openrel:attribute ],
                 [ a odrl:Duty ;
                     odrl:action openrel:notify ;
-                        odrl:constraint
-                        [ a odrl:Constraint ;
-                            odrl:leftOperand openrel:notificationType ;
-                            odrl:operator odrl:eq ;
-                            odrl:rightOperand openrel:record-in-asset ;
-                        ],
+                        odrl:named constraint odrl:namedConstraint openrel:notifyInAsset ;
                 ]   
         ],
 
         [ a odrl:Permission ;
             odrl:action odrl:derive ;
-            odrl:duty [ a odrl:Duty ;
+            odrl:duty 
+              [ a odrl:Duty ;
                     odrl:action cc:Attribution ],
-                [ a odrl:Duty ;
+              [ a odrl:Duty ;
                     odrl:action openrel:notify ;
-                        odrl:constraint
-                        [ a odrl:Constraint ;
-                            odrl:leftOperand openrel:notificationType ;
-                            odrl:operator odrl:eq ;
-                            odrl:rightOperand openrel:record-in-asset 
-                        ],
-        ]
+                    odrl:namedConstraint openrel:notifyInAsset ;
+              ]
 
         [ a odrl:Permission ;
             odrl:action odrl:present ],
@@ -83,11 +113,7 @@
             odrl:action odrl:reproduce ],
         [ a odrl:Permission ;
             odrl:action openrel:costRecovery 
-              [ a odrl:Constraint ;
-                  odrl:leftOperand openrel:leftOperand.revenueSource ;
-                  odrl:operator odrl:eq ;
-                  odrl:rightOperand trsp:distributionFee ; 
-              ],            
+            odrl:namedconstraint openrel:allowDistrubutionFee ;          
         ] ;
    
     odrl:prohibition 
@@ -97,5 +123,14 @@
             odrl:action openrel:promote ] ;
     odrl:target 
         [ a odrl:AssetCollection ;
+            dct:type cc:Work, dcmitype:Dataset 
+        ] ;
+
+    .
+
+
+
+
+            
             dct:type dalicc:CreativeWork, dcmitype:Dataset 
         ] ;
