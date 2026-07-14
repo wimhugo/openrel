@@ -55,24 +55,26 @@
 #   Rules
 # --------------------------------------------------------------------------------------------------------------------------------
     
-odrl:permission [
-    odrl:action openrel:use ;
-    odrl:constraint <12-ethics-approval.logical-constraint-001> ;
-] ;
-
-openrel:evaluation "permit | deny" ;
-openrel:machineActionable "true" 
+    odrl:permission [
+        odrl:action openrel:use ;
+        odrl:constraint <12-ethics-approval.logical-constraint-001> ;
+    ] ;
+    
+    openrel:evaluation "permit | deny" ;
+    openrel:machineActionable "true" 
+.
 
 # --------------------------------------
 # Custom Logical Constraints
 # --------------------------------------
 
-<11-eidas-only.logical-constraint-001>
+<12-ethics-approval.logical-constraint-001>
     a odrl:LogicalConstraint ;
     odrl:and (
-        openrel:consentPrior ,
+        openrel:consentPrior 
         openrel:ethicsApproval 
-    ) .
+    ) 
+.
 
 # --------------------------------------
 # Custom Named Constraints
