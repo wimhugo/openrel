@@ -120,7 +120,7 @@ openrel:assetLocation
 	rdfs:label "Physical or Virtual Asset Location"@en ;
 	skos:definition "Requires the Asset to be used or persisted in a specific physical or virtual location."@en ;
 	skos:note "Example: Asset must be stored in the Netherlands, asset must be used on a specific infrastructure."@en ;
-	skos:note "Values of the Right Operand can be selected from spatial IRIs, IP addresses, or location vocabulary such as LOC."@en ;
+	skos:note "Values of the Right Operand can be selected from spatial IRIs, IP addresses, institutional IRIs, or location vocabulary such as LOC."@en ;
 	skos:note "More than one constraint can be encoded as Logical Constraints using OpenREL Named Constraints."@en ;
 	skos:scopeNote "Non-Normative"@en ;
 	.
