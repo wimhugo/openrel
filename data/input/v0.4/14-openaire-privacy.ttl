@@ -1,0 +1,81 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix openrel: <https://openrel.org/ns#> .
+
+openrel:policy.p014
+    rdf:type openrel:Process ;
+    dc:title "OpenAIRE Personal Data Processing Policy" ;
+    dc:source <https://www.openaire.eu/privacy-policy> ;
+    dc:version "2.7" ;
+    odrl:assigner <https://openaire.eu> ;
+    odrl:assignee openrel:agent.dataSubject ;
+    odrl:permission [
+        dc:description "Newsletter — email under explicit consent." ;
+        odrl:action openrel:action.use ;
+        odrl:constraint [
+            odrl:leftOperand openrel:leftOperand.legalBasis ;
+            odrl:operator odrl:eq ;
+            odrl:rightOperand dpv:Consent
+        ] ;
+        odrl:constraint [
+            odrl:leftOperand openrel:leftOperand.purpose ;
+            odrl:operator odrl:eq ;
+            odrl:rightOperand dpv:ServiceProvision
+        ] ;
+        odrl:duty [
+            odrl:action openrel:action.obtainConsent
+        ] ;
+        odrl:duty [
+            odrl:action openrel:action.log
+        ]
+    ] ;
+    odrl:permission [
+        dc:description "Website visit — IP/cookies under legitimate interest." ;
+        odrl:action openrel:action.use ;
+        odrl:constraint [
+            odrl:leftOperand openrel:leftOperand.legalBasis ;
+            odrl:operator odrl:eq ;
+            odrl:rightOperand dpv:LegitimateInterest
+        ] ;
+        odrl:constraint [
+            odrl:leftOperand openrel:leftOperand.purpose ;
+            odrl:operator odrl:eq ;
+            odrl:rightOperand dpv:Analytics
+        ] ;
+        odrl:duty [
+            odrl:action openrel:action.encrypt
+        ]
+    ] ;
+    odrl:prohibition [
+        dc:description "No third-party sharing outside service provision." ;
+        odrl:action openrel:action.distribute ;
+        odrl:constraint [
+            odrl:leftOperand openrel:leftOperand.purpose ;
+            odrl:operator odrl:neq ;
+            odrl:rightOperand dpv:ServiceProvision
+        ]
+    ] ;
+    odrl:prohibition [
+        dc:description "Special category data prohibited (GDPR Art.9)." ;
+        odrl:action openrel:action.use ;
+        odrl:constraint openrel:constraint.dataCategory:specialCategory
+    ] ;
+    odrl:obligation [
+        odrl:action openrel:action.delete ;
+        dc:description "Delete on consent withdrawal or erasure request (GDPR Art.17)."
+    ] ;
+    odrl:obligation [
+        odrl:action openrel:action.notify ;
+        dc:description "Notify data subjects of policy changes within 5 days."
+    ] ;
+    openrel:dataSubjectRights dpv:RightToAccess ;
+    openrel:dataSubjectRights dpv:RightToRectification ;
+    openrel:dataSubjectRights dpv:RightToErasure ;
+    openrel:dataSubjectRights dpv:RightToRestriction ;
+    openrel:dataSubjectRights dpv:RightToDataPortability ;
+    openrel:evaluation "permit | deny" ;
+    openrel:machineActionable "true" .
