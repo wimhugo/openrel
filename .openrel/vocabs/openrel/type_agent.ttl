@@ -63,6 +63,14 @@ openrel:ai-agent
   skos:broadMatch foaf:Group ;
   skos:inScheme openrel:typeAgent .
 
+openrel:human-agent
+  a skos:Concept ;
+  skos:prefLabel "Human Agent"@en ;
+  skos:definition "Any human agent or process seeking to use or access an Asset."@en ;
+  skos:broadMatch dcat-ap:agent ;
+  skos:broadMatch foaf:Group ;
+  skos:inScheme openrel:typeAgent .
+
 openrel:research-organisation
   a skos:Concept ;
   skos:prefLabel "Research Organisation"@en ;
@@ -76,6 +84,7 @@ openrel:researcher
   skos:prefLabel "Researcher"@en ;
   skos:definition "Any (class of) agent or process seeking to use or access an Asset that can be verified by independent means as a researcher."@en ;
   skos:note "A separate vocabulary defines recognised options for means of identification."@en ;
+  skos:broadMatch dcat-ap:agent ;
   skos:broadMatch foaf:Group ;
   skos:inScheme openrel:typeAgent .
 
@@ -84,5 +93,6 @@ openrel:curator
   skos:prefLabel "Curator"@en ;
   skos:definition "Any (class of) agent or process charged with curation, publication, archiving, dissemination, and/or preservation of an Asset."@en ;
   skos:note "Curators are identified and provided with requisite permissions by the Catalogue (dcat:catalogue) hosting the Asset."@en ;
+  skos:broadMatch dcat-ap:agent ;
   skos:broadMatch foaf:Group ;
   skos:inScheme openrel:typeAgent .
