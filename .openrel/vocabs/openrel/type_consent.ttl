@@ -88,6 +88,18 @@ openrel:consent-reuse-before
 openrel:consent-reuse-after
   a skos:Concept ;
   skos:prefLabel "Reuse Consent After"@en ;
-  skos:definition "Requires subject, creator, or curator consent forpublication or disseminationof derived or modified assets."@en ;
+  skos:definition "Requires subject, creator, or curator consent for publication or dissemination of derived or modified assets."@en ;
+  skos:inScheme openrel:typeConsent .
+
+openrel:approval-community
+  a skos:Concept ;
+  skos:prefLabel "Community Approval"@en ;
+  skos:definition "Requires community approval or clearance for use, reuse, publication or disseminationo f derived or modified assets."@en ;
+  skos:inScheme openrel:typeConsent .
+
+openrel:authorisation-contractual
+  a skos:Concept ;
+  skos:prefLabel "Contractual Authorisation"@en ;
+  skos:definition "Requires contractual authorisation for use, reuse, publication, or dissemination of derived or modified assets."@en ;
   skos:inScheme openrel:typeConsent .
 
