@@ -200,6 +200,33 @@ openrel:allowDistrubutionFee
 	]	
 	.
 
+openrel:ethicsApproval 
+	[ a openrel:NamedConstraint ;
+		rdfs:label "Ethics Approval Required"@en ;
+		skos:definition "Allow access to the Asset or Asset Collection only when an instutional review board has confirmed ethics approval."@en ;
+		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
+		openrel:constraintType openrel:consent ;
+		openrel:scenario openrel:ethics-approval ;
+		odrl:leftOperand openrel:consentRequired ;
+		odrl:operand odrl:eq 
+		odrl:rightOperand openrel:consent-ethics ;
+	]	
+	.
+
+openrel:consentPrior 
+	[ a openrel:NamedConstraint ;
+		rdfs:label "Consent is Required Prior to Access"@en ;
+		skos:definition "Allow access to the Asset or Asset Collection only applicable consent has been obtained prior to access."@en ;
+		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
+		openrel:constraintType openrel:consent ;
+		openrel:scenario openrel:ethics-approval ;
+		odrl:leftOperand openrel:consentRequired ;
+		odrl:operand odrl:eq 
+		odrl:rightOperand openrel:consent-reuse-before ;
+	]	
+	.
+
+
 openrel:euUseOnly 
 	[ a openrel:NamedConstraint ;
 		rdfs:label "Allow EU-wide Use"@en ;
