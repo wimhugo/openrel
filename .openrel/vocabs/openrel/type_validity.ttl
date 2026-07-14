@@ -8,8 +8,15 @@
 # -------------------------------------------------------------------------------------------------------------
 # Validity Types 
 # In OpenREL, Validity Types are used to unambigously identify one or more validity limitations to the scope of
-# a rule set.
+# a policy.
 # Used to model and map DALICC properties
+# -------------------------------------------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------------------------------------------
+# Input Licence 
+# Author: DALICC
+# Source: https://dalicc.net/
+# Licensed under: Attribution 4.0 International (CC BY 4.0) 
 # -------------------------------------------------------------------------------------------------------------
 
 # context
@@ -58,27 +65,31 @@ openrel:typeValidity
 # Definition of Terms
 # ----------------------------------------------------- --------------------------------------------------------
 
-dalicc:patentFree
+openrel:patentFree
   a skos:Concept ;
   skos:prefLabel "Patent Free"@en ;
+  skos:exactMatch dalicc:patentFree ;
   skos:definition "DALICC: The license applies only to those patent claims licensable by such Contributor that are necessarily infringed by their Contribution(s) alone or by combination of their Contribution(s) with the Licensed Material to which such Contribution(s) was submitted."@en ;
   skos:inScheme openrel:typeValidity .
 
-dalicc:irrevocable
+openrel:irrevocable
   a skos:Concept ;
   skos:prefLabel "Irrevocable"@en ;
+  skos:exactmatch dalicc:irrevocable ;
   skos:definition "DALICC: The license cannot be terminated for any reason or only that the license cannot be terminated for convenience, but still may be terminated for breach."@en ;
   skos:inScheme openrel:typeValidity .
 
-dalicc:perpetual
+openrel:perpetual
   a skos:Concept ;qa`
   skos:prefLabel "Perpetual"@en ;
+  skos:exactMatch dalicc:perpetual ;
   skos:definition "DALICC: A perpetual license allows to use the licensed work indefinitely."@en ;
   skos:inScheme openrel:typeValidity .
 
-dalicc:worldwide
+openrel:worldwide
   a skos:Concept ;
   skos:prefLabel "Worldwide"@en ;
+  skos:exactMatch dalicc:worldwide ;
   skos:definition "DALICC: The license terms are valid throughout the world."@en ;
   skos:inScheme openrel:typeValidity .
 
