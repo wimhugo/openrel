@@ -176,7 +176,7 @@ openrel:AccessRules
 	owl:disjointWith odrl:Agreement, odrl:Offer, odrl:Privacy, odrl:Request, odrl:Assertion , odrl:Ticket, openrel:AccessRules, openrel:ProcessRules ;
 	rdfs:label "Access Rule(s)"@en ;
 	skos:definition "A Policy that defines conditions of access that are not generally considered to be part of a licence, but depends on the context."@en ;
-	skos:note "Such access rules may include, for example, the terms and conditions of use associated with a specific repository, data service, or institution. It is usually policy-driven."@en ;
+	skos:note "Such access rules may include, for example, the terms and conditions of use associated with a specific repository, data service, or institution. It is usually institutional policy driven."@en ;
  	skos:note "Unique to an Institution, Repository, or Catalogue." @en ;
   	skos:scopeNote "Non-Normative"@en .
 
@@ -186,10 +186,11 @@ openrel:ProcessRules
 	rdfs:subClassOf odrl:Policy ;
 	owl:disjointWith odrl:Agreement, odrl:Offer, odrl:Privacy, odrl:Request, odrl:Assertion , odrl:Ticket, openrel:AccessRules, openrel:ProcessRules ;
 	rdfs:label "Process Rule(s)"@en ;
-	skos:definition "A Policy that defines formalities associated with the process of gaining access that do not concern access or licences"@en ;
-	skos:note "Such process rules may include, or example, steps related to interaction of a software platform or dissemination channel with an Assignee."@en ;
+	skos:definition "A Policy that defines formalities associated with the process of gaining access that do not concern access or licences."@en ;
+	skos:note "Such process rules may include, or example, steps related to interaction of a software platform, infrastricture, federation, or dissemination channel with an Assignee."@en ;
  	skos:note "Unique to a software platform or dissemination channel." @en ;
- 	skos:scopeNote "Non-Normative"@en .
+ 	skos:scopeNote "Non-Normative"@en 
+	.
 
 openrel:PolicyCollection
 	a rdfs:Class , owl:Class, skos:Concept ;
@@ -199,8 +200,10 @@ openrel:PolicyCollection
 	rdfs:label "Policy Collection"@en ;
 	skos:definition "A collection that includes one or more policies"@en ;
 	skos:note "A policy collection references one or more policies via IRI."@en ;
-  	skos:note "Can be used to define all policies applicable to an asset collection, or to collectively reference the policies involved in a negotiation process." @en ;
-  	skos:scopeNote "Non-Normative"@en .
+  	skos:note "Similar to odrl:Set, but it inherits Asset and Party references from contributing Policies." @en ;
+	skos:note "Can be used to define all policies applicable to an asset collection, or to collectively reference the policies involved in a negotiation process." @en ;
+	skos:scopeNote "Non-Normative"@en 
+	.
 
 
 
