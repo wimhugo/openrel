@@ -1,0 +1,59 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix openrel: <https://openrel.org/ns#> .
+
+openrel:policy.p020
+    rdf:type openrel:Process ;
+    dc:title "Agentic AI — Delegated Access with Audit Trail" ;
+    odrl:assigner [DATA_PROVIDER_URI] ;
+    odrl:assignee openrel:agent.aiAgent ;
+    odrl:target [TARGET_URI] ;
+    odrl:permission [
+        odrl:action openrel:action.use ;
+        odrl:constraint openrel:constraint.agentType:aiAgent ;
+        odrl:constraint openrel:constraint.delegationToken ;
+        odrl:constraint openrel:constraint.identity:verifiedEidas ;
+        odrl:constraint openrel:constraint.security:trustPlus ;
+        odrl:duty [
+            odrl:action openrel:action.log ;
+            dc:description Log: agentID, principalID, action, timestamp, datasetID, purpose. ;
+            odrl:constraint openrel:constraint.log:clearinghouse
+        ]
+    ] ;
+    odrl:prohibition [
+        odrl:action openrel:action.use ;
+        dc:description "Purpose drift prohibited — agent may not use data outside declared scope." ;
+        odrl:constraint [
+            odrl:leftOperand openrel:leftOperand.purpose ;
+            odrl:operator odrl:neq ;
+            odrl:rightOperand [DECLARED_PURPOSE_URI]
+        ]
+    ] ;
+    odrl:prohibition [
+        odrl:action openrel:action.use ;
+        dc:description "Access without valid delegation token prohibited." ;
+        odrl:constraint [
+            odrl:leftOperand openrel:leftOperand.delegationToken ;
+            odrl:operator odrl:neq ;
+            odrl:rightOperand openrel:delegationToken.valid
+        ]
+    ] ;
+    odrl:obligation [
+        odrl:action openrel:action.use ;
+        dc:description Data minimisation: agent may only access fields required for declared purpose. ;
+        odrl:constraint openrel:constraint.dataMinimisation
+    ] ;
+    openrel:agentDelegation [
+        openrel:principal [HUMAN_PRINCIPAL_URI] ;
+        openrel:delegationScope "[DECLARED_PURPOSE_URI]" ;
+        openrel:delegationExpiry [
+            @value "[EXPIRY_DATETIME]" ;
+            rdf:type xsd:dateTime
+        ]
+    ] ;
+    openrel:evaluation "permit | deny" ;
+    openrel:machineActionable "true" .
