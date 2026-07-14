@@ -226,7 +226,6 @@ openrel:consentPrior
 	]	
 	.
 
-
 openrel:euUseOnly 
 	[ a openrel:NamedConstraint ;
 		rdfs:label "Allow EU-wide Use"@en ;
@@ -239,7 +238,6 @@ openrel:euUseOnly
 		odrl:rightOperand loc:EU27 ;
 	]	
 	.
-
 
 
 
