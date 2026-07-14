@@ -157,6 +157,19 @@ openrel:securityProfile
 	skos:scopeNote "Non-Normative"@en ;
 	.
 
+openrel:revenuePermitted
+	a odrl:LeftOperand, owl:NamedIndividual, skos:Concept ;
+	rdfs:isDefinedBy openrel: ;
+	rdfs:label "Revenue Permitted"@en ;
+	skos:definition "QUalifies the type of revenue permitted for the original or serviced Asset."@en ;
+	skos:note "Values of the Right Operand can be selected from openrel:typeRevenue vocabulary"@en ;
+	skos:note "More than one constraint can be encoded as Logical Constraints using OpenREL Named Constraints."@en ;
+	skos:scopeNote "Non-Normative"@en ;
+	.
+
+idsc:PAYMENT
+odrl:payAmount
+
 openrel:contextLimitation
 	a odrl:LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy openrel: ;
