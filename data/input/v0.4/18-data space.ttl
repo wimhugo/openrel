@@ -1,0 +1,34 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix openrel: <https://openrel.org/ns#> .
+
+openrel:policy.p018
+    rdf:type openrel:RulesCollection ;
+    dc:title "Data Space Federated Policy" ;
+    odrl:conflict odrl:prohibit ;
+    odrl:inheritFrom [DATA_SPACE_BASELINE_POLICY_URI] ;
+    odrl:assigner [DATA_PROVIDER_URI] ;
+    odrl:target [TARGET_URI] ;
+    openrel:sections [
+        rdf:type openrel:Access ;
+        dc:description "Data space baseline — applied to all datasets in the space." ;
+        dc:source "[DATA_SPACE_BASELINE_POLICY_URI]" ;
+        odrl:permission [
+            odrl:action openrel:action.use ;
+            odrl:constraint openrel:constraint.identity:verifiedEidas
+        ]
+    ] ;
+    openrel:sections [
+        rdf:type openrel:Access ;
+        dc:description "Dataset-specific rules — applied by the individual data provider." ;
+        odrl:permission [
+            odrl:action openrel:action.read ;
+            odrl:constraint openrel:constraint.role:researcher
+        ]
+    ] ;
+    openrel:evaluation "permit | deny" ;
+    openrel:machineActionable "true" .
