@@ -114,6 +114,17 @@ openrel:accessCategory
 	skos:scopeNote "Non-Normative"@en ;
 	.
 
+openrel:logSpecification
+	a odrl:LeftOperand, owl:NamedIndividual, skos:Concept ;
+	rdfs:isDefinedBy openrel: ;
+	rdfs:label "Logging Specification"@en ;
+	skos:definition "Requires a notification to comply with a message or log specification."@en ;
+	skos:note "Example: Log timestamp, connector ID, and record count for each access event."@en ;
+	skos:note "Values of the Right Operand can be any IRI. Machine-readable specifications are preferable, and the specification IRI can be a VOID LinkSet."@en ;
+	skos:note "More than one constraint can be encoded as Logical Constraints using OpenREL Named Constraints."@en ;
+	skos:scopeNote "Non-Normative"@en ;
+	.
+
 openrel:assetLocation
 	a odrl:LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy openrel: ;
