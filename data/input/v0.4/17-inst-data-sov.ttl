@@ -1,0 +1,39 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix openrel: <https://openrel.org/ns#> .
+
+openrel:policy.p017
+    rdf:type openrel:Access ;
+    dc:title "Institutional Data Sovereignty" ;
+    odrl:assigner [INSTITUTION_URI] ;
+    odrl:assignee openrel:agent.institutionalStaff ;
+    odrl:target [TARGET_URI] ;
+    odrl:permission [
+        odrl:action openrel:action.use ;
+        odrl:constraint openrel:constraint.role:institution ;
+        odrl:constraint openrel:constraint.dataResidency
+    ] ;
+    odrl:prohibition [
+        odrl:action openrel:action.reproduce ;
+        dc:description "Replication to external infrastructure prohibited." ;
+        odrl:constraint [
+            odrl:leftOperand openrel:leftOperand.dataResidency ;
+            odrl:operator odrl:neq ;
+            odrl:rightOperand [INSTITUTION_RESIDENCY_URI]
+        ]
+    ] ;
+    odrl:prohibition [
+        odrl:action openrel:action.distribute ;
+        dc:description "Transfer to third-party infrastructure prohibited without authorisation." ;
+        odrl:constraint [
+            odrl:leftOperand openrel:leftOperand.role ;
+            odrl:operator odrl:neq ;
+            odrl:rightOperand openrel:role.institution
+        ]
+    ] ;
+    openrel:evaluation "permit | deny" ;
+    openrel:machineActionable "true" .
