@@ -18,3 +18,27 @@ Vocabularies that can be used to encode rights-, access-, sensitive data-related
 |DALICC|dalicc:attributionNotice|Notification that attribution was done|Potentially just one of many notification duties, and these may well be very context-specific.|
 |IDSC|idsc:AGGREGATE_BY_CONSUMER, idsc:AGGREGATE_BY_PROVIDER|Data will be part of another piece of data so that it is not distinguishable anymore.|These two aggregation actions are modelled as different class instances, but it is an examle of a transformation action that can be accommodated as transformation types that use a context-specific vocabulary.|
 
+To address this, OpenREL introduces some recommended encoding patterns that are used by preference. Any ODRL-aligned pattern is acceptable, but we think that these specific patterms lead to greater flexinility and adaptibility for specific contexts.
+
+## Design Patterns
+
+### Assign Role Types to Duties
+
+Duties are far more useful if it indicates the Party Collection or Party that is responsible for the Duty. OpenREL also introduces an additional property, and that is the ability to indicate a Role by way of a Role Type. Thesse Roles are aligned with Agent definitions that are common in the RDMI landscape, and are not necessarily apllicable in other contexts. The Role Type definitions are included in a Concept Scheme, and this allows the flexibility to define a context-specific Concept Scheme to address any differences without modifying Classes or Class Instances.
+
+The applicatiuon of these options depend on the nature of the Policy that is being defined. In cases where the Policy subclass is equivalent to an Agreement (or a 'Contract') or an Assertion, being very specific is a necessity, and designating an Assignee as a specific Party is the best course of Action. For subclasses such as Offers or Licences, indicating the Party Collection is more appropriate, and standardising the Party Collection definitions using a Concept Scheme is good practice.
+
+|Policy Subclass|Party Defined|Party Collection Defined|
+|---------|---------|---------|
+|Set|Not Applicable||
+|Request|Assignee = IRI||
+|Offer|Assigner = IRI||
+|Agreement|Assignee = IRI,Assigner = IRI||
+|Ticket|Assignee = IRI,Assigner = IRI||
+|Privacy|Assignee = IRI,Assigner = IRI||
+|Assertion|Assignee = IRI||
+|Licence|Not Applicable||
+|Access Rules|Not Applicable||
+|Process Rules|Not Applicable||
+|Policy Collection|Inherited|Inherited|
+
