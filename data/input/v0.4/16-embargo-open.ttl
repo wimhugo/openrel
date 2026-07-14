@@ -1,3 +1,7 @@
+# OpenREL JSON Example
+
+
+
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
@@ -33,3 +37,9 @@ openrel:policy.p016
     ] ;
     openrel:evaluation "permit | deny" ;
     openrel:machineActionable "true" .
+
+
+# OpenREL Named Constraints and Policy Collection Implementation
+
+# An embargo is not a 'licence', but a process rule applicable to a repository, Asset, or Asset Collection. 
+# This way, the licence does not change once embargo has expired.
