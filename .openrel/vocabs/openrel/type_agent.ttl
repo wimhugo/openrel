@@ -88,6 +88,15 @@ openrel:researcher
   skos:broadMatch foaf:Group ;
   skos:inScheme openrel:typeAgent .
 
+openrel:data-subject
+  a skos:Concept ;
+  skos:prefLabel "Data Subject"@en ;
+  skos:definition "Any person, legal entity, community, ecosystem or region that can be identified as a subject of research."@en ;
+  skos:note "External vocabularies (such as DPV) can be used to define the nature of sensiitive information if the subject is a person or persons."@en ;
+  skos:broadMatch dcat-ap:agent ;
+  skos:closeMatchMatch foaf:Group ;
+  skos:inScheme openrel:typeAgent .
+
 openrel:curator
   a skos:Concept ;
   skos:prefLabel "Curator"@en ;
