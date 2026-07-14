@@ -142,7 +142,7 @@ openrel:tomLimitation
 	rdfs:label "TOM Limitation"@en ;
 	skos:definition "Requires that the use or dissemination of the Asset occure with specific technical, organisational, legal, or physical measures in place."@en ;
 	skos:note "Examples: Can only be distributed to endpoints meeting a certified security classification, or Asset spatial resolution must be limited to 20km."@en ;
-	skos:note "Values of the Right Operand can be selected from openrel:typeContext vocabulary"@en ;
+	skos:note "Values of the Right Operand can be selected from openrel:typeTOM vocabulary"@en ;
 	skos:note "More than one constraint can be encoded as Logical Constraints using OpenREL Named Constraints."@en ;
 	skos:scopeNote "Non-Normative"@en ;
 	.
