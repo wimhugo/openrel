@@ -23,7 +23,8 @@
 12. Parties and Party Collections (Agents)
 13. [Customising OpenREL](https://github.com/wimhugo/openrel/edit/main/docs/guide/13_Customisation.md)
 14. Custom Vocabularies
-15. Scenarios
+15. More About Consent and Asset Protection
+16. Scenarios
 
 ## Annexures
 
