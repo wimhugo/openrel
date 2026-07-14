@@ -39,7 +39,7 @@
 @prefix spdx: <http://spdx.org/rdf/terms#>  .
 @prefix spdxlicense: <http://spdx.org/licenses/> .
 @prefix dpv: <https://w3id.org/dpv> .
-@prefix lfs: <https://lfs.labs.dansdemo.nl/api/v1/licenses>
+@prefix lfs: <https://lfs.labs.dansdemo.nl/api/v1/licenses> .
 
 # --------------------------------------------------------------------------------------------------------------------------------
 # Licence Metadata
