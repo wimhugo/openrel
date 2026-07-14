@@ -125,6 +125,16 @@ openrel:notificationDuty
 	skos:scopeNote "Non-Normative"@en ;
 	.
 
+openrel:securityProfile
+	a odrl:LeftOperand, owl:NamedIndividual, skos:Concept ;
+	rdfs:isDefinedBy openrel: ;
+	rdfs:label "Security Profile"@en ;
+	skos:definition "Requires that the Agent be verified with a specific security profile."@en ;
+	skos:note "Values of the Right Operand can be selected from openrel:typeTrust vocabulary"@en ;
+	skos:note "More than one constraint can be encoded as Logical Constraints using OpenREL Named Constraints."@en ;
+	skos:scopeNote "Non-Normative"@en ;
+	.
+
 openrel:contextLimitation
 	a odrl:LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy openrel: ;
