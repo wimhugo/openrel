@@ -71,7 +71,7 @@ openrel:machineActionable "true"
 <11-eidas-only.logical-constraint-001>
     a odrl:LogicalConstraint ;
     odrl:and (
-        openrel:verifiedResearcher
+        openrel:verifiedResearcher ,
         openrel:eidasVerifiedResearcher
     ) .
 
