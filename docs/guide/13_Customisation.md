@@ -33,7 +33,8 @@ The applicatiuon of these options depend on the nature of the Policy that is bei
 |Set|Not Applicable||
 |Request|Assignee = IRI||
 |Offer|Assigner = IRI||
-|Agreement|Assignee = IRI,Assigner = IRI||
+|Agreement|Assignee = IRI
+Assigner = IRI||
 |Ticket|Assignee = IRI,Assigner = IRI||
 |Privacy|Assignee = IRI,Assigner = IRI||
 |Assertion|Assignee = IRI||
