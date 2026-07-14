@@ -75,6 +75,14 @@ openrel:usage
 	skos:note "Usage-based Constraints may apply to any Action. Usage typology can be obtained from .openrel/vocabs/openrel/type_usage.ttl"@en ;
 	skos:inScheme openrel:constraint-type .
 
+openrel:revenue
+	a rdfs:Class, owl:Class, skos:Concept ;
+	rdfs:isDefinedBy openrel: ;
+	rdfs:label "Revenue"@en 
+	skos:definition "Constraint defined on the basis of allowable revenue (or not)."@en ;
+	skos:note "Revenue-based Constraints may apply to any Action. Usage typology can be obtained from .openrel/vocabs/openrel/type_revenue.ttl"@en ;
+	skos:inScheme openrel:constraint-type .
+
 openrel:access
 	a rdfs:Class, owl:Class, skos:Concept ;
 	rdfs:isDefinedBy openrel: ;
