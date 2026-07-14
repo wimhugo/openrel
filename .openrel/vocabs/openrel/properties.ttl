@@ -45,57 +45,67 @@
 # --------- OpenREL
 
 openrel:assetType
-        a rdfs:Property skos:Concept ;
-        rdfs:label "Asset Type"@en ;        
-        skos:definition "A property that describes one or more asset types, as defined in an appropriate vocabulary. Applicable to Policies, Assets, and Asset Collections. Can also be encoded in Policies as 'Target' with types from relevant vocabularies."@en ;
-        skos:note "DALICCe.g cc:CreativeWork. This asset type comprises any type of literary work that is subject to copyright. It also includes multimedia work that combines various media types such as text, audio, images, animations, video and interactive content."@en ;
-        rdfs:isDefinedBy openrel: .
+	a rdfs:Property skos:Concept ;
+	rdfs:label "Asset Type"@en ;        
+	skos:definition "A property that describes one or more asset types, as defined in an appropriate vocabulary. Applicable to Policies, Assets, and Asset Collections. Can also be encoded in Policies as 'Target' with types from relevant vocabularies."@en ;
+	skos:note "DALICCe.g cc:CreativeWork. This asset type comprises any type of literary work that is subject to copyright. It also includes multimedia work that combines various media types such as text, audio, images, animations, video and interactive content."@en ;
+	skos:broadMatch cc:CreativeWork ;
+	rdfs:domain odrl:Asset ;
+	rdfs:isDefinedBy openrel: .
 
 openrel:dataSubjectRights
-        a rdfs:Property, skos:Concept ;
-        rdfs:label "Subject Rights"@en ;        
-        skos:definition "Declares GDPR data subject rights applicable to an openrel:Process policy. Maps to W3C DPV rights vocabulary. No ODRL equivalent.."@en ;
-        skos:note "GDPR Chapter III / W3C DPV"@en ;
-        rdfs:isDefinedBy openrel: .
+	a rdfs:Property, skos:Concept ;
+	rdfs:label "Subject Rights"@en ;        
+	skos:definition "Declares GDPR data subject rights applicable to an Asset or Asset Collection. Maps to W3C DPV rights vocabulary. No ODRL equivalent.."@en ;
+	skos:note "GDPR Chapter III / W3C DPV"@en ;
+	rdfs:domain odrl:Asset ;
+	rdfs:isDefinedBy openrel: .
 
 openrel:agentDelegation
-        a rdfs:Property, skos:Concept ;
-        rdfs:label "Agent Delegation"@en ;        
-        skos:definition "Captures the human principal, purpose scope, and expiry of an AI agent's delegation. Specific to agentic AI scenarios in openrel:Process policies. No ODRL equivalent.."@en ;
-        skos:note "OpenREL internal — EU AI Act / agentic workflow governance"@en ;
-        rdfs:isDefinedBy openrel: .
+	a rdfs:Property, skos:Concept ;
+	rdfs:label "Agent Delegation"@en ;        
+	skos:definition "Captures the human principal, purpose scope, and expiry of an AI agent's delegation. Specific to agentic AI scenarios in openrel:Process policies. No ODRL equivalent.."@en ;
+	skos:note "OpenREL internal — EU AI Act / agentic workflow governance"@en ;
+	rdfs:isDefinedBy openrel: .
+	### Question - how do we use this?
 
 openrel:subPolicyOf
-        a rdfs:Property, skos:Concept ;
-        rdfs:label "Sublicence of"@en ;        
-        skos:definition "The licence is based on an original licence that allows derived licences to be granted to third parties.."@en ;
-        skos:note "OpenREL, in response to DALICC property 'sublicense'."@en ;
-        rdfs:isDefinedBy openrel: .
+	a rdfs:Property, skos:Concept ;
+	rdfs:label "Sublicence of"@en ;        
+	skos:definition "The Policy is based on an original Policy that allows derived Policies to be granted to third parties."@en ;
+	skos:note "OpenREL, specifically to map DALICC property 'sublicense'."@en ;
+	skos:exactMatch dalicc:sublicense ;
+	skos:exactMatch odrl:nextPolicy ;
+	rdfs:domain odrl:Policy ;
+	rdfs:isDefinedBy openrel: .
 
 openrel:warrantyNotice
-        a rdfs:Property skos:Concept ;
-        rdfs:label "Warranty Notice"@en ;        
-        skos:definition "Provides a text-based warrantly notice if applicable, and can state the terms of warranty or, more commonly, a disclaimer."@en ;
-        skos:exactMatch dalicc:WarrantyDisclaimer ;
-        skos:exactMatch dalicc:noWarrantyNotice ;
-        skos:note "OpenREL, in response to DALICC property 'noWarrantyNotice'. and 'WarrantyDisclaimer'."@en ;
-        rdfs:isDefinedBy dalicc: .
+	a rdfs:Property skos:Concept ;
+	rdfs:label "Warranty Notice"@en ;        
+	skos:definition "Provides a text-based warrantly notice if applicable, and can state the terms of warranty or, more commonly, a disclaimer."@en ;
+	skos:exactMatch dalicc:WarrantyDisclaimer ;
+	skos:exactMatch dalicc:noWarrantyNotice ;
+	skos:note "OpenREL, in response to DALICC property 'noWarrantyNotice'. and 'WarrantyDisclaimer'."@en ;
+	rdfs:domain odrl:Policy ;
+	rdfs:isDefinedBy dalicc: .
 
 openrel:liabilityLimitation
-        a rdfs:Property, skos:Concept ;
-        rdfs:label "Liability Limitation"@en ;        
-        skos:definition "Provides a text-based liability limitation if applicable,."@en ;
-        skos:exactMatch dalicc:LiabilityLimitation ;
-        skos:note "OpenREL, in response to DALICC property 'noWarrantyNotice'. and 'WarrantyDisclaimer'."@en ;
-        rdfs:isDefinedBy dalicc: .
+	a rdfs:Property, skos:Concept ;
+	rdfs:label "Liability Limitation"@en ;        
+	skos:definition "Provides a text-based liability limitation if applicable,."@en ;
+	skos:exactMatch dalicc:LiabilityLimitation ;
+	skos:note "OpenREL, in response to DALICC property 'noWarrantyNotice'. and 'WarrantyDisclaimer'."@en ;
+	rdfs:domain odrl:Policy ;
+	rdfs:isDefinedBy dalicc: .
 
 openrel:validityType
-        a rdfs:Property, skos:Concept ;
-        rdfs:label "Validity Type"@en ;        
-        skos:definition "A range of validity types typically included into licences. Values are sourced from the Validity Type vocabulary (https://github.com/wimhugo/openrel/blob/main/.openrel/vocabs/openrel/type_validity.ttl)."@en ;
-        skos:exactMatch dalicc:validityType ;
-        skos:note "DALICC. Modified by OpenREL to refer to vocabulary terms in the 'Licence Type Vocabulary'."@en ;
-        rdfs:isDefinedBy dalicc: .
+	a rdfs:Property, skos:Concept ;
+	rdfs:label "Validity Type"@en ;        
+	skos:definition "A range of validity types typically included into licences. Values are sourced from the Validity Type vocabulary (https://github.com/wimhugo/openrel/blob/main/.openrel/vocabs/openrel/type_validity.ttl)."@en ;
+	skos:exactMatch dalicc:validityType ;
+	skos:note "DALICC. Modified by OpenREL to refer to vocabulary terms in the 'Licence Type Vocabulary'."@en ;
+	rdfs:domain odrl:Policy ;
+	rdfs:isDefinedBy dalicc: .
 
 openrel:hasPolicy
 	a rdf:Property , owl:ObjectProperty, skos:Concept ;
