@@ -39,36 +39,34 @@
 @prefix spdx: <http://spdx.org/rdf/terms#>  .
 @prefix spdxlicense: <http://spdx.org/licenses/> .
 @prefix dpv: <https://w3id.org/dpv> .
+@prefix lfs: <https://lfs.labs.dansdemo.nl/api/v1/licenses> .
 
 # --------------------------------------------------------------------------------------------------------------------------------
 # Licence Metadata
 # --------------------------------------------------------------------------------------------------------------------------------
 
-<> a odrl:Set ;
-    skos:exactMatch spdx:<> ;
-    skos:exactMatch lfs:<> ;
-    skos:exactMatch cc:<> ;
+<CC-BY-4.0> a openrel:Licence ;
+    prov:wasDerivedFrom dalicclib:CC-BY-4.0 ;
+    dct:relation spdxlicense:CC-BY-4.0 ;
+    dct:relation lfs:94898055-10c4-56fa-bb75-9cd0b1d6d7c ;
     cc:jurisdiction dalicc:worldwide ;
-    cc:legalcode <https://creativecommons.org/licenses/by-nc/4.0/legalcode> ;
+    cc:legalcode <https://creativecommons.org/licenses/by/4.0/legalcode> ;
     openrel:liabilityLimitation "To the extent possible, in no event will the Licensor be liable to You on any legal theory (including, without limitation, negligence) or otherwise for any direct, special, indirect, incidental, consequential, punitive, exemplary, or other losses, costs, expenses, or damages arising out of this Public License or use of the Licensed Material, even if the Licensor has been advised of the possibility of such losses, costs, expenses, or damages. Where a limitation of liability is not allowed in full or in part, this limitation may not apply to You." ;
     openrel:warrantyNotice "Unless otherwise separately undertaken by the Licensor, to the extent possible, the Licensor offers the Licensed Material as-is and as-available, and makes no representations or warranties of any kind concerning the Licensed Material, whether express, implied, statutory, or other. This includes, without limitation, warranties of title, merchantability, fitness for a particular purpose, non-infringement, absence of latent or other defects, accuracy, or the presence or absence of errors, whether or not known or discoverable. Where disclaimers of warranties are not allowed in full or in part, this disclaimer may not apply to You." ;
     openrel:validityType openrel:perpetual ;
     dct:alternative 
-        "Attribution NonCommercial 4.0 International",
-        "Attribution-NonCommercial 4.0",
-        "Attribution-NonCommercial 4.0 International",
-        "CC BY NC 4.0",
-        "CC BY NC 4.0 International",
-        "CC BY-NC 4.0",
-        "CC BY-NC 4.0 International",
-        "CC-BY-NC 4.0",
-        "CC-BY-NC 4.0 International",
-        "Creative Commons BY-NC 4.0",
-        "Creative Commons BY-NC 4.0 International" ;
+        "Attribution 4.0",
+        "Attribution 4.0 International",
+        "CC BY 4.0",
+        "CC BY 4.0 International",
+        "CC-BY 4.0",
+        "CC-BY-4.0",
+        "CC-BY-4.0 International",
+        "Creative Commons BY 4.0",
+        "Creative Commons BY 4.0 International" ;
     dct:publisher "Creative Commons" ;
-    dct:source <https://creativecommons.org/licenses/by-nc/4.0/> ;
-    dct:title "Creative Commons Attribution-NonCommercial 4.0 International"@en ;
-
+    dct:source <https://creativecommons.org/licenses/by/4.0/> ;
+    dct:title "Creative Commons Attribution 4.0 International"@en ;
 
 # --------------------------------------------------------------------------------------------------------------------------------
 #   Rules
@@ -116,11 +114,6 @@
             odrl:namedconstraint openrel:allowDistrubutionFee ;          
         ] ;
    
-    odrl:prohibition 
-        [ a odrl:Prohibition ;
-            odrl:action odrl:commercialize ],
-        [ a odrl:Prohibition ;
-            odrl:action openrel:promote ] ;
     odrl:target 
         [ a odrl:AssetCollection ;
             dct:type cc:Work, dcmitype:Dataset 
