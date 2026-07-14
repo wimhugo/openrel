@@ -72,8 +72,11 @@ openrel:consent-informed
 openrel:consent-legal
   a skos:Concept ;
   skos:prefLabel "Legal Basis Consent"@en ;
-  skos:definition "Requires subject consent prior to reusing an Asset GDPR-compliant explicit consent as the legal basis for processing personal data."@en ;
+  skos:definition "Requires subject consent prior to reusing an Asset - GDPR-compliant explicit consent as the legal basis for processing personal data."@en ;
   skos:broader openrel:consent-informed ;
+  skos:exactMatch dpv:Consent ;
+  skos:note "DPV: Consent as defined by Article 4(11) of the GDPR"@en ;
+  rdfs:isDefinedBy <https://eur-lex.europa.eu/eli/reg/2016/679/art_4/par_11/oj> ;
   skos:inScheme openrel:typeConsent .
 
 openrel:consent-reuse-before
