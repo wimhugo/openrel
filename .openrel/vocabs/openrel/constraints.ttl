@@ -138,34 +138,66 @@ openrel:scenario
 # -------------------------------------------------------------------------------------------------------------
 
 openrel:academicUseOnly 
-	a openrel:NamedConstraint ;
-	rdfs:label "Academic Use Only"@en ;
-	skos:definition "Asset MUST only be used for Academic Research or Applications"@en ;
-	skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
-	skos:note "Linked to several scenarios related to academic and research use and validation."@en ;
-	openrel:constraintType openrel:purpose ;
-	openrel:scenario openrel:research-only, openrel:academic-only, openrel:confirmed-researcher, openrel:confirmed-rpo, openrel:affirmed-research ;
-	openrel:usePurpose odrl:eq openrel:academicResearch ;
-	.
+	[ a openrel:NamedConstraint ;
+		rdfs:label "Academic Use Only"@en ;
+		skos:definition "Asset MUST only be used for Academic Research or Applications"@en ;
+		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
+		skos:note "Linked to several scenarios related to academic and research use and validation."@en ;
+		openrel:constraintType openrel:purpose ;
+		openrel:scenario openrel:research-only, openrel:academic-only, openrel:confirmed-researcher, openrel:confirmed-rpo, openrel:affirmed-research ;
+		odrl:leftOperand openrel:usePurpose;
+		odrl:operator odrl:eq ;
+		odrl:rightOperand openrel:academicResearch ;
+		]
+		.
+
+openrel:verifiedResearcher 
+    [ a openrel:namedConstraint ;
+        rdfs:label "Asserted Researcher"@en ;
+        skos:definition "A general assertion or inference that the end user has the role of a researcher.";@en ;
+        openrel:constraintType openrel:role ;
+		openrel:scenario openrel:research-only, openrel:academic-only, openrel:confirmed-researcher, openrel:confirmed-rpo, openrel:affirmed-research ;
+        odrl:leftOperand openrel:agentRole ;
+        odrl:operator odrl:eq ;
+        odrl:rightOperand openrel:researcher ;
+        ]
+        .
+
+openrel:eidasVerifiedResearcher 
+    [ a openrel:namedConstraint ;
+        rdfs:label "eIDAS Verfied Researcher"@en ;
+        skos:definition "End User has been verified as a Researcher via eIDAS.";@en ;
+        openrel:constraintType openrel:context ;
+        odrl:leftOperand openrel:contextLimitation ;
+        odrl:operator odrl:eq ;
+        odrl:rightOperand openrel:context-eidas ;
+        ]
+        .
 
 openrel:notifyInAsset 
-	a openrel:NamedConstraint ;
-	rdfs:label "Notification in Asset"@en ;
-	skos:definition "Changes and modifications must be added in the Asset using human-readable text, without removing the current licence information."@en ;
-	skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
-	openrel:constraintType openrel:notification ;
-	openrel:scenario openrel:attribution ;
-	openrel:notificationDuty odrl:eq openrel:record-in-asset ;
-	.
+	[ a openrel:NamedConstraint ;
+		rdfs:label "Notification in Asset"@en ;
+		skos:definition "Changes and modifications must be added in the Asset using human-readable text, without removing the current licence information."@en ;
+		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
+		openrel:constraintType openrel:notification ;
+		openrel:scenario openrel:attribution ;
+		odrl:leftOperand openrel:notificationDuty ;
+		odrl:operator odrl:eq ;
+		odrl:rightOperand openrel:record-in-asset ;
+		]
+		.
 
 openrel:allowDistrubutionFee 
-	a openrel:NamedConstraint ;
-	rdfs:label "Allow Distribution Fee"@en ;
-	skos:definition "Allow the legitimate and reasonable costs of distrbution of the asset or its derivations - not regarded as commercial use."@en ;
-	skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
-	openrel:constraintType openrel:revenue ;
-	openrel:scenario openrel:non-commercial-only ;
-	openrel:revenuePermitted odrl:eq trsp:distributionCost ;
+	[ a openrel:NamedConstraint ;
+		rdfs:label "Allow Distribution Fee"@en ;
+		skos:definition "Allow the legitimate and reasonable costs of distrbution of the asset or its derivations - not regarded as commercial use."@en ;
+		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
+		openrel:constraintType openrel:revenue ;
+		openrel:scenario openrel:non-commercial-only ;
+		odrl:leftOperand openrel:revenuePermitted ;
+		odrl:operand odrl:eq 
+		odrl:rightOperand trsp:distributionCost ;
+	]	
 	.
 
 
