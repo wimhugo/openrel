@@ -42,7 +42,7 @@
 # Access Rules Metadata
 # --------------------------------------------------------------------------------------------------------------------------------
 
-<11-eidas-only> a openrel:AccessRules ;
+<12-ethics-approval> a openrel:AccessRules ;
     cc:jurisdiction openrel:worldwide ;
     dct:alternative "Ethics Approval" ;
     dct:publisher "OpenREL" ;
