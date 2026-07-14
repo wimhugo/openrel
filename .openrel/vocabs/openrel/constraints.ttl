@@ -200,6 +200,18 @@ openrel:allowDistrubutionFee
 	]	
 	.
 
+openrel:euUseOnly 
+	[ a openrel:NamedConstraint ;
+		rdfs:label "Allow EU-wide Use"@en ;
+		skos:definition "Allow the Asset to be used within the current definition of the EU."@en ;
+		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
+		openrel:constraintType openrel:context ;
+		openrel:scenario openrel:european-use ;
+		odrl:leftOperand openrel:locationLimitation ;
+		odrl:operand odrl:eq 
+		odrl:rightOperand loc:EU27 ;
+	]	
+	.
 
 
 
