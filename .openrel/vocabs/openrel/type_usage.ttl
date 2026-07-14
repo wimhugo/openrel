@@ -72,13 +72,6 @@ openrel:ipRange
   skos:definition "Restricts access to a range of IP addresses, expressed as type of IP as a unit of measure."@en ;
   skos:inScheme openrel:typeUsage .
 
-openrel:connector
-  a skos:Concept ;
-  skos:prefLabel "Connector"@en ;
-  skos:definition "Restricts access to a specific connector identified by IRI. Parameter: connectorURI (xsd:anyURI)."@en ;
-  skos:exactMatch idsc:CONNECTOR_RESTRICTED_DATA_USAGE ;
-  skos:inScheme openrel:typeUsage .
-
 openrel:application
   a skos:Concept ;
   skos:prefLabel "Application"@en ;
