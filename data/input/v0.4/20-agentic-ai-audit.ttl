@@ -1,3 +1,6 @@
+# OpenREL JSON Example
+
+
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
@@ -57,3 +60,18 @@ openrel:policy.p020
     ] ;
     openrel:evaluation "permit | deny" ;
     openrel:machineActionable "true" .
+
+# OpenREL Named Constraints
+
+  #     constraint.agentType:aiAgent ;
+  #     constraint.delegationToken ;
+  #     constraint.identity:verifiedEidas ;
+  #     constraint.security:trustPlus ;
+  #     constraint.log:clearinghouse
+  #     constraint.logSpecification
+  #     constraint.dataMinimisation   - this may require a spec to be agreed between parties
+  #     constraint.declaredPurpose
+
+# openrel:agentDelegation is effectively a Ticket - discuss - create a separate ticket to indicate Party, expiry, asset, agreed data specification
+
+
