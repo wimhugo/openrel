@@ -56,13 +56,15 @@
 #   Rules
 # --------------------------------------------------------------------------------------------------------------------------------
     
-odrl:permission [
-    odrl:action openrel:read ;
-    odrl:constraint <11-eidas-only.logical-constraint-001> ;
-] ;
-
-openrel:evaluation "permit | deny" ;
-openrel:machineActionable "true" 
+    odrl:permission [
+        odrl:action openrel:read ;
+        odrl:constraint <11-eidas-only.logical-constraint-001> ;
+    ] ;
+    
+    openrel:evaluation "permit | deny" ;
+    openrel:machineActionable "true" 
+    
+    .
 
 # --------------------------------------
 # Custom Logical Constraints
@@ -71,9 +73,10 @@ openrel:machineActionable "true"
 <11-eidas-only.logical-constraint-001>
     a odrl:LogicalConstraint ;
     odrl:and (
-        openrel:verifiedResearcher ,
+        openrel:verifiedResearcher 
         openrel:eidasVerifiedResearcher
-    ) .
+    ) 
+.
 
 # --------------------------------------
 # Custom Named Constraints
