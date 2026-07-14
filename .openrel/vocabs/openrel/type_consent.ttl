@@ -66,7 +66,14 @@ openrel:consent-ethics
 openrel:consent-informed
   a skos:Concept ;
   skos:prefLabel "Informed Consent"@en ;
-  skos:definition "Requires subject consent prior to gathering or processing/ modification of data, for example GDPR-compliant explicit consent as the legal basis for processing, threatened species, or CARE-related indigenous culture considerations."@en ;
+  skos:definition "Requires subject consent prior to gathering or processing/ modification of data, for example explicit consent from persons, communities, threatened species, or CARE-related indigenous culture considerations."@en ;
+  skos:inScheme openrel:typeConsent .
+
+openrel:consent-legal
+  a skos:Concept ;
+  skos:prefLabel "Legal Basis Consent"@en ;
+  skos:definition "Requires subject consent prior to reusing an Asset GDPR-compliant explicit consent as the legal basis for processing personal data."@en ;
+  skos:broader openrel:consent-informed ;
   skos:inScheme openrel:typeConsent .
 
 openrel:consent-reuse-before
