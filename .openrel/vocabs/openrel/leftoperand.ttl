@@ -164,11 +164,10 @@ openrel:revenuePermitted
 	skos:definition "QUalifies the type of revenue permitted for the original or serviced Asset."@en ;
 	skos:note "Values of the Right Operand can be selected from openrel:typeRevenue vocabulary"@en ;
 	skos:note "More than one constraint can be encoded as Logical Constraints using OpenREL Named Constraints."@en ;
+	skos:closeMatch idsc:PAYMENT ;
+	skos:closeMatch odrl:payAmount ;
 	skos:scopeNote "Non-Normative"@en ;
 	.
-
-idsc:PAYMENT
-odrl:payAmount
 
 openrel:contextLimitation
 	a odrl:LeftOperand, owl:NamedIndividual, skos:Concept ;
@@ -185,9 +184,20 @@ openrel:tomLimitation
 	a odrl:LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy openrel: ;
 	rdfs:label "TOM Limitation"@en ;
-	skos:definition "Requires that the use or dissemination of the Asset occure with specific technical, organisational, legal, or physical measures in place."@en ;
+	skos:definition "Requires that the use or dissemination of the Asset occurs with specific technical, organisational, legal, or physical measures in place."@en ;
 	skos:note "Examples: Can only be distributed to endpoints meeting a certified security classification, or Asset spatial resolution must be limited to 20km."@en ;
 	skos:note "Values of the Right Operand can be selected from openrel:typeTOM vocabulary"@en ;
+	skos:note "More than one constraint can be encoded as Logical Constraints using OpenREL Named Constraints."@en ;
+	skos:scopeNote "Non-Normative"@en ;
+	.
+
+openrel:locationLimitation
+	a odrl:LeftOperand, owl:NamedIndividual, skos:Concept ;
+	rdfs:isDefinedBy openrel: ;
+	rdfs:label "Location Limitation"@en ;
+	skos:definition "Requires that the use or dissemination of the Asset occurs within specific location, identified via coordinates, a location IRI, or a country/ region IRI."@en ;
+	skos:note "Examples: Can only be distributed to endpoints meeting a certified security classification, or Asset spatial resolution must be limited to 20km."@en ;
+	skos:note "Values of the Right Operand can be selected from any suitable vocabulary, or can be a bounding box or polygon defining spatial coverage."@en ;
 	skos:note "More than one constraint can be encoded as Logical Constraints using OpenREL Named Constraints."@en ;
 	skos:scopeNote "Non-Normative"@en ;
 	.
@@ -206,7 +216,6 @@ openrel:usePurpose
 	skos:note "Values of the Right Operand can be selected from openrel:typePurpose vocabulary, which is aligned with and mapped to inter alia DUO, IDSC, and DPV."@en ;
 	skos:note "More than one constraint can be encoded as Logical Constraints using OpenREL Named Constraints."@en ;
 	.
-
 
 # ---------ODRL
 
