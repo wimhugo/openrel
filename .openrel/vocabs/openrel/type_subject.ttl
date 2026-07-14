@@ -1,0 +1,88 @@
+# -------------------------------------------------------------------------------------------------------------
+# OpenREL - Open Rights Encoding language
+# Version 0.4 (Draft)
+# Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/ EUDAT)
+# This Version: 1 July 2026
+# -------------------------------------------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------------------------------------------
+# Subject Types (Subjects of Study or Research))
+# In OpenREL, Subject Types are used to identify the subjects of study that may result in sensitive data
+# -------------------------------------------------------------------------------------------------------------
+
+# context
+@base <http://www.w3.org/ns/openrel/0/> .
+@prefix : <http://www.w3.org/ns/openrel/0/> . 
+# RDF-related
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+# general content
+@prefix schema: <http://schema.org/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+# rdmi-related
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcatap: <http://data.europa.eu/r5r/> .
+# rights-related
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix dalicc: <https://dalicc.net/ns#> .
+@prefix dalicclib: <https://dalicc.net/licenselibrary/> .
+@prefix ids: <https://w3id.org/idsa/core/> .
+@prefix idsc: <https://w3id.org/idsa/code/> .
+@prefix osl: <http://opensource.org/licenses/> .
+@prefix spdx: <http://spdx.org/rdf/terms#>  .
+@prefix spdxlicense: <http://spdx.org/licenses/> .
+
+# -------------------------------------------------------------------------------------------------------------
+# Definition of Scheme and Provenance
+# ----------------------------------------------------- -------------------------------------------------------
+
+openrel:typeSubject
+  a skos:ConceptScheme ;
+  skos:prefLabel "Types of Sensitive Data"@en ;
+  dct:title "Types of Sensitive Data"@en ;
+  dct:description "Subject Types are used to identify the subjects of study that may result in sensitive data."@en ;
+  skos:note "Unmanaged release of subject data may result in harm to the subject."@en ;
+  dct:created "2026-06-29T00:00:00+00:00"^^xsd:datetime ;
+  dct:creator <https://orcid.org/0000-0002-0255-5101> ;
+  owl:versionInfo "0.1" .
+
+# -------------------------------------------------------------------------------------------------------------
+# Definition of Terms
+# ----------------------------------------------------- --------------------------------------------------------
+
+openrel:subject-person
+  a skos:Concept ;
+  skos:prefLabel "Personal Data"@en ;
+  skos:definition "Data about a person or persons that may be sensitive."@en ;
+  skos:exactMatch dpv:PersonalDataCategory ;
+  skos:note "Example: personal income, living address, identity information."@en ;
+  skos:note "DPV provides a comprehensive inventory of personal data categories. This concept is a broad match for many DPV concepts."@en ;
+  skos:inScheme openrel:typeSubject .
+
+openrel:subject-legal
+  a skos:Concept ;
+  skos:prefLabel "Legal Entity Data"@en ;
+  skos:closeMatch dpv:LegalEntity ;
+  skos:definition "Data about a legal entity (persons in legal sense, organisation, company, business) that may be sensitive."@en ;
+  skos:note "Example: tax returns of listed corporations."@en ;
+  skos:inScheme openrel:typeSubject .
+
+openrel:subject-community
+  a skos:Concept ;
+  skos:prefLabel "Community Data"@en ;
+  skos:definition "Data about a community, including indigenous communities, that may be senstitive and harm the interests of the community if released."@en ;
+  skos:note "Example: location of medicinal plants used by indigenous communities."@en ;
+  skos:inScheme openrel:typeSubject .
+
+openrel:subject-environment
+  a skos:Concept ;
+  skos:prefLabel "Environmental Data"@en ;
+  skos:definition "Data about an ecosystem, species, or bio-region that may result in harm to the envirnment if released."@en ;
+  skos:note "Example: location of observations of endangered species."@en ;
+  skos:inScheme openrel:typeSubject .
