@@ -81,7 +81,7 @@ A Policy Collection has the same properties as a Policy, and in addition, must i
 
 Figure 3.1 shows the scope of Policy subclasses available in OpenREL, and their main relationships and context. 
 
-![Policy Classes and Subclasses](/images/03-01.png)
+![Policy Classes and Subclasses](/docs/guide/images/03-01.png)
 
 ### Application of Policy Subclasses: Assertions
 
