@@ -93,6 +93,21 @@ Figure 3.1 shows the scope of Policy subclasses available in OpenREL, and their 
  - Platforms have rights and rules, and could for example require more stringent or different identification of end users that that required by a repository, or impose additional notification duties,
  - End Users can assert context or credentials, for example that theta re a researcher or affiliated with a research institution.
 
+### ODRL and Agreements
+
+ODRL is specifically designed to allow an Agreement (subclass of Policy) to be reached between a Party that wants to Use an Asset (if agreed, that Party becomes the Assignee), and the Party that is the rights holder or acts on behalf of the rights holder (this Party becomes the Assigner). 
+
+To support this negotiated Agreement, a Request can be compiled by the future Assignee, and an Offer may be made in response by the rights holder. Both a Request and an Offer are also Policy subclasses, and the arbitrated result of these two inputs becomes an Agreement.
+
+ODRL is very specific that the Request, Offer, and Agreement instances MUST include the Assignee, the Assigner, and the Asset (or Collections of these), since it is specific to the negotiation. 
+
+Moreover, the Agreement may set out the negotiated Permissions, Prohibitions, and Duties, but need not be specific in respect of some Constraints. To enable an Agreement to be reused multiple times after reconfirmation, for example, one can create a Ticket based on the Agreement as a ‘parent’ Policy.  This Ticket (also a Policy subclass) can, for example, specify an end date for itself, after which a new Ticket needs to be created based on the Agreement for continued Use of the Asset.
+
+Using these to enact a negotiated workflow is straightforward, and since a Policy can reference another ‘parent’ Policy, maintaining provenance links is simple. 
+
+This default workflow, with other options enabled by OpenREL extensions, is shown in Figure 3.2.
+
+![OpenREL-enabled Negotiation Workflows and Records](/docs/guide/images/03-02.png)
 
 
 
