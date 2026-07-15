@@ -95,11 +95,11 @@ openrel:namedConstraint
 	skos:definition "Rule has a Named Constraint"@en ;
 	rdfs:domain [
 		a owl:Class ;
-		owl:unionOf ( :Policy :Rule ) ;
+		owl:unionOf ( odrl:Policy odrl:Rule ) ;
 	] ;
 	rdfs:range [
 		a owl:Class ;
-		owl:unionOf ( :Constraint :LogicalConstraint :NamedConstraint) ;
+		owl:unionOf ( odrl:Constraint odrl:LogicalConstraint odrl:NamedConstraint) ;
 	] 
 	.
 
@@ -110,6 +110,25 @@ openrel:applicableEndpoint
 	skos:definition "Endpoint Associated with an OpenREL Named Constraint"@en ;
 	skos:note "Named Constraints MAY have designated endpoints for purposes of notification, specification, or compliance checklists."@en ;
 	rdfs:domain openrel:NamedConstraint ;
+	rdfs:range xsd:anyURI 
+    .
+
+openrel:hasLegalBasis
+	a rdf:Property , owl:ObjectProperty, skos:Concept;
+	rdfs:isDefinedBy openrel: ;
+	rdfs:label "Has Legal Basis"@en ;
+	skos:definition "Endpoint or Details of Legal Basis Associated with an OpenREL Named Constraint"@en ;
+	skos:note "Includes ability to reference a IRL to a document or specify details based on DPV."@en ;
+	skos:note "Named Constraints MAY have designated endpoints for purposes of notification, specification, or compliance checklists."@en ;
+	rdfs:domain [
+		a owl:Class ;
+		owl:unionOf ( openrel:NamedConstraint odrl:Rule ) ;
+	] ;
+	rdfs:range [
+		a owl:Class ;
+		owl:unionOf ( odrl:Constraint odrl:LogicalConstraint odrl:NamedConstraint) ;
+	] 
+	skos:closeMatch dpv:hasLegalBasis ;
 	rdfs:range xsd:anyURI 
     .
 
@@ -236,13 +255,6 @@ openrel:consentLegal
 		odrl:leftOperand openrel:consentRequired ;
 		odrl:operand odrl:eq 
 		odrl:rightOperand openrel:consent-legal ;
-		openrel:applicableEndpoint 
-    		[ a dpv:Consent 
-        		dpv:expiry [EXPIRY_DATE]^^xsd:date ;
-				dpv:consentNotice [CONSENT_NOTICE] ;
-				dpv:hasDataController [DATA_CONTROLLER] ;
-    		] ;   
-			openrel:hasAssetScope [ASSET_SCOPE] ; ### to be modelled
 	]	
 	.
 
