@@ -77,4 +77,23 @@ A Policy Collection has the same properties as a Policy, and in addition, must i
 
 >"This Policy Collection references all policy instances describing the negotiation for access to [Asset/ Asset Collection] requested by [Assignee] and granted by [Assigner]".
 
+## Summary of Policy Classes and Subclasses
+
+Figure 3.1 shows the scope of Policy subclasses available in OpenREL, and their main relationships and context. 
+
+![Policy Classes and Subclasses](/images/03-01.png)
+
+### Application of Policy Subclasses: Assertions
+
+- Any Party can assert a set of rights (Assertion), and these can be very general (I am a verified researcher) to very specific (I am the creator and rights owner for this work/ Asset). The Parties do not have to be individuals or organisations, but can be Groups or Agents (Party Collections), such as ‘End Users’ or ‘Rights Owners’ or ‘Data Subjects’ or ‘Curators’.
+- Each of these Parties Party Collections can, in practice, express these Assertions in specific ways:
+ - Data Subjects can predefine the terms of access to sensitive data (Asset), including aspects such as use only for a defined purpose, and that only a subset of the data (through minimisation or a specific qualification of data elements) is available to end users.
+ - Rights Holders can assert their rights over an Asset in a predefined manner, for example the right to grant use of the asset, set conditions for use, and to earn income from it.
+ - Repositories and Curators can predefine their rights by way of Assertions, such as the right to modify data and metadata, create derived Assets, and so on.
+ - Platforms have rights and rules, and could for example require more stringent or different identification of end users that that required by a repository, or impose additional notification duties,
+ - End Users can assert context or credentials, for example that theta re a researcher or affiliated with a research institution.
+
+
+
+
 
