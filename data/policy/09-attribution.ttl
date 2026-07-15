@@ -91,7 +91,7 @@
                     odrl:action openrel:attribute ],
                 [ a odrl:Duty ;
                     odrl:action openrel:notify ;
-                        odrl:named constraint odrl:namedConstraint openrel:notifyInAsset ;
+                        odrl:named constraint openrel:namedConstraint openrel:notifyInAsset ;
                 ]   
         ],
 
@@ -111,7 +111,7 @@
             odrl:action odrl:reproduce ],
         [ a odrl:Permission ;
             odrl:action openrel:costRecovery 
-            odrl:namedconstraint openrel:allowDistrubutionFee ;          
+            openrel:namedconstraint openrel:allowDistrubutionFee ;          
         ] ;
    
     odrl:target 
