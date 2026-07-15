@@ -82,6 +82,7 @@ A Policy Collection has the same properties as a Policy, and in addition, must i
 Figure 3.1 shows the scope of Policy subclasses available in OpenREL, and their main relationships and context. 
 
 ![Policy Classes and Subclasses](/docs/guide/images/03-01.png)
+***Figure 3.1 Policy Classes and Subclasses***
 
 ### Application of Policy Subclasses: Assertions
 
@@ -108,6 +109,39 @@ Using these to enact a negotiated workflow is straightforward, and since a Polic
 This default workflow, with other options enabled by OpenREL extensions, is shown in Figure 3.2.
 
 ![OpenREL-enabled Negotiation Workflows and Records](/docs/guide/images/03-02.png)
+***Figure 3.2 OpenREL-enabled Negotiation Workflows and Records***
+
+### The Role of an OpenREL Licence Subclass
+
+By requiring that the Assigner, Assignee, and Asset be specified in the Offer subclass, ODRL limits its application in the context of what is commonly understood to be a software, scholarly publication, or dataset ‘licence’. Examples of these include MIT and GNU licences for software, and the CC BY and CC BY NC licences that are often used for datasets and articles. 
+
+These licences are ‘open-ended’, in that they do not specifically identify the Asset, Assignee, or Assigner, even though they might do so indirectly. For example, the Asset is indirectly indicated by pasting the text of the MIT Licence into source code, or by indicating the licence in metadata for a dataset or publication. Such licences cannot be encoded in ODRL using existing subclasses because of the lack of specificity. 
+
+OpenREL addresses this gap by defining an additional subclass of Policy - the openrel:Licence subclass. A Licence can, in the typical negotiated workflow, take the place of the Offer, in the sense that it is non-negotiable. If the Request from the future Assignee does not match the Rules of the Licence, an Agreement is not possible.
+In many real-life situations, an Agreement is not always necessary (although some repositories might record assent to the Licence from the Assignee), and a Ticket may not be required.
+
+Many datasets are published with Licences that require Attribution, and it may be useful to capture the fact that a given Party already agrees to such a Duty in a Request, which means that automated matching can be done, and that there is no need to record assent to the Licence except as a record of a Negotiation. 
+
+The mid-section of Figure 3.2 shows this typical workflow.
+
+### Records of Negotiations
+
+The Agreement subclass is designed to capture the results of a negotiation between Parties, but lacks the ability to record metadata about that negotiation. By definition, rejected Requests do not end up in Agreements, and as such, there will be no record of them.
+
+OpenREL adds a subclass that is a specialisation of odrl:Agreement, called an openrel:Negotation. This subclass can record additional metadata about a negotiated Agreement (or ‘disagreement’), and by definition contains records of unsuccessful Requests and the reason(s) why they were not successful. 
+
+Such ‘disagreements’ will be much more common in cases where a Request is evaluated against a Licence, since a Licence is not negotiable. 
+
+Negotiation instances also encode two other cases:
+
+1. The combined outcome of one or more Licences, Access Rules, and Process Rules that apply in a given context. It might be a common occurrence for this negotiation to fail, for example if Access Rules satisfying a Data Subjects requirements do not match the Licence applied to the Asset.
+2. The combination of a number of input Policies (typically Licences) that are associated with Assets that are combined into a new derived Asset, since if these input Policies cannot be merged, it is technically not feasible to create the derivation since it cannot be licenced (no Policy can be formulated that satisfies the rules of all input Policies). The outcome of this negotiation is either a new combined Licence, or a Negotiation record of the incompatibility.
+
+The righht-hand panel in Figure 3.2 shows this workflow.
+
+In practice there will likely be a very large number of Negotiation instances and these are not centralised or even federated, and hence will be accessible only locally (for example, in repository records). The exception will be generalised Negotiation instances that are quite common - we will discuss these in more detail later on.
+
+
 
 
 
