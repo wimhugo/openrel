@@ -29,8 +29,14 @@ Two additional vocabularies are specifically focused on encoding what is general
 
 There are a number of additional vocabularies that are applicable to the context, but for brevity we highlight only two others: **DUO** (Data Use Ontology), which is specifically developed to define restrictions on data access in the bioinformatics and health domain, and **IDSC** (International Data Spaces Core vocabulary), which encodes the processes and protocols for trusted access and exchange of data resources between Data Space nodes. Clearly, both of these are applicable and reusable should one aim to automate the adjudication of access requests to resources - one of the core objectives of OpenREL.
 
->With the exception of DALICC (now defunct), none of the resources described above provides infrastructure and services - they are **specifications** and not **implementations**. This means that even if it is possible to encode a policy describing all of the permissions, prohibitions, and duties of the actors involved, finding and reusing that encoding is far from guaranteed. In the context of EOSC, such infrastructure is clearly necessary to simplify widespread use and adoption of encodings.
+>With the exception of DALICC (now defunct), none of the resources described above provides infrastructure and services - they are *specifications* and not *implementations*. This means that even if it is possible to encode a policy describing all of the permissions granted to, prohibitions on, and duties of the actors involved, finding and reusing that encoding is far from guaranteed. In the context of EOSC, such infrastructure is clearly necessary to simplify widespread use and adoption of encodings.
 
 ## Summary of OpenREL Design Considerations
 
-OpenREL aims to rectify the deficiencies and limit the diversity in the established resources for encoding and automated processing
+![Scope Limitations of Existing Resources](/docs/guide/images/01-01.png)
+***Figure 1.1 Scope Limitations of Existing Resources***
+
+OpenREL aims to rectify the scope-related deficiencies and limit the diversity in the established resources for encoding and automated processing of Policies, based on the following considerations:
+
+- Use ODRL as a foundational conceptual framework, and extend the classes, properties, and concept schemes already present as a means of addressing its scope limitations.
+- Similary, DPV and 
