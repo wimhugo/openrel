@@ -31,10 +31,10 @@
 
 ## Annexures
 
-A. [Encoding Examples](../docs/examples)
+A. [Encoding Examples](../examples)
 
 B. [Popular Licences](../../data/policy)
 
-C. [Systems Engineering Documentation](../docs/specifications/index.md)
+C. [Systems Engineering Documentation](../specifications/index.md)
 
 D. [Communication and Dissemination Materials](https://drive.google.com/drive/folders/1wrBfMyTtIW4r5slEagUjl9DHCH4-lAvE?usp=drive_link)
