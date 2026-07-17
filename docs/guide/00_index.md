@@ -1,6 +1,6 @@
 # Guidelines to Using OpenREL
 
->Wim Hugo, DANS/ EUDAT | 
+>Wim Hugo, DANS/ EUDAT | [orcid:0000-0002-0255-5101](https://orcid.org/0000-0002-0255-5101)
 
 >Melios Katsamakis, OpenAIRE | 
 
