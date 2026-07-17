@@ -39,4 +39,5 @@ There are a number of additional vocabularies that are applicable to the context
 OpenREL aims to rectify the scope-related deficiencies and limit the diversity in the established resources for encoding and automated processing of Policies, based on the following considerations:
 
 - Use ODRL as a foundational conceptual framework, and extend the classes, properties, and concept schemes already present as a means of addressing its scope limitations.
-- Similary, DPV and 
+- Similary, DPV and IDSC are significant established resources, and must be used to maximum extent to capture personal data protectin measures and intgeration with Data Spaces. For the latter, mappings between classes and concepts that are equivalent to existing definitions in other resources are a critical part of the interoperabulity landscape. As an example, should a Data Space request automated access to a non-Data Space resource, we would like to translate that request (preferably automatically) to a request that ODRL/ OpenREL based policy comparisons can process.
+- TBC ...
