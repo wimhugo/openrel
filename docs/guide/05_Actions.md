@@ -13,9 +13,9 @@
 
 ## Summary
 
-ODRL defines a wide variety of Actions classes and subclasses, and these are also widely duplicated in other vocabualries (ccREL [^1], DUO [^2], DPV [^3], IDSC [^4], and so on).
+ODRL defines a wide variety of Actions classes and subclasses, and these are also widely duplicated in other vocabularies (ccREL [^1], DUO [^2], DPV [^3], IDSC [^4], and so on).
 
-OpenREL has defined a number of additional Actions to assist especially with encoding of Rules related to subject and curator rights, as well as ethical and legal concerns applicable to the research data (output) management landscape. OpenREL has also redefined the Actions previously included into the DALICC [^5] vocabulary, allowing DALICC-encoded licences to be cross-walked to OpenREL encodings.
+OpenREL has defined a number of additional Actions to assist especially with encoding of Rules related to subject and curator rights, as well as ethical and legal concerns applicable to the research data (output) management landscape. OpenREL has also redefined the Actions previously included into d  the DALICC [^5] vocabulary, allowing DALICC-encoded licences to be cross-walked to OpenREL encodings.
 
 ## Extension Types
 
