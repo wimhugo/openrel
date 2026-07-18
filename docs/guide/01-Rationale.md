@@ -30,6 +30,11 @@ Two additional vocabularies are specifically focused on encoding what is general
 There are a number of additional vocabularies that are applicable to the context, but for brevity we highlight only two others: **DUO** (Data Use Ontology), which is specifically developed to define restrictions on data access in the bioinformatics and health domain, and **IDSC** (International Data Spaces Core vocabulary), which encodes the processes and protocols for trusted access and exchange of data resources between Data Space nodes. Clearly, both of these are applicable and reusable should one aim to automate the adjudication of access requests to resources - one of the core objectives of OpenREL.
 
 >With the exception of DALICC (now defunct), none of the resources described above provides infrastructure and services - they are *specifications* and not *implementations*. This means that even if it is possible to encode a policy describing all of the permissions granted to, prohibitions on, and duties of the actors involved, finding and reusing that encoding is far from guaranteed. In the context of EOSC, such infrastructure is clearly necessary to simplify widespread use and adoption of encodings.
+>
+>Moreover, apart from implementations that offer an API, allow creation and persistence of policies, and have mnechanisms for amendement and extension of class instances and vocabulary concepts, end users also require a ***Reasoner***.The purpose of the reasoner is to compare two policies and provide 2 typical outputs from this:
+> - Are the two policies compatible, or do they contain contradictions?
+> - Does Policy A satisfy the duties and constraints of Policy B?
+> These comparisons are closely related, but the purpose differs - the first is used to determine whether two or more input assets can be combined, and the second is used to evaluate and record a *Negotiation*.
 
 ## Summary of OpenREL Design Considerations
 
