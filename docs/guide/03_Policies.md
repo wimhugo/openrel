@@ -148,7 +148,7 @@ In practice there will likely be a very large number of Negotiation instances an
 
 ## Examples of COnflicting Licences, Platform Process Rules, and/ or Data Subject Access Rules
 
-Figure 3.3 shows 2 exxamples of contradicting rules present in licences and other rules, for example platform Process Rules and data subject Access Rules that are not compatible with one another. There are potentially hundreds of thousands of such occurrences in operational repositories.
+Figure 3.3 shows 2 examples of contradicting rules present in licences and other rules: in both cases platform Process Rules and data subject Access Rules are not compatible with the selected licence. There are potentially hundreds of thousands of such occurrences in operational repositories.
 
 ![Rights Contradictions in Well-Known Repository Collections](/docs/guide/images/03-03.png)
 ***Figure 3.3 Rights Contradictions in Well-Known Repository Collections***
