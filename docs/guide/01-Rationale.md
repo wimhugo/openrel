@@ -29,7 +29,11 @@ Two additional vocabularies are specifically focused on encoding what is general
 
 There are a number of additional vocabularies that are applicable to the context, but for brevity we highlight only two others: **DUO** (Data Use Ontology), which is specifically developed to define restrictions on data access in the bioinformatics and health domain, and **IDSC** (International Data Spaces Core vocabulary), which encodes the processes and protocols for trusted access and exchange of data resources between Data Space nodes. Clearly, both of these are applicable and reusable should one aim to automate the adjudication of access requests to resources - one of the core objectives of OpenREL.
 
->With the exception of DALICC (now defunct), none of the resources described above provides infrastructure and services - they are *specifications* and not *implementations*. This means that even if it is possible to encode a policy describing all of the permissions granted to, prohibitions on, and duties of the actors involved, finding and reusing that encoding is far from guaranteed. In the context of EOSC, such infrastructure is clearly necessary to simplify widespread use and adoption of encodings.
+SPDX is maintained by the Linux Foundation, and is a primary registry of software licences with some common data licences (e.g. CC BY 4.0, etc.) included. Anyone can submit a pull request to register a new licence, but SPDX is 
+ - unlikely to register custom or domain-specific licences, for example one used by DANS in the Netherlands for sensitive data - this because the scope is not global,
+ - certainly will not register policies and licences that represent individual instances with designated parties and assets included.
+
+>With the exception of DALICC, CC, and SPDX, (now defunct), none of the resources described above provides infrastructure and services - they are *specifications* and not *implementations*. This means that even if it is possible to encode a policy describing all of the permissions granted to, prohibitions on, and duties of the actors involved, finding and reusing that encoding is far from guaranteed. In the context of EOSC, such infrastructure is clearly necessary to simplify widespread use and adoption of encodings.
 >
 >Moreover, apart from implementations that offer an API, allow creation and persistence of policies, and have mechanisms for amendment and extension of class instances and vocabulary concepts, end users also require a ***Reasoner***. The purpose of the reasoner is to compare two policies and provide 2 typical outputs from this:
 > - Are the two policies compatible, or do they contain contradictions?
@@ -44,5 +48,7 @@ There are a number of additional vocabularies that are applicable to the context
 OpenREL aims to rectify the scope-related deficiencies and limit the diversity in the established resources for encoding and automated processing of Policies, based on the following considerations:
 
 - Use ODRL as a foundational conceptual framework, and extend the classes, properties, and concept schemes already present as a means of addressing its scope limitations.
-- Similary, DPV and IDSC are significant established resources, and must be used to maximum extent to capture personal data protectin measures and intgeration with Data Spaces. For the latter, mappings between classes and concepts that are equivalent to existing definitions in other resources are a critical part of the interoperabulity landscape. As an example, should a Data Space request automated access to a non-Data Space resource, we would like to translate that request (preferably automatically) to a request that ODRL/ OpenREL based policy comparisons can process.
-- TBC ...
+- Similary, DPV and IDSC are significant established resources, and must be used to maximum extent to capture personal data protection measures and integration with Data Spaces. For the latter, mappings between classes and concepts that are equivalent to existing definitions in other resources are a critical part of the interoperabulity landscape. As an example, should a Data Space request automated access to a non-Data Space resource, we would like to translate that request (preferably automatically) to a request that ODRL/ OpenREL based policy comparisons can process, and vice versa.
+- OpenREL will supplement the extensions and refinements to vocabularies, and the mappings between them with services that implement OpenREL: API services, Registry services, and Reference UI implementations.
+
+
