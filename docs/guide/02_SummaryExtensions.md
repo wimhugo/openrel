@@ -75,6 +75,15 @@ ODRL is in process of being extended (ODRL 3.0 [^1]), but the published scope of
 
 [^1]: https://spec.knows.idlab.ugent.be/odrl3proposal/latest/
 
+## Extensions to ODRL
+
+The main extensions to ODRL are listed below:
+
+1. OpenREL extends the [Policy Class](https://github.com/wimhugo/openrel/blob/main/docs/guide/03_Policies.md) with additional subclasses, properties, and concept schemes.
+2. Similary, ODRL [Actions](https://github.com/wimhugo/openrel/blob/main/docs/guide/05_Actions.md) (classes, properties, and concepts) are extended to allow interoperability with other vocabularies, such as DPV, DUO, CC, DALICC, and IDSC, and to allow encoding of rights and norms not covered by the existing resources.
+3. OpenREL specifically extends ODRL [Constraints](https://github.com/wimhugo/openrel/blob/main/docs/guide/06_NamedConstraints.md), which is an abstract class without any referenceable instances, to allow Named COnstraints, their properties, and associated concepts to be defined. This greatly saves the time needed to encode commmon constraints, simplifies logical constraint formulation, and ensures consistent encoding of the same constraints by disparate parties.
+4. Many research output related concepts are captured in [Concept Schemes](https://github.com/wimhugo/openrel/tree/main/.openrel/vocabs/openrel) that, *inter alia*, standardise they way in which they can be encoded, and allows customisation for a specific context by replacing the default schemes used to provide Right Operands. 
+
 
 
 
