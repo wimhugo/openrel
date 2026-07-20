@@ -146,6 +146,15 @@ The right-hand panel in Figure 3.2 shows this workflow.
 
 In practice there will likely be a very large number of Negotiation instances and these are not centralised or even federated, and hence will be accessible only locally (for example, in repository records). The exception will be generalised Negotiation instances that are quite common - we will discuss these in more detail later on.
 
+## Examples of COnflicting Licences, Platform Process Rules, and/ or Data Subject Access Rules
+
+Figure 3.3 shows 2 exxamples of contradicting rules present in licences and other rules, for example platform Process Rules and data subject Access Rules that are not compatible with one another. There are potentially hundreds of thousands of such occurrences in operational repositories.
+
+![Rights Contradictions in Well-Known Repository Collections](/docs/guide/images/03-03.png)
+***Figure 3.3 Rights Contradictions in Well-Known Repository Collections***
+
+
+
 
 
 
