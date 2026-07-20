@@ -129,7 +129,7 @@ Many datasets are published with Licences that require Attribution, and it may b
 
 The mid-section of Figure 3.2 shows this typical workflow.
 
-### Records of Negotiations
+### More About Records of Negotiations
 
 The Agreement subclass is designed to capture the results of a negotiation between Parties, but lacks the ability to record metadata about that negotiation. By definition, rejected Requests do not end up in Agreements, and as such, there will be no record of them.
 
