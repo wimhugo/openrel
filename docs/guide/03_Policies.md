@@ -133,7 +133,7 @@ The mid-section of Figure 3.2 shows this typical workflow.
 
 The Agreement subclass is designed to capture the results of a negotiation between Parties, but lacks the ability to record metadata about that negotiation. By definition, rejected Requests do not end up in Agreements, and as such, there will be no record of them.
 
-OpenREL adds a subclass that is a specialisation of odrl:Agreement, called an openrel:Negotation. This subclass can record additional metadata about a negotiated Agreement (or ‘disagreement’), and by definition contains records of unsuccessful Requests and the reason(s) why they were not successful. 
+As indicated earlier, OpenREL adds a subclass that is a specialisation of odrl:Policy, called an openrel:Negotiation. This subclass can record additional metadata about a negotiated Agreement (or ‘disagreement’), and by definition contains records of unsuccessful Requests and the reason(s) why they were not successful.
 
 Such ‘disagreements’ will be much more common in cases where a Request is evaluated against a Licence, since a Licence is not negotiable. 
 
