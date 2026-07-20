@@ -88,6 +88,15 @@ odrl:action
 	# Extensions by OpenREL
 	#	None
 
+openrel:contradicts
+	a rdf:Property , owl:ObjectProperty, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	skos:exactMatch dalicc:contradicts ;
+	rdfs:label "Contradicting Action"@en ;
+	skos:definition "The Action contradicts another Action defined by the property."@en ;
+	rdfs:domain odrl:Action ;
+	rdfs:range :Action .
+
 # -------------------------------------------------------------------------------------------------------------
 # Foundational Action Instances
 # They include two types 
