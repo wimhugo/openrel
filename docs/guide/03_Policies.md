@@ -76,11 +76,11 @@ A ***Negotiation*** allows the combination of Policy instances (which can be of 
 2. **Ease of Processing**: In some cases, access or use will depend on satisfying the constraints included in a Licence, Access Rules, and Process Rules, and finding all of these via the Asset reference may be cumbersome. The ***Negotiation*** allows combination of references to all of these instances to assist with processing and verification of compatibility. In some cases, the record of such incompatibility will be useful.
 3. ***Licence Combinations***: The Policies (especially Licences) applicable to two or more input Assets that are used in the creation of a derived Asset may not be compatible, and a record of such incompatibility is useful at times. The output from a combination of compatible Licences will be a new Licence applicable to the derived Asset.
 
-A Policy Collection has the same properties as a Policy, and in addition, must include a new property to indicate at least one constitutent Policy. This is reformulated as openrel:hasPolicy, based on the odrl:hasPolicy property. This property is related to the odrl:inheritFrom property, but since the inheritance direction is reversed, a new property is required. A policy Collection cannot be open-ended, and has to indicate the Asset Collection to which it applies. For example, a Policy Collection must specify the catalogue (asset collection) that it applies to in the context of an institution and its software platform(s). It corresponds to statements such as
+A Negotiation has the same properties as a Policy, and in addition, must include a new property to indicate at least one constitutent Policy. This is reformulated as openrel:hasPolicy, based on the odrl:hasPolicy property. This property is related to the odrl:inheritFrom property, but since the inheritance direction is reversed, a new property is required. A policy Collection cannot be open-ended, and has to indicate the Asset Collection to which it applies. For example, a Policy Collection must specify the catalogue (asset collection) that it applies to in the context of an institution and its software platform(s). It corresponds to statements such as
 
->"This Policy Collection applies to all datasets containing personal data, hosted by [Institution] in its [Repository] using [Software Platform]".
+>"This Negotiation (Policy Collection) applies to all datasets containing personal data, hosted by [Institution] in its [Repository] using [Software Platform]".
 
->"This Policy Collection references all policy instances describing the negotiation for access to [Asset/ Asset Collection] requested by [Assignee] and granted by [Assigner]".
+>"This Negotiation (Policy Collection) references all policy instances describing the negotiation for access to [Asset/ Asset Collection] requested by [Assignee] and granted by [Assigner]".
 
 ## Summary of Policy Classes and Subclasses
 
@@ -142,7 +142,7 @@ Negotiation instances also encode two other cases:
 1. The combined outcome of one or more Licences, Access Rules, and Process Rules that apply in a given context. It might be a common occurrence for this negotiation to fail, for example if Access Rules satisfying a Data Subjects requirements do not match the Licence applied to the Asset.
 2. The combination of a number of input Policies (typically Licences) that are associated with Assets that are combined into a new derived Asset, since if these input Policies cannot be merged, it is technically not feasible to create the derivation since it cannot be licenced (no Policy can be formulated that satisfies the rules of all input Policies). The outcome of this negotiation is either a new combined Licence, or a Negotiation record of the incompatibility.
 
-The righht-hand panel in Figure 3.2 shows this workflow.
+The right-hand panel in Figure 3.2 shows this workflow.
 
 In practice there will likely be a very large number of Negotiation instances and these are not centralised or even federated, and hence will be accessible only locally (for example, in repository records). The exception will be generalised Negotiation instances that are quite common - we will discuss these in more detail later on.
 
