@@ -39,6 +39,7 @@
 @prefix spdx: <http://spdx.org/rdf/terms#>  .
 @prefix spdxlicense: <http://spdx.org/licenses/> .
 @prefix dpv: <https://w3id.org/dpv> .
+@prefix duo: <http://purl.obolibrary.org/obo/duo.owl> .
 
 # -------------------------------------------------------------------------------------------------------------
 # Definition of Scheme and Provenance
