@@ -126,6 +126,27 @@ openrel:encodedeRules
  	 # openREL Extensions
   .
 
+openrel:evaluation
+	a rdf:Property , owl:ObjectProperty, skos:Concept ;
+	rdfs:isDefinedBy openrel: ;
+	rdfs:label "Evaluation Result"@en ;
+	skos:definition "Evaluation Outcome of Comparing a Set of Policies."@en ;
+	skos:note "OpenREL: Values are sourced from type_evaluation.ttl."@en ;
+	rdfs:range odrl:Policy 
+ 	 # openREL Extensions
+  .
+
+openrel:evaluationDetail
+	a rdf:Property , owl:ObjectProperty, skos:Concept ;
+	rdfs:isDefinedBy openrel: ;
+	rdfs:label "Evaluation Result Detail"@en ;
+	skos:definition "Detailed Evaluation Outcome of Pairwise Action Comparisons."@en ;
+	skos:note "OpenREL: Values are sourced from type_evaluation.ttl."@en ;
+	rdfs:range odrl:Policy 
+ 	 # openREL Extensions
+  .
+
+
 # --------- Creative Commons Amended
 
 openrel:legalCode
