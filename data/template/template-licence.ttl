@@ -73,7 +73,9 @@
     odrl:assigner [ASSIGNER_IRI] ;
     odrl:assignee [ASSIGNEE_IRI] ;
     odrl:target [TARGET_IRI] ;
-    openrel:evaluation <IRI_OF_EVALUATION_TYPE> ;
+	# Optional results of evaluation of two policies
+    openrel:permits <IRI_OF_OTHER_POLICY> ;
+	openrel:contradicts <IRI_OF_OTHER_POLICY>
     openrel:evaluationDetail {{}} ;
 
 # --------------------------------------------------------------------------------------------------------------------------------
