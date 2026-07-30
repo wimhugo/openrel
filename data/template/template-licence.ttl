@@ -1,15 +1,14 @@
-# Context and Input Licences
 # --------------------------------------------------------------------------------------------------------------------------------
-# Title: The machine-readable representation of "Creative Commons Attribution 4.0 International"@en in the DALICC license library
-# Author: DALICC
-# Source: https://dalicc.net/licenselibrary/CC-BY-4.0
+# Title: A Template for Licences and Policies
+# Author: EOSC EDEN/ OpenREL
+# Source: 
 # Licensed under: Attribution 4.0 International (CC BY 4.0) 
-# Amended by and aligned with OpenREL
+# Amended by and aligned with OpenREL and DALICC Licence Encodings
 # --------------------------------------------------------------------------------------------------------------------------------
 # OpenREL - Open Rights Encoding language
 # Version 0.4 (Draft)
 # Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/ EUDAT)
-# This Version: 14 July 2026
+# This Version: 30 July 2026
 
 # context
 @base <http://www.w3.org/ns/openrel/0/> .
@@ -39,98 +38,85 @@
 @prefix spdx: <http://spdx.org/rdf/terms#>  .
 @prefix spdxlicense: <http://spdx.org/licenses/> .
 @prefix dpv: <https://w3id.org/dpv> .
+@prefix lfs: <> . # Points to an LFS Node API
 
 # --------------------------------------------------------------------------------------------------------------------------------
-# Licence Metadata
+# Policy and Licence Metadata
 # --------------------------------------------------------------------------------------------------------------------------------
 
 <> a odrl:Set ;
+    # Alternate identifiers
     skos:exactMatch spdx:<> ;
     skos:exactMatch lfs:<> ;
     skos:exactMatch cc:<> ;
-    cc:jurisdiction dalicc:worldwide ;
-    cc:legalcode <https://creativecommons.org/licenses/by-nc/4.0/legalcode> ;
-    openrel:liabilityLimitation "To the extent possible, in no event will the Licensor be liable to You on any legal theory (including, without limitation, negligence) or otherwise for any direct, special, indirect, incidental, consequential, punitive, exemplary, or other losses, costs, expenses, or damages arising out of this Public License or use of the Licensed Material, even if the Licensor has been advised of the possibility of such losses, costs, expenses, or damages. Where a limitation of liability is not allowed in full or in part, this limitation may not apply to You." ;
-    openrel:warrantyNotice "Unless otherwise separately undertaken by the Licensor, to the extent possible, the Licensor offers the Licensed Material as-is and as-available, and makes no representations or warranties of any kind concerning the Licensed Material, whether express, implied, statutory, or other. This includes, without limitation, warranties of title, merchantability, fitness for a particular purpose, non-infringement, absence of latent or other defects, accuracy, or the presence or absence of errors, whether or not known or discoverable. Where disclaimers of warranties are not allowed in full or in part, this disclaimer may not apply to You." ;
+    # Coverage related information, mappings of CC and DALICC properties
+    openrel:liabilityLimitation {{Liability Limitation Text}} ;
+    openrel:warrantyNotice {{Warranty Notice Text}} ;
     openrel:validityType openrel:perpetual ;
-    dct:alternative 
-        "Attribution NonCommercial 4.0 International",
-        "Attribution-NonCommercial 4.0",
-        "Attribution-NonCommercial 4.0 International",
-        "CC BY NC 4.0",
-        "CC BY NC 4.0 International",
-        "CC BY-NC 4.0",
-        "CC BY-NC 4.0 International",
-        "CC-BY-NC 4.0",
-        "CC-BY-NC 4.0 International",
-        "Creative Commons BY-NC 4.0",
-        "Creative Commons BY-NC 4.0 International" ;
-    dct:publisher "Creative Commons" ;
-    dct:source <https://creativecommons.org/licenses/by-nc/4.0/> ;
-    dct:title "Creative Commons Attribution-NonCommercial 4.0 International"@en ;
-
+    openrel:jurisdiction openrel:worldwide ;
+    # Citation Information
+    dct:source <> ;
+    dct:title {{Policy Or Licence Title}}@en ;
+    dct:alternative {{Alternative Titles}} ;
+    dct:publisher {{Publisher IRI OR Label}} ;
+    dct:created {{DateTime}} ;
+    dct:mofified {{DateTime}} ;
+    dct:creator {{Creator IRI OR Label}} ;
+    dct:contributor {{Contributor IRI OR Label}} ;
+    dct:subject {{One OR More Keywords OR Tags}} ;
+    # Alternative representations, mappings of SPDX and LFS properties
+    openrel:legalCode <IRI_TO_LEGAL_CODE> ;
+    openrel:policyTextHtml <IRI_TO_HTML_VIEW> ;
+    openrel:policyText <IRI_TO_TEXT_VIEW> ;
+    openrel:encodeRules <IRI_TO_RULE_ENCODING> ;
+    # These properties apply only for those policies that explicitly require them, optional for others
+    odrl:assigner [ASSIGNER_IRI] ;
+    odrl:assignee [ASSIGNEE_IRI] ;
+    odrl:target [TARGET_IRI] ;
+    openrel:evaluation <IRI_OF_EVALUATION_TYPE> ;
+    openrel:evaluationDetail {{}} ;
 
 # --------------------------------------------------------------------------------------------------------------------------------
-#   Rules
+#   Rules (Example)
 # --------------------------------------------------------------------------------------------------------------------------------
     
-    odrl:permission 
-        [ a odrl:Permission ;
-            odrl:action odrl:display ],
-        [ a odrl:Permission ;
-            odrl:action odrl:distribute ;
-            odrl:duty 
-                [ a odrl:Duty ;
-                    odrl:action cc:Attribution ],
-                [ a odrl:Duty ;
-                    odrl:action cc:Notice ] 
-        ],
+    odrl:permission [
+        odrl:action openrel:use ;
+        odrl:namedconstraint openrel:euUseOnly ;
+    ] ;
 
-        [ a odrl:Permission ;
-            odrl:action odrl:modify ;
-            odrl:duty 
-                [ a odrl:Duty ;
-                    odrl:action openrel:attribute ],
-                [ a odrl:Duty ;
-                    odrl:action openrel:notify ;
-                        odrl:named constraint odrl:namedConstraint openrel:notifyInAsset ;
-                ]   
-        ],
+    odrl:permission [
+        odrl:action openrel:derive ;
+        odrl:constraint <example-logical-constraint> ;
+    ] ;
+    
+.
 
-        [ a odrl:Permission ;
-            odrl:action odrl:derive ;
-            odrl:duty 
-              [ a odrl:Duty ;
-                    odrl:action cc:Attribution ],
-              [ a odrl:Duty ;
-                    odrl:action openrel:notify ;
-                    odrl:namedConstraint openrel:notifyInAsset ;
-              ]
+# --------------------------------------
+# Custom Logical Constraints
+# --------------------------------------
 
-        [ a odrl:Permission ;
-            odrl:action odrl:present ],
-        [ a odrl:Permission ;
-            odrl:action odrl:reproduce ],
-        [ a odrl:Permission ;
-            odrl:action openrel:costRecovery 
-            odrl:namedconstraint openrel:allowDistrubutionFee ;          
-        ] ;
-   
-    odrl:prohibition 
-        [ a odrl:Prohibition ;
-            odrl:action odrl:commercialize ],
-        [ a odrl:Prohibition ;
-            odrl:action openrel:promote ] ;
-    odrl:target 
-        [ a odrl:AssetCollection ;
-            dct:type cc:Work, dcmitype:Dataset 
-        ] ;
+<example-logical-constraint>
+    a odrl:LogicalConstraint ;
+    odrl:and (
+        openrel:verifiedResearcher 
+        openrel:eidasVerifiedResearcher
+    ) 
+.
 
-    .
+# --------------------------------------
+# Custom Named Constraints (Example)
+# --------------------------------------
 
-
-
-
-            
-            dct:type dalicc:CreativeWork, dcmitype:Dataset 
-        ] ;
+openrel:euUseOnly 
+	[ a openrel:NamedConstraint ;
+		rdfs:label "Allow EU-wide Use"@en ;
+		skos:definition "Allow the Asset to be used within the current definition of the EU."@en ;
+		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
+		openrel:constraintType openrel:context ;
+		openrel:scenario openrel:european-use ;
+		odrl:leftOperand openrel:locationLimitation ;
+		odrl:operand odrl:eq 
+		odrl:rightOperand loc:EU27 ;
+	]	
+	.
