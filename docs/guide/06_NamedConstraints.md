@@ -13,11 +13,11 @@
 
 ODRL makes provision for the description of a *Constraint*, and such a Constraint can have a UID, which by implication allows them to become nodes in a graph that can be referenced by *Actions* in *Rules*.
 
-This approach is useful, because some instances of Constraints (for example, that any number of Use-related subclasses are acceptable for non-commerical purposes) occur in many policies and licences, and one would like to avoid duplication and ensure consistent encoding of these Constraints. From this perspective, one should avoid the option that allows repetitive local definition of a Constraint wherever it is required.
+This approach is useful, because some instances of Constraints (for example, that any number of Use-related subclasses are acceptable for non-commercial purposes) occur in many policies and licences, and one would like to avoid duplication and ensure consistent encoding of these Constraints. From this perspective, one should avoid the option that allows repetitive local definition of a Constraint wherever it is required.
 
 Moreover, referenceable and reusable constraints are far simpler to incorporate into *Logical Constraints* - those that have to be satisfied together, or in sequence, and so on.
 
-The approach has its downsides, in that a policy or licence is not composed in a single location, but finds its rule content spread in a graph. If all policies and licences are contained in the same graph, this is OK, but if it is spread over many graphs, it becomes cumbersome to complile the machine-readable version of a policy or licence - even though it is technically possible.
+The approach has its downsides, in that a policy or licence is not composed in a single location, but finds its rule content spread in a graph. If all policies and licences are contained in the same graph, this is OK, but if it is spread over many graphs, it becomes cumbersome to compile the machine-readable version of a policy or licence - even though it is technically possible.
 
 We will follow a hybrid approach in OpenREL, by defining a set of '**Named Constraints**' - Constraints that can be referenced via IRI and extend the properties of the ODRL Constraint class. These Named Constraints assist with consistent implementation of encodings that are commonly used and/ or are complex to create, and can be easily referenced in Logical Constraints.
 
@@ -74,7 +74,7 @@ Scnearios are used to describe contextual information about the Asset or Asset C
 
 Some examples will be useful: 
 
-- An end user may be affiliated with a Research Performing Organisation (university, research institute, commercial research organisation) and sometimes apply derived results for commercial gain. This end-user context can be defines as one or more Scenario statements (instances) that are mapped to Named Constraints to indicate how such a Scenario is encoded in practice.
+- An end user may be affiliated with a Research Performing Organisation (university, research institute, commercial research organisation) and sometimes apply derived results for commercial gain. This end-user context can be defined as one or more Scenario statements (instances) that are mapped to Named Constraints to indicate how such a Scenario is encoded in practice.
 - Assets created by a project may have to be published as Open or Managed Access because it is funded publicly by the Horizon Europe project and does not contain any sensitive information.
 
 To map Scenarios to Named Constraints, we add a property as follows:
@@ -85,7 +85,7 @@ To map Scenarios to Named Constraints, we add a property as follows:
 
 ## Named Constraint Types
 
-The Named Constraint Types that can be used for categorisation are defined in a [Concept Scheme](https://github.com/wimhugo/openrel/blob/main/.openrel/vocabs/openrel/type_constraint.ttl), and summarised below. Each of these constraint types, in turn, can make use of a default (example) vocabulary to further qualify the constraint. This aspect delivers significant flexibility and customisability, since implementors of OpenREL are free to subsititute or expand these vocabularies.
+The Named Constraint Types that can be used for categorisation are defined in a [Concept Scheme](https://github.com/wimhugo/openrel/blob/main/.openrel/vocabs/openrel/type_constraint.ttl), and summarised below. Each of these constraint types, in turn, can make use of a default (example) vocabulary to further qualify the constraint. This aspect delivers significant flexibility and customisability, since implementers of OpenREL are free to substitute or expand these vocabularies.
 
 The vocabularies are significant interoperability resources, since many of the concepts defined in them are mapped to or originally defined in vocabularies that are focused on the same topic, such as DPV, IDSC, DUO, and the like.
 
