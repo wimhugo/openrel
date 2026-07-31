@@ -49,11 +49,6 @@
     skos:exactMatch spdx:<> ;
     skos:exactMatch lfs:<> ;
     skos:exactMatch cc:<> ;
-    # Coverage related information, mappings of CC and DALICC properties
-    openrel:liabilityLimitation {{Liability Limitation Text}} ;
-    openrel:warrantyNotice {{Warranty Notice Text}} ;
-    openrel:validityType openrel:perpetual ;
-    openrel:jurisdiction openrel:worldwide ;
     # Citation Information
     dct:source <> ;
     dct:title {{Policy Or Licence Title}}@en ;
@@ -65,15 +60,23 @@
     dct:contributor {{Contributor IRI OR Label}} ;
     dct:subject {{One OR More Keywords OR Tags}} ;
 	dct:licence spdxlicense:CC-BY-4.0 ;
+    dct:source <https://www.openaire.eu/privacy-policy> ;
+    dct:version "2.7" ;
+    # Coverage related information
+    # These properties apply only for those policies that explicitly require them, optional for others
+    openrel:validityType openrel:perpetual ;
+    openrel:jurisdiction openrel:worldwide ;
+    odrl:assigner [ASSIGNER_IRI] ;
+    odrl:assignee [ASSIGNEE_IRI] ;
+    odrl:target [TARGET_IRI] ;
+	# Disclaimers
+    openrel:liabilityLimitation {{Liability Limitation Text}} ;
+    openrel:warrantyNotice {{Warranty Notice Text}} ;
     # Alternative representations, mappings of SPDX and LFS properties
     openrel:legalCode <IRI_TO_LEGAL_CODE> ;
     openrel:policyTextHtml <IRI_TO_HTML_VIEW> ;
     openrel:policyText <IRI_TO_TEXT_VIEW> ;
     openrel:encodeRules <IRI_TO_RULE_ENCODING> ;
-    # These properties apply only for those policies that explicitly require them, optional for others
-    odrl:assigner [ASSIGNER_IRI] ;
-    odrl:assignee [ASSIGNEE_IRI] ;
-    odrl:target [TARGET_IRI] ;
 	# Optional results of evaluation of two policies
     openrel:permits <IRI_OF_OTHER_POLICY> ;
 	openrel:contradicts <IRI_OF_OTHER_POLICY>
