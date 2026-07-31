@@ -1,1 +1,245 @@
 
+# -------------------------------------------------------------------------------------------------------------
+# OpenREL - Open Rights Encoding language
+# Version 0.4 (Draft)
+# Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/ EUDAT)
+# This Version: 31 July 2026
+# -------------------------------------------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------------------------------------------
+# Data Subject Right Types 
+# In OpenREL, Data Subject Right Types are used to unambiguously identify the rights afforded to data subjects
+# Rights include, but are not limited to, the rights if human subjects under GDPR.
+# 
+# -------------------------------------------------------------------------------------------------------------
+
+# context
+@base <http://www.w3.org/ns/openrel/0/> .
+@prefix : <http://www.w3.org/ns/openrel/0/> . 
+# RDF-related
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+# general content
+@prefix schema: <http://schema.org/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+# rdmi-related
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcatap: <http://data.europa.eu/r5r/> .
+@prefix r3d: <https://schema.re3data.org/4-0/re3dataV4-0.xsd> .
+@prefix coar: <http://purl.org/coar/> .
+# rights-related
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix dalicc: <https://dalicc.net/ns#> .
+@prefix dalicclib: <https://dalicc.net/licenselibrary/> .
+@prefix ids: <https://w3id.org/idsa/core/> .
+@prefix idsc: <https://w3id.org/idsa/code/> .
+@prefix osl: <http://opensource.org/licenses/> .
+@prefix spdx: <http://spdx.org/rdf/terms#>  .
+@prefix spdxlicense: <http://spdx.org/licenses/> .
+@prefix eu-gdpr: <https://www.w3.org/community/reports/dpvcg/CG-FINAL-eu-gdpr-20260225/> .
+
+# -------------------------------------------------------------------------------------------------------------
+# Definition of Scheme and Provenance
+# ----------------------------------------------------- -------------------------------------------------------
+
+openrel:typeSubjectRights
+  a skos:ConceptScheme ;
+  skos:prefLabel "Types of Subject Rights"@en ;
+  dct:title "Types of Subject Rights"@en ;
+  dct:description "Types of subject rights applicable to actions and constraints."@en ;
+  skos:note "Data Subject Right Types are used to unambiguously identify the rights afforded to data subjects. Rights include, but are not limited to, the rights if human subjects under GDPR."@en ;
+  skos:broadMatch dpv:Right ;
+  dct:created "2026-31-29T00:00:00+00:00"^^xsd:datetime ;
+  dct:creator <https://orcid.org/0000-0002-0255-5101> ;
+  owl:versionInfo "0.1" .
+
+# -------------------------------------------------------------------------------------------------------------
+# Definition of Terms
+# ----------------------------------------------------- --------------------------------------------------------
+
+openrel:inform-of-collection
+  a skos:Concept ;
+  skos:prefLabel "Inform of Collection"@en ;
+  skos:definition "The data subject has a right to be informed if personal data is collected ."@en ;
+  skos:exactMatch eu-gdpr:A13 ;
+  skos:note "EU-GDPR: information to be provided where personal data is directly collected from data subject."@en ;
+  dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_13/oj> ;
+  skos:inScheme openrel:typeSubjectRights 
+.
+
+openrel:inform-sources
+  a skos:Concept ;
+  skos:prefLabel "Sources for Collection"@en ;
+  skos:definition "The data subject has a right to be informed of sources from which personal data is collected."@en ;
+  skos:exactMatch eu-gdpr:A14 ;
+  skos:note "EU-GDPR: information to be provided where personal data is collected from other sources."@en ;
+  dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_14/oj> ;
+  skos:inScheme openrel:typeSubjectRights 
+.
+
+openrel:right-access 
+  a skos:Concept ;
+  skos:prefLabel "Right to Access"@en ;
+  skos:definition "The data subject has a right to access information on the subject."@en ;
+  skos:exactMatch eu-gdpr:A15 ;
+  skos:note "EU-GDPR: Right of access."@en ;
+  dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_15/oj> ;
+  skos:inScheme openrel:typeSubjectRights 
+.
+
+openrel:right-rectification 
+  a skos:Concept ;
+  skos:prefLabel "Right to Rectification"@en ;
+  skos:definition "The data subject has a right to have erroneous or out of date information rectified."@en ;
+  skos:exactMatch eu-gdpr:A16 ;
+  skos:note "EU-GDPR: Right of rectification."@en ;
+  dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_16/oj> ;
+  skos:inScheme openrel:typeSubjectRights 
+.
+
+openrel:right-erasure 
+  a skos:Concept ;
+  skos:prefLabel "Right to be Forgotten"@en ;
+  skos:definition "The data subject has a right to have all subject-related data eraased."@en ;
+  skos:exactMatch eu-gdpr:A17 ;
+  skos:note "EU-GDPR: Right to erasure ('Right to be forgotten')."@en ;
+  dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_17/oj> ;
+  skos:inScheme openrel:typeSubjectRights 
+.
+
+openrel:right-restriction 
+  a skos:Concept ;
+  skos:prefLabel "Right to be Restriction"@en ;
+  skos:definition "The data subject has a right to restrict processing of data by the controller or third parties."@en ;
+  skos:exactMatch eu-gdpr:A18 ;
+  skos:note "EU-GDPR: Right to restriction of processing."@en ;
+  dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_18/oj> ;
+  skos:inScheme openrel:typeSubjectRights 
+.
+
+openrel:right-notification 
+  a skos:Concept ;
+  skos:prefLabel "Right to be Notified"@en ;
+  skos:definition "The data subject has a right to be notified of rectification, erasure, or restrictions placed of subject data."@en ;
+  skos:exactMatch eu-gdpr:A19 ;
+  skos:note "EU-GDPR: Right to be notified in case of rectification or erasure of personal data or restriction of processing."@en ;
+  dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_19/oj> ;
+  skos:inScheme openrel:typeSubjectRights 
+.
+
+openrel:right-portability 
+  a skos:Concept ;
+  skos:prefLabel "Right to Portability"@en ;
+  skos:definition "The data subject has a right to request a copy of subject data in a common format and to disseminate the copy."@en ;
+  skos:exactMatch eu-gdpr:A20 ;
+  skos:note "EU-GDPR: Right to data portability."@en ;
+  skos:note "Right to receive subject data in a structured, commonly used and machine-readable format and have the right to transmit those data to another controller without hindrance."@en ;
+  dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_20/oj> ;
+  skos:inScheme openrel:typeSubjectRights 
+.
+
+openrel:right-object 
+  a skos:Concept ;
+  skos:prefLabel "Right to Object to Processing"@en ;
+  skos:definition "The data subject has a right to object to processing of subject data by the controller or a third party."@en ;
+  skos:exactMatch eu-gdpr:A21 ;
+  skos:note "EU-GDPR: Right to object to processing of personal data."@en ;
+  dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_21/oj> ;
+  skos:inScheme openrel:typeSubjectRights 
+.
+
+openrel:right-object 
+  a skos:Concept ;
+  skos:prefLabel "Right to Object to Processing"@en ;
+  skos:definition "The data subject has a right to object to processing of subject data by the controller or a third party."@en ;
+  skos:exactMatch eu-gdpr:A21 ;
+  skos:note "EU-GDPR: Right to object to processing of personal data."@en ;
+  dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_21/oj> ;
+  skos:inScheme openrel:typeSubjectRights 
+.
+
+openrel:right-non-automation 
+  a skos:Concept ;
+  skos:prefLabel "Right to Non-Automated Processing"@en ;
+  skos:definition "The data subject has a right to object to automated processing of subject data by the controller without recourse or human mediation/ intervention."@en ;
+  skos:exactMatch eu-gdpr:A22 ;
+  skos:note "EU-GDPR: Right not to be subject to a decision based solely on automated processing including profiling, and for the data subject to obtain human intervention on the part of the controller for the contested or objected activity, and for the data subject to express his or her point of view, and for the data subject to contest the decision."@en ;
+  dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_22/oj> ;
+  skos:inScheme openrel:typeSubjectRights 
+.
+
+openrel:right-intervention 
+  a skos:Concept ;
+  skos:prefLabel "Right to Human Intervention"@en ;
+  skos:definition "The data subject has a right to obtain human intervention for contested or objected processing."@en ;
+  skos:exactMatch eu-gdpr:A22-3-a ;
+  skos:note "EU-GDPR: Right of the data subject to obtain human intervention on the part of the controller for the contested or objected activity."@en ;
+  dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_22/oj> ;
+  skos:inScheme openrel:typeSubjectRights 
+.
+
+openrel:right-point-of-view 
+  a skos:Concept ;
+  skos:prefLabel "Right to Express Point of View"@en ;
+  skos:definition "The data subject has a right to express a point of view."@en ;
+  skos:exactMatch eu-gdpr:A22-3-b ;
+  skos:note "EU-GDPR: Right of the data subject to express his or her point of view."@en ;
+  dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_22/oj> ;
+  skos:inScheme openrel:typeSubjectRights 
+.
+
+openrel:right-contest 
+  a skos:Concept ;
+  skos:prefLabel "Right to Contest Decision"@en ;
+  skos:definition "The data subject has a right to decision(s) based on subject data."@en ;
+  skos:exactMatch eu-gdpr:A22-3-c ;
+  skos:note "EU-GDPR: Right of the data subject to contest the decision."@en ;
+  dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_22/oj> ;
+  skos:inScheme openrel:typeSubjectRights 
+.
+
+openrel:right-withdraw 
+  a skos:Concept ;
+  skos:prefLabel "Right to Withdraw Consent"@en ;
+  skos:definition "The data subject has a right to withdraw consent to store or process subject data."@en ;
+  skos:exactMatch eu-gdpr:A7-3 ;
+  skos:note "EU-GDPR:  Right to withdraw consent at any time."@en ;
+  dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_7/par_3/oj> ;
+  skos:inScheme openrel:typeSubjectRights 
+.
+
+openrel:right-complaint 
+  a skos:Concept ;
+  skos:prefLabel "Right to Lodge Complaint"@en ;
+  skos:definition "The data subject has a right to lodge a complaint with a supervisory authority."@en ;
+  skos:exactMatch eu-gdpr:A77 ;
+  skos:note "EU-GDPR:  Right to lodge a complaint with a supervisory authority."@en ;
+  dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_77/oj> ;
+  skos:inScheme openrel:typeSubjectRights 
+.
+
+openrel:remedy-supervisory
+  a skos:Concept ;
+  skos:prefLabel "Right to Effective Remedy - Supervisory Decisions"@en ;
+  skos:definition "The data subject has a right to seek legal remedy in respect of a legally binding decision from a supervisory authority."@en ;
+  skos:exactMatch eu-gdpr:A78 ;
+  skos:note "EU-GDPR:  Right to an effective judicial remedy against a legally binding decision of a supervisory authority concerning natural or legal person."@en ;
+  dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_78/oj> ;
+  skos:inScheme openrel:typeSubjectRights 
+.
+
+openrel:remedy-infringement
+  a skos:Concept ;
+  skos:prefLabel "Right to Effective Remedy - Rights Infringement"@en ;
+  skos:definition "The data subject has a right to seek legal remedy in respect of rights infringement."@en ;
+  skos:exactMatch eu-gdpr:A79 ;
+  skos:note "EU-GDPR: Right to an effective judicial remedy where the data subject considers that his or her rights have been infringed as a result of the processing of his or her personal data."@en ;
+  dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_79/oj> ;
+  skos:inScheme openrel:typeSubjectRights 
+.
