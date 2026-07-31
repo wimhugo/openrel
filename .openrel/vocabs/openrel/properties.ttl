@@ -58,7 +58,8 @@ openrel:dataSubjectRights
 	rdfs:label "Subject Rights"@en ;        
 	skos:definition "Declares GDPR data subject rights applicable to an Asset or Asset Collection. Maps to W3C DPV rights vocabulary. No ODRL equivalent.."@en ;
 	skos:note "GDPR Chapter III / W3C DPV"@en ;
-	rdfs:domain odrl:Asset ;
+	rdfs:domain odrl:Policy ;
+	rdfs:range openrel:typeDataSubjectRights ;
 	rdfs:isDefinedBy openrel: .
 
 openrel:agentDelegation
