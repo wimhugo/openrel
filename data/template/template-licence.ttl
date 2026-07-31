@@ -64,6 +64,7 @@
     dct:creator {{Creator IRI OR Label}} ;
     dct:contributor {{Contributor IRI OR Label}} ;
     dct:subject {{One OR More Keywords OR Tags}} ;
+	dct:licence spdxlicense:CC-BY-4.0 ;
     # Alternative representations, mappings of SPDX and LFS properties
     openrel:legalCode <IRI_TO_LEGAL_CODE> ;
     openrel:policyTextHtml <IRI_TO_HTML_VIEW> ;
