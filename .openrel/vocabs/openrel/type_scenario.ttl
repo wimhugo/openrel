@@ -135,7 +135,7 @@ openrel:public-funding-open
   skos:inScheme openrel:typeScenario 
   .
 
-# Legal considerations
+# Legal and Ethical Considerations
 
 openrel:legal-considerations
   a skos:Concept ;
@@ -155,6 +155,15 @@ openrel:gdpr-controller
   a skos:Concept ;
   rdfs:label "GDPR Controller"@en ;
   skos:definiton "The organisation using your work must act as the data controller as intended by GDPR."@en ;
+  skos:broader openrel:legal-considerations ;
+  skos:inScheme openrel:typeScenario 
+  .
+
+openrel:gdpr-special-category
+  a skos:Concept ;
+  rdfs:label "Special Data Categories"@en ;
+  skos:definiton "My personal data, if it includes categories defined in GDPR Article 9, may only be distributed or used in accordance with the legal provisions."@en ;
+  skos:note "Processing of personal data revealing racial or ethnic origin, political opinions, religious or philosophical beliefs, or trade union membership, and the processing of genetic data, biometric data for the purpose of uniquely identifying a natural person, data concerning health or data concerning a natural person's sex life or sexual orientation shall be prohibited [subject to exemptions]."@en ;
   skos:broader openrel:legal-considerations ;
   skos:inScheme openrel:typeScenario 
   .
