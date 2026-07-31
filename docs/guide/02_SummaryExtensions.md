@@ -6,7 +6,7 @@
 >[CC BY 4.0](https://spdx.org/licenses/CC-BY-4.0.html)
 ---
 
-OpenREL is intended as an extension to existing vocabularies that address aspects of rights management, primarily ODRL and ccREL,together with several others that are in scope and have been incorporated or linked where applicable.
+OpenREL is intended as an extension to existing vocabularies that address aspects of rights management, primarily ODRL and ccREL, together with several others that are in scope and have been incorporated or linked where applicable.
 
 ## Extension Types
 
@@ -14,7 +14,7 @@ These extensions fall into the following categories:
 
 - **Subclasses of Existing Classes**: These are typically used when an existing class, for example the 'Policy' class defined by ODRL, requires further definition (a subclass with a narrower definition) and/ or specific property additions that apply only to the subclass. A good example of this is the Policy Class, to which OpenREL ads the explicit subclass 'Licence' to account for a policy that has a legal text and applies in a given jurisdiction.
 - **New Concept Schemes**: These are typically vocabularies that are specific to the research output and repository management landscape, and may not apply more generally to generic content for which a policy or licence can be formulated. These Concept Schemes are used extensively to qualify, for example, Right Operands in Constraint encodings. This approach allows simpler extension of scope, since it often avoids definition of new subclasses when a new constraint is identified. As an example, notifications are modelled in OpenREL as a generic Left Operand (requiring notification), with the Right Operand(s) defining the type of notification and the notification targets - this model is more extensible than having specific Left Operand classes for each type of notification.
-- **Mappings**: In some cases, OpenREL concepts or classes mirror those defined elsewhere, but there are multiple vocabularies that use semantically matching or similar concepts and classes. To enable interoperability between encodings, and the ability to assess and process encodings that are not using OpenREL, these mappings are required. It is also required to re-enable the DALICC encpodings of popular licences, which relied extensively on a DALICC vocabulary that is no longer supported. OpenREL provides mappings and crosswalks for these licences.
+- **Mappings**: In some cases, OpenREL concepts or classes mirror those defined elsewhere, but there are multiple vocabularies that use semantically matching or similar concepts and classes. To enable interoperability between encodings, and the ability to assess and process encodings that are not using OpenREL, these mappings are required. It is also required to re-enable the DALICC encodings of popular licences, which relied extensively on a DALICC vocabulary that is no longer supported. OpenREL provides mappings and crosswalks for these licences.
 - **Properties**: A number of new properties have been defined that were not part of the existing vocabularies available to the community.
 
 ## Scope of Vocabulary
@@ -81,7 +81,7 @@ The main extensions to ODRL are listed below:
 
 1. OpenREL extends the [Policy Class](https://github.com/wimhugo/openrel/blob/main/docs/guide/03_Policies.md) with additional subclasses, properties, and concept schemes.
 2. Similary, ODRL [Actions](https://github.com/wimhugo/openrel/blob/main/docs/guide/05_Actions.md) (classes, properties, and concepts) are extended to allow interoperability with other vocabularies, such as DPV, DUO, CC, DALICC, and IDSC, and to allow encoding of rights and norms not covered by the existing resources.
-3. OpenREL specifically extends ODRL [Constraints](https://github.com/wimhugo/openrel/blob/main/docs/guide/06_NamedConstraints.md), which is an abstract class without any referenceable instances, to allow Named COnstraints, their properties, and associated concepts to be defined. This greatly saves the time needed to encode commmon constraints, simplifies logical constraint formulation, and ensures consistent encoding of the same constraints by disparate parties.
+3. OpenREL specifically extends ODRL [Constraints](https://github.com/wimhugo/openrel/blob/main/docs/guide/06_NamedConstraints.md), which is an abstract class without any referenceable instances, to allow Named Constraints, their properties, and associated concepts to be defined. This greatly saves the time needed to encode common constraints, simplifies logical constraint formulation, and ensures consistent encoding of the same constraints by disparate parties.
 4. Many research output related concepts are captured in [Concept Schemes](https://github.com/wimhugo/openrel/tree/main/.openrel/vocabs/openrel) that, *inter alia*, standardise they way in which they can be encoded, and allows customisation for a specific context by replacing the default schemes used to provide Right Operands. 
 
 
