@@ -22,15 +22,15 @@ OpenREL has defined a number of additional Actions to assist especially with enc
 OpenREL has made extension to existing ODRL Action classes, specifically in respect of mappings from ccREL, DALICC, IDSC, DUO, and DPV. In cases where DALICC defined a new action (one that cannot be mapped to an existing ODRL Action), OpenREL redefined the DALICC Action and included it into the vocabulary.
 
 There are three motivations for these extensions:
-- It allows any API development to present a full complement of Actions from all relevant sources, assisting with creation of new policies, matching and coparing existing ones, and helping users with understanding teh scope of available Actions.
-- It allows crosswalks from Policies that may have been encoded using a different vocabulary to a common one for pruposes of reuse and comparison.
+- It allows any API development to present a full complement of Actions from all relevant sources, assisting with creation of new policies, matching and comparing existing ones, and helping users with understanding the scope of available Actions.
+- It allows crosswalks from Policies that may have been encoded using a different vocabulary to a common one for purposes of reuse and comparison.
 - DALICC introduced an additional property to Actions, and that entails *contradiction* between two actions - a necessary extension to assist a *Reasoner*.
 
 ## Design Approach: Action or Constraint?
 
 There is a common tendency to define Actions that are quite specific, for example dalicc:modificationNotice and dalicc:attributionNotice both describe actions that require a notice to be provided, and a separate action is defined for each type of notice.
 
-OpenREL generalises these Actions to one that can be tailored for a specific purpose using Left and Rights Operands expressed in a Constraint. For example, OpenREL defines an Action (openrel:Notify) which can be refined by way of one or more constraints to indicate all of the duties that require notification - to an external or internal log, to a usage event log, to a clearinghouse, an attribution note, or any other target for such notification. This arrangement allows simpler extension by defining new concepts (vocabulary) rather than defining new classes. 
+OpenREL generalises these Actions to one that can be tailored for a specific purpose using Left and Right Operands expressed in a Constraint. For example, OpenREL defines an Action (openrel:Notify) which can be refined by way of one or more constraints to indicate all of the duties that require notification - to an external or internal log, to a usage event log, to a clearinghouse, an attribution note, or any other target for such notification. This arrangement allows simpler extension by defining new concepts (vocabulary) rather than defining new classes. 
 
 
 
