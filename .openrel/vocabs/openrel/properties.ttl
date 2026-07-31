@@ -116,9 +116,9 @@ openrel:hasPolicy
     rdfs:domain :AssetCollection ;
 	rdfs:range openrel:PolicyCollection .
 
-openrel:encodedeRules
+openrel:encodedRules
 	a rdf:Property , owl:ObjectProperty, skos:Concept ;
-	skos:exactMatch lfs:encodeRules ;
+	skos:exactMatch lfs:encodedRules ;
 	rdfs:isDefinedBy openrel: ;
 	rdfs:label "Machine-Readable Policy Rules Representation"@en ;
 	skos:definition "A URI that resolves to the machine-readable encoding of the policy rules."@en ;
