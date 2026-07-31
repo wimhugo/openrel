@@ -73,14 +73,14 @@
     openrel:liabilityLimitation {{Liability Limitation Text}} ;
     openrel:warrantyNotice {{Warranty Notice Text}} ;
     # Alternative representations, mappings of SPDX and LFS properties
-    openrel:legalCode <IRI_TO_LEGAL_CODE> ;
-    openrel:policyTextHtml <IRI_TO_HTML_VIEW> ;
-    openrel:policyText <IRI_TO_TEXT_VIEW> ;
-    openrel:encodeRules <IRI_TO_RULE_ENCODING> ;
-	# Optional results of evaluation of two policies
-    openrel:permits <IRI_OF_OTHER_POLICY> ;
-	openrel:contradicts <IRI_OF_OTHER_POLICY>
-    openrel:evaluationDetail {{}} ;
+    openrel:legalCode [IRI_TO_LEGAL_CODE] ;
+    openrel:policyTextHtml [IRI_TO_HTML_VIEW] ;
+    openrel:policyText [IRI_TO_TEXT_VIEW] ;
+    openrel:encodedRules [IRI_TO_RULE_ENCODING] ;
+	# Optional results of evaluation of two or more policies
+    openrel:permits [IRI_OF_OTHER_POLICY] ;
+	openrel:contradicts [IRI_OF_OTHER_POLICY] ;
+    openrel:evaluationDetail [OPENREL_EVALUATION] ;
 
 # --------------------------------------------------------------------------------------------------------------------------------
 #   Rules (Example)
