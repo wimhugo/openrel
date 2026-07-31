@@ -295,7 +295,7 @@ openrel:noSpecialCategory
 		openrel:scenario openrel:gdpr-controller, openrel:gdpr-compliance, openrel:consent-gdpr ;
 		odrl:leftOperand openrel:legalBasis ;
 		odrl:operand odrl:neq 
-		odrl:rightOperand <https://w3id.org/dpv/legal/eu/gdpr#A9-2-a>;
+		odrl:rightOperand openrel:gdpr-special-category;
 	]	
 	.
 
