@@ -199,6 +199,20 @@ openrel:notifyInAsset
 		skos:definition "Changes and modifications must be added in the Asset using human-readable text, without removing the current licence information."@en ;
 		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
 		openrel:constraintType openrel:notification ;
+		openrel:scenario openrel:gdpr-compliance ;
+		openrel:scenario openrel:gdpr-controller ;
+		odrl:leftOperand openrel:notificationDuty ;
+		odrl:operator odrl:eq ;
+		odrl:rightOperand openrel:notify-local-log ;
+		]
+		.
+
+openrel:logUse 
+	[ a openrel:NamedConstraint ;
+		rdfs:label "Record Usage in a Log"@en ;
+		skos:definition "Instances of use of the asset or asset collection must be recorded in a log and retained for a legally mandated duration."@en ;
+		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
+		openrel:constraintType openrel:notification ;
 		openrel:scenario openrel:attribution ;
 		odrl:leftOperand openrel:notificationDuty ;
 		odrl:operator odrl:eq ;
