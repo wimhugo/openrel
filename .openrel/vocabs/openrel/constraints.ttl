@@ -285,6 +285,20 @@ openrel:euUseOnly
 	]	
 	.
 
+openrel:noSpecialCategory 
+	[ a openrel:NamedConstraint ;
+		rdfs:label "Disallow Special Data Category"@en ;
+		skos:definition "Consent does not include legitimate use as a special data category (GDPR Art 9.2 (a))."@en ;
+		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
+		dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_9/par_2/pnt_a/oj> ;
+		openrel:constraintType openrel:consent ;
+		openrel:scenario openrel:gdpr-controller, openrel:gdpr-compliance, openrel:consent-gdpr ;
+		odrl:leftOperand openrel:legalBasis ;
+		odrl:operand odrl:neq 
+		odrl:rightOperand <https://w3id.org/dpv/legal/eu/gdpr#A9-2-a>;
+	]	
+	.
+
 
 
 
