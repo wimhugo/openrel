@@ -157,7 +157,7 @@ openrel:scenario
 # -------------------------------------------------------------------------------------------------------------
 
 openrel:academicUseOnly 
-	[ a openrel:NamedConstraint ;
+	 a openrel:NamedConstraint ;
 		rdfs:label "Academic Use Only"@en ;
 		skos:definition "Asset MUST only be used for Academic Research or Applications"@en ;
 		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
@@ -167,11 +167,10 @@ openrel:academicUseOnly
 		odrl:leftOperand openrel:usePurpose;
 		odrl:operator odrl:eq ;
 		odrl:rightOperand openrel:academicResearch ;
-		]
 		.
 
 openrel:verifiedResearcher 
-    [ a openrel:namedConstraint ;
+     a openrel:namedConstraint ;
         rdfs:label "Asserted Researcher"@en ;
         skos:definition "A general assertion or inference that the end user has the role of a researcher.";@en ;
         openrel:constraintType openrel:role ;
@@ -179,22 +178,20 @@ openrel:verifiedResearcher
         odrl:leftOperand openrel:agentRole ;
         odrl:operator odrl:eq ;
         odrl:rightOperand openrel:researcher ;
-        ]
         .
 
 openrel:eidasVerifiedResearcher 
-    [ a openrel:namedConstraint ;
+     a openrel:namedConstraint ;
         rdfs:label "eIDAS Verfied Researcher"@en ;
         skos:definition "End User has been verified as a Researcher via eIDAS."@en ;
         openrel:constraintType openrel:context ;
         odrl:leftOperand openrel:contextLimitation ;
         odrl:operator odrl:eq ;
         odrl:rightOperand openrel:context-eidas ;
-        ]
         .
 
 openrel:notifyInAsset 
-	[ a openrel:NamedConstraint ;
+	 a openrel:NamedConstraint ;
 		rdfs:label "Notification in Asset"@en ;
 		skos:definition "Changes and modifications must be added in the Asset using human-readable text, without removing the current licence information."@en ;
 		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
@@ -203,11 +200,10 @@ openrel:notifyInAsset
 		odrl:leftOperand openrel:notificationDuty ;
 		odrl:operator odrl:eq ;
 		odrl:rightOperand openrel:notify-local-log ;
-		]
 		.
 
 openrel:logUse 
-	[ a openrel:NamedConstraint ;
+	  a openrel:NamedConstraint ;
 		rdfs:label "Record Usage in a Log"@en ;
 		skos:definition "Instances of use of the asset or asset collection must be recorded in a log and retained for a legally mandated duration."@en ;
 		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
@@ -217,11 +213,10 @@ openrel:logUse
 		odrl:leftOperand openrel:notificationDuty ;
 		odrl:operator odrl:eq ;
 		odrl:rightOperand openrel:record-in-asset ;
-		]
 		.
 
 openrel:allowDistrubutionFee 
-	[ a openrel:NamedConstraint ;
+	  a openrel:NamedConstraint ;
 		rdfs:label "Allow Distribution Fee"@en ;
 		skos:definition "Allow the legitimate and reasonable costs of distrbution of the asset or its derivations - not regarded as commercial use."@en ;
 		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
@@ -230,11 +225,10 @@ openrel:allowDistrubutionFee
 		odrl:leftOperand openrel:revenuePermitted ;
 		odrl:operand odrl:eq ;
 		odrl:rightOperand trsp:distributionCost ;
-	]	
 	.
 
 openrel:ethicsApproval 
-	[ a openrel:NamedConstraint ;
+	  a openrel:NamedConstraint ;
 		rdfs:label "Ethics Approval Required"@en ;
 		skos:definition "Allow access to the Asset or Asset Collection only when an instutional review board has confirmed ethics approval."@en ;
 		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
@@ -242,12 +236,11 @@ openrel:ethicsApproval
 		openrel:scenario openrel:ethics-approval ;
 		odrl:leftOperand openrel:consentRequired ;
 		odrl:operand odrl:eq ;
-		odrl:rightOperand openrel:consent-ethics ;
-	]	
+		odrl:rightOperand openrel:consent-ethics ;	
 	.
 
 openrel:consentPrior 
-	[ a openrel:NamedConstraint ;
+	  a openrel:NamedConstraint ;
 		rdfs:label "Consent is Required Prior to Access"@en ;
 		skos:definition "Allow access to the Asset or Asset Collection only applicable consent has been obtained prior to access."@en ;
 		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
@@ -256,11 +249,10 @@ openrel:consentPrior
 		odrl:leftOperand openrel:consentRequired ;
 		odrl:operand odrl:eq ;
 		odrl:rightOperand openrel:consent-reuse-before ;
-	]	
 	.
 
 openrel:consentLegal 
-	[ a openrel:NamedConstraint ;
+	  a openrel:NamedConstraint ;
 		rdfs:label "Consent Required on Legal Basis"@en ;
 		skos:definition "Allow reuse of the Asset or Asset Collection based on legal basis consent."@en ;
 		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
@@ -269,11 +261,10 @@ openrel:consentLegal
 		odrl:leftOperand openrel:consentRequired ;
 		odrl:operand odrl:eq ;
 		odrl:rightOperand openrel:consent-legal ;
-	]	
 	.
 
 openrel:euUseOnly 
-	[ a openrel:NamedConstraint ;
+	  a openrel:NamedConstraint ;
 		rdfs:label "Allow EU-wide Use"@en ;
 		skos:definition "Allow the Asset to be used within the current definition of the EU."@en ;
 		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
@@ -282,11 +273,10 @@ openrel:euUseOnly
 		odrl:leftOperand openrel:locationLimitation ;
 		odrl:operand odrl:eq ;
 		odrl:rightOperand loc:EU27 ;
-	]	
 	.
 
 openrel:noSpecialCategory 
-	[ a openrel:NamedConstraint ;
+	  a openrel:NamedConstraint ;
 		rdfs:label "Disallow Special Data Category"@en ;
 		skos:definition "Consent does not include legitimate use as a special data category (GDPR Art 9.2 (a))."@en ;
 		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
@@ -296,7 +286,6 @@ openrel:noSpecialCategory
 		odrl:leftOperand openrel:legalBasis ;
 		odrl:operand odrl:neq ;
 		odrl:rightOperand openrel:gdpr-special-category;
-	]	
 	.
 
 
