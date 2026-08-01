@@ -127,7 +127,7 @@ openrel:hasLegalBasis
 	rdfs:range [
 		a owl:Class ;
 		owl:unionOf ( odrl:Constraint odrl:LogicalConstraint odrl:NamedConstraint) ;
-	] 
+	] ;
 	skos:closeMatch dpv:hasLegalBasis ;
 	rdfs:range xsd:anyURI 
     .
@@ -185,7 +185,7 @@ openrel:verifiedResearcher
 openrel:eidasVerifiedResearcher 
     [ a openrel:namedConstraint ;
         rdfs:label "eIDAS Verfied Researcher"@en ;
-        skos:definition "End User has been verified as a Researcher via eIDAS.";@en ;
+        skos:definition "End User has been verified as a Researcher via eIDAS."@en ;
         openrel:constraintType openrel:context ;
         odrl:leftOperand openrel:contextLimitation ;
         odrl:operator odrl:eq ;
@@ -228,7 +228,7 @@ openrel:allowDistrubutionFee
 		openrel:constraintType openrel:revenue ;
 		openrel:scenario openrel:non-commercial-only ;
 		odrl:leftOperand openrel:revenuePermitted ;
-		odrl:operand odrl:eq 
+		odrl:operand odrl:eq ;
 		odrl:rightOperand trsp:distributionCost ;
 	]	
 	.
@@ -241,7 +241,7 @@ openrel:ethicsApproval
 		openrel:constraintType openrel:consent ;
 		openrel:scenario openrel:ethics-approval ;
 		odrl:leftOperand openrel:consentRequired ;
-		odrl:operand odrl:eq 
+		odrl:operand odrl:eq ;
 		odrl:rightOperand openrel:consent-ethics ;
 	]	
 	.
@@ -254,7 +254,7 @@ openrel:consentPrior
 		openrel:constraintType openrel:consent ;
 		openrel:scenario openrel:ethics-approval ;
 		odrl:leftOperand openrel:consentRequired ;
-		odrl:operand odrl:eq 
+		odrl:operand odrl:eq ;
 		odrl:rightOperand openrel:consent-reuse-before ;
 	]	
 	.
@@ -267,7 +267,7 @@ openrel:consentLegal
 		openrel:constraintType openrel:consent ;
 		openrel:scenario openrel:gdpr-controller, openrel:gdpr-compliance, openrel:consent-gdpr ;
 		odrl:leftOperand openrel:consentRequired ;
-		odrl:operand odrl:eq 
+		odrl:operand odrl:eq ;
 		odrl:rightOperand openrel:consent-legal ;
 	]	
 	.
@@ -280,7 +280,7 @@ openrel:euUseOnly
 		openrel:constraintType openrel:context ;
 		openrel:scenario openrel:european-use ;
 		odrl:leftOperand openrel:locationLimitation ;
-		odrl:operand odrl:eq 
+		odrl:operand odrl:eq ;
 		odrl:rightOperand loc:EU27 ;
 	]	
 	.
@@ -294,7 +294,7 @@ openrel:noSpecialCategory
 		openrel:constraintType openrel:consent ;
 		openrel:scenario openrel:gdpr-controller, openrel:gdpr-compliance, openrel:consent-gdpr ;
 		odrl:leftOperand openrel:legalBasis ;
-		odrl:operand odrl:neq 
+		odrl:operand odrl:neq ;
 		odrl:rightOperand openrel:gdpr-special-category;
 	]	
 	.
