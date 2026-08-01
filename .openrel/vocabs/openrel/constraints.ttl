@@ -172,7 +172,7 @@ openrel:academicUseOnly
 openrel:verifiedResearcher 
      a openrel:namedConstraint ;
         rdfs:label "Asserted Researcher"@en ;
-        skos:definition "A general assertion or inference that the end user has the role of a researcher.";@en ;
+        skos:definition "A general assertion or inference that the end user has the role of a researcher."@en ;
         openrel:constraintType openrel:role ;
 		openrel:scenario openrel:research-only, openrel:academic-only, openrel:confirmed-researcher, openrel:confirmed-rpo, openrel:affirmed-research ;
         odrl:leftOperand openrel:agentRole ;
