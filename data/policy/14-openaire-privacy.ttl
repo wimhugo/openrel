@@ -56,7 +56,7 @@
     dct:creator "Melios Katsamakis - OpenAIRE" ;
     dct:contributor <https://orcid.org/0000-0002-0255-5101> ;
     dct:subject "Privacy" ;
-	  dct:licence spdxlicense:CC-BY-4.0 ;
+	dct:licence spdxlicense:CC-BY-4.0 ;
     dct:source <https://www.openaire.eu/privacy-policy> ;
     dct:version "2.7" ;
     # Coverage related information
@@ -76,20 +76,91 @@
     openrel:encodedRules openrel:14-oa-privacy ;
 	# Optional results of evaluation of two policies
     openrel:permits [IRI_OF_OTHER_POLICY] ;
-	  openrel:contradicts [IRI_OF_OTHER_POLICY] ;
+	openrel:contradicts [IRI_OF_OTHER_POLICY] ;
     openrel:evaluationDetail [OPENREL_EVALUATION] ;
 
 # --------------------------------------------------------------------------------------------------------------------------------
 #   Rules
-# --------------------------------------------------------------------------------------------------------------------------------
+# ---------------------------------- ----------------------------------------------------------------------------------------------
     
     odrl:permission [
+		dct:description "Data may only be used in the EU." ;
         odrl:action openrel:use ;
         odrl:namedconstraint openrel:euUseOnly ;
     ] ;
+
+    odrl:permission [
+		dct:description "Newsletter — email under explicit consent." ;
+        odrl:action openrel:action.use ;
+        odrl:constraint [
+            odrl:leftOperand openrel:legalBasis ;
+            odrl:operator odrl:eq ;
+            odrl:rightOperand dpv:Consent
+        ] ;
+        odrl:constraint [
+            odrl:leftOperand openrel:leftOperand.purpose ;
+            odrl:operator odrl:eq ;
+            odrl:rightOperand dpv:ServiceProvision
+        ] ;
+        odrl:duty [
+            odrl:action sensitiveDataConsent 
+        ] ;
+        odrl:duty [
+            odrl:action openrel:log	;
+			odrl:constraint openrel:logUse ;	
+        ]
+    ] ;
+
+    odrl:permission [
+		dct:description "Website visit — IP address/ cookies under legitimate interest." ;
+        odrl:action openrel:use ;
+        odrl:constraint [
+            odrl:leftOperand openrel:legalBasis ;
+            odrl:operator odrl:eq ;
+            odrl:rightOperand dpv:LegitimateInterest
+        ] ;
+        odrl:constraint [
+            odrl:leftOperand openrel:purpose ;
+            odrl:operator odrl:eq ;
+            odrl:rightOperand dpv:Analytics
+        ] ;
+        odrl:duty [
+            odrl:action openrel:encrypt
+        ]
+    ] ;
+
+    odrl:prohibition [
+        dc:description "No third-party sharing outside service provision." ;
+        odrl:action openrel:distribute ;
+        odrl:constraint [
+            odrl:leftOperand openrel:purpose ;
+            odrl:operator odrl:neq ;  
+            odrl:rightOperand dpv:ServiceProvision
+        ]
+    ] ;
+
+    odrl:prohibition [
+        odrl:action openrel:use ;
+        openrel:namedConstraint openrel:noSpecialCategory
+    ] ;
     
-    openrel:evaluation "permit | deny" ;
+	odrl:permission [
+        odrl:action openrel:delete ;
+        dc:description "Delete on consent withdrawal or erasure request (GDPR Art.17)."
+    ] ;
+    
+	odrl:obligation [
+        odrl:action openrel:notify ;
+        dc:description "Notify data subjects of policy changes within 5 days."
+    ] ;
+
 .
+
+openrel:dataSubjectRights openrel:right-access ;
+openrel:dataSubjectRights openrel:right-rectification ;
+openrel:dataSubjectRights openrel:right-erasure ;
+openrel:dataSubjectRights openrel:right-restriction ;
+openrel:dataSubjectRights openrel:right-portability  ;
 
 # --------------------------------------
 # Custom Logical Constraints
@@ -99,6 +170,10 @@
 # --------------------------------------
 # Custom Named Constraints
 # --------------------------------------
-# None
+
+# In constraints.ttl
+# openrel:noSpecialCategory
+
+
 
 .
