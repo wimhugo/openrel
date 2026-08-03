@@ -92,6 +92,17 @@ openrel:agentRole
 	skos:scopeNote "Non-Normative"@en ;
 	.
 
+openrel:agentAffiliation
+	a odrl:LeftOperand, owl:NamedIndividual, skos:Concept ;
+	rdfs:isDefinedBy openrel: ;
+	rdfs:label "Agent Affiliation Constraint"@en ;
+	skos:definition "Requires the Assignee to be Affiliated with a Specific Institution."@en ;
+	skos:note "Example: Action is limited to members of a university."@en ;
+	skos:note "Values of the Right Operand can be any IRI that unambiguously identifies an institution."@en ;
+	skos:note "More than one constraint can be encoded as Logical Constraints using OpenREL Named Constraints."@en ;
+	skos:scopeNote "Non-Normative"@en ;
+	.
+
 openrel:usageLimitation
 	a odrl:LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy openrel: ;
