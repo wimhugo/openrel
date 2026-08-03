@@ -65,7 +65,7 @@ openrel:compatible
 
 openrel:contradicts
   a skos:Concept ;
-  skos:prefLabel "Action or constraint contracdicts another"@en ;
+  skos:prefLabel "Action or constraint contradicts another"@en ;
   skos:exactmatch dalicc:contradicts ;
   skos:definition "Action or constraint is not compatible with another and can not be combined in the same policy or in a policy collection."@en ;
   skos:inScheme openrel:typeEvaluationOutcome .
@@ -84,4 +84,12 @@ openrel:implies
   skos:closematch odrl:implies ;
   skos:definition "Action or constraint implies another and can be combined in the same policy or in a policy collection."@en ;
   skos:inScheme openrel:typeEvaluationOutcome .
+
+openrel:missing
+  a skos:Concept ;
+  skos:prefLabel "Action or constraint is missing"@en ;
+  skos:definition "Action or constraint is not present as an action or constraint in the policy being compared."@en ;
+  skos:inScheme openrel:typeEvaluationOutcome .
+
+
 
