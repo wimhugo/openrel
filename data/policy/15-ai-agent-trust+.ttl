@@ -75,7 +75,7 @@
     openrel:encodedRules openrel:15-ai-agent-trust-plus ;
 	  # Optional results of evaluation of two policies
     openrel:permits [IRI_OF_OTHER_POLICY] ;
-	  openrel:contradicts [IRI_OF_OTHER_POLICY] ;
+	openrel:contradicts [IRI_OF_OTHER_POLICY] ;
     openrel:evaluationDetail [OPENREL_EVALUATION] ;
 
 # --------------------------------------------------------------------------------------------------------------------------------
