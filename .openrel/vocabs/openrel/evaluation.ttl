@@ -72,6 +72,18 @@ openrel:EvaluationDetail
 # Property Definition
 # -------------------------------------------------------------------------------------------------------------
 
+openrel:hasEvaluation
+	a rdf:Property , owl:ObjectProperty, skos:Concept ;
+	rdfs:isDefinedBy openrel: ;
+	rdfs:label "Individual has an asserted evaluation"@en ;
+	skos:definition "Action or constraint was compared to another and evaluated"@en ;
+	rdfs:domain [
+		a owl:Class ;
+		owl:unionOf ( odrl:Action openrel:NamedConstraint ) ;
+	];
+	rdfs:range openrel:EvaluationDetail 
+	.
+
 openrel:comparedIndividual
 	a rdf:Property , owl:ObjectProperty, skos:Concept ;
 	rdfs:isDefinedBy openrel: ;
