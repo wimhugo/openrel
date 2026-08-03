@@ -205,6 +205,20 @@ openrel:PolicyCollection
 	skos:scopeNote "Non-Normative"@en 
 	.
 
+# -------------------------------------------------------------------------------------------------------------
+# Property Definition
+# -------------------------------------------------------------------------------------------------------------
+
+openrel:accessType
+	a rdf:Property , owl:ObjectProperty, skos:Concept ;
+	rdfs:isDefinedBy openrel: ;
+	rdfs:label "Has Access Type"@en ;
+	skos:definition "Access Type applicable to a Policy"@en ;
+	skos:note "Access Types are used to optionally categorise policies."@en ;
+	rdfs:domain odrl:Policy ;
+	rdfs:range openrel:typeAccess ;
+ 	.
+
 
 
 
