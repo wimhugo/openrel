@@ -211,6 +211,7 @@ openrel:notify
 	skos:definition "Send a notification to a defined endpoint upon performing an action."@en ;
 	odrl:includedIn odrl:use ;
 	skos:broadMatch odrl:inform ;
+	skos:exactMatch cc:Notice ;
 	# Extensions by OpenREL
 	rdfs:isDefinedBy openrel: .
 
@@ -782,6 +783,14 @@ cc:Attribution
     rdfs:label "Attribution"@en ;
     skos:definition "credit be given to copyright holder and/or author."@en ;
 	skos:exactMatch openrel:attribute 
+    .
+
+cc:Notice
+    a odrl:Action ;
+	rdfs:isDefinedBy cc: ;
+    rdfs:label "Notice"@en ;
+    skos:definition "copyright and license notices be kept intact."@en ;
+	skos:exactMatch openrel:notify 
     .
 
 
