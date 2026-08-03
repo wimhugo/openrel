@@ -56,11 +56,32 @@ openrel:typeEvaluationOutcome
 # Definition of Terms
 # ----------------------------------------------------- --------------------------------------------------------
 
-### example to be fixed
-openrel:irrevocable
+openrel:compatible
   a skos:Concept ;
-  skos:prefLabel "Irrevocable"@en ;
-  skos:exactmatch dalicc:irrevocable ;
-  skos:definition "DALICC: The license cannot be terminated for any reason or only that the license cannot be terminated for convenience, but still may be terminated for breach."@en ;
-  skos:inScheme openrel:typeValidity .
+  skos:prefLabel "Action or constraint is directly compatible with another"@en ;
+  skos:exactmatch owl:sameAs ;
+  skos:definition "Action or constraint is directly compatible with another and one can be combined in the same policy or in a policy collection."@en ;
+  skos:inScheme openrel:typeEvaluationOutcome .
+
+openrel:contradicts
+  a skos:Concept ;
+  skos:prefLabel "Action or constraint contracdicts another"@en ;
+  skos:exactmatch dalicc:contradicts ;
+  skos:definition "Action or constraint is not compatible with another and can not be combined in the same policy or in a policy collection."@en ;
+  skos:inScheme openrel:typeEvaluationOutcome .
+
+openrel:includedIn
+  a skos:Concept ;
+  skos:prefLabel "Action or constraint is included in another"@en ;
+  skos:closematch odrl:includedIn ;
+  skos:definition "Action or constraint is included in another and can be combined in the same policy or in a policy collection."@en ;
+  skos:note "This ODRL property is made applicable also to constraints and named constraints."@en ;
+  skos:inScheme openrel:typeEvaluationOutcome .
+
+openrel:implies
+  a skos:Concept ;
+  skos:prefLabel "Action or constraint implies another"@en ;
+  skos:closematch odrl:implies ;
+  skos:definition "Action or constraint implies another and can be combined in the same policy or in a policy collection."@en ;
+  skos:inScheme openrel:typeEvaluationOutcome .
 
