@@ -85,14 +85,15 @@
     odrl:permission [
         odrl:action openrel:.use ;
         odrl:constraint openrel:trustPlus ;
-        ### odrl:constraint openrel:namedConstraint.tom:required ;
+        ### Melios
+		### odrl:constraint openrel:namedConstraint.tom:required ;
         odrl:duty [
             odrl:action openrel:notify ;
             odrl:constraint openrel:notifyClearingHouse 
         ]
     ] ;
 
-# Melios
+### Melios
 #    odrl:prohibition [
 #        odrl:action openrel:action.use ;
 #        odrl:constraint [
