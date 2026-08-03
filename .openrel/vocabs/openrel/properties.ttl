@@ -133,7 +133,7 @@ openrel:permits
 	rdfs:label "Policy Permits Another Policy"@en ;
 	skos:definition "Evaluation Outcome of Comparing a Set of Policies."@en ;
 	skos:note "OpenREL: Typical context is that policy A (a Licence) permits policy B (a Request or an Assertion), or that Policy A (A Licence) permits Policy B (A ProcessRules or AccessRules)."@en ;
-	rdfs:range odrl:Policy 
+	rdfs:range openrel:PolicyCollection 
   .
 
 openrel:evaluationDetail
@@ -142,7 +142,7 @@ openrel:evaluationDetail
 	rdfs:label "Evaluation Result Detail"@en ;
 	skos:definition "Detailed Evaluation Outcome of Pairwise Action Comparisons."@en ;
 	skos:note "OpenREL: Values are sourced from type_evaluation.ttl."@en ;
-	rdfs:range odrl:Policy 
+	rdfs:range openrel:PolicyCollection  
   .
 
 
