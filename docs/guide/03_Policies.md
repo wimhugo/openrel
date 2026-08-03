@@ -82,7 +82,7 @@ A ***Policy Collection*** has the same properties as a Policy, and in addition, 
 
 >"This Policy Collection references all policy instances describing the negotiation for access to [Asset/ Asset Collection] requested by [Assignee] and granted by [Assigner]".
 
-The ***Policy Collection*** class also requires properties that assist with a record of negotiation outcomes and Policy comparisons. These are defined by the properties of an ***Evaluation Detail*** class.
+The ***Policy Collection*** class also requires properties that assist with a record of negotiation outcomes and Policy comparisons. These are defined by the properties of an ***Evaluation Detail*** class for detailed comparisons of ***Actions*** and ***Named Constraints***, or alternatively, two policies can be compared at a high level, using the **openrel:permits** property.
 
 ## Evaluation Detail Class
 
@@ -98,7 +98,6 @@ For both of these types of use, we would like to record the following properties
 |Compared To|openrel:comparedIndividual|"Action or constraint was compared to". Actions and Constraints can be compared pairwise to other actions and constraints, and the subject of the comparison is recorded as an IRI|
 |Evaluation Outcome|openrel:evaluationOutcome|"The result of a comparison between two actions or named constraints". The outcome is encoded using the concepts defined in openrel:typeEvaluationOutcome|
 |Asserted By|openrel:assertedBy|"The result of a comparison between two actions or named constraints was asserted by". An evaluation outcome can be asserted by an individual, an organisation, an agent, or a vocabulary, referenced by IRI, which can be a node in a local graph or an external IRI.|
-
 
 ## Summary of Policy Classes and Subclasses
 
