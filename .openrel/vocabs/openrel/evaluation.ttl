@@ -148,3 +148,43 @@ openrel:DateOrDateTime
     ] 
     .
 
+# -------------------------------------------------------------------------------------------------------------
+# Instances (Individuals) Definition
+# -------------------------------------------------------------------------------------------------------------
+
+cc:Attribution
+    a odrl:Action ;
+    openrel:hasEvaluation 
+		[
+        a openrel:EvaluationDetail ;
+        openrel:comparedIndividual cc:Notice ;
+		openrel:evaluationOutcome openrel:implies ;
+		openrel:assertedBy "Giray Havur" ;
+		openrel:wasDerivedFrom <https://github.com/dalicc/dalicc/blob/0f1a7e27a888e08e36cbea3246d6c8fb8d4ba991/licensedata/dependencygraph/dg_default.ttl> ;
+    	openrel:created "2023-12-10"
+		],
+		[
+        a openrel:EvaluationDetail ;
+        openrel:comparedIndividual odrl:use ;
+		openrel:evaluationOutcome openrel:includedIn ;
+		openrel:assertedBy "Giray Havur" ;
+		openrel:wasDerivedFrom <https://github.com/dalicc/dalicc/blob/0f1a7e27a888e08e36cbea3246d6c8fb8d4ba991/licensedata/dependencygraph/dg_default.ttl> ;
+    	openrel:created "2023-12-10"
+		],
+		[
+        a openrel:EvaluationDetail ;
+        openrel:comparedIndividual odrl:attribute ;
+		openrel:evaluationOutcome openrel:compatibleWith ;
+		openrel:assertedBy "Giray Havur" ;
+		openrel:wasDerivedFrom <https://github.com/dalicc/dalicc/blob/0f1a7e27a888e08e36cbea3246d6c8fb8d4ba991/licensedata/dependencygraph/dg_default.ttl> ;
+    	openrel:created "2023-12-10"
+		],
+		[
+        a openrel:EvaluationDetail ;
+        openrel:comparedIndividual openrel:attribute ;
+		openrel:evaluationOutcome openrel:compatibleWith ;
+		openrel:assertedBy <https://orcid.org/0000-0002-0255-5101> ;
+		openrel:wasDerivedFrom <https://github.com/wimhugo/openrel/blob/main/.openrel/vocabs/openrel/actions.ttl> ;
+    	openrel:created "2027-08-03"
+		]
+	.
