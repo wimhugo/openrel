@@ -47,7 +47,6 @@
     skos:exactMatch spdx:<> ;
     skos:exactMatch lfs:<> ;
     # Citation Information
-    dct:source <https://www.openaire.eu/privacy-policy> ;
     dc:title "AI Agent Access with TRUST+ Security and TOM Requirement" ;
     dct:publisher <https://ror.org/019kf3481> ;
     dct:created "2026-07-12T00:00:00+00:00" ;
