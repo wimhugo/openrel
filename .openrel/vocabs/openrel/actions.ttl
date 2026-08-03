@@ -82,9 +82,9 @@ odrl:action
 	skos:definition "The operation relating to the Asset for which the Rule is being subjected."@en ;
 	rdfs:domain [
 		a owl:Class ;
-		owl:unionOf ( :Rule :Policy ) ;
+		owl:unionOf ( odrl:Rule odrl:Policy ) ;
 	] ;
-	rdfs:range :Action .
+	rdfs:range odrl:Action .
 	# Extensions by OpenREL
 	#	None
 
@@ -95,7 +95,7 @@ openrel:contradicts
 	rdfs:label "Contradicting Action"@en ;
 	skos:definition "The Action contradicts another Action defined by the property."@en ;
 	rdfs:domain odrl:Action ;
-	rdfs:range :Action .
+	rdfs:range odrl:Action .
 
 # -------------------------------------------------------------------------------------------------------------
 # Foundational Action Instances
