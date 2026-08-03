@@ -1,0 +1,104 @@
+# Context and Input Licences
+# --------------------------------------------------------------------------------------------------------------------------------
+# Title: AI Agent Access with TRUST+ Security and TOM Requirement
+# Example Policy
+# OpenREL - Open Rights Encoding language
+# Version 0.4 (Draft)
+# Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/ EUDAT)
+# This Version: 3 August 2026
+# --------------------------------------------------------------------------------------------------------------------------------
+
+# context
+@base <http://www.w3.org/ns/openrel/0/> .
+@prefix : <http://www.w3.org/ns/openrel/0/> .
+# RDF-related
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+# general content
+@prefix schema: <http://schema.org/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+# rdmi-related
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcatap: <http://data.europa.eu/r5r/> .
+# rights-related
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix dalicc: <https://dalicc.net/ns#> .
+@prefix dalicclib: <https://dalicc.net/licenselibrary/> .
+@prefix ids: <https://w3id.org/idsa/core/> .
+@prefix idsc: <https://w3id.org/idsa/code/> .
+@prefix osl: <http://opensource.org/licenses/> .
+@prefix spdx: <http://spdx.org/rdf/terms#>  .
+@prefix spdxlicense: <http://spdx.org/licenses/> .
+@prefix dpv: <https://w3id.org/dpv> .
+@prefix lfs: <https://lfs.labs.dansdemo.nl/api/v1/licenses> .
+
+# --------------------------------------------------------------------------------------------------------------------------------
+# Access Rules Metadata
+# --------------------------------------------------------------------------------------------------------------------------------
+
+<15-ai-agent-trust-plus> a openrel:ProcessRules ;
+    # Alternate identifiers
+    skos:exactMatch spdx:<> ;
+    skos:exactMatch lfs:<> ;
+    # Citation Information
+    dct:source <https://www.openaire.eu/privacy-policy> ;
+    dc:title "AI Agent Access with TRUST+ Security and TOM Requirement" ;
+    dct:publisher <https://ror.org/019kf3481> ;
+    dct:created "2026-07-12T00:00:00+00:00" ;
+    dct:mofified "2026-08-04T00:00:00+00:00" ;
+    dct:creator "Melios Katsamakis - OpenAIRE" ;
+    dct:contributor <https://orcid.org/0000-0002-0255-5101> ;
+    dct:subject "AI Agent", "Trust" ;
+    openrel:accessType openrel:managed ;
+    dct:source <https://kb.internationaldataspaces.org/external/rulebook/103_Establishing_Trust/> ;
+    dct:version "0.1" ;
+    # Coverage related information
+    # These properties apply only for those policies that explicitly require them, optional for others
+    openrel:validityType openrel:perpetual ;
+    openrel:jurisdiction openrel:worldwide ;
+    odrl:assigner [ASSIGNER_IRI] ;
+    odrl:assignee [ASSIGNEE_IRI] ;
+    odrl:target [TARGET_IRI] ; 
+    # Disclaimers
+    openrel:liabilityLimitation {{Liability Limitation Text}} ;
+    openrel:warrantyNotice {{Warranty Notice Text}} ;
+    # Alternative representations, mappings of SPDX and LFS properties
+    openrel:legalCode [IRI_TO_LEGAL_CODE] ;
+    openrel:policyTextHtml [IRI_TO_HTML_VIEW] ;
+    openrel:policyText [IRI_TO_TEXT] ;
+    openrel:encodedRules openrel:15-ai-agent-trust-plus ;
+	  # Optional results of evaluation of two policies
+    openrel:permits [IRI_OF_OTHER_POLICY] ;
+	  openrel:contradicts [IRI_OF_OTHER_POLICY] ;
+    openrel:evaluationDetail [OPENREL_EVALUATION] ;
+
+# --------------------------------------------------------------------------------------------------------------------------------
+#   Rules
+# ---------------------------------- ----------------------------------------------------------------------------------------------
+    
+    odrl:permission [
+        odrl:action openrel:.use ;
+        odrl:constraint openrel:trustPlus ;
+        ### odrl:constraint openrel:namedConstraint.tom:required ;
+        odrl:duty [
+            odrl:action openrel:notify ;
+            odrl:constraint openrel:notifyClearingHouse 
+        ]
+    ] ;
+
+# Melios
+#    odrl:prohibition [
+#        odrl:action openrel:action.use ;
+#        odrl:constraint [
+#            odrl:leftOperand openrel:leftOperand.securityProfile ;
+#            odrl:operator odrl:neq ;
+#            odrl:rightOperand openrel:security.trustPlus
+#        ]
+#    ] ;
+
