@@ -108,13 +108,6 @@ openrel:userRole
   skos:exactMatch idsc:ROLE_RESTRICTED_DATA_USAGE ;
   skos:inScheme openrel:typeUsage .
 
-openrel:userRole
-  a skos:Concept ;
-  skos:prefLabel "User Role"@en ;
-  skos:definition "The party that is afforded access has to fill a specific role. These can, for example, be associated with the Agent Type vocabulary (type_agent.ttl)."@en ;
-  skos:exactMatch idsc:ROLE_RESTRICTED_DATA_USAGE ;
-  skos:inScheme openrel:typeUsage .
-
 openrel:purpose
   a skos:Concept ;
   skos:prefLabel "Purpose"@en ;
