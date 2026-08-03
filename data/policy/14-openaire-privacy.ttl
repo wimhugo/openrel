@@ -47,7 +47,6 @@
     skos:exactMatch spdx:<> ;
     skos:exactMatch lfs:<> ;
     # Citation Information
-    dct:source <https://www.openaire.eu/privacy-policy> ;
     dc:title "OpenAIRE Personal Data Processing Policy" ;
     dct:alternative "OpenAIRE Privacy Policy" ;
     dct:publisher <https://ror.org/019kf3481> ;
