@@ -112,7 +112,7 @@ openrel:assertedBy
 	skos:definition "The result of a comparison between two actions or named constraints was asserted by."@en ;
 	skos:note "An evaluation outcome can be asserted by an individual, an organisation, an agent, or a vocabulary."@en ;
 	rdfs:domain openrel:EvaluationDetail ;
-	skos:exactMatch prov:wasAttributedTo ;
+	rdfs:subPropertyOf prov:wasAttributedTo ;
 	rdfs:range rdfs:Resource .
 
 openrel:wasDerivedFrom
@@ -120,7 +120,7 @@ openrel:wasDerivedFrom
 	rdfs:isDefinedBy prov: ;
 	rdfs:label "Source of the assertion information."@en ;
 	skos:definition "The result of a comparison between two actions or named constraints was asserted by this mechanism or source."@en ;
-	skos:closeMatch prov:wasDerivedFrom ;
+	rdfs:subPropertyOf prov:wasDerivedFrom ;
 	rdfs:domain openrel:EvaluationDetail ;
 	rdfs:range openrel:DateOrDateTime .
 
@@ -129,7 +129,8 @@ openrel:created
 	rdfs:isDefinedBy dct: ;
 	rdfs:label "Date Created"@en ;
 	skos:definition "The result of a comparison between two actions or named constraints was asserted on this date."@en ;
-	skos:closeMatch dct:created ;
+	# rdfs:subPropertyOf dct:created ;
+	rdfs:subPropertyOf prov:generatedAtTime;
 	rdfs:domain openrel:EvaluationDetail ;
 	rdfs:range openrel:DateOrDateTime .
 
