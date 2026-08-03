@@ -774,6 +774,17 @@ dalicc:sellCopy
 	skos:broadMatch odrl:sell ;
     skos:note "Not used in any DALICC license encoding. Add skos matches."@en .
 
+# ---------- Creative Commons (CC)
+
+cc:Attribution
+    a odrl:Action ;
+	rdfs:isDefinedBy cc: ;
+    rdfs:label "Attribution"@en ;
+    skos:definition "credit be given to copyright holder and/or author."@en ;
+	skos:exactMatch openrel:attribute 
+    .
+
+
 
 
 
