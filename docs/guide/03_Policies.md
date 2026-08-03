@@ -54,7 +54,7 @@ OpenREL has defined four additional Policy subclasses, and each of these have a 
 |Licence|Unique to all Assets of the same class or type|A ***Licence*** Policy subclass introduces additional properties that are not typically applicable to other Policy subclasses, and takes its broad scope from the properties associated specifically with licences. It could be viewed as a special case (non-negotiable) of an Offer or an Agreement that will not be modified. | Could be the rights holder, repository, or authority. Generally applicable, but Agreements may be made that are specific in terms of the Asset, Assignee, and Assigner.|SPDX, for example, makes a distinction between the legal, human-readable, and machine-readable representations of a licence, and in some cases, such licences are legally enforceable in a specific jurisdiction (for example, in the case of some Creative Commons licences).|
 |Access Rule(s)| Unique to a Data Subject, repository, or institution|***Access Rules*** define conditions of access that are not generally considered to be part of a licence, but depends on the context. Such access rules may include, for example, the terms and conditions of use associated with a specific repository, data service, or institution. It may also encapsulate the requirements of the data subject(s) and encode their consent. It is usually policy-driven.| Repository, institution, or authority - usually the entity hosting the Asset.| An institution may require anyone interested in using an Asset to assent to its terms and conditions of use of the institution's services - clearly these are not part of a licence, and could be different for each insititution.|
 |Process Rule(s)| Unique to a software platform or dissemination channel|***Process Rules*** are formalities associated with the process of gaining access that do not concern access or licences, but are, for example, related to *interaction of a software platform or dissemination channel with an Assignee*. |The institution or software developer| A dissemination channel could, for example, have different rate limits applicable to human and machine users. It does not preclude access, and does not form part of the licence, but it determines in practical terms whether access is possible at a given moment. Likewise, there could be a requirement to register in a software platform for purposes of maintaining a profile, preferences, and settings prior to allowing downloads. |
-Negotiation|Often unique to repositories, but anyone can create and persist a Negotiation. |This Policy subclass captures additional metadata that contextualises a combination of other Policies that it includes by reference, either in terms of compatibility, and/ or in terms of the reason for collective reference.|Usually the repository or platform offering the Asset|For example, capturing the reasons a request for access was refused, or whether two input Policies are compatible.|
+Policy Collection|Often unique to repositories, but anyone can create and persist a Policy Collection. |This Policy subclass captures additional metadata that contextualises a combination of other Policies that it includes by reference, either in terms of compatibility, and/ or in terms of the reason for collective reference.|Usually the repository or platform offering the Asset|For example, indicating that an Asset or Asset collection is subject to multiple Policies, capturing the reasons a request for access was refused and recording the input Policies, or whether two input Policies are compatible.|
 
 ## Encoding User Context
 
@@ -68,19 +68,37 @@ OpenREL provides vocabulary to encode several categories of user context, for ex
 
 Using OpenREL vocabulary, user context can be encoded as one or more constraints with resolved Right Operands and persisted as an Assertion Policy that is unique to the end user. These can be included into Requests, and matched with an Offer or an existing Rule Set to determine compliance. It can be used pre-emptively to filter Rule Sets (policies, licences, access rules, process rules, and other combinations of rules) so that end users understand what types of Assets and Asset collections are available to them. A specific use case involves filtering of catalogue content to reflect whether access will be possible, and what should be changed to gain access in cases where it will not currently be possible.
 
-## Negotiation
+## Policy Collection
 
-A ***Negotiation*** allows the combination of Policy instances (which can be of any Policy subclass) into a single instance. There are three use cases for this:
+A ***Policy Collection*** allows the combination of Policy instances (which can be of any Policy subclass) into a single instance with its own IRI. There are three use cases for this:
 
 1. **Record of Negotiation**: As described above, a negotiation between parties to arrange access to and use of an Asset may require several inputs and outputs, including a Request, an Offer, an Agreement, and any number of Tickets. It may be convenient to reference all of these artefacts in a single instance for record purposes, and especially if the negotiation was a failure, to keep record of the reasons why this was the case.
-2. **Ease of Processing**: In some cases, access or use will depend on satisfying the constraints included in a Licence, Access Rules, and Process Rules, and finding all of these via the Asset reference may be cumbersome. The ***Negotiation*** allows combination of references to all of these instances to assist with processing and verification of compatibility. In some cases, the record of such incompatibility will be useful.
+2. **Ease of Processing**: In some cases, access or use will depend on satisfying the constraints included in a Licence, Access Rules, and Process Rules, and finding all of these via the Asset reference may be cumbersome. The ***Policy Collection*** allows combination of references to all of these instances to assist with processing and verification of compatibility. In some cases, any record of incompatibility will also be useful.
 3. ***Licence Combinations***: The Policies (especially Licences) applicable to two or more input Assets that are used in the creation of a derived Asset may not be compatible, and a record of such incompatibility is useful at times. The output from a combination of compatible Licences will be a new Licence applicable to the derived Asset.
 
-A Negotiation has the same properties as a Policy, and in addition, must include a new property to indicate at least one constituent Policy. This is reformulated as openrel:hasPolicy, based on the odrl:hasPolicy property. This property is related to the odrl:inheritFrom property, but since the inheritance direction is reversed, a new property is required. A policy Collection cannot be open-ended, and has to indicate the Asset Collection to which it applies. For example, a Policy Collection must specify the catalogue (asset collection) that it applies to in the context of an institution and its software platform(s). It corresponds to statements such as
+A ***Policy Collection*** has the same properties as a Policy, and in addition, must include a new property to indicate at least two constituent Policies. This is reformulated as openrel:hasPolicy, based on the odrl:hasPolicy property. This property is related to the odrl:inheritFrom property, but since the inheritance direction is reversed, a new property is required. A policy Collection cannot be open-ended, and has to indicate the Asset Collection to which it applies. For example, a Policy Collection must specify the catalogue (asset collection) that it applies to in the context of an institution and its software platform(s). It corresponds to statements such as
 
->"This Negotiation (Policy Collection) applies to all datasets containing personal data, hosted by [Institution] in its [Repository] using [Software Platform]".
+>"This Policy Collection applies to all datasets containing personal data, hosted by [Institution] in its [Repository] using [Software Platform]".
 
->"This Negotiation (Policy Collection) references all policy instances describing the negotiation for access to [Asset/ Asset Collection] requested by [Assignee] and granted by [Assigner]".
+>"This Policy Collection references all policy instances describing the negotiation for access to [Asset/ Asset Collection] requested by [Assignee] and granted by [Assigner]".
+
+The ***Policy Collection*** class also requires properties that assist with a record of negotiation outcomes and Policy comparisons. These are defined by the properties of an ***Evaluation Detail*** class.
+
+## Evaluation Detail Class
+
+OpenREL defines a specific class and set of supporting properties to encode the result of a pairwise comparison of ***Actions*** and ***Constraints*** (especially ***Named Constraints***). These are used in two distinct ways:
+
+- To record any number of predefined comparisons that can be used by a ***Reasoner*** to determine incompatibilities between ***Policies***.
+- To record a comparison that was performed between the ***Rule*** expressions for any two ***Policies*** by an agent, an individual, and organisation, or has been encoded as matches between ***Actions*** and/ or ***Named Constraints*** individuals in a vocabulary resource.
+
+For both of these types of use, we would like to record the following properties:
+
+|Property|IRI|Description|
+| ------- | -------- | -------- |
+|Compared To|openrel:comparedIndividual|"Action or constraint was compared to". Actions and Constraints can be compared pairwise to other actions and constraints, and the subject of the comparison is recorded as an IRI|
+|Evaluation Outcome|openrel:evaluationOutcome|"The result of a comparison between two actions or named constraints". The outcome is encoded using the concepts defined in openrel:typeEvaluationOutcome|
+|Asserted By|openrel:assertedBy|"The result of a comparison between two actions or named constraints was asserted by". An evaluation outcome can be asserted by an individual, an organisation, an agent, or a vocabulary, referenced by IRI, which can be a node in a local graph or an external IRI.|
+
 
 ## Summary of Policy Classes and Subclasses
 
@@ -133,20 +151,20 @@ The mid-section of Figure 3.2 shows this typical workflow.
 
 The Agreement subclass is designed to capture the results of a negotiation between Parties, but lacks the ability to record metadata about that negotiation. By definition, rejected Requests do not end up in Agreements, and as such, there will be no record of them.
 
-As indicated earlier, OpenREL adds a subclass that is a specialisation of odrl:Policy, called an openrel:Negotiation. This subclass can record additional metadata about a negotiated Agreement (or ‘disagreement’), and by definition contains records of unsuccessful Requests and the reason(s) why they were not successful.
+As indicated earlier, OpenREL adds a subclass that is a specialisation of **odrl:Policy**, called an **openrel:PolicyCollection**. This subclass can record additional metadata about a negotiated Agreement (or ‘disagreement’), and by definition contains records of unsuccessful Requests and the reason(s) why they were not successful.
 
 Such ‘disagreements’ will be much more common in cases where a Request is evaluated against a Licence, since a Licence is not negotiable. 
 
 Negotiation instances also encode two other cases:
 
-1. The combined outcome of one or more Licences, Access Rules, and Process Rules that apply in a given context. It might be a common occurrence for this negotiation to fail, for example if Access Rules satisfying a Data Subjects requirements do not match the Licence applied to the Asset.
+1. The combined outcome of one or more Licences, Access Rules, and Process Rules that apply in a given context. It might be a common occurrence for this negotiation to fail, for example if Access Rules satisfying a Data Subject's requirements do not match the Licence applied to the Asset.
 2. The combination of a number of input Policies (typically Licences) that are associated with Assets that are combined into a new derived Asset, since if these input Policies cannot be merged, it is technically not feasible to create the derivation since it cannot be licenced (no Policy can be formulated that satisfies the rules of all input Policies). The outcome of this negotiation is either a new combined Licence, or a Negotiation record of the incompatibility.
 
-The right-hand panel in Figure 3.2 shows this workflow.
+The right-hand panel in Figure 3.2 shows this workflow, and in practice, these last two example cases will likely not be evaluated at the time of use, but pre-evaluated using ***Reasoner*** capabilities as envisaged by the ***EvaluationDetail*** class.
 
-In practice there will likely be a very large number of Negotiation instances and these are not centralised or even federated, and hence will be accessible only locally (for example, in repository records). The exception will be generalised Negotiation instances that are quite common - we will discuss these in more detail later on.
+The records of negotiation are encoded in a ***PolicyCollection*** using the ***EvaluationDetail*** class and its properties, as defined earlier. In practice there will likely be a very large number of negotiation instances and these are not centralised or even federated, and hence will be accessible only locally (for example, in repository records). The exception will be generalised ***PolicyCollection*** instances that are quite common, which can be encoded using predefined ***EvaluationDetail*** individuals (instances).
 
-## Examples of COnflicting Licences, Platform Process Rules, and/ or Data Subject Access Rules
+## Examples of Conflicting Licences, Platform Process Rules, and/ or Data Subject Access Rules
 
 Figure 3.3 shows 2 examples of contradicting rules present in licences and other rules: in both cases platform Process Rules and data subject Access Rules are not compatible with the selected licence. There are potentially hundreds of thousands of such occurrences in operational repositories.
 
