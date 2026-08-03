@@ -56,7 +56,7 @@ openrel:assetType
 openrel:dataSubjectRights
 	a rdfs:Property, skos:Concept ;
 	rdfs:label "Subject Rights"@en ;        
-	skos:definition "Declares GDPR data subject rights applicable to an Asset or Asset Collection. Maps to W3C DPV rights vocabulary. No ODRL equivalent.."@en ;
+	skos:definition "Declares GDPR data subject rights applicable to an Asset or Asset Collection, or asserted by a data subject. Maps to W3C DPV rights vocabulary. No ODRL equivalent.."@en ;
 	skos:note "GDPR Chapter III / W3C DPV"@en ;
 	rdfs:domain odrl:Policy ;
 	rdfs:range openrel:typeDataSubjectRights ;
@@ -110,11 +110,11 @@ openrel:validityType
 
 openrel:hasPolicy
 	a rdf:Property , owl:ObjectProperty, skos:Concept ;
-	rdfs:isDefinedBy odrl: ;
+	rdfs:isDefinedBy openrel: ;
 	rdfs:label "Target Policy"@en ;
-	skos:definition "Identifies an ODRL Policy for which the identified Asset is the target Asset [or Asset Collection] to all the Rules."@en ;
-	skos:note "The Asset [or Asset Collection] being identified MUST be inferred to be the target Asset of all of the Rules of the Policy."@en ;
-    rdfs:domain :AssetCollection ;
+	skos:definition "Identifies an OpenREL Policy for which the Policy Collection instance is a container ."@en ;
+	skos:narrowMatch odrl:hasPolicy ;
+	rdfs:domain :AssetCollection ;
 	rdfs:range openrel:PolicyCollection .
 
 openrel:encodedRules
@@ -132,7 +132,7 @@ openrel:permits
 	rdfs:isDefinedBy openrel: ;
 	rdfs:label "Policy Permits Another Policy"@en ;
 	skos:definition "Evaluation Outcome of Comparing a Set of Policies."@en ;
-	skos:note "OpenREL: Typical context is that policy A (a Licence) permits policy B (a Request or an Assertion), or that Policy A (A Licence) permits Policy B (A ProcessRules or AccessRules)."@en ;
+	skos:note "OpenREL: Typical context is that policy A (a Licence) permits policy B (a Request, or an Assertion), or that Policy A (A Licence) permits Policy B (A ProcessRules or AccessRules)."@en ;
 	rdfs:range openrel:PolicyCollection 
   .
 
