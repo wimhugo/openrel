@@ -1,3 +1,5 @@
+# Connect my GitHub so I can directly select and pull raw TTL vocabulary files from my public repositories into the manager.
+
 # -------------------------------------------------------------------------------------------------------------
 # OpenREL - Open Rights Encoding language
 # Version 0.4 (Draft)
@@ -41,6 +43,7 @@
 @prefix spdxlicense: <http://spdx.org/licenses/> .
 @prefix dpv: <https://w3id.org/dpv> .
 @prefix ropa: <https://w3id.org/dpv-ropa#> .
+@prefix eu-gdpr: <https://www.w3.org/community/reports/dpvcg/CG-FINAL-eu-gdpr-20260225/> .
 
 # -------------------------------------------------------------------------------------------------------------
 # Definition of Scheme and Provenance
@@ -111,6 +114,55 @@ openrel:record-in-asset
   skos:note "This captures the requirement to annotate e.g. source code, where the original licence is displayed as comments, with additional comments to indicate changes."@en ;
   skos:inScheme openrel:notification-target-type .
 
+openrel:notice-collection-subject
+  a skos:Concept ;
+  skos:closeMatch eu-gdpr:DirectDataCollectionNotice ;
+  rdfs:isDefinedBy openrel: ;
+  rdfs:prefLabel "Notice to Subject"@en ;
+  skos:definition "All instances of sensitive subject data collection from third-party sources must be notified to the subject."@en ;
+  skos:note "EU-GDPR: A Notice provided in fulfilment of GDPR's Art.13 regarding information to be provided where personal data are collected from the data subject."@en ;
+  dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_13/oj> ;
+  skos:inScheme openrel:notification-target-type .
+
+openrel:notice-collection-indirect
+  a skos:Concept ;
+  skos:closeMatch eu-gdpr:IndirectDataCollectionNotice ;
+  rdfs:isDefinedBy openrel: ;
+  rdfs:prefLabel "Notice to Subject - Indirect"@en ;
+  skos:definition "All instances of sensitive subject data collection from third-party and indirect sources must be notified to the subject."@en ;
+  skos:note "EU-GDPR: A Notice provided in fulfilment of GDPR's Art.14 regarding information to be provided where personal data are not collected from the data subject."@en ;
+  dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_14/oj>  ;
+  skos:inScheme openrel:notification-target-type .
+
+openrel:notice-collection-indirect
+  a skos:Concept ;
+  skos:closeMatch eu-gdpr:IndirectDataCollectionNotice ;
+  rdfs:isDefinedBy openrel: ;
+  rdfs:prefLabel "Notice to Subject - Indirect"@en ;
+  skos:definition "All instances of sensitive subject data collection from third-party and indirect sources must be notified to the subject."@en ;
+  skos:note "EU-GDPR: A Notice provided in fulfilment of GDPR's Art.14 regarding information to be provided where personal data are not collected from the data subject."@en ;
+  dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_14/oj>  ;
+  skos:inScheme openrel:notification-target-type .
+
+openrel:notice-actions
+  a skos:Concept ;
+  skos:closeMatch eu-gdpr:RightsRecipientsNotice ;
+  rdfs:isDefinedBy openrel: ;
+  rdfs:prefLabel "Notice - Actions"@en ;
+  skos:definition "Actions requested by the data subject (rectification, erasure, ...) notified to the subject on completion."@en ;
+  skos:note "EU-GDPR: A Notice provided in fulfilment of GDPR's Art.19 regarding Recipients to whom a rights exercise has been communicated, such as regarding rectification (A.16) or erasure of personal data (A.17) or restriction of processing (A.18)."@en ;
+  dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_19/oj>  ;
+  skos:inScheme openrel:notification-target-type .
+
+openrel:notice-sar
+  a skos:Concept ;
+  skos:closeMatch eu-gdpr:SARNotice ;
+  rdfs:isDefinedBy openrel: ;
+  rdfs:prefLabel "Notice - Subject Access Request"@en ;
+  skos:definition "Fulfilment of a subject's request for access to subject data is notified to the subject on completion."@en ;
+  skos:note "EU-GDPR: A Notice provided in fulfilment of GDPR's Art.15 regarding information to be provided for Right of Access or Subject Access Request (SAR)."@en ;
+  dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_15/oj>  ;
+  skos:inScheme openrel:notification-target-type .
 
 
 
