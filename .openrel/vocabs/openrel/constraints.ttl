@@ -288,6 +288,19 @@ openrel:noSpecialCategory
 		odrl:rightOperand openrel:gdpr-special-category;
 	.
 
+openrel:trustPlus 
+	 a openrel:NamedConstraint ;
+		rdfs:label "Verified Trust+ "@en ;
+		skos:definition "Automated access - inclusive of AI agents - must be verified against the TRUST+ specification."@en ;
+		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
+		skos:note "Linked to several scenarios related to connector trustworthiness."@en ;
+		openrel:constraintType openrel:access ;
+		openrel:scenario openrel:trusted-connection ;
+		odrl:leftOperand openrel:securityProfile;
+		odrl:operator odrl:eq ;
+		odrl:rightOperand openrel:trust-plus ;
+		.
+
 
 
 
