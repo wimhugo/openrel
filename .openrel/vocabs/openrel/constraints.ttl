@@ -313,6 +313,30 @@ openrel:trustPlus
 		odrl:rightOperand openrel:trust-plus ;
 		.
 
+openrel:openAccess
+	 a openrel:NamedConstraint ;
+		rdfs:label "Open Access Policies Only"@en ;
+		skos:definition "Automated access only permitted for open access policies."@en ;
+		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
+		openrel:constraintType openrel:tom ;
+		openrel:scenario openrel:formal-toms ;
+		odrl:leftOperand openrel:accessCategory ;
+		odrl:operator odrl:eq ;
+		odrl:rightOperand openrel:open-access ;
+		.
+
+openrel:managedAccess
+	 a openrel:NamedConstraint ;
+		rdfs:label "Managed Access Policies Only"@en ;
+		skos:definition "Automated access only permitted for managed access policies."@en ;
+		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
+		openrel:constraintType openrel:tom ;
+		openrel:scenario openrel:formal-toms ;
+		odrl:leftOperand openrel:accessCategory ;
+		odrl:operator odrl:eq ;
+		odrl:rightOperand openrel:managed-access ;
+		.
+
 
 
 
