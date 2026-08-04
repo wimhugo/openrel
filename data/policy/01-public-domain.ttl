@@ -44,20 +44,20 @@
 
 <01-public-domain> a openrel:ProcessRules ;
     # Alternate identifiers
-    skos:exactMatch spdx:CC0-1.0 ;
-    skos:exactMatch lfs:CC0-1.0 ;
+    dct:relation spdx:CC0-1.0 ;
+    dct:relation lfs:CC0-1.0 ;
     # Citation Information
     dct:title "Creative Commons Zero v1.0 Universal" ;
     dct:description "Anyone can read, download, share, and reuse this resource freely, for any purpose including commercial use."@en ;
-    dct:publisher <> ;
+    dct:publisher "Creative Commons" ;
     dct:created "2026-07-12T00:00:00+00:00" ;
     dct:modified "2026-08-03T00:00:00+00:00" ;
     dct:creator "Melios Katsamakis - OpenAIRE" ;
     dct:contributor <https://orcid.org/0000-0002-0255-5101> ;
     dct:subject "Public Domain" ;
     openrel:accessType openrel:openAccess ;
-    dct:source <> ;
-    dct:version "0.1" ;
+    dct:source <https://creativecommons.org/publicdomain/zero/1.0/> ;
+    dct:version "1.0" ;
     # Coverage related information
     openrel:validityType openrel:perpetual ;
     openrel:jurisdiction openrel:worldwide ;
@@ -68,7 +68,7 @@
     openrel:legalCode <https://creativecommons.org/publicdomain/zero/1.0/legalcode> ;
     openrel:policyTextHtml <https://spdx.org/licenses/CC0-1.0.html> ;
     openrel:policyText <https://lfs.labs.dansdemo.nl/api/v1/licenses/CC0-1.0/original> ;
-    openrel:encodedRules openrel:<20-agentic-ai-audit> ;
+    openrel:encodedRules <https://github.com/wimhugo/openrel/edit/main/data/policy/01-public-domain.ttl> ;
 
 # --------------------------------------------------------------------------------------------------------------------------------
 #   Rules
