@@ -106,9 +106,13 @@
             odrl:action odrl:distribute ;
             odrl:duty 
                 [ a odrl:Duty ;
-                    odrl:action cc:Attribution ],
+                    odrl:action openrel:attribute ],
                 [ a odrl:Duty ;
-                    odrl:action cc:Notice ] 
+                    odrl:action openrel:notify ;
+                        odrl:named constraint openrel:namedConstraint openrel:notifyInAsset ;
+                ]   
+        ],
+
         ],
 
         [ a odrl:Permission ;
