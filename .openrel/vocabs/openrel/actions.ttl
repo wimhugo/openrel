@@ -327,6 +327,14 @@ openrel:assentTo
 	skos:note "Policies and Process Rulesets (e.g. terms of use) often extend access and process conditions that are not part of a licence, but depends on the context of the catalogue/ repository, funder, etc. These may require positive assent (acknowledgement) of a number of rules prior to gaining access to an asset, irrespective of eligibility in respect of licence conditions. Examples: users must register in the repository portal (policy), must assent to licence conditions,  or acknowledge the terms of use (both process duties)."@en ;
 	rdfs:isDefinedBy openrel: .
 
+openrel:shareAlike
+	a :Action, skos:Concept ;
+	rdfs:label "Share Alike"@en ;	
+	skos:definition "The Asset or its derivatives may be distributed without modification of its original Policy."@en ;
+	skos:note "CC: derivative works be licensed under the same terms or compatible terms as the original work."@en ;
+	skos:exactMatch cc:ShareAlike ;
+	rdfs:isDefinedBy cc: .
+
 
 # -------------------------------------------------------------------------------------------------------------
 # Supported Actions
