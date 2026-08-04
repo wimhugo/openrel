@@ -1,0 +1,142 @@
+# Context and Input Licences
+# --------------------------------------------------------------------------------------------------------------------------------
+# Title: The machine-readable representation of "Creative Commons Attribution 4.0 International"@en in the DALICC license library
+# Author: DALICC
+# Source: dalicclib:CC-BY-ND-4.0
+# Licensed under: Attribution 4.0 International (CC BY 4.0) 
+# Amended by and aligned with OpenREL
+# --------------------------------------------------------------------------------------------------------------------------------
+# OpenREL - Open Rights Encoding language
+# Version 0.4 (Draft)
+# Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/ EUDAT)
+# This Version: 04 August 2026
+
+# context
+@base <http://www.w3.org/ns/openrel/0/> .
+@prefix : <http://www.w3.org/ns/openrel/0/> .
+# RDF-related
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+# general content
+@prefix schema: <http://schema.org/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+# rdmi-related
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcatap: <http://data.europa.eu/r5r/> .
+# rights-related
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix dalicc: <https://dalicc.net/ns#> .
+@prefix ids: <https://w3id.org/idsa/core/> .
+@prefix idsc: <https://w3id.org/idsa/code/> .
+@prefix osl: <http://opensource.org/licenses/> .
+@prefix spdx: <http://spdx.org/rdf/terms#>  .
+@prefix dpv: <https://w3id.org/dpv/> .
+# Policy Libraries and Registries
+@prefix openrellib: <https://github.com/wimhugo/openrel/new/main/data/policy/> .
+@prefix spdxlicense: <http://spdx.org/licenses/> .
+@prefix dalicclib: <https://dalicc.net/licenselibrary/> 
+@prefix lfslib: <https://lfs.labs.dansdemo.nl/api/v1/licenses/> .
+
+# --------------------------------------------------------------------------------------------------------------------------------
+# Policy Metadata
+# --------------------------------------------------------------------------------------------------------------------------------
+
+<CC-BY-ND-4.0 a openrel:Licence ;
+    # Attribution
+    prov:wasDerivedFrom ddalicclib:CC-BY-ND-4.0 ;
+    prov:wasAttributedTo "Giray Havur" ;
+    # Alternate identifiers
+    dct:relation spdxlicense:CC-BY-ND-4.0 ;
+    dct:relation lfs:CC-BY-ND-4.0 ;
+    # Citation Information
+    dct:title "Creative Commons Attribution 4.0 International"@en ;
+    dct:alternative 
+        "Attribution 4.0",
+        "Attribution 4.0 International",
+        "CC BY 4.0",
+        "CC BY 4.0 International",
+        "CC-BY 4.0",
+        "CC-BY-4.0",
+        "CC-BY-4.0 International",
+        "Creative Commons BY 4.0",
+        "Creative Commons BY 4.0 International" ;
+    dct:description "Anyone can read, download, share, and adapt for any purpose — provided the original author is credited."@en ;
+    dct:publisher "Creative Commons" ;
+    dct:created "2026-07-12T00:00:00+00:00" ;
+    dct:modified "2026-08-03T00:00:00+00:00" ;
+    dct:creator "Melios Katsamakis - OpenAIRE" ;
+    dct:contributor <https://orcid.org/0000-0002-0255-5101> ;
+    dct:subject "Public Domain" ;
+    openrel:accessType openrel:openAccess ;    
+    dct:source <https://creativecommons.org/licenses/by/4.0/> ;
+    dct:version "4.0" ;
+    # Coverage related information
+    cc:jurisdiction openrel:worldwide ;
+    openrel:validityType openrel:perpetual ;
+    # Disclaimers
+    openrel:liabilityLimitation "To the extent possible, in no event will the Licensor be liable to You on any legal theory (including, without limitation, negligence) or otherwise for any direct, special, indirect, incidental, consequential, punitive, exemplary, or other losses, costs, expenses, or damages arising out of this Public License or use of the Licensed Material, even if the Licensor has been advised of the possibility of such losses, costs, expenses, or damages. Where a limitation of liability is not allowed in full or in part, this limitation may not apply to You." ;
+    openrel:warrantyNotice "Unless otherwise separately undertaken by the Licensor, to the extent possible, the Licensor offers the Licensed Material as-is and as-available, and makes no representations or warranties of any kind concerning the Licensed Material, whether express, implied, statutory, or other. This includes, without limitation, warranties of title, merchantability, fitness for a particular purpose, non-infringement, absence of latent or other defects, accuracy, or the presence or absence of errors, whether or not known or discoverable. Where disclaimers of warranties are not allowed in full or in part, this disclaimer may not apply to You." ;
+    # Alternative representations, mappings of SPDX and LFS properties
+    openrel:legalcode <https://creativecommons.org/licenses/by/4.0/legalcode> ;
+    openrel:policyTextHtml <https://spdx.org/licenses/CC-BY-4.0.html> ;
+    openrel:policyText lfslib:CC-BY-4.0/original ;
+    openrel:encodedRules <https://github.com/wimhugo/openrel/edit/main/data/policy/09-attribution.ttl> ;
+
+# --------------------------------------------------------------------------------------------------------------------------------
+#   Rules
+# --------------------------------------------------------------------------------------------------------------------------------
+    
+    odrl:permission 
+        [ a odrl:Permission ;
+            odrl:action odrl:display ],
+        [ a odrl:Permission ;
+            odrl:action odrl:distribute ;
+            odrl:duty 
+                [ a odrl:Duty ;
+                    odrl:action cc:Attribution ],
+                [ a odrl:Duty ;
+                    odrl:action cc:Notice ] 
+        ],
+
+        [ a odrl:Permission ;
+            odrl:action odrl:modify ;
+            odrl:duty 
+                [ a odrl:Duty ;
+                    odrl:action openrel:attribute ],
+                [ a odrl:Duty ;
+                    odrl:action openrel:notify ;
+                        odrl:named constraint openrel:namedConstraint openrel:notifyInAsset ;
+                ]   
+        ],
+
+        [ a odrl:Permission ;
+            odrl:action odrl:derive ;
+            odrl:duty 
+              [ a odrl:Duty ;
+                    odrl:action cc:Attribution ],
+              [ a odrl:Duty ;
+                    odrl:action openrel:notify ;
+                    odrl:namedConstraint openrel:notifyInAsset ;
+              ]
+
+        [ a odrl:Permission ;
+            odrl:action odrl:present ],
+        [ a odrl:Permission ;
+            odrl:action odrl:reproduce ],
+        [ a odrl:Permission ;
+            odrl:action openrel:costRecovery 
+            openrel:namedconstraint openrel:allowDistrubutionFee ;          
+        ] ;
+   
+    odrl:target 
+        [ a odrl:AssetCollection ;
+            dct:type cc:Work, dcmitype:Dataset 
+        ] ;
+
+    .
