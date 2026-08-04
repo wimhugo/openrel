@@ -68,6 +68,7 @@
         "Creative Commons BY-NC 4.0",
         "Creative Commons BY-NC 4.0 International" ;
     dct:description "Free to read and share, but commercial exploitation is not permitted. Attribution required."@en ;
+    skos:note "Commercial purposes - including trademark use, selling, charging a licence fee, use in promotion, or any other direct or indirect commerciaal benefit that derives from use of the asset - is not permitted by the Assigner."@en ;
     dct:publisher "Creative Commons" ;
     dct:created "2026-07-12T00:00:00+00:00" ;
     dct:modified "2026-08-03T00:00:00+00:00" ;
@@ -87,14 +88,16 @@
     openrel:legalcode <https://creativecommons.org/licenses/by-nc/4.0/legalcode> ;
     openrel:policyTextHtml <https://spdx.org/licenses/CC-BY-NC-4.0.html> ;
     openrel:policyText <https://lfs.labs.dansdemo.nl/api/v1/licenses/CC-BY-NC-4.0/original> ;
-    openrel:encodedRules <https://github.com/wimhugo/openrel/blob/main/data/policy/03-attribution-sharealike.ttl> ;
+    openrel:encodedRules <https://github.com/wimhugo/openrel/blob/main/data/policy/04-attribution-noncommercial.ttl> ;
 
 # --------------------------------------------------------------------------------------------------------------------------------
 #   Rules
 # --------------------------------------------------------------------------------------------------------------------------------
     
-        odrl:duty [ a odrl:Duty ;
-            odrl:action openrel:shareAlike ] ;
+        odrl:prohibition [ a odrl:Prohibition ;
+            odrl:action openrel:commercialise ],
+        [ a odrl:Prohibition ;
+            odrl:action openrel:applyLicence ] ;
 
         odrl:permission 
         [ a odrl:Permission ;
