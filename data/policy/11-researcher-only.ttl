@@ -43,7 +43,7 @@
 # Process Rules Metadata
 # --------------------------------------------------------------------------------------------------------------------------------
 
-<AC-ID-EIDAS> a openrel:ProcessRules ;
+<AC-VI> a openrel:ProcessRules ;
     # Alternate identifiers
     dct:relation lfslib:[TO_BE_REGISTERED] ;
 
