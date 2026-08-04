@@ -45,7 +45,7 @@
 # PolicyCollection Metadata
 # --------------------------------------------------------------------------------------------------------------------------------
 
-<16-embargo-CC-BY-4.0> a openrel:PolicyCollection ;
+<OR-BY-AC-ID-4.0> a openrel:PolicyCollection ;
     # Alternate identifiers
     # skos:exactMatch spdx:<> ;
     # skos:exactMatch lfslib:<> ;
@@ -56,7 +56,7 @@
     dct:modified "2026-08-04T00:00:00+00:00" ;
     dct:creator "Melios Katsamakis - OpenAIRE" ;
     dct:contributor <https://orcid.org/0000-0002-0255-5101> ;
-    dct:subject "Embargo", "CC BY 4.0" ;
+    dct:subject "Researcher", "Identitified", "eIDAS", "Non-Commercial", "CC BY NC 4.0" ;
     openrel:accessType openrel:managed ;
     dct:source <> ;
     dct:version "0.1" ;
@@ -78,7 +78,7 @@
 
 <CC-BY-NC-4.0>
     a openrel:Licence, odrl:Policy ;
-    openrel:permits <11-researcher-only> ;
+    openrel:permits <AC-ID> ;
     openrel:hasEvaluation [
         a openrel:EvaluationDetail ;
         openrel:assertedBy <https://orcid.org/0000-0002-0255-5101> ;
