@@ -83,22 +83,26 @@
 #   Rules
 # --------------------------------------------------------------------------------------------------------------------------------
     
-    odrl:permission [
-        odrl:action openrel:use ;
-        odrl:constraint <verified-AI-agent> ;
-        odrl:duty [
-            a openrel:NamedConstraint
-            @id openrel:notifyClearingHouse ;
-            openrel:applicableEndpoint [CLREARINGHOUSE_API] 
-          ]
-      ] ;
+	odrl:permission [
+		odrl:action openrel:use ;
+		odrl:constraint <verified-AI-agent> ;
+		odrl:constraint <humanOversight>
+		odrl:duty [
+			a openrel:NamedConstraint
+			@id openrel:notifyClearingHouse ;
+			openrel:applicableEndpoint [CLEARINGHOUSE_API] 
+		  ]
+	  ] ;
 
-    odrl:prohibition [
-        odrl:action openrel:use ;
-        odrl:constraint <notDeclaredPurpose>
-    ] ;
+	odrl:prohibition [
+		odrl:action openrel:use ;
+		odrl:constraint <notDeclaredPurpose>
+	] ;
 
-
+	odrl:obligation [
+		odrl:action openrel:use ;
+		odrl:constraint <dataMinimisationSpec>
+	] ;
 
 		
 # --------------------------------------------------------------------------------------------------------------------------------
@@ -115,33 +119,64 @@
 		odrl:leftOperand openrel:delegationToken ;
 		odrl:operator odrl:eq ;
 		odrl:rightOperand TRUE ;
-    openrel:applicableEndpoint [TOKEN_VERIFICATION_ENDPOINT] 
+    	openrel:applicableEndpoint [TOKEN_VERIFICATION_ENDPOINT] 
 		.
 
 <notDeclaredPurpose>
-    rdfs:label "Declared Purpose" ;
-    skos:definition "IRL to a resource with a declared purpose of use." ;
-    skos:note "Purpose drift prohibited — agent may not use data outside declared scope." ;
+	 a openrel:NamedConstraint ;
+		rdfs:label "Declared Purpose" ;
+		skos:definition "IRL to a resource with a declared purpose of use." ;
+		skos:note "Purpose drift prohibited — agent may not use data outside declared scope." ;
 		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
 		openrel:constraintType openrel:usage ;
 		openrel:scenario openrel:explicit-consent ;
-    odrl:leftOperand odrl:purpose ;
-    odrl:operator odrl:neq ;
-    odrl:rightOperand [DECLARED_PURPOSE_IRI]
-    openrel:applicableEndpoint [PURPOSE_VERIFICATION_ENDPOINT] 
-    .
+		odrl:leftOperand odrl:purpose ;
+		odrl:operator odrl:neq ;
+		odrl:rightOperand [DECLARED_PURPOSE_IRI]
+		openrel:applicableEndpoint [PURPOSE_VERIFICATION_ENDPOINT] 
+		.
 
 <explicitConsentObtained>
-    rdfs:label "Explicit Consent Obtained" ;
-    skos:definition "IRL to a resource with explicit consent for the declared purpose of use." ;
+	 	a openrel:NamedConstraint ;
+		rdfs:label "Explicit Consent Obtained" ;
+		skos:definition "IRL to a resource with explicit consent for the declared purpose of use." ;
 		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
 		openrel:constraintType openrel:usage ;
 		openrel:scenario openrel:explicit-consent ;
-    odrl:leftOperand openrel:consentRequired ;
-    odrl:operator odrl:eq ;
-    odrl:rightOperand openrel:consent-reuse-before ;
-    openrel:applicableEndpoint [CONSENT_IRI]
-    .
+		odrl:assigner [HUMAN_PRINCIPAL_IRI] ;
+		odrl:leftOperand openrel:consentRequired ;
+		odrl:operator odrl:eq ;
+		odrl:rightOperand openrel:consent-reuse-before ;
+		openrel:applicableEndpoint [CONSENT_IRI]
+		.
+
+<consentExpiry>
+	 	a openrel:NamedConstraint ;
+		rdfs:label "Explicit Consent Expires" ;
+		skos:definition "Explicit consent to use the data is time limited." ;
+		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
+		openrel:constraintType openrel:usage ;
+		openrel:scenario openrel:tech-limits ;
+		odrl:assigner [HUMAN_PRINCIPAL_IRI] ;
+		odrl:leftOperand odrl:dateTime ;
+		odrl:operator odrl:lteq ;
+		odrl:rightOperand [CONSENT_EXPIRY_DATE] ;
+		openrel:applicableEndpoint [CONSENT_IRI]
+		.
+
+<dataMinimisationSpec>
+	 a openrel:NamedConstraint ;
+		rdfs:label "Data Minimisation Specification"@en ;
+		skos:definition "Data minimisation: agent may only access fields required for declared purpose."@en ;
+		skos:note "For sensitive data, the OpenREL extensions to DPV may be used to encode the specification."@en ;
+		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
+		openrel:constraintType openrel:tom ;
+		openrel:scenario openrel:formal-toms ;
+		odrl:leftOperand openrel:usageLimitation ;
+		odrl:operator odrl:eq ;
+		odrl:rightOperand openrel:dataMinimisation ;
+    	openrel:applicableEndpoint [DATA_SPECIFICATION] 
+		.
 
 # --------------------------------------------------------------------------------------------------------------------------------
 # Custom Logical Constraints
@@ -154,5 +189,12 @@
         openrel:confirmedAIAgent
         openrel:trustPlus
         <tokenVerified>
+    ) 
+
+<humanOversight>
+    a odrl:LogicalConstraint ;
+    odrl:and (
+		<consentExpiry>
+		<explicitConsentObtained>
     ) 
 .
