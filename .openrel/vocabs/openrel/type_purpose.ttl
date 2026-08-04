@@ -95,7 +95,7 @@ openrel:commercialResearch
 openrel:nonCommercial 
   a skos:Concept ;
   skos:narrowMatch dpv:NonCommercialResearch ;
-  skos:exactMacth cc:CommercialUse ;
+  skos:exactMatch cc:CommercialUse ;
   skos:broader openrel:researchUse ;
   skos:prefLabel "Non-Commercial Research" ;	
   rdfs:label "Non-Commercial Research Use"@en ;
