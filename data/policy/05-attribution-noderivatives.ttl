@@ -1,6 +1,6 @@
 # Context and Input Licences
 # --------------------------------------------------------------------------------------------------------------------------------
-# Title: The machine-readable representation of "Creative Commons Attribution 4.0 International"@en in the DALICC license library
+# Title: The machine-readable representation of "Creative Commons Attribution No Derivatives4.0 International" in the DALICC license library
 # Author: DALICC
 # Source: dalicclib:CC-BY-ND-4.0
 # Licensed under: Attribution 4.0 International (CC BY 4.0) 
@@ -26,6 +26,7 @@
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 # rdmi-related
 @prefix dct: <http://purl.org/dc/terms/> .
+@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix dcatap: <http://data.europa.eu/r5r/> .
 # rights-related
@@ -55,18 +56,20 @@
     dct:relation spdxlicense:CC-BY-ND-4.0 ;
     dct:relation lfs:CC-BY-ND-4.0 ;
     # Citation Information
-    dct:title "Creative Commons Attribution 4.0 International"@en ;
+    dct:title "Creative Commons Attribution NoDerivatives 4.0 International"@en ;
     dct:alternative 
-        "Attribution 4.0",
-        "Attribution 4.0 International",
-        "CC BY 4.0",
-        "CC BY 4.0 International",
-        "CC-BY 4.0",
-        "CC-BY-4.0",
-        "CC-BY-4.0 International",
-        "Creative Commons BY 4.0",
-        "Creative Commons BY 4.0 International" ;
-    dct:description "Anyone can read, download, share, and adapt for any purpose — provided the original author is credited."@en ;
+        "Attribution NoDerivatives 4.0 International",
+        "Attribution-NoDerivatives 4.0",
+        "Attribution-NoDerivatives 4.0 International",
+        "CC BY ND 4.0",
+        "CC BY ND 4.0 International",
+        "CC BY-ND 4.0",
+        "CC BY-ND 4.0 International",
+        "CC-BY-ND 4.0",
+        "CC-BY-ND 4.0 International",
+        "Creative Commons BY-ND 4.0",
+        "Creative Commons BY-ND 4.0 International" ;
+    dct:description "Users may read and download but may not modify, adapt, or create derivative works."@en ;
     dct:publisher "Creative Commons" ;
     dct:created "2026-07-12T00:00:00+00:00" ;
     dct:modified "2026-08-03T00:00:00+00:00" ;
@@ -74,18 +77,22 @@
     dct:contributor <https://orcid.org/0000-0002-0255-5101> ;
     dct:subject "Public Domain" ;
     openrel:accessType openrel:openAccess ;    
-    dct:source <https://creativecommons.org/licenses/by/4.0/> ;
+    dct:source <https://creativecommons.org/licenses/by-nd/4.0/> ;
     dct:version "4.0" ;
     # Coverage related information
     cc:jurisdiction openrel:worldwide ;
     openrel:validityType openrel:perpetual ;
+    odrl:target 
+    [ a odrl:AssetCollection ;
+        dct:type cc:Work, dcmitype:Dataset 
+    ] ;
     # Disclaimers
     openrel:liabilityLimitation "To the extent possible, in no event will the Licensor be liable to You on any legal theory (including, without limitation, negligence) or otherwise for any direct, special, indirect, incidental, consequential, punitive, exemplary, or other losses, costs, expenses, or damages arising out of this Public License or use of the Licensed Material, even if the Licensor has been advised of the possibility of such losses, costs, expenses, or damages. Where a limitation of liability is not allowed in full or in part, this limitation may not apply to You." ;
     openrel:warrantyNotice "Unless otherwise separately undertaken by the Licensor, to the extent possible, the Licensor offers the Licensed Material as-is and as-available, and makes no representations or warranties of any kind concerning the Licensed Material, whether express, implied, statutory, or other. This includes, without limitation, warranties of title, merchantability, fitness for a particular purpose, non-infringement, absence of latent or other defects, accuracy, or the presence or absence of errors, whether or not known or discoverable. Where disclaimers of warranties are not allowed in full or in part, this disclaimer may not apply to You." ;
     # Alternative representations, mappings of SPDX and LFS properties
-    openrel:legalcode <https://creativecommons.org/licenses/by/4.0/legalcode> ;
-    openrel:policyTextHtml <https://spdx.org/licenses/CC-BY-4.0.html> ;
-    openrel:policyText lfslib:CC-BY-4.0/original ;
+    openrel:legalcode <https://creativecommons.org/licenses/by-nd/4.0/legalcode> ;
+    openrel:policyTextHtml <https://spdx.org/licenses/CC-BY-ND-4.0.html> ;
+    openrel:policyText lfslib:CC-BY-ND-4.0/original ;
     openrel:encodedRules <https://github.com/wimhugo/openrel/edit/main/data/policy/09-attribution.ttl> ;
 
 # --------------------------------------------------------------------------------------------------------------------------------
@@ -102,7 +109,7 @@
                     odrl:action openrel:attribute ],
                 [ a odrl:Duty ;
                     odrl:action openrel:notify ;
-                        odrl:named constraint openrel:namedConstraint openrel:notifyInAsset ;
+                        openrel:namedConstraint openrel:notifyInAsset ;
                 ]   
         ],
         [ a odrl:Permission ;
@@ -112,20 +119,19 @@
                     odrl:action openrel:attribute ],
                 [ a odrl:Duty ;
                     odrl:action openrel:notify ;
-                        odrl:named constraint openrel:namedConstraint openrel:notifyInAsset ;
+                        openrel:namedConstraint openrel:notifyInAsset ;
                 ]   
         ],
-
         [ a odrl:Permission ;
             odrl:action odrl:derive ;
             odrl:duty 
-              [ a odrl:Duty ;
-                    odrl:action openrel:attribute ],
-              [ a odrl:Duty ;
-                    odrl:action openrel:notify ;
-                    odrl:namedConstraint openrel:notifyInAsset ;
-              ]
-
+                  [ a odrl:Duty ;
+                        odrl:action openrel:attribute ],
+                  [ a odrl:Duty ;
+                        odrl:action openrel:notify ;
+                        odrl:namedConstraint openrel:notifyInAsset ;
+                  ]
+        ],
         [ a odrl:Permission ;
             odrl:action odrl:present ],
         [ a odrl:Permission ;
@@ -133,11 +139,6 @@
         [ a odrl:Permission ;
             odrl:action openrel:costRecovery 
             openrel:namedconstraint openrel:allowDistrubutionFee ;          
-        ] ;
-   
-    odrl:target 
-        [ a odrl:AssetCollection ;
-            dct:type cc:Work, dcmitype:Dataset 
         ] ;
 
     .
