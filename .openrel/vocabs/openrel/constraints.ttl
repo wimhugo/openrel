@@ -190,6 +190,16 @@ openrel:eidasVerifiedResearcher
         odrl:rightOperand openrel:context-eidas ;
         .
 
+openrel:eidasVerified 
+     a openrel:namedConstraint ;
+        rdfs:label "eIDAS Verfied Identity"@en ;
+        skos:definition "End User or agenthas been verified via eIDAS."@en ;
+        openrel:constraintType openrel:context ;
+        odrl:leftOperand openrel:contextLimitation ;
+        odrl:operator odrl:eq ;
+        odrl:rightOperand openrel:context-eidas ;
+        .
+
 openrel:confirmedAIAgent 
      a openrel:namedConstraint ;
         rdfs:label "Verified AI Agent"@en ;
