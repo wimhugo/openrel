@@ -290,6 +290,24 @@ openrel:applyLicence
 	rdfs:isDefinedBy openrel: 
 	.
 
+openrel:commercialise
+	a odrl:Action ;
+	rdfs:isDefinedBy openrel: ;
+    rdfs:comment "The Assigner permits [/does not permit] the Assignee to use the asset for commercial purposes - including trademark use, selling, charging a licence fee, use in promotion, or any other direct or indirect commerciaal benefit that derives from use of the asset. ."@en ;
+    rdfs:label "Commercialise"@en ;
+    skos:note "Generalises some DALICC, ODRL, and CC encodings."@en 
+	# Extensions by OpenREL
+	skos:exactMatch cc:CommercialUse ;
+	skos:narrowMatch openrel:sell,
+					 openrel:promote,
+					 openrel:trademarkUse,
+					 openrel:costRecovery,
+					 odrl:sell,
+					 dalicc:chargeDistributionFee,
+					 dalicc:chargeLicenseFee,
+					 dalicc:chargeOffer
+	.
+
 openrel:trademarkUse
 	a :Action, skos:Concept ;
 	rdfs:label "Trademark Use"@en ;	
@@ -313,7 +331,7 @@ openrel:promote
 openrel:costRecovery
 	a odrl:Action ;
 	rdfs:isDefinedBy openrel: ;
-    rdfs:comment "The Assigner permits [/does not permit] the Assignee to revicer costs of permitted actions related to third party use."@en ;
+    rdfs:comment "The Assigner permits [/does not permit] the Assignee to recover costs of permitted actions related to third party use."@en ;
     rdfs:label "Cost Recovery"@en ;
     skos:note "Generalises some DALICC encodings, for example 'dalicc:ChargeDistibution'. No ODRL matches."@en 
 	# Extensions by OpenREL
@@ -799,6 +817,14 @@ cc:Notice
     rdfs:label "Notice"@en ;
     skos:definition "copyright and license notices be kept intact."@en ;
 	skos:exactMatch openrel:notify 
+    .
+
+cc:CommercialUse
+    a odrl:Action ;
+	rdfs:isDefinedBy cc: ;
+    rdfs:label "Commercial Use"@en ;
+    skos:definition "exercising rights for commercial purposes."@en ;
+	skos:exactMatch openrel:commercialise 
     .
 
 
