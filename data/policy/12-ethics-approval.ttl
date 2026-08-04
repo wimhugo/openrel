@@ -58,11 +58,8 @@
     odrl:permission [
         odrl:action openrel:use ;
         odrl:constraint <12-ethics-approval.logical-constraint-001> ;
-    ] ;
-    
-    openrel:evaluation "permit | deny" ;
-    openrel:machineActionable "true" 
-.
+    ]
+    .
 
 # --------------------------------------
 # Custom Logical Constraints
@@ -74,11 +71,5 @@
         openrel:consentPrior 
         openrel:ethicsApproval 
     ) 
-.
+    .
 
-# --------------------------------------
-# Custom Named Constraints
-# --------------------------------------
-# None
-
-.
