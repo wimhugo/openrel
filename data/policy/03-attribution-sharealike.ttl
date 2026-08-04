@@ -85,13 +85,16 @@
     openrel:legalcode <https://creativecommons.org/licenses/by-sa/4.0/legalcode> ;
     openrel:policyTextHtml <https://spdx.org/licenses/CC-BY-SA-4.0.html> ;
     openrel:policyText <https://lfs.labs.dansdemo.nl/api/v1/licenses/CC-BY-SA-4.0/original> ;
-    openrel:encodedRules <https://github.com/wimhugo/openrel/edit/main/data/policy/09-attribution.ttl> ;
+    openrel:encodedRules <https://github.com/wimhugo/openrel/blob/main/data/policy/03-attribution-sharealike.ttl> ;
 
 # --------------------------------------------------------------------------------------------------------------------------------
 #   Rules
 # --------------------------------------------------------------------------------------------------------------------------------
     
-    odrl:permission 
+        odrl:duty [ a odrl:Duty ;
+            odrl:action openrel:shareAlike ] ;
+
+        odrl:permission 
         [ a odrl:Permission ;
             odrl:action odrl:display ],
         [ a odrl:Permission ;
