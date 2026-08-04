@@ -81,14 +81,93 @@
 
 # --------------------------------------------------------------------------------------------------------------------------------
 #   Rules
-# ---------------------------------- ----------------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------------------------------------------
     
     odrl:permission [
-        odrl:action openrel:.use ;
-        odrl:constraint [
-          odrl:leftOperand odrl:dateTime ; 
-          odrl:operand odrl:gteq ;
-          # encoded as a policy-based future date from date of publication                 
-          odrl:rightOperand [Date of Asset Publication] ; 
-          ]
-        .
+        odrl:action openrel:action.read ;
+        odrl:constraint <authorisedEndpoint> ;
+        odrl:constraint <accessOpenManaged> ;
+        odrl:constraint openrel:constraint.volume:maxVolume ;
+        odrl:duty [
+            odrl:action openrel:log	;
+			odrl:constraint openrel:logUse ;	
+    	] ;
+
+### Melios
+# This is taken care of <accessOpenManaged> already?
+#    odrl:prohibition [
+#        odrl:action openrel:action.read ;
+#        dc:description "Full-content harvesting prohibited for non-open-access resources." ;
+#        odrl:constraint openrel:constraint.harvestingScope
+#    ] ;
+# This is taken care of <authorisedURI> already?		
+#    odrl:prohibition [
+#        odrl:action openrel:action.read ;
+#        dc:description "Unidentified bots denied entirely." ;
+#        odrl:constraint [
+#            odrl:leftOperand openrel:leftOperand.connectorURI ;
+#            odrl:operator odrl:isPartOf ;
+#            odrl:rightOperand openrel:connectorList.unknown
+#        ]
+#    ] ;
+		
+# --------------------------------------------------------------------------------------------------------------------------------
+# Custom Named Constraints
+# --------------------------------------------------------------------------------------------------------------------------------
+
+<authorisedURI>
+	 a openrel:NamedConstraint ;
+		rdfs:label "Authorised URI Only"@en ;
+		skos:definition "Asset MUST only distributed to an authorised endpoint URI"@en ;
+		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
+		openrel:constraintType openrel:tom ;
+		openrel:scenario openrel:formal-toms ;
+		odrl:leftOperand idsc:ENDPOINT ;
+		odrl:operator idsc:IN ;
+		odrl:rightOperand [AUTHORISED_IRL_ARRAY] ;
+		.
+
+<authorisedIP>
+	 a openrel:NamedConstraint ;
+		rdfs:label "Authorised IP Only"@en ;
+		skos:definition "Asset MUST only distributed to an authorised IP range"@en ;
+		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
+		openrel:constraintType openrel:tom ;
+		openrel:scenario openrel:formal-toms ;
+		odrl:leftOperand openrel:ipRange ;
+		odrl:operator odrl:isPartOf ;
+		odrl:rightOperand [AUTHORISED_IP_ARRAY] ;
+		.
+
+<maximumVolume>
+	 a openrel:NamedConstraint ;
+		rdfs:label "Maximum Volume"@en ;
+		skos:definition "Access Limited to a Maximum Volume"@en ;
+		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
+		openrel:constraintType openrel:tom ;
+		openrel:scenario openrel:formal-toms ;
+		odrl:leftOperand openrel:maxVolume ;
+		odrl:operator odrl:lteq ;
+		odrl:rightOperand [VOLUME_AS_INTEGER] ;
+		odrl:unit [UNIT_OF_MEASURE] ;
+		.
+
+# --------------------------------------------------------------------------------------------------------------------------------
+# Custom Logical Constraints
+# --------------------------------------------------------------------------------------------------------------------------------
+
+<accessOpenManaged>
+    a odrl:LogicalConstraint ;
+    odrl:and (
+        openrel:openAccess
+        openrel:managedAccess 
+    ) 
+.
+
+<authorisedEndpoint>
+    a odrl:LogicalConstraint ;
+    odrl:or (
+        <authorisedURI>
+        <authorisedIP> 
+    ) 
+.
