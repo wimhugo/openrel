@@ -165,7 +165,7 @@ openrel:academicUseOnly
 		openrel:constraintType openrel:purpose ;
 		openrel:scenario openrel:research-only, openrel:academic-only, openrel:confirmed-researcher, openrel:confirmed-rpo, openrel:affirmed-research ;
 		odrl:leftOperand openrel:usePurpose;
-		odrl:operator odrl:eq ;
+		odrl:operand odrl:eq ;
 		odrl:rightOperand openrel:academicResearch ;
 		.
 
@@ -176,7 +176,7 @@ openrel:verifiedResearcher
         openrel:constraintType openrel:role ;
 		openrel:scenario openrel:research-only, openrel:academic-only, openrel:confirmed-researcher, openrel:confirmed-rpo, openrel:affirmed-research ;
         odrl:leftOperand openrel:agentRole ;
-        odrl:operator odrl:eq ;
+        odrl:operand odrl:eq ;
         odrl:rightOperand openrel:researcher ;
         .
 
@@ -186,7 +186,7 @@ openrel:eidasVerifiedResearcher
         skos:definition "End User has been verified as a Researcher via eIDAS."@en ;
         openrel:constraintType openrel:context ;
         odrl:leftOperand openrel:contextLimitation ;
-        odrl:operator odrl:eq ;
+        odrl:operand odrl:eq ;
         odrl:rightOperand openrel:context-eidas ;
         .
 
@@ -196,7 +196,7 @@ openrel:eidasVerified
         skos:definition "End User or agenthas been verified via eIDAS."@en ;
         openrel:constraintType openrel:context ;
         odrl:leftOperand openrel:contextLimitation ;
-        odrl:operator odrl:eq ;
+        odrl:operand odrl:eq ;
         odrl:rightOperand openrel:context-eidas ;
         .
 
@@ -206,7 +206,7 @@ openrel:confirmedAIAgent
         skos:definition "Agent has been verified as such."@en ;
         openrel:constraintType openrel:context ;
         odrl:leftOperand openrel:agentRole ;
-        odrl:operator odrl:eq ;
+        odrl:operand odrl:eq ;
         odrl:rightOperand openrel:ai-agent ;
         .
 
@@ -218,7 +218,7 @@ openrel:notifyInAsset
 		openrel:constraintType openrel:notification ;
 		openrel:scenario openrel:attribution ;
 		odrl:leftOperand openrel:notificationDuty ;
-		odrl:operator odrl:eq ;
+		odrl:operand odrl:eq ;
 		odrl:rightOperand openrel:record-in-asset ;
 		.
 
@@ -231,7 +231,7 @@ openrel:logUse
 		openrel:scenario openrel:gdpr-compliance ;
 		openrel:scenario openrel:gdpr-controller ;
 		odrl:leftOperand openrel:notificationDuty ;
-		odrl:operator odrl:eq ;
+		odrl:operand odrl:eq ;
 		odrl:rightOperand openrel:notify-local-log ;
 		.
 
@@ -243,7 +243,7 @@ openrel:notifyClearingHouse
 		openrel:constraintType openrel:notification ;
 		openrel:scenario openrel:notification-duty ;
 		odrl:leftOperand openrel:notificationDuty ;
-		odrl:operator odrl:eq ;
+		odrl:operand odrl:eq ;
 		odrl:rightOperand openrel:notify-clearinghouse ;
 		.
 
@@ -329,7 +329,7 @@ openrel:trustPlus
 		openrel:constraintType openrel:access ;
 		openrel:scenario openrel:trusted-connection ;
 		odrl:leftOperand openrel:securityProfile;
-		odrl:operator odrl:eq ;
+		odrl:operand odrl:eq ;
 		odrl:rightOperand openrel:trust-plus ;
 		.
 
@@ -341,7 +341,7 @@ openrel:openAccess
 		openrel:constraintType openrel:tom ;
 		openrel:scenario openrel:formal-toms ;
 		odrl:leftOperand openrel:accessCategory ;
-		odrl:operator odrl:eq ;
+		odrl:operand odrl:eq ;
 		odrl:rightOperand openrel:open-access ;
 		.
 
@@ -353,7 +353,7 @@ openrel:managedAccess
 		openrel:constraintType openrel:tom ;
 		openrel:scenario openrel:formal-toms ;
 		odrl:leftOperand openrel:accessCategory ;
-		odrl:operator odrl:eq ;
+		odrl:operand odrl:eq ;
 		odrl:rightOperand openrel:managed-access ;
 		.
 
