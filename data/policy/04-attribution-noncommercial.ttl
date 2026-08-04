@@ -9,7 +9,7 @@
 # OpenREL - Open Rights Encoding language
 # Version 0.4 (Draft)
 # Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/ EUDAT)
-# This Version: 14 July 2026
+# This Version: 04 August 2026
 
 # context
 @base <http://www.w3.org/ns/openrel/0/> .
@@ -37,11 +37,11 @@
 @prefix osl: <http://opensource.org/licenses/> .
 @prefix spdx: <http://spdx.org/rdf/terms#>  .
 @prefix dpv: <https://w3id.org/dpv/> .
-@prefix lfs: <https://lfs.labs.dansdemo.nl/api/v1/licenses/> .
 # Policy Libraries and Registries
 @prefix openrellib: <https://github.com/wimhugo/openrel/new/main/data/policy/> .
 @prefix spdxlicense: <http://spdx.org/licenses/> .
-@prefix dalicclib: <https://dalicc.net/licenselibrary/> .
+@prefix dalicclib: <https://dalicc.net/licenselibrary/> 
+@prefix lfslib: <https://lfs.labs.dansdemo.nl/api/v1/licenses/> .
 
 # --------------------------------------------------------------------------------------------------------------------------------
 # Licence Metadata
@@ -87,7 +87,7 @@
     # Alternative representations, mappings of SPDX and LFS properties
     openrel:legalcode <https://creativecommons.org/licenses/by-nc/4.0/legalcode> ;
     openrel:policyTextHtml <https://spdx.org/licenses/CC-BY-NC-4.0.html> ;
-    openrel:policyText <https://lfs.labs.dansdemo.nl/api/v1/licenses/CC-BY-NC-4.0/original> ;
+    openrel:policyText lfslib:/CC-BY-NC-4.0/original ;
     openrel:encodedRules <https://github.com/wimhugo/openrel/blob/main/data/policy/04-attribution-noncommercial.ttl> ;
 
 # --------------------------------------------------------------------------------------------------------------------------------
