@@ -1,6 +1,6 @@
 # Context and Input Licences
 # --------------------------------------------------------------------------------------------------------------------------------
-# Title: The machine-readable representation of "Creative Commons Attribution 4.0 International"@en in the DALICC license library
+# Title: The machine-readable representation of "Creative Commons Attribution ShareAlike 4.0 International" in the DALICC license library
 # Author: DALICC
 # Source: https://dalicc.net/licenselibrary/CC-BY-4.0
 # Licensed under: Attribution 4.0 International (CC BY 4.0) 
@@ -73,7 +73,7 @@
     dct:created "2026-07-12T00:00:00+00:00" ;
     dct:modified "2026-08-03T00:00:00+00:00" ;
     dct:creator "Melios Katsamakis - OpenAIRE" ;
-    dct:contributor <https://orcid.org/0000-0002-0255-5101> ;
+    dct:creator <https://orcid.org/0000-0002-0255-5101> ;
     dct:subject "Public Domain" ;
     openrel:accessType openrel:openAccess ;    
     dct:source <https://creativecommons.org/licenses/by-sa/4.0> ;
@@ -111,7 +111,7 @@
                     odrl:action openrel:attribute ],
                 [ a odrl:Duty ;
                     odrl:action openrel:notify ;
-                        odrl:named constraint openrel:namedConstraint openrel:notifyInAsset ;
+                        odrl:named constraint openrel:notifyInAsset ;
                 ]   
         ],
         [ a odrl:Permission ;
@@ -121,7 +121,7 @@
                     odrl:action openrel:attribute ],
                 [ a odrl:Duty ;
                     odrl:action openrel:notify ;
-                        odrl:named constraint openrel:namedConstraint openrel:notifyInAsset ;
+                        odrl:named constraint openrel:notifyInAsset ;
                 ]   
         ],
         [ a odrl:Permission ;
@@ -133,6 +133,7 @@
                     odrl:action openrel:notify ;
                     odrl:namedConstraint openrel:notifyInAsset ;
               ]
+        ],
         [ a odrl:Permission ;
             odrl:action odrl:present ],
         [ a odrl:Permission ;
