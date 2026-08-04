@@ -134,7 +134,7 @@
                     odrl:action openrel:attribute ],
               [ a odrl:Duty ;
                     odrl:action openrel:notify ;
-                    odrl:namedConstraint openrel:notifyInAsset ;
+                    openrel:namedConstraint openrel:notifyInAsset ;
               ]
         ],
         [ a odrl:Permission ;
