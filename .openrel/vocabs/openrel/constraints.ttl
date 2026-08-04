@@ -199,7 +199,7 @@ openrel:notifyInAsset
 		openrel:scenario openrel:attribution ;
 		odrl:leftOperand openrel:notificationDuty ;
 		odrl:operator odrl:eq ;
-		odrl:rightOperand openrel:notify-local-log ;
+		odrl:rightOperand openrel:record-in-asset ;
 		.
 
 openrel:logUse 
@@ -212,7 +212,7 @@ openrel:logUse
 		openrel:scenario openrel:gdpr-controller ;
 		odrl:leftOperand openrel:notificationDuty ;
 		odrl:operator odrl:eq ;
-		odrl:rightOperand openrel:record-in-asset ;
+		odrl:rightOperand openrel:notify-local-log ;
 		.
 
 openrel:notifyClearingHouse 
