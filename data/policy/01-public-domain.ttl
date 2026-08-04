@@ -1,0 +1,83 @@
+# Context and Input Licences
+# --------------------------------------------------------------------------------------------------------------------------------
+# Title: Public Domain Licence - No limitations on use
+# Example Policy
+# OpenREL - Open Rights Encoding language
+# Version 0.4 (Draft)
+# Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/ EUDAT)
+# This Version: 3 August 2026
+# --------------------------------------------------------------------------------------------------------------------------------
+
+# context
+@base <http://www.w3.org/ns/openrel/0/> .
+@prefix : <http://www.w3.org/ns/openrel/0/> .
+# RDF-related
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+# general content
+@prefix schema: <http://schema.org/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+# rdmi-related
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcatap: <http://data.europa.eu/r5r/> .
+# rights-related
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix dalicc: <https://dalicc.net/ns#> .
+@prefix dalicclib: <https://dalicc.net/licenselibrary/> .
+@prefix ids: <https://w3id.org/idsa/core/> .
+@prefix idsc: <https://w3id.org/idsa/code/> .
+@prefix osl: <http://opensource.org/licenses/> .
+@prefix spdx: <http://spdx.org/rdf/terms#>  .
+@prefix spdxlicense: <http://spdx.org/licenses/> .
+@prefix dpv: <https://w3id.org/dpv> .
+@prefix lfs: <https://lfs.labs.dansdemo.nl/api/v1/licenses> .
+
+# --------------------------------------------------------------------------------------------------------------------------------
+# Access Rules Metadata
+# --------------------------------------------------------------------------------------------------------------------------------
+
+<01-public-domain> a openrel:ProcessRules ;
+    # Alternate identifiers
+    skos:exactMatch spdx:CC0-1.0 ;
+    skos:exactMatch lfs:CC0-1.0 ;
+    # Citation Information
+    dct:title "Creative Commons Zero v1.0 Universal" ;
+    dct:description "Anyone can read, download, share, and reuse this resource freely, for any purpose including commercial use."@en ;
+    dct:publisher <> ;
+    dct:created "2026-07-12T00:00:00+00:00" ;
+    dct:modified "2026-08-03T00:00:00+00:00" ;
+    dct:creator "Melios Katsamakis - OpenAIRE" ;
+    dct:contributor <https://orcid.org/0000-0002-0255-5101> ;
+    dct:subject "Public Domain" ;
+    openrel:accessType openrel:openAccess ;
+    dct:source <> ;
+    dct:version "0.1" ;
+    # Coverage related information
+    openrel:validityType openrel:perpetual ;
+    openrel:jurisdiction openrel:worldwide ;
+    # Disclaimers
+    openrel:liabilityLimitation "Waiver. To the greatest extent permitted by, but not in contravention of, applicable law, Affirmer hereby overtly, fully, permanently, irrevocably and unconditionally waives, abandons, and surrenders all of Affirmer's Copyright and Related Rights and associated claims and causes of action, whether now known or unknown (including existing as well as future claims and causes of action), in the Work (i) in all territories worldwide, (ii) for the maximum duration provided by applicable law or treaty (including future time extensions), (iii) in any current or future medium and for any number of copies, and (iv) for any purpose whatsoever, including without limitation commercial, advertising or promotional purposes (the "Waiver"). Affirmer makes the Waiver for the benefit of each member of the public at large and to the detriment of Affirmer's heirs and successors, fully intending that such Waiver shall not be subject to revocation, rescission, cancellation, termination, or any other legal or equitable action to disrupt the quiet enjoyment of the Work by the public as contemplated by Affirmer's express Statement of Purpose."@en ;
+    openrel:warrantyNotice "Affirmer offers the Work as-is and makes no representations or warranties of any kind concerning the Work, express, implied, statutory or otherwise, including without limitation warranties of title, merchantability, fitness for a particular purpose, non infringement, or the absence of latent or other defects, accuracy, or the present or absence of errors, whether or not discoverable, all to the greatest extent permissible under applicable law."@en ;
+    # Alternative representations, mappings of SPDX and LFS properties
+    openrel:legalCode <https://creativecommons.org/publicdomain/zero/1.0/legalcode> ;
+    openrel:policyTextHtml <https://spdx.org/licenses/CC0-1.0.html> ;
+    openrel:policyText <https://lfs.labs.dansdemo.nl/api/v1/licenses/CC0-1.0/original> ;
+    openrel:encodedRules openrel:<20-agentic-ai-audit> ;
+
+# --------------------------------------------------------------------------------------------------------------------------------
+#   Rules
+# --------------------------------------------------------------------------------------------------------------------------------
+    
+    odrl:permission [
+        odrl:action openrel:use, 
+                    openrel:read, 
+                    openrel:distribute, 
+                    openrel:modify, 
+                    openrel:reproduce ;
+    ] ;
