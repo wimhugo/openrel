@@ -20,7 +20,7 @@
 7. Logical Constraints
 8. Left Operands
 9. Operands
-10. Right Operands and Type Vocabularies
+10. Right Operands, Type Vocabularies, and Parameters
 11. Assets and Asset Collections
 12. Parties and Party Collections (Agents)
 13. [Customising OpenREL](https://github.com/wimhugo/openrel/blob/main/docs/guide/13_Customisation.md)
