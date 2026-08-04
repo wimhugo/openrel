@@ -168,6 +168,16 @@ openrel:securityProfile
 	skos:scopeNote "Non-Normative"@en ;
 	.
 
+openrel:delegationToken	
+	a odrl:LeftOperand, owl:NamedIndividual, skos:Concept ;
+	rdfs:isDefinedBy openrel: ;
+	rdfs:label "Delegation Token"@en ;
+	skos:definition "Requires the requesting agent to carry a valid, scoped delegation token issued by an authenticated human principal. Enables verifiable delegation chains in agentic AI workflows."@en ;
+	skos:note "Values of the Right Operand equals TRUE or FALSE."@en ;
+	skos:note "More than one constraint can be encoded as Logical Constraints using OpenREL Named Constraints."@en ;
+	skos:scopeNote "Non-Normative"@en ;
+	.
+
 openrel:revenuePermitted
 	a odrl:LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy openrel: ;
