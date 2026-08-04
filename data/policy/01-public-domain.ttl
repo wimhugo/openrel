@@ -29,14 +29,16 @@
 @prefix odrl: <http://www.w3.org/ns/odrl/2/> .
 @prefix cc: <http://creativecommons.org/ns#> .
 @prefix dalicc: <https://dalicc.net/ns#> .
-@prefix dalicclib: <https://dalicc.net/licenselibrary/> .
 @prefix ids: <https://w3id.org/idsa/core/> .
 @prefix idsc: <https://w3id.org/idsa/code/> .
 @prefix osl: <http://opensource.org/licenses/> .
 @prefix spdx: <http://spdx.org/rdf/terms#>  .
+@prefix dpv: <https://w3id.org/dpv/> .
+# Policy Libraries and Registries
+@prefix openrellib: <https://github.com/wimhugo/openrel/new/main/data/policy/> .
 @prefix spdxlicense: <http://spdx.org/licenses/> .
-@prefix dpv: <https://w3id.org/dpv> .
-@prefix lfs: <https://lfs.labs.dansdemo.nl/api/v1/licenses> .
+@prefix dalicclib: <https://dalicc.net/licenselibrary/> 
+@prefix lfslib: <https://lfs.labs.dansdemo.nl/api/v1/licenses/> .
 
 # --------------------------------------------------------------------------------------------------------------------------------
 # Access Rules Metadata
@@ -45,7 +47,7 @@
 <01-public-domain> a openrel:ProcessRules ;
     # Alternate identifiers
     dct:relation spdx:CC0-1.0 ;
-    dct:relation lfs:CC0-1.0 ;
+    dct:relation lfslib:CC0-1.0 ;
     # Citation Information
     dct:title "Creative Commons Zero v1.0 Universal" ;
     dct:description "Anyone can read, download, share, and reuse this resource freely, for any purpose including commercial use."@en ;
@@ -67,7 +69,7 @@
     # Alternative representations, mappings of SPDX and LFS properties
     openrel:legalCode <https://creativecommons.org/publicdomain/zero/1.0/legalcode> ;
     openrel:policyTextHtml <https://spdx.org/licenses/CC0-1.0.html> ;
-    openrel:policyText <https://lfs.labs.dansdemo.nl/api/v1/licenses/CC0-1.0/original> ;
+    openrel:policyText lfslib:CC0-1.0/original ;
     openrel:encodedRules <https://github.com/wimhugo/openrel/edit/main/data/policy/01-public-domain.ttl> ;
 
 # --------------------------------------------------------------------------------------------------------------------------------
