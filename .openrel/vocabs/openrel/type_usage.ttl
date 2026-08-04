@@ -60,27 +60,27 @@ openrel:typeUsage
 #-----------OpenREL
 
 openrel:connector
-  a skos:Concept ;
+  a skos:Concept, odrl:leftOperand ;
   skos:prefLabel "Connector"@en ;
   skos:definition "Restricts access to a specific connector identified by IRI. Parameter: connectorURI (xsd:anyURI)."@en ;
   skos:exactMatch idsc:CONNECTOR_RESTRICTED_DATA_USAGE ;
   skos:inScheme openrel:typeUsage .
 
 openrel:ipRange
-  a skos:Concept ;
+  a skos:Concept, odrl:leftOperand ;
   skos:prefLabel "IP Range"@en ;
   skos:definition "Restricts access to a range of IP addresses, expressed as type of IP as a unit of measure."@en ;
   skos:inScheme openrel:typeUsage .
 
 openrel:application
-  a skos:Concept ;
+  a skos:Concept, odrl:leftOperand ;
   skos:prefLabel "Application"@en ;
   skos:definition "Restricts access to a system or application in addition to other usage constraints."@en ;
   skos:exactMatch idsc:APPLICATION_RESTRICTED_DATA_USAGE ;
   skos:inScheme openrel:typeUsage .
 
 openrel:accessDuration
-  a skos:Concept ;
+  a skos:Concept, odrl:leftOperand ;
   skos:prefLabel "Access Duration"@en ;
   skos:definition "Limits access to a maximum elapsed time from provisioning. Canonical constraint — value is set as a parameter at policy authoring time. Parameter: duration (xsd:duration, ISO 8601)."@en ;
   skos:exactMatch idsc:DURATION_RESTRICTED_DATA_USAGE ;
@@ -88,42 +88,48 @@ openrel:accessDuration
   skos:inScheme openrel:typeUsage .
 
 openrel:accessWindow
-  a skos:Concept ;
+  a skos:Concept, odrl:leftOperand ;
   skos:prefLabel "Access Iinterval"@en ;
   skos:definition "Restricts access to a specific datetime interval. Both bounds must be evaluated simultaneously using a logical AND. Parameters: dateTimeFrom (xsd:dateTime), dateTimeTo (xsd:dateTime)."@en ;
   skos:exactMatch idsc:INTERVAL_RESTRICTED_DATA_USAGE ;
   skos:inScheme openrel:typeUsage .
 
 openrel:spatialCoverage
-  a skos:Concept ;
+  a skos:Concept, odrl:leftOperand ;
   skos:prefLabel "Spatial Coverage"@en ;
   skos:definition "Restricts or allows access based on a spatial coverage. Any valid geographical coverage (e.g. geonames IRI, bounding box, polygon) with any valid spatial operand."@en ;
   skos:exactMatch idsc:LOCATION_RESTRICTED_DATA_USAGE ;
   skos:inScheme openrel:typeUsage .
 
 openrel:userRole
-  a skos:Concept ;
+  a skos:Concept, odrl:leftOperand ;
   skos:prefLabel "User Role"@en ;
   skos:definition "The party that is afforded access has to fill a specific role. These can, for example, be associated with the Agent Type vocabulary (type_agent.ttl)."@en ;
   skos:exactMatch idsc:ROLE_RESTRICTED_DATA_USAGE ;
   skos:inScheme openrel:typeUsage .
 
 openrel:purpose
-  a skos:Concept ;
+  a skos:Concept, odrl:leftOperand ;
   skos:prefLabel "Purpose"@en ;
   skos:definition "Use is allowed for a specific purpose. These can, for example, be associated with the Purpose Type vocabulary (type_purpose.ttl)."@en ;
   skos:exactMatch idsc:ROLE_RESTRICTED_DATA_USAGE ;
   skos:inScheme openrel:typeUsage .
 
 openrel:usageCount
-  a skos:Concept ;
+  a skos:Concept, odrl:leftOperand ;
   skos:prefLabel "Usage Count"@en ;
   skos:definition "Use is allowed for a specific number of access events. These are expressed as an integer number."@en ;
   skos:exactMatch idsc:RESTRICTED_NUMBER_OF_USAGES ;
   skos:inScheme openrel:typeUsage .
 
+openrel:maxVolume
+  a skos:Concept, odrl:leftOperand ;
+  skos:prefLabel "Maximum Volume"@en ;
+  skos:definition "Use is allowed up to a maximum volume. These are expressed as an integer number and a unit of measure."@en ;
+  skos:inScheme openrel:typeUsage .
+
 openrel:securityLevel
-  a skos:Concept ;
+  a skos:Concept, odrl:leftOperand ;
   skos:prefLabel "Security Level"@en ;
   skos:definition "Use is allowed if the connector complies with a specific (Data Spaces) security certification level. "@en ;
   skos:note "Right operand corresponds to IDSC Security Guarantee vocabulary (https://github.com/International-Data-Spaces-Association/InformationModel/blob/develop/codes/SecurityGuarantee.ttl). "@en ;
