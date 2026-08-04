@@ -190,6 +190,16 @@ openrel:eidasVerifiedResearcher
         odrl:rightOperand openrel:context-eidas ;
         .
 
+openrel:confirmedAIAgent 
+     a openrel:namedConstraint ;
+        rdfs:label "Verified AI Agent"@en ;
+        skos:definition "Agent has been verified as such."@en ;
+        openrel:constraintType openrel:context ;
+        odrl:leftOperand openrel:agentRole ;
+        odrl:operator odrl:eq ;
+        odrl:rightOperand openrel:ai-agent ;
+        .
+
 openrel:notifyInAsset 
 	 a openrel:NamedConstraint ;
 		rdfs:label "Notification in Asset"@en ;
