@@ -64,15 +64,15 @@ openrel:Parameter
 	a rdfs:Class, owl:Class, skos:Concept ;
 	rdfs:subClassOf odrl:RightOperand ;
 	rdfs:label "Parameters"@en .
-  skos:prefLabel "OpenREL Parameters"@en ;
-  dct:title "OpenREL Parameters"@en ;
-  dct:description "Parameters defined by OpenREL as an extension to ODRL and other vocabularies, including mappings."@en ;
-  dct:created "2026-06-29T00:00:00+00:00"^^xsd:datetime ;  
-  dct:modified "2026-08-04T00:00:00+00:00"^^xsd:datetime ;
-  dct:creator <https://orcid.org/0000-0002-0255-5101> ;  # Wim Hugo
-  dct:creator "Melios Katsamakis" ;
-  dct:contributor <https://orcid.org/0000-0003-2459-6817> ; # Prodromos Tsiavos
-  owl:versionInfo "01" .
+	skos:prefLabel "OpenREL Parameters"@en ;
+	dct:title "OpenREL Parameters"@en ;
+	dct:description "Parameters defined by OpenREL as an extension to ODRL and other vocabularies, including mappings."@en ;
+	dct:created "2026-06-29T00:00:00+00:00"^^xsd:datetime ;  
+	dct:modified "2026-08-04T00:00:00+00:00"^^xsd:datetime ;
+	dct:creator <https://orcid.org/0000-0002-0255-5101> ;  # Wim Hugo
+	dct:creator "Melios Katsamakis" ;
+	dct:contributor <https://orcid.org/0000-0003-2459-6817> ; # Prodromos Tsiavos
+	owl:versionInfo "01" .
 	rdfs:isDefinedBy openrel: ;
 	skos:definition "A Right Operand as a Parameter."@en ;
 	# Extensions by OpenREL
@@ -114,16 +114,67 @@ openrel:resolutionMethod
 
 # ----------- Date, Time, Duration
 
-ex:startDateParameter
+openrel:startDateParameter
     a openrel:Parameter, odrl:RightOperand ;
     openrel:parameterName "START_DATE" ;
     openrel:expectedDatatype xsd:dateTime ;
     openrel:resolutionMethod openrel:RuntimeContext 
     .
 
-ex:endDateParameter
+oprenrel:endDateParameter
     a openrel:Parameter, odrl:RightOperand ;
     openrel:parameterName "END_DATE" ;
     openrel:expectedDatatype xsd:dateTime ;
     openrel:resolutionMethod openrel:RuntimeContext 
     .
+
+# ---------- Assigner Context
+
+openrel:parameterPublisherIRI
+    a openrel:Parameter, odrl:RightOperand ;
+    openrel:parameterName "PUBLISHER_IRI" ;
+    openrel:expectedDatatype xsd:anyURI ;
+    openrel:resolutionMethod openrel:RepositoryContext 
+    .
+
+oprenrel:parameterAssignerIRI
+    a openrel:Parameter, odrl:RightOperand ;
+    openrel:parameterName "ASSIGNER_IRI" ;
+    openrel:expectedDatatype xsd:anyURI ;
+    openrel:resolutionMethod openrel:RepositoryContext 
+    .
+
+openrel:parameterTargetIRI
+    a openrel:Parameter, odrl:RightOperand ;
+    openrel:parameterName "TARGET_IRI" ;
+    openrel:expectedDatatype xsd:anyURI ;
+    openrel:resolutionMethod openrel:AssetMetadataValue 
+    .
+
+# ---------- Assignee/ Requesting Party Context
+
+openrel: parameterAssigneeIRI
+    a openrel:Parameter, odrl:RightOperand ;
+    openrel:parameterName "ASSIGNEE_IRI" ;
+    openrel:expectedDatatype xsd:anyURI ;
+    openrel:resolutionMethod openrel:PartyContext 
+
+# [ASSIGNEE_IRI]
+# [VERIFIED_RESEARCHER]
+# [VERIFIED_IDENTITY]
+# [INSTITUTION_IRI]
+# [VERIFIED_RPO]
+
+# ---------- Data Subject Context
+
+# [SUBJECT_IRI]
+# [INFORMED_CONSENT_IRI]
+# [DATA_SPECIFICATION_IRI]
+
+# ---------- Immediate Request Context
+
+# [IP_ADDRESS]
+# [INTENDED_PURPOSE]
+# [VERIFIED_PURPOSE]
+
+
