@@ -39,9 +39,9 @@ openrel:RepositoryContext
     a openrel:ParameterBindingSource, skos:Concept ;
     skos:inScheme openrel:ParameterBindingSource ;
     skos:prefLabel "Repository Context"@en ;
-    skos:definition "Required by repository or software platform."@en 
+    skos:definition "Required or Supplied by repository or software platform."@en 
     skos:note "Ideally, the context SHOULD be captured in an Assertion Policy or Process Rules Policy associated with the repository."@en ;
-    skos:note "Examples: end user identity must be supplied, valid token for use must be supplied, licence conditions must be acknowledged."@en 
+    skos:note "Examples: repository IRI, end user identity must be supplied, valid token for use must be supplied, licence conditions must be acknowledged."@en 
     .
 
 openrel:RuntimeContext
