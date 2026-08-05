@@ -28,7 +28,7 @@
 15. More About Consent and Asset Protection
 16. Scenarios
 17. Integration with Licence Registries
-18. [Customising OpenREL](https://github.com/wimhugo/openrel/blob/main/docs/guide/13_Customisation.md)
+18. [Customising OpenREL](https://github.com/wimhugo/openrel/blob/main/docs/guide/18_Customisation.md)
 
 ## Annexures
 
