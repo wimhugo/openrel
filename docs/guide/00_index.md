@@ -23,11 +23,12 @@
 10. Right Operands, Type Vocabularies, and Parameters
 11. Assets and Asset Collections
 12. Parties and Party Collections (Agents)
-13. [Customising OpenREL](https://github.com/wimhugo/openrel/blob/main/docs/guide/13_Customisation.md)
+13. State of the World and Evaluation
 14. Custom Vocabularies
 15. More About Consent and Asset Protection
 16. Scenarios
 17. Integration with Licence Registries
+18. [Customising OpenREL](https://github.com/wimhugo/openrel/blob/main/docs/guide/13_Customisation.md)
 
 ## Annexures
 
