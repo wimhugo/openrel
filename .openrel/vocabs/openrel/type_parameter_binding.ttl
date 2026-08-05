@@ -22,9 +22,26 @@ openrel:RequestorContext
     skos:inScheme openrel:ParameterBindingSource ;
     skos:prefLabel "Requestor Context"@en ;
     skos:definition "Supplied in the current access or usage request, reflecting the immediate context of the requesting Party."@en 
-    skos:note "Ideally, the context SHOULD be captured in an Assertion Policy associated with the requesting Party, or in a Request Policy"@en ;
+    skos:note "Ideally, the context SHOULD be captured in an Assertion Policy associated with the requesting Party, or in a Request Policy."@en ;
     skos:note "These are values obtained from the requesting Party, the requested action, and/ or current device."@en ;
     skos:note "Examples: current location, IP Address, intended purpose and use."@en 
+    .
+
+openrel:SubjectContext
+    a openrel:ParameterBindingSource, skos:Concept ;
+    skos:inScheme openrel:ParameterBindingSource ;
+    skos:prefLabel "Subject Context"@en ;
+    skos:definition "Required by a data subject, reflecting assertions in respect of access and use."@en 
+    skos:note "Ideally, the context SHOULD be captured in an Assertion Policy or Access Rules Policy associated with the data subject Party."@en ;
+    skos:note "Examples: inventory of data elements that can be shared."@en 
+    .
+openrel:RepositoryContext
+    a openrel:ParameterBindingSource, skos:Concept ;
+    skos:inScheme openrel:ParameterBindingSource ;
+    skos:prefLabel "Repository Context"@en ;
+    skos:definition "Required by repository or software platform."@en 
+    skos:note "Ideally, the context SHOULD be captured in an Assertion Policy or Process Rules Policy associated with the repository."@en ;
+    skos:note "Examples: end user identity must be supplied, valid token for use must be supplied, licence conditions must be acknowledged."@en 
     .
 
 openrel:RuntimeContext
