@@ -6,76 +6,112 @@
 openrel:ParameterBindingSource
     a rdfs:Class, skos:ConceptScheme ;
     rdfs:label "Parameter binding source"@en 
-    skos:definition "Value explicitly encoded in the policy"@en ;
-    skos:note "Example: """P30D"""^^xsd:duration"@en 
+    skos:definition "A set of types describing the way in which parameter vales are resolved at time of use/ runtime."@en 
     .
 
 openrel:PolicyValue
     a openrel:ParameterBindingSource, skos:Concept ;
     skos:inScheme openrel:ParameterBindingSource ;
-    skos:prefLabel "Policy value"@en ;
-    skos:definition ""@en 
+    skos:prefLabel "Policy Value"@en ;
+    skos:definition "Value explicitly encoded (hardcoded) in the policy."@en ;
+    skos:note "Example: 'P30D'^^xsd:duration"@en 
     .
 
-openrel:EvaluationRequestValue
+openrel:RequestorContext
     a openrel:ParameterBindingSource, skos:Concept ;
     skos:inScheme openrel:ParameterBindingSource ;
-    skos:prefLabel "Evaluation-request value"@en ;
-    skos:definition ""@en 
+    skos:prefLabel "Requestor Context"@en ;
+    skos:definition "Supplied in the current access or usage request, reflecting the immediate context of the requesting Party."@en 
+    skos:note "Ideally, the context SHOULD be captured in an Assertion Policy associated with the requesting Party, or in a Request Policy"@en ;
+    skos:note "These are values obtained from the requesting Party, the requested action, and/ or current device."@en ;
+    skos:note "Examples: current location, IP Address, intended purpose and use."@en 
     .
 
-openrel:RuntimeContextValue
+openrel:RuntimeContext
     a openrel:ParameterBindingSource, skos:Concept ;
     skos:inScheme openrel:ParameterBindingSource ;
-    skos:prefLabel "Runtime-context value"@en 
-    skos:definition ""@en 
+    skos:prefLabel "Runtime Context"@en 
+    skos:definition "Obtained from the evaluator’s current environment."@en ;
+    skos:note "Examples: current time, location, network."@en 
     .
 
 openrel:PolicyUsageValue
     a openrel:ParameterBindingSource, skos:Concept ;
     skos:inScheme openrel:ParameterBindingSource ;
-    skos:prefLabel "Policy-usage value"@en 
-    skos:definition ""@en 
+    skos:prefLabel "Policy Usage Value"@en 
+    skos:definition "Obtained from the history or state of this policy’s use - may involve a log or clearinghouse call."@en ;
+    skos:note "Examples: Number of access events, volume of downloads, timestamp of first access."@en 
     .
 
 openrel:EventValue
     a openrel:ParameterBindingSource, skos:Concept ;
     skos:inScheme openrel:ParameterBindingSource ;
     skos:prefLabel "Event value"@en 
-    skos:definition ""@en 
+    skos:definition "Obtained from a named event."@en ;
+    skos:note "Examples: a workflow state such as 'Published' or 'Approved'."@en 
     .
 
 openrel:AssetMetadataValue
     a openrel:ParameterBindingSource, skos:Concept ;
     skos:inScheme openrel:ParameterBindingSource ;
-    skos:prefLabel "Asset-metadata value"@en 
-    skos:definition ""@en 
+    skos:prefLabel "Asset Metadata Value"@en 
+    skos:definition "Read from metadata about the governed asset."@en ;
+    skos:note "Examples: Asset PID, governed asset publication date, classification, associated licence, Asset Collection."@en 
     .
 
-openrel:PartyAttributeValue
+openrel:PartyContext
     a openrel:ParameterBindingSource, skos:Concept ;
     skos:inScheme openrel:ParameterBindingSource ;
-    skos:prefLabel "Party-attribute value"@en 
-    skos:definition ""@en 
+    skos:prefLabel "Party Context"@en 
+    skos:definition "Characteristics of the requesting Party, reflecting a persistent context of the requesting Party."@en ;
+    skos:note "Ideally, the context SHOULD be captured in an Assertion Policy associated with the requesting Party, or in a Request Policy"@en ;
+    skos:note "Examples: institutional affiliation, verified identity, confirmation of research role, assertion on non-commercial application."@en 
     .
 
 openrel:ExternalReferenceValue
     a openrel:ParameterBindingSource, skos:Concept ;
     skos:inScheme openrel:ParameterBindingSource ;
-    skos:prefLabel "External-reference value"@en 
-    skos:definition ""@en 
+    skos:prefLabel "External Reference Value"@en 
+    skos:definition "Dereferenced from an external service or resource."@en 
+    skos:note "Examples: exchange rate for cost calculation in an Agreement Policy, status of an endpoint."@en 
     .
 
 openrel:ContractStateValue
     a openrel:ParameterBindingSource, skos:Concept ;
     skos:inScheme openrel:ParameterBindingSource ;
-    skos:prefLabel "Contract-state value"@en 
-    skos:definition ""@en 
+    skos:prefLabel "Contract State Value"@en 
+    skos:definition "Obtained from the state of an agreement or workflow."@en 
+    skos:note "Examples: date of contract signature, payment status."@en 
     .
 
 openrel:SuppliedParameterValue
     a openrel:ParameterBindingSource, skos:Concept ;
     skos:inScheme openrel:ParameterBindingSource ;
-    skos:prefLabel "Supplied parameter value"@en 
-    skos:definition ""@en 
+    skos:prefLabel "Supplied Parameter Value"@en 
+    skos:definition "Explicitly supplied by the end user when instantiating a template or parameterised Policy."@en 
+    skos:note "These values are requested from an end user (human or system) if it cannot be resolved by one of the pre-defined methods. For example, it may not be possible to determine the institutional affiliation of the requesting Party from an Assertion or Request, in which case it has to be supplied directly."@en 
+    .
+
+openrel:AutoTest
+    a openrel:ParameterBindingSource, skos:Concept ;
+    skos:inScheme openrel:ParameterBindingSource ;
+    skos:prefLabel "Automated Test Result"@en 
+    skos:definition "This value results from a test or verification process via a web-based endpoint or API, using deterministic methods."@en 
+    skos:note "Examples: Confirming identity and affiliation via AAI, validating a Ticket, invoking policy comparisons."@en 
+    .
+
+openrel:HumanTest
+    a openrel:ParameterBindingSource, skos:Concept ;
+    skos:inScheme openrel:ParameterBindingSource ;
+    skos:prefLabel "Human Test Result"@en 
+    skos:definition "This value results from a test or verification process performed by a human."@en 
+    skos:note "Examples: examining the stated purpose and intent of use of an Asset, verifying alignment of derived Assets with subject consent."@en 
+    .
+
+openrel:AgentTest
+    a openrel:ParameterBindingSource, skos:Concept ;
+    skos:inScheme openrel:ParameterBindingSource ;
+    skos:prefLabel "Agent Test Result"@en 
+    skos:definition "This value results from a test or verification process performed by an AI Agent, using probabilistic methods."@en 
+    skos:note "Examples: typically replacing or supplementing human tests - e.g. examining the stated purpose and intent of use of an Asset, verifying alignment of derived Assets with subject consent."@en 
     .
