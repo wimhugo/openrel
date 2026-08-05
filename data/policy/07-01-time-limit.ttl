@@ -78,8 +78,12 @@
 # --------------------------------------------------------------------------------------------------------------------------------
     
     odrl:permission [
-        odrl:action openrel:.use ;
+        [odrl:action openrel:read ;
         odrl:constraint <SD-ED-limits>
+		],
+        [odrl:action openrel:download ;
+        odrl:constraint <SD-ED-limits>
+		]	
         .
 
 # --------------------------------------------------------------------------------------------------------------------------------
@@ -88,12 +92,12 @@
   
 <SD-ED-limits>
     a odrl:LogicalConstraint ;
+	rdfs:label "Time Interval (parametric)" ;  
     odrl:and (
         <validStartDate>
         <validEndDate>
     ) 
     .
-      
 # --------------------------------------------------------------------------------------------------------------------------------
 #   Custom Named Constraints
 # --------------------------------------------------------------------------------------------------------------------------------
@@ -107,7 +111,7 @@
 		openrel:scenario openrel:tech-limits ;
 		odrl:leftOperand odrl:dateTime ;
 		odrl:operand odrl:gteq ;
-		odrl:rightOperand [START_DATE] ;
+		odrl:rightOperand openrel:startDateParameter ;
 		.
 
 <validEndDate>
@@ -119,5 +123,5 @@
 		openrel:scenario openrel:tech-limits ;
 		odrl:leftOperand odrl:dateTime ;
 		odrl:operand odrl:lteq ;
-		odrl:rightOperand [END_DATE] ;
+		odrl:rightOperand openrel:endDateParameter ;
 		.
