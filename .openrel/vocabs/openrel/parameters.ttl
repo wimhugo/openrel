@@ -42,7 +42,7 @@
 @prefix dpv: <https://w3id.org/dpv> .
 @prefix ropa: <https://w3id.org/dpv-ropa#> .
 
-openrel:Para
+openrel:ParameterSCheme
   a skos:ConceptScheme ;
   skos:prefLabel "OpenREL Actions and Mappings"@en ;
   dct:title "OpenREL Actions and Mappings"@en ;
