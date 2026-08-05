@@ -1,0 +1,81 @@
+@prefix openrel: <http://www.w3.org/ns/openrel/0/> .
+@prefix odrl:    <http://www.w3.org/ns/odrl/2/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+
+openrel:ParameterBindingSource
+    a rdfs:Class, skos:ConceptScheme ;
+    rdfs:label "Parameter binding source"@en 
+    skos:definition "Value explicitly encoded in the policy"@en ;
+    skos:note "Example: """P30D"""^^xsd:duration"@en 
+    .
+
+openrel:PolicyValue
+    a openrel:ParameterBindingSource, skos:Concept ;
+    skos:inScheme openrel:ParameterBindingSource ;
+    skos:prefLabel "Policy value"@en ;
+    skos:definition ""@en 
+    .
+
+openrel:EvaluationRequestValue
+    a openrel:ParameterBindingSource, skos:Concept ;
+    skos:inScheme openrel:ParameterBindingSource ;
+    skos:prefLabel "Evaluation-request value"@en ;
+    skos:definition ""@en 
+    .
+
+openrel:RuntimeContextValue
+    a openrel:ParameterBindingSource, skos:Concept ;
+    skos:inScheme openrel:ParameterBindingSource ;
+    skos:prefLabel "Runtime-context value"@en 
+    skos:definition ""@en 
+    .
+
+openrel:PolicyUsageValue
+    a openrel:ParameterBindingSource, skos:Concept ;
+    skos:inScheme openrel:ParameterBindingSource ;
+    skos:prefLabel "Policy-usage value"@en 
+    skos:definition ""@en 
+    .
+
+openrel:EventValue
+    a openrel:ParameterBindingSource, skos:Concept ;
+    skos:inScheme openrel:ParameterBindingSource ;
+    skos:prefLabel "Event value"@en 
+    skos:definition ""@en 
+    .
+
+openrel:AssetMetadataValue
+    a openrel:ParameterBindingSource, skos:Concept ;
+    skos:inScheme openrel:ParameterBindingSource ;
+    skos:prefLabel "Asset-metadata value"@en 
+    skos:definition ""@en 
+    .
+
+openrel:PartyAttributeValue
+    a openrel:ParameterBindingSource, skos:Concept ;
+    skos:inScheme openrel:ParameterBindingSource ;
+    skos:prefLabel "Party-attribute value"@en 
+    skos:definition ""@en 
+    .
+
+openrel:ExternalReferenceValue
+    a openrel:ParameterBindingSource, skos:Concept ;
+    skos:inScheme openrel:ParameterBindingSource ;
+    skos:prefLabel "External-reference value"@en 
+    skos:definition ""@en 
+    .
+
+openrel:ContractStateValue
+    a openrel:ParameterBindingSource, skos:Concept ;
+    skos:inScheme openrel:ParameterBindingSource ;
+    skos:prefLabel "Contract-state value"@en 
+    skos:definition ""@en 
+    .
+
+openrel:SuppliedParameterValue
+    a openrel:ParameterBindingSource, skos:Concept ;
+    skos:inScheme openrel:ParameterBindingSource ;
+    skos:prefLabel "Supplied parameter value"@en 
+    skos:definition ""@en 
+    .
