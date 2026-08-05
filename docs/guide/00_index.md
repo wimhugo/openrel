@@ -39,3 +39,6 @@ B. [Popular Licences](../../data/policy)
 C. [Systems Engineering Documentation](../specifications/index.md)
 
 D. [Communication and Dissemination Materials](https://drive.google.com/drive/folders/1wrBfMyTtIW4r5slEagUjl9DHCH4-lAvE?usp=drive_link)
+
+E. Predefined Class Individuals
+
