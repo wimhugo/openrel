@@ -182,7 +182,7 @@ openrel:revenuePermitted
 	a odrl:LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy openrel: ;
 	rdfs:label "Revenue Permitted"@en ;
-	skos:definition "QUalifies the type of revenue permitted for the original or serviced Asset."@en ;
+	skos:definition "Qualifies the type of revenue permitted for the original or serviced Asset."@en ;
 	skos:note "Values of the Right Operand can be selected from openrel:typeRevenue vocabulary"@en ;
 	skos:note "More than one constraint can be encoded as Logical Constraints using OpenREL Named Constraints."@en ;
 	skos:closeMatch idsc:PAYMENT ;
@@ -246,6 +246,19 @@ openrel:usePurpose
 	skos:broadMatch odrl:purpose
 	skos:note "Values of the Right Operand can be selected from openrel:typePurpose vocabulary, which is aligned with and mapped to inter alia DUO, IDSC, and DPV."@en ;
 	skos:note "More than one constraint can be encoded as Logical Constraints using OpenREL Named Constraints."@en ;
+	.
+
+openrel:feeRequired
+	a odrl:LeftOperand, owl:NamedIndividual, skos:Concept ;
+	rdfs:isDefinedBy openrel: ;
+	rdfs:label "Fee Required"@en ;
+	skos:definition "Permissions are contingent on payment of a fee."@en ;
+	skos:note "The Right Operand is provided as a value, with a unit expressed in currency units per time period or event - for example EUR/yr or EUR/access."@en ;
+	skos:note "More than one constraint can be encoded as Logical Constraints using OpenREL Named Constraints."@en ;
+	skos:exactMatch idsc:PAYMENT ;
+	skos:exactMatch odrl:payAmount ;
+	skos:exactMatch r3d:feeRequired ;
+	skos:scopeNote "Non-Normative"@en ;
 	.
 
 # ---------ODRL
