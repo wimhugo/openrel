@@ -56,7 +56,6 @@
     # Alternate identifiers
     dct:relation spdxlicense:CC-BY-ND-4.0 ;
     dct:relation lfs:CC-BY-ND-4.0 ;
-    openrel:encodedRules openrellib:CC-BY-ND-4.0 ;
 
     # Citation Information
     dct:title "Creative Commons Attribution NoDerivatives 4.0 International"@en ;
@@ -96,7 +95,7 @@
     openrel:legalcode <https://creativecommons.org/licenses/by-nd/4.0/legalcode> ;
     openrel:policyTextHtml <https://spdx.org/licenses/CC-BY-ND-4.0.html> ;
     openrel:policyText lfslib:CC-BY-ND-4.0/original ;
-    openrel:encodedRules <https://github.com/wimhugo/openrel/blob/main/data/policy/05-attribution-noderivatives.ttl> ;
+    openrel:encodedRules openrellib:CC-BY-ND-4.0 ;
 
 # --------------------------------------------------------------------------------------------------------------------------------
 #   Rules
