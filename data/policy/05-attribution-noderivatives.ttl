@@ -56,6 +56,7 @@
     # Alternate identifiers
     dct:relation spdxlicense:CC-BY-ND-4.0 ;
     dct:relation lfs:CC-BY-ND-4.0 ;
+    openrel:encodedRules openrellib:CC-BY-ND-4.0 ;
 
     # Citation Information
     dct:title "Creative Commons Attribution NoDerivatives 4.0 International"@en ;
