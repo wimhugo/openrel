@@ -51,13 +51,14 @@
     ## skos:exactMatch lfslib:<> ;
 
     # Citation Information
-    dct:title "eIDAS Verified Researcher Plus CC BY NC 4.0" ;
-    dct:publisher <> ;
+    dct:title "eIDAS Verified Researcher + CC BY NC 4.0" ;
+	dct:description "eIDAS Verified Researcher Combined with CC BY NC 4.0"@en ;
+    dct:publisher openrel:parameterPublisherIRI ;
     dct:created "2026-07-12T00:00:00+00:00" ;
     dct:modified "2026-08-04T00:00:00+00:00" ;
     dct:creator "Melios Katsamakis - OpenAIRE" ;
     dct:contributor <https://orcid.org/0000-0002-0255-5101> ;
-    dct:subject "Researcher", "Identitified", "eIDAS", "Non-Commercial", "CC BY NC 4.0" ;
+    dct:subject "Researcher", "Identified", "eIDAS", "Non-Commercial", "CC BY NC 4.0" ;
     openrel:accessType openrel:managed ;
     dct:source <> ;
     dct:version "0.1" ;
@@ -66,9 +67,9 @@
     ## These properties apply only for those policies that explicitly require them, optional for others
     ## openrel:validityType openrel:perpetual ;
     openrel:jurisdiction openrel:worldwide ;
-    ## odrl:assigner parameterAssignerIRI ;
-    ## odrl:assignee parameterAssigneeIRI ;
-    ## odrl:target parameterTargetIRI ; 
+    odrl:assigner parameterAssignerIRI ;
+    odrl:assignee parameterAssigneeIRI ;
+    odrl:target parameterTargetIRI ; 
 
     # Definition of input policies
     openrel:hasPolicy <11-researcher-only> ;
