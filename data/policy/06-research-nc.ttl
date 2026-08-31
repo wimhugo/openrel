@@ -45,7 +45,7 @@
 # PolicyCollection Metadata
 # --------------------------------------------------------------------------------------------------------------------------------
 
-<OR-BY-AC-VI-4.0> a openrel:PolicyCollection ;
+<OR-BY-AC-VI-NC-4.0> a openrel:PolicyCollection ;
     # Alternate identifiers
     # skos:exactMatch spdx:<> ;
     # skos:exactMatch lfslib:<> ;
