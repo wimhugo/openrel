@@ -49,7 +49,6 @@
     # Alternate identifiers
     dct:relation spdx:CC0-1.0 ;
     dct:relation lfslib:CC0-1.0 ;
-    openrel:encodedRules openrellib:CC0-1.0 ;
 
     # Citation Information
     dct:title "Creative Commons Zero v1.0 Universal" ;
@@ -76,7 +75,7 @@
     openrel:legalCode <https://creativecommons.org/publicdomain/zero/1.0/legalcode> ;
     openrel:policyTextHtml <https://spdx.org/licenses/CC0-1.0.html> ;
     openrel:policyText lfslib:CC0-1.0/original ;
-    openrel:encodedRules <https://github.com/wimhugo/openrel/edit/main/data/policy/01-public-domain.ttl> ;
+    openrel:encodedRules openrellib:CC0-1.0 ;
 
 # --------------------------------------------------------------------------------------------------------------------------------
 #   Rules
