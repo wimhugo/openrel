@@ -42,7 +42,7 @@
 @prefix dpv: <https://w3id.org/dpv> .
 @prefix ropa: <https://w3id.org/dpv-ropa#> .
 
-openrel:ParameterSCheme
+openrel:ParameterScheme
   a skos:ConceptScheme ;
   skos:prefLabel "OpenREL Actions and Mappings"@en ;
   dct:title "OpenREL Actions and Mappings"@en ;
@@ -60,10 +60,10 @@ openrel:ParameterSCheme
 # Object/ Class Definition
 # -------------------------------------------------------------------------------------------------------------
 
-openrel:Parameter
+openrel:Parameter 
 	a rdfs:Class, owl:Class, skos:Concept ;
 	rdfs:subClassOf odrl:RightOperand ;
-	rdfs:label "Parameters"@en .
+	rdfs:label "Parameters"@en ;
 	skos:prefLabel "OpenREL Parameters"@en ;
 	dct:title "OpenREL Parameters"@en ;
 	dct:description "Parameters defined by OpenREL as an extension to ODRL and other vocabularies, including mappings."@en ;
@@ -75,6 +75,7 @@ openrel:Parameter
 	owl:versionInfo "01" .
 	rdfs:isDefinedBy openrel: ;
 	skos:definition "A Right Operand as a Parameter."@en ;
+	.
 	# Extensions by OpenREL
 	#	None
 
@@ -95,7 +96,7 @@ openrel:expectedDatatype
 	rdfs:isDefinedBy openrel: ;
 	rdfs:label "Expected Data Type"@en ;
 	skos:definition "Expected data type for the parameter, expressed in XSD syntax."@en ;
-	rdfs:domain oprenrel:Parameter 
+	rdfs:domain openrel:Parameter 
   .
 
 openrel:resolutionMethod
@@ -104,7 +105,7 @@ openrel:resolutionMethod
 	rdfs:label "Resolution Method"@en ;
 	skos:definition "The method whereby the parameter will be resolved."@en ;
 	rdfs:domain openrel:Parameter ;
-  rdfs:range openrel:ParameterBindingSource
+  	rdfs:range openrel:ParameterBindingSource
   .
 
 # -------------------------------------------------------------------------------------------------------------
@@ -121,7 +122,7 @@ openrel:startDateParameter
     openrel:resolutionMethod openrel:RuntimeContext 
     .
 
-oprenrel:endDateParameter
+openrel:endDateParameter
     a openrel:Parameter, odrl:RightOperand ;
     openrel:parameterName "END_DATE" ;
     openrel:expectedDatatype xsd:dateTime ;
@@ -137,7 +138,7 @@ openrel:parameterPublisherIRI
     openrel:resolutionMethod openrel:RepositoryContext 
     .
 
-oprenrel:parameterAssignerIRI
+openrel:parameterAssignerIRI
     a openrel:Parameter, odrl:RightOperand ;
     openrel:parameterName "ASSIGNER_IRI" ;
     openrel:expectedDatatype xsd:anyURI ;
@@ -153,7 +154,7 @@ openrel:parameterTargetIRI
 
 # ---------- Assignee/ Requesting Party Context
 
-openrel: parameterAssigneeIRI
+openrel:parameterAssigneeIRI
     a openrel:Parameter, odrl:RightOperand ;
     openrel:parameterName "ASSIGNEE_IRI" ;
     openrel:expectedDatatype xsd:anyURI ;
@@ -161,21 +162,21 @@ openrel: parameterAssigneeIRI
 
 # ---------- Data Subject Context
 
-oprenrel:parameterDataSubjectIRI
+openrel:parameterDataSubjectIRI
     a openrel:Parameter, odrl:RightOperand ;
     openrel:parameterName "DATA_SUBJECT_IRI" ;
     openrel:expectedDatatype xsd:anyURI ;
     openrel:resolutionMethod openrel:SubjectContext
 	.
 
-oprenrel:parameterInformedConsentIRI
+openrel:parameterInformedConsentIRI
     a openrel:Parameter, odrl:RightOperand ;
     openrel:parameterName "INFORMED_CONSENT_IRI" ;
     openrel:expectedDatatype xsd:anyURI ;
     openrel:resolutionMethod openrel:SubjectContext
 	.
 
-oprenrel:parameterDataSpecIRI
+openrel:parameterDataSpecIRI
     a openrel:Parameter, odrl:RightOperand ;
     openrel:parameterName "DATA_SPECIFICATION_IRI" ;
     openrel:expectedDatatype xsd:anyURI ;
@@ -190,7 +191,7 @@ oprenrel:parameterDataSpecIRI
 
 
 # ---------- Target Context
-oprenrel:parameterPublicationDate
+openrel:parameterPublicationDate
     a openrel:Parameter, odrl:RightOperand ;
     openrel:parameterName "TARGET_PUBLICATION_DATE" ;
     openrel:expectedDatatype xsd:dateTime ;
