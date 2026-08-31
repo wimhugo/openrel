@@ -86,7 +86,7 @@ openrel:perpetual
   skos:definition "DALICC: A perpetual license allows to use the licensed work indefinitely."@en ;
   skos:inScheme openrel:typeValidity .
 
-openrel:worldwide
+openrel:worldWide
   a skos:Concept ;
   skos:prefLabel "Worldwide"@en ;
   skos:exactMatch dalicc:worldwide ;
