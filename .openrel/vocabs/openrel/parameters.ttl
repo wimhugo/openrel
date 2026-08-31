@@ -159,17 +159,38 @@ openrel: parameterAssigneeIRI
     openrel:expectedDatatype xsd:anyURI ;
     openrel:resolutionMethod openrel:PartyContext 
 
-# [ASSIGNEE_IRI]
+# ---------- Data Subject Context
+
+oprenrel:parameterDataSubjectIRI
+    a openrel:Parameter, odrl:RightOperand ;
+    openrel:parameterName "DATA_SUBJECT_IRI" ;
+    openrel:expectedDatatype xsd:anyURI ;
+    openrel:resolutionMethod openrel:SubjectContext
+	.
+
+oprenrel:parameterInformedConsentIRI
+    a openrel:Parameter, odrl:RightOperand ;
+    openrel:parameterName "INFORMED_CONSENT_IRI" ;
+    openrel:expectedDatatype xsd:anyURI ;
+    openrel:resolutionMethod openrel:SubjectContext
+	.
+
+oprenrel:parameterDataSpecIRI
+    a openrel:Parameter, odrl:RightOperand ;
+    openrel:parameterName "DATA_SPECIFICATION_IRI" ;
+    openrel:expectedDatatype xsd:anyURI ;
+    openrel:resolutionMethod openrel:SubjectContext
+	.
+
+
 # [VERIFIED_RESEARCHER]
 # [VERIFIED_IDENTITY]
 # [INSTITUTION_IRI]
 # [VERIFIED_RPO]
 
-# ---------- Data Subject Context
 
-# [SUBJECT_IRI]
-# [INFORMED_CONSENT_IRI]
-# [DATA_SPECIFICATION_IRI]
+
+
 
 # ---------- Immediate Request Context
 
