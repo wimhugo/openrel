@@ -49,7 +49,7 @@
     # Alternate identifiers
     ## skos:exactMatch spdx:<> ;
     ## skos:exactMatch lfslib:<> ;
-    ## openrel:encodedRules openrel:OR-BY-AC-VI-NC-4.0 ;
+    openrel:encodedRules openrellib:OR-BY-AC-VI-NC-4.0 ;
 
     # Citation Information
     dct:title "eIDAS Verified Researcher Plus CC BY NC 4.0" ;
