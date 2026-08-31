@@ -1,0 +1,28 @@
+# --------------------------------------------------------------------------------------------------------------------------------
+# Policy Wizard Template (mock-up source) — for offline comparison with data/policy/
+# OpenREL - Open Rights Encoding Language
+# Version 0.4 (Draft)
+# --------------------------------------------------------------------------------------------------------------------------------
+
+@base <http://www.w3.org/ns/openrel/0/> .
+@prefix openrel: <http://www.w3.org/ns/openrel/0/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+
+
+<p007> a openrel:Access ;
+    dct:title "Time-Limited Access Window" ;
+    dct:description """This resource may be accessed during a specified time window. Access requests outside this window receive a DENY response. Used for embargo periods or temporary open access provisions."""@en ;
+    dct:subject "Time-Limited", "Embargo", "Access Window" ;
+    openrel:topic "restricted" ;
+    openrel:templateSlug "time-limited-access-window" ;
+    odrl:permission
+        [ odrl:action odrl:read
+        ] ,
+        [ odrl:action odrl:reproduce
+        ] ;
+    .
