@@ -49,6 +49,7 @@
     # Alternate identifiers
     dct:relation spdx:CC0-1.0 ;
     dct:relation lfslib:CC0-1.0 ;
+    ## openrel:encodedRules openrel:CC0-1.0 ;
 
     # Citation Information
     dct:title "Creative Commons Zero v1.0 Universal" ;
