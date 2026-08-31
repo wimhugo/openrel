@@ -50,6 +50,13 @@ openrel:typeScenario
   skos:prefLabel "Scenario Types"@en ;
   dct:title "Scenario Definitions (Types)"@en ;
   dct:description "Scenarios describing user, asset, or organisational context. Scenario groups and individual scenarios used for deterministic policy matching."@en ;
+  rdfs:hasTopLevel openrel:group-research-only , 
+                   openrel:group-commercial-scenarios ,
+                   openrel:group-funding-related ,
+                   openrel:group-legal-ethical ,
+                   openrel:group-publication-status ,
+                   openrel:group-obligations ,
+                   
   dct:created "2026-07-12T00:00:00+00:00"^^xsd:datetime ;
   dct:creator <https://orcid.org/0000-0002-0255-5101> ;
   owl:versionInfo "0.1" .
@@ -103,10 +110,18 @@ openrel:affirmed-research
 
 # Commercial use scenarios
 
+openrel:group-commercial-scenarios
+  a skos:Concept ;
+  skos:prefLabel "Commercialisation Scenarios"@en ;
+  skos:definition "Limitations to commercial applications."@en ;
+  skos:inScheme openrel:typeScenario 
+  .
+
 openrel:commercial-use
   a skos:Concept ;
   skos:prefLabel "Commercial Use Excluded"@en ;
   skos:definition "Limitations to commercial applications."@en ;
+  skos:broader openrel:group-commercial-scenarios ;
   skos:inScheme openrel:typeScenario 
   .
 
@@ -114,22 +129,29 @@ openrel:non-commercial-only
   a skos:Concept ;
   rdfs:label "Non-Commercial Only."@en ;
   skos:definiton "Your work can only be used for non-commercial research, derived Assets, or application."@en ;
-  skos:broader openrel:commercial-use ;
+  skos:broader openrel:group-commercial-scenarios ;
   skos:inScheme openrel:typeScenario 
   .
 
 # Funding-related considerations
 
+openrel:group-funding-related
+  a skos:Concept ;
+  skos:prefLabel "Funding  Considerations"@en ;
+  skos:definition "Your work can only be used in ways defined by the funder."@en ;
+  skos:inScheme openrel:typeScenario 
+
 openrel:funding-related
   a skos:Concept ;
-  skos:prefLabel "Funding-related Considerations"@en ;
+  skos:prefLabel "Funder-defined permissions and prohibitions"@en ;
   skos:definition "Your work can only be used in ways defined by the funder."@en ;
+  skos:broader openrel:group-funding-related ;
   skos:inScheme openrel:typeScenario 
   .
 
 openrel:public-funding-open
   a skos:Concept ;
-  rdfs:label "Public Funding Open Access"@en ;
+  rdfs:label "Public Funding - -Open Access"@en ;
   skos:definiton "Your work was created through public funding, and as a result, must be published with the most open licence applicable to the content."@en ;
   skos:broader openrel:funding-related ;
   skos:inScheme openrel:typeScenario 
@@ -137,10 +159,18 @@ openrel:public-funding-open
 
 # Legal and Ethical Considerations
 
+openrel:group-legal-ethical
+  a skos:Concept ;
+  skos:prefLabel "Legal and Ethical Considerations"@en ;
+  skos:definition "Adherence to ethical, legal and regulatory considerations."@en ;
+  skos:inScheme openrel:typeScenario 
+
 openrel:legal-considerations
   a skos:Concept ;
   skos:prefLabel "Legal Considerations"@en ;
   skos:definition "Adherence to legislation and regulatory considerations."@en ;
+  skos:broader openrel:group-legal-ethical ;
+  skos:inScheme openrel:typeScenario 
   .
 
 openrel:gdpr-compliance
@@ -168,27 +198,10 @@ openrel:gdpr-special-category
   skos:inScheme openrel:typeScenario 
   .
 
-# Publication (status) considerations
-
-openrel:publication-status
-  a skos:Concept ;
-  skos:prefLabel "Publication Status"@en ;
-  skos:definition "Limitations due to workflow or publication state."@en ;
-  .
-
-openrel:status-revoked
-  a skos:Concept ;
-  rdfs:label "Revocation or Withdrawal"@en ;
-  skos:definiton "Your work cannot be used once its publication has been revoked or withdrawn."@en ;
-  skos:broader openrel:publication-status ;
-  skos:inScheme openrel:typeScenario 
-  .
-
-# Ethical considerations
-
 openrel:ethics-considerations
   a skos:Concept ;
   skos:prefLabel "Ethics-Related"@en ;
+  skos:broader openrel:legal-considerations ;
   skos:definition "Alignment with ethical considerations, policies, and norms."@en ;
   .
 
@@ -217,19 +230,36 @@ openrel:explicit-consent
   skos:inScheme openrel:typeScenario 
   .
 
+# Publication (status) considerations
+
+openrel:group-publication-status
+  a skos:Concept ;
+  skos:prefLabel "Publication Status"@en ;
+  skos:definition "Limitations due to workflow or publication state."@en ;
+  .
+
+openrel:status-revoked
+  a skos:Concept ;
+  rdfs:label "Revocation or Withdrawal"@en ;
+  skos:definiton "Your work cannot be used once its publication has been revoked or withdrawn."@en ;
+  skos:broader openrel:group-publication-status ;
+  skos:inScheme openrel:typeScenario 
+  .
+
 # End user obligations and duties
 
-openrel:obligations
+openrel:group-obligations
   a skos:Concept ;
   skos:prefLabel "End User Obligations and Duties"@en ;
   skos:definition "Obligations of the end user."@en ;
+  skos:inScheme openrel:typeScenario
   .
 
 openrel:attribution
   a skos:Concept ;
   rdfs:label "Attribution"@en ;
   skos:definiton "You want to be credited or cited when the work is reused."@en ;
-  skos:broader openrel:obligations ;
+  skos:broader openrel:group-obligations ;
   skos:inScheme openrel:typeScenario 
   .
 
@@ -237,32 +267,33 @@ openrel:licence-preserved
   a skos:Concept ;
   rdfs:label "Share-Alike"@en ;
   skos:definiton "You want derivative works to be distributed under the same licence."@en ;
-  skos:note "Such a requirement makes it very difficult to licence a derived Asset based on more than one source Assets, since it prevents a licence that takes all input constraints and actions into account."
-  skos:broader openrel:obligations ;
+  skos:note "Such a requirement makes it very difficult to licence a derived Asset based on more than one source Asset, since it prevents a new licence that takes all input constraints and actions into account."
+  skos:broader openrel:group-obligations ;
   skos:inScheme openrel:typeScenario 
   .
 
 openrel:notification-duty
   a skos:Concept ;
   rdfs:label "Notification Duties"@en ;
-  skos:definiton "Your work can only be accessed and/ or siddeminated if one or more notifcation duties are complied with."@en ;
-  skos:broader openrel:access-considerations ;
+  skos:definiton "Your work can only be accessed and/ or disseminated if one or more notification duties are complied with."@en ;
+  skos:broader openrel:group-obligations ;
   skos:inScheme openrel:typeScenario 
   .
 
 # Open Science Related
 
-openrel:open-science
+openrel:group-open-science
   a skos:Concept ;
   skos:prefLabel "Open Science Considerations"@en ;
   skos:definition "Open science and open data considerations."@en ;
+  skos:inScheme openrel:typeScenario
   .
 
 openrel:open-access
   a skos:Concept ;
   rdfs:label "Open Access"@en ;
-  skos:definiton "You want your work to be available openly without limitations on reuse. Reuse may include duties such as attribution."@en ;
-  skos:broader openrel:open-science ;
+  skos:definiton "You want your work to be available openly without limitations on reuse. Reuse may include duties such as attribution and notification."@en ;
+  skos:broader openrel:group-open-science ;
   skos:inScheme openrel:typeScenario 
   .
 
@@ -270,23 +301,24 @@ openrel:public-repository
   a skos:Concept ;
   rdfs:label "Public Repository"@en ;
   skos:definiton "You want to deposit the work in a public repository."@en ;
-  skos:broader openrel:open-science ;
+  skos:broader openrel:group-open-science ;
   skos:inScheme openrel:typeScenario 
   .
 
 # Access Related
 
-openrel:access-considerations
+openrel:group-access-considerations
   a skos:Concept ;
   skos:prefLabel "Access Considerations."@en ;
   skos:definition "Access-related limitations and considerations."@en ;
+  skos:inScheme openrel:typeScenario 
   .
 
 openrel:trusted-connection
   a skos:Concept ;
   rdfs:label "Trusted Connections"@en ;
   skos:definiton "Your work can only be accessed via certified trusted connections."@en ;
-  skos:broader openrel:access-considerations ;
+  skos:broader openrel:group-access-considerations ;
   skos:inScheme openrel:typeScenario 
   .
 
@@ -294,7 +326,7 @@ openrel:european-use
   a skos:Concept ;
   rdfs:label "EU Use"@en ;
   skos:definiton "Your work can only be accessed if the requestor is based in the European Union."@en ;
-  skos:broader openrel:access-considerations ;
+  skos:broader openrel:group-access-considerations ;
   skos:inScheme openrel:typeScenario 
   .
 
@@ -302,7 +334,7 @@ openrel:strict-subset
   a skos:Concept ;
   rdfs:label "Strictly Necessary Content"@en ;
   skos:definiton "You only want to grant access to a subset of the work that is strictly necessary for the stated purpose."@en ;
-  skos:broader openrel:access-considerations ;
+  skos:broader openrel:group-access-considerations ;
   skos:inScheme openrel:typeScenario 
   .
 
@@ -310,7 +342,7 @@ openrel:verified-identity
   a skos:Concept ;
   rdfs:label "Verified Identity"@en ;
   skos:definiton "Your work can only be accessed if the identity of the requestor is verified."@en ;
-  skos:broader openrel:access-considerations ;
+  skos:broader openrel:group-access-considerations ;
   skos:inScheme openrel:typeScenario 
   .
 
@@ -318,7 +350,7 @@ openrel:system-limitations
   a skos:Concept ;
   rdfs:label "System Limitations"@en ;
   skos:definiton "Your work can only be accessed or processed by systems, devices, and applications that have been identified and verified."@en ;
-  skos:broader openrel:access-considerations ;
+  skos:broader openrel:group-access-considerations ;
   skos:inScheme openrel:typeScenario 
   .
 
@@ -326,7 +358,7 @@ openrel:formal-toms
   a skos:Concept ;
   rdfs:label "Technical and Organisational Measures"@en ;
   skos:definiton "Your work can only be accessed if the requesting infrastructure, system, or device complies with specific technical, organisational, physical, and legal constraints."@en ;
-  skos:broader openrel:access-considerations ;
+  skos:broader openrel:group-access-considerations ;
   skos:inScheme openrel:typeScenario 
   .
 
@@ -334,7 +366,7 @@ openrel:tech-limits
   a skos:Concept ;
   rdfs:label "Technical Access Limits"@en ;
   skos:definiton "Your work can only be accessed subject to technical constraints, limiting the duration of access, number of access events, volume of downloads, or similar."@en ;
-  skos:broader openrel:access-considerations ;
+  skos:broader openrel:group-access-considerations ;
   skos:inScheme openrel:typeScenario 
   .
 
