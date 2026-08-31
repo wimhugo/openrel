@@ -1,0 +1,34 @@
+# --------------------------------------------------------------------------------------------------------------------------------
+# Policy Wizard Template (mock-up source) — for offline comparison with data/policy/
+# OpenREL - Open Rights Encoding Language
+# Version 0.4 (Draft)
+# --------------------------------------------------------------------------------------------------------------------------------
+
+@base <http://www.w3.org/ns/openrel/0/> .
+@prefix openrel: <http://www.w3.org/ns/openrel/0/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+
+
+<p014> a openrel:Process ;
+    dct:title "Data Processing with Anonymization" ;
+    dct:description """This resource may be processed under the condition that anonymization is applied before any output, derivative, or summary is shared with third parties. Suitable for personal data under GDPR."""@en ;
+    dct:subject "Personal Data", "Anonymization", "GDPR", "Privacy" ;
+    openrel:topic "personal-data", "ai" ;
+    openrel:templateSlug "data-processing-anonymization" ;
+    odrl:permission
+        [ odrl:action odrl:use
+          ; odrl:constraint [ a odrl:LogicalConstraint ; odrl:and ( [ a odrl:Constraint ; odrl:leftOperand openrel:constraint.legalBasis:consent ; odrl:operator odrl:eq ; odrl:rightOperand true ] [ a odrl:Constraint ; odrl:leftOperand openrel:constraint.ethicsApproval:required ; odrl:operator odrl:eq ; odrl:rightOperand true ] [ a odrl:Constraint ; odrl:leftOperand openrel:constraint.dataMinimization ; odrl:operator odrl:eq ; odrl:rightOperand true ] ) ]
+          ; odrl:preDuty [ odrl:action openrel:obtainConsent ; odrl:action openrel:anonymize ]
+        ] ,
+        [ odrl:action odrl:read
+          ; odrl:constraint [ a odrl:LogicalConstraint ; odrl:and ( [ a odrl:Constraint ; odrl:leftOperand openrel:constraint.legalBasis:consent ; odrl:operator odrl:eq ; odrl:rightOperand true ] [ a odrl:Constraint ; odrl:leftOperand openrel:constraint.ethicsApproval:required ; odrl:operator odrl:eq ; odrl:rightOperand true ] [ a odrl:Constraint ; odrl:leftOperand openrel:constraint.dataMinimization ; odrl:operator odrl:eq ; odrl:rightOperand true ] ) ]
+          ; odrl:preDuty [ odrl:action openrel:obtainConsent ; odrl:action openrel:anonymize ]
+        ] ;
+    odrl:prohibition
+        [ odrl:action odrl:distribute ] ;
+    .
