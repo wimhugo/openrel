@@ -48,7 +48,7 @@
 # Policy Metadata
 # --------------------------------------------------------------------------------------------------------------------------------
 
-<CC-BY-ND-4.0 a openrel:Licence ;
+<CC-BY-ND-4.0> a openrel:Licence ;
     # Attribution
     prov:wasDerivedFrom ddalicclib:CC-BY-ND-4.0 ;
     prov:wasAttributedTo "Giray Havur" ;
