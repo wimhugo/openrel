@@ -117,6 +117,8 @@ openrel:resolutionMethod
 
 openrel:startDateParameter
     a openrel:Parameter, odrl:RightOperand ;
+	skos:prefLabel "Start Date" ;
+	skos:definition "The start date for a period, usually a period of access."@en ;
     openrel:parameterName "START_DATE" ;
     openrel:expectedDatatype xsd:dateTime ;
     openrel:resolutionMethod openrel:RuntimeContext 
@@ -124,6 +126,8 @@ openrel:startDateParameter
 
 openrel:endDateParameter
     a openrel:Parameter, odrl:RightOperand ;
+	skos:prefLabel "End Date" ;
+	skos:definition "The end date for a period, usually a period of access."@en ;
     openrel:parameterName "END_DATE" ;
     openrel:expectedDatatype xsd:dateTime ;
     openrel:resolutionMethod openrel:RuntimeContext 
@@ -133,6 +137,8 @@ openrel:endDateParameter
 
 openrel:parameterPublisherIRI
     a openrel:Parameter, odrl:RightOperand ;
+	skos:prefLabel "Publisher IRI" ;
+	skos:definition "A unique identifier for a publisher (PID, URI, URL)."@en ;
     openrel:parameterName "PUBLISHER_IRI" ;
     openrel:expectedDatatype xsd:anyURI ;
     openrel:resolutionMethod openrel:RepositoryContext 
@@ -140,6 +146,8 @@ openrel:parameterPublisherIRI
 
 openrel:parameterAssignerIRI
     a openrel:Parameter, odrl:RightOperand ;
+	skos:prefLabel "Assigner IRI" ;
+	skos:definition "A unique identifier for the assigner (curator, rights owner) (PID, URI, URL)."@en ;
     openrel:parameterName "ASSIGNER_IRI" ;
     openrel:expectedDatatype xsd:anyURI ;
     openrel:resolutionMethod openrel:RepositoryContext 
@@ -147,6 +155,8 @@ openrel:parameterAssignerIRI
 
 openrel:parameterTargetIRI
     a openrel:Parameter, odrl:RightOperand ;
+	skos:prefLabel "Target IRI" ;
+	skos:definition "A unique identifier for the target (Asset or Asset Collection) (PID, URI, URL)."@en ;
     openrel:parameterName "TARGET_IRI" ;
     openrel:expectedDatatype xsd:anyURI ;
     openrel:resolutionMethod openrel:AssetMetadataValue 
@@ -156,6 +166,8 @@ openrel:parameterTargetIRI
 
 openrel:parameterAssigneeIRI
     a openrel:Parameter, odrl:RightOperand ;
+	skos:prefLabel "Assignee IRI" ;
+	skos:definition "A unique identifier for the assignee (user, requestor) (PID, URI, URL)."@en ;
     openrel:parameterName "ASSIGNEE_IRI" ;
     openrel:expectedDatatype xsd:anyURI ;
     openrel:resolutionMethod openrel:PartyContext 
@@ -164,6 +176,8 @@ openrel:parameterAssigneeIRI
 
 openrel:parameterDataSubjectIRI
     a openrel:Parameter, odrl:RightOperand ;
+	skos:prefLabel "Data Subject IRI" ;
+	skos:definition "A unique identifier for the data subject(s) (PID, URI, URL)."@en ;
     openrel:parameterName "DATA_SUBJECT_IRI" ;
     openrel:expectedDatatype xsd:anyURI ;
     openrel:resolutionMethod openrel:SubjectContext
@@ -171,6 +185,8 @@ openrel:parameterDataSubjectIRI
 
 openrel:parameterInformedConsentIRI
     a openrel:Parameter, odrl:RightOperand ;
+	skos:prefLabel "Informed Consent IRI" ;
+	skos:definition "A unique identifier for the evidence of informed consent  (PID, URI, URL)."@en ;
     openrel:parameterName "INFORMED_CONSENT_IRI" ;
     openrel:expectedDatatype xsd:anyURI ;
     openrel:resolutionMethod openrel:SubjectContext
@@ -178,11 +194,12 @@ openrel:parameterInformedConsentIRI
 
 openrel:parameterDataSpecIRI
     a openrel:Parameter, odrl:RightOperand ;
+	skos:prefLabel "Data Specification IRI" ;
+	skos:definition "A unique identifier for a data specification defining data that is in scope for access (PID, URI, URL)."@en ;
     openrel:parameterName "DATA_SPECIFICATION_IRI" ;
     openrel:expectedDatatype xsd:anyURI ;
     openrel:resolutionMethod openrel:SubjectContext
 	.
-
 
 # [VERIFIED_RESEARCHER]
 # [VERIFIED_IDENTITY]
@@ -193,11 +210,12 @@ openrel:parameterDataSpecIRI
 # ---------- Target Context
 openrel:parameterPublicationDate
     a openrel:Parameter, odrl:RightOperand ;
+	skos:prefLabel "Asset Publication Date" ;
+	skos:definition "The date on which the asset was published - often used for embargo period definition (PID, URI, URL)."@en ;
     openrel:parameterName "TARGET_PUBLICATION_DATE" ;
     openrel:expectedDatatype xsd:dateTime ;
     openrel:resolutionMethod openrel:AssetMetadataValue
 	.
-
 
 # ---------- Immediate Request Context
 
