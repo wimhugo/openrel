@@ -1,0 +1,34 @@
+# --------------------------------------------------------------------------------------------------------------------------------
+# Policy Wizard Template (mock-up source) — for offline comparison with data/policy/
+# OpenREL - Open Rights Encoding Language
+# Version 0.4 (Draft)
+# --------------------------------------------------------------------------------------------------------------------------------
+
+@base <http://www.w3.org/ns/openrel/0/> .
+@prefix openrel: <http://www.w3.org/ns/openrel/0/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+
+
+<p006> a openrel:Access ;
+    dct:title "Researcher Access Only" ;
+    dct:description """This resource is accessible only to individuals holding a verified researcher role or affiliated with an accredited research institution. Use is limited to non-commercial academic research."""@en ;
+    dct:subject "Restricted", "Researcher Role", "Academic", "Non-Commercial" ;
+    openrel:topic "restricted", "non-commercial" ;
+    openrel:templateSlug "researcher-access-only" ;
+    odrl:permission
+        [ odrl:action odrl:read
+          ; odrl:constraint [ a odrl:LogicalConstraint ; odrl:and ( [ a odrl:Constraint ; odrl:leftOperand openrel:constraint.purpose:academicResearch ; odrl:operator odrl:eq ; odrl:rightOperand true ] [ a odrl:Constraint ; odrl:leftOperand openrel:constraint.purpose:nonCommercial ; odrl:operator odrl:eq ; odrl:rightOperand true ] [ a odrl:Constraint ; odrl:leftOperand openrel:constraint.role:researcher ; odrl:operator odrl:eq ; odrl:rightOperand true ] [ a odrl:Constraint ; odrl:leftOperand openrel:constraint.role:institution ; odrl:operator odrl:eq ; odrl:rightOperand true ] [ a odrl:Constraint ; odrl:leftOperand openrel:constraint.attribution:required ; odrl:operator odrl:eq ; odrl:rightOperand true ] ) ]
+          ; odrl:postDuty [ odrl:action odrl:attribute ]
+        ] ,
+        [ odrl:action odrl:reproduce
+          ; odrl:constraint [ a odrl:LogicalConstraint ; odrl:and ( [ a odrl:Constraint ; odrl:leftOperand openrel:constraint.purpose:academicResearch ; odrl:operator odrl:eq ; odrl:rightOperand true ] [ a odrl:Constraint ; odrl:leftOperand openrel:constraint.purpose:nonCommercial ; odrl:operator odrl:eq ; odrl:rightOperand true ] [ a odrl:Constraint ; odrl:leftOperand openrel:constraint.role:researcher ; odrl:operator odrl:eq ; odrl:rightOperand true ] [ a odrl:Constraint ; odrl:leftOperand openrel:constraint.role:institution ; odrl:operator odrl:eq ; odrl:rightOperand true ] [ a odrl:Constraint ; odrl:leftOperand openrel:constraint.attribution:required ; odrl:operator odrl:eq ; odrl:rightOperand true ] ) ]
+          ; odrl:postDuty [ odrl:action odrl:attribute ]
+        ] ;
+    odrl:prohibition
+        [ odrl:action odrl:distribute ] ;
+    .
