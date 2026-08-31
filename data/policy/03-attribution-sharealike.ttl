@@ -55,7 +55,6 @@
     # Alternate identifiers
     dct:relation spdxlicense:CC-BY-4.0 ;
     dct:relation lfslib:CC-BY-4.0 ;
-    openrel:encodedRules openrellib:CC-BY-SA-4.0 ;
    
 # Citation Information
     dct:title "Creative Commons Attribution ShareAlike 4.0 International"@en ;
@@ -94,7 +93,7 @@
     openrel:legalcode <https://creativecommons.org/licenses/by-sa/4.0/legalcode> ;
     openrel:policyTextHtml <https://spdx.org/licenses/CC-BY-SA-4.0.html> ;
     openrel:policyText lfslib:CC-BY-SA-4.0/original ;
-    openrel:encodedRules <https://github.com/wimhugo/openrel/blob/main/data/policy/03-attribution-sharealike.ttl> ;
+    openrel:encodedRules openrellib:CC-BY-SA-4.0 ;
 
 # --------------------------------------------------------------------------------------------------------------------------------
 #   Rules
