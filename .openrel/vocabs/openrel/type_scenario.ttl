@@ -63,7 +63,7 @@ openrel:typeScenario
 openrel:group-research-only
   a skos:Concept ;
   skos:prefLabel "Research Only"@en ;
-  skos:definition "Limited to research, development, and academic reuse. Reseaerch may be aimed at commercial exploitation of results."@en ;
+  skos:definition "Limited to research, development, and academic reuse. Research may be aimed at commercial exploitation of results."@en ;
   skos:exactMatch r3d:dataAccessTypes/open ;
   skos:exactMatch coar:dataAccessTypes/c_abf2/ ;
   skos:inScheme openrel:typeScenario 
