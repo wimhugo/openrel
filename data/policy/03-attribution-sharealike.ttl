@@ -51,11 +51,11 @@
 <CC-BY-SA-4.0> a openrel:Licence ;
     prov:wasDerivedFrom dalicclib:CC-BY-SA-4.0 ;
     prov:wasAttributedTo "Giray Havur" ;
-    openrel:encodedRules openrellib:CC-BY-SA-4.0 ;
 
     # Alternate identifiers
     dct:relation spdxlicense:CC-BY-4.0 ;
     dct:relation lfslib:CC-BY-4.0 ;
+    openrel:encodedRules openrellib:CC-BY-SA-4.0 ;
    
 # Citation Information
     dct:title "Creative Commons Attribution ShareAlike 4.0 International"@en ;
