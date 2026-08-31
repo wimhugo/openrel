@@ -189,7 +189,13 @@ oprenrel:parameterDataSpecIRI
 # [VERIFIED_RPO]
 
 
-
+# ---------- Target Context
+oprenrel:parameterPublicationDate
+    a openrel:Parameter, odrl:RightOperand ;
+    openrel:parameterName "TARGET_PUBLICATION_DATE" ;
+    openrel:expectedDatatype xsd:dateTime ;
+    openrel:resolutionMethod openrel:AssetMetadataValue
+	.
 
 
 # ---------- Immediate Request Context
