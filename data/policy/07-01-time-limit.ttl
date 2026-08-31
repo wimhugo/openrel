@@ -13,7 +13,7 @@
 
 # context
 @base <http://www.w3.org/ns/openrel/0/> .
-@prefix : <http://www.w3.org/ns/openrel/0/> .
+@prefix openrel: <http://www.w3.org/ns/openrel/0/> .
 # RDF-related
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -48,10 +48,9 @@
 # Access Rules Metadata
 # --------------------------------------------------------------------------------------------------------------------------------
 
-<SD-ED> a openrel:AccessRules ;
+<SD-ED-0.4> a openrel:AccessRules ;
     # Alternate identifiers
-    # skos:exactMatch spdx:<> ;
-    skos:exactMatch lfslib:[] ;
+    skos:exactMatch lfslib:[TO_BE_REGISTERED] ;
     # Citation Information
     dct:title "Time-Limited Access" ;
     dct:publisher openrel:parameterPublisherIRI ;
