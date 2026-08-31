@@ -43,7 +43,7 @@
 # Process Rules Metadata
 # --------------------------------------------------------------------------------------------------------------------------------
 
-<OR-AC-VI-0.4> a openrel:ProcessRules ;
+<OR-BY-AC-VI-4.0> a openrel:ProcessRules ;
     # Alternate identifiers
     dct:relation lfslib:[TO_BE_REGISTERED] ;
 
