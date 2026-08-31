@@ -45,12 +45,12 @@
 <OR-EA-0.4> a openrel:AccessRules ;
 
     # Alternate identifiers
-    dct:relation lfslib:[TO_BE_REGISTERED] ;
+    ## dct:relation lfslib:[TO_BE_REGISTERED] ;
 
     # Citation Information
     dct:title "Ethics Approval Required"@en ;
     dct:alternative "Ethics Approval" ;
-    dct:description "Access rules require verification of ethics approval."@en ;
+    dct:description "Access rules require verification of ethics approval prior to any permissions granted."@en ;
     dct:publisher "OpenREL" ;
     odrl:assigner [ASSIGNER_URI] ;
     odrl:assignee [ASSIGNEE_URI] ;
@@ -60,18 +60,21 @@
     dct:creator <https://orcid.org/0000-0002-0255-5101> ;
     dct:subject "Ethics", "Ethics Approval" ;
     openrel:accessType openrel:managed ;    
-    dct:version "4.0" ;
+    dct:version "0.4" ;
+
     # Coverage related information
     cc:jurisdiction openrel:worldWide ;
     openrel:validityType openrel:perpetual ;
+
     # Disclaimers
     openrel:liabilityLimitation "To the extent possible, in no event will the Licensor be liable to You on any legal theory (including, without limitation, negligence) or otherwise for any direct, special, indirect, incidental, consequential, punitive, exemplary, or other losses, costs, expenses, or damages arising out of this Public License or use of the Licensed Material, even if the Licensor has been advised of the possibility of such losses, costs, expenses, or damages. Where a limitation of liability is not allowed in full or in part, this limitation may not apply to You." ;
     openrel:warrantyNotice "Unless otherwise separately undertaken by the Licensor, to the extent possible, the Licensor offers the Licensed Material as-is and as-available, and makes no representations or warranties of any kind concerning the Licensed Material, whether express, implied, statutory, or other. This includes, without limitation, warranties of title, merchantability, fitness for a particular purpose, non-infringement, absence of latent or other defects, accuracy, or the presence or absence of errors, whether or not known or discoverable. Where disclaimers of warranties are not allowed in full or in part, this disclaimer may not apply to You." ;
+    
     # Alternative representations, mappings of SPDX and LFS properties
-    openrel:legalcode <> ;
-    openrel:policyTextHtml <> ;
-    openrel:policyText lfslib:[TO_BE_REGISTERED]/original ;
-    openrel:encodedRules <https://github.com/wimhugo/openrel/blob/main/data/policy/04-attribution-noncommercial.ttl> ;
+    ## openrel:legalcode <> ;
+    ## openrel:policyTextHtml <> ;
+    ## openrel:policyText lfslib:[TO_BE_REGISTERED]/original ;
+    openrel:encodedRules openrellib:OR-EA-0.4 ;
 
 # --------------------------------------------------------------------------------------------------------------------------------
 #   Rules
