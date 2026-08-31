@@ -78,7 +78,7 @@ openrel:group-research-only
 
 openrel:academic-only
   a skos:Concept ;
-  skos:prefLabel "Academic Only."@en ;
+  skos:prefLabel "Academic Only"@en ;
   skos:definition "Your work can only be used for academic research."@en ;
   skos:broader openrel:group-research-only ;
   skos:inScheme openrel:typeScenario 
@@ -86,7 +86,7 @@ openrel:academic-only
 
 openrel:confirmed-researcher
   a skos:Concept ;
-  skos:prefLabel "Confirmed Researcher Only."@en ;
+  skos:prefLabel "Confirmed Researcher Only"@en ;
   skos:definition "Your work can only be used by a confirmed researcher."@en ;
   skos:broader openrel:group-research-only ;
   skos:inScheme openrel:typeScenario 
@@ -94,7 +94,7 @@ openrel:confirmed-researcher
 
 openrel:confirmed-rpo
   a skos:Concept ;
-  skos:prefLabel "Confirmed Research Performing Organisation."@en ;
+  skos:prefLabel "Confirmed Research Performing Organisation"@en ;
   skos:definition "Your work can only be used by a confirmed research institution."@en ;
   skos:broader openrel:group-research-only ;
   skos:inScheme openrel:typeScenario 
@@ -102,7 +102,7 @@ openrel:confirmed-rpo
 
 openrel:affirmed-research
   a skos:Concept ;
-  skos:prefLabel "Affrimed Researcher."@en ;
+  skos:prefLabel "Affirmed Researcher"@en ;
   skos:definition "I am a researcher, or I am affiliated with a verfied research or academic institution."@en ;
   skos:broader openrel:group-research-only ;
   skos:inScheme openrel:typeScenario 
@@ -127,7 +127,7 @@ openrel:commercial-use
 
 openrel:non-commercial-only
   a skos:Concept ;
-  skos:prefLabel "Non-Commercial Only."@en ;
+  skos:prefLabel "Non-Commercial Only"@en ;
   skos:definition "Your work can only be used for non-commercial research, derived Assets, or application."@en ;
   skos:broader openrel:group-commercial-scenarios ;
   skos:inScheme openrel:typeScenario 
@@ -137,7 +137,7 @@ openrel:non-commercial-only
 
 openrel:group-funding-related
   a skos:Concept ;
-  skos:prefLabel "Funding  Considerations"@en ;
+  skos:prefLabel "Funding Considerations"@en ;
   skos:definition "Your work can only be used in ways defined by the funder."@en ;
   skos:inScheme openrel:typeScenario 
 
@@ -309,7 +309,7 @@ openrel:public-repository
 
 openrel:group-access-considerations
   a skos:Concept ;
-  skos:prefLabel "Access Considerations."@en ;
+  skos:prefLabel "Access Considerations"@en ;
   skos:definition "Access-related limitations and considerations."@en ;
   skos:inScheme openrel:typeScenario 
   .
