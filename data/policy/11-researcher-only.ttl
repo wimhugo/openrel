@@ -74,7 +74,7 @@
     openrel:legalcode <> ;
     openrel:policyTextHtml <> ;
     openrel:policyText lfslib:[TO_BE_REGISTERED]/original ;
-    openrel:encodedRules <https://github.com/wimhugo/openrel/blob/main/data/policy/04-attribution-noncommercial.ttl> ;
+    openrel:encodedRules openrellib:OR-BY-AC-VI-4.0 ;
 
 
 # --------------------------------------------------------------------------------------------------------------------------------
