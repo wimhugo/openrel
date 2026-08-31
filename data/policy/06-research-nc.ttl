@@ -49,7 +49,6 @@
     # Alternate identifiers
     ## skos:exactMatch spdx:<> ;
     ## skos:exactMatch lfslib:<> ;
-    openrel:encodedRules openrellib:OR-BY-AC-VI-NC-4.0 ;
 
     # Citation Information
     dct:title "eIDAS Verified Researcher Plus CC BY NC 4.0" ;
@@ -74,8 +73,12 @@
     # Definition of input policies
     openrel:hasPolicy <11-researcher-only> ;
     openrel:hasPolicy spdxlicense:CC-BY-NC-4.0 ;    
-	  # Optional results of evaluation of two or more policies
+	
+	# Optional results of evaluation of two or more policies
     # openrel:evaluationDetail [OPENREL_EVALUATION] ;
+
+    # Alternative representations, mappings of SPDX and LFS properties
+    openrel:encodedRules openrellib:OR-BY-AC-VI-NC-4.0 ;
 
 # --------------------------------------------------------------------------------------------------------------------------------
 # Policy-Level Comparisons
