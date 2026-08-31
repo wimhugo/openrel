@@ -1,0 +1,27 @@
+# --------------------------------------------------------------------------------------------------------------------------------
+# Policy Wizard Template (mock-up source) — for offline comparison with data/policy/
+# OpenREL - Open Rights Encoding Language
+# Version 0.4 (Draft)
+# --------------------------------------------------------------------------------------------------------------------------------
+
+@base <http://www.w3.org/ns/openrel/0/> .
+@prefix openrel: <http://www.w3.org/ns/openrel/0/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+
+
+<p009> a openrel:Access ;
+    dct:title "Access Count Limit" ;
+    dct:description """This resource may be accessed a limited number of times per user or connector. Once the maximum is reached, subsequent requests receive a DENY response."""@en ;
+    dct:subject "Usage Control", "Access Count", "Rate Limit" ;
+    openrel:topic "restricted" ;
+    openrel:templateSlug "access-count-limit" ;
+    odrl:permission
+        [ odrl:action odrl:read
+          ; odrl:constraint         [ a odrl:Constraint ; odrl:leftOperand openrel:constraint.count:accessCount ; odrl:operator odrl:eq ; odrl:rightOperand "<param: openrel:constraint.count:accessCount>" ]
+        ] ;
+    .
