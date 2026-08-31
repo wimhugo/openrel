@@ -45,7 +45,7 @@
 # Licence Metadata
 # --------------------------------------------------------------------------------------------------------------------------------
 
-<01-public-domain> a openrel:Licence ;
+<CC0-1.0> a openrel:Licence ;
     # Alternate identifiers
     dct:relation spdx:CC0-1.0 ;
     dct:relation lfslib:CC0-1.0 ;
