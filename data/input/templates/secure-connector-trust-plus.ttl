@@ -1,0 +1,31 @@
+# --------------------------------------------------------------------------------------------------------------------------------
+# Policy Wizard Template (mock-up source) — for offline comparison with data/policy/
+# OpenREL - Open Rights Encoding Language
+# Version 0.4 (Draft)
+# --------------------------------------------------------------------------------------------------------------------------------
+
+@base <http://www.w3.org/ns/openrel/0/> .
+@prefix openrel: <http://www.w3.org/ns/openrel/0/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+
+
+<p011> a openrel:Access ;
+    dct:title "Secure Connector — IDS TRUST+" ;
+    dct:description """This resource may be accessed only by data connectors holding a valid IDS TRUST+ certification. The connector certification status is verified at runtime. Suitable for confidential research data in EOSC federated infrastructure."""@en ;
+    dct:subject "Security", "IDS TRUST+", "Connector", "Confidential" ;
+    openrel:topic "restricted" ;
+    openrel:templateSlug "secure-connector-trust-plus" ;
+    odrl:permission
+        [ odrl:action odrl:read
+          ; odrl:constraint [ a odrl:LogicalConstraint ; odrl:and ( [ a odrl:Constraint ; odrl:leftOperand openrel:constraint.security:trustPlus ; odrl:operator odrl:eq ; odrl:rightOperand true ] [ a odrl:Constraint ; odrl:leftOperand openrel:constraint.revocation:active ; odrl:operator odrl:eq ; odrl:rightOperand true ] [ a odrl:Constraint ; odrl:leftOperand openrel:constraint.accountability:loggingCH ; odrl:operator odrl:eq ; odrl:rightOperand "<param: openrel:constraint.accountability:loggingCH>" ] ) ]
+          ; odrl:postDuty [ odrl:action openrel:log ]
+        ] ;
+    odrl:prohibition
+        [ odrl:action odrl:distribute ] ,
+        [ odrl:action odrl:modify ] ;
+    .
