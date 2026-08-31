@@ -1,0 +1,40 @@
+# --------------------------------------------------------------------------------------------------------------------------------
+# Policy Wizard Template (mock-up source) — for offline comparison with data/policy/
+# OpenREL - Open Rights Encoding Language
+# Version 0.4 (Draft)
+# --------------------------------------------------------------------------------------------------------------------------------
+
+@base <http://www.w3.org/ns/openrel/0/> .
+@prefix openrel: <http://www.w3.org/ns/openrel/0/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+
+
+<p002> a openrel:Licence ;
+    dct:title "Open Access with Attribution" ;
+    dct:description """This resource is open to all. Users may read, download, reproduce, distribute, and modify it for any purpose including commercial use, as long as they credit the original author."""@en ;
+    dct:subject "Open Access", "Attribution", "CC BY" ;
+    openrel:topic "open-access" ;
+    openrel:templateSlug "open-access-attribution" ;
+    odrl:permission
+        [ odrl:action odrl:read
+          ; odrl:constraint         [ a odrl:Constraint ; odrl:leftOperand openrel:constraint.attribution:required ; odrl:operator odrl:eq ; odrl:rightOperand true ]
+          ; odrl:postDuty [ odrl:action odrl:attribute ]
+        ] ,
+        [ odrl:action odrl:distribute
+          ; odrl:constraint         [ a odrl:Constraint ; odrl:leftOperand openrel:constraint.attribution:required ; odrl:operator odrl:eq ; odrl:rightOperand true ]
+          ; odrl:postDuty [ odrl:action odrl:attribute ]
+        ] ,
+        [ odrl:action odrl:modify
+          ; odrl:constraint         [ a odrl:Constraint ; odrl:leftOperand openrel:constraint.attribution:required ; odrl:operator odrl:eq ; odrl:rightOperand true ]
+          ; odrl:postDuty [ odrl:action odrl:attribute ]
+        ] ,
+        [ odrl:action odrl:reproduce
+          ; odrl:constraint         [ a odrl:Constraint ; odrl:leftOperand openrel:constraint.attribution:required ; odrl:operator odrl:eq ; odrl:rightOperand true ]
+          ; odrl:postDuty [ odrl:action odrl:attribute ]
+        ] ;
+    .
