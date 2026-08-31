@@ -171,6 +171,7 @@ openrel:parameterAssigneeIRI
     openrel:parameterName "ASSIGNEE_IRI" ;
     openrel:expectedDatatype xsd:anyURI ;
     openrel:resolutionMethod openrel:PartyContext 
+	.
 
 # ---------- Data Subject Context
 
