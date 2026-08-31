@@ -1,0 +1,214 @@
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix openrel: <https://openrel.eu/vocab#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+# ── Purpose ──
+openrel:constraint.purpose:academicResearch a skos:Concept ;
+    openrel:constraintId "C01" ;
+    skos:prefLabel "Academic Research" ;
+    openrel:constraintCategory "Purpose" ;
+    openrel:hasParam "false" ;
+    skos:definition "Access is limited to academic research purposes only." .
+
+openrel:constraint.purpose:nonCommercial a skos:Concept ;
+    openrel:constraintId "C02" ;
+    skos:prefLabel "Non-Commercial" ;
+    openrel:constraintCategory "Purpose" ;
+    openrel:hasParam "false" ;
+    skos:definition "Commercial use of this resource is not permitted." .
+
+# ── Legal Basis ──
+openrel:constraint.legalBasis:consent a skos:Concept ;
+    openrel:constraintId "C03" ;
+    skos:prefLabel "Consent (GDPR)" ;
+    openrel:constraintCategory "Legal Basis" ;
+    openrel:hasParam "false" ;
+    skos:definition "The data subject must have given explicit consent (GDPR Art. 6/9) before access is granted." .
+
+# ── Role / Identity ──
+openrel:constraint.role:researcher a skos:Concept ;
+    openrel:constraintId "C04" ;
+    skos:prefLabel "Researcher" ;
+    openrel:constraintCategory "Role / Identity" ;
+    openrel:hasParam "false" ;
+    skos:definition "The user must hold a verified researcher role." .
+
+openrel:constraint.role:institution a skos:Concept ;
+    openrel:constraintId "C05" ;
+    skos:prefLabel "Research Institution" ;
+    openrel:constraintCategory "Role / Identity" ;
+    openrel:hasParam "false" ;
+    skos:definition "Access is restricted to recognised research or academic institutions." .
+
+openrel:constraint.identity:verifiedEidas a skos:Concept ;
+    openrel:constraintId "C06" ;
+    skos:prefLabel "Verified eIDAS" ;
+    openrel:constraintCategory "Role / Identity" ;
+    openrel:hasParam "false" ;
+    skos:definition "The user must have a verified identity via eIDAS (EU digital identity standard)." .
+
+# ── Ethics & Security ──
+openrel:constraint.ethicsApproval:required a skos:Concept ;
+    openrel:constraintId "C07" ;
+    skos:prefLabel "Ethics Approval Required" ;
+    openrel:constraintCategory "Ethics & Security" ;
+    openrel:hasParam "false" ;
+    skos:definition "An ethics committee approval must be in place before access is granted." .
+
+openrel:constraint.security:trustPlus a skos:Concept ;
+    openrel:constraintId "C08" ;
+    skos:prefLabel "Security Profile: TRUST+" ;
+    openrel:constraintCategory "Ethics & Security" ;
+    openrel:hasParam "false" ;
+    skos:definition "The connector or system accessing this resource must meet the highest TRUST+ security profile." .
+
+openrel:constraint.security:trust a skos:Concept ;
+    openrel:constraintId "C09" ;
+    skos:prefLabel "Security Profile: TRUST" ;
+    openrel:constraintCategory "Ethics & Security" ;
+    openrel:hasParam "false" ;
+    skos:definition "The connector or system must meet the TRUST security profile (standard level)." .
+
+openrel:constraint.security:base a skos:Concept ;
+    openrel:constraintId "C10" ;
+    skos:prefLabel "Security Profile: BASE" ;
+    openrel:constraintCategory "Ethics & Security" ;
+    openrel:hasParam "false" ;
+    skos:definition "Minimum BASE-level security profile is required." .
+
+openrel:constraint.tom:required a skos:Concept ;
+    openrel:constraintId "C11" ;
+    skos:prefLabel "TOM Required" ;
+    openrel:constraintCategory "Ethics & Security" ;
+    openrel:hasParam "false" ;
+    skos:definition "Technical and organisational measures (TOMs) for data protection must be in place." .
+
+openrel:constraint.dataMinimization a skos:Concept ;
+    openrel:constraintId "C12" ;
+    skos:prefLabel "Data Minimization" ;
+    openrel:constraintCategory "Ethics & Security" ;
+    openrel:hasParam "false" ;
+    skos:definition "Only the minimum necessary data may be accessed or processed." .
+
+# ── Geography & Time ──
+odrl:spatial a skos:Concept ;
+    openrel:constraintId "C13" ;
+    skos:prefLabel "Spatial (GeoNames)" ;
+    openrel:constraintCategory "Geography & Time" ;
+    openrel:hasParam "true" ;
+    openrel:paramType "geo" ;
+    openrel:paramDescription "Access is restricted to a specific geographic area. Supply one or more GeoNames country URIs to include or exclude." ;
+    skos:definition "Access is restricted to a specific geographic area." .
+
+openrel:constraint.duration:accessDuration a skos:Concept ;
+    openrel:constraintId "C14" ;
+    skos:prefLabel "Access Duration" ;
+    openrel:constraintCategory "Geography & Time" ;
+    openrel:hasParam "true" ;
+    openrel:paramType "duration" ;
+    openrel:paramName "duration" ;
+    openrel:placeholder "e.g. PT24H" ;
+    openrel:paramDescription "The duration for which access is permitted, expressed as an ISO 8601 duration (e.g. PT24H for 24 hours)." ;
+    skos:definition "Access is permitted only for a defined duration (e.g. 24 hours)." .
+
+openrel:constraint.timeInterval:accessWindow a skos:Concept ;
+    openrel:constraintId "C15" ;
+    skos:prefLabel "Time Interval" ;
+    openrel:constraintCategory "Geography & Time" ;
+    openrel:hasParam "true" ;
+    openrel:paramType "daterange" ;
+    openrel:paramDescription "The date from which this policy becomes active, and the date on which it expires. Access outside this window will be denied." ;
+    skos:definition "Access is permitted only within a specific time window (start and end date)." .
+
+# ── Usage Control ──
+openrel:constraint.count:accessCount a skos:Concept ;
+    openrel:constraintId "C16" ;
+    skos:prefLabel "Access Count" ;
+    openrel:constraintCategory "Usage Control" ;
+    openrel:hasParam "true" ;
+    openrel:paramType "integer" ;
+    openrel:paramName "maxCount" ;
+    openrel:placeholder "e.g. 5" ;
+    openrel:paramDescription "The total number of times this resource may be accessed. Once the limit is reached, further access will be denied." ;
+    skos:definition "The total number of accesses is capped at a maximum value." .
+
+openrel:constraint.revocation:active a skos:Concept ;
+    openrel:constraintId "C17" ;
+    skos:prefLabel "Revocation Status Active" ;
+    openrel:constraintCategory "Usage Control" ;
+    openrel:hasParam "false" ;
+    skos:definition "This policy can be revoked at any time. Access systems must check that it is still active before granting access." .
+
+openrel:constraint.connector:authorisedURI a skos:Concept ;
+    openrel:constraintId "C18" ;
+    skos:prefLabel "Connector Auth URI" ;
+    openrel:constraintCategory "Usage Control" ;
+    openrel:hasParam "true" ;
+    openrel:paramType "uri" ;
+    openrel:paramName "connectorURI" ;
+    openrel:placeholder "https://…" ;
+    openrel:paramDescription "The web address (URI) identifying the specific connector permitted to access this resource. Only requests from this connector will be accepted." ;
+    skos:definition "Access is permitted only through a specific, pre-authorised connector. You must supply its URI." .
+
+openrel:constraint.volume:maxVolume a skos:Concept ;
+    openrel:constraintId "C19" ;
+    skos:prefLabel "Data Volume Limit (MiB)" ;
+    openrel:constraintCategory "Usage Control" ;
+    openrel:hasParam "true" ;
+    openrel:paramType "integer" ;
+    openrel:paramName "maxVolumeMiB" ;
+    openrel:placeholder "e.g. 500" ;
+    openrel:paramDescription "The total volume of data that can be transferred, expressed in mebibytes (MiB)." ;
+    skos:definition "The total volume of data that can be transferred is limited (in MiB)." .
+
+# ── Accountability ──
+openrel:constraint.accountability:notifyEndpoint a skos:Concept ;
+    openrel:constraintId "C20" ;
+    skos:prefLabel "Notification Endpoint" ;
+    openrel:constraintCategory "Accountability" ;
+    openrel:hasParam "true" ;
+    openrel:paramType "uri" ;
+    openrel:paramName "endpointURI" ;
+    openrel:placeholder "https://…" ;
+    openrel:paramDescription "The web address (URI) of the service that should receive a notification each time this resource is accessed. Contact your technical team to obtain this." ;
+    skos:definition "A notification must be sent to a designated endpoint each time the resource is accessed." .
+
+openrel:constraint.accountability:loggingCH a skos:Concept ;
+    openrel:constraintId "C21" ;
+    skos:prefLabel "Logging Clearing House" ;
+    openrel:constraintCategory "Accountability" ;
+    openrel:hasParam "true" ;
+    openrel:paramType "uri" ;
+    openrel:paramName "clearingHouseURI" ;
+    openrel:placeholder "https://…" ;
+    openrel:paramDescription "The web address (URI) of the central logging service that will record all access events. Typically provided by your organisation or infrastructure operator." ;
+    skos:definition "All access events must be logged and reported to a clearing house." .
+
+# ── Open Access & Attribution ──
+openrel:constraint.openAccess:required a skos:Concept ;
+    openrel:constraintId "C22" ;
+    skos:prefLabel "Open Access Required" ;
+    openrel:constraintCategory "Open Access & Attribution" ;
+    openrel:hasParam "false" ;
+    skos:definition "This resource must remain openly accessible — no access restrictions may be applied." .
+
+openrel:constraint.attribution:required a skos:Concept ;
+    openrel:constraintId "C23" ;
+    skos:prefLabel "Attribution Required" ;
+    openrel:constraintCategory "Open Access & Attribution" ;
+    openrel:hasParam "false" ;
+    skos:definition "The original author or rights holder must be credited when using this resource." .
+
+openrel:constraint.shareAlike a skos:Concept ;
+    openrel:constraintId "C24" ;
+    skos:prefLabel "Share-Alike" ;
+    openrel:constraintCategory "Open Access & Attribution" ;
+    openrel:hasParam "false" ;
+    skos:definition "Any derivative work or redistribution must be shared under the same terms as the original." .
+
+openrel:constraint.openAccess:fundingPublic a skos:Concept ;
+    openrel:constraintId "C25" ;
+    skos:prefLabel "Funding Source Public" ;
+    openrel:constraintCategory "Open Access & Attribution" ;
+    openrel:hasParam "false" ;
+    skos:definition "This resource was produced with public funding and must remain openly available." .
