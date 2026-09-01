@@ -47,7 +47,7 @@
 
 <OR-BY-AC-VI-4.0> a openrel:ProcessRules ;
     # Alternate identifiers
-    dct:relation lfslib:[TO_BE_REGISTERED] ;
+    ## dct:relation lfslib:[TO_BE_REGISTERED] ;
 
     dct:publisher "OpenREL" ;
     dc:title "Researcher-Only Access with eIDAS Verification" ;
