@@ -235,6 +235,15 @@ openrel:parameterPublicationDate
     openrel:resolutionMethod openrel:AssetMetadataValue
 	.
 
+openrel:parameterLicenceList
+    a openrel:Parameter, odrl:RightOperand ;
+	skos:prefLabel "Asset Licence List" ;
+	skos:definition "The unique list of licences applicable to an asset or asset collection (PID, URI, URL)."@en ;
+    openrel:parameterName "TARGET_LICENCE_LIST" ;
+    openrel:expectedDatatype xsd:dateTime ;
+    openrel:resolutionMethod openrel:AssetMetadataValue
+	.
+
 # ---------- Immediate Request Context
 
 # [IP_ADDRESS]
