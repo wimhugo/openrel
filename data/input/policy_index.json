@@ -1,7 +1,7 @@
 {
   "version": "0.4",
-  "description": "OpenREL Policy Index — curated discovery/catalogue index for the Policy Wizard. Structural fields (perm/proh/duty actions, type, status) mirror the canonical TTLs in data/policy/; semantic fields (q1, q3, q4, geo, dates, tags) are human-curated. The periodic indexer (see docs/specifications/e.2) recomputes fingerprints and flags drift. This file is the single source of truth for the Simple Wizard preload and the browser grid; detail rules/constraints are fetched live from the individual policy TTLs.",
-  "generated_at": "2026-09-01T09:00:00Z",
+  "description": "OpenREL Policy Index â curated discovery/catalogue index for the Policy Wizard. Structural fields (perm/proh/duty actions, type, status) mirror the canonical TTLs in data/policy/; semantic fields (q1, q3, q4, geo, dates, tags) are human-curated. The periodic indexer (see docs/specifications/e.2) recomputes fingerprints and flags drift. This file is the single source of truth for the Simple Wizard preload and the browser grid; detail rules/constraints are fetched live from the individual policy TTLs.",
+  "generated_at": "2026-09-01T10:34:54.772Z",
   "policies": [
     {
       "iri": "openrel:CC0-1.0",
@@ -9,19 +9,57 @@
       "description": "Anyone can read, download, share, and reuse this resource freely, for any purpose including commercial use.",
       "type": "Licence",
       "status": "active",
-      "tags": ["public-domain"],
+      "tags": [
+        "public-domain"
+      ],
       "is_composite": false,
-      "simple": { "q1": "public", "simplePerm": ["openrel:use","openrel:read","openrel:distribute","openrel:modify","openrel:reproduce"], "simpleDuty": [], "q3": "worldwide", "geoInc": [], "geoExc": [], "q4": "unlimited", "dateStart": null, "dateEnd": null }
+      "simple": {
+        "q1": "public",
+        "simplePerm": [
+          "openrel:use",
+          "openrel:read",
+          "openrel:distribute",
+          "openrel:modify",
+          "openrel:reproduce"
+        ],
+        "simpleDuty": [],
+        "q3": "worldwide",
+        "geoInc": [],
+        "geoExc": [],
+        "q4": "unlimited",
+        "dateStart": null,
+        "dateEnd": null
+      }
     },
     {
       "iri": "openrel:CC-BY-4.0",
       "label": "Creative Commons Attribution 4.0 International",
-      "description": "Anyone can read, download, share, and adapt for any purpose — provided the original author is credited.",
+      "description": "Anyone can read, download, share, and adapt for any purpose â provided the original author is credited.",
       "type": "Licence",
       "status": "active",
-      "tags": ["attribution"],
+      "tags": [
+        "attribution"
+      ],
       "is_composite": false,
-      "simple": { "q1": "public", "simplePerm": ["openrel:use","openrel:read","openrel:distribute","openrel:modify","openrel:reproduce"], "simpleDuty": ["openrel:attribute"], "q3": "worldwide", "geoInc": [], "geoExc": [], "q4": "unlimited", "dateStart": null, "dateEnd": null }
+      "simple": {
+        "q1": "public",
+        "simplePerm": [
+          "openrel:use",
+          "openrel:read",
+          "openrel:distribute",
+          "openrel:modify",
+          "openrel:reproduce"
+        ],
+        "simpleDuty": [
+          "openrel:attribute"
+        ],
+        "q3": "worldwide",
+        "geoInc": [],
+        "geoExc": [],
+        "q4": "unlimited",
+        "dateStart": null,
+        "dateEnd": null
+      }
     },
     {
       "iri": "openrel:CC-BY-SA-4.0",
@@ -29,9 +67,31 @@
       "description": "Use and share freely with attribution. Derivatives must be released under the same terms.",
       "type": "Licence",
       "status": "active",
-      "tags": ["attribution","share-alike"],
+      "tags": [
+        "attribution",
+        "share-alike"
+      ],
       "is_composite": false,
-      "simple": { "q1": "public", "simplePerm": ["openrel:use","openrel:read","openrel:distribute","openrel:modify","openrel:reproduce"], "simpleDuty": ["openrel:attribute","openrel:shareAlike"], "q3": "worldwide", "geoInc": [], "geoExc": [], "q4": "unlimited", "dateStart": null, "dateEnd": null }
+      "simple": {
+        "q1": "public",
+        "simplePerm": [
+          "openrel:use",
+          "openrel:read",
+          "openrel:distribute",
+          "openrel:modify",
+          "openrel:reproduce"
+        ],
+        "simpleDuty": [
+          "openrel:attribute",
+          "openrel:shareAlike"
+        ],
+        "q3": "worldwide",
+        "geoInc": [],
+        "geoExc": [],
+        "q4": "unlimited",
+        "dateStart": null,
+        "dateEnd": null
+      }
     },
     {
       "iri": "openrel:CC-BY-NC-4.0",
@@ -39,9 +99,30 @@
       "description": "Free to read and share, but commercial exploitation is not permitted. Attribution required.",
       "type": "Licence",
       "status": "active",
-      "tags": ["attribution","non-commercial"],
+      "tags": [
+        "attribution",
+        "non-commercial"
+      ],
       "is_composite": false,
-      "simple": { "q1": "noncommercial", "simplePerm": ["openrel:use","openrel:read","openrel:distribute","openrel:modify","openrel:reproduce"], "simpleDuty": ["openrel:attribute"], "q3": "worldwide", "geoInc": [], "geoExc": [], "q4": "unlimited", "dateStart": null, "dateEnd": null }
+      "simple": {
+        "q1": "noncommercial",
+        "simplePerm": [
+          "openrel:use",
+          "openrel:read",
+          "openrel:distribute",
+          "openrel:modify",
+          "openrel:reproduce"
+        ],
+        "simpleDuty": [
+          "openrel:attribute"
+        ],
+        "q3": "worldwide",
+        "geoInc": [],
+        "geoExc": [],
+        "q4": "unlimited",
+        "dateStart": null,
+        "dateEnd": null
+      }
     },
     {
       "iri": "openrel:CC-BY-ND-4.0",
@@ -49,9 +130,28 @@
       "description": "Users may read and download but may not modify, adapt, or create derivative works.",
       "type": "Licence",
       "status": "active",
-      "tags": ["attribution","no-derivatives"],
+      "tags": [
+        "attribution",
+        "no-derivatives"
+      ],
       "is_composite": false,
-      "simple": { "q1": "public", "simplePerm": ["openrel:use","openrel:read","openrel:distribute"], "simpleDuty": ["openrel:attribute"], "q3": "worldwide", "geoInc": [], "geoExc": [], "q4": "unlimited", "dateStart": null, "dateEnd": null }
+      "simple": {
+        "q1": "public",
+        "simplePerm": [
+          "openrel:use",
+          "openrel:read",
+          "openrel:distribute"
+        ],
+        "simpleDuty": [
+          "openrel:attribute"
+        ],
+        "q3": "worldwide",
+        "geoInc": [],
+        "geoExc": [],
+        "q4": "unlimited",
+        "dateStart": null,
+        "dateEnd": null
+      }
     },
     {
       "iri": "openrel:OR-BY-AC-VI-4.0",
@@ -59,9 +159,24 @@
       "description": "Process rules applicable to verify research identity.",
       "type": "Process",
       "status": "active",
-      "tags": ["verified-identity","researcher"],
+      "tags": [
+        "verified-identity",
+        "researcher"
+      ],
       "is_composite": false,
-      "simple": { "q1": "researchers", "simplePerm": ["openrel:read"], "simpleDuty": [], "q3": "worldwide", "geoInc": [], "geoExc": [], "q4": "unlimited", "dateStart": null, "dateEnd": null }
+      "simple": {
+        "q1": "researchers",
+        "simplePerm": [
+          "openrel:read"
+        ],
+        "simpleDuty": [],
+        "q3": "worldwide",
+        "geoInc": [],
+        "geoExc": [],
+        "q4": "unlimited",
+        "dateStart": null,
+        "dateEnd": null
+      }
     },
     {
       "iri": "openrel:OR-BY-AC-VI-NC-4.0",
@@ -69,10 +184,35 @@
       "description": "eIDAS Verified Researcher Combined with CC BY NC 4.0",
       "type": "PolicyCollection",
       "status": "active",
-      "tags": ["verified-identity","non-commercial","attribution"],
+      "tags": [
+        "verified-identity",
+        "non-commercial",
+        "attribution"
+      ],
       "is_composite": true,
-      "hasPolicy": ["openrel:OR-BY-AC-VI-4.0","openrel:CC-BY-NC-4.0"],
-      "simple": { "q1": "researchers", "simplePerm": ["openrel:use","openrel:read","openrel:distribute","openrel:modify","openrel:reproduce"], "simpleDuty": ["openrel:attribute"], "q3": "worldwide", "geoInc": [], "geoExc": [], "q4": "unlimited", "dateStart": null, "dateEnd": null }
+      "hasPolicy": [
+        "openrel:OR-BY-AC-VI-4.0",
+        "openrel:CC-BY-NC-4.0"
+      ],
+      "simple": {
+        "q1": "researchers",
+        "simplePerm": [
+          "openrel:use",
+          "openrel:read",
+          "openrel:distribute",
+          "openrel:modify",
+          "openrel:reproduce"
+        ],
+        "simpleDuty": [
+          "openrel:attribute"
+        ],
+        "q3": "worldwide",
+        "geoInc": [],
+        "geoExc": [],
+        "q4": "unlimited",
+        "dateStart": null,
+        "dateEnd": null
+      }
     },
     {
       "iri": "openrel:OR-TL-0.4",
@@ -80,9 +220,24 @@
       "description": "Access is granted for a fixed time window; read and download permitted, no redistribution.",
       "type": "Access",
       "status": "active",
-      "tags": ["time-limited"],
+      "tags": [
+        "time-limited"
+      ],
       "is_composite": false,
-      "simple": { "q1": "managed", "simplePerm": ["openrel:read","openrel:download"], "simpleDuty": [], "q3": "worldwide", "geoInc": [], "geoExc": [], "q4": "fixed", "dateStart": null, "dateEnd": null }
+      "simple": {
+        "q1": "managed",
+        "simplePerm": [
+          "openrel:read",
+          "openrel:download"
+        ],
+        "simpleDuty": [],
+        "q3": "worldwide",
+        "geoInc": [],
+        "geoExc": [],
+        "q4": "fixed",
+        "dateStart": null,
+        "dateEnd": null
+      }
     },
     {
       "iri": "openrel:OR-EA-0.4",
@@ -90,9 +245,25 @@
       "description": "Access rules require verification of ethics approval prior to any permissions granted.",
       "type": "Access",
       "status": "active",
-      "tags": ["ethics"],
+      "tags": [
+        "ethics"
+      ],
       "is_composite": false,
-      "simple": { "q1": "managed", "simplePerm": ["openrel:use"], "simpleDuty": ["openrel:obtainEthicsApproval"], "q3": "worldwide", "geoInc": [], "geoExc": [], "q4": "unlimited", "dateStart": null, "dateEnd": null }
+      "simple": {
+        "q1": "managed",
+        "simplePerm": [
+          "openrel:use"
+        ],
+        "simpleDuty": [
+          "openrel:obtainEthicsApproval"
+        ],
+        "q3": "worldwide",
+        "geoInc": [],
+        "geoExc": [],
+        "q4": "unlimited",
+        "dateStart": null,
+        "dateEnd": null
+      }
     },
     {
       "iri": "openrel:OR-EU-0.4",
@@ -100,9 +271,26 @@
       "description": "Use is restricted to within the European Union jurisdiction.",
       "type": "Access",
       "status": "active",
-      "tags": ["jurisdiction","eu"],
+      "tags": [
+        "jurisdiction",
+        "eu"
+      ],
       "is_composite": false,
-      "simple": { "q1": "public", "simplePerm": ["openrel:use"], "simpleDuty": [], "q3": "restricted", "geoInc": ["EU"], "geoExc": [], "q4": "unlimited", "dateStart": null, "dateEnd": null }
+      "simple": {
+        "q1": "public",
+        "simplePerm": [
+          "openrel:use"
+        ],
+        "simpleDuty": [],
+        "q3": "restricted",
+        "geoInc": [
+          "EU"
+        ],
+        "geoExc": [],
+        "q4": "unlimited",
+        "dateStart": null,
+        "dateEnd": null
+      }
     },
     {
       "iri": "openrel:OR-OPENAIRE-PRIVACY-2.7",
@@ -110,19 +298,60 @@
       "description": "Processing and data-subject-rights obligations for personal data use.",
       "type": "Process",
       "status": "active",
-      "tags": ["privacy","gdpr","data-subject-rights"],
+      "tags": [
+        "privacy",
+        "gdpr",
+        "data-subject-rights"
+      ],
       "is_composite": false,
-      "simple": { "q1": "managed", "simplePerm": ["openrel:use","openrel:log","openrel:encrypt","openrel:delete"], "simpleDuty": ["openrel:notify","openrel:obtainConsent","openrel:sensitiveDataConsent"], "q3": "restricted", "geoInc": ["EU"], "geoExc": [], "q4": "unlimited", "dateStart": null, "dateEnd": null }
+      "simple": {
+        "q1": "managed",
+        "simplePerm": [
+          "openrel:use",
+          "openrel:log",
+          "openrel:encrypt",
+          "openrel:delete"
+        ],
+        "simpleDuty": [
+          "openrel:notify",
+          "openrel:obtainConsent",
+          "openrel:sensitiveDataConsent"
+        ],
+        "q3": "restricted",
+        "geoInc": [
+          "EU"
+        ],
+        "geoExc": [],
+        "q4": "unlimited",
+        "dateStart": null,
+        "dateEnd": null
+      }
     },
     {
       "iri": "openrel:OR-AI-TR-PL-0.4",
-      "label": "Agentic AI — Transparency & Plain Language",
+      "label": "Agentic AI â Transparency & Plain Language",
       "description": "Transparency obligations for agentic AI use, with plain-language notification duty.",
       "type": "Process",
       "status": "active",
-      "tags": ["ai","transparency","agentic"],
+      "tags": [
+        "ai",
+        "transparency",
+        "agentic"
+      ],
       "is_composite": false,
-      "simple": { "q1": "managed", "simplePerm": [], "simpleDuty": ["openrel:notify"], "q3": "worldwide", "geoInc": [], "geoExc": [], "q4": "unlimited", "dateStart": null, "dateEnd": null }
+      "simple": {
+        "q1": "managed",
+        "simplePerm": [],
+        "simpleDuty": [
+          "openrel:notify"
+        ],
+        "q3": "worldwide",
+        "geoInc": [],
+        "geoExc": [],
+        "q4": "unlimited",
+        "dateStart": null,
+        "dateEnd": null
+      }
     },
     {
       "iri": "openrel:OR-EM-0.4",
@@ -130,9 +359,21 @@
       "description": "Access is embargoed until a release date; no use permitted before the embargo lifts.",
       "type": "Access",
       "status": "active",
-      "tags": ["embargo"],
+      "tags": [
+        "embargo"
+      ],
       "is_composite": false,
-      "simple": { "q1": "public", "simplePerm": [], "simpleDuty": [], "q3": "worldwide", "geoInc": [], "geoExc": [], "q4": "fixed", "dateStart": null, "dateEnd": null }
+      "simple": {
+        "q1": "public",
+        "simplePerm": [],
+        "simpleDuty": [],
+        "q3": "worldwide",
+        "geoInc": [],
+        "geoExc": [],
+        "q4": "fixed",
+        "dateStart": null,
+        "dateEnd": null
+      }
     },
     {
       "iri": "openrel:OR-BY-EM-4.0",
@@ -140,10 +381,34 @@
       "description": "Embargoed until release date, then CC BY 4.0 terms apply.",
       "type": "PolicyCollection",
       "status": "active",
-      "tags": ["embargo","attribution"],
+      "tags": [
+        "embargo",
+        "attribution"
+      ],
       "is_composite": true,
-      "hasPolicy": ["openrel:OR-EM-0.4","openrel:CC-BY-4.0"],
-      "simple": { "q1": "public", "simplePerm": ["openrel:use","openrel:read","openrel:distribute","openrel:modify","openrel:reproduce"], "simpleDuty": ["openrel:attribute"], "q3": "worldwide", "geoInc": [], "geoExc": [], "q4": "fixed", "dateStart": null, "dateEnd": null }
+      "hasPolicy": [
+        "openrel:OR-EM-0.4",
+        "openrel:CC-BY-4.0"
+      ],
+      "simple": {
+        "q1": "public",
+        "simplePerm": [
+          "openrel:use",
+          "openrel:read",
+          "openrel:distribute",
+          "openrel:modify",
+          "openrel:reproduce"
+        ],
+        "simpleDuty": [
+          "openrel:attribute"
+        ],
+        "q3": "worldwide",
+        "geoInc": [],
+        "geoExc": [],
+        "q4": "fixed",
+        "dateStart": null,
+        "dateEnd": null
+      }
     },
     {
       "iri": "openrel:OR-SD-IN-0.4",
@@ -151,9 +416,28 @@
       "description": "Institution-managed data sovereignty; reproduction prohibited.",
       "type": "Access",
       "status": "active",
-      "tags": ["data-sovereignty","institutional"],
+      "tags": [
+        "data-sovereignty",
+        "institutional"
+      ],
       "is_composite": false,
-      "simple": { "q1": "managed", "simplePerm": ["openrel:read","openrel:use"], "simpleProhibit": ["openrel:reproduce"], "simpleDuty": [], "q3": "worldwide", "geoInc": [], "geoExc": [], "q4": "unlimited", "dateStart": null, "dateEnd": null }
+      "simple": {
+        "q1": "managed",
+        "simplePerm": [
+          "openrel:read",
+          "openrel:use"
+        ],
+        "simpleProhibit": [
+          "openrel:reproduce"
+        ],
+        "simpleDuty": [],
+        "q3": "worldwide",
+        "geoInc": [],
+        "geoExc": [],
+        "q4": "unlimited",
+        "dateStart": null,
+        "dateEnd": null
+      }
     },
     {
       "iri": "openrel:OR-DS-0.4",
@@ -161,9 +445,23 @@
       "description": "Data-space access rules.",
       "type": "Access",
       "status": "active",
-      "tags": ["data-space"],
+      "tags": [
+        "data-space"
+      ],
       "is_composite": false,
-      "simple": { "q1": "managed", "simplePerm": ["openrel:use"], "simpleDuty": [], "q3": "worldwide", "geoInc": [], "geoExc": [], "q4": "unlimited", "dateStart": null, "dateEnd": null }
+      "simple": {
+        "q1": "managed",
+        "simplePerm": [
+          "openrel:use"
+        ],
+        "simpleDuty": [],
+        "q3": "worldwide",
+        "geoInc": [],
+        "geoExc": [],
+        "q4": "unlimited",
+        "dateStart": null,
+        "dateEnd": null
+      }
     },
     {
       "iri": "openrel:OR-IN-RO-0.4",
@@ -171,9 +469,24 @@
       "description": "Institutional access restricted to research use.",
       "type": "Access",
       "status": "active",
-      "tags": ["institutional","research"],
+      "tags": [
+        "institutional",
+        "research"
+      ],
       "is_composite": false,
-      "simple": { "q1": "researchers", "simplePerm": ["openrel:use"], "simpleDuty": [], "q3": "worldwide", "geoInc": [], "geoExc": [], "q4": "unlimited", "dateStart": null, "dateEnd": null }
+      "simple": {
+        "q1": "researchers",
+        "simplePerm": [
+          "openrel:use"
+        ],
+        "simpleDuty": [],
+        "q3": "worldwide",
+        "geoInc": [],
+        "geoExc": [],
+        "q4": "unlimited",
+        "dateStart": null,
+        "dateEnd": null
+      }
     },
     {
       "iri": "openrel:OR-IN-DS-CC-BY-0.4",
@@ -181,10 +494,34 @@
       "description": "Data Space Requirements, Institutional Access Rules, Plus an Otherwise Open Licence.",
       "type": "PolicyCollection",
       "status": "active",
-      "tags": ["data-space","institutional","attribution"],
+      "tags": [
+        "data-space",
+        "institutional",
+        "attribution"
+      ],
       "is_composite": true,
-      "hasPolicy": ["openrel:CC-BY-4.0"],
-      "simple": { "q1": "managed", "simplePerm": ["openrel:use","openrel:read","openrel:distribute","openrel:modify","openrel:reproduce"], "simpleDuty": ["openrel:attribute"], "q3": "worldwide", "geoInc": [], "geoExc": [], "q4": "unlimited", "dateStart": null, "dateEnd": null }
+      "hasPolicy": [
+        "openrel:CC-BY-4.0"
+      ],
+      "simple": {
+        "q1": "managed",
+        "simplePerm": [
+          "openrel:use",
+          "openrel:read",
+          "openrel:distribute",
+          "openrel:modify",
+          "openrel:reproduce"
+        ],
+        "simpleDuty": [
+          "openrel:attribute"
+        ],
+        "q3": "worldwide",
+        "geoInc": [],
+        "geoExc": [],
+        "q4": "unlimited",
+        "dateStart": null,
+        "dateEnd": null
+      }
     },
     {
       "iri": "openrel:OR-IN-HV-0.4",
@@ -192,19 +529,57 @@
       "description": "Conditions for harvesting access, including logging duty.",
       "type": "Access",
       "status": "active",
-      "tags": ["harvesting","institutional"],
+      "tags": [
+        "harvesting",
+        "institutional"
+      ],
       "is_composite": false,
-      "simple": { "q1": "managed", "simplePerm": ["openrel:use"], "simpleDuty": ["openrel:log"], "q3": "worldwide", "geoInc": [], "geoExc": [], "q4": "unlimited", "dateStart": null, "dateEnd": null }
+      "simple": {
+        "q1": "managed",
+        "simplePerm": [
+          "openrel:use"
+        ],
+        "simpleDuty": [
+          "openrel:log"
+        ],
+        "q3": "worldwide",
+        "geoInc": [],
+        "geoExc": [],
+        "q4": "unlimited",
+        "dateStart": null,
+        "dateEnd": null
+      }
     },
     {
       "iri": "openrel:OR-AI-AU-0.4",
-      "label": "Agentic AI — Delegated Access with Audit Trail",
+      "label": "Agentic AI â Delegated Access with Audit Trail",
       "description": "Asset MUST only be distributed to an authorised endpoint URI; use is audited.",
       "type": "Process",
       "status": "active",
-      "tags": ["ai","agentic","audit"],
+      "tags": [
+        "ai",
+        "agentic",
+        "audit"
+      ],
       "is_composite": false,
-      "simple": { "q1": "managed", "simplePerm": ["openrel:use"], "simpleProhibit": ["openrel:distribute"], "simpleDuty": ["openrel:log"], "q3": "worldwide", "geoInc": [], "geoExc": [], "q4": "unlimited", "dateStart": null, "dateEnd": null }
+      "simple": {
+        "q1": "managed",
+        "simplePerm": [
+          "openrel:use"
+        ],
+        "simpleProhibit": [
+          "openrel:distribute"
+        ],
+        "simpleDuty": [
+          "openrel:log"
+        ],
+        "q3": "worldwide",
+        "geoInc": [],
+        "geoExc": [],
+        "q4": "unlimited",
+        "dateStart": null,
+        "dateEnd": null
+      }
     }
   ]
 }
