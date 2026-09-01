@@ -75,7 +75,7 @@
     # Alternative representations, mappings of SPDX and LFS properties
     openrel:legalCode <https://creativecommons.org/publicdomain/zero/1.0/legalcode> ;
     openrel:policyTextHtml <https://spdx.org/licenses/CC0-1.0.html> ;
-    openrel:policyText lfslib:CC0-1.0/original ;
+    openrel:policyText <https://lfs.labs.dansdemo.nl/api/v1/licenses/CC0-1.0/original> ;
     openrel:encodedRules openrellib:CC0-1.0 ;
 
 # --------------------------------------------------------------------------------------------------------------------------------
