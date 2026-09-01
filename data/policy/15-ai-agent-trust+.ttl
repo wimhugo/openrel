@@ -99,7 +99,9 @@
             odrl:action openrel:notify ;
             odrl:constraint openrel:notifyClearingHouse 
         ]
-    ] ;
+    ] 
+
+.
 
 ### Melios
 #    odrl:prohibition [
