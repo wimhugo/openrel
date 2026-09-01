@@ -227,10 +227,21 @@ openrel:legalBasis
 	a odrl:LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy openrel: ;
 	rdfs:label "Legal Basis"@en ;
-	skos:definition "Requires that the use or dissemination of the Asset occurs witha specific legal basis as defined in GDPR."@en ;
+	skos:definition "Requires that the use or dissemination of the Asset occurs with a specific legal basis as defined in GDPR."@en ;
 	skos:note "DPV: A particular legal Basis, which permits personal Data handling (e.g. Consent, etc.)."@en ;
 	skos:scopeNote "Non-Normative"@en ;
 	skos:closeMatch dpv:LegalBasis ;
+	.
+
+openrel:ipRange
+	a odrl:LeftOperand, owl:NamedIndividual, skos:Concept ;
+	rdfs:isDefinedBy openrel: ;
+	rdfs:label "IP Range"@en ;
+	skos:definition "Requires that the use or dissemination of the Asset occurs to one of an array of IP addresses."@en ;
+	skos:note "ODRL: An identified computing system or computing device used for exercising the action of the Rule."@en ;
+	skos:scopeNote "Non-Normative"@en ;
+	skos:relatedMatch odrl:systemDevice ;
+	skos:relatedMatch idsc:ENDPOINT ;
 	.
 
 # ---------ODRL extended by OpenREL
