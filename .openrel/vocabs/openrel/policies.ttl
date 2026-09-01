@@ -219,6 +219,15 @@ openrel:accessType
 	rdfs:range openrel:typeAccess ;
  	.
 
+openrel:policyStatus
+	a rdf:Property , owl:ObjectProperty, skos:Concept ;
+	rdfs:isDefinedBy openrel: ;
+	rdfs:label "Has Status"@en ;
+	skos:definition "Status applicable to a Policy"@en ;
+	rdfs:domain odrl:Policy ;
+	rdfs:range openrel:typeStatus ;
+ 	.
+
 
 
 
