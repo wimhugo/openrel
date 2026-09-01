@@ -73,6 +73,7 @@ openrel:group-research-only
   skos:definition "Limited to research, development, and academic reuse. Research may be aimed at commercial exploitation of results."@en ;
   skos:exactMatch r3d:dataAccessTypes/open ;
   skos:exactMatch coar:dataAccessTypes/c_abf2/ ;
+  openrel:questionSatisfied "Who" ;
   skos:inScheme openrel:typeScenario 
   .
 
@@ -81,6 +82,7 @@ openrel:academic-only
   skos:prefLabel "Academic Only"@en ;
   skos:definition "Your work can only be used for academic research."@en ;
   skos:broader openrel:group-research-only ;
+  openrel:questionSatisfied "Who" ;
   skos:inScheme openrel:typeScenario 
   .
 
@@ -89,6 +91,7 @@ openrel:confirmed-researcher
   skos:prefLabel "Confirmed Researcher Only"@en ;
   skos:definition "Your work can only be used by a confirmed researcher."@en ;
   skos:broader openrel:group-research-only ;
+  openrel:questionSatisfied "Who" ;
   skos:inScheme openrel:typeScenario 
   .
 
@@ -97,6 +100,7 @@ openrel:confirmed-rpo
   skos:prefLabel "Confirmed Research Performing Organisation"@en ;
   skos:definition "Your work can only be used by a confirmed research institution."@en ;
   skos:broader openrel:group-research-only ;
+  openrel:questionSatisfied "Who" ;
   skos:inScheme openrel:typeScenario 
   .
 
@@ -105,6 +109,7 @@ openrel:affirmed-research
   skos:prefLabel "Affirmed Researcher"@en ;
   skos:definition "I am a researcher, or I am affiliated with a verfied research or academic institution."@en ;
   skos:broader openrel:group-research-only ;
+  openrel:questionSatisfied "Who" ;
   skos:inScheme openrel:typeScenario 
   .
 
@@ -114,6 +119,7 @@ openrel:group-commercial-scenarios
   a skos:Concept ;
   skos:prefLabel "Commercialisation Scenarios"@en ;
   skos:definition "Limitations to commercial applications."@en ;
+  openrel:questionSatisfied "Why" ;
   skos:inScheme openrel:typeScenario 
   .
 
@@ -122,6 +128,7 @@ openrel:commercial-use
   skos:prefLabel "Commercial Use Excluded"@en ;
   skos:definition "Limitations to commercial applications."@en ;
   skos:broader openrel:group-commercial-scenarios ;
+  openrel:questionSatisfied "Why" ;
   skos:inScheme openrel:typeScenario 
   .
 
@@ -130,6 +137,7 @@ openrel:non-commercial-only
   skos:prefLabel "Non-Commercial Only"@en ;
   skos:definition "Your work can only be used for non-commercial research, derived Assets, or application."@en ;
   skos:broader openrel:group-commercial-scenarios ;
+  openrel:questionSatisfied "Why" ;
   skos:inScheme openrel:typeScenario 
   .
 
@@ -139,12 +147,14 @@ openrel:group-funding-related
   a skos:Concept ;
   skos:prefLabel "Funding Considerations"@en ;
   skos:definition "Your work can only be used in ways defined by the funder."@en ;
+  openrel:questionSatisfied "What" ;
   skos:inScheme openrel:typeScenario 
 
 openrel:funding-related
   a skos:Concept ;
   skos:prefLabel "Funder-defined permissions and prohibitions"@en ;
   skos:definition "Your work can only be used in ways defined by the funder."@en ;
+  openrel:questionSatisfied "What" ;
   skos:broader openrel:group-funding-related ;
   skos:inScheme openrel:typeScenario 
   .
@@ -154,6 +164,7 @@ openrel:public-funding-open
   skos:prefLabel "Public Funding - -Open Access"@en ;
   skos:definition "Your work was created through public funding, and as a result, must be published with the most open licence applicable to the content."@en ;
   skos:broader openrel:funding-related ;
+  openrel:questionSatisfied "What" ;
   skos:inScheme openrel:typeScenario 
   .
 
@@ -163,6 +174,7 @@ openrel:group-legal-ethical
   a skos:Concept ;
   skos:prefLabel "Legal and Ethical Considerations"@en ;
   skos:definition "Adherence to ethical, legal and regulatory considerations."@en ;
+  openrel:questionSatisfied "How" ;
   skos:inScheme openrel:typeScenario 
 
 openrel:legal-considerations
@@ -170,6 +182,7 @@ openrel:legal-considerations
   skos:prefLabel "Legal Considerations"@en ;
   skos:definition "Adherence to legislation and regulatory considerations."@en ;
   skos:broader openrel:group-legal-ethical ;
+  openrel:questionSatisfied "How" ;
   skos:inScheme openrel:typeScenario 
   .
 
@@ -178,6 +191,7 @@ openrel:gdpr-compliance
   skos:prefLabel "GDPR Compliance"@en ;
   skos:definition "Your work can only be used if GDPR-compliant consent is obtained."@en ;
   skos:broader openrel:legal-considerations ;
+  openrel:questionSatisfied "How" ;
   skos:inScheme openrel:typeScenario 
   .
 
@@ -186,6 +200,7 @@ openrel:gdpr-controller
   skos:prefLabel "GDPR Controller"@en ;
   skos:definition "The organisation using your work must act as the data controller as intended by GDPR."@en ;
   skos:broader openrel:legal-considerations ;
+  openrel:questionSatisfied "How" ;
   skos:inScheme openrel:typeScenario 
   .
 
@@ -195,6 +210,7 @@ openrel:gdpr-special-category
   skos:definition "My personal data, if it includes categories defined in GDPR Article 9, may only be distributed or used in accordance with the legal provisions."@en ;
   skos:note "Processing of personal data revealing racial or ethnic origin, political opinions, religious or philosophical beliefs, or trade union membership, and the processing of genetic data, biometric data for the purpose of uniquely identifying a natural person, data concerning health or data concerning a natural person's sex life or sexual orientation shall be prohibited [subject to exemptions]."@en ;
   skos:broader openrel:legal-considerations ;
+  openrel:questionSatisfied "How" ;
   skos:inScheme openrel:typeScenario 
   .
 
@@ -203,6 +219,7 @@ openrel:ethics-considerations
   skos:prefLabel "Ethics-Related"@en ;
   skos:broader openrel:legal-considerations ;
   skos:definition "Alignment with ethical considerations, policies, and norms."@en ;
+  openrel:questionSatisfied "How" 
   .
 
 openrel:consent-gdpr
@@ -210,6 +227,7 @@ openrel:consent-gdpr
   skos:prefLabel "GDPR Consent"@en ;
   skos:definition "Your work can only be used if GDPR-compliant consent is obtained."@en ;
   skos:broader openrel:ethics-considerations ;
+  openrel:questionSatisfied "How" ;
   skos:inScheme openrel:typeScenario 
   .
 
@@ -218,6 +236,7 @@ openrel:ethics-approval
   skos:prefLabel "Ethics Approval"@en ;
   skos:definition "Requires documented ethics committee or IRB approval prior to access to Assets."@en ;
   skos:broader openrel:ethics-considerations ;
+  openrel:questionSatisfied "How" ;
   skos:inScheme openrel:typeScenario 
   .
 
@@ -227,6 +246,7 @@ openrel:explicit-consent
   skos:definition "Your work can only be reused with explicit consent for each application of the work."@en ;
   skos:note "Consent may be required before, after, or before and after use of the work'"@en ;
   skos:broader openrel:ethics-considerations ;
+  openrel:questionSatisfied "How" ;
   skos:inScheme openrel:typeScenario 
   .
 
@@ -236,6 +256,7 @@ openrel:group-publication-status
   a skos:Concept ;
   skos:prefLabel "Publication Status"@en ;
   skos:definition "Limitations due to workflow or publication state."@en ;
+  openrel:questionSatisfied "When" ;
   .
 
 openrel:status-revoked
@@ -243,6 +264,16 @@ openrel:status-revoked
   skos:prefLabel "Revocation or Withdrawal"@en ;
   skos:definition "Your work cannot be used once its publication has been revoked or withdrawn."@en ;
   skos:broader openrel:group-publication-status ;
+  openrel:questionSatisfied "When" ;
+  skos:inScheme openrel:typeScenario 
+  .
+
+openrel:status-embargoed
+  a skos:Concept ;
+  skos:prefLabel "Work is Embargoed"@en ;
+  skos:definition "Your work can only be used once its embargo period after publication has lapsed."@en ;
+  skos:broader openrel:group-publication-status ;
+  openrel:questionSatisfied "When" ;
   skos:inScheme openrel:typeScenario 
   .
 
@@ -252,6 +283,7 @@ openrel:group-obligations
   a skos:Concept ;
   skos:prefLabel "End User Obligations and Duties"@en ;
   skos:definition "Obligations of the end user."@en ;
+  openrel:questionSatisfied "How" ;
   skos:inScheme openrel:typeScenario
   .
 
@@ -260,6 +292,7 @@ openrel:attribution
   skos:prefLabel "Attribution"@en ;
   skos:definition "You want to be credited or cited when the work is reused."@en ;
   skos:broader openrel:group-obligations ;
+  openrel:questionSatisfied "How" ;
   skos:inScheme openrel:typeScenario 
   .
 
@@ -269,6 +302,7 @@ openrel:licence-preserved
   skos:definition "You want derivative works to be distributed under the same licence."@en ;
   skos:note "Such a requirement makes it very difficult to licence a derived Asset based on more than one source Asset, since it prevents a new licence that takes all input constraints and actions into account."
   skos:broader openrel:group-obligations ;
+  openrel:questionSatisfied "How" ;
   skos:inScheme openrel:typeScenario 
   .
 
@@ -277,6 +311,7 @@ openrel:notification-duty
   skos:prefLabel "Notification Duties"@en ;
   skos:definition "Your work can only be accessed and/ or disseminated if one or more notification duties are complied with."@en ;
   skos:broader openrel:group-obligations ;
+  openrel:questionSatisfied "How" ;
   skos:inScheme openrel:typeScenario 
   .
 
@@ -286,6 +321,7 @@ openrel:group-open-science
   a skos:Concept ;
   skos:prefLabel "Open Science Considerations"@en ;
   skos:definition "Open science and open data considerations."@en ;
+  openrel:questionSatisfied "How" ;
   skos:inScheme openrel:typeScenario
   .
 
@@ -294,6 +330,7 @@ openrel:open-access
   skos:prefLabel "Open Access"@en ;
   skos:definition "You want your work to be available openly without limitations on reuse. Reuse may include duties such as attribution and notification."@en ;
   skos:broader openrel:group-open-science ;
+  openrel:questionSatisfied "How" ;
   skos:inScheme openrel:typeScenario 
   .
 
@@ -302,6 +339,7 @@ openrel:public-repository
   skos:prefLabel "Public Repository"@en ;
   skos:definition "You want to deposit the work in a public repository."@en ;
   skos:broader openrel:group-open-science ;
+  openrel:questionSatisfied "How" ;
   skos:inScheme openrel:typeScenario 
   .
 
@@ -311,6 +349,7 @@ openrel:group-access-considerations
   a skos:Concept ;
   skos:prefLabel "Access Considerations"@en ;
   skos:definition "Access-related limitations and considerations."@en ;
+  openrel:questionSatisfied "How" ;
   skos:inScheme openrel:typeScenario 
   .
 
@@ -319,6 +358,7 @@ openrel:trusted-connection
   skos:prefLabel "Trusted Connections"@en ;
   skos:definition "Your work can only be accessed via certified trusted connections."@en ;
   skos:broader openrel:group-access-considerations ;
+  openrel:questionSatisfied "How" ;
   skos:inScheme openrel:typeScenario 
   .
 
@@ -327,6 +367,7 @@ openrel:european-use
   skos:prefLabel "EU Use"@en ;
   skos:definition "Your work can only be accessed if the requestor is based in the European Union."@en ;
   skos:broader openrel:group-access-considerations ;
+  openrel:questionSatisfied "How" ;
   skos:inScheme openrel:typeScenario 
   .
 
@@ -335,6 +376,7 @@ openrel:strict-subset
   skos:prefLabel "Strictly Necessary Content"@en ;
   skos:definition "You only want to grant access to a subset of the work that is strictly necessary for the stated purpose."@en ;
   skos:broader openrel:group-access-considerations ;
+  openrel:questionSatisfied "How" ;
   skos:inScheme openrel:typeScenario 
   .
 
@@ -343,6 +385,7 @@ openrel:verified-identity
   skos:prefLabel "Verified Identity"@en ;
   skos:definition "Your work can only be accessed if the identity of the requestor is verified."@en ;
   skos:broader openrel:group-access-considerations ;
+  openrel:questionSatisfied "How" ;
   skos:inScheme openrel:typeScenario 
   .
 
@@ -351,6 +394,7 @@ openrel:system-limitations
   skos:prefLabel "System Limitations"@en ;
   skos:definition "Your work can only be accessed or processed by systems, devices, and applications that have been identified and verified."@en ;
   skos:broader openrel:group-access-considerations ;
+  openrel:questionSatisfied "How" ;
   skos:inScheme openrel:typeScenario 
   .
 
@@ -359,6 +403,7 @@ openrel:formal-toms
   skos:prefLabel "Technical and Organisational Measures"@en ;
   skos:definition "Your work can only be accessed if the requesting infrastructure, system, or device complies with specific technical, organisational, physical, and legal constraints."@en ;
   skos:broader openrel:group-access-considerations ;
+  openrel:questionSatisfied "How" ;
   skos:inScheme openrel:typeScenario 
   .
 
@@ -367,6 +412,7 @@ openrel:tech-limits
   skos:prefLabel "Technical Access Limits"@en ;
   skos:definition "Your work can only be accessed subject to technical constraints, limiting the duration of access, number of access events, volume of downloads, or similar."@en ;
   skos:broader openrel:group-access-considerations ;
+  openrel:questionSatisfied "How" ;
   skos:inScheme openrel:typeScenario 
   .
 
