@@ -47,10 +47,11 @@
 # Access Rules Metadata
 # --------------------------------------------------------------------------------------------------------------------------------
 
-<20-agentic-ai-audit> a openrel:ProcessRules ;
+<OR-AI-AU-0.4> a openrel:ProcessRules ;
     # Alternate identifiers
     # skos:exactMatch spdx:<> ;
     # skos:exactMatch lfs:<> ;
+
     # Citation Information
     dct:title "Agentic AI — Delegated Access with Audit Trail" ;
     dct:publisher <> ;
@@ -61,26 +62,30 @@
     dct:subject "AI Agent Access and Process" ;
     openrel:accessType openrel:managed ;
     dct:source <> ;
-    dct:version "0.1" ;
+    dct:version "0.4" ;
+
     # Coverage related information
     # These properties apply only for those policies that explicitly require them, optional for others
     # openrel:validityType openrel:perpetual ;
     openrel:jurisdiction openrel:worldwide ;
-    odrl:assigner [REPOSITORY_IRI] ;
-    # odrl:assignee [ASSIGNEE_IRI] ;
-    odrl:target [TARGET_ASSET_COLLECTION_IRI] ; 
+    odrl:assigner parameterAssignerIRI ;
+    odrl:assignee parameterAssigneeIRI ;
+    odrl:target parameterTargetIRI ;
+
     # Disclaimers
-    # openrel:liabilityLimitation {{Liability Limitation Text}} ;
-    # openrel:warrantyNotice {{Warranty Notice Text}} ;
+    ## openrel:liabilityLimitation {{Liability Limitation Text}} ;
+    ## openrel:warrantyNotice {{Warranty Notice Text}} ;
+
     # Alternative representations, mappings of SPDX and LFS properties
-    # openrel:legalCode [IRI_TO_LEGAL_CODE] ;
-    openrel:policyTextHtml [IRI_TO_HTML_VIEW] ;
-    openrel:policyText [IRI_TO_TEXT] ;
-    openrel:encodedRules openrel:<20-agentic-ai-audit> ;
-	  # Optional results of evaluation of two policies
-    # openrel:permits [IRI_OF_OTHER_POLICY] ;
-	  # openrel:contradicts [IRI_OF_OTHER_POLICY] ;
-    # openrel:evaluationDetail [OPENREL_EVALUATION] ;
+    ## openrel:legalcode <> ;
+    ## openrel:policyTextHtml <> ;
+    ## openrel:policyText lfslib:[TO_BE_REGISTERED]/original ;
+    openrel:encodedRules openrel:OR-AI-AU-0.4 ;
+
+	# Optional results of evaluation of two policies
+    ## openrel:permits <IRI_OF_OTHER_POLICY> ;
+	## openrel:contradicts <IRI_OF_OTHER_POLICY> ;
+    ## openrel:evaluationDetail <OPENREL_EVALUATION> ;
 
 # --------------------------------------------------------------------------------------------------------------------------------
 #   Rules
@@ -93,7 +98,7 @@
 		odrl:duty [
 			a openrel:NamedConstraint
 			@id openrel:notifyClearingHouse ;
-			openrel:applicableEndpoint [CLEARINGHOUSE_API] 
+			openrel:applicableEndpoint openrel:parameterClearingHouseAPI
 		  ]
 	  ] ;
 
@@ -106,7 +111,6 @@
 		odrl:action openrel:use ;
 		odrl:constraint <dataMinimisationSpec>
 	] ;
-
 		
 # --------------------------------------------------------------------------------------------------------------------------------
 # Custom Named Constraints
@@ -121,8 +125,8 @@
 		openrel:scenario openrel:formal-toms ;
 		odrl:leftOperand openrel:delegationToken ;
 		odrl:operator odrl:eq ;
-		odrl:rightOperand TRUE ;
-    	openrel:applicableEndpoint [TOKEN_VERIFICATION_ENDPOINT] 
+		odrl:rightOperand openrel:parameterAccessToken ;
+    	openrel:applicableEndpoint openrel:parameterTokenVerificationAPI
 		.
 
 <notDeclaredPurpose>
@@ -135,8 +139,8 @@
 		openrel:scenario openrel:explicit-consent ;
 		odrl:leftOperand odrl:purpose ;
 		odrl:operator odrl:neq ;
-		odrl:rightOperand [DECLARED_PURPOSE_IRI]
-		openrel:applicableEndpoint [PURPOSE_VERIFICATION_ENDPOINT] 
+		odrl:rightOperand openrel:parameterPurposeIRI ;
+		openrel:applicableEndpoint openrel:parameterPurposeVerificationIRI 
 		.
 
 <explicitConsentObtained>
@@ -146,11 +150,11 @@
 		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
 		openrel:constraintType openrel:usage ;
 		openrel:scenario openrel:explicit-consent ;
-		odrl:assigner [HUMAN_PRINCIPAL_IRI] ;
+		odrl:assigner openrel:parameterDataSubjectIRI ;
 		odrl:leftOperand openrel:consentRequired ;
 		odrl:operator odrl:eq ;
 		odrl:rightOperand openrel:consent-reuse-before ;
-		openrel:applicableEndpoint [CONSENT_IRI]
+		openrel:applicableEndpoint openrel:parameterInformedConsentIRI
 		.
 
 <consentExpiry>
@@ -160,11 +164,11 @@
 		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
 		openrel:constraintType openrel:usage ;
 		openrel:scenario openrel:tech-limits ;
-		odrl:assigner [HUMAN_PRINCIPAL_IRI] ;
+		odrl:assigner openrel:parameterDataSubjectIRI ;
 		odrl:leftOperand odrl:dateTime ;
 		odrl:operator odrl:lteq ;
-		odrl:rightOperand [CONSENT_EXPIRY_DATE] ;
-		openrel:applicableEndpoint [CONSENT_IRI]
+		odrl:rightOperand openrel:parameterConsentExpiryDate ;
+		openrel:applicableEndpoint openrel:parameterInformedConsentIRI
 		.
 
 <dataMinimisationSpec>
@@ -178,7 +182,7 @@
 		odrl:leftOperand openrel:usageLimitation ;
 		odrl:operator odrl:eq ;
 		odrl:rightOperand openrel:dataMinimisation ;
-    	openrel:applicableEndpoint [DATA_SPECIFICATION] 
+    	openrel:applicableEndpoint openrel:parameterDataSpecIRI
 		.
 
 # --------------------------------------------------------------------------------------------------------------------------------
