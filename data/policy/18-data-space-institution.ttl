@@ -68,7 +68,8 @@
     # These properties apply only for those policies that explicitly require them, optional for others
     # openrel:validityType openrel:perpetual ;
     # openrel:jurisdiction openrel:worldwide ;
-    ## odrl:assigner parameterAssignerIRI ;
+    openrel:policyStatus openrel:typeCustomActive ;
+    odrl:assigner parameterAssignerIRI ;
     ## odrl:assignee parameterAssigneeIRI ;
     ## odrl:target parameterTargetIRI ;
 
