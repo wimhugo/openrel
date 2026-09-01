@@ -65,7 +65,7 @@
     # Coverage related information
     cc:jurisdiction openrel:worldWide ;
     openrel:validityType openrel:perpetual ;
-    openrel:policyStatus openrel:typePrivateActive ;
+    openrel:policyStatus openrel:typeCustomActive ;
     odrl:assigner parameterAssignerIRI ;
     odrl:assignee parameterAssigneeIRI ;
     odrl:target parameterTargetIRI ;
