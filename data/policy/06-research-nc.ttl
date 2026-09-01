@@ -72,8 +72,8 @@
     odrl:target parameterTargetIRI ; 
 
     # Definition of input policies
-    openrel:hasPolicy <11-researcher-only> ;
-    openrel:hasPolicy spdxlicense:CC-BY-NC-4.0 ;    
+    openrel:hasPolicy <OR-BY-AC-VI-4.0> ;
+    openrel:hasPolicy <CC-BY-NC-4.0> ;    
 	
 	# Optional results of evaluation of two or more policies
     # openrel:evaluationDetail [OPENREL_EVALUATION] ;
