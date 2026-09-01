@@ -39,6 +39,17 @@
 @prefix spdxlicense: <http://spdx.org/licenses/> .
 
 # -------------------------------------------------------------------------------------------------------------
+# Applicable to Concept Schemes (Vocabs)
+# -------------------------------------------------------------------------------------------------------------
+
+openrel:questionSatisfied
+	a rdfs:Property skos:Concept ;
+	rdfs:label "satisfies question"@en ;        
+	skos:definition "A property that describes one or more asset types, as defined in an appropriate vocabulary. Applicable to Policies, Assets, and Asset Collections. Can also be encoded in Policies as 'Target' with types from relevant vocabularies."@en ;
+	rdfs:domain skos:Concept ;
+	rdfs:isDefinedBy openrel: .
+
+# -------------------------------------------------------------------------------------------------------------
 # Applicable to Policies (Licences)
 # -------------------------------------------------------------------------------------------------------------
 
