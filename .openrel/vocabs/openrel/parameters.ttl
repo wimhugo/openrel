@@ -162,15 +162,52 @@ openrel:parameterTargetIRI
     openrel:resolutionMethod openrel:AssetMetadataValue 
     .
 
+# ---------- Platform Context
+
 openrel:parameterInfraIRI
     a openrel:Parameter, odrl:RightOperand ;
 	skos:prefLabel "Infrastructure IRI" ;
 	skos:definition "A unique identifier for the infrastructure on which an Asset or Asset Collection can be used (PID, URI, URL)."@en ;
     openrel:parameterName "INFRASTRUCTURE_IRI" ;
     openrel:expectedDatatype xsd:anyURI ;
-    openrel:resolutionMethod openrel:AssetMetadataValue 
+    openrel:resolutionMethod openrel:PlatformContext 
     .
 
+openrel:parameterVolume
+    a openrel:Parameter, odrl:RightOperand ;
+	skos:prefLabel "Maximum Download Volume" ;
+	skos:definition "A limit on the download volume per session, account, or ticket."@en ;
+    openrel:parameterName "VOLUME_AS_INTEGER" ;
+    openrel:expectedDatatype xsd:integer ;
+    openrel:resolutionMethod openrel:PlatformContext 
+    .
+
+openrel:parameterUnit
+    a openrel:Parameter, odrl:RightOperand ;
+	skos:prefLabel "Unit of measure" ;
+	skos:definition "A unit of measure - a rate or an absolute unit."@en ;
+    openrel:parameterName "UNIT_OF_MEASURE" ;
+    openrel:expectedDatatype xsd:anyText ;
+    openrel:resolutionMethod openrel:PlatformContext 
+    .
+
+openrel:parameterAuthorisedIP
+    a openrel:Parameter, odrl:RightOperand ;
+	skos:prefLabel "Authorised IP" ;
+	skos:definition "A list of authorised endpoints expressed as IP addresses or ranges."@en ;
+    openrel:parameterName "AUTHORISED_IP_ARRAY" ;
+    openrel:expectedDatatype xsd:anyURL ;
+    openrel:resolutionMethod openrel:PlatformContext 
+    .
+
+openrel:parameterAuthorisedIRI
+    a openrel:Parameter, odrl:RightOperand ;
+	skos:prefLabel "Authorised IP" ;
+	skos:definition "A list of authorised endpoints expressed as IRIs."@en ;
+    openrel:parameterName "AUTHORISED_IRL_ARRAY" ;
+    openrel:expectedDatatype xsd:anyURL ;
+    openrel:resolutionMethod openrel:PlatformContext 
+    .
 
 # ---------- Assignee/ Requesting Party Context
 
