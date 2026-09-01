@@ -71,9 +71,9 @@
     # openrel:validityType openrel:perpetual ;
     openrel:jurisdiction openrel:worldwide ;
     openrel:policyStatus openrel:typeCustomActive ;
-    ##odrl:assignee parameterAssigneeIRI ;
-    ## odrl:assigner parameterDataSubjectIRI ;
-    odrl:target parameterTargetIRI ;
+    ##odrl:assignee openrel:parameterAssigneeIRI ;
+    ## odrl:assigner openrel:parameterDataSubjectIRI ;
+    odrl:target openrel:parameterTargetIRI ;
 
     # Disclaimers
     ## openrel:liabilityLimitation "{{Liability Limitation Text}}" ;
