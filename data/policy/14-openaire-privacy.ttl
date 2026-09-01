@@ -69,8 +69,8 @@
     openrel:jurisdiction openrel:worldwide ;
     openrel:policyStatus openrel:typeCustomActive ;
     odrl:assignee <https://openaire.eu> ;
-    odrl:assigner parameterDataSubjectIRI ;
-    odrl:target parameterTargetIRI ;
+    odrl:assigner openrel:parameterAssignerIRI ;
+    odrl:target openrel:parameterTargetIRI ;
 
     # Disclaimers
     ## openrel:liabilityLimitation "{{Liability Limitation Text}}" ;
