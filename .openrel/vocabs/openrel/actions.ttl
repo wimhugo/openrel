@@ -316,7 +316,7 @@ openrel:anonymize
 	skos:exactMatch odrl:anonymize ;
 	# Extensions by OpenREL
 	openrel:actionCategory odrl:Permission, odrl:Duty ;
-	openrel:defaultDuty "postDuty", "preDuty" ;
+	openrel:defaultDuty "postDuty" ;
 	skos:exactMatch idsc:ANONYMIZE ;
 	rdfs:isDefinedBy openrel: .
 
