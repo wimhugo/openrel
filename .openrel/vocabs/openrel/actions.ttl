@@ -68,8 +68,15 @@ odrl:Action
 	skos:note "Actions may be allowed by Permissions, disallowed by Prohibitions, or made mandatory by Duties."@en ;
 	rdfs:subClassOf schema:Action ;
 	rdfs:label "Action"@en .
-	# Extensions by OpenREL
-	#	None
+
+openrel:Action
+	a rdfs:Class, owl:Class, skos:Concept ;
+	rdfs:isDefinedBy openrel: ;
+	skos:definition "An operation on an Asset."@en ;
+	skos:note "Actions may be allowed by Permissions, disallowed by Prohibitions, or made mandatory by Duties."@en ;
+	rdfs:subClassOf odrl:Action ;
+	rdfs:label "Action"@en .
+
 
 # -------------------------------------------------------------------------------------------------------------
 # Property Definition
@@ -84,18 +91,38 @@ odrl:action
 		a owl:Class ;
 		owl:unionOf ( odrl:Rule odrl:Policy ) ;
 	] ;
-	rdfs:range odrl:Action .
-	# Extensions by OpenREL
-	#	None
+	rdfs:range openrel:Action 
+	.
 
 openrel:contradicts
 	a rdf:Property , owl:ObjectProperty, skos:Concept ;
-	rdfs:isDefinedBy odrl: ;
 	skos:exactMatch dalicc:contradicts ;
 	rdfs:label "Contradicting Action"@en ;
 	skos:definition "The Action contradicts another Action defined by the property."@en ;
-	rdfs:domain odrl:Action ;
-	rdfs:range odrl:Action .
+	rdfs:domain [
+		a owl:Class ;
+		owl:unionOf ( odrl:Action openrel:Action ) ;
+	] ;
+	rdfs:range odrl:Action, openrel:Action .
+
+openrel:actionCategory
+	a rdf:Property , owl:ObjectProperty, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Action Category"@en ;
+	skos:definition "The Action is typically applicable to these Rules."@en ;
+	rdfs:domain openrel:Action ;
+	rdfs:range odrl:Rule .
+
+openrel:defaultDuty
+	a rdf:Property , owl:ObjectProperty, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Default Duty"@en ;
+	skos:definition "The Action typically implies this Duty."@en ;
+	rdfs:domain [
+		a owl:Class ;
+		owl:unionOf ( odrl:Action openrel:Action ) ;
+	] ;
+	rdfs:range odrl:Action, openrel:Action .
 
 # -------------------------------------------------------------------------------------------------------------
 # Foundational Action Instances
@@ -116,6 +143,8 @@ openrel:use
 	skos:exactMatch ids:use ;
 	skos:closeMatch idsc:ALLOW_DATA_USAGE ;
 	# Extensions by OpenREL
+	openrel:actionCategory odrl:Permission, odrl:Prohibition, odrl:Duty ;
+	# openrel:defaultDuty "" ;
 	rdfs:isDefinedBy openrel: .
 
 openrel:read
@@ -126,6 +155,8 @@ openrel:read
 	skos:exactMatch odrl:read ;
 	odrl:includedIn odrl:use 
 	# Extensions by OpenREL
+	openrel:actionCategory odrl:Permission, odrl:Prohibition ;
+	# openrel:defaultDuty "" ;
 	skos:exactMatch idsc:READ ;
 	rdfs:isDefinedBy openrel: .
 
@@ -137,6 +168,8 @@ openrel:distribute
 	skos:exactMatch odrl:distribute ;
 	odrl:includedIn odrl:use 
 	# Extensions by OpenREL
+	openrel:actionCategory odrl:Permission, odrl:Prohibition, odrl:Duty ;
+	# openrel:defaultDuty "" ;
 	skos:exactMatch idsc:DISTRIBUTE ;
 	rdfs:isDefinedBy openrel: .
 
@@ -152,6 +185,8 @@ openrel:modify
 	skos:note "OpenREL has a narrowerr definition than ODRL, restricting the use of the term to assets that are odified in such a way that it retains its asset identifier and is not regarded as a derived asset. If a new asset is derived, use openrel:derive." ;
 	skos:exactMatch dalicc:ModifiedWorks ;
 	skos:broadMatch odrl:modify ;
+	openrel:actionCategory odrl:Permission, odrl:Prohibition ;
+	# openrel:defaultDuty "" ;
 	rdfs:isDefinedBy openrel: ;
 	.
 	## Discussion - any modification that results in content that is not resolvable with the same PID is a new asset. The problem emerges from a diversity of
@@ -169,6 +204,8 @@ openrel:derive
 	skos:narrowMatch odrl:derive ;
 	odrl:includedIn odrl:use ;
 	# Extensions by OpenREL
+	openrel:actionCategory odrl:Permission, odrl:Prohibition ;
+	# openrel:defaultDuty "" ;
 	rdfs:isDefinedBy openrel: .
 	## Discussion - any modification that results in content that is not resolvable with the same PID is a new asset (a derived asset)
 
@@ -180,6 +217,8 @@ openrel:reproduce
 	odrl:includedIn odrl:use ;
 	skos:exactMatch odrl:reproduce ;
 	# Extensions by OpenREL
+	openrel:actionCategory odrl:Permission, odrl:Prohibition ;
+	# openrel:defaultDuty "" ;
 	rdfs:isDefinedBy openrel: .
 
 openrel:archive
@@ -191,6 +230,8 @@ openrel:archive
 	odrl:includedIn odrl:use ;
 	skos:exactMatch odrl:reproduce ;
 	# Extensions by OpenREL
+	openrel:actionCategory odrl:Permission, odrl:Prohibition, odrl:Duty ;
+	# openrel:defaultDuty "" ;
 	rdfs:isDefinedBy openrel: .
 
 openrel:delete
@@ -202,6 +243,8 @@ openrel:delete
 	odrl:includedIn odrl:use ;
 	skos:exactMatch odrl:delete ;
 	# Extensions by OpenREL
+	openrel:actionCategory odrl:Permission, odrl:Prohibition, odrl:Duty ;
+	# openrel:defaultDuty "" ;
 	skos:exactMatch idsc:DELETE ;
 	rdfs:isDefinedBy openrel: .
 
@@ -213,6 +256,8 @@ openrel:notify
 	skos:broadMatch odrl:inform ;
 	skos:exactMatch cc:Notice ;
 	# Extensions by OpenREL
+	openrel:actionCategory odrl:Permission, odrl:Duty ;
+	openrel:defaultDuty "postDuty" ;
 	rdfs:isDefinedBy openrel: .
 
 openrel:log
@@ -222,6 +267,8 @@ openrel:log
 	odrl:includedIn odrl:use ;
 	skos:broadMatch odrl:inform ;
 	# Extensions by OpenREL
+	openrel:actionCategory odrl:Permission, odrl:Duty ;
+	openrel:defaultDuty "postDuty" ;
 	skos:broadMatch idsc:LOG ;
 	rdfs:isDefinedBy openrel: .
 
@@ -236,6 +283,8 @@ openrel:attribute
 	skos:exactMatch odrl:attribute ;
 	skos:exactMatch cc:Attribution ;
 	# Extensions by OpenREL
+	openrel:actionCategory odrl:Permission, odrl:Duty ;
+	openrel:defaultDuty "postDuty" ;
 	rdfs:isDefinedBy openrel: .
 
 openrel:sensitiveDataConsent
@@ -247,6 +296,8 @@ openrel:sensitiveDataConsent
 	skos:note "odrl: May be used as a Duty to ensure that the Assigner or a Party is authorized to approve such actions on a case-by-case basis. May link to a Party with the role “consentingParty” function."@en ;
 	odrl:includedIn odrl:obtainConsent ;
 	# Extensions by OpenREL
+	openrel:actionCategory odrl:Duty ;
+	openrel:defaultDuty "preDuty" ;
 	rdfs:isDefinedBy openrel: .
 	## Discussion - Consent in the case of OpenREL is defined more specifically as applicable to sensitive data
 	## Also - separate duties - pre- and post-use consent requests, and the duty to provide evidence of consent.
@@ -263,6 +314,8 @@ openrel:anonymize
 	odrl:includedIn odrl:use ;
 	skos:exactMatch odrl:anonymize ;
 	# Extensions by OpenREL
+	openrel:actionCategory odrl:Permission, odrl:Duty ;
+	openrel:defaultDuty "postDuty", "preDuty" ;
 	skos:exactMatch idsc:ANONYMIZE ;
 	rdfs:isDefinedBy openrel: .
 
@@ -275,6 +328,8 @@ openrel:encrypt
 	odrl:includedIn odrl:use ;
 	skos:broadMatch odrl:transform ;
 	# Extensions by OpenREL
+	openrel:actionCategory odrl:Permission, odrl:Duty ;
+	openrel:defaultDuty "postDuty" ;
 	rdfs:isDefinedBy openrel: .
 
 openrel:applyLicence
@@ -287,6 +342,8 @@ openrel:applyLicence
 	skos:exactMatch odrl:licence ;
 	skos:broadMatch odrl:grantUse ;
 	# Extensions by OpenREL
+	openrel:actionCategory odrl:Permission, odrl:Duty ;
+	openrel:defaultDuty "postDuty" ;
 	rdfs:isDefinedBy openrel: 
 	.
 
@@ -297,6 +354,8 @@ openrel:commercialise
     rdfs:label "Commercialise"@en ;
     skos:note "Generalises some DALICC, ODRL, and CC encodings."@en 
 	# Extensions by OpenREL
+	openrel:actionCategory odrl:Permission, odrl:Prohibition ;
+	#openrel:defaultDuty "postDuty" ;
 	skos:exactMatch cc:CommercialUse ;
 	skos:narrowMatch openrel:sell,
 					 openrel:promote,
@@ -315,6 +374,8 @@ openrel:trademarkUse
 	skos:note "Originally defined by DALICC as a property."@en ;
 	skos:exactMatch dalicc:trademarkNotice ;
 	# Extensions by OpenREL
+	openrel:actionCategory odrl:Permission, odrl:Prohibition ;
+	#openrel:defaultDuty "postDuty" ;
 	rdfs:isDefinedBy openrel: 
 	.
 
@@ -325,6 +386,8 @@ openrel:promote
     rdfs:label "Promote"@en ;
     skos:note "Used in several DALICC encodings. No ODRL matches. More useful as a prohibition."@en 
 	# Extensions by OpenREL
+	openrel:actionCategory odrl:Permission, odrl:Prohibition ;
+	#openrel:defaultDuty "postDuty" ;
 	skos:exactMatch dalicc:promote ;
 	.
 
@@ -335,6 +398,8 @@ openrel:costRecovery
     rdfs:label "Cost Recovery"@en ;
     skos:note "Generalises some DALICC encodings, for example 'dalicc:ChargeDistibution'. No ODRL matches."@en 
 	# Extensions by OpenREL
+	openrel:actionCategory odrl:Permission, odrl:Prohibition ;
+	#openrel:defaultDuty "postDuty" ;
 	skos:exactMatch dalicc:promote ;
 	.
 
@@ -343,6 +408,8 @@ openrel:assentTo
 	rdfs:label "Assent To"@en ;	
 	skos:definition "Agent using the resoource assents to/ acknowledges one or more duties."@en ;
 	skos:note "Policies and Process Rulesets (e.g. terms of use) often extend access and process conditions that are not part of a licence, but depends on the context of the catalogue/ repository, funder, etc. These may require positive assent (acknowledgement) of a number of rules prior to gaining access to an asset, irrespective of eligibility in respect of licence conditions. Examples: users must register in the repository portal (policy), must assent to licence conditions,  or acknowledge the terms of use (both process duties)."@en ;
+	openrel:actionCategory odrl:Duty ;
+	openrel:defaultDuty "preDuty" ;
 	rdfs:isDefinedBy openrel: .
 
 openrel:shareAlike
@@ -351,6 +418,8 @@ openrel:shareAlike
 	skos:definition "The Asset or its derivatives may be distributed without modification of its original Policy."@en ;
 	skos:note "CC: derivative works be licensed under the same terms or compatible terms as the original work."@en ;
 	skos:exactMatch cc:ShareAlike ;
+	openrel:actionCategory odrl:Duty ;
+	openrel:defaultDuty "postDuty" ;
 	rdfs:isDefinedBy cc: .
 
 
