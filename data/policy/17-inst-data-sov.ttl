@@ -124,7 +124,7 @@
 		skos:note "Created locally to assist with a logical constraint."@en ;
     odrl:leftOperand openrel:assetLocation ; 
     odrl:operand odrl:eq ;              
-    odrl:rightOperand [IRI_DEFINING_INFRASTRUCTURE]
+    odrl:rightOperand openrel:parameterInfraIRI
 		.
 
 <AffiliatedToInstitution> 
@@ -134,14 +134,14 @@
 		skos:note "Created locally to assist with a logical constraint."@en ;
     odrl:leftOperand openrel:agentAffiliation ; 
     odrl:operand odrl:eq ;              
-    odrl:rightOperand [IRI_DEFINING_INSTITUTION]
+    odrl:rightOperand openrel:parameterInstitutionIRI
 		.
 
 <NoReplication> 
     dc:description "Replication to external infrastructure prohibited." ;
     odrl:constraint [
-        odrl:leftOperand oopenrel:assetLocation ;
+        odrl:leftOperand openrel:assetLocation ;
         odrl:operator odrl:neq ;
-        odrl:rightOperand [IRI_INSTITUTION_RESIDENCY]
+        odrl:rightOperand openrel:parameterInfraIRI
     ]
     .
