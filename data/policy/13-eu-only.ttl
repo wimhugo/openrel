@@ -47,7 +47,7 @@
 
 <OR-EU-0.4> a openrel:AccessRules ;
     # Alternate identifiers
-    skos:exactMatch lfslib:[TO_BE_REGISTERED] ;
+    ## skos:exactMatch lfslib:[TO_BE_REGISTERED] ;
 
     # Citation Information
     dc:title "EU-Only Geographical Restriction" ;
@@ -66,9 +66,9 @@
     # openrel:validityType openrel:perpetual ;
     openrel:jurisdiction openrel:worldwide ;
     openrel:policyStatus openrel:typePrivateActive ;
-    odrl:assigner parameterAssignerIRI ;
-    odrl:assignee parameterAssigneeIRI ;
-    odrl:target parameterTargetIRI ; 
+    odrl:assigner openrel:parameterAssignerIRI ;
+    odrl:assignee openrel:parameterAssigneeIRI ;
+    odrl:target openrel:parameterTargetIRI ;
 
     # Alternative representations, mappings of SPDX and LFS properties
     openrel:policyText "**Time Limited Access** is an **Access Rule** imposed by an organisation or platform independently of the licence applicable to the asset. The motivation may, for example, be to re-evaluate context of the assignee at the completion of the access period"@en ;
