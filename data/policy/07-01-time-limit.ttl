@@ -67,9 +67,9 @@
     ## These properties apply only for those policies that explicitly require them, optional for others
     ## openrel:validityType openrel:perpetual ;
     openrel:jurisdiction openrel:worldwide ;
-    ## odrl:assigner parameterAssignerIRI ;
-    ## odrl:assignee parameterAssigneeIRI ;
-    ## odrl:target parameterTargetIRI ; 
+    odrl:assigner parameterAssignerIRI ;
+    odrl:assignee parameterAssigneeIRI ;
+    odrl:target parameterTargetIRI ; 
  
 	# Alternative representations, mappings of SPDX and LFS properties
     openrel:policyText "**Time Limited Access** is an **Access Rule** imposed by an organisation or platform independently of the licence applicable to the asset. The motivation may, for example, be to re-evaluate context of the assignee at the completion of the access period"@en ;
