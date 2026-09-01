@@ -92,7 +92,7 @@
     # Alternative representations, mappings of SPDX and LFS properties
     openrel:legalcode <https://creativecommons.org/licenses/by/4.0/legalcode> ;
     openrel:policyTextHtml <https://spdx.org/licenses/CC-BY-4.0.html> ;
-    openrel:policyText lfslib:CC-BY-4.0/original ;
+    openrel:policyText <https://lfs.labs.dansdemo.nl/api/v1/licenses/CC-BY-4.0/original> ;
     openrel:encodedRules openrellib:CC-BY-4.0 ;
 
 # --------------------------------------------------------------------------------------------------------------------------------
