@@ -209,6 +209,34 @@ openrel:parameterAuthorisedIRI
     openrel:resolutionMethod openrel:PlatformContext 
     .
 
+openrel:parameterClearingHouseAPI
+    a openrel:Parameter, odrl:RightOperand ;
+	skos:prefLabel "ClearingHouse API" ;
+	skos:definition "The API endpoint for clearing huose notifications."@en ;
+    openrel:parameterName "CLEARINGHOUSE_API" ;
+    openrel:expectedDatatype xsd:anyURL ;
+    openrel:resolutionMethod openrel:PlatformContext 
+    .
+
+openrel:parameterTokenVerificationAPI
+    a openrel:Parameter, odrl:RightOperand ;
+	skos:prefLabel "Access Token Verification Endpoint" ;
+	skos:definition "An API for access token verification."@en ;
+    openrel:parameterName "TOKEN_VERIFICATION_API" ;
+    openrel:expectedDatatype xsd:anyURL ;
+    openrel:resolutionMethod openrel:PlatformContext 
+    .
+
+openrel:parameterAccessToken
+    a openrel:Parameter, odrl:RightOperand ;
+	skos:prefLabel "Access Token" ;
+	skos:definition "An access token provided by the platform."@en ;
+    openrel:parameterName "ACCESS_TOKEN" ;
+    openrel:expectedDatatype xsd:anyText ;
+    openrel:resolutionMethod openrel:PlatformContext 
+    .
+
+
 # ---------- Assignee/ Requesting Party Context
 
 openrel:parameterAssigneeIRI
@@ -225,6 +253,15 @@ openrel:parameterInstitutionIRI
 	skos:prefLabel "Institution IRI" ;
 	skos:definition "A unique identifier for the institution an assignee (user, requestor) is affiliated to (PID, URI, URL)."@en ;
     openrel:parameterName "INSITUTION_IRI" ;
+    openrel:expectedDatatype xsd:anyURI ;
+    openrel:resolutionMethod openrel:PartyContext 
+	.
+
+openrel:parameterPurposeIRI
+    a openrel:Parameter, odrl:RightOperand ;
+	skos:prefLabel "Intended Purpose IRI" ;
+	skos:definition "A unique identifier for the intended prupose of use (PID, URI, URL)."@en ;
+    openrel:parameterName "INTENDED_PURPOSE" ;
     openrel:expectedDatatype xsd:anyURI ;
     openrel:resolutionMethod openrel:PartyContext 
 	.
@@ -253,11 +290,30 @@ openrel:parameterInformedConsentIRI
     openrel:resolutionMethod openrel:SubjectContext
 	.
 
+openrel:parameterConsentExpiryDate
+    a openrel:Parameter, odrl:RightOperand ;
+	skos:prefLabel "Informed Consent Expiry Date" ;
+	skos:definition "A date on which informed consent expires."@en ;
+    openrel:parameterName "INFORMED_CONSENT_EXPIRY" ;
+    openrel:expectedDatatype xsd:dateTime ;
+    openrel:resolutionMethod openrel:SubjectContext
+	.
+
 openrel:parameterDataSpecIRI
     a openrel:Parameter, odrl:RightOperand ;
 	skos:prefLabel "Data Specification IRI" ;
 	skos:definition "A unique identifier for a data specification defining data that is in scope for access (PID, URI, URL)."@en ;
     openrel:parameterName "DATA_SPECIFICATION_IRI" ;
+    openrel:expectedDatatype xsd:anyURI ;
+    openrel:resolutionMethod openrel:SubjectContext
+	.
+
+openrel:parameterPurposeVerificationIRI
+	### Also VERIFIED_PURPOSE
+    a openrel:Parameter, odrl:RightOperand ;
+	skos:prefLabel "Purpose Verification IRI" ;
+	skos:definition "A mechanism (manual or automated) for purpose verification."@en ;
+    openrel:parameterName "PURPOSE_VERIFICATION_IRI" ;
     openrel:expectedDatatype xsd:anyURI ;
     openrel:resolutionMethod openrel:SubjectContext
 	.
@@ -284,7 +340,5 @@ openrel:parameterLicenceList
 # ---------- Immediate Request Context
 
 # [IP_ADDRESS]
-# [INTENDED_PURPOSE]
-# [VERIFIED_PURPOSE]
 
 
