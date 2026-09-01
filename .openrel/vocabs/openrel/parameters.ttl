@@ -162,6 +162,16 @@ openrel:parameterTargetIRI
     openrel:resolutionMethod openrel:AssetMetadataValue 
     .
 
+openrel:parameterInfraIRI
+    a openrel:Parameter, odrl:RightOperand ;
+	skos:prefLabel "Infrastructure IRI" ;
+	skos:definition "A unique identifier for the infrastructure on which an Asset or Asset Collection can be used (PID, URI, URL)."@en ;
+    openrel:parameterName "INFRASTRUCTURE_IRI" ;
+    openrel:expectedDatatype xsd:anyURI ;
+    openrel:resolutionMethod openrel:AssetMetadataValue 
+    .
+
+
 # ---------- Assignee/ Requesting Party Context
 
 openrel:parameterAssigneeIRI
@@ -172,6 +182,19 @@ openrel:parameterAssigneeIRI
     openrel:expectedDatatype xsd:anyURI ;
     openrel:resolutionMethod openrel:PartyContext 
 	.
+
+openrel:parameterInstitutionIRI
+    a openrel:Parameter, odrl:RightOperand ;
+	skos:prefLabel "Institution IRI" ;
+	skos:definition "A unique identifier for the institution an assignee (user, requestor) is affiliated to (PID, URI, URL)."@en ;
+    openrel:parameterName "INSITUTION_IRI" ;
+    openrel:expectedDatatype xsd:anyURI ;
+    openrel:resolutionMethod openrel:PartyContext 
+	.
+
+# [VERIFIED_RESEARCHER]
+# [VERIFIED_IDENTITY]
+# [VERIFIED_RPO]
 
 # ---------- Data Subject Context
 
@@ -201,12 +224,6 @@ openrel:parameterDataSpecIRI
     openrel:expectedDatatype xsd:anyURI ;
     openrel:resolutionMethod openrel:SubjectContext
 	.
-
-# [VERIFIED_RESEARCHER]
-# [VERIFIED_IDENTITY]
-# [INSTITUTION_IRI]
-# [VERIFIED_RPO]
-
 
 # ---------- Target Context
 openrel:parameterPublicationDate
