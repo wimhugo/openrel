@@ -88,4 +88,6 @@
                     openrel:distribute, 
                     openrel:modify, 
                     openrel:reproduce ;
-    ] ;
+    ] 
+
+.
