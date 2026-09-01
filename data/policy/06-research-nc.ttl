@@ -68,9 +68,9 @@
     ## openrel:validityType openrel:perpetual ;
     openrel:jurisdiction openrel:worldwide ;
     openrel:policyStatus openrel:typeCustomActive ;
-    odrl:assigner parameterAssignerIRI ;
-    odrl:assignee parameterAssigneeIRI ;
-    odrl:target parameterTargetIRI ; 
+    odrl:assigner openrel:parameterAssignerIRI ;
+    odrl:assignee openrel:parameterAssigneeIRI ;
+    odrl:target openrel:parameterTargetIRI ; 
 
     # Definition of input policies
     openrel:hasPolicy <OR-BY-AC-VI-4.0> ;
