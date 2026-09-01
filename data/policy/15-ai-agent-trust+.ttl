@@ -47,8 +47,8 @@
 
 <OR-AI-TR-PL-0.4> a openrel:ProcessRules ;
     # Alternate identifiers
-    skos:exactMatch spdx:<> ;
-    skos:exactMatch lfs:<> ;
+    ## skos:exactMatch spdx:<> ;
+    ## skos:exactMatch lfs:<> ;
 
     # Citation Information
     dc:title "AI Agent Access with TRUST+ Security and TOM Requirement" ;
@@ -67,9 +67,9 @@
     openrel:validityType openrel:perpetual ;
     openrel:jurisdiction openrel:worldwide ;
     openrel:policyStatus openrel:typeCustomActive ;
-    odrl:assignee parameterAssigneeIRI ;
-    odrl:assigner parameterDataSubjectIRI ;
-    odrl:target parameterTargetIRI ;
+    odrl:assigner openrel:parameterAssignerIRI ;
+    odrl:assignee openrel:parameterAssigneeIRI ;
+    odrl:target openrel:parameterTargetIRI ;
     
 	# Disclaimers
     ## openrel:liabilityLimitation "{{Liability Limitation Text}}" ;
