@@ -154,7 +154,7 @@ openrel:read
 	skos:definition "Read-only access to a resource without modification, redistribution, or derivation."@en ;
 	skos:exactMatch odrl:display ;
 	skos:exactMatch odrl:read ;
-	odrl:includedIn odrl:use 
+	odrl:includedIn odrl:use ;
 	# Extensions by OpenREL
 	openrel:actionCategory odrl:Permission, odrl:Prohibition ;
 	# openrel:defaultDuty "" ;
@@ -167,7 +167,7 @@ openrel:distribute
 	skos:definition "Transfer, forward, supply, or share a resource with third parties. Encompasses sharing, disseminating, republishing, and redistributing."@en ;
 	skos:note "This action is always evaluated at the consumer side and allows it to become a data provider of this resource (idsc:)."@en ;
 	skos:exactMatch odrl:distribute ;
-	odrl:includedIn odrl:use 
+	odrl:includedIn odrl:use ;
 	# Extensions by OpenREL
 	openrel:actionCategory odrl:Permission, odrl:Prohibition, odrl:Duty ;
 	# openrel:defaultDuty "" ;
