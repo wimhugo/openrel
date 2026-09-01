@@ -228,7 +228,48 @@ openrel:policyStatus
 	rdfs:range openrel:typeStatus ;
  	.
 
+# -------------------------------------------------------------------------------------------------------------
+# Temporary Property Definition
+# -------------------------------------------------------------------------------------------------------------
 
+openrel:simpleWho
+	a rdf:Property , owl:ObjectProperty, skos:Concept ;
+	rdfs:isDefinedBy openrel: ;
+	rdfs:label "simple who"@en ;
+	rdfs:domain odrl:Policy ;
+	rdfs:range xsd:anyText ;
+ 	.
 
+openrel:simpleWhat
+	a rdf:Property , owl:ObjectProperty, skos:Concept ;
+	rdfs:isDefinedBy openrel: ;
+	rdfs:label "simple what"@en ;
+	rdfs:domain odrl:Policy ;
+	rdfs:range xsd:anyText ;
+ 	.
+
+openrel:simpleWhy
+	a rdf:Property , owl:ObjectProperty, skos:Concept ;
+	rdfs:isDefinedBy openrel: ;
+	rdfs:label "simple why"@en ;
+	rdfs:domain odrl:Policy ;
+	rdfs:range xsd:anyText ;
+ 	.
+
+openrel:simpleWhen
+	a rdf:Property , owl:ObjectProperty, skos:Concept ;
+	rdfs:isDefinedBy openrel: ;
+	rdfs:label "simple when"@en ;
+	rdfs:domain odrl:Policy ;
+	rdfs:range xsd:anyText ;
+ 	.
+
+openrel:simpleHow
+	a rdf:Property , owl:ObjectProperty, skos:Concept ;
+	rdfs:isDefinedBy openrel: ;
+	rdfs:label "simple how"@en ;
+	rdfs:domain odrl:Policy ;
+	rdfs:range xsd:anyText ;
+ 	.
 
 
