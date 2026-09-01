@@ -89,7 +89,7 @@ openrel:typeCustomActive
   skos:broader openrel:typeActive ;
   skos:inScheme openrel:typeStatus .
 
-openrel:typeCustomActive
+openrel:typeGlobalActive
   a skos:Concept ;
   skos:prefLabel "Policy is Active/ Global"@en ;
   skos:definition "A policy that is active and applicable globally. Typically, assigner, assignee, and asset/ asset collection are not defined."@en ;
