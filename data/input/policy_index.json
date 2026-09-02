@@ -1,7 +1,7 @@
 {
   "version": "0.4",
-  "description": "OpenREL Policy Index â curated discovery/catalogue index for the Policy Wizard. Structural fields (perm/proh/duty actions, type, status) mirror the canonical TTLs in data/policy/; semantic fields (q1, q3, q4, geo, dates, tags) are human-curated. The periodic indexer (see docs/specifications/e.2) recomputes fingerprints and flags drift. This file is the single source of truth for the Simple Wizard preload and the browser grid; detail rules/constraints are fetched live from the individual policy TTLs.",
-  "generated_at": "2026-09-02T12:12:55.614Z",
+  "description": "OpenREL Policy Index Ã¢ÂÂ curated discovery/catalogue index for the Policy Wizard. Structural fields (perm/proh/duty actions, type, status) mirror the canonical TTLs in data/policy/; semantic fields (q1, q3, q4, geo, dates, tags) are human-curated. The periodic indexer (see docs/specifications/e.2) recomputes fingerprints and flags drift. This file is the single source of truth for the Simple Wizard preload and the browser grid; detail rules/constraints are fetched live from the individual policy TTLs.",
+  "generated_at": "2026-09-02T12:28:17.833Z",
   "policies": [
     {
       "iri": "openrel:CC0-1.0",
@@ -16,11 +16,11 @@
       "simple": {
         "q1": "public",
         "simplePerm": [
-          "openrel:use",
-          "openrel:read",
-          "openrel:distribute",
-          "openrel:modify",
-          "openrel:reproduce"
+          "Use",
+          "Read",
+          "Distribute",
+          "Modify",
+          "Reproduce"
         ],
         "simpleDuty": [],
         "q3": "worldwide",
@@ -71,7 +71,7 @@
     {
       "iri": "openrel:CC-BY-4.0",
       "label": "Creative Commons Attribution 4.0 International",
-      "description": "Anyone can read, download, share, and adapt for any purpose â provided the original author is credited.",
+      "description": "Anyone can read, download, share, and adapt for any purpose Ã¢ÂÂ provided the original author is credited.",
       "type": "Licence",
       "status": "active",
       "tags": [
@@ -81,14 +81,14 @@
       "simple": {
         "q1": "public",
         "simplePerm": [
-          "openrel:use",
-          "openrel:read",
-          "openrel:distribute",
-          "openrel:modify",
-          "openrel:reproduce"
+          "Use",
+          "Read",
+          "Distribute",
+          "Modify",
+          "Reproduce"
         ],
         "simpleDuty": [
-          "openrel:attribute"
+          "Attribute"
         ],
         "q3": "worldwide",
         "geoInc": [],
@@ -163,15 +163,15 @@
       "simple": {
         "q1": "public",
         "simplePerm": [
-          "openrel:use",
-          "openrel:read",
-          "openrel:distribute",
-          "openrel:modify",
-          "openrel:reproduce"
+          "Use",
+          "Read",
+          "Distribute",
+          "Modify",
+          "Reproduce"
         ],
         "simpleDuty": [
-          "openrel:attribute",
-          "openrel:shareAlike"
+          "Attribute",
+          "Share Alike"
         ],
         "q3": "worldwide",
         "geoInc": [],
@@ -247,14 +247,14 @@
       "simple": {
         "q1": "noncommercial",
         "simplePerm": [
-          "openrel:use",
-          "openrel:read",
-          "openrel:distribute",
-          "openrel:modify",
-          "openrel:reproduce"
+          "Use",
+          "Read",
+          "Distribute",
+          "Modify",
+          "Reproduce"
         ],
         "simpleDuty": [
-          "openrel:attribute"
+          "Attribute"
         ],
         "q3": "worldwide",
         "geoInc": [],
@@ -330,12 +330,12 @@
       "simple": {
         "q1": "public",
         "simplePerm": [
-          "openrel:use",
-          "openrel:read",
-          "openrel:distribute"
+          "Use",
+          "Read",
+          "Distribute"
         ],
         "simpleDuty": [
-          "openrel:attribute"
+          "Attribute"
         ],
         "q3": "worldwide",
         "geoInc": [],
@@ -412,7 +412,7 @@
       "simple": {
         "q1": "researchers",
         "simplePerm": [
-          "openrel:read"
+          "Read"
         ],
         "simpleDuty": [],
         "q3": "worldwide",
@@ -470,14 +470,14 @@
       "simple": {
         "q1": "researchers",
         "simplePerm": [
-          "openrel:use",
-          "openrel:read",
-          "openrel:distribute",
-          "openrel:modify",
-          "openrel:reproduce"
+          "Use",
+          "Read",
+          "Distribute",
+          "Modify",
+          "Reproduce"
         ],
         "simpleDuty": [
-          "openrel:attribute"
+          "Attribute"
         ],
         "q3": "worldwide",
         "geoInc": [],
@@ -538,7 +538,7 @@
       "simple": {
         "q1": "managed",
         "simplePerm": [
-          "openrel:read",
+          "Read",
           "openrel:download"
         ],
         "simpleDuty": [],
@@ -599,7 +599,7 @@
       "simple": {
         "q1": "managed",
         "simplePerm": [
-          "openrel:use"
+          "Use"
         ],
         "simpleDuty": [
           "openrel:obtainEthicsApproval"
@@ -661,7 +661,7 @@
       "simple": {
         "q1": "public",
         "simplePerm": [
-          "openrel:use"
+          "Use"
         ],
         "simpleDuty": [],
         "q3": "restricted",
@@ -724,15 +724,15 @@
       "simple": {
         "q1": "managed",
         "simplePerm": [
-          "openrel:use",
-          "openrel:log",
-          "openrel:encrypt",
-          "openrel:delete"
+          "Use",
+          "Log",
+          "Encrypt",
+          "Delete"
         ],
         "simpleDuty": [
-          "openrel:notify",
+          "Notify",
           "openrel:obtainConsent",
-          "openrel:sensitiveDataConsent"
+          "Sensitive Data Consent"
         ],
         "q3": "restricted",
         "geoInc": [
@@ -784,7 +784,7 @@
     },
     {
       "iri": "openrel:OR-AI-TR-PL-0.4",
-      "label": "Agentic AI â Transparency & Plain Language",
+      "label": "Agentic AI Ã¢ÂÂ Transparency & Plain Language",
       "description": "Transparency obligations for agentic AI use, with plain-language notification duty.",
       "type": "Process",
       "status": "active",
@@ -798,7 +798,7 @@
         "q1": "managed",
         "simplePerm": [],
         "simpleDuty": [
-          "openrel:notify"
+          "Notify"
         ],
         "q3": "worldwide",
         "geoInc": [],
@@ -920,14 +920,14 @@
       "simple": {
         "q1": "public",
         "simplePerm": [
-          "openrel:use",
-          "openrel:read",
-          "openrel:distribute",
-          "openrel:modify",
-          "openrel:reproduce"
+          "Use",
+          "Read",
+          "Distribute",
+          "Modify",
+          "Reproduce"
         ],
         "simpleDuty": [
-          "openrel:attribute"
+          "Attribute"
         ],
         "q3": "worldwide",
         "geoInc": [],
@@ -986,11 +986,11 @@
       "simple": {
         "q1": "managed",
         "simplePerm": [
-          "openrel:read",
-          "openrel:use"
+          "Read",
+          "Use"
         ],
         "simpleProhibit": [
-          "openrel:reproduce"
+          "Reproduce"
         ],
         "simpleDuty": [],
         "q3": "worldwide",
@@ -1052,7 +1052,7 @@
       "simple": {
         "q1": "managed",
         "simplePerm": [
-          "openrel:use"
+          "Use"
         ],
         "simpleDuty": [],
         "q3": "worldwide",
@@ -1105,7 +1105,7 @@
       "simple": {
         "q1": "researchers",
         "simplePerm": [
-          "openrel:use"
+          "Use"
         ],
         "simpleDuty": [],
         "q3": "worldwide",
@@ -1167,14 +1167,14 @@
       "simple": {
         "q1": "managed",
         "simplePerm": [
-          "openrel:use",
-          "openrel:read",
-          "openrel:distribute",
-          "openrel:modify",
-          "openrel:reproduce"
+          "Use",
+          "Read",
+          "Distribute",
+          "Modify",
+          "Reproduce"
         ],
         "simpleDuty": [
-          "openrel:attribute"
+          "Attribute"
         ],
         "q3": "worldwide",
         "geoInc": [],
@@ -1232,10 +1232,10 @@
       "simple": {
         "q1": "managed",
         "simplePerm": [
-          "openrel:use"
+          "Use"
         ],
         "simpleDuty": [
-          "openrel:log"
+          "Log"
         ],
         "q3": "worldwide",
         "geoInc": [],
@@ -1286,7 +1286,7 @@
     },
     {
       "iri": "openrel:OR-AI-AU-0.4",
-      "label": "Agentic AI â Delegated Access with Audit Trail",
+      "label": "Agentic AI Ã¢ÂÂ Delegated Access with Audit Trail",
       "description": "Asset MUST only be distributed to an authorised endpoint URI; use is audited.",
       "type": "Process",
       "status": "active",
@@ -1299,13 +1299,13 @@
       "simple": {
         "q1": "managed",
         "simplePerm": [
-          "openrel:use"
+          "Use"
         ],
         "simpleProhibit": [
-          "openrel:distribute"
+          "Distribute"
         ],
         "simpleDuty": [
-          "openrel:log"
+          "Log"
         ],
         "q3": "worldwide",
         "geoInc": [],
