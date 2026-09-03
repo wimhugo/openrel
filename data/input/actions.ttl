@@ -1,0 +1,91 @@
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix openrel: <https://openrel.eu/vocab#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+
+odrl:use a skos:Concept ;
+    openrel:actionId "A01" ;
+    skos:prefLabel "Use" ;
+    openrel:actionCategory "perm", "proh", "obli" ;
+    skos:definition "Use the resource for any purpose including computational processing." .
+
+odrl:read a skos:Concept ;
+    openrel:actionId "A02" ;
+    skos:prefLabel "Read" ;
+    openrel:actionCategory "perm", "proh" ;
+    skos:definition "Read or access the resource." .
+
+odrl:distribute a skos:Concept ;
+    openrel:actionId "A03" ;
+    skos:prefLabel "Distribute" ;
+    openrel:actionCategory "perm", "proh", "obli" ;
+    skos:definition "Distribute the resource to third parties." .
+
+odrl:modify a skos:Concept ;
+    openrel:actionId "A04" ;
+    skos:prefLabel "Modify" ;
+    openrel:actionCategory "perm", "proh" ;
+    skos:definition "Modify, adapt, or create derivative works from the resource." .
+
+odrl:reproduce a skos:Concept ;
+    openrel:actionId "A05" ;
+    skos:prefLabel "Reproduce" ;
+    openrel:actionCategory "perm", "proh" ;
+    skos:definition "Reproduce or copy the resource." .
+
+odrl:archive a skos:Concept ;
+    openrel:actionId "A06" ;
+    skos:prefLabel "Archive" ;
+    openrel:actionCategory "perm", "proh", "obli" ;
+    skos:definition "Archive the resource for long-term preservation." .
+
+odrl:delete a skos:Concept ;
+    openrel:actionId "A07" ;
+    skos:prefLabel "Delete" ;
+    openrel:actionCategory "perm", "proh", "obli" ;
+    skos:definition "Delete the resource." .
+
+openrel:notify a skos:Concept ;
+    openrel:actionId "A08" ;
+    skos:prefLabel "Notify" ;
+    openrel:actionCategory "perm", "obli" ;
+    skos:definition "Notify a designated party when the resource is accessed." .
+
+openrel:log a skos:Concept ;
+    openrel:actionId "A09" ;
+    skos:prefLabel "Log" ;
+    openrel:actionCategory "perm", "obli" ;
+    skos:definition "Log access events to a clearing house or audit service." .
+
+odrl:attribute a skos:Concept ;
+    openrel:actionId "A10" ;
+    skos:prefLabel "Attribute" ;
+    openrel:actionCategory "perm", "obli" ;
+    openrel:defaultDuty "postDuty" ;
+    skos:definition "Credit the original author or rights holder." .
+
+openrel:obtainConsent a skos:Concept ;
+    openrel:actionId "A11" ;
+    skos:prefLabel "Obtain Consent" ;
+    openrel:actionCategory "obli" ;
+    openrel:defaultDuty "preDuty" ;
+    skos:definition "Obtain explicit consent from the data subject before access (GDPR Art. 6/9)." .
+
+openrel:anonymize a skos:Concept ;
+    openrel:actionId "A12" ;
+    skos:prefLabel "Anonymize" ;
+    openrel:actionCategory "perm", "obli" ;
+    skos:definition "Anonymize data before any output, derivative, or summary is shared." .
+
+openrel:encrypt a skos:Concept ;
+    openrel:actionId "A13" ;
+    skos:prefLabel "Encrypt" ;
+    openrel:actionCategory "perm", "obli" ;
+    openrel:defaultDuty "preDuty" ;
+    skos:definition "Encrypt the resource in transit or at rest." .
+
+openrel:applyLicense a skos:Concept ;
+    openrel:actionId "A14" ;
+    skos:prefLabel "Apply License" ;
+    openrel:actionCategory "perm", "obli" ;
+    skos:definition "Apply a specified license to the resource." .

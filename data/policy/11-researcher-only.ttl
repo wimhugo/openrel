@@ -10,7 +10,7 @@
 
 # context
 @base <http://www.w3.org/ns/openrel/0/> .
-@prefix : <http://www.w3.org/ns/openrel/0/> .
+@prefix openrel: <http://www.w3.org/ns/openrel/0/> .
 # RDF-related
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -30,22 +30,24 @@
 @prefix odrl: <http://www.w3.org/ns/odrl/2/> .
 @prefix cc: <http://creativecommons.org/ns#> .
 @prefix dalicc: <https://dalicc.net/ns#> .
-@prefix dalicclib: <https://dalicc.net/licenselibrary/> .
 @prefix ids: <https://w3id.org/idsa/core/> .
 @prefix idsc: <https://w3id.org/idsa/code/> .
 @prefix osl: <http://opensource.org/licenses/> .
 @prefix spdx: <http://spdx.org/rdf/terms#>  .
+@prefix dpv: <https://w3id.org/dpv/> .
+# Policy Libraries and Registries
+@prefix openrellib: <https://github.com/wimhugo/openrel/new/main/data/policy/> .
 @prefix spdxlicense: <http://spdx.org/licenses/> .
-@prefix dpv: <https://w3id.org/dpv> .
-@prefix lfs: <https://lfs.labs.dansdemo.nl/api/v1/licenses> .
+@prefix dalicclib: <https://dalicc.net/licenselibrary/> 
+@prefix lfslib: <https://lfs.labs.dansdemo.nl/api/v1/licenses/> .
 
 # --------------------------------------------------------------------------------------------------------------------------------
 # Process Rules Metadata
 # --------------------------------------------------------------------------------------------------------------------------------
 
-<AC-VI> a openrel:ProcessRules ;
+<OR-BY-AC-VI-4.0> a openrel:ProcessRules ;
     # Alternate identifiers
-    dct:relation lfslib:[TO_BE_REGISTERED] ;
+    ## dct:relation lfslib:[TO_BE_REGISTERED] ;
 
     dct:publisher "OpenREL" ;
     dc:title "Researcher-Only Access with eIDAS Verification" ;
@@ -64,17 +66,21 @@
     dct:subject "Identity Verification", "eIDAS", "Researcher" ;
     openrel:accessType openrel:managed ;    
     dct:version "4.0" ;
+
     # Coverage related information
     cc:jurisdiction openrel:worldwide ;
     openrel:validityType openrel:perpetual ;
+    openrel:policyStatus openrel:typeCustomActive ;
+
     # Disclaimers
     openrel:liabilityLimitation "To the extent possible, in no event will the Licensor be liable to You on any legal theory (including, without limitation, negligence) or otherwise for any direct, special, indirect, incidental, consequential, punitive, exemplary, or other losses, costs, expenses, or damages arising out of this Public License or use of the Licensed Material, even if the Licensor has been advised of the possibility of such losses, costs, expenses, or damages. Where a limitation of liability is not allowed in full or in part, this limitation may not apply to You." ;
     openrel:warrantyNotice "Unless otherwise separately undertaken by the Licensor, to the extent possible, the Licensor offers the Licensed Material as-is and as-available, and makes no representations or warranties of any kind concerning the Licensed Material, whether express, implied, statutory, or other. This includes, without limitation, warranties of title, merchantability, fitness for a particular purpose, non-infringement, absence of latent or other defects, accuracy, or the presence or absence of errors, whether or not known or discoverable. Where disclaimers of warranties are not allowed in full or in part, this disclaimer may not apply to You." ;
+  
     # Alternative representations, mappings of SPDX and LFS properties
-    openrel:legalcode <> ;
-    openrel:policyTextHtml <> ;
-    openrel:policyText lfslib:[TO_BE_REGISTERED]/original ;
-    openrel:encodedRules <https://github.com/wimhugo/openrel/blob/main/data/policy/04-attribution-noncommercial.ttl> ;
+    ## openrel:legalcode <> ;
+    ## openrel:policyTextHtml <> ;
+    ## openrel:policyText lfslib:[TO_BE_REGISTERED]/original ;
+    openrel:encodedRules openrellib:OR-BY-AC-VI-4.0 ;
 
 
 # --------------------------------------------------------------------------------------------------------------------------------

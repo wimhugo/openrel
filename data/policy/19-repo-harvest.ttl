@@ -12,7 +12,7 @@
 
 # context
 @base <http://www.w3.org/ns/openrel/0/> .
-@prefix : <http://www.w3.org/ns/openrel/0/> .
+@prefix openrel: <http://www.w3.org/ns/openrel/0/> .
 # RDF-related
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -25,29 +25,33 @@
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 # rdmi-related
 @prefix dct: <http://purl.org/dc/terms/> .
+@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix dcatap: <http://data.europa.eu/r5r/> .
 # rights-related
 @prefix odrl: <http://www.w3.org/ns/odrl/2/> .
 @prefix cc: <http://creativecommons.org/ns#> .
 @prefix dalicc: <https://dalicc.net/ns#> .
-@prefix dalicclib: <https://dalicc.net/licenselibrary/> .
 @prefix ids: <https://w3id.org/idsa/core/> .
 @prefix idsc: <https://w3id.org/idsa/code/> .
 @prefix osl: <http://opensource.org/licenses/> .
 @prefix spdx: <http://spdx.org/rdf/terms#>  .
+@prefix dpv: <https://w3id.org/dpv/> .
+# Policy Libraries and Registries
+@prefix openrellib: <https://github.com/wimhugo/openrel/new/main/data/policy/> .
 @prefix spdxlicense: <http://spdx.org/licenses/> .
-@prefix dpv: <https://w3id.org/dpv> .
-@prefix lfs: <https://lfs.labs.dansdemo.nl/api/v1/licenses> .
+@prefix dalicclib: <https://dalicc.net/licenselibrary/> 
+@prefix lfslib: <https://lfs.labs.dansdemo.nl/api/v1/licenses/> .
 
 # --------------------------------------------------------------------------------------------------------------------------------
 # Access Rules Metadata
 # --------------------------------------------------------------------------------------------------------------------------------
 
-<19-repo-harvest> a openrel:ProcessRules ;
+<OR-IN-HV-0.4> a openrel:ProcessRules ;
     # Alternate identifiers
     # skos:exactMatch spdx:<> ;
     # skos:exactMatch lfs:<> ;
+
     # Citation Information
     dct:title "Harvesting Access Conditions" ;
     dct:publisher <> ;
@@ -58,26 +62,31 @@
     dct:subject "Harvesting" ;
     openrel:accessType openrel:managed ;
     dct:source <> ;
-    dct:version "0.1" ;
+    dct:version "0.4" ;
+
     # Coverage related information
     # These properties apply only for those policies that explicitly require them, optional for others
     # openrel:validityType openrel:perpetual ;
     openrel:jurisdiction openrel:worldwide ;
-    odrl:assigner [REPOSITORY_IRI] ;
-    # odrl:assignee [ASSIGNEE_IRI] ;
-    odrl:target [TARGET_ASSET_COLLECTION_IRI] ; 
+    openrel:policyStatus openrel:typeCustomActive ;
+    odrl:assigner openrel:parameterAssignerIRI ;
+    odrl:assignee openrel:parameterAssigneeIRI ;
+    odrl:target openrel:parameterTargetIRI ;
+
     # Disclaimers
     # openrel:liabilityLimitation {{Liability Limitation Text}} ;
     # openrel:warrantyNotice {{Warranty Notice Text}} ;
+
     # Alternative representations, mappings of SPDX and LFS properties
-    # openrel:legalCode [IRI_TO_LEGAL_CODE] ;
-    openrel:policyTextHtml [IRI_TO_HTML_VIEW] ;
-    openrel:policyText [IRI_TO_TEXT] ;
-    openrel:encodedRules openrel:<19-repo-harvest> ;
-	  # Optional results of evaluation of two policies
-    # openrel:permits [IRI_OF_OTHER_POLICY] ;
-	  # openrel:contradicts [IRI_OF_OTHER_POLICY] ;
-    # openrel:evaluationDetail [OPENREL_EVALUATION] ;
+    ## openrel:legalcode <> ;
+    ## openrel:policyTextHtml <> ;
+    ## openrel:policyText lfslib:[TO_BE_REGISTERED]/original ;
+    openrel:encodedRules openrellib:OR-IN-HV-0.4 ;
+
+	# Optional results of evaluation of two policies
+    ## openrel:permits <IRI_OF_OTHER_POLICY> ;
+	## openrel:contradicts <IRI_OF_OTHER_POLICY> ;
+    ## openrel:evaluationDetail <OPENREL_EVALUATION> ;
 
 # --------------------------------------------------------------------------------------------------------------------------------
 #   Rules
@@ -85,9 +94,7 @@
     
     odrl:permission [
         odrl:action openrel:action.read ;
-        odrl:constraint <authorisedEndpoint> ;
-        odrl:constraint <accessOpenManaged> ;
-        odrl:constraint openrel:constraint.volume:maxVolume ;
+        odrl:constraint <limitHarvesting> ;
         odrl:duty [
             odrl:action openrel:log	;
 			odrl:constraint openrel:logUse ;	
@@ -100,6 +107,7 @@
 #        dc:description "Full-content harvesting prohibited for non-open-access resources." ;
 #        odrl:constraint openrel:constraint.harvestingScope
 #    ] ;
+		
 # This is taken care of <authorisedURI> already?		
 #    odrl:prohibition [
 #        odrl:action openrel:action.read ;
@@ -110,11 +118,24 @@
 #            odrl:rightOperand openrel:connectorList.unknown
 #        ]
 #    ] ;
-		
+
+# --------------------------------------
+# Custom Logical Constraints
+# --------------------------------------
+
+<limitHarvesting>
+    a odrl:LogicalConstraint ;
+    odrl:and (
+        <authorisedURI>
+        <authorisedIP>
+		<maximumVolume>
+    ) 
+.
+	
 # --------------------------------------------------------------------------------------------------------------------------------
 # Custom Named Constraints
 # --------------------------------------------------------------------------------------------------------------------------------
-
+		
 <authorisedURI>
 	 a openrel:NamedConstraint ;
 		rdfs:label "Authorised URI Only"@en ;
@@ -124,7 +145,7 @@
 		openrel:scenario openrel:formal-toms ;
 		odrl:leftOperand idsc:ENDPOINT ;
 		odrl:operator idsc:IN ;
-		odrl:rightOperand [AUTHORISED_IRL_ARRAY] ;
+		odrl:rightOperand openrel:parameterAuthorisedIRI ;
 		.
 
 <authorisedIP>
@@ -136,7 +157,7 @@
 		openrel:scenario openrel:formal-toms ;
 		odrl:leftOperand openrel:ipRange ;
 		odrl:operator odrl:isPartOf ;
-		odrl:rightOperand [AUTHORISED_IP_ARRAY] ;
+		odrl:rightOperand openrel:parameterAuthorisedIP ;
 		.
 
 <maximumVolume>
@@ -148,8 +169,8 @@
 		openrel:scenario openrel:formal-toms ;
 		odrl:leftOperand openrel:maxVolume ;
 		odrl:operator odrl:lteq ;
-		odrl:rightOperand [VOLUME_AS_INTEGER] ;
-		odrl:unit [UNIT_OF_MEASURE] ;
+		odrl:rightOperand openrel:parameterVolume ;
+		odrl:unit openrel:parameterUnit ;
 		.
 
 # --------------------------------------------------------------------------------------------------------------------------------

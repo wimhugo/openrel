@@ -1,0 +1,38 @@
+# --------------------------------------------------------------------------------------------------------------------------------
+# Policy Wizard Template (mock-up source) — for offline comparison with data/policy/
+# OpenREL - Open Rights Encoding Language
+# Version 0.4 (Draft)
+# --------------------------------------------------------------------------------------------------------------------------------
+
+@base <http://www.w3.org/ns/openrel/0/> .
+@prefix openrel: <http://www.w3.org/ns/openrel/0/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+
+
+<p013> a openrel:Process ;
+    dct:title "Text and Data Mining — Research Only" ;
+    dct:description """This resource may be processed through text and data mining techniques for research purposes. Mined outputs may be published academically with attribution. Commercial exploitation and bulk redistribution are prohibited."""@en ;
+    dct:subject "TDM", "Text Mining", "Data Mining", "Research" ;
+    openrel:topic "ai", "non-commercial" ;
+    openrel:templateSlug "text-data-mining-research" ;
+    odrl:permission
+        [ odrl:action odrl:use
+          ; odrl:constraint [ a odrl:LogicalConstraint ; odrl:and ( [ a odrl:Constraint ; odrl:leftOperand openrel:constraint.purpose:academicResearch ; odrl:operator odrl:eq ; odrl:rightOperand true ] [ a odrl:Constraint ; odrl:leftOperand openrel:constraint.purpose:nonCommercial ; odrl:operator odrl:eq ; odrl:rightOperand true ] [ a odrl:Constraint ; odrl:leftOperand openrel:constraint.attribution:required ; odrl:operator odrl:eq ; odrl:rightOperand true ] ) ]
+          ; odrl:postDuty [ odrl:action odrl:attribute ]
+        ] ,
+        [ odrl:action odrl:read
+          ; odrl:constraint [ a odrl:LogicalConstraint ; odrl:and ( [ a odrl:Constraint ; odrl:leftOperand openrel:constraint.purpose:academicResearch ; odrl:operator odrl:eq ; odrl:rightOperand true ] [ a odrl:Constraint ; odrl:leftOperand openrel:constraint.purpose:nonCommercial ; odrl:operator odrl:eq ; odrl:rightOperand true ] [ a odrl:Constraint ; odrl:leftOperand openrel:constraint.attribution:required ; odrl:operator odrl:eq ; odrl:rightOperand true ] ) ]
+          ; odrl:postDuty [ odrl:action odrl:attribute ]
+        ] ,
+        [ odrl:action odrl:reproduce
+          ; odrl:constraint [ a odrl:LogicalConstraint ; odrl:and ( [ a odrl:Constraint ; odrl:leftOperand openrel:constraint.purpose:academicResearch ; odrl:operator odrl:eq ; odrl:rightOperand true ] [ a odrl:Constraint ; odrl:leftOperand openrel:constraint.purpose:nonCommercial ; odrl:operator odrl:eq ; odrl:rightOperand true ] [ a odrl:Constraint ; odrl:leftOperand openrel:constraint.attribution:required ; odrl:operator odrl:eq ; odrl:rightOperand true ] ) ]
+          ; odrl:postDuty [ odrl:action odrl:attribute ]
+        ] ;
+    odrl:prohibition
+        [ odrl:action odrl:distribute ] ;
+    .

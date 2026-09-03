@@ -93,6 +93,18 @@ openrel:worldwide
   skos:definition "DALICC: The license terms are valid throughout the world."@en ;
   skos:inScheme openrel:typeValidity .
 
+openrel:community
+  a skos:Concept ;
+  skos:prefLabel "Community"@en ;
+  skos:definition "The policy or licence applies to a specific community."@en ;
+  skos:inScheme openrel:typeValidity .
+
+openrel:custom
+  a skos:Concept ;
+  skos:prefLabel "Custom"@en ;
+  skos:definition "The policy or licence applies only to a specific institution,. collection, catalogue, or resource/ asset."@en ;
+  skos:inScheme openrel:typeValidity .
+
 
 
 

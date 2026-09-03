@@ -10,7 +10,7 @@
 
 # context
 @base <http://www.w3.org/ns/openrel/0/> .
-@prefix : <http://www.w3.org/ns/openrel/0/> .
+@prefix openrel: <http://www.w3.org/ns/openrel/0/> .
 # RDF-related
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -23,33 +23,62 @@
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 # rdmi-related
 @prefix dct: <http://purl.org/dc/terms/> .
+@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix dcatap: <http://data.europa.eu/r5r/> .
 # rights-related
 @prefix odrl: <http://www.w3.org/ns/odrl/2/> .
 @prefix cc: <http://creativecommons.org/ns#> .
 @prefix dalicc: <https://dalicc.net/ns#> .
-@prefix dalicclib: <https://dalicc.net/licenselibrary/> .
 @prefix ids: <https://w3id.org/idsa/core/> .
 @prefix idsc: <https://w3id.org/idsa/code/> .
 @prefix osl: <http://opensource.org/licenses/> .
 @prefix spdx: <http://spdx.org/rdf/terms#>  .
+@prefix dpv: <https://w3id.org/dpv/> .
+# Policy Libraries and Registries
+@prefix openrellib: <https://github.com/wimhugo/openrel/new/main/data/policy/> .
 @prefix spdxlicense: <http://spdx.org/licenses/> .
-@prefix dpv: <https://w3id.org/dpv> .
-@prefix lfs: <https://lfs.labs.dansdemo.nl/api/v1/licenses> .
+@prefix dalicclib: <https://dalicc.net/licenselibrary/> 
+@prefix lfslib: <https://lfs.labs.dansdemo.nl/api/v1/licenses/> .
 
 # --------------------------------------------------------------------------------------------------------------------------------
 # Access Rules Metadata
 # --------------------------------------------------------------------------------------------------------------------------------
 
-<12-ethics-approval> a openrel:AccessRules ;
-    cc:jurisdiction openrel:worldwide ;
+<OR-EA-0.4> a openrel:AccessRules ;
+
+    # Alternate identifiers
+    ## dct:relation lfslib:[TO_BE_REGISTERED] ;
+
+    # Citation Information
+    dct:title "Ethics Approval Required"@en ;
     dct:alternative "Ethics Approval" ;
+    dct:description "Access rules require verification of ethics approval prior to any permissions granted."@en ;
     dct:publisher "OpenREL" ;
-    dc:title "Ethics Approval Required" ;
-    odrl:assigner [ASSIGNER_URI] ;
-    odrl:assignee [ASSIGNEE_URI] ;
-    odrl:target [TARGET_URI] ;
+    dct:created "2026-07-12T00:00:00+00:00" ;
+    dct:modified "2026-08-03T00:00:00+00:00" ;
+    dct:creator <https://orcid.org/0000-0002-0255-5101> ;
+    dct:subject "Ethics", "Ethics Approval" ;
+    openrel:accessType openrel:managed ;    
+    dct:version "0.4" ;
+
+    # Coverage related information
+    cc:jurisdiction openrel:worldWide ;
+    openrel:validityType openrel:perpetual ;
+    openrel:policyStatus openrel:typeCustomActive ;
+    odrl:assigner openrel:parameterAssignerIRI ;
+    odrl:assignee openrel:parameterAssigneeIRI ;
+    odrl:target openrel:parameterTargetIRI ;
+
+    # Disclaimers
+    openrel:liabilityLimitation "To the extent possible, in no event will the Licensor be liable to You on any legal theory (including, without limitation, negligence) or otherwise for any direct, special, indirect, incidental, consequential, punitive, exemplary, or other losses, costs, expenses, or damages arising out of this Public License or use of the Licensed Material, even if the Licensor has been advised of the possibility of such losses, costs, expenses, or damages. Where a limitation of liability is not allowed in full or in part, this limitation may not apply to You." ;
+    openrel:warrantyNotice "Unless otherwise separately undertaken by the Licensor, to the extent possible, the Licensor offers the Licensed Material as-is and as-available, and makes no representations or warranties of any kind concerning the Licensed Material, whether express, implied, statutory, or other. This includes, without limitation, warranties of title, merchantability, fitness for a particular purpose, non-infringement, absence of latent or other defects, accuracy, or the presence or absence of errors, whether or not known or discoverable. Where disclaimers of warranties are not allowed in full or in part, this disclaimer may not apply to You." ;
+    
+    # Alternative representations, mappings of SPDX and LFS properties
+    ## openrel:legalcode <> ;
+    ## openrel:policyTextHtml <> ;
+    ## openrel:policyText lfslib:[TO_BE_REGISTERED]/original ;
+    openrel:encodedRules openrellib:OR-EA-0.4 ;
 
 # --------------------------------------------------------------------------------------------------------------------------------
 #   Rules
@@ -57,7 +86,7 @@
     
     odrl:permission [
         odrl:action openrel:use ;
-        odrl:constraint <12-ethics-approval.logical-constraint-001> ;
+        odrl:constraint <EA-01> ;
     ]
     .
 
@@ -65,7 +94,7 @@
 # Custom Logical Constraints
 # --------------------------------------
 
-<12-ethics-approval.logical-constraint-001>
+<EA-01>
     a odrl:LogicalConstraint ;
     odrl:and (
         openrel:consentPrior 

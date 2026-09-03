@@ -1,6 +1,6 @@
 # Context and Input Licences
 # --------------------------------------------------------------------------------------------------------------------------------
-# Title: Data Space Requirements, Institutional Access Ru;es, Plus an Otherwise Open Licence
+# Title: Data Space Requirements, Institutional Access Rules, Plus an Otherwise Open Licence
 # Example Policy 
 # Data Space Policy is a Process Rule: imposed by a Data Space independently of the licence applicable to the asset
 # Institutional Access Polict is an Access Rule: imposed by the repository independently of the licence applicable to the asset
@@ -13,7 +13,7 @@
 
 # context
 @base <http://www.w3.org/ns/openrel/0/> .
-@prefix : <http://www.w3.org/ns/openrel/0/> .
+@prefix openrel: <http://www.w3.org/ns/openrel/0/> .
 # RDF-related
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -26,29 +26,33 @@
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 # rdmi-related
 @prefix dct: <http://purl.org/dc/terms/> .
+@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix dcatap: <http://data.europa.eu/r5r/> .
 # rights-related
 @prefix odrl: <http://www.w3.org/ns/odrl/2/> .
 @prefix cc: <http://creativecommons.org/ns#> .
 @prefix dalicc: <https://dalicc.net/ns#> .
-@prefix dalicclib: <https://dalicc.net/licenselibrary/> .
 @prefix ids: <https://w3id.org/idsa/core/> .
 @prefix idsc: <https://w3id.org/idsa/code/> .
 @prefix osl: <http://opensource.org/licenses/> .
 @prefix spdx: <http://spdx.org/rdf/terms#>  .
+@prefix dpv: <https://w3id.org/dpv/> .
+# Policy Libraries and Registries
+@prefix openrellib: <https://github.com/wimhugo/openrel/new/main/data/policy/> .
 @prefix spdxlicense: <http://spdx.org/licenses/> .
-@prefix dpv: <https://w3id.org/dpv> .
-@prefix lfs: <https://lfs.labs.dansdemo.nl/api/v1/licenses> .
+@prefix dalicclib: <https://dalicc.net/licenselibrary/> 
+@prefix lfslib: <https://lfs.labs.dansdemo.nl/api/v1/licenses/> .
 
 # --------------------------------------------------------------------------------------------------------------------------------
 # PolicyCollection Metadata
 # --------------------------------------------------------------------------------------------------------------------------------
 
-<18-data-space-institution> a openrel:PolicyCollection ;
+<OR-IN-DS-CC-BY-0.4> a openrel:PolicyCollection ;
     # Alternate identifiers
     # skos:exactMatch spdx:<> ;
     # skos:exactMatch lfs:<> ;
+
     # Citation Information
     dct:title "Data Space Requirements, Institutional Access Ru;es, Plus an Otherwise Open Licence" ;
     # dct:publisher <> ;
@@ -59,27 +63,34 @@
     openrel:accessType openrel:managed ;
     dct:source <> ;
     dct:version "0.1" ;
+
     # Coverage related information
     # These properties apply only for those policies that explicitly require them, optional for others
     # openrel:validityType openrel:perpetual ;
     # openrel:jurisdiction openrel:worldwide ;
-    odrl:assigner [INSTITUTION_IRI] ;
-    # odrl:assignee [ASSIGNEE_IRI] ;
-    # odrl:target [TARGET_IRI] ; 
+    openrel:policyStatus openrel:typeCustomActive ;
+    odrl:assigner openrel:parameterAssignerIRI ;
+    ## odrl:assignee openrel:parameterAssigneeIRI ;
+    ## odrl:target openrel:parameterTargetIRI ;
+
     # Disclaimers
-    # openrel:liabilityLimitation {{Liability Limitation Text}} ;
-    # openrel:warrantyNotice {{Warranty Notice Text}} ;
-    # Alternative representations, mappings of SPDX and LFS properties
-    # openrel:legalCode [IRI_TO_LEGAL_CODE] ;
-    # openrel:policyTextHtml [IRI_TO_HTML_VIEW] ;
-    # openrel:policyText [IRI_TO_TEXT] ;
-    openrel:encodedRules openrel:18-data-space-institution ;
+    ## openrel:liabilityLimitation "{{Liability Limitation Text}}" ;
+    ## openrel:warrantyNotice "{{Warranty Notice Text}}" ;
+    
+	# Alternative representations, mappings of SPDX and LFS properties
+    ## openrel:legalCode <IRI_TO_LEGAL_CODE>;
+    ## openrel:policyTextHtml <IRI_TO_HTML_VIEW> ;
+    openrel:encodedRules openrel:OR-IN-DS-CC-BY-0.4 ;
+
     # Definition of input policies
     openrel:hasPolicy <18-1-data-space> ;
     openrel:hasPolicy <18-2-research-user> ;
     openrel:hasPolicy <CC-BY-4.0> ;    
-	  # Optional results of evaluation of two or more policies
-    # openrel:evaluationDetail [OPENREL_EVALUATION] ;
+
+	# Optional results of evaluation of two policies
+    ## openrel:permits <IRI_OF_OTHER_POLICY> ;
+	## openrel:contradicts <IRI_OF_OTHER_POLICY> ;
+    ## openrel:evaluationDetail <OPENREL_EVALUATION> ;
 
 # --------------------------------------------------------------------------------------------------------------------------------
 # Policy-Level Comparisons

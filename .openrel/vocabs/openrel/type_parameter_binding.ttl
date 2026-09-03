@@ -44,6 +44,14 @@ openrel:RepositoryContext
     skos:note "Examples: repository IRI, end user identity must be supplied, valid token for use must be supplied, licence conditions must be acknowledged."@en 
     .
 
+openrel:PlatformContext
+    a openrel:ParameterBindingSource, skos:Concept ;
+    skos:inScheme openrel:ParameterBindingSource ;
+    skos:prefLabel "Platform Context"@en 
+    skos:definition "Obtained from the platform on which the asset is hosted, disseminated, or processed."@en ;
+    skos:note "Examples: whitelist of allowed IPs, robots.txt, rate and volume limits ."@en 
+    .
+
 openrel:RuntimeContext
     a openrel:ParameterBindingSource, skos:Concept ;
     skos:inScheme openrel:ParameterBindingSource ;

@@ -1,0 +1,34 @@
+# --------------------------------------------------------------------------------------------------------------------------------
+# Policy Wizard Template (mock-up source) — for offline comparison with data/policy/
+# OpenREL - Open Rights Encoding Language
+# Version 0.4 (Draft)
+# --------------------------------------------------------------------------------------------------------------------------------
+
+@base <http://www.w3.org/ns/openrel/0/> .
+@prefix openrel: <http://www.w3.org/ns/openrel/0/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+
+
+<p004> a openrel:Licence ;
+    dct:title "Non-Commercial Use Only" ;
+    dct:description """This resource may be read, downloaded, and distributed for non-commercial purposes only. Commercial use is prohibited. Attribution to the original author is required."""@en ;
+    dct:subject "Non-Commercial", "Attribution", "CC BY-NC" ;
+    openrel:topic "non-commercial" ;
+    openrel:templateSlug "non-commercial-attribution" ;
+    odrl:permission
+        [ odrl:action odrl:read
+          ; odrl:constraint [ a odrl:LogicalConstraint ; odrl:and ( [ a odrl:Constraint ; odrl:leftOperand openrel:constraint.purpose:nonCommercial ; odrl:operator odrl:eq ; odrl:rightOperand true ] [ a odrl:Constraint ; odrl:leftOperand openrel:constraint.attribution:required ; odrl:operator odrl:eq ; odrl:rightOperand true ] ) ]
+          ; odrl:postDuty [ odrl:action odrl:attribute ]
+        ] ,
+        [ odrl:action odrl:reproduce
+          ; odrl:constraint [ a odrl:LogicalConstraint ; odrl:and ( [ a odrl:Constraint ; odrl:leftOperand openrel:constraint.purpose:nonCommercial ; odrl:operator odrl:eq ; odrl:rightOperand true ] [ a odrl:Constraint ; odrl:leftOperand openrel:constraint.attribution:required ; odrl:operator odrl:eq ; odrl:rightOperand true ] ) ]
+          ; odrl:postDuty [ odrl:action odrl:attribute ]
+        ] ;
+    odrl:prohibition
+        [ odrl:action odrl:distribute ] ;
+    .

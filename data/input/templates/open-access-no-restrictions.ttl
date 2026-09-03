@@ -1,0 +1,32 @@
+# --------------------------------------------------------------------------------------------------------------------------------
+# Policy Wizard Template (mock-up source) — for offline comparison with data/policy/
+# OpenREL - Open Rights Encoding Language
+# Version 0.4 (Draft)
+# --------------------------------------------------------------------------------------------------------------------------------
+
+@base <http://www.w3.org/ns/openrel/0/> .
+@prefix openrel: <http://www.w3.org/ns/openrel/0/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+
+
+<p001> a openrel:Licence ;
+    dct:title "Open Access — No Restrictions" ;
+    dct:description """This resource is fully open. Anyone may read, download, reproduce, distribute, and modify it without restriction. No attribution required. No time limit."""@en ;
+    dct:subject "Open Access", "CC0", "No Restrictions" ;
+    openrel:topic "open-access" ;
+    openrel:templateSlug "open-access-no-restrictions" ;
+    odrl:permission
+        [ odrl:action odrl:read
+        ] ,
+        [ odrl:action odrl:distribute
+        ] ,
+        [ odrl:action odrl:modify
+        ] ,
+        [ odrl:action odrl:reproduce
+        ] ;
+    .
