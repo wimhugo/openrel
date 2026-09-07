@@ -55,8 +55,7 @@ openrel:typeScenario
                    openrel:group-funding-related ,
                    openrel:group-legal-ethical ,
                    openrel:group-publication-status ,
-                   openrel:group-obligations ,
-                   
+                   openrel:group-obligations ;
   dct:created "2026-07-12T00:00:00+00:00"^^xsd:datetime ;
   dct:creator <https://orcid.org/0000-0002-0255-5101> ;
   owl:versionInfo "0.1" .
@@ -149,6 +148,7 @@ openrel:group-funding-related
   skos:definition "Your work can only be used in ways defined by the funder."@en ;
   openrel:questionSatisfied "What" ;
   skos:inScheme openrel:typeScenario 
+  .
 
 openrel:funding-related
   a skos:Concept ;
@@ -176,6 +176,7 @@ openrel:group-legal-ethical
   skos:definition "Adherence to ethical, legal and regulatory considerations."@en ;
   openrel:questionSatisfied "How" ;
   skos:inScheme openrel:typeScenario 
+  .
 
 openrel:legal-considerations
   a skos:Concept ;
@@ -300,7 +301,7 @@ openrel:licence-preserved
   a skos:Concept ;
   skos:prefLabel "Share-Alike"@en ;
   skos:definition "You want derivative works to be distributed under the same licence."@en ;
-  skos:note "Such a requirement makes it very difficult to licence a derived Asset based on more than one source Asset, since it prevents a new licence that takes all input constraints and actions into account."
+  skos:note "Such a requirement makes it very difficult to licence a derived Asset based on more than one source Asset, since it prevents a new licence that takes all input constraints and actions into account." ;
   skos:broader openrel:group-obligations ;
   openrel:questionSatisfied "How" ;
   skos:inScheme openrel:typeScenario 

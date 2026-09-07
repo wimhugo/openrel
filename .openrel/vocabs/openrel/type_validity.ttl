@@ -80,7 +80,7 @@ openrel:irrevocable
   skos:inScheme openrel:typeValidity .
 
 openrel:perpetual
-  a skos:Concept ;qa`
+  a skos:Concept ;
   skos:prefLabel "Perpetual"@en ;
   skos:exactMatch dalicc:perpetual ;
   skos:definition "DALICC: A perpetual license allows to use the licensed work indefinitely."@en ;

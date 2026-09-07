@@ -60,7 +60,7 @@ openrel:typeAccess
 openrel:open-access
   a skos:Concept ;
   skos:prefLabel "Open Access"@en ;
-  skos:definition "COAR: Open access refers to a resource that is immediately and permanently online, and free for all on the Web, without financial and technical barriers.The resource is either stored in the repository or referenced to an external journal or trustworthy archive."@en ;
+  skos:definition "COAR: Open access refers to a resource that is immediately and permanently online, and free for all on the Web, without financial and technical barriers. The resource is either stored in the repository or referenced to an external journal or trustworthy archive."@en ;
   skos:exactMatch r3d:dataAccessTypes/open ;
   skos:exactMatch coar:dataAccessTypes/c_abf2/ ;
   skos:inScheme openrel:typeAccess .

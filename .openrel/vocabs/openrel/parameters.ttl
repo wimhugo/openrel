@@ -72,7 +72,7 @@ openrel:Parameter
 	dct:creator <https://orcid.org/0000-0002-0255-5101> ;  # Wim Hugo
 	dct:creator "Melios Katsamakis" ;
 	dct:contributor <https://orcid.org/0000-0003-2459-6817> ; # Prodromos Tsiavos
-	owl:versionInfo "01" .
+	owl:versionInfo "01" ;
 	rdfs:isDefinedBy openrel: ;
 	skos:definition "A Right Operand as a Parameter."@en ;
 	.

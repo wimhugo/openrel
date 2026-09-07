@@ -51,7 +51,7 @@ odrl:Rule
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Rule"@en ;
 	skos:definition "An abstract concept that represents the common characteristics of Permissions, Prohibitions, and Duties."@en ;
-	skos:note "Rule is an abstract concept."@en 
+	skos:note "Rule is an abstract concept."@en ;
   # openREL Extensions
   skos:note ""@en ;
   .
@@ -62,9 +62,9 @@ odrl:Permission
 	rdfs:subClassOf odrl:Rule ;
 	owl:disjointWith odrl:Prohibition, odrl:Duty ;
 	rdfs:label "Permission"@en ;
-	skos:definition "The ability to perform an Action over an Asset."@en 
+	skos:definition "The ability to perform an Action over an Asset."@en ;
   # openREL Extensions
-  skos:closeMatch ccrel:Permission ;
+  skos:closeMatch cc:Permission ;
   skos:note "These actions are often rights that the rights holder (creator or owner) of the Asset can perform, and can grant to third parties."@en ;
   skos:note "ccREL: an action that may or may not be allowed or desired."@en ;
   .
@@ -75,9 +75,9 @@ odrl:Prohibition
 	rdfs:subClassOf odrl:Rule ;
 	owl:disjointWith odrl:Duty, odrl:Permission ;
 	rdfs:label "Prohibition"@en ;
-	skos:definition "The inability to perform an Action over an Asset."@en 
+	skos:definition "The inability to perform an Action over an Asset."@en ;
   # openREL Extensions
-  skos:closeMatch ccrel:Prohibition ;
+  skos:closeMatch cc:Prohibition ;
   skos:note "ccREL: something you may be asked not to do."@en ;
   skos:note "In practical terms, these are often rights or actions that the rights holder, subject of sensitive data in the Asset, or curator of the Asset do not grant to a third party."@en ;
   .
@@ -88,9 +88,9 @@ odrl:Duty
 	rdfs:subClassOf odrl:Rule ;
 	owl:disjointWith odrl:Prohibition, odrl:Permission ;
 	rdfs:label "Duty"@en ;
-  skos:definition "The obligation to perform an Action"@en 
+  skos:definition "The obligation to perform an Action"@en ;
   # openREL Extensions
-  skos:closeMatch ccrel:Requirement ;
+  skos:closeMatch cc:Requirement ;
   skos:note "ccREL: an action that may or may not be requested of you."@en ;
   skos:note "Duties are often related to other actions, especially Permissions, in the sense that a Permission is granted subject to performance of a Duty. For example, use of an Asset may be granted subject to the Duty of proper citation (attribution)."@en ;
   .

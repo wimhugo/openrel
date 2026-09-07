@@ -42,6 +42,7 @@
 @prefix spdxlicense: <http://spdx.org/licenses/> .
 @prefix dpv: <https://w3id.org/dpv> .
 @prefix ropa: <https://w3id.org/dpv-ropa#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
 
 openrel:EvaluationScheme
   a skos:ConceptScheme ;

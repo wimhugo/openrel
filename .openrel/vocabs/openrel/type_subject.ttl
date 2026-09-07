@@ -37,6 +37,7 @@
 @prefix osl: <http://opensource.org/licenses/> .
 @prefix spdx: <http://spdx.org/rdf/terms#>  .
 @prefix spdxlicense: <http://spdx.org/licenses/> .
+@prefix dpv: <https://w3id.org/dpv> .
 
 # -------------------------------------------------------------------------------------------------------------
 # Definition of Scheme and Provenance

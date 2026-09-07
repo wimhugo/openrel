@@ -74,7 +74,7 @@ openrel:notify-clearinghouse
   skos:definition "Notifications of use and/ or access are made to this audit/ clearinghouse endpoint. This assists with pre- or post-use permissions to publish, for example."@en ;
   rdfs:isDefinedBy openrel: ;
   skos:closeMatch idsc:REMOTE_NOTIFICATION ;
-  skos:note "IDSC: This policy restricts the usage of data assets with the obligation to notify a specific party about the data usage."@en.
+  skos:note "IDSC: This policy restricts the usage of data assets with the obligation to notify a specific party about the data usage."@en ;
   skos:inScheme openrel:notification-target-type .
 
 openrel:notify-external-log
@@ -83,7 +83,7 @@ openrel:notify-external-log
   skos:definition "Notifications of use and/ or access are made to this external endpoint."@en ;
   rdfs:isDefinedBy openrel: ;
   skos:exactMatch idsc:REMOTE_NOTIFICATION ;
-  skos:note "IDSC: This policy restricts the usage of data assets with the obligation to notify a specific party about the data usage."@en.
+  skos:note "IDSC: This policy restricts the usage of data assets with the obligation to notify a specific party about the data usage."@en ;
   skos:inScheme openrel:notification-target-type .
 
 openrel:notify-local-log

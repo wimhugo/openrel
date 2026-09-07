@@ -62,7 +62,7 @@ openrel:PolicyScheme
 # --------ODRL
 
 odrl:Policy
-	a rdfs:Class , owl:Class, skos:Concept ;
+	a rdfs:Class, owl:Class, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Policy"@en ;
 	skos:definition "A non-empty group of Permissions and/or Prohibitions."@en ;
@@ -75,7 +75,7 @@ odrl:Agreement
 	owl:disjointWith odrl:Offer, odrl:Privacy, odrl:Request, odrl:Ticket, odrl:Assertion ;
 	rdfs:label "Agreement"@en ;
 	skos:definition "A Policy that grants the assignee a Rule over an Asset from an assigner."@en ;
-	skos:note "An Agreement Policy MUST contain at least one Permission or Prohibition rule, a Party with Assigner function, and a Party with Assignee function (in the same Permission or Prohibition). The Agreement Policy will grant the terms of the Policy from the Assigner to the Assignee."@en 
+	skos:note "An Agreement Policy MUST contain at least one Permission or Prohibition rule, a Party with Assigner function, and a Party with Assignee function (in the same Permission or Prohibition). The Agreement Policy will grant the terms of the Policy from the Assigner to the Assignee."@en ;
   	# OpenREL Extensions
   	owl:disjointWith openrel:Licence, openrel:AccessRules, openrel:ProcessRules ;
   	.
@@ -163,10 +163,10 @@ openrel:Licence
 	rdfs:label "Licence"@en ;
 	skos:definition "A Policy that is generally imnterpreted as a licence, specifies additional properties of a licence, and has a legal code representation."@en ;
 	skos:note "The Licence Policy subclass introduces additional properties that are not typically applicable to other Policy subclasses, and takes its broad scope from the properties associated specifically with licences. It could be viewed as a special case (non-negotiable) of an Offer or an Agreement that will not be modified."@en ;
-  	skos:note "Unique to Assets or Asset Collections." @en ;
+  	skos:note "Unique to Assets or Asset Collections."@en ;
 	skos:note "ccREL: a set of requests/permissions to users of a Work, e.g. a copyright license, the public domain, information for distributors."@en ;
-  	skos:scopeNote "Non-Normative"@en 
-	skos:closeMatch ccrel:License ;
+  	skos:scopeNote "Non-Normative"@en ;
+	skos:closeMatch cc:License ;
 	.
 
 openrel:AccessRules
@@ -177,8 +177,9 @@ openrel:AccessRules
 	rdfs:label "Access Rule(s)"@en ;
 	skos:definition "A Policy that defines conditions of access that are not generally considered to be part of a licence, but depends on the context."@en ;
 	skos:note "Such access rules may include, for example, the terms and conditions of use associated with a specific repository, data service, or institution. It is usually institutional policy driven."@en ;
- 	skos:note "Unique to an Institution, Repository, or Catalogue." @en ;
-  	skos:scopeNote "Non-Normative"@en .
+ 	skos:note "Unique to an Institution, Repository, or Catalogue."@en ;
+  	skos:scopeNote "Non-Normative"@en ; 
+  	.
 
 openrel:ProcessRules
 	a rdfs:Class , owl:Class, skos:Concept ;
@@ -188,8 +189,8 @@ openrel:ProcessRules
 	rdfs:label "Process Rule(s)"@en ;
 	skos:definition "A Policy that defines formalities associated with the process of gaining access that do not concern access or licences."@en ;
 	skos:note "Such process rules may include, or example, steps related to interaction of a software platform, infrastricture, federation, or dissemination channel with an Assignee."@en ;
- 	skos:note "Unique to a software platform or dissemination channel." @en ;
- 	skos:scopeNote "Non-Normative"@en 
+ 	skos:note "Unique to a software platform or dissemination channel."@en ;
+ 	skos:scopeNote "Non-Normative"@en ;
 	.
 
 openrel:PolicyCollection
@@ -200,9 +201,9 @@ openrel:PolicyCollection
 	rdfs:label "Policy Collection"@en ;
 	skos:definition "A collection that includes one or more policies"@en ;
 	skos:note "A policy collection references one or more policies via IRI."@en ;
-  	skos:note "Similar to odrl:Set, but it inherits Asset and Party references from contributing Policies." @en ;
-	skos:note "Can be used to define all policies applicable to an asset collection, or to collectively reference the policies involved in a negotiation process." @en ;
-	skos:scopeNote "Non-Normative"@en 
+  	skos:note "Similar to odrl:Set, but it inherits Asset and Party references from contributing Policies."@en ;
+	skos:note "Can be used to define all policies applicable to an asset collection, or to collectively reference the policies involved in a negotiation process."@en ;
+	skos:scopeNote "Non-Normative"@en ;
 	.
 
 # -------------------------------------------------------------------------------------------------------------

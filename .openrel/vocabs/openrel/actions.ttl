@@ -351,9 +351,9 @@ openrel:applyLicence
 openrel:commercialise
 	a odrl:Action ;
 	rdfs:isDefinedBy openrel: ;
-    rdfs:comment "The Assigner permits [/does not permit] the Assignee to use the asset for commercial purposes - including trademark use, selling, charging a licence fee, use in promotion, or any other direct or indirect commerciaal benefit that derives from use of the asset. ."@en ;
+    rdfs:comment "The Assigner permits [/does not permit] the Assignee to use the asset for commercial purposes - including trademark use, selling, charging a licence fee, use in promotion, or any other direct or indirect commercial benefit that derives from use of the asset."@en ;
     rdfs:label "Commercialise"@en ;
-    skos:note "Generalises some DALICC, ODRL, and CC encodings."@en 
+    skos:note "Generalises some DALICC, ODRL, and CC encodings."@en ;
 	# Extensions by OpenREL
 	openrel:actionCategory odrl:Permission, odrl:Prohibition ;
 	#openrel:defaultDuty "postDuty" ;
@@ -385,7 +385,7 @@ openrel:promote
 	rdfs:isDefinedBy openrel: ;
     rdfs:comment "The Assigner permits [/does not permit] the Assignee to use the asset for promotional purposes."@en ;
     rdfs:label "Promote"@en ;
-    skos:note "Used in several DALICC encodings. No ODRL matches. More useful as a prohibition."@en 
+    skos:note "Used in several DALICC encodings. No ODRL matches. More useful as a prohibition."@en ;
 	# Extensions by OpenREL
 	openrel:actionCategory odrl:Permission, odrl:Prohibition ;
 	#openrel:defaultDuty "postDuty" ;
@@ -397,7 +397,7 @@ openrel:costRecovery
 	rdfs:isDefinedBy openrel: ;
     rdfs:comment "The Assigner permits [/does not permit] the Assignee to recover costs of permitted actions related to third party use."@en ;
     rdfs:label "Cost Recovery"@en ;
-    skos:note "Generalises some DALICC encodings, for example 'dalicc:ChargeDistibution'. No ODRL matches."@en 
+    skos:note "Generalises some DALICC encodings, for example 'dalicc:ChargeDistibution'. No ODRL matches."@en ;
 	# Extensions by OpenREL
 	openrel:actionCategory odrl:Permission, odrl:Prohibition ;
 	#openrel:defaultDuty "postDuty" ;
@@ -436,12 +436,12 @@ openrel:shareAlike
 odrl:present
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
-	odrl:includedIn odrl:use;
-	skos:broaderMatch odrl:use;
-	rdfs:label "Present"@en
-	skos:definition "To publicly perform the Asset."@en
-	skos:note "The asset can be performed (or communicated) in public."
-	rdfs:isDefinedBy odrl:
+	odrl:includedIn odrl:use ;
+	skos:broaderMatch odrl:use ;
+	rdfs:label "Present"@en ;
+	skos:definition "To publicly perform the Asset."@en ;
+	skos:note "The asset can be performed (or communicated) in public." ;
+	rdfs:isDefinedBy odrl: ;
 	skos:scopeNote "Non-Normative"@en .
 
 odrl:grantUse
@@ -472,7 +472,7 @@ odrl:acceptTracking
 	rdfs:label "Accept Tracking"@en ;
 	skos:definition "To accept that the use of the Asset may be tracked."@en ;
 	skos:note "The collected information may be tracked by the Assigner, or may link to a Party with the role 'trackingParty' function."@en ;
-    skos:scopeNote "Non-Normative"@en 
+    skos:scopeNote "Non-Normative"@en ;
 	# OpenREL Extensions
 	skos:exactMatch idsc:TRACK_PROVENANCE ;
 	.
@@ -829,7 +829,7 @@ dalicc:permissionNotice
     rdfs:comment "The permission notices which are in the License shall be included [in subsequent licences]."@en ;
     rdfs:label "Permission Notice"@en ;
 	skos:closeMatch cc:shareAlike ;
-	skos:exactMatch http://creativecommons.org/ns#Notice
+	skos:exactMatch cc:Notice ;
     skos:note "Not used in any DALICC license encoding. Add skos matches."@en .
 
 dalicc:promote
