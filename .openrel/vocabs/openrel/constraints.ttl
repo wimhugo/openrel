@@ -37,6 +37,9 @@
 @prefix osl: <http://opensource.org/licenses/> .
 @prefix spdx: <http://spdx.org/rdf/terms#>  .
 @prefix spdxlicense: <http://spdx.org/licenses/> .
+@prefix dpv: <https://w3id.org/dpv#> .
+@prefix loc: <https://w3id.org/dpv/loc#> .
+@prefix trsp: <http://www.w3.org/ns/trsp/0/> .
 
 openrel:constraintScheme
   a skos:ConceptScheme ;

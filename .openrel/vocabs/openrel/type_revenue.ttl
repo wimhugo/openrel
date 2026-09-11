@@ -102,7 +102,7 @@ trsp:membership
   skos:exactMatch <http://www.w3.org/ns/org#Membership> ;
   rdfs:seeAlso <http://www.w3.org/ns/org#Membership> ;
   skos:broadMatch r3d:dataAccessRestrictions_institutionalMembership ;
-  rdfs:seeAlso r3:dataAccessRestrictions_institutionalMembership ;
+  rdfs:seeAlso r3d:dataAccessRestrictions_institutionalMembership ;
   skos:broadMatch posi:G3 ;
   rdfs:seeAlso posi:G3 ;
   skos:inScheme trsp:revenue-source-type-scheme .

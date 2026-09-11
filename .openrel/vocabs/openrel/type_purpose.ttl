@@ -8,7 +8,7 @@
 # -------------------------------------------------------------------------------------------------------------
 # Purpose Types
 # In OpenREL, Purpose Types are defined to clarify or constrain purpose of use
-# Aligned with DUO and DPV
+# Aligned with duo and DPV
 # -------------------------------------------------------------------------------------------------------------
 
 # context
@@ -68,8 +68,8 @@ openrel:researchUse
   rdfs:label "GRU"@en ;
   rdfs:definition "This data use permission indicates that use is allowed for general research use for any research purpose."@en ;
   skos:note "DPV: Performing research and developing new methods,products, or services"@en ;
-  skos:inScheme openrel:type-purpose .
-.
+  skos:inScheme openrel:type-purpose 
+  .
 
 openrel:academicResearch 
   a skos:Concept ;
@@ -79,8 +79,8 @@ openrel:academicResearch
   rdfs:label "Academic Research Use"@en ;
   rdfs:definition "This data use permission indicates that use is allowed for academic research use for any research purpose."@en ;
   skos:note "DPV: Research conducted in an academic context e.g. within universities"@en ;
-  skos:inScheme openrel:type-purpose .
-.
+  skos:inScheme openrel:type-purpose 
+  .
 
 openrel:commercialResearch 
   a skos:Concept ;
@@ -90,7 +90,8 @@ openrel:commercialResearch
   rdfs:label "Commercial Research Use"@en ;
   rdfs:definition "This data use permission indicates that use is allowed for commercial research use for any research purpose."@en ;
   skos:note "DPV: Research conducted in a commercial setting e.g. in a company"@en ;
-  skos:inScheme openrel:type-purpose .
+  skos:inScheme openrel:type-purpose 
+  .
 
 openrel:nonCommercial 
   a skos:Concept ;
@@ -102,18 +103,19 @@ openrel:nonCommercial
   rdfs:definition "This data use permission indicates that use is allowed for non-commercial research use for any research purpose."@en ;
   skos:note "DPV: Research conducted in a non-commercial setting e.g. for a non-profit-organisation (NGO)"@en ;
   skos:note "ccREL: Xxercising rights for commercial purposes (but usually implemented as a Prohibition)"@en ;
-  skos:inScheme openrel:type-purpose .
+  skos:inScheme openrel:type-purpose 
+  .
 
 openrel:specificDiscipline 
   a skos:Concept ;
-  skos:closeMatch DUO:0000012 ;
+  skos:closeMatch duo:0000012 ;
   skos:prefLabel "SD" ;	
   rdfs:label "Specific Discipline"@en ;
   rdfs:definition "This data use permission indicates that use is allowed or disallowed for general research use in a specific scientific discipline."@en ;
   skos:note "Right operands may include one or more scientific disciplines selected from a widely used vocabulary."@en ;
-  skos:note "DUO: DUO:0000012  - This data use modifier indicates that use is limited to studies of a certain research type."@en ;
-  skos:inScheme openrel:type-purpose .
-.
+  skos:note "duo: duo:0000012  - This data use modifier indicates that use is limited to studies of a certain research type."@en ;
+  skos:inScheme openrel:type-purpose
+  .
 
 openrel:clinicalCareUse 
   a skos:Concept ;
@@ -121,8 +123,8 @@ openrel:clinicalCareUse
   skos:prefLabel "CC" ;	
   rdfs:label "Clinical Care Use"@en ;
   rdfs:definition "This data use modifier indicates that use is allowed for clinical use and care."@en ;
-  skos:inScheme openrel:type-purpose .
-.
+  skos:inScheme openrel:type-purpose 
+  .
 
 openrel:clinicalCareUse 
   a skos:Concept ;
@@ -130,8 +132,8 @@ openrel:clinicalCareUse
   skos:prefLabel "HMB" ;	
   rdfs:label "Health or Medical or Biomedical Research"@en ;
   rdfs:definition "This data use permission indicates that use is allowed/ not allowed for health/medical/biomedical purposes; does not include the study of population origins or ancestry."@en ;
-  skos:inScheme openrel:type-purpose .
-.
+  skos:inScheme openrel:type-purpose 
+  .
 
 openrel:geneticStudies 
   a skos:Concept ;
@@ -139,8 +141,8 @@ openrel:geneticStudies
   skos:prefLabel "GSO" ;	
   rdfs:label "Genetic Studies"@en ;
   rdfs:definition "This data use modifier indicates that use is limited to genetic studies only (i.e., studies that include genotype research alone or both genotype and phenotype research, but not phenotype research exclusively)."@en ;
-  skos:inScheme openrel:type-purpose .
-.
+  skos:inScheme openrel:type-purpose 
+  .
 
 openrel:diseaseSpecific 
   a skos:Concept ;
@@ -148,8 +150,8 @@ openrel:diseaseSpecific
   skos:prefLabel "DS" ;	
   rdfs:label "Disease Specific Research"@en ;
   rdfs:definition "This data use permission indicates that use is allowed provided it is related to the specified disease."@en ;
-  skos:inScheme openrel:type-purpose .
-.
+  skos:inScheme openrel:type-purpose 
+  .
 
 openrel:populationResearch 
   a skos:Concept ;
@@ -158,8 +160,8 @@ openrel:populationResearch
   skos:prefLabel "POA" ;	
   rdfs:label "Population Origins or Ancestry Research"@en ;
   rdfs:definition "This data use modifier indicates use for purposes of population, origin, or ancestry research is prohibited or allowed"@en ;
-  skos:inScheme openrel:type-purpose .
-.
+  skos:inScheme openrel:type-purpose 
+  .
 
 openrel:generalMethods 
   a skos:Concept ;
@@ -167,8 +169,8 @@ openrel:generalMethods
   skos:prefLabel "MDS" ;	
   rdfs:label "General Methods Research"@en ;
   rdfs:definition "This data use modifier indicates that use does/ does not allow methods development research (e.g., development of software or algorithms)."@en ;
-  skos:inScheme openrel:type-purpose .
-.
+  skos:inScheme openrel:type-purpose 
+  .
 
 
 

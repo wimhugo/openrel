@@ -37,13 +37,14 @@
 @prefix osl: <http://opensource.org/licenses/> .
 @prefix spdx: <http://spdx.org/rdf/terms#>  .
 @prefix spdxlicense: <http://spdx.org/licenses/> .
+@prefix lfs: <> . # Points to an LFS Node API
 
 # -------------------------------------------------------------------------------------------------------------
 # Applicable to Concept Schemes (Vocabs)
 # -------------------------------------------------------------------------------------------------------------
 
 openrel:questionSatisfied
-	a rdfs:Property skos:Concept ;
+	a rdfs:Property, skos:Concept ;
 	rdfs:label "satisfies question"@en ;        
 	skos:definition "A property that describes one or more asset types, as defined in an appropriate vocabulary. Applicable to Policies, Assets, and Asset Collections. Can also be encoded in Policies as 'Target' with types from relevant vocabularies."@en ;
 	rdfs:domain skos:Concept ;
@@ -56,7 +57,7 @@ openrel:questionSatisfied
 # --------- OpenREL
 
 openrel:assetType
-	a rdfs:Property skos:Concept ;
+	a rdfs:Property, skos:Concept ;
 	rdfs:label "Asset Type"@en ;        
 	skos:definition "A property that describes one or more asset types, as defined in an appropriate vocabulary. Applicable to Policies, Assets, and Asset Collections. Can also be encoded in Policies as 'Target' with types from relevant vocabularies."@en ;
 	skos:note "DALICCe.g cc:CreativeWork. This asset type comprises any type of literary work that is subject to copyright. It also includes multimedia work that combines various media types such as text, audio, images, animations, video and interactive content."@en ;
@@ -92,7 +93,7 @@ openrel:subPolicyOf
 	rdfs:isDefinedBy openrel: .
 
 openrel:warrantyNotice
-	a rdfs:Property skos:Concept ;
+	a rdfs:Property, skos:Concept ;
 	rdfs:label "Warranty Notice"@en ;        
 	skos:definition "Provides a text-based warrantly notice if applicable, and can state the terms of warranty or, more commonly, a disclaimer."@en ;
 	skos:exactMatch dalicc:WarrantyDisclaimer ;
@@ -129,7 +130,7 @@ openrel:hasPolicy
 	rdfs:range openrel:PolicyCollection .
 
 openrel:encodedRules
-	a rdf:Property , owl:ObjectProperty, skos:Concept ;
+	a rdf:Property, owl:ObjectProperty, skos:Concept ;
 	skos:exactMatch lfs:encodedRules ;
 	rdfs:isDefinedBy openrel: ;
 	rdfs:label "Machine-Readable Policy Rules Representation"@en ;
@@ -165,7 +166,7 @@ openrel:legalCode
 	rdfs:isDefinedBy cc: ;
 	rdfs:label "Legal Code"@en ;
 	skos:definition "A URI that resolves to the legal code representation of the policy."@en ;
-	rdfs:range odrl:Policy 
+	rdfs:range odrl:Policy ;
  	 # openREL Extensions
   	skos:note "CC: The URL of the legal text of a License."@en ;
 	dct:source: <https://creativecommons.org/ns#> ;
@@ -201,7 +202,7 @@ odrl:permission
 	rdfs:label "Has Permission"@en ;
 	skos:definition "Relates an individual Permission to a Policy."@en ;
 	rdfs:domain odrl:Policy ;
-	rdfs:range odrl:Permission 
+	rdfs:range odrl:Permission ;
   # openREL Extensions
   skos:note "ODRL: the ability to perform an Action over an Asset"@en ;
   .
@@ -212,7 +213,7 @@ odrl:prohibition
 	rdfs:label "Has Prohibition"@en ;
 	skos:definition "Relates an individual Prohibition to a Policy."@en ;
 	rdfs:domain odrl:Policy ;
-	rdfs:range odrl:Prohibition
+	rdfs:range odrl:Prohibition ;
   # openREL Extensions
   skos:note "ODRL: the inability to perform an Action over an Asset"@en ;
   .
@@ -274,9 +275,9 @@ dalicc:patentNotice
         rdfs:isDefinedBy dalicc: .
 
 dalicc:trademarkNotice
-        a rdfs:Property skos:Concept ;
+        a rdfs:Property, skos:Concept ;
         rdfs:label "Trademark Notice"@en ;        
-        skos:definition "Informs that Licensed Material is a trademark or includes trademark. The license does not grant permission to use the trade names, trademarks, service marks, or product names of the Licensor, except as required for reasonable and customary use in describing the origin of the Work and reproducing the content of the notice file. True or false.."@en ;
+        skos:definition "Informs that Licensed Material is a trademark or includes trademark. The license does not grant permission to use the trade names, trademarks, service marks, or product names of the Licensor, except as required for reasonable and customary use in describing the origin of the Work and reproducing the content of the notice file. True or false."@en ;
         skos:note "DALICC"@en ;
         rdfs:isDefinedBy dalicc: .
 
