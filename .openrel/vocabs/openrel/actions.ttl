@@ -897,7 +897,12 @@ cc:CommercialUse
 	skos:exactMatch openrel:commercialise 
     .
 
-
-
-
-
+# -------------------------------------------------------------------------------------------------------------
+# openrel:allows — directional co-existence relation for the Reasoner Graph (authored 2026-09-11).
+# A Prohibition of the subject action allows a Permission of the object action within the same
+# policy, as attested by licence corpus evidence (DALICC).
+# -------------------------------------------------------------------------------------------------------------
+openrel:allows a skos:Concept ;
+    skos:prefLabel "allows"@en ;
+    skos:definition "Indicates that a prohibition on the subject action can co-exist with a permission on the object action within the same policy."@en ;
+    skos:scopeNote "One of the OpenREL type_evaluation relations used by the Reasoner Graph."@en .
