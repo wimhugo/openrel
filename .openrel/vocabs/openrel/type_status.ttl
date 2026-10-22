@@ -69,6 +69,12 @@ openrel:typeReview
   skos:definition "A policy that is being reviewed. Private by default."@en ;
   skos:inScheme openrel:typeStatus .
 
+openrel:typeTemplate
+  a skos:Concept ;
+  skos:prefLabel "Policy template"@en ;
+  skos:definition "A policy that is used as a template, with placeholders for parameters."@en ;
+  skos:inScheme openrel:typeStatus .
+
 openrel:typeActive
   a skos:Concept ;
   skos:prefLabel "Policy is Active"@en ;
