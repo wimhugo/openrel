@@ -222,6 +222,18 @@ openrel:notifyInAsset
 		odrl:rightOperand openrel:record-in-asset ;
 		.
 
+openrel:notifyCitation 
+	 a openrel:NamedConstraint ;
+		rdfs:label "Notification by Citation"@en ;
+		skos:definition "USe of the asset must be acknolwedged by proper citation in derived works and assets."@en ;
+		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
+		openrel:constraintType openrel:notification ;
+		openrel:scenario openrel:attribution ;
+		odrl:leftOperand openrel:notificationDuty ;
+		odrl:operand odrl:eq ;
+		odrl:rightOperand openrel:notify-attribution ;
+		.
+
 openrel:logUse 
 	  a openrel:NamedConstraint ;
 		rdfs:label "Record Usage in a Log"@en ;
