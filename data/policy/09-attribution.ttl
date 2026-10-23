@@ -118,7 +118,7 @@
                     odrl:action openrel:attribute ],
                 [ a odrl:Duty ;
                     odrl:action openrel:notify ;
-                        openrel:namedConstraint openrel:notifyInAsset ;
+                        openrel:namedConstraint openrel:notifyCitation ;
                 ]   
         ],
 
@@ -129,7 +129,7 @@
                     odrl:action cc:Attribution ],
               [ a odrl:Duty ;
                     odrl:action openrel:notify ;
-                    openrel:namedConstraint openrel:notifyInAsset ;
+                    openrel:namedConstraint openrel:notifyCitation ;
               ]
 
         [ a odrl:Permission ;
