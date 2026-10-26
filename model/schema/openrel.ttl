@@ -251,7 +251,6 @@ openrel:PolicyCollection
 # dct:version is not a standard DCMI Terms property; consider owl:versionInfo
 # (literal) or schema:version instead.
 
-
 openrel:accessType a owl:ObjectProperty, skos:Concept ;
     rdfs:label "Access type"@en ;
     skos:definition "Access classification applicable to the policy."@en ;
@@ -369,3 +368,14 @@ openrel:encodedRules a owl:ObjectProperty, skos:Concept ;
     rdfs:range odrl:Policy ;
     skos:note "Alternative representations, mappings of SPDX and LFS properties. The linked resource should be typed as an ODRL policy or a suitable OpenREL policy class."@en .
 
+# Specific properties appliable to openrel:PolicyCollection
+
+openrel:hasPolicy
+    a owl:ObjectProperty, skos:Concept ;
+    rdfs:label "has policy"@en ;
+    skos:definition
+        "References a constituent Policy included in an OpenREL Policy Collection."@en ;
+    skos:note
+        "Policy Collection: identifies the constituent Policies grouped by a Policy Collection. Each referenced Policy may belong to any ODRL or OpenREL Policy subclass. A Policy Collection must reference at least two Policies."@en ;
+    rdfs:domain openrel:PolicyCollection ;
+    rdfs:range odrl:Policy .
