@@ -5,12 +5,6 @@
 # This Version: 10 July 2026
 # -------------------------------------------------------------------------------------------------------------
 
-# -------------------------------------------------------------------------------------------------------------
-# Evaluation Details
-# In OpenREL, Policy Comparisions can explicitly be recorded as Evaluation Details.
-# OpenREL adds a number of specific subclasses
-# -------------------------------------------------------------------------------------------------------------
-
 # context
 @base <http://www.w3.org/ns/openrel/0/> .
 @prefix : <http://www.w3.org/ns/openrel/0/> .
@@ -42,6 +36,12 @@
 @prefix spdxlicense: <http://spdx.org/licenses/> .
 @prefix dpv: <https://w3id.org/dpv> .
 @prefix ropa: <https://w3id.org/dpv-ropa#> .
+
+# -------------------------------------------------------------------------------------------------------------
+# Evaluation Details
+# In OpenREL, Policy Comparisions can explicitly be recorded as Evaluation Details.
+# OpenREL adds a number of specific subclasses
+# -------------------------------------------------------------------------------------------------------------
 
 openrel:EvaluationScheme
   a skos:ConceptScheme ;

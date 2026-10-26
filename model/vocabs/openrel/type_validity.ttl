@@ -1,70 +1,55 @@
-# --------------------------------------------------------------------------------------------------
-# OpenREL - Open Rights Encoding Language
-# Validity Types controlled vocabulary | Draft v0.4
+# OpenREL — Open Rights Encoding Language
+# Version 0.4 (Draft); source version: 6 July 2026
 # Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/EUDAT)
-# Source version date: 2026-07-06
-# --------------------------------------------------------------------------------------------------
-# Validity types identify limitations on the scope or duration of a policy.
-# DALICC-derived concepts retain their original mapping references and source definitions.
-# The concepts are SKOS individuals, not extensions of ODRL core classes or properties.
-# --------------------------------------------------------------------------------------------------
+# Source of adapted terminology: DALICC (https://dalicc.net/), CC BY 4.0
+# QA: corrected syntax, datatype, spelling, and unused prefixes; preserved concept IRIs.
 
 @prefix openrel: <http://www.w3id.org/ns/openrel/0/> .
-@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
-@prefix dct:     <http://purl.org/dc/terms/> .
-@prefix owl:     <http://www.w3.org/2002/07/owl#> .
-@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
-@prefix dalicc:  <https://dalicc.net/ns#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dalicc: <https://dalicc.net/ns#> .
 
-# --------------------------------------------------------------------------------------------------
 # Concept scheme and provenance
-# --------------------------------------------------------------------------------------------------
-
 openrel:typeValidity
     a skos:ConceptScheme ;
     skos:prefLabel "Types of Rule Set Validity"@en ;
     dct:title "Types of Validity"@en ;
-    dct:description "Types of validity applicable to rule sets."@en ;
+    dct:description "Types of validity applicable to rule sets and policies."@en ;
     dct:created "2026-07-06T00:00:00+00:00"^^xsd:dateTime ;
     dct:creator <https://orcid.org/0000-0002-0255-5101> ;
     owl:versionInfo "0.1" ;
-    skos:note "The vocabulary includes temporal, territorial, community and asset-specific scope concepts. These dimensions are not necessarily mutually exclusive."@en .
+    skos:note "This scheme includes temporal, territorial, community, institutional and patent-related qualifications; its concepts are not mutually exclusive."@en .
 
-# --------------------------------------------------------------------------------------------------
-# DALICC-derived validity concepts
-# --------------------------------------------------------------------------------------------------
-
+# Terms
 openrel:patentFree
     a skos:Concept ;
     skos:prefLabel "Patent Free"@en ;
     skos:exactMatch dalicc:patentFree ;
-    skos:definition "DALICC: The license applies only to those patent claims licensable by such Contributor that are necessarily infringed by their Contribution(s) alone or by combination of their Contribution(s) with the Licensed Material to which such Contribution(s) was submitted."@en ;
+    skos:definition "DALICC: The licence applies only to those patent claims licensable by a contributor that are necessarily infringed by the contributor's contribution(s), alone or in combination with the licensed material to which the contribution(s) were submitted."@en ;
     skos:inScheme openrel:typeValidity .
 
 openrel:irrevocable
     a skos:Concept ;
     skos:prefLabel "Irrevocable"@en ;
     skos:exactMatch dalicc:irrevocable ;
-    skos:definition "DALICC: The license cannot be terminated for any reason or only that the license cannot be terminated for convenience, but still may be terminated for breach."@en ;
+    skos:definition "DALICC: The licence cannot be terminated for any reason, or it cannot be terminated for convenience but may still be terminated for breach."@en ;
     skos:inScheme openrel:typeValidity .
 
 openrel:perpetual
     a skos:Concept ;
     skos:prefLabel "Perpetual"@en ;
     skos:exactMatch dalicc:perpetual ;
-    skos:definition "DALICC: A perpetual license allows to use the licensed work indefinitely."@en ;
+    skos:definition "DALICC: A perpetual licence allows the licensed work to be used indefinitely."@en ;
     skos:inScheme openrel:typeValidity .
 
 openrel:worldwide
     a skos:Concept ;
     skos:prefLabel "Worldwide"@en ;
     skos:exactMatch dalicc:worldwide ;
-    skos:definition "DALICC: The license terms are valid throughout the world."@en ;
+    skos:definition "DALICC: The licence terms are valid throughout the world."@en ;
     skos:inScheme openrel:typeValidity .
-
-# --------------------------------------------------------------------------------------------------
-# OpenREL-specific scope concepts
-# --------------------------------------------------------------------------------------------------
 
 openrel:community
     a skos:Concept ;
@@ -75,5 +60,9 @@ openrel:community
 openrel:custom
     a skos:Concept ;
     skos:prefLabel "Custom"@en ;
-    skos:definition "The policy or licence applies only to a specific institution, collection, catalogue, or resource/asset."@en ;
+    skos:definition "The policy or licence applies only to a specific institution, collection, catalogue, resource or asset."@en ;
     skos:inScheme openrel:typeValidity .
+
+# EDITORIAL: The supplied DALICC exactMatch assertions have been preserved but not independently verified.
+# EDITORIAL: 'Patent Free' describes the scope of licensed patent claims, not necessarily absence of patent rights.
+# EDITORIAL: The two alternatives in 'Irrevocable' should be clarified before treating it as a precise legal condition.

@@ -1,0 +1,73 @@
+# OpenREL Access Types concept scheme
+# Version 0.4 (reviewed draft); source version dated 1 July 2026
+# Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE),
+# and Wim Hugo (DANS/EUDAT).
+# Source content adapted with syntax, consistency, and documentation corrections.
+# IMPORTANT: Source namespace preserved. Confirm against the canonical OpenREL namespace.
+
+@prefix r3d: <https://github.com/wimhugo/kb-attributes-eden-fidelis-trsp/blob/main/model/vocabs/r3d/> .
+@prefix openrel: <http://www.w3.org/ns/openrel/0/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Scheme and provenance
+openrel:typeAccess
+    a skos:ConceptScheme ;
+    skos:prefLabel "Types of Access"@en ;
+    dct:title "Types of Access"@en ;
+    dct:description "Types of access applicable to resources and relevant policy constraints."@en ;
+    skos:note "Access classifications and temporal conditions such as embargoes are not necessarily mutually exclusive. An embargo may instead be represented as a constraint on another access type."@en ;
+    dct:created "2026-06-29T00:00:00+00:00"^^xsd:dateTime ;
+    dct:creator <https://orcid.org/0000-0002-0255-5101> ;
+    owl:versionInfo "0.1" .
+
+# Open access
+openrel:open-access
+    a skos:Concept ;
+    skos:prefLabel "Open Access"@en ;
+    skos:definition "Open access refers to a resource that is immediately and permanently available online, free to access without financial or technical barriers. The resource may be held in a repository or referenced in an external journal or trustworthy archive."@en ;
+    skos:note "Definition adapted from the COAR description supplied in the source vocabulary."@en ;
+    skos:exactMatch <https://vocabularies.coar-repositories.org/access_rights/c_abf2/> ;
+    skos:exactMatch r3d:open ;
+    skos:inScheme openrel:typeAccess .
+
+# Embargoed access: retained for vocabulary interoperability, although an
+# embargo may be modelled more precisely as a temporal constraint.
+openrel:embargoed
+    a skos:Concept ;
+    skos:prefLabel "Embargoed"@en ;
+    skos:definition "Embargoed access refers to a resource for which access is limited to metadata until a specified date when the resource becomes openly accessible."@en ;
+    skos:note "OpenREL does not regard an embargo as an independent access type in its rule model: it can be expressed as a constraint on permissions or other rules, potentially in combination with open, restricted or managed access."@en ;
+    skos:exactMatch <https://vocabularies.coar-repositories.org/access_rights/c_f1cf/> ;
+    skos:exactMatch r3d:embargoed ;
+    skos:inScheme openrel:typeAccess .
+
+# Restricted access
+openrel:restricted
+    a skos:Concept ;
+    skos:prefLabel "Restricted"@en ;
+    skos:definition "Restricted access refers to a resource that is available through a system but subject to conditions limiting unrestricted access, such as authentication, approval or membership of a defined community."@en ;
+    skos:note "Definition adapted from the COAR description supplied in the source vocabulary."@en ;
+    skos:exactMatch <https://vocabularies.coar-repositories.org/access_rights/c_16ec/> ;
+    skos:exactMatch r3d:restricted ;
+    skos:inScheme openrel:typeAccess .
+
+# Closed access
+openrel:closed
+    a skos:Concept ;
+    skos:prefLabel "Closed"@en ;
+    skos:definition "The metadata for the resource is available, but the data is not accessible."@en ;
+    skos:exactMatch <https://vocabularies.coar-repositories.org/access_rights/c_14cb/> ;
+    skos:exactMatch r3d:closed ;
+    skos:inScheme openrel:typeAccess .
+
+# Managed access
+openrel:managed
+    a skos:Concept ;
+    skos:prefLabel "Managed"@en ;
+    skos:definition "The resource is available to an end user who complies with predefined rules designed to protect the interests of the subjects. Access decisions are not made on an ad hoc basis, and eligibility can be checked before access is requested."@en ;
+    skos:note "The source mapping skos:broadMatch foaf:Group was removed: foaf:Group denotes a class of groups, not a broader SKOS access-type concept."@en ;
+    skos:inScheme openrel:typeAccess .
+

@@ -1,0 +1,86 @@
+# -------------------------------------------------------------------------------------------------------------
+# OpenREL - Open Rights Encoding Language
+# Version 0.4 (Draft)
+# Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/EUDAT)
+# Source version: 1 September 2026
+# -------------------------------------------------------------------------------------------------------------
+# Policy Status Types. Status describes a policy's lifecycle state and, for active policies,
+# the intended scope of applicability. See editorial notes at the end of this file.
+
+@prefix openrel: <http://www.w3.org/ns/openrel/0/> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# Concept scheme and provenance
+openrel:typeStatus
+    a skos:ConceptScheme ;
+    skos:prefLabel "Types of Policy Status"@en ;
+    dct:title "Policy Status Types"@en ;
+    dct:description "States applicable to policies."@en ;
+    dct:created "2026-09-01T00:00:00+00:00"^^xsd:dateTime ;
+    dct:creator <https://orcid.org/0000-0002-0255-5101> ;
+    owl:versionInfo "0.1" ;
+    skos:hasTopConcept openrel:typeDraft, openrel:typeReview,
+        openrel:typeTemplate, openrel:typeActive .
+
+# Draft and review
+openrel:typeDraft
+    a skos:Concept ;
+    skos:prefLabel "Draft Policy"@en ;
+    skos:definition "A policy that is still in draft status. Private by default."@en ;
+    skos:topConceptOf openrel:typeStatus ;
+    skos:inScheme openrel:typeStatus .
+
+openrel:typeReview
+    a skos:Concept ;
+    skos:prefLabel "Policy in Review"@en ;
+    skos:definition "A policy that is being reviewed. Private by default."@en ;
+    skos:topConceptOf openrel:typeStatus ;
+    skos:inScheme openrel:typeStatus .
+
+# Template status
+openrel:typeTemplate
+    a skos:Concept ;
+    skos:prefLabel "Policy Template"@en ;
+    skos:definition "A policy that is used as a template, with placeholders for parameters."@en ;
+    skos:topConceptOf openrel:typeStatus ;
+    skos:inScheme openrel:typeStatus .
+
+# Active policy and scope-specific narrower statuses
+openrel:typeActive
+    a skos:Concept ;
+    skos:prefLabel "Active Policy"@en ;
+    skos:definition "A policy that is active. It can be private, custom, or global."@en ;
+    skos:topConceptOf openrel:typeStatus ;
+    skos:inScheme openrel:typeStatus .
+
+openrel:typePrivateActive
+    a skos:Concept ;
+    skos:prefLabel "Active Policy — Private"@en ;
+    skos:definition "A policy that is active but applicable only in a specific private context. For example, the assigner, assignee, and asset have all been explicitly defined."@en ;
+    skos:broader openrel:typeActive ;
+    skos:inScheme openrel:typeStatus .
+
+openrel:typeCustomActive
+    a skos:Concept ;
+    skos:prefLabel "Active Policy — Custom"@en ;
+    skos:definition "A policy that is active but applicable only in a specific custom context. For example, the assigner and asset collection may have been explicitly defined, typically for a repository or collection."@en ;
+    skos:broader openrel:typeActive ;
+    skos:inScheme openrel:typeStatus .
+
+openrel:typeGlobalActive
+    a skos:Concept ;
+    skos:prefLabel "Active Policy — Global"@en ;
+    skos:definition "A policy that is active and applicable globally. Typically, the assigner, assignee, and asset or asset collection are not defined."@en ;
+    skos:broader openrel:typeActive ;
+    skos:inScheme openrel:typeStatus .
+
+# EDITORIAL: 'Policy Template' describes a policy's parameterisation rather than its lifecycle
+# status; consider separating this dimension from draft/review/active status in a future revision.
+# EDITORIAL: 'Private', 'Custom', and 'Global' describe scope of applicability, not just
+# lifecycle status. The current hierarchy is retained to preserve the supplied model.
+# EDITORIAL: 'Private by default' is retained as a description, not a machine-enforced
+# access-control rule. Define explicit enforcement rules separately if required.
+# EDITORIAL: No external mapping is asserted; none was provided in the source.
