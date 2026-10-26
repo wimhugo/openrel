@@ -41,18 +41,18 @@
 # Policy Libraries and Registries
 @prefix openrellib: <https://github.com/wimhugo/openrel/new/main/data/policy/> .
 @prefix spdxlicense: <http://spdx.org/licenses/> .
-@prefix dalicclib: <https://dalicc.net/licenselibrary/> 
+@prefix dalicclib: <https://dalicc.net/licenselibrary/> .
 @prefix lfslib: <https://lfs.labs.dansdemo.nl/api/v1/licenses/> .
 
 ############################################################################################################
 # ONTOLOGY and SCHEMA METADATA
 ############################################################################################################
 
-trsp:Ontology
+openrel:Ontology
     a owl:Ontology ;
     dct:title "OpenREL Schema"@en ;
     dct:description "OpenREL Ontology: Schema definition, concept schemes, and SHACL constraints. "@en ;
-    dct:created "2026-06-29T00:00:00+00:00"^^xsd:datetime ;  
+    dct:created "2026-06-29T00:00:00+00:00"^^xsd:dateTime ;  
     dct:modified "2026-07-10T00:00:00+00:00"^^xsd:datetime ;
     dct:creator <https://orcid.org/0000-0002-0255-5101> ;  # Wim Hugo
     dct:creator "Melios Katsamakis" ;
@@ -86,7 +86,7 @@ odrl:Policy
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Policy"@en ;
 	skos:definition "A non-empty group of Permissions and/or Prohibitions."@en ;
-    skos:seeAlso https://www.w3.org/TR/odrl-model/#policy ;
+    skos:seeAlso <https://www.w3.org/TR/odrl-model/#policy> ;
 	skos:note "A Policy may contain multiple Rules."@en .
 
 odrl:Agreement
@@ -96,8 +96,8 @@ odrl:Agreement
 	owl:disjointWith odrl:Offer, odrl:Privacy, odrl:Request, odrl:Ticket, odrl:Assertion ;
 	rdfs:label "Agreement"@en ;
 	skos:definition "A Policy that grants the assignee a Rule over an Asset from an assigner."@en ;
-	skos:note "An Agreement Policy MUST contain at least one Permission or Prohibition rule, a Party with Assigner function, and a Party with Assignee function (in the same Permission or Prohibition). The Agreement Policy will grant the terms of the Policy from the Assigner to the Assignee."@en 
-  	skos:seeAlso https://www.w3.org/TR/odrl-model/#policy-agreement ;
+	skos:note "An Agreement Policy MUST contain at least one Permission or Prohibition rule, a Party with Assigner function, and a Party with Assignee function (in the same Permission or Prohibition). The Agreement Policy will grant the terms of the Policy from the Assigner to the Assignee."@en ;
+  	skos:seeAlso <https://www.w3.org/TR/odrl-model/#policy-agreement> ;
   	.
 
 odrl:Assertion
@@ -119,7 +119,7 @@ odrl:Offer
 	rdfs:label "Offer"@en ;
 	skos:definition "A Policy that proposes a Rule over an Asset from an assigner."@en ;
 	skos:note "An Offer Policy MUST contain at least one Permission or Prohibition rule and a Party with Assigner function (in the same Permission or Prohibition). The Offer Policy MAY contain a Party with Assignee function, but MUST not grant any privileges to that Party."@en ;
-    skos:seeAlso https://www.w3.org/TR/odrl-model/#policy-offer ;
+    skos:seeAlso <https://www.w3.org/TR/odrl-model/#policy-offer> ;
   	.
 
 odrl:Privacy
@@ -152,7 +152,7 @@ odrl:Set
 	rdfs:label "Set"@en ;
 	skos:definition "A Policy that expresses a Rule over an Asset."@en ;
 	skos:note "A Set Policy MUST contain a target Asset, and at least one Rule. A Set Policy is the default Policy subclass. The Set is aimed at scenarios where there is an open criteria for the semantics of the policy expressions and typically refined by other systems/profiles that process the information at a later time. No privileges are granted to any Party (if defined)."@en ;
-  	skos:seeAlso https://www.w3.org/TR/odrl-model/#policy-set ;
+  	skos:seeAlso <https://www.w3.org/TR/odrl-model/#policy-set> ;
     .
 
 odrl:Ticket
@@ -176,21 +176,21 @@ openrel:Licence
 	rdfs:label "Licence"@en ;
 	skos:definition "A Policy that is generally imnterpreted as a licence, specifies additional properties of a licence, and has a legal code representation."@en ;
 	skos:note "The Licence Policy subclass introduces additional properties that are not typically applicable to other Policy subclasses, and takes its broad scope from the properties associated specifically with licences. It could be viewed as a special case (non-negotiable) of an Offer or an Agreement that will not be modified."@en ;
-  	skos:note "Unique to Assets or Asset Collections." @en ;
-	skos:note "ccREL: a set of requests/permissions to users of a Work, e.g. a copyright license, the public domain, information for distributors."@en ;
+  	skos:note "Unique to Assets or Asset Collections."@en ;
+	skos:note "cc: a set of requests/permissions to users of a Work, e.g. a copyright license, the public domain, information for distributors."@en ;
   	skos:scopeNote "Non-Normative"@en ;
-	skos:closeMatch ccrel:License ;
+	skos:closeMatch cc:License ;
 	.
 
 openrel:AccessRules
 	a rdfs:Class, owl:Class, skos:Concept ;
 	rdfs:isDefinedBy openrel: ;
 	rdfs:subClassOf odrl:Policy ;
-	owl:disjointWith odrl:Agreement, odrl:Offer, odrl:Privacy, odrl:Request, odrl:Assertion , odrl:Ticket, openrel:AccessRules, openrel:ProcessRules ;
+	owl:disjointWith odrl:Agreement, odrl:Offer, odrl:Privacy, odrl:Request, odrl:Assertion , odrl:Ticket, openrel:ProcessRules ;
 	rdfs:label "Access Rule(s)"@en ;
 	skos:definition "A Policy that defines conditions of access that are not generally considered to be part of a licence, but depends on the context."@en ;
 	skos:note "Such access rules may include, for example, the terms and conditions of use associated with a specific repository, data service, or institution. It is usually institutional policy driven."@en ;
- 	skos:note "Unique to an Institution, Repository, or Catalogue." @en ;
+ 	skos:note "Unique to an Institution, Repository, or Catalogue."@en ;
   	skos:scopeNote "Non-Normative"@en ;
     .
 
@@ -198,11 +198,11 @@ openrel:ProcessRules
 	a rdfs:Class , owl:Class, skos:Concept ;
 	rdfs:isDefinedBy openrel: ;
 	rdfs:subClassOf odrl:Policy ;
-	owl:disjointWith odrl:Agreement, odrl:Offer, odrl:Privacy, odrl:Request, odrl:Assertion , odrl:Ticket, openrel:AccessRules, openrel:ProcessRules ;
+	owl:disjointWith odrl:Agreement, odrl:Offer, odrl:Privacy, odrl:Request, odrl:Assertion , odrl:Ticket, openrel:AccessRules ;
 	rdfs:label "Process Rule(s)"@en ;
 	skos:definition "A Policy that defines formalities associated with the process of gaining access associated with sofwtare or dissemination channels."@en ;
 	skos:note "Such process rules may include, or example, steps related to interaction of a software platform, infrastricture, federation, or dissemination channel with an Assignee."@en ;
- 	skos:note "Unique to a software platform or dissemination channel." @en ;
+ 	skos:note "Unique to a software platform or dissemination channel."@en ;
  	skos:scopeNote "Non-Normative"@en ;
 	.
 
@@ -212,10 +212,10 @@ openrel:PolicyCollection
   	rdfs:subClassOf odrl:Policy ;
 	owl:disjointWith odrl:Agreement, odrl:Offer, odrl:Privacy, odrl:Request, odrl:Assertion , odrl:Ticket, openrel:AccessRules, openrel:ProcessRules ;
 	rdfs:label "Policy Collection"@en ;
-	skos:definition "A collection that includes one or more policies"@en ;
-	skos:note "A policy collection references one or more policies via IRI."@en ;
-  	skos:note "Similar to odrl:Set, but it inherits Asset and Party references from contributing Policies." @en ;
-	skos:note "Can be used to define all policies applicable to an asset collection, or to collectively reference the policies involved in a negotiation process." @en ;
+	skos:definition "A collection that includes two or more policies"@en ;
+	skos:note "A policy collection references two or more policies via IRI."@en ;
+  	skos:note "Similar to odrl:Set, but it inherits Asset and Party references from contributing Policies."@en ;
+	skos:note "Can be used to define all policies applicable to an asset collection, or to collectively reference the policies involved in a negotiation process."@en ;
 	skos:scopeNote "Non-Normative"@en 
 	.
 
@@ -379,3 +379,16 @@ openrel:hasPolicy
         "Policy Collection: identifies the constituent Policies grouped by a Policy Collection. Each referenced Policy may belong to any ODRL or OpenREL Policy subclass. A Policy Collection must reference at least two Policies."@en ;
     rdfs:domain openrel:PolicyCollection ;
     rdfs:range odrl:Policy .
+
+############################################################################################################
+# ACTION CLASSES and PROPERTIES
+############################################################################################################
+
+
+
+
+
+
+############################################################################################################
+# EVALUATION CLASSES and PROPERTIES
+############################################################################################################
