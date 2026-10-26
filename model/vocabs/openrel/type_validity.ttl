@@ -1,0 +1,79 @@
+# --------------------------------------------------------------------------------------------------
+# OpenREL - Open Rights Encoding Language
+# Validity Types controlled vocabulary | Draft v0.4
+# Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/EUDAT)
+# Source version date: 2026-07-06
+# --------------------------------------------------------------------------------------------------
+# Validity types identify limitations on the scope or duration of a policy.
+# DALICC-derived concepts retain their original mapping references and source definitions.
+# The concepts are SKOS individuals, not extensions of ODRL core classes or properties.
+# --------------------------------------------------------------------------------------------------
+
+@prefix openrel: <http://www.w3id.org/ns/openrel/0/> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix dalicc:  <https://dalicc.net/ns#> .
+
+# --------------------------------------------------------------------------------------------------
+# Concept scheme and provenance
+# --------------------------------------------------------------------------------------------------
+
+openrel:typeValidity
+    a skos:ConceptScheme ;
+    skos:prefLabel "Types of Rule Set Validity"@en ;
+    dct:title "Types of Validity"@en ;
+    dct:description "Types of validity applicable to rule sets."@en ;
+    dct:created "2026-07-06T00:00:00+00:00"^^xsd:dateTime ;
+    dct:creator <https://orcid.org/0000-0002-0255-5101> ;
+    owl:versionInfo "0.1" ;
+    skos:note "The vocabulary includes temporal, territorial, community and asset-specific scope concepts. These dimensions are not necessarily mutually exclusive."@en .
+
+# --------------------------------------------------------------------------------------------------
+# DALICC-derived validity concepts
+# --------------------------------------------------------------------------------------------------
+
+openrel:patentFree
+    a skos:Concept ;
+    skos:prefLabel "Patent Free"@en ;
+    skos:exactMatch dalicc:patentFree ;
+    skos:definition "DALICC: The license applies only to those patent claims licensable by such Contributor that are necessarily infringed by their Contribution(s) alone or by combination of their Contribution(s) with the Licensed Material to which such Contribution(s) was submitted."@en ;
+    skos:inScheme openrel:typeValidity .
+
+openrel:irrevocable
+    a skos:Concept ;
+    skos:prefLabel "Irrevocable"@en ;
+    skos:exactMatch dalicc:irrevocable ;
+    skos:definition "DALICC: The license cannot be terminated for any reason or only that the license cannot be terminated for convenience, but still may be terminated for breach."@en ;
+    skos:inScheme openrel:typeValidity .
+
+openrel:perpetual
+    a skos:Concept ;
+    skos:prefLabel "Perpetual"@en ;
+    skos:exactMatch dalicc:perpetual ;
+    skos:definition "DALICC: A perpetual license allows to use the licensed work indefinitely."@en ;
+    skos:inScheme openrel:typeValidity .
+
+openrel:worldwide
+    a skos:Concept ;
+    skos:prefLabel "Worldwide"@en ;
+    skos:exactMatch dalicc:worldwide ;
+    skos:definition "DALICC: The license terms are valid throughout the world."@en ;
+    skos:inScheme openrel:typeValidity .
+
+# --------------------------------------------------------------------------------------------------
+# OpenREL-specific scope concepts
+# --------------------------------------------------------------------------------------------------
+
+openrel:community
+    a skos:Concept ;
+    skos:prefLabel "Community"@en ;
+    skos:definition "The policy or licence applies to a specific community."@en ;
+    skos:inScheme openrel:typeValidity .
+
+openrel:custom
+    a skos:Concept ;
+    skos:prefLabel "Custom"@en ;
+    skos:definition "The policy or licence applies only to a specific institution, collection, catalogue, or resource/asset."@en ;
+    skos:inScheme openrel:typeValidity .

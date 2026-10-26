@@ -1,0 +1,35 @@
+# OpenREL SHACL Shapes — prototype v0.1
+# Validates structural constraints for OpenREL Policy Collections.
+# Load this shapes graph together with the OpenREL ontology and relevant
+# policy instance data when running SHACL validation.
+#
+# This file uses the namespace from the supplied openrel(4).ttl ontology.
+
+@prefix openrel: <http://www.w3.org/ns/openrel/0/> .
+@prefix odrl:    <http://www.w3.org/ns/odrl/2/> .
+@prefix sh:      <http://www.w3.org/ns/shacl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+
+# Policy Collection — constituent policy references
+# An OpenREL Policy Collection MUST reference at least two distinct Policies.
+# Each constituent MUST be an IRI identifying an odrl:Policy instance.
+# sh:class requires type/subclass triples to be accessible during validation.
+
+openrel:PolicyCollectionShape
+    a sh:NodeShape, skos:Concept ;
+    rdfs:label "Policy Collection shape"@en ;
+    skos:definition
+        "Validates constituent policy references of an OpenREL Policy Collection."@en ;
+    skos:note
+        "A Policy Collection MUST reference at least two distinct ODRL Policy instances by IRI using openrel:hasPolicy. The existing ODRL policy asset-reference mechanism is used for asset scope; no new OpenREL asset-reference property is introduced."@en ;
+    sh:targetClass openrel:PolicyCollection ;
+    sh:property [
+        sh:path openrel:hasPolicy ;
+        sh:minCount 2 ;
+        sh:nodeKind sh:IRI ;
+        sh:class odrl:Policy ;
+        sh:message
+            "A Policy Collection MUST reference at least two distinct IRI-identified odrl:Policy instances using openrel:hasPolicy."@en
+    ] .
