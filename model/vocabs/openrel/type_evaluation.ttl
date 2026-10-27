@@ -66,7 +66,7 @@ openrel:pairwiseEvaluation
 openrel:compatible
   a skos:Concept ;
   skos:prefLabel "Action or constraint is directly compatible with another"@en ;
-  skos:exactmatch owl:sameAs ;
+  rdfs:seeAlso owl:sameAs ;
   skos:broader openrel:pairwiseEvaluation ;
   skos:definition "Action or constraint is directly compatible with another and one can be combined in the same policy or in a policy collection."@en ;
   skos:inScheme openrel:typeEvaluationOutcome .

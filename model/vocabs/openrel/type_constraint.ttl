@@ -1,0 +1,126 @@
+# -------------------------------------------------------------------------------------------------------------
+# OpenREL - Open Rights Encoding language
+# Version 0.5 (Draft)
+# Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/ EUDAT)
+# This Version: 27 October 2026
+# -------------------------------------------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------------------------------------------
+# Named Constraint Types 
+# -------------------------------------------------------------------------------------------------------------
+
+@prefix openrel: <http://www.w3id.org/ns/openrel/0/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# ------------------------------------------------------------
+# Concept Scheme
+# ------------------------------------------------------------
+
+openrel:typeConstraint
+    a skos:ConceptScheme ;
+    skos:prefLabel "Types of Named Constraints"@en ;
+    dct:title "Types of Named Constraints"@en ;
+    dct:description "A classification scheme for Named Constraints used in OpenREL policies."@en ;
+    dct:created "2026-07-10T00:00:00+00:00"^^xsd:dateTime ;
+    dct:creator <https://orcid.org/0000-0002-0255-5101> ;
+    owl:versionInfo "0.4" .
+
+# ------------------------------------------------------------
+# Constraint Type Concepts
+# ------------------------------------------------------------
+
+openrel:role
+    a skos:Concept ;
+    skos:prefLabel "Role"@en ;
+    skos:definition
+        "A Named Constraint based on the role of an Agent."@en ;
+    skos:note
+        "Role-based Constraints may apply to any Action. Agent types are defined in the OpenREL type_agent vocabulary."@en ;
+    skos:inScheme openrel:typeConstraint .
+
+openrel:usage
+    a skos:Concept ;
+    skos:prefLabel "Usage"@en ;
+    skos:definition
+        "A Named Constraint based on characteristics of asset usage."@en ;
+    skos:note
+        "Usage-based Constraints may apply to any Action. Usage types are defined in the OpenREL type_usage vocabulary."@en ;
+    skos:inScheme openrel:typeConstraint .
+
+openrel:revenue
+    a skos:Concept ;
+    skos:prefLabel "Revenue"@en ;
+    skos:definition
+        "A Named Constraint based on permitted or prohibited revenue generation."@en ;
+    skos:note
+        "Revenue-based Constraints may apply to any Action. Revenue types are defined in the OpenREL type_revenue vocabulary."@en ;
+    skos:inScheme openrel:typeConstraint .
+
+openrel:access
+    a skos:Concept ;
+    skos:prefLabel "Access"@en ;
+    skos:definition
+        "A Named Constraint based on permitted access types or conditions."@en ;
+    skos:note
+        "Access-based Constraints may apply to any Action. Access types are defined in the OpenREL type_access vocabulary."@en ;
+    skos:inScheme openrel:typeConstraint .
+
+openrel:purpose
+    a skos:Concept ;
+    skos:prefLabel "Purpose"@en ;
+    skos:definition
+        "A Named Constraint based on permitted purposes of use, including research purposes."@en ;
+    skos:note
+        "Purpose-based Constraints may apply to any Action. Purpose types are defined in the OpenREL type_purpose vocabulary."@en ;
+    skos:inScheme openrel:typeConstraint .
+
+openrel:notification
+    a skos:Concept ;
+    skos:prefLabel "Notification"@en ;
+    skos:definition
+        "A Named Constraint specifying conditions associated with notification duties."@en ;
+    skos:note
+        "Notification-related Constraints may apply to any Action. Notification targets are defined in the OpenREL type_notification-target vocabulary."@en ;
+    skos:inScheme openrel:typeConstraint .
+
+openrel:consent
+    a skos:Concept ;
+    skos:prefLabel "Consent"@en ;
+    skos:definition
+        "A Named Constraint specifying consent-related conditions or requirements."@en ;
+    skos:note
+        "Consent-related Constraints may apply to any Action, particularly in the context of a Duty. Consent types are defined in the OpenREL type_consent vocabulary."@en ;
+    skos:inScheme openrel:typeConstraint .
+
+openrel:context
+    a skos:Concept ;
+    skos:prefLabel "Context"@en ;
+    skos:definition
+        "A Named Constraint based on contextual characteristics of an Agent or its operating environment."@en ;
+    skos:note
+        "Context-based Constraints may apply to any Action, including Actions associated with Prohibitions. Context types are defined in the OpenREL type_context vocabulary."@en ;
+    skos:inScheme openrel:typeConstraint .
+
+openrel:tom
+    a skos:Concept ;
+    skos:prefLabel
+        "Technical and Organisational Measures"@en ;
+    skos:definition
+        "A Named Constraint specifying technical, organisational, legal or physical measures required to safeguard sensitive data."@en ;
+    skos:note
+        "The DPV Technical and Organisational Measures vocabulary provides relevant classes and subclasses for describing these measures. Additional terms for non-personal sensitive data are defined in the OpenREL type_tom vocabulary."@en ;
+    skos:inScheme openrel:typeConstraint .
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,199 @@
+
+# OpenREL Named Constraint registry revised draft 0.5, 2026-10-27
+
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix loc: <http://www.w3id.org/ns/openrel/0/loc/> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix openrel: <http://www.w3id.org/ns/openrel/0/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix trsp: <https://w3id.org/trsp/> .
+
+openrel:academicUseOnly a openrel:NamedConstraint ;
+    rdfs:label "Academic Use Only"@en ;
+    skos:definition "Asset MUST only be used for Academic Research or Applications"@en ;
+    skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en,
+        "Linked to several scenarios related to academic and research use and validation."@en ;
+    odrl:leftOperand openrel:usePurpose ;
+    odrl:operator odrl:eq ;
+    odrl:rightOperand openrel:academicResearch ;
+    openrel:constraintType openrel:purpose ;
+    openrel:scenario openrel:academic-only,
+        openrel:affirmed-research,
+        openrel:confirmed-researcher,
+        openrel:confirmed-rpo,
+        openrel:research-only .
+
+openrel:allowDistributionFee a openrel:NamedConstraint ;
+    rdfs:label "Allow Distribution Fee"@en ;
+    skos:definition "Allow legitimate and reasonable costs of distribution of the asset or its derivatives without treating these costs as commercial use."@en ;
+    skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
+    odrl:leftOperand openrel:revenuePermitted ;
+    odrl:operator odrl:eq ;
+    odrl:rightOperand trsp:distributionCost ;
+    openrel:constraintType openrel:revenue ;
+    openrel:scenario openrel:non-commercial-only .
+
+openrel:confirmedAIAgent a openrel:NamedConstraint ;
+    rdfs:label "Verified AI Agent"@en ;
+    skos:definition "Agent has been verified as such."@en ;
+    odrl:leftOperand openrel:agentRole ;
+    odrl:operator odrl:eq ;
+    odrl:rightOperand openrel:ai-agent ;
+    openrel:constraintType openrel:context .
+
+openrel:consentLegal a openrel:NamedConstraint ;
+    rdfs:label "Consent Required on Legal Basis"@en ;
+    skos:definition "Allow reuse of the Asset or Asset Collection where consent provides the applicable legal basis."@en ;
+    skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
+    odrl:leftOperand openrel:consentRequired ;
+    odrl:operator odrl:eq ;
+    odrl:rightOperand openrel:consent-legal ;
+    openrel:constraintType openrel:consent ;
+    openrel:scenario openrel:consent-gdpr,
+        openrel:gdpr-compliance,
+        openrel:gdpr-controller .
+
+openrel:consentPrior a openrel:NamedConstraint ;
+    rdfs:label "Consent is Required Prior to Access"@en ;
+    skos:definition "Allow access to the Asset or Asset Collection only when applicable consent has been obtained before access."@en ;
+    skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
+    odrl:leftOperand openrel:consentRequired ;
+    odrl:operator odrl:eq ;
+    odrl:rightOperand openrel:consent-reuse-before ;
+    openrel:constraintType openrel:consent ;
+    openrel:scenario openrel:ethics-approval .
+
+openrel:eidasVerified a openrel:NamedConstraint ;
+    rdfs:label "eIDAS Verified Identity"@en ;
+    skos:definition "End user or agent has been verified via eIDAS."@en ;
+    odrl:leftOperand openrel:contextLimitation ;
+    odrl:operator odrl:eq ;
+    odrl:rightOperand openrel:context-eidas ;
+    openrel:constraintType openrel:context .
+
+openrel:eidasVerifiedResearcher a openrel:NamedConstraint ;
+    rdfs:label "eIDAS Verified Researcher"@en ;
+    skos:definition "End User has been verified as a Researcher via eIDAS."@en ;
+    odrl:leftOperand openrel:contextLimitation ;
+    odrl:operator odrl:eq ;
+    odrl:rightOperand openrel:context-eidas ;
+    openrel:constraintType openrel:context .
+
+openrel:ethicsApproval a openrel:NamedConstraint ;
+    rdfs:label "Ethics Approval Required"@en ;
+    skos:definition "Allow access to the Asset or Asset Collection only when an institutional review board has confirmed ethics approval."@en ;
+    skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
+    odrl:leftOperand openrel:consentRequired ;
+    odrl:operator odrl:eq ;
+    odrl:rightOperand openrel:consent-ethics ;
+    openrel:constraintType openrel:consent ;
+    openrel:scenario openrel:ethics-approval .
+
+openrel:euUseOnly a openrel:NamedConstraint ;
+    rdfs:label "Allow EU-wide Use"@en ;
+    skos:definition "Allow the Asset to be used within the current definition of the EU."@en ;
+    skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
+    odrl:leftOperand openrel:locationLimitation ;
+    odrl:operator odrl:eq ;
+    odrl:rightOperand loc:EU27 ;
+    openrel:constraintType openrel:context ;
+    openrel:scenario openrel:european-use .
+
+openrel:logUse a openrel:NamedConstraint ;
+    rdfs:label "Record Usage in a Log"@en ;
+    skos:definition "Instances of use of the asset or asset collection must be recorded in a log and retained for a legally mandated duration."@en ;
+    skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
+    odrl:leftOperand openrel:notificationDuty ;
+    odrl:operator odrl:eq ;
+    odrl:rightOperand openrel:notify-local-log ;
+    openrel:constraintType openrel:notification ;
+    openrel:scenario openrel:gdpr-compliance,
+        openrel:gdpr-controller .
+
+openrel:managedAccess a openrel:NamedConstraint ;
+    rdfs:label "Managed Access Policies Only"@en ;
+    skos:definition "Automated access only permitted for managed access policies."@en ;
+    skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
+    odrl:leftOperand openrel:accessCategory ;
+    odrl:operator odrl:eq ;
+    odrl:rightOperand openrel:managed-access ;
+    openrel:constraintType openrel:tom ;
+    openrel:scenario openrel:formal-toms .
+
+openrel:noSpecialCategory a openrel:NamedConstraint ;
+    rdfs:label "Disallow Special Data Category"@en ;
+    dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_9/par_2/pnt_a/oj> ;
+    skos:definition "Consent does not include legitimate use as a special data category (GDPR Art 9.2 (a))."@en ;
+    skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
+    odrl:leftOperand openrel:legalBasis ;
+    odrl:operator odrl:neq ;
+    odrl:rightOperand openrel:gdpr-special-category ;
+    openrel:constraintType openrel:consent ;
+    openrel:scenario openrel:consent-gdpr,
+        openrel:gdpr-compliance,
+        openrel:gdpr-controller .
+
+openrel:notifyCitation a openrel:NamedConstraint ;
+    rdfs:label "Notification by Citation"@en ;
+    skos:definition "Use of the asset must be acknowledged through appropriate citation in derived works and assets."@en ;
+    skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
+    odrl:leftOperand openrel:notificationDuty ;
+    odrl:operator odrl:eq ;
+    odrl:rightOperand openrel:notify-attribution ;
+    openrel:constraintType openrel:notification ;
+    openrel:scenario openrel:attribution .
+
+openrel:notifyClearingHouse a openrel:NamedConstraint ;
+    rdfs:label "Notify Usage to a Clearinghouse"@en ;
+    skos:definition "Instances of use of the asset or asset collection must be notified to a clearinghouse endpoint."@en ;
+    skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
+    odrl:leftOperand openrel:notificationDuty ;
+    odrl:operator odrl:eq ;
+    odrl:rightOperand openrel:notify-clearinghouse ;
+    openrel:constraintType openrel:notification ;
+    openrel:scenario openrel:notification-duty .
+
+openrel:notifyInAsset a openrel:NamedConstraint ;
+    rdfs:label "Notification in Asset"@en ;
+    skos:definition "Changes and modifications must be added in the Asset using human-readable text, without removing the current licence information."@en ;
+    skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
+    odrl:leftOperand openrel:notificationDuty ;
+    odrl:operator odrl:eq ;
+    odrl:rightOperand openrel:record-in-asset ;
+    openrel:constraintType openrel:notification ;
+    openrel:scenario openrel:attribution .
+
+openrel:openAccess a openrel:NamedConstraint ;
+    rdfs:label "Open Access Policies Only"@en ;
+    skos:definition "Automated access only permitted for open access policies."@en ;
+    skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
+    odrl:leftOperand openrel:accessCategory ;
+    odrl:operator odrl:eq ;
+    odrl:rightOperand openrel:open-access ;
+    openrel:constraintType openrel:tom ;
+    openrel:scenario openrel:formal-toms .
+
+openrel:trustPlus a openrel:NamedConstraint ;
+    rdfs:label "Verified Trust+"@en ;
+    skos:definition "Automated access - inclusive of AI agents - must be verified against the TRUST+ specification."@en ;
+    skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en,
+        "Linked to several scenarios related to connector trustworthiness."@en ;
+    odrl:leftOperand openrel:securityProfile ;
+    odrl:operator odrl:eq ;
+    odrl:rightOperand openrel:trust-plus ;
+    openrel:constraintType openrel:access ;
+    openrel:scenario openrel:trusted-connection .
+
+openrel:verifiedResearcher a openrel:NamedConstraint ;
+    rdfs:label "Asserted Researcher"@en ;
+    skos:definition "A general assertion or inference that the end user has the role of a researcher."@en ;
+    odrl:leftOperand openrel:agentRole ;
+    odrl:operator odrl:eq ;
+    odrl:rightOperand openrel:researcher ;
+    openrel:constraintType openrel:role ;
+    openrel:scenario openrel:academic-only,
+        openrel:affirmed-research,
+        openrel:confirmed-researcher,
+        openrel:confirmed-rpo,
+        openrel:research-only .

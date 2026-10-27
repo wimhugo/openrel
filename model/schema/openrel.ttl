@@ -583,3 +583,82 @@ openrel:wasDerivedFrom a rdf:Property, skos:Concept ;
     skos:definition "Identifies a source resource or textual source description from which an evaluation assertion was derived."@en ;
     skos:note "This legacy property accepts both IRI and literal values in existing data. For new data, an IRI-valued prov:wasDerivedFrom or a textual dct:source is preferred. It is not declared an owl:ObjectProperty or a subproperty of prov:wasDerivedFrom because some existing values are literals."@en ;
     rdfs:domain openrel:EvaluationDetail .
+
+
+############################################################################################################
+# NAMED CONSTRAINT CLASSES and PROPERTIES
+############################################################################################################
+# OpenREL Named Constraint schema revised draft 0.5, 2026-10-27
+# OpenREL namespace: http://www.w3id.org/ns/openrel/0/
+# ODRL terms are referenced, not redefined.
+# EDITORIAL: The standard odrl:constraint may be used directly; openrel:namedConstraint
+# is an optional convenience link, not a replacement for ODRL.
+# EDITORIAL: Endpoint, legal-basis and parameter schemas are developed separately.
+
+# Class Definition
+
+openrel:NamedConstraint a owl:Class,
+    skos:Concept ;
+    rdfs:label "Named Constraint"@en ;
+    rdfs:isDefinedBy openrel: ;
+    rdfs:subClassOf odrl:Constraint ;
+    skos:definition "A reusable, individually identified ODRL Constraint that may be published in a registry and referenced by policies or rules."@en ;
+    skos:note "Named Constraints use the ODRL leftOperand, operator and rightOperand structure. Their additional OpenREL properties support classification, scenarios, legal basis and relevant endpoints."@en .
+
+# Properties
+
+openrel:applicableEndpoint a rdf:Property,
+    owl:ObjectProperty,
+    skos:Concept ;
+    rdfs:label "applicable endpoint"@en ;
+    rdfs:domain openrel:NamedConstraint ;
+    rdfs:isDefinedBy openrel: ;
+    skos:definition "Identifies an endpoint relevant to the interpretation, notification or evaluation of a Named Constraint."@en ;
+    skos:note "The endpoint SHOULD be an IRI; no particular endpoint protocol is prescribed."@en .
+
+openrel:constraintScheme a skos:ConceptScheme ;
+    dct:contributor <https://orcid.org/0000-0003-2459-6817> ;
+    dct:created "2026-06-29T00:00:00+00:00"^^xsd:dateTime ;
+    dct:creator <https://orcid.org/0000-0002-0255-5101>, "Melios Katsamakis" ;
+    dct:description "OpenREL Named Constraint class and property definitions; reusable Named Constraint instances are maintained in a separate registry graph."@en ;
+    dct:title "OpenREL Constraints and Mappings"@en ;
+    owl:versionInfo "0.4 revised" ;
+    skos:prefLabel "OpenREL Constraints and Mappings"@en .
+
+openrel:constraintType a rdf:Property,
+    owl:ObjectProperty,
+    skos:Concept ;
+    rdfs:label "constraint type"@en ;
+    rdfs:domain openrel:NamedConstraint ;
+    rdfs:isDefinedBy openrel: ;
+    rdfs:range skos:Concept ;
+    skos:definition "Classifies a Named Constraint by its purpose or rationale."@en ;
+    skos:note "Values depend on the separately defined constraint-type concept scheme."@en .
+
+openrel:hasLegalBasis a rdf:Property,
+    owl:ObjectProperty,
+    skos:Concept ;
+    rdfs:label "has legal basis"@en ;
+    rdfs:isDefinedBy openrel: ;
+    rdfs:seeAlso dpv:hasLegalBasis ;
+    skos:definition "Identifies a legal basis relevant to a Named Constraint or an ODRL Rule."@en ;
+    skos:note "Values MAY reference legal-basis resources, including concepts from DPV. No legal-basis class is imposed in this module."@en .
+
+openrel:namedConstraint a rdf:Property,
+    owl:ObjectProperty,
+    skos:Concept ;
+    rdfs:label "Named Constraint reference"@en ;
+    rdfs:isDefinedBy openrel: ;
+    rdfs:range openrel:NamedConstraint ;
+    skos:definition "Associates an ODRL Policy or Rule with a reusable Named Constraint."@en ;
+    skos:note "An optional convenience relationship. The standard ODRL constraint property remains available."@en .
+
+openrel:scenario a rdf:Property,
+    owl:ObjectProperty,
+    skos:Concept ;
+    rdfs:label "applicable scenario"@en ;
+    rdfs:domain openrel:NamedConstraint ;
+    rdfs:isDefinedBy openrel: ;
+    rdfs:range skos:Concept ;
+    skos:definition "Associates a Named Constraint with a scenario or context in which it is relevant."@en ;
+    skos:note "Values depend on the separately defined scenario concept scheme."@en .

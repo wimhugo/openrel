@@ -46,7 +46,7 @@
 # Definition of Scheme and Provenance
 # ----------------------------------------------------- -------------------------------------------------------
 
-openrel:constraint-type
+openrel:typeConstraint
   a skos:ConceptScheme ;
   skos:prefLabel "Types of Named Constraints"@en ;
   dct:title "Types of Named Constraints"@en ;
@@ -65,7 +65,7 @@ openrel:role
 	rdfs:label "Role"@en 
 	skos:definition "Named Constraint defined on the basis of an Agent Role."@en ;
 	skos:note "Role-based Constraints may apply to any Action. Agent typology can be obtained from .openrel/vocabs/openrel/type_agent.ttl"@en ;
-	skos:inScheme openrel:constraint-type .
+	skos:inScheme openrel:typeConstraint .
 
 openrel:usage
 	a rdfs:Class, owl:Class, skos:Concept ;
@@ -73,7 +73,7 @@ openrel:usage
 	rdfs:label "Usage"@en 
 	skos:definition "Constraint defined on the basis of usage characteristics."@en ;
 	skos:note "Usage-based Constraints may apply to any Action. Usage typology can be obtained from .openrel/vocabs/openrel/type_usage.ttl"@en ;
-	skos:inScheme openrel:constraint-type .
+	skos:inScheme openrel:typeConstraint .
 
 openrel:revenue
 	a rdfs:Class, owl:Class, skos:Concept ;
@@ -81,7 +81,7 @@ openrel:revenue
 	rdfs:label "Revenue"@en 
 	skos:definition "Constraint defined on the basis of allowable revenue (or not)."@en ;
 	skos:note "Revenue-based Constraints may apply to any Action. Usage typology can be obtained from .openrel/vocabs/openrel/type_revenue.ttl"@en ;
-	skos:inScheme openrel:constraint-type .
+	skos:inScheme openrel:typeConstraint .
 
 openrel:access
 	a rdfs:Class, owl:Class, skos:Concept ;
@@ -89,7 +89,7 @@ openrel:access
 	rdfs:label "Access"@en 
 	skos:definition "Constraint defined on the basis of allowable access types."@en ;
 	skos:note "Access-based Constraints may apply to any Action. Access typology can be obtained from .openrel/vocabs/openrel/type_access.ttl"@en ;
-	skos:inScheme openrel:constraint-type .
+	skos:inScheme openrel:typeConstraint .
 
 openrel:purpose
 	a rdfs:Class, owl:Class, skos:Concept ;
@@ -97,7 +97,7 @@ openrel:purpose
 	rdfs:label "Purpose"@en 
 	skos:definition "Constraint defined on the basis of allowable purposes and research types."@en ;
 	skos:note "Purpose-based Constraints may apply to any Action. Purpose typology can be obtained from .openrel/vocabs/openrel/type_purpose.ttl"@en ;
-	skos:inScheme openrel:constraint-type .
+	skos:inScheme openrel:typeConstraint .
 
 openrel:notification
 	a rdfs:Class, owl:Class, skos:Concept ;
@@ -105,7 +105,7 @@ openrel:notification
 	rdfs:label "Notification"@en 
 	skos:definition "Constraint defined for elaboration of notification duties."@en ;
 	skos:note "Notification-based Constraints may apply to any Action. Notification target typology can be obtained from .openrel/vocabs/openrel/type_notification-target.ttl"@en ;
-	skos:inScheme openrel:constraint-type .
+	skos:inScheme openrel:typeConstraint .
 
 openrel:consent
 	a rdfs:Class, owl:Class, skos:Concept ;
@@ -113,7 +113,7 @@ openrel:consent
 	rdfs:label "Consent"@en 
 	skos:definition "Constraint defined for definition of consent-related duties."@en ;
 	skos:note "Consent-based Constraints may apply to any Action, but usually in context of a Duty. Consent vocabulary can be obtained from .openrel/vocabs/openrel/type_consent.ttl"@en ;
-	skos:inScheme openrel:constraint-type .
+	skos:inScheme openrel:typeConstraint .
 
 openrel:context
 	a rdfs:Class, owl:Class, skos:Concept ;
@@ -121,7 +121,7 @@ openrel:context
 	rdfs:label "Context"@en 
 	skos:definition "Constraint defined for definition of agent-related context."@en ;
 	skos:note "Context-based Constraints may apply to any Action, but usually in relation to a prohibition. Context vocabulary can be obtained from .openrel/vocabs/openrel/type_context.ttl"@en ;
-	skos:inScheme openrel:constraint-type .
+	skos:inScheme openrel:typeConstraint .
 
 openrel:tom
 	a rdfs:Class, owl:Class, skos:Concept ;
@@ -129,7 +129,7 @@ openrel:tom
 	rdfs:label "Technical and Organisation Measures"@en 
 	skos:definition "Constraint defined for definition of technical, organisational, legal, and physical measures required to safeguard sensitive data."@en ;
 	skos:note "Any class or subclass defined by DPV in TOM (https://www.w3.org/community/reports/dpvcg/CG-FINAL-dpv-20240801/modules/TOM.html) is a valid left operand when describing this constraint. Additional vocabulary, focused on non-personal sensitive data can be obtained from .openrel/vocabs/openrel/type_tom.ttl"@en ;
-	skos:inScheme openrel:constraint-type .
+	skos:inScheme openrel:typeConstraint .
 
 
 
