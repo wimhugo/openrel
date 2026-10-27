@@ -1,0 +1,809 @@
+# -------------------------------------------------------------------------------------------------------------
+# OpenREL - Open Rights Encoding language
+# Version 0.5 (Draft)
+# Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/ EUDAT)
+# This Version: 26 October 2026
+# -------------------------------------------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------------------------------------------
+# Actions
+# In OpenREL, Actions are modelled on ODRL. Actions may be allowed by Permissions, disallowed by Prohibitions, 
+# or made mandatory by Duties.
+# -------------------------------------------------------------------------------------------------------------
+
+# context
+@base <http://www.w3.org/ns/openrel/0/> .
+@prefix : <http://www.w3.org/ns/openrel/0/> .
+@prefix openrel: <http://www.w3.org/ns/openrel/0/> .
+# RDF-related
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+# rdmi-related
+@prefix dct: <http://purl.org/dc/terms/> .
+# rights-related
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix dalicc: <https://dalicc.net/ns#> .
+@prefix ids: <https://w3id.org/idsa/core/> .
+@prefix idsc: <https://w3id.org/idsa/code/> .
+
+openrel:ActionScheme
+  a skos:ConceptScheme ;
+  skos:prefLabel "OpenREL Actions and Mappings"@en ;
+  dct:title "OpenREL Actions and Mappings"@en ;
+  dct:description "Actions defined by OpenREL, and extensions to ODRL and other vocabularies."@en ;
+  dct:created "2026-06-29T00:00:00+00:00"^^xsd:dateTime ;  
+  dct:modified "2026-10-26T00:00:00+00:00"^^xsd:dateTime ;
+  dct:creator <https://orcid.org/0000-0002-0255-5101> ;  # Wim Hugo
+  dct:creator "Melios Katsamakis" ;
+  dct:contributor <https://orcid.org/0000-0003-2459-6817> ; # Prodromos Tsiavos
+  owl:versionInfo "0.5" .
+
+# -------------------------------------------------------------------------------------------------------------
+# Foundational Action Instances
+# ODRL Profile: Actions are individuals of odrl:Action, NOT subclasses of odrl:Action.
+# They include two types 
+#	(1) Defined by OpenREL and as a result, creating new concepts not present in other vocabularies such as ODRL
+#	(2) Extended and modified by OpenREL, in which case the preferred definition is the OpenREL one.
+#		In these cases, the extension often includes harmonisation (mapping between similar vocabularies)
+# -------------------------------------------------------------------------------------------------------------
+
+openrel:use
+	a odrl:Action, skos:Concept ;
+    skos:inScheme openrel:ActionScheme ;
+	rdfs:label "Use"@en ;
+	skos:definition "To use the Asset"@en ;
+	skos:note "Use is the most generic action for all non-third-party usage. More specific types of the use action can be expressed by more targeted actions."@en ;
+	# skos:note "This action is always evaluated at the consumer side."@en
+	rdfs:comment "To use a resource in any possible way. Includes all other use-related actions."@en ;
+	skos:exactMatch odrl:use ;
+	skos:exactMatch ids:use ;
+	skos:closeMatch idsc:ALLOW_DATA_USAGE ;
+	# Extensions by OpenREL
+	openrel:actionCategory odrl:Permission, odrl:Prohibition, odrl:Duty ;
+	rdfs:isDefinedBy openrel: .
+
+openrel:read
+	a odrl:Action, skos:Concept ;
+    skos:inScheme openrel:ActionScheme ;
+	rdfs:label "Read"@en ;	
+	skos:definition "Read-only access to a resource without modification, redistribution, or derivation."@en ;
+	skos:closeMatch odrl:display ;
+	skos:exactMatch odrl:read ;
+	odrl:includedIn odrl:use ;
+	# Extensions by OpenREL
+	openrel:actionCategory odrl:Permission, odrl:Prohibition ;
+	skos:exactMatch idsc:READ ;
+	rdfs:isDefinedBy openrel: .
+
+openrel:distribute
+	a odrl:Action, skos:Concept ;
+    skos:inScheme openrel:ActionScheme ;
+	rdfs:label "Distribute"@en ;	
+	skos:definition "Transfer, forward, supply, or share a resource with third parties. Encompasses sharing, disseminating, republishing, and redistributing."@en ;
+	skos:note "This action is always evaluated at the consumer side and allows it to become a data provider of this resource (idsc:)."@en ;
+	skos:exactMatch odrl:distribute ;
+	odrl:includedIn odrl:use ;
+	# Extensions by OpenREL
+	openrel:actionCategory odrl:Permission, odrl:Prohibition, odrl:Duty ;
+	skos:exactMatch idsc:DISTRIBUTE ;
+	rdfs:isDefinedBy openrel: .
+
+openrel:modify
+	a odrl:Action, skos:Concept ;
+    skos:inScheme openrel:ActionScheme ;
+	rdfs:label "Modify"@en ;	
+	skos:definition "Alter or adapt a resource resulting in a new (minor) version that is regarded as the same object, but updated or improved."@en ;
+	odrl:includedIn odrl:use ;
+	# deprecated skos:definition "Alter, adapt, transform, or derive new content from a resource."@en ;
+	# Extensions by OpenREL
+	skos:note "odrl: To change existing content of the Asset. A new asset is not created by this action."@en ;
+	skos:note "odrl: This action will modify an asset which is typically updated from time to time without creating a new asset. If the result from modifying the asset should be a new asset the actions derive or extract should be used. (Note that the notion of whether or not the change is significant enough to qualify as a new asset is subjective)."@en ;
+	skos:note "OpenREL has a narrower definition than ODRL, restricting the use of the term to assets that are modified in such a way that it retains its asset identifier and is not regarded as a derived asset. If a new asset is derived, use openrel:derive." ;
+	skos:exactMatch dalicc:ModifiedWorks ;
+	skos:broadMatch odrl:modify ;
+	openrel:actionCategory odrl:Permission, odrl:Prohibition ;
+	rdfs:isDefinedBy openrel: .
+	# Discussion - any modification that results in content that is not resolvable with the same PID is a new asset. The problem emerges from a diversity of
+	# repository practices - some maintain checksum integrity, others allow versioning with a stable PID.
+
+openrel:derive
+	a odrl:Action, skos:Concept ;
+    skos:inScheme openrel:ActionScheme ;
+	rdfs:label "Derive"@en ;	
+	skos:definition "To create a new derivative asset from one or more assets and to edit or modify the derivative."@en ;
+	skos:note "odrl: To create a new derivative Asset from this Asset and to edit or modify the derivative."@en ;
+	skos:note "odrl: A new asset is created and may have significant overlaps with the original Asset. (Note that the notion of whether or not the change is significant enough to qualify as a new asset is subjective). To the derived Asset a next policy may be applied."@en ;
+	skos:note "The OpenREL definition is broader than the ODRL definition, including assets that are derived from one or more assets." ;
+	skos:narrowMatch odrl:derive ;
+	odrl:includedIn odrl:use ;
+	# Extensions by OpenREL
+	openrel:actionCategory odrl:Permission, odrl:Prohibition ;
+	rdfs:isDefinedBy openrel: .
+	# Discussion - any modification that results in content that is not resolvable with the same PID is a new asset (a derived asset)
+
+openrel:reproduce
+	a odrl:Action, skos:Concept ;
+    skos:inScheme openrel:ActionScheme ;
+	rdfs:label "Reproduce"@en ;	
+	skos:definition "Copy or replicate a resource without modification, in any form."@en ;
+	skos:note "To make duplicate copies of the Asset in any material form."@en ;
+	odrl:includedIn odrl:use ;
+	skos:exactMatch odrl:reproduce ;
+	# Extensions by OpenREL
+	openrel:actionCategory odrl:Permission, odrl:Prohibition ;
+	rdfs:isDefinedBy openrel: .
+
+openrel:archive
+	a odrl:Action, skos:Concept ;
+    skos:inScheme openrel:ActionScheme ;
+	rdfs:label "Archive"@en ;	
+	skos:definition "Store a resource in a long-term repository or archive for preservation purposes."@en ;
+	skos:note "odrl: To store the Asset (in a non-transient form)."@en ;
+	skos:note "odrl: Temporal constraints may be used for temporal conditions."@en ;
+	odrl:includedIn odrl:use ;
+	skos:relatedMatch odrl:reproduce ;
+	# Extensions by OpenREL
+	openrel:actionCategory odrl:Permission, odrl:Prohibition, odrl:Duty ;
+	rdfs:isDefinedBy openrel: .
+
+openrel:delete
+	a odrl:Action, skos:Concept ;
+    skos:inScheme openrel:ActionScheme ;
+	rdfs:label "Delete"@en ;	
+	skos:definition "Permanently remove a resource and/ or any copies of it."@en ;
+	skos:note "odrl: To permanently remove all copies of the Asset after it has been used."@en ;
+	skos:note "odrl: Use a constraint to define under which conditions the Asset must be deleted."@en ;
+	odrl:includedIn odrl:use ;
+	skos:exactMatch odrl:delete ;
+	# Extensions by OpenREL
+	openrel:actionCategory odrl:Permission, odrl:Prohibition, odrl:Duty ;
+	skos:exactMatch idsc:DELETE ;
+	rdfs:isDefinedBy openrel: .
+
+openrel:notify
+	a odrl:Action, skos:Concept ;
+    skos:inScheme openrel:ActionScheme ;
+	rdfs:label "Notify"@en ;	
+	skos:definition "Send a notification to a defined endpoint upon performing an action."@en ;
+	odrl:includedIn odrl:use ;
+	skos:broadMatch odrl:inform ;
+	skos:exactMatch cc:Notice ;
+	# Extensions by OpenREL
+	openrel:actionCategory odrl:Permission, odrl:Duty ;
+	rdfs:isDefinedBy openrel: .
+
+openrel:log
+	a odrl:Action, skos:Concept ;
+    skos:inScheme openrel:ActionScheme ;
+	rdfs:label "Log"@en ;	
+	skos:definition "Record an event to a designated logging or audit system."@en ;
+	odrl:includedIn odrl:use ;
+	skos:broadMatch odrl:inform ;
+	# Extensions by OpenREL
+	openrel:actionCategory odrl:Permission, odrl:Duty ;
+	skos:broadMatch idsc:LOG ;
+	rdfs:isDefinedBy openrel: .
+
+openrel:attribute
+	a odrl:Action, skos:Concept ;
+    skos:inScheme openrel:ActionScheme ;
+	rdfs:label "Attribute"@en ;	
+	skos:definition "Credit the original creator or rights holder when using a resource."@en ;
+	skos:note "odrl: To attribute the use of the Asset."@en ;
+	skos:note "odrl: May link to an Asset with the attribution information. May link to a Party with the role “attributedParty” function."@en ;
+	skos:note "ccREL: credit be given to copyright holder and/or author."@en ;	
+	odrl:includedIn odrl:use ;
+	skos:exactMatch odrl:attribute ;
+	skos:exactMatch cc:Attribution ;
+	# Extensions by OpenREL
+	openrel:actionCategory odrl:Permission, odrl:Duty ;
+	rdfs:isDefinedBy openrel: .
+
+openrel:sensitiveDataConsent
+	a odrl:Action, skos:Concept ;
+    skos:inScheme openrel:ActionScheme ;
+	rdfs:label "Sensitive Data Consent"@en ;	
+	skos:definition "Acquire and record informed consent from the data subject prior to, after, or both prior to and after processing, collection, or sharing of personal data, specifically in the case of sensitive data. Consent in the case of OpenREL is defined more specifically as applicable to sensitive data."@en ;
+	skos:note "A permission to use in general can have a duty to obtain consent, and a permission to publish can explicitly require a duty to obtain consent. It can also specify the duty to record such consent."@en ;
+	skos:note "odrl: To obtain verifiable consent to perform the requested action in relation to the Asset."@en ;
+	skos:note "odrl: May be used as a Duty to ensure that the Assigner or a Party is authorized to approve such actions on a case-by-case basis. May link to a Party with the role 'consentingParty' function."@en ;
+	odrl:includedIn odrl:obtainConsent ;
+	# Extensions by OpenREL
+	openrel:actionCategory odrl:Duty ;
+	rdfs:isDefinedBy openrel: .
+
+openrel:anonymize
+	a odrl:Action, skos:Concept ;
+    skos:inScheme openrel:ActionScheme ;
+	rdfs:label "Anonymize"@en ;	
+	skos:definition "Transform data so that specific subject entities and their sensitive or privileged data cannot be identified."@en ;
+	skos:note "Subject entities include individuals, legal entities such as institutions and companies, sensitive ecosystems and endangered species, and vulnerable indigenous peoples and cultures."@en ;
+	skos:note "odrl: To anonymize all or parts of the Asset."@en ;
+	skos:note "odrl: For example, to remove identifying particulars for statistical or for other comparable purposes, or to use the Asset without stating the author/source."@en ;
+	odrl:includedIn odrl:use ;
+	skos:exactMatch odrl:anonymize ;
+	# Extensions by OpenREL
+	openrel:actionCategory odrl:Permission, odrl:Duty ;
+	skos:exactMatch idsc:ANONYMIZE ;
+	rdfs:isDefinedBy openrel: .
+
+openrel:encrypt
+	a odrl:Action, skos:Concept ;
+    skos:inScheme openrel:ActionScheme ;
+	rdfs:label "Encrypt"@en ;	
+	skos:definition "Transform data so that specific subject entities and their sensitive or privileged data cannot be identified."@en ;
+	skos:note "odrl: To convert the Asset into a different format."@en ;
+	skos:note "odrl: Typically used to convert the Asset into a different format for consumption on/transfer to a third party system."@en ;
+	odrl:includedIn odrl:use ;
+	skos:broadMatch odrl:transform ;
+	# Extensions by OpenREL
+	openrel:actionCategory odrl:Permission, odrl:Duty ;
+	rdfs:isDefinedBy openrel: .
+
+openrel:applyLicence
+	a odrl:Action, skos:Concept ;
+    skos:inScheme openrel:ActionScheme ;
+	rdfs:label "Apply Licence"@en ;	
+	skos:definition "Attach a recognised licence to a resource, defining the terms for its use and distribution."@en ;
+	skos:note "The odrl:licence action is deprecated and replaced by odrl:grantUse"@en ;
+	skos:note "odrl: This action enables the assignee to create policies for the use of the Asset for third parties. The nextPolicy is recommended to be agreed with the third party. Use of temporal constraints is recommended."@en ;
+	odrl:includedIn odrl:use ;
+	skos:exactMatch odrl:licence ;
+	skos:broadMatch odrl:grantUse ;
+	# Extensions by OpenREL
+	openrel:actionCategory odrl:Permission, odrl:Duty ;
+	rdfs:isDefinedBy openrel: .
+
+openrel:commercialise
+	a odrl:Action, skos:Concept ;
+    skos:inScheme openrel:ActionScheme ;
+	rdfs:isDefinedBy openrel: ;
+    rdfs:comment "The Assigner permits [/does not permit] the Assignee to use the asset for commercial purposes - including trademark use, selling, charging a licence fee, use in promotion, or any other direct or indirect commercial benefit that derives from use of the asset. ."@en ;
+    skos:definition "To use an Asset for commercial purposes or financial benefit."@en ;
+    rdfs:label "Commercialise"@en ;
+    skos:note "Generalises some DALICC, ODRL, and CC encodings."@en ;
+	# Extensions by OpenREL
+	openrel:actionCategory odrl:Permission, odrl:Prohibition ;
+	#openrel:dutySlot "postDuty" ;
+	skos:exactMatch cc:CommercialUse ;
+	skos:narrowMatch openrel:sell,
+					 openrel:promote,
+					 openrel:trademarkUse,
+					 openrel:costRecovery,
+					 odrl:sell,
+					 dalicc:chargeDistributionFee,
+					 dalicc:chargeLicenseFee,
+					 dalicc:chargeOffer
+	.
+
+openrel:trademarkUse
+	a odrl:Action, skos:Concept ;
+    skos:inScheme openrel:ActionScheme ;
+	rdfs:label "Trademark Use"@en ;	
+	skos:definition "The license grants/ does not grant permission to use the trade names, trademarks, service marks, or product names of the Licensor, except as required for reasonable and customary use in describing the origin of the Work and reproducing the content of the notice file."@en ;
+	skos:note "Originally defined by DALICC as a property."@en ;
+	skos:exactMatch dalicc:trademarkNotice ;
+	# Extensions by OpenREL
+	openrel:actionCategory odrl:Permission, odrl:Prohibition ;
+	rdfs:isDefinedBy openrel: .
+
+openrel:promote
+	a odrl:Action, skos:Concept ;
+    skos:inScheme openrel:ActionScheme ;
+	rdfs:isDefinedBy openrel: ;
+    rdfs:comment "The Assigner permits [/does not permit] the Assignee to use the asset for promotional purposes."@en ;
+    skos:definition "To use an Asset for promotional purposes."@en ;
+    rdfs:label "Promote"@en ;
+    skos:note "Used in several DALICC encodings. No ODRL matches. More useful as a prohibition."@en ;
+	# Extensions by OpenREL
+	openrel:actionCategory odrl:Permission, odrl:Prohibition ;
+	skos:exactMatch dalicc:promote .
+
+openrel:costRecovery
+	a odrl:Action, skos:Concept ;
+    skos:inScheme openrel:ActionScheme ;
+	rdfs:isDefinedBy openrel: ;
+    rdfs:comment "The Assigner permits [/does not permit] the Assignee to recover costs of permitted actions related to third party use."@en ;
+    skos:definition "To recover costs associated with permitted use or distribution of an Asset."@en ;
+    rdfs:label "Cost Recovery"@en ;
+    skos:note "Generalises some DALICC encodings, for example 'dalicc:ChargeDistibution'. No ODRL matches."@en ;
+	# Extensions by OpenREL
+	openrel:actionCategory odrl:Permission, odrl:Prohibition ;
+    rdfs:isDefinedBy openrel: .
+
+openrel:assentTo
+	a odrl:Action, skos:Concept ;
+    skos:inScheme openrel:ActionScheme ;
+	rdfs:label "Assent To"@en ;	
+	skos:definition "Agent using the resource assents to/ acknowledges one or more duties."@en ;
+	skos:note "Policies and Process Rulesets (e.g. terms of use) often extend access and process conditions that are not part of a licence, but depends on the context of the catalogue/ repository, funder, etc. These may require positive assent (acknowledgement) of a number of rules prior to gaining access to an asset, irrespective of eligibility in respect of licence conditions. Examples: users must register in the repository portal (policy), must assent to licence conditions,  or acknowledge the terms of use (both process duties)."@en ;
+	openrel:actionCategory odrl:Duty ;
+	rdfs:isDefinedBy openrel: .
+
+openrel:shareAlike
+	a odrl:Action, skos:Concept ;
+    skos:inScheme openrel:ActionScheme ;
+	rdfs:label "Share Alike"@en ;	
+	skos:definition "The Asset or its derivatives may be distributed without modification of its original Policy."@en ;
+	skos:note "CC: derivative works be licensed under the same terms or compatible terms as the original work."@en ;
+	skos:exactMatch cc:ShareAlike ;
+	openrel:actionCategory odrl:Duty ;
+	rdfs:isDefinedBy cc: .
+
+
+# -------------------------------------------------------------------------------------------------------------
+# Supported Actions
+# EDITORIAL: External odrl:/idsc:/dalicc:/cc: term definitions below are reproduced locally.
+# This can conflict with authoritative vocabularies.
+# These Actions are defined elsewhere and are used directly by OpenREL without amendment when required.
+# Duplicated here for convenience and to allow mapping to OpenREL concepts (Actions).
+# Deprecated terms are not reproduced.
+# -------------------------------------------------------------------------------------------------------------
+
+# ---------- ODRL
+
+odrl:present
+	a odrl:Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	odrl:includedIn odrl:use;
+	skos:broaderMatch odrl:use;
+	rdfs:label "Present"@en ;
+	skos:definition "To publicly perform the Asset."@en ;
+	skos:note "The asset can be performed (or communicated) in public."@en ;
+	rdfs:isDefinedBy odrl: ;
+	skos:scopeNote "Non-Normative"@en .
+
+odrl:grantUse
+	a odrl:Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Grant Use"@en ;
+	skos:definition "To grant the use of the Asset to third parties."@en ;
+	skos:note "This action enables the assignee to create policies for the use of the Asset for third parties. The nextPolicy is recommended to be agreed with the third party. Use of temporal constraints is recommended."@en ;
+	odrl:includedIn odrl:use ;
+    skos:scopeNote "Non-Normative"@en ;
+	# Extension by OpenREL
+	skos:exactMatch idsc:GRANT_USE .
+
+odrl:compensate
+	a odrl:Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Compensate"@en ;
+	skos:definition "To compensate by transfer of some amount of value, if defined, for using or selling the Asset."@en ;
+	skos:note "The compensation may use different types of things with a value: (i) the thing is expressed by the value (term) of the Constraint name; (b) the value is expressed by operator, rightOperand, dataType and unit. Typically the assignee will compensate the assigner, but other compensation party roles may be used."@en ;
+	odrl:includedIn odrl:use ;
+    skos:scopeNote "Non-Normative"@en .
+
+odrl:acceptTracking
+	a odrl:Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	odrl:includedIn odrl:use ;
+	rdfs:label "Accept Tracking"@en ;
+	skos:definition "To accept that the use of the Asset may be tracked."@en ;
+	skos:note "The collected information may be tracked by the Assigner, or may link to a Party with the role 'trackingParty' function."@en ;
+    skos:scopeNote "Non-Normative"@en ;
+	# OpenREL Extensions
+	skos:exactMatch idsc:TRACK_PROVENANCE .
+
+odrl:aggregate
+	a odrl:Action, skos:Concept ;
+	odrl:includedIn odrl:use ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Aggregate"@en ;
+	skos:definition "To use the Asset or parts of it as part of a composite collection."@en ;
+	:includedIn odrl:use ;
+    skos:scopeNote "Non-Normative"@en .
+
+odrl:annotate
+	a odrl:Action, skos:Concept ;
+	odrl:includedIn odrl:use ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Annotate"@en ;
+	skos:definition "To add explanatory notations/commentaries to the Asset without modifying the Asset in any other way."@en ;
+    skos:scopeNote "Non-Normative"@en .
+
+odrl:append
+	a odrl:Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Append"@en ;
+	skos:definition "The act of adding to the end of an asset."@en ;
+    owl:deprecated true ;
+	skos:exactMatch odrl:modify .
+
+odrl:appendTo
+	a odrl:Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Append To"@en ;
+#	skos:broaderTransitive odrl:writeTo ;
+	skos:definition "The act of appending data to the Asset without modifying the Asset in any other way."@en ;
+    owl:deprecated true ;
+	skos:exactMatch odrl:modify .
+
+odrl:concurrentUse
+	a odrl:Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Concurrent Use"@en ;
+	skos:definition "To create multiple copies of the Asset that are being concurrently used."@en ;
+	odrl:includedIn odrl:use ;
+    skos:scopeNote "Non-Normative"@en .
+
+odrl:digitize
+	a odrl:Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Digitize"@en ;
+	odrl:includedIn odrl:use ;
+	skos:definition "To produce a digital copy of (or otherwise digitize) the Asset from its analogue form."@en ;
+    skos:scopeNote "Non-Normative"@en .
+
+odrl:display
+	a odrl:Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Display"@en ;
+	skos:definition "To create a static and transient rendition of an Asset."@en ;
+	skos:note "For example, displaying an image on a screen. If the action is to be performed to a wider audience than just the Assignees, then the Recipient constraint is recommended to be used."@en ;
+	odrl:includedIn odrl:play ;
+    skos:scopeNote "Non-Normative"@en .
+
+odrl:ensureExclusivity
+	a odrl:Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	odrl:includedIn odrl:use ;
+	rdfs:label "Ensure Exclusivity"@en ;
+	skos:definition "To ensure that the Rule on the Asset is exclusive."@en ;
+	skos:note "If used as a Duty, the assignee should be explicitly indicated as the party that is ensuring the exclusivity of the Rule."@en ;
+    skos:scopeNote "Non-Normative"@en .
+
+odrl:execute
+	a odrl:Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Execute"@en ;
+	skos:definition "To run the computer program Asset."@en ;
+	skos:note "For example, machine executable code or Java such as a game or application."@en ;
+    odrl:includedIn odrl:use ;
+    skos:scopeNote "Non-Normative"@en .
+
+odrl:extract
+	a odrl:Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Extract"@en ;
+	skos:definition "To extract parts of the Asset and to use it as a new Asset."@en ;
+	skos:note "A new asset is created and may have very little in common with the original Asset. (Note that the notion of whether or not the change is significant enough to qualify as a new asset is subjective). To the extracted Asset a next policy may be applied."@en ;
+	odrl:includedIn odrl:reproduce ;
+    skos:scopeNote "Non-Normative"@en .
+
+odrl:give
+	a odrl:Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Give"@en ;
+	skos:definition "To transfer the ownership of the Asset to a third party without compensation and while deleting the original asset."@en ;
+	odrl:includedIn :transfer ;
+    skos:scopeNote "Non-Normative"@en .
+
+odrl:include
+	a odrl:Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Include"@en ;
+	odrl:includedIn odrl:use ;
+	skos:definition "To include other related assets in the Asset."@en ;
+	skos:note "For example: bio picture must be included in the attribution. Use of a relation sub-property is required for the related assets."@en ;
+    skos:scopeNote "Non-Normative"@en .
+
+odrl:index
+	a odrl:Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Index"@en ;
+	skos:definition "To record the Asset in an index."@en ;
+	skos:note "For example, to include a link to the Asset in a search engine database."@en ;
+    odrl:includedIn odrl:use ;
+    skos:scopeNote "Non-Normative"@en .
+
+odrl:inform
+	a odrl:Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	odrl:includedIn odrl:use ;
+	rdfs:label "Inform"@en ;
+	skos:definition "To inform that an action has been performed on or in relation to the Asset."@en ;
+	skos:note "May link to a Party with the role 'informedParty' function."@en ;
+    skos:scopeNote "Non-Normative"@en ;
+	# OpenREL Extensions
+	skos:note "OpenREL: This can be qualified as a notification to an internal or external resource. 'Log' is explicitly to an internal resource. 'Notify' is explictly to an external resource." ;
+	.
+
+odrl:install
+	a odrl:Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Install"@en ;
+	skos:definition "To load the computer program Asset onto a storage device which allows operating or running the Asset."@en ;
+	odrl:includedIn odrl:use ;
+    skos:scopeNote "Non-Normative"@en .
+
+odrl:move
+	a odrl:Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Move"@en ;
+	skos:definition "To move the Asset from one digital location to another including deleting the original copy."@en ;
+	skos:note "After the Asset has been moved, the original copy must be deleted."@en ;
+	odrl:includedIn odrl:use ;
+    skos:scopeNote "Non-Normative"@en .
+
+odrl:nextPolicy
+	a odrl:Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	odrl:includedIn odrl:use ;
+	rdfs:label "Next Policy"@en ;
+	skos:definition "To grant the specified Policy to a third party for their use of the Asset."@en ;
+	skos:note "Useful for downstream policies."@en ;
+    skos:scopeNote "Non-Normative"@en ;
+	# ODRL Extensions
+	skos:exactMatch idsc:NEXT_POLICY ;
+	.
+
+odrl:obtainConsent
+	a odrl:Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	odrl:includedIn odrl:use ;
+	rdfs:label "Obtain Consent"@en ;
+	skos:definition "To obtain verifiable consent to perform the requested action in relation to the Asset."@en ;
+	skos:note "May be used as a Duty to ensure that the Assigner or a Party is authorized to approve such actions on a case-by-case basis. May link to a Party with the role “consentingParty” function."@en ;
+    skos:scopeNote "Non-Normative"@en .
+
+odrl:play
+	a odrl:Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Play"@en ;
+	odrl:includedIn odrl:use ;
+	skos:definition "To create a sequential and transient rendition of an Asset."@en ;
+    skos:note "For example, to play a video or audio track. If the action is to be performed to a wider audience than just the Assignees, then the Recipient constraint is recommended to be used.";
+    skos:scopeNote "Non-Normative"@en .
+
+odrl:present
+	a odrl:Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Present"@en ;
+	skos:definition "To publicly perform the Asset."@en ;
+    odrl:includedIn odrl:use ;
+    skos:note "The asset can be performed (or communicated) in public.";
+    skos:scopeNote "Non-Normative"@en .
+
+odrl:print
+	a odrl:Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Print"@en ;
+	skos:definition "To create a tangible and permanent rendition of an Asset."@en ;
+	skos:note "For example, creating a permanent, fixed (static), and directly perceivable representation of the Asset, such as printing onto paper."@en ;
+	odrl:includedIn odrl:use ;
+    skos:scopeNote "Non-Normative"@en .
+
+odrl:reviewPolicy
+	a odrl:Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	odrl:includedIn odrl:use ;
+	rdfs:label "Review Policy"@en ;
+	skos:definition "To review the Policy applicable to the Asset."@en ;
+	skos:note "Used when human intervention is required to review the Policy. May link to an Asset which represents the full Policy information."@en ;
+    skos:scopeNote "Non-Normative"@en .
+
+odrl:sell
+	a odrl:Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Sell"@en ;
+	skos:definition "To transfer the ownership of the Asset to a third party with compensation and while deleting the original asset."@en ;
+	odrl:includedIn :transfer ;
+    skos:scopeNote "Non-Normative"@en .
+
+odrl:stream
+	a odrl:Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Stream"@en ;
+	skos:definition "To deliver the Asset in real-time."@en ;
+	odrl:includedIn odrl:use ;
+    skos:note "The Asset maybe utilised in real-time as it is being delivered. If the action is to be performed to a wider audience than just the Assignees, then the Recipient constraint is recommended to be used.";
+    skos:scopeNote "Non-Normative"@en .
+
+odrl:synchronize
+	a odrl:Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Synchronize"@en ;
+	skos:definition "To use the Asset in timed relations with media (audio/visual) elements of another Asset."@en ;
+	odrl:includedIn odrl:use ;
+    skos:scopeNote "Non-Normative"@en .
+
+odrl:textToSpeech
+	a odrl:Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Text-to-speech"@en ;
+	skos:definition "To have a text Asset read out loud."@en ;
+    odrl:includedIn odrl:use ;
+    skos:note "If the action is to be performed to a wider audience than just the Assignees, then the recipient constraint is recommended to be used.";
+    skos:scopeNote "Non-Normative"@en .
+
+odrl:transfer
+	a odrl:Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Transfer Ownership"@en ;
+	skos:definition "To transfer the ownership of the Asset in perpetuity."@en .
+
+odrl:transform
+	a odrl:Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Transform"@en ;
+	skos:definition "To convert the Asset into a different format."@en ;
+	skos:note "Typically used to convert the Asset into a different format for consumption on/transfer to a third party system."@en ;
+	odrl:includedIn odrl:use ;
+    skos:scopeNote "Non-Normative"@en .
+
+odrl:translate
+	a odrl:Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Translate"@en ;
+	skos:definition "To translate the original natural language of an Asset into another natural language."@en ;
+	skos:note "A new derivative Asset is created by that action."@en ;
+	odrl:includedIn odrl:use ;
+    skos:scopeNote "Non-Normative"@en .
+
+odrl:uninstall
+	a odrl:Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Uninstall"@en ;
+	odrl:includedIn odrl:use ;
+	skos:definition "To unload and delete the computer program Asset from a storage device and disable its readiness for operation."@en ;
+	skos:note "The Asset is no longer accessible to the assignees after it has been used."@en ;
+    skos:scopeNote "Non-Normative"@en .
+
+odrl:watermark
+	a odrl:Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	odrl:includedIn odrl:use ;
+	rdfs:label "Watermark"@en ;
+	skos:definition "To apply a watermark to the Asset."@en ;
+    skos:scopeNote "Non-Normative"@en .
+
+# ---------- IDSC
+# Excludes actions that have no bearing on rights and policies, e.g. 'idsc:ADD' and 'idsc:DIVIDE'
+
+idsc:AGGREGATE_BY_CONSUMER
+    a odrl:Action ;
+	rdfs:isDefinedBy idsc: ;
+    rdfs:comment "Data will be part of another piece of data so that it is not distinguishable anymore."@en ;
+    rdfs:label "aggregate by consumer"@en ;
+    skos:broadMatch odrl:aggregate ;
+    odrl:includedIn odrl:use ;
+    skos:note "This action is always evaluated at the consumer side."@en .
+
+idsc:AGGREGATE_BY_PROVIDER
+    a odrl:Action ;
+	rdfs:isDefinedBy idsc: ;
+    rdfs:comment "Data will be part of another piece of data so that it is not distinguishable anymore."@en ;
+    rdfs:label "aggregate by provider"@en ;
+    skos:broadMatch odrl:aggregate ;
+    odrl:includedIn idsc:AGGREGATE_BY_CONSUMER ;
+    skos:note "This action is always evaluated at the provider side."@en .
+
+# ---------- DALICC
+
+dalicc:addStatement
+    a odrl:Action ;
+	rdfs:isDefinedBy dalicc: ;
+    rdfs:comment "The Assignee may add his own copyright statement, notices to his modifications and may provide additional or different license terms and conditions for use, reproduction, or distribution of his modifications, or for any such Derivative Works as a whole, provided use, reproduction, and distribution of the Work otherwise complies with the conditions stated in this License."@en ;
+    rdfs:label "Add Statement"@en ;
+    skos:note "Used in 24 DALICC-encoded licences. No equivalent in ODRL. Implied if 'share alike' is not present."@en .
+
+dalicc:attachoffer
+    a odrl:Action ;
+	rdfs:isDefinedBy dalicc: ;
+    rdfs:comment "The Assignee may add a written offer for permissions according to the license."@en ;
+    rdfs:label "Attach Offer"@en ;
+    skos:note "Not used in any DALICC license encoding. No skos matches."@en .
+
+dalicc:chargeDistributionFee
+    a odrl:Action ;
+	rdfs:isDefinedBy dalicc: ;
+    rdfs:comment "The distribution of the Licensed Material [to a third party] is provided on a [costly] cost recovery basis."@en ;
+    rdfs:label "Charge Distribution Fee"@en ;
+	skos:broadMatch openrel:distribute ;
+	skos:broadMatch odrl:sell ;
+    skos:note "Used in 334 DALICC encodings."@en .
+
+dalicc:chargeLicenseFee
+    a odrl:Action ;
+	rdfs:isDefinedBy dalicc: ;
+    rdfs:comment "The Licensed Material is available for use at monetary cost [to a third party]."@en ;
+    rdfs:label "Charge License Fee"@en ;
+	skos:broadMatch openrel:distribute ;
+	skos:broadMatch odrl:sell ;
+    skos:note "Used in 21 DALICC encodings."@en .
+
+dalicc:chargeOffer
+    a odrl:Action ;
+	rdfs:isDefinedBy dalicc: ;
+    rdfs:comment "The Assignee may charge a fee for the physical act of transferring a copy, and you may at your option offer warranty protection in exchange for a fee."@en ;
+    rdfs:label "Charge Distribution with Offer"@en ;
+	skos:broadMatch openrel:distribute ;
+	skos:broadMatch odrl:sell ;
+    skos:note "Not used in any DALICC encodings."@en .
+
+dalicc:modificationNotice
+    a odrl:Action ;
+	rdfs:isDefinedBy dalicc: ;
+    rdfs:comment "A notice that indicates if the Assignee mmodified the Licensed Material and retains an indication of any previous modifications."@en ;
+    rdfs:label "Modification Notice"@en ;
+	skos:broadMatch openrel:notify ;
+	skos:broadMatch odrl:inform ;
+    skos:note "Not used in any DALICC encodings."@en .
+
+dalicc:permissionNotice
+	a odrl:Action ;
+	rdfs:isDefinedBy dalicc: ;
+    rdfs:comment "The permission notices which are in the License shall be included [in subsequent licences]."@en ;
+    rdfs:label "Permission Notice"@en ;
+	skos:closeMatch cc:shareAlike ;
+	skos:exactMatch cc:Notice ;
+    skos:note "Not used in any DALICC license encoding. Add skos matches."@en .
+
+dalicc:promote
+	a odrl:Action ;
+	rdfs:isDefinedBy dalicc: ;
+    rdfs:comment "The Assigner permits [/does not permit] the Assignee to use the licensed work for promotional purposes.."@en ;
+    rdfs:label "Promote"@en ;
+    skos:note "Not used in any DALICC license encoding. No skos matches. More useful as a prohibition."@en .
+
+dalicc:publish
+    a odrl:Action ;
+	rdfs:isDefinedBy dalicc: ;
+    rdfs:comment "The Assigner permits the Assignee to prepare and issue (a book, journal) for public sale to make it generally known, to make available online."@en ;
+    rdfs:label "Publish"@en ;
+	skos:broadMatch openrel:distribute ;
+    skos:note "Not used in any DALICC license encoding. Add skos matches."@en .
+
+dalicc:redistribute
+    a odrl:Action ;
+	rdfs:isDefinedBy dalicc: ;
+    rdfs:comment "The Assigner permits/prohibits the Assignees to redistribute the Asset."@en ;
+    rdfs:label "Redistribute"@en ;
+	skos:broadMatch openrel:distribute ;
+    skos:note "Not used in any DALICC license encoding. Add skos matches."@en .
+
+dalicc:royaltyFree
+    a odrl:Action ;
+	rdfs:isDefinedBy dalicc: ;
+    rdfs:comment "Refers to the right to use copyright material or intellectual property without the need to pay royalties or license fees for each use, per each copy or volume sold or some time period of use or sales."@en ;
+    rdfs:label "Royalty Free"@en ;
+    skos:note "Not used in any DALICC encodings. By implication, any grant of use is royalty-free unless stated otherwise. Spelling mistake in DALICC vocabulary documentation - 'dalicc:royalityFree'."@en .
+
+dalicc:sellCopy
+    a odrl:Action ;
+	rdfs:isDefinedBy dalicc: ;
+    rdfs:comment "The Assignee may sell the copies of the License[d] Material."@en ;
+    rdfs:label "Sell Copy"@en ;
+	skos:broadMatch openrel:reproduce ;
+	skos:broadMatch odrl:sell ;
+    skos:note "Not used in any DALICC license encoding. Add skos matches."@en .
+
+# ---------- Creative Commons (CC)
+
+cc:Attribution
+    a odrl:Action ;
+	rdfs:isDefinedBy cc: ;
+    rdfs:label "Attribution"@en ;
+    skos:definition "credit be given to copyright holder and/or author."@en ;
+	skos:exactMatch openrel:attribute 
+    .
+
+cc:Notice
+    a odrl:Action ;
+	rdfs:isDefinedBy cc: ;
+    rdfs:label "Notice"@en ;
+    skos:definition "copyright and license notices be kept intact."@en ;
+	skos:exactMatch openrel:notify 
+    .
+
+cc:CommercialUse
+    a odrl:Action ;
+	rdfs:isDefinedBy cc: ;
+    rdfs:label "Commercial Use"@en ;
+    skos:definition "exercising rights for commercial purposes."@en ;
+	skos:exactMatch openrel:commercialise 
+    .

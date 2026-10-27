@@ -1,0 +1,120 @@
+# OpenREL Evaluation Vocabulary revised 2026-10-27
+# Canonical OpenREL namespace: http://www.w3id.org/ns/openrel/0/
+# Schema only. Comparison individuals belong in a separate mappings graph.
+# EDITORIAL: The legacy property openrel:wasDerivedFrom is used with both IRIs
+# and string descriptions in existing mapping data. It is deliberately an
+# rdf:Property without an OWL object/datatype restriction. Prefer an IRI for
+# machine-actionable provenance; use dct:source for a textual corpus citation.
+# EDITORIAL: openrel:allows in corpus data records an observed association,
+# not necessarily logical or legal permission or compatibility.
+
+openrel:EvaluationScheme a skos:ConceptScheme ;
+    skos:prefLabel "OpenREL Evaluation Vocabulary"@en ;
+    dct:title "OpenREL Evaluation Classes and Properties"@en ;
+    dct:description "Vocabulary for recording comparisons of policies, actions, constraints and other resources, including assertion provenance and outcomes."@en ;
+    dct:created "2026-08-04T00:00:00+00:00"^^xsd:dateTime ;
+    dct:modified "2026-10-27T00:00:00+00:00"^^xsd:dateTime ;
+    dct:creator <https://orcid.org/0000-0002-0255-5101> ;
+    owl:versionInfo "0.4-reviewed" .
+
+openrel:EvaluationDetail a owl:Class, skos:Concept ;
+    rdfs:label "Evaluation Detail"@en ;
+    skos:definition "A record of a directed comparison between two resources, identifying the comparison class and the asserted outcome."@en ;
+    skos:note "Comparisons MAY concern Actions, Constraints, Policies or other resources. The record does not change either compared resource."@en .
+
+openrel:EvaluationMapping a owl:Class, skos:Concept ;
+    rdfs:subClassOf openrel:EvaluationDetail ;
+    rdfs:label "Evaluation Mapping"@en ;
+    skos:definition "An Evaluation Detail recording a reusable mapping or relationship between two resources."@en ;
+    skos:note "Mappings SHOULD be maintained separately from the source vocabulary definitions."@en .
+
+openrel:hasEvaluation a rdf:Property, owl:ObjectProperty, skos:Concept ;
+    rdfs:label "has evaluation"@en ;
+    skos:definition "Links a resource to a recorded evaluation involving that resource."@en ;
+    rdfs:range openrel:EvaluationDetail .
+
+openrel:comparedSubject a rdf:Property, owl:ObjectProperty, skos:Concept ;
+    rdfs:label "compared subject"@en ;
+    skos:definition "Identifies the source resource in a directed comparison."@en ;
+    skos:note "The source resource MAY be an Action, Constraint, Policy or another RDF resource."@en ;
+    rdfs:domain openrel:EvaluationDetail .
+
+openrel:comparedIndividual a rdf:Property, owl:ObjectProperty, skos:Concept ;
+    rdfs:label "compared individual"@en ;
+    skos:definition "Identifies the target resource in a directed comparison."@en ;
+    skos:note "Direction is significant for relationships such as odrl:includedIn."@en ;
+    rdfs:domain openrel:EvaluationDetail .
+
+openrel:evaluationClass a rdf:Property, owl:ObjectProperty, skos:Concept ;
+    rdfs:label "evaluation class"@en ;
+    skos:definition "Identifies the RDF class of the resources being compared, such as odrl:Action or odrl:Policy."@en ;
+    rdfs:domain openrel:EvaluationDetail ;
+    rdfs:range rdfs:Class .
+
+openrel:evaluationOutcome a rdf:Property, owl:ObjectProperty, skos:Concept ;
+    rdfs:label "evaluation outcome"@en ;
+    skos:definition "Identifies the asserted relationship or outcome of a comparison."@en ;
+    skos:note "The value MAY be a concept from the evaluation-outcome scheme or an existing relationship predicate such as odrl:includedIn; the latter is referenced, not asserted directly."@en ;
+    rdfs:domain openrel:EvaluationDetail .
+
+openrel:derivationType a rdf:Property, owl:ObjectProperty, skos:Concept ;
+    rdfs:label "derivation type"@en ;
+    skos:definition "Identifies how a comparison assertion was established or derived."@en ;
+    skos:note "Values SHOULD be selected from openrel:typeAssertion, including openrel:assertionSemantic."@en ;
+    rdfs:domain openrel:EvaluationDetail ;
+    rdfs:range skos:Concept .
+
+openrel:subjectRole a rdf:Property, owl:ObjectProperty, skos:Concept ;
+    rdfs:label "subject rule role"@en ;
+    skos:definition "Identifies the ODRL rule class associated with the compared subject in its source context."@en ;
+    skos:note "For example, odrl:Prohibition."@en ;
+    rdfs:domain openrel:EvaluationDetail ;
+    rdfs:range rdfs:Class .
+
+openrel:objectRole a rdf:Property, owl:ObjectProperty, skos:Concept ;
+    rdfs:label "object rule role"@en ;
+    skos:definition "Identifies the ODRL rule class associated with the compared target in its source context."@en ;
+    skos:note "For example, odrl:Permission."@en ;
+    rdfs:domain openrel:EvaluationDetail ;
+    rdfs:range rdfs:Class .
+
+openrel:sourceRelation a rdf:Property, owl:ObjectProperty, skos:Concept ;
+    rdfs:label "source relation"@en ;
+    skos:definition "Identifies the relationship predicate or term used in the source assertion."@en ;
+    skos:note "May coincide with evaluationOutcome, but distinguishes source wording from a normalised outcome."@en ;
+    rdfs:domain openrel:EvaluationDetail .
+
+openrel:rationale a rdf:Property, owl:DatatypeProperty, skos:Concept ;
+    rdfs:label "rationale"@en ;
+    skos:definition "Provides a human-readable explanation of the comparison or its supporting evidence."@en ;
+    rdfs:domain openrel:EvaluationDetail ;
+    rdfs:range xsd:string .
+
+openrel:support a rdf:Property, owl:DatatypeProperty, skos:Concept ;
+    rdfs:label "support count"@en ;
+    skos:definition "Specifies the number of source records supporting an observation or comparison."@en ;
+    skos:note "A support count alone does not establish compatibility or entailment."@en ;
+    rdfs:domain openrel:EvaluationDetail ;
+    rdfs:range xsd:nonNegativeInteger .
+
+openrel:assertedBy a rdf:Property, owl:ObjectProperty, skos:Concept ;
+    rdfs:label "asserted by"@en ;
+    skos:definition "Identifies an agent responsible for asserting the evaluation."@en ;
+    skos:note "Use an IRI for an agent; for a plain-text name, use dct:creator."@en ;
+    rdfs:domain openrel:EvaluationDetail ;
+    rdfs:subPropertyOf prov:wasAttributedTo .
+
+openrel:created a rdf:Property, owl:DatatypeProperty, skos:Concept ;
+    rdfs:label "created"@en ;
+    skos:definition "Records when the evaluation assertion was created."@en ;
+    skos:note "Prefer dct:created for general provenance metadata."@en ;
+    rdfs:domain openrel:EvaluationDetail ;
+    rdfs:range xsd:dateTime ;
+    rdfs:subPropertyOf dct:created .
+
+openrel:wasDerivedFrom a rdf:Property, skos:Concept ;
+    rdfs:label "was derived from"@en ;
+    skos:definition "Identifies a source resource or textual source description from which an evaluation assertion was derived."@en ;
+    skos:note "This legacy property accepts both IRI and literal values in existing data. For new data, an IRI-valued prov:wasDerivedFrom or a textual dct:source is preferred. It is not declared an owl:ObjectProperty or a subproperty of prov:wasDerivedFrom because some existing values are literals."@en ;
+    rdfs:domain openrel:EvaluationDetail .
+
