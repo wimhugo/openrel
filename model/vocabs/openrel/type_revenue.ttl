@@ -1,0 +1,99 @@
+# -------------------------------------------------------------------------------------------------------------
+# OpenREL - Open Rights Encoding language
+# Version 0.4 (Draft)
+# Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/ EUDAT)
+# This Version: 6 July 2026
+# -------------------------------------------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------------------------------------------
+# Revenue Source Types
+# Defined by TRSP and reproduced here for convenience
+# https://github.com/wimhugo/kb-attributes-eden-fidelis-trsp/blob/main/.configs/vocabs/attr/revenue-source-type.ttl
+# -------------------------------------------------------------------------------------------------------------
+
+@prefix trsp: <https://github.com/wimhugo/kb-attributes-eden-fidelis-trsp/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# ------------------------------------------------------------
+# Revenue Source Type Concept Scheme
+# ------------------------------------------------------------
+
+trsp:revenue-source-type-scheme
+    a skos:ConceptScheme ;
+    skos:prefLabel "Revenue Source Types"@en ;
+    dct:title "Revenue Source Types"@en ;
+    dct:description
+        "A classification of revenue sources, funding arrangements and charging mechanisms associated with the provision or use of assets and services."@en ;
+    dct:created "2026-07-06T00:00:00+00:00"^^xsd:dateTime ;
+    dct:creator <https://orcid.org/0000-0002-0255-5101> ;
+    owl:versionInfo "0.5" .
+
+# ------------------------------------------------------------
+# Revenue Source Concepts
+# ------------------------------------------------------------
+
+trsp:free
+    a skos:Concept ;
+    skos:prefLabel "Free"@en ;
+    skos:definition
+        "An arrangement in which no monetary charge is imposed on the user for the specified access, use or service."@en ;
+    skos:note
+        "Free use does not imply the absence of funding, licensing conditions or other obligations."@en ;
+    skos:inScheme trsp:revenue-source-type-scheme .
+
+trsp:subscription
+    a skos:Concept ;
+    skos:prefLabel "Subscription"@en ;
+    skos:definition
+        "A charging arrangement in which a recurring payment provides access to an asset or service for a defined period."@en ;
+    skos:inScheme trsp:revenue-source-type-scheme .
+
+trsp:payPerUse
+    a skos:Concept ;
+    skos:prefLabel "Pay per Use"@en ;
+    skos:definition
+        "A charging arrangement in which payment is determined by the number or quantity of uses of an asset or service."@en ;
+    skos:inScheme trsp:revenue-source-type-scheme .
+
+trsp:licenceFee
+    a skos:Concept ;
+    skos:prefLabel "Licence Fee"@en ;
+    skos:definition
+        "A monetary charge associated with obtaining or exercising rights granted under a licence."@en ;
+    skos:inScheme trsp:revenue-source-type-scheme .
+
+trsp:distributionCost
+    a skos:Concept ;
+    skos:prefLabel "Recovery of Distribution Costs"@en ;
+    skos:definition
+        "A charging arrangement intended to recover costs directly associated with distributing or delivering an asset."@en ;
+    skos:note
+        "The scope of recoverable costs and any applicable limits must be defined by the relevant policy or agreement."@en ;
+    skos:inScheme trsp:revenue-source-type-scheme .
+
+trsp:structural
+    a skos:Concept ;
+    skos:prefLabel "Structural Income or Budget Allocation"@en ;
+    skos:definition
+        "Recurring institutional funding or budget allocations supporting the operation or provision of an asset or service."@en ;
+    skos:inScheme trsp:revenue-source-type-scheme .
+
+trsp:membership
+    a skos:Concept ;
+    skos:prefLabel "Membership"@en ;
+    skos:definition
+        "A funding or charging arrangement based on membership contributions or fees associated with participation in an organisation, consortium or service."@en ;
+    skos:note
+        "Membership-based funding is distinct from membership as an organisational relationship or an access eligibility condition."@en ;
+    skos:inScheme trsp:revenue-source-type-scheme .
+
+trsp:grants
+    a skos:Concept ;
+    skos:prefLabel "Grants"@en ;
+    skos:definition
+        "Funding provided through grants or similar financial awards to support specified activities, assets or services."@en ;
+    skos:inScheme trsp:revenue-source-type-scheme .
+

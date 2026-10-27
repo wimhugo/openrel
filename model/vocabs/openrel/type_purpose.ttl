@@ -1,0 +1,169 @@
+# -------------------------------------------------------------------------------------------------------------
+# OpenREL - Open Rights Encoding language
+# Version 0.5 (Draft)
+# Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/ EUDAT)
+# This Version: 27 October 2026
+# -------------------------------------------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------------------------------------------
+# Purpose Types
+# In OpenREL, Purpose Types are defined to clarify or constrain purpose of use
+# Aligned with DUO and DPV
+# -------------------------------------------------------------------------------------------------------------
+
+@prefix openrel: <http://www.w3id.org/ns/openrel/0/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dpv: <https://w3id.org/dpv#> .
+@prefix duo: <http://purl.obolibrary.org/obo/DUO_> .
+
+# ------------------------------------------------------------
+# Purpose Type Concept Scheme
+# ------------------------------------------------------------
+
+openrel:type-purpose
+    a skos:ConceptScheme ;
+    skos:prefLabel "Types of Usage Purpose"@en ;
+    dct:title "Types of Usage Purpose"@en ;
+    dct:description
+        "A classification scheme for purposes associated with the access, use and processing of Assets governed by OpenREL policies."@en ;
+    dct:created "2026-07-07T00:00:00+00:00"^^xsd:dateTime ;
+    dct:creator <https://orcid.org/0000-0002-0255-5101> ;
+    owl:versionInfo "0.2" .
+
+# ------------------------------------------------------------
+# Research Purposes
+# ------------------------------------------------------------
+
+openrel:researchUse
+    a skos:Concept ;
+    skos:prefLabel "General Research Use"@en ;
+    skos:altLabel "GRU"@en ;
+    skos:definition
+        "Use of an Asset for research purposes without restriction to a particular research discipline, field or application."@en ;
+    rdfs:seeAlso duo:0000042,
+                 dpv:ResearchAndDevelopment ;
+    skos:inScheme openrel:type-purpose .
+
+openrel:academicResearch
+    a skos:Concept ;
+    skos:prefLabel "Academic Research"@en ;
+    skos:definition
+        "Research conducted in an academic context, including research undertaken within universities and other academic institutions."@en ;
+    skos:broader openrel:researchUse ;
+    skos:exactMatch dpv:AcademicResearch ;
+    skos:inScheme openrel:type-purpose .
+
+openrel:commercialResearch
+    a skos:Concept ;
+    skos:prefLabel "Commercial Research"@en ;
+    skos:definition
+        "Research conducted in a commercial context, including research undertaken by or for commercial organisations."@en ;
+    skos:broader openrel:researchUse ;
+    skos:exactMatch dpv:CommercialResearch ;
+    skos:inScheme openrel:type-purpose .
+
+openrel:nonCommercialResearch
+    a skos:Concept ;
+    skos:prefLabel "Non-Commercial Research"@en ;
+    skos:definition
+        "Research undertaken for purposes that do not constitute commercial use under the applicable policy or licence."@en ;
+    skos:note
+        "Non-commercial purpose is distinct from the legal or organisational status of the research-performing entity."@en ;
+    skos:broader openrel:researchUse ;
+    rdfs:seeAlso dpv:NonCommercialResearch ;
+    skos:inScheme openrel:type-purpose .
+
+openrel:specificDiscipline
+    a skos:Concept ;
+    skos:prefLabel "Specific Discipline Research"@en ;
+    skos:altLabel "SD"@en ;
+    skos:definition
+        "Research undertaken within one or more specified scientific disciplines or fields of study."@en ;
+    skos:note
+        "The relevant discipline or field must be identified separately, preferably using a controlled subject classification vocabulary."@en ;
+    skos:broader openrel:researchUse ;
+    rdfs:seeAlso duo:0000012 ;
+    skos:inScheme openrel:type-purpose .
+
+# ------------------------------------------------------------
+# Clinical and Biomedical Purposes
+# ------------------------------------------------------------
+
+openrel:clinicalCareUse
+    a skos:Concept ;
+    skos:prefLabel "Clinical Care Use"@en ;
+    skos:altLabel "CC"@en ;
+    skos:definition
+        "Use of an Asset for clinical care, healthcare delivery or clinical decision-making."@en ;
+    rdfs:seeAlso duo:0000043 ;
+    skos:inScheme openrel:type-purpose .
+
+openrel:healthBiomedicalResearch
+    a skos:Concept ;
+    skos:prefLabel "Health, Medical or Biomedical Research"@en ;
+    skos:altLabel "HMB"@en ;
+    skos:definition
+        "Research undertaken for health, medical or biomedical purposes."@en ;
+    skos:note
+        "The corresponding DUO permission excludes population-origins or ancestry research. Such exclusions must be expressed explicitly when applying this OpenREL purpose concept."@en ;
+    skos:broader openrel:researchUse ;
+    rdfs:seeAlso duo:0000006 ;
+    skos:inScheme openrel:type-purpose .
+
+openrel:geneticStudies
+    a skos:Concept ;
+    skos:prefLabel "Genetic Studies"@en ;
+    skos:altLabel "GSO"@en ;
+    skos:definition
+        "Research involving genetic information or genotypes, including studies combining genotype and phenotype information."@en ;
+    skos:note
+        "The related DUO modifier restricts use to genetic studies and excludes exclusively phenotype-based research."@en ;
+    skos:broader openrel:researchUse ;
+    rdfs:seeAlso duo:0000016 ;
+    skos:inScheme openrel:type-purpose .
+
+openrel:diseaseSpecific
+    a skos:Concept ;
+    skos:prefLabel "Disease-Specific Research"@en ;
+    skos:altLabel "DS"@en ;
+    skos:definition
+        "Research directed towards one or more specified diseases or disease categories."@en ;
+    skos:note
+        "The relevant disease or disease category must be identified separately, preferably using a recognised disease ontology."@en ;
+    skos:broader openrel:healthBiomedicalResearch ;
+    rdfs:seeAlso duo:0000007 ;
+    skos:inScheme openrel:type-purpose .
+
+openrel:populationResearch
+    a skos:Concept ;
+    skos:prefLabel "Population Origins or Ancestry Research"@en ;
+    skos:altLabel "POA"@en ;
+    skos:definition
+        "Research investigating population origins, ancestry or related population histories."@en ;
+    skos:broader openrel:researchUse ;
+    rdfs:seeAlso duo:0000011,
+                 duo:0000044 ;
+    skos:note
+        "The referenced DUO terms distinguish permission restricted to this purpose from prohibition of this purpose."@en ;
+    skos:inScheme openrel:type-purpose .
+
+openrel:generalMethods
+    a skos:Concept ;
+    skos:prefLabel "General Methods Research"@en ;
+    skos:altLabel "MDS"@en ;
+    skos:definition
+        "Research directed towards developing or evaluating general methods, including software, algorithms and analytical techniques."@en ;
+    skos:broader openrel:researchUse ;
+    rdfs:seeAlso duo:0000015 ;
+    skos:note
+        "The related DUO modifier prohibits methods-development research; this OpenREL concept identifies the purpose without assigning a permission or prohibition."@en ;
+    skos:inScheme openrel:type-purpose .
+
+
+
+
+

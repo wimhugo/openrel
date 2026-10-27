@@ -1,0 +1,160 @@
+# Connect my GitHub so I can directly select and pull raw TTL vocabulary files from my public repositories into the manager.
+
+# -------------------------------------------------------------------------------------------------------------
+# OpenREL - Open Rights Encoding language
+# Version 0.4 (Draft)
+# Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/ EUDAT)
+# This Version: 6 July 2026
+# -------------------------------------------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------------------------------------------
+# Notification Purpose Types 
+# Based on various inputs
+# -------------------------------------------------------------------------------------------------------------
+
+
+@prefix openrel: <http://www.w3id.org/ns/openrel/0/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix idsc: <https://w3id.org/idsa/code/> .
+@prefix dalicc: <https://dalicc.net/ns#> .
+
+# ------------------------------------------------------------
+# Notification Target Types
+# ------------------------------------------------------------
+
+openrel:notification-target-type
+    a skos:ConceptScheme ;
+    skos:prefLabel "Notification and Recording Types"@en ;
+    dct:title "Notification and Recording Types"@en ;
+    dct:description
+        "A classification of notification, logging, recording and communication mechanisms associated with the use of Assets and the fulfilment of policy or legal obligations."@en ;
+    dct:created "2026-07-06T00:00:00+00:00"^^xsd:dateTime ;
+    dct:creator <https://orcid.org/0000-0002-0255-5101> ;
+    owl:versionInfo "0.5" .
+
+# ------------------------------------------------------------
+# General Notification and Recording Types
+# ------------------------------------------------------------
+
+openrel:notify-attribution
+    a skos:Concept ;
+    skos:prefLabel "Attribution Notification"@en ;
+    skos:definition
+        "A notification or record identifying the attribution or citation associated with the use of an Asset."@en ;
+    skos:note
+        "The applicable policy determines whether attribution must be communicated to a recipient, recorded in an Asset, or published elsewhere."@en ;
+    skos:inScheme openrel:notification-target-type .
+
+openrel:notify-clearinghouse
+    a skos:Concept ;
+    skos:prefLabel "Clearinghouse Notification"@en ;
+    skos:definition
+        "A notification of Asset access or use submitted to a designated clearinghouse or audit service."@en ;
+    skos:note
+        "A clearinghouse may support audit, accountability, reporting or authorisation workflows. Any approval requirement must be expressed separately."@en ;
+    rdfs:seeAlso idsc:REMOTE_NOTIFICATION ;
+    skos:inScheme openrel:notification-target-type .
+
+openrel:notify-external-log
+    a skos:Concept ;
+    skos:prefLabel "External Logging Notification"@en ;
+    skos:definition
+        "A notification or usage record submitted to an external logging or monitoring service."@en ;
+    skos:note
+        "The destination, record format and delivery requirements are specified separately."@en ;
+    rdfs:seeAlso idsc:REMOTE_NOTIFICATION ;
+    skos:inScheme openrel:notification-target-type .
+
+openrel:notify-local-log
+    a skos:Concept ;
+    skos:prefLabel "Local Logging"@en ;
+    skos:definition
+        "The recording of specified Asset access, use or processing events in a local log."@en ;
+    skos:note
+        "The applicable policy may specify the events, recorded information, retention requirements and log format."@en ;
+    rdfs:seeAlso idsc:LOCAL_LOGGING ;
+    skos:inScheme openrel:notification-target-type .
+
+openrel:notify-ropa
+    a skos:Concept ;
+    skos:prefLabel
+        "Record of Processing Activities (ROPA)"@en ;
+    skos:altLabel "ROPA"@en ;
+    skos:definition
+        "The documentation of relevant personal-data processing activities in a Record of Processing Activities."@en ;
+    skos:note
+        "The GDPR Article 30 record documents processing activities. It does not necessarily require a separate entry for every individual use event. The DPV ROPA vocabulary may support structured descriptions of these records."@en ;
+    dct:source
+        <https://eur-lex.europa.eu/eli/reg/2016/679/art_30/oj> ;
+    skos:inScheme openrel:notification-target-type .
+
+openrel:record-in-asset
+    a skos:Concept ;
+    skos:prefLabel "Record in Asset"@en ;
+    skos:definition
+        "The inclusion of a notice or record within an Asset documenting its use, modification or other relevant actions."@en ;
+    skos:note
+        "The applicable licence or policy determines the required notice content and whether previous modification notices must be retained."@en ;
+    rdfs:seeAlso dalicc:modificationNotice ;
+    skos:inScheme openrel:notification-target-type .
+
+# ------------------------------------------------------------
+# Data Subject and GDPR-related Notices
+# ------------------------------------------------------------
+
+openrel:notice-collection-subject
+    a skos:Concept ;
+    skos:prefLabel
+        "Direct Collection Notice to Data Subject"@en ;
+    skos:definition
+        "Information provided to a data subject when personal data are collected directly from that individual."@en ;
+    skos:note
+        "Corresponds to the information obligations described in GDPR Article 13, subject to the conditions and exceptions of that Article."@en ;
+    dct:source
+        <https://eur-lex.europa.eu/eli/reg/2016/679/art_13/oj> ;
+    skos:inScheme openrel:notification-target-type .
+
+openrel:notice-collection-indirect
+    a skos:Concept ;
+    skos:prefLabel
+        "Indirect Collection Notice to Data Subject"@en ;
+    skos:definition
+        "Information provided to a data subject when personal data have been obtained from a source other than that individual."@en ;
+    skos:note
+        "Corresponds to the information obligations described in GDPR Article 14, subject to the conditions and exceptions of that Article."@en ;
+    dct:source
+        <https://eur-lex.europa.eu/eli/reg/2016/679/art_14/oj> ;
+    skos:inScheme openrel:notification-target-type .
+
+openrel:notice-actions
+    a skos:Concept ;
+    skos:prefLabel
+        "Notification of Rights-Related Actions"@en ;
+    skos:definition
+        "A communication concerning actions taken in response to the exercise of data subject rights, including rectification, erasure or restriction of processing."@en ;
+    skos:note
+        "GDPR Article 19 concerns communication to recipients to whom personal data have been disclosed and, where requested, information to the data subject about those recipients. Other response obligations must be distinguished from this requirement."@en ;
+    dct:source
+        <https://eur-lex.europa.eu/eli/reg/2016/679/art_19/oj> ;
+    skos:inScheme openrel:notification-target-type .
+
+openrel:notice-sar
+    a skos:Concept ;
+    skos:prefLabel
+        "Subject Access Request Response"@en ;
+    skos:altLabel "SAR Response"@en ;
+    skos:definition
+        "A response providing information or access to personal data following the exercise of a data subject's right of access."@en ;
+    skos:note
+        "GDPR Article 15 defines the right of access and associated information requirements. The response is subject to applicable legal conditions."@en ;
+    dct:source
+        <https://eur-lex.europa.eu/eli/reg/2016/679/art_15/oj> ;
+    skos:inScheme openrel:notification-target-type .
+
+
+
+

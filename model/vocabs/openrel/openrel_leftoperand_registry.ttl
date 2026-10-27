@@ -1,0 +1,176 @@
+# OpenREL LeftOperand registry - curated draft 0.5
+# Source: leftoperand.ttl (uploaded), with explicit editorial normalisation
+# ODRL and IDSC terms are referenced, not redefined.
+@prefix openrel: <http://www.w3id.org/ns/openrel/0/> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix idsc: <https://w3id.org/idsa/code/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+openrel:LeftOperandRegistry a dct:Standard ;
+    dct:title "OpenREL LeftOperand Registry"@en ;
+    dct:description "OpenREL extensions and adopted external ODRL and IDSC left operands."@en .
+
+openrel:consentRequired a odrl:LeftOperand ;
+    rdfs:label "Consent Required"@en ;
+    rdfs:comment "Requires one or more types of consent to be provided."@en ;
+    dct:description "Editorial: Consent type/approval status; avoid treating concept as proof of consent"@en ;
+    rdfs:isDefinedBy openrel: .
+
+openrel:agentRole a odrl:LeftOperand ;
+    rdfs:label "Agent Role Constraint"@en ;
+    rdfs:comment "Requires the Assignee to hold a specific Agent Role."@en ;
+    dct:description "Editorial: Verified role of evaluated Party"@en ;
+    rdfs:isDefinedBy openrel: .
+
+openrel:agentAffiliation a odrl:LeftOperand ;
+    rdfs:label "Agent Affiliation Constraint"@en ;
+    rdfs:comment "Requires the Assignee to be Affiliated with a Specific Institution."@en ;
+    dct:description "Editorial: Verified organisation affiliation; distinguish affiliation from organisation identity"@en ;
+    rdfs:isDefinedBy openrel: .
+
+openrel:usageLimitation a odrl:LeftOperand ;
+    rdfs:label "Technical Usage Limitations"@en ;
+    rdfs:comment "Requires the Asset to be used only within technical limitations in respect of volume, access events, endpoints, and similar considerations."@en ;
+    dct:description "Editorial: Broad umbrella overlaps ODRL count, elapsedTime and IDS quantity/endpoint"@en ;
+    rdfs:isDefinedBy openrel: .
+
+openrel:accessCategory a odrl:LeftOperand ;
+    rdfs:label "Access Limitations"@en ;
+    rdfs:comment "Requires the Asset to be used or distributed with typical provisions associated with ab Access Category."@en ;
+    dct:description "Editorial: Access category is classification, not automatic bundle of enforceable provisions"@en ;
+    rdfs:isDefinedBy openrel: .
+
+openrel:logSpecification a odrl:LeftOperand ;
+    rdfs:label "Logging Specification"@en ;
+    rdfs:comment "Requires a notification to comply with a message or log specification."@en ;
+    dct:description "Editorial: Log schema/specification IRI; notification/logging action separate"@en ;
+    rdfs:isDefinedBy openrel: .
+
+openrel:assetLocation a odrl:LeftOperand ;
+    rdfs:label "Physical or Virtual Asset Location"@en ;
+    rdfs:comment "Requires the Asset to be used or persisted in a specific physical or virtual location."@en ;
+    dct:description "Editorial: Clarify stored/hosted location versus where use occurs"@en ;
+    rdfs:isDefinedBy openrel: .
+
+openrel:notificationDuty a odrl:LeftOperand ;
+    rdfs:label "Notification Duty"@en ;
+    rdfs:comment "Requires that use or dissemination of the Asset be notified to one or more endpoints or targets."@en ;
+    dct:description "Editorial: Operand tests notification state/type; actual duty is an odrl:Duty"@en ;
+    rdfs:isDefinedBy openrel: .
+
+openrel:securityProfile a odrl:LeftOperand ;
+    rdfs:label "Security Profile"@en ;
+    rdfs:comment "Requires that the Agent be verified with a specific security profile."@en ;
+    dct:description "Editorial: Profile/assurance evidence of Party or environment; define subject"@en ;
+    rdfs:isDefinedBy openrel: .
+
+openrel:delegationToken a odrl:LeftOperand ;
+    rdfs:label "Delegation Token"@en ;
+    rdfs:comment "Requires the requesting agent to carry a valid, scoped delegation token issued by an authenticated human principal. Enables verifiable delegation chains in agentic AI workflows."@en ;
+    dct:description "Editorial: Boolean validity result; token and delegation scope evaluated separately"@en ;
+    rdfs:isDefinedBy openrel: .
+
+openrel:revenuePermitted a odrl:LeftOperand ;
+    rdfs:label "Revenue Permitted"@en ;
+    rdfs:comment "Qualifies the type of revenue permitted for the original or serviced Asset."@en ;
+    dct:description "Editorial: Allowed revenue mechanism; not a payment amount"@en ;
+    rdfs:isDefinedBy openrel: .
+
+openrel:contextLimitation a odrl:LeftOperand ;
+    rdfs:label "Context Limitation"@en ;
+    rdfs:comment "Requires that the Assignee or Assignee context be qualified as a specific type."@en ;
+    dct:description "Editorial: Source of evidence versus asserted characteristic; avoid conflation"@en ;
+    rdfs:isDefinedBy openrel: .
+
+openrel:tomLimitation a odrl:LeftOperand ;
+    rdfs:label "TOM Limitation"@en ;
+    rdfs:comment "Requires that the use or dissemination of the Asset occurs with specific technical, organisational, legal, or physical measures in place."@en ;
+    dct:description "Editorial: Presence/compliance of technical-organisational measure"@en ;
+    rdfs:isDefinedBy openrel: .
+
+openrel:locationLimitation a odrl:LeftOperand ;
+    rdfs:label "Location Limitation"@en ;
+    rdfs:comment "Requires that the use or dissemination of the Asset occurs within specific location, identified via coordinates, a location IRI, or a country/ region IRI."@en ;
+    dct:description "Editorial: Location of use/dissemination; distinguish assetLocation"@en ;
+    rdfs:isDefinedBy openrel: .
+
+openrel:legalBasis a odrl:LeftOperand ;
+    rdfs:label "Legal Basis"@en ;
+    rdfs:comment "Requires that the use or dissemination of the Asset occurs with a specific legal basis as defined in GDPR."@en ;
+    dct:description "Editorial: Legal basis as an evaluated value; DPV LegalBasis is class, not SKOS match"@en ;
+    rdfs:isDefinedBy openrel: .
+
+openrel:ipRange a odrl:LeftOperand ;
+    rdfs:label "IP Range"@en ;
+    rdfs:comment "Requires that the use or dissemination of the Asset occurs to one of an array of IP addresses."@en ;
+    dct:description "Editorial: Network source/destination and CIDR representation need explicit definition"@en ;
+    rdfs:isDefinedBy openrel: .
+
+# External LeftOperands: adoption references only; authoritative definitions are external.
+openrel:LeftOperandRegistry dct:references
+    odrl:absolutePosition,
+    odrl:absoluteSpatialPosition,
+    odrl:absoluteTemporalPosition,
+    odrl:absoluteSize,
+    odrl:count,
+    odrl:dateTime,
+    odrl:delayPeriod,
+    odrl:deliveryChannel,
+    odrl:device,
+    odrl:elapsedTime,
+    odrl:event,
+    odrl:fileFormat,
+    odrl:industry,
+    odrl:language,
+    odrl:media,
+    odrl:meteredTime,
+    odrl:payAmount,
+    odrl:percentage,
+    odrl:product,
+    odrl:purpose,
+    odrl:recipient,
+    odrl:relativePosition,
+    odrl:relativeSpatialPosition,
+    odrl:relativeTemporalPosition,
+    odrl:relativeSize,
+    odrl:resolution,
+    odrl:spatial,
+    odrl:spatialCoordinates,
+    odrl:system,
+    odrl:systemDevice,
+    odrl:timeInterval,
+    odrl:unitOfCount,
+    odrl:version,
+    odrl:virtualLocation,
+    idsc:PAYMENT,
+    idsc:POLICY_EVALUATION_TIME,
+    idsc:ELAPSED_TIME,
+    idsc:DELAY,
+    idsc:DATE_TIME,
+    idsc:EVENT,
+    idsc:HASH_ALGORITHM,
+    idsc:STATE,
+    idsc:JSON_PATH,
+    idsc:XPATH,
+    idsc:REPLACE_WITH,
+    idsc:ABSOLUTE_SPATIAL_POSITION,
+    idsc:OPERAND,
+    idsc:USER,
+    idsc:ROLE,
+    idsc:RECIPIENT,
+    idsc:PURPOSE,
+    idsc:ARTIFACT_STATE,
+    idsc:COUNT,
+    idsc:QUANTITY,
+    idsc:RECURRENCE_RATE,
+    idsc:SECURITY_LEVEL,
+    idsc:SYSTEM,
+    idsc:SYSTEM_DEVICE,
+    idsc:ENDPOINT,
+    idsc:APPLICATION,
+    idsc:CONNECTOR,
+    idsc:LOG_LEVEL,
+    idsc:NOTIFICATION_LEVEL,
+    idsc:PATH .

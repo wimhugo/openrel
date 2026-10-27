@@ -1,0 +1,107 @@
+# -------------------------------------------------------------------------------------------------------------
+# OpenREL - Open Rights Encoding language
+# Version 0.4 (Draft)
+# Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/ EUDAT)
+# This Version: 1 July 2026
+# -------------------------------------------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------------------------------------------
+# Consent Types 
+# In OpenREL, Consent Types are used to unambigously identify options for requiring consent
+# these are typically duties associated with permissions.
+# -------------------------------------------------------------------------------------------------------------
+
+@prefix openrel: <http://www.w3id.org/ns/openrel/0/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dpv: <https://w3id.org/dpv#> .
+
+# ------------------------------------------------------------
+# Consent and Authorisation Types
+# ------------------------------------------------------------
+
+openrel:typeConsent
+    a skos:ConceptScheme ;
+    skos:prefLabel "Types of Consent and Authorisation"@en ;
+    dct:title "Types of Consent and Authorisation"@en ;
+    dct:description
+        "A classification of consent, ethics approval, community approval and contractual authorisation requirements associated with the use, processing, reuse and dissemination of Assets."@en ;
+    dct:created "2026-06-29T00:00:00+00:00"^^xsd:dateTime ;
+    dct:creator <https://orcid.org/0000-0002-0255-5101> ;
+    owl:versionInfo "0.2" .
+
+# ------------------------------------------------------------
+# Consent and Authorisation Concepts
+# ------------------------------------------------------------
+
+openrel:consent-ethics
+    a skos:Concept ;
+    skos:prefLabel "Ethics Clearance"@en ;
+    skos:definition
+        "A requirement for documented approval or clearance from an authorised research ethics committee or institutional review board before undertaking a specified activity."@en ;
+    skos:note
+        "The approval may be conditional and may apply to a defined research protocol, dataset, population or period."@en ;
+    skos:inScheme openrel:typeConsent .
+
+openrel:consent-informed
+    a skos:Concept ;
+    skos:prefLabel "Informed Consent"@en ;
+    skos:definition
+        "A requirement to obtain agreement from an appropriately informed and authorised person or representative before undertaking a specified activity involving an Asset or protected interest."@en ;
+    skos:note
+        "The scope, authority and validity of consent depend on the applicable legal, ethical or governance framework. Community-level approval is represented separately."@en ;
+    skos:inScheme openrel:typeConsent .
+
+openrel:consent-legal
+    a skos:Concept ;
+    skos:prefLabel "GDPR Consent"@en ;
+    skos:definition
+        "A requirement for valid consent from the data subject where consent is relied upon as the lawful basis for processing personal data under the GDPR."@en ;
+    skos:broader openrel:consent-informed ;
+    rdfs:seeAlso dpv:Consent ;
+    dct:source
+        <https://eur-lex.europa.eu/eli/reg/2016/679/art_4/oj> ,
+        <https://eur-lex.europa.eu/eli/reg/2016/679/art_6/oj> ,
+        <https://eur-lex.europa.eu/eli/reg/2016/679/art_7/oj> ;
+    skos:note
+        "Consent must satisfy the applicable GDPR requirements. Explicit consent is required in particular circumstances, but is not synonymous with consent in all cases."@en ;
+    skos:inScheme openrel:typeConsent .
+
+openrel:consent-reuse-before
+    a skos:Concept ;
+    skos:prefLabel "Prior Reuse Consent"@en ;
+    skos:definition
+        "A requirement to obtain consent or approval from an authorised subject, rights holder, creator or curator before undertaking a specified reuse of an Asset."@en ;
+    skos:note
+        "The required consenting or approving Party and the activities covered by the authorisation must be identified separately."@en ;
+    skos:inScheme openrel:typeConsent .
+
+openrel:consent-reuse-after
+    a skos:Concept ;
+    skos:prefLabel "Post-Reuse Dissemination Consent"@en ;
+    skos:definition
+        "A requirement to obtain consent or approval from an authorised Party before publishing, distributing or otherwise disseminating an Asset derived or modified through an earlier reuse activity."@en ;
+    skos:note
+        "The approval occurs after the initial reuse but before the dissemination activity to which it applies."@en ;
+    skos:inScheme openrel:typeConsent .
+
+openrel:approval-community
+    a skos:Concept ;
+    skos:prefLabel "Community Approval"@en ;
+    skos:definition
+        "A requirement to obtain approval from an appropriately authorised community or its representatives before using, reusing, publishing or disseminating an Asset or information affecting that community's interests."@en ;
+    skos:note
+        "Applicable community governance protocols determine who may provide approval and whether collective decision-making or other safeguards are required."@en ;
+    skos:inScheme openrel:typeConsent .
+
+openrel:authorisation-contractual
+    a skos:Concept ;
+    skos:prefLabel "Contractual Authorisation"@en ;
+    skos:definition
+        "A requirement to obtain authorisation under an applicable contract or agreement before using, reusing, publishing or disseminating an Asset."@en ;
+    skos:note
+        "The authorising Party, contractual instrument and scope of the authorisation must be identified separately."@en ;
+    skos:inScheme openrel:typeConsent .

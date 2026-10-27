@@ -1,0 +1,104 @@
+# -------------------------------------------------------------------------------------------------------------
+# OpenREL - Open Rights Encoding language
+# Version 0.4 (Draft)
+# Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/ EUDAT)
+# This Version: 1 July 2026
+# -------------------------------------------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------------------------------------------
+# Technical and Operational Measure Types
+# In OpenREL, DPV TOM is used to define left operands for description of technical, organisational, legal, and 
+# physical measures required to safeguard sensitive data - which is not limited only to personal data.
+# OpenREL only defines measures here that are not included in DPV TOM.
+# -------------------------------------------------------------------------------------------------------------
+
+
+@prefix openrel: <http://www.w3id.org/ns/openrel/0/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dpv: <https://w3id.org/dpv#> .
+
+# ------------------------------------------------------------
+# Technical and Organisational Measures
+# ------------------------------------------------------------
+
+openrel:type-tom
+    a skos:ConceptScheme ;
+    skos:prefLabel
+        "Types of Technical and Organisational Measures"@en ;
+    dct:title
+        "Types of Technical and Organisational Measures"@en ;
+    dct:description
+        "A classification of additional technical and organisational measures used to safeguard Assets, regulate access, and mitigate risks associated with the use or disclosure of sensitive information."@en ;
+    skos:note
+        "OpenREL complements existing vocabularies, particularly DPV, by describing measures relevant to research and other protected information that may require more specific operational controls."@en ;
+    dct:created "2026-07-07T00:00:00+00:00"^^xsd:dateTime ;
+    dct:creator
+        <https://orcid.org/0000-0002-0255-5101> ;
+    owl:versionInfo "0.2" .
+
+# ------------------------------------------------------------
+# Spatial Resolution Limitation
+# ------------------------------------------------------------
+
+openrel:limitResolution
+    a skos:Concept ;
+    skos:prefLabel
+        "Spatial Resolution Limitation"@en ;
+    skos:definition
+        "A measure that limits the spatial detail of information made available through an Asset or its derived outputs."@en ;
+    skos:note
+        "The measure may require spatial aggregation, generalisation or reduced coordinate precision to protect sensitive locations, such as habitats of endangered species or sites associated with indigenous community resources."@en ;
+    skos:note
+        "Where expressed as a minimum spatial cell size or generalisation distance, the applicable threshold may be specified in metres. Other spatial resolution models require appropriate parameters and units."@en ;
+    rdfs:seeAlso dpv:TechnicalMeasure ;
+    skos:inScheme openrel:type-tom .
+
+# ------------------------------------------------------------
+# Data Minimisation
+# ------------------------------------------------------------
+
+openrel:dataMinimisation
+    a skos:Concept ;
+    skos:prefLabel
+        "Data Minimisation"@en ;
+    skos:definition
+        "A measure that limits the data made available or processed to the subset necessary for a specified purpose or authorised activity."@en ;
+    skos:note
+        "Implementations may include selective queries, attribute-level filtering, record-level filtering or controlled extraction of data subsets."@en ;
+    skos:note
+        "The applicable policy or processing context determines the authorised subset and the criteria used to assess necessity."@en ;
+    rdfs:seeAlso dpv:TechnicalMeasure ;
+    skos:inScheme openrel:type-tom .
+
+# ------------------------------------------------------------
+# Blind Data Processing
+# ------------------------------------------------------------
+
+openrel:blindProcessing
+    a skos:Concept ;
+    skos:prefLabel
+        "Blind Data Processing"@en ;
+    skos:definition
+        "A measure that permits specified computational processing of an Asset while preventing the human processor from directly accessing the original protected data."@en ;
+    skos:note
+        "A typical implementation allows code to be developed and tested against simulated or representative data before execution in a controlled environment containing the protected Asset."@en ;
+    skos:note
+        "The processing environment may access the original data, while human access is restricted to authorised code, execution information and permitted derived outputs."@en ;
+    skos:note
+        "Additional controls may be required to prevent disclosure through logs, intermediate results, derived outputs or repeated queries."@en ;
+    rdfs:seeAlso dpv:TechnicalMeasure ;
+    skos:inScheme openrel:type-tom .
+
+
+
+
+
+
+
+
+
+

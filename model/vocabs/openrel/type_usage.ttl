@@ -1,0 +1,159 @@
+# -------------------------------------------------------------------------------------------------------------
+# OpenREL - Open Rights Encoding language
+# Version 0.5 (Draft)
+# Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/ EUDAT)
+# This Version: 27 October 2026
+# -------------------------------------------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------------------------------------------
+# Usage Types 
+# In OpenREL, Usage Types are used to unambigously identify 
+# constraints on usage options as leftOperands
+# -------------------------------------------------------------------------------------------------------------
+
+@prefix openrel: <http://www.w3id.org/ns/openrel/0/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix idsc: <https://w3id.org/idsa/code/> .
+
+# ------------------------------------------------------------
+# Usage Types Concept Scheme
+# ------------------------------------------------------------
+
+openrel:typeUsage
+    a skos:ConceptScheme ;
+    skos:prefLabel "Types of Usage"@en ;
+    dct:title "Types of Usage"@en ;
+    dct:description
+        "A classification scheme for usage conditions and restrictions applicable to Actions and Constraints in OpenREL policies."@en ;
+    dct:created "2026-07-06T00:00:00+00:00"^^xsd:dateTime ;
+    dct:modified "2026-10-27T00:00:00+00:00"^^xsd:dateTime ;
+    dct:creator <https://orcid.org/0000-0002-0255-5101> ;
+    owl:versionInfo "0.5" .
+
+# ------------------------------------------------------------
+# Usage Type Concepts
+# ------------------------------------------------------------
+
+openrel:connector
+    a skos:Concept ;
+    skos:prefLabel "Connector"@en ;
+    skos:definition
+        "A usage condition restricting access to an identified data connector."@en ;
+    skos:note
+        "The connector is identified by an IRI. A connectorURI parameter may be used to supply its identifier."@en ;
+    rdfs:seeAlso idsc:CONNECTOR_RESTRICTED_DATA_USAGE ;
+    skos:inScheme openrel:typeUsage .
+
+openrel:ipRange
+    a skos:Concept ;
+    skos:prefLabel "IP Range"@en ;
+    skos:definition
+        "A usage condition restricting access to a specified IP address or range of IP addresses."@en ;
+    skos:note
+        "IP address ranges may be represented using CIDR notation or another explicitly defined representation."@en ;
+    skos:inScheme openrel:typeUsage .
+
+openrel:application
+    a skos:Concept ;
+    skos:prefLabel "Application"@en ;
+    skos:definition
+        "A usage condition restricting access or use to an identified system or application."@en ;
+    rdfs:seeAlso idsc:APPLICATION_RESTRICTED_DATA_USAGE ;
+    skos:inScheme openrel:typeUsage .
+
+openrel:accessDuration
+    a skos:Concept ;
+    skos:prefLabel "Access Duration"@en ;
+    skos:definition
+        "A usage condition limiting access to a specified elapsed duration measured from a defined starting event."@en ;
+    skos:note
+        "The duration may be supplied as a parameter using xsd:duration, for example PT10H or PT24H. The starting event must be defined by the applicable policy or evaluation context."@en ;
+    rdfs:seeAlso idsc:DURATION_RESTRICTED_DATA_USAGE ;
+    skos:inScheme openrel:typeUsage .
+
+openrel:accessWindow
+    a skos:Concept ;
+    skos:prefLabel "Access Window"@en ;
+    skos:definition
+        "A usage condition restricting access to a specified date-time interval."@en ;
+    skos:note
+        "The interval may be defined by dateTimeFrom and dateTimeTo parameters using xsd:dateTime. Both bounds must be satisfied for access within the interval."@en ;
+    rdfs:seeAlso idsc:INTERVAL_RESTRICTED_DATA_USAGE ;
+    skos:inScheme openrel:typeUsage .
+
+openrel:spatialCoverage
+    a skos:Concept ;
+    skos:prefLabel "Spatial Coverage"@en ;
+    skos:definition
+        "A usage condition restricting access or use according to a specified geographic location or area."@en ;
+    skos:note
+        "Geographic values may be represented by location IRIs, geographic coordinates, bounding boxes or geometries, subject to the selected spatial representation and comparison operator."@en ;
+    rdfs:seeAlso idsc:LOCATION_RESTRICTED_DATA_USAGE ;
+    skos:inScheme openrel:typeUsage .
+
+openrel:userRole
+    a skos:Concept ;
+    skos:prefLabel "User Role"@en ;
+    skos:definition
+        "A usage condition requiring the relevant Party to fulfil a specified role."@en ;
+    skos:note
+        "Role values may be selected from the OpenREL typeAgent vocabulary. Verification of the role is a separate evaluation concern."@en ;
+    rdfs:seeAlso idsc:ROLE_RESTRICTED_DATA_USAGE ;
+    skos:inScheme openrel:typeUsage .
+
+openrel:usagePurpose
+    a skos:Concept ;
+    skos:prefLabel "Usage Purpose"@en ;
+    skos:definition
+        "A usage condition restricting an Action to one or more specified purposes."@en ;
+    skos:note
+        "Purpose values may be selected from the OpenREL typePurpose vocabulary. This concept is distinct from openrel:purpose in the typeConstraint classification scheme."@en ;
+    rdfs:seeAlso idsc:PURPOSE_RESTRICTED_DATA_USAGE ;
+    skos:inScheme openrel:typeUsage .
+
+openrel:usageCount
+    a skos:Concept ;
+    skos:prefLabel "Usage Count"@en ;
+    skos:definition
+        "A usage condition limiting the number of permitted executions of an Action."@en ;
+    skos:note
+        "The maximum count is expressed as a non-negative integer. Enforcement requires a mechanism for recording and counting relevant Action executions."@en ;
+    rdfs:seeAlso idsc:RESTRICTED_NUMBER_OF_USAGES ;
+    skos:inScheme openrel:typeUsage .
+
+openrel:maxVolume
+    a skos:Concept ;
+    skos:prefLabel "Maximum Volume"@en ;
+    skos:definition
+        "A usage condition limiting the quantity or volume of an Asset that may be accessed, transferred or processed."@en ;
+    skos:note
+        "A volume limit requires a numeric value and an explicitly defined unit of measure."@en ;
+    skos:inScheme openrel:typeUsage .
+
+openrel:securityLevel
+    a skos:Concept ;
+    skos:prefLabel "Security Level"@en ;
+    skos:definition
+        "A usage condition requiring a connector or other relevant system to satisfy a specified security assurance level."@en ;
+    skos:note
+        "Security assurance levels may be selected from an applicable Data Spaces security guarantee vocabulary or another recognised classification scheme."@en ;
+    rdfs:seeAlso idsc:SECURITY_LEVEL_RESTRICTED_POLICY ;
+    skos:inScheme openrel:typeUsage .
+
+# ------------------------------------------------------------
+# Optional extension: event-based usage
+# ------------------------------------------------------------
+
+openrel:usageEvent
+    a skos:Concept ;
+    skos:prefLabel "Usage Event"@en ;
+    skos:definition
+        "A usage condition restricting an Action to a specified event or event-related period."@en ;
+    skos:note
+        "An event may define a temporal context even when its exact starting or ending time is not known when the policy is authored."@en ;
+    rdfs:seeAlso idsc:EVENT_RESTRICTED_DATA_USAGE ;
+    skos:inScheme openrel:typeUsage .

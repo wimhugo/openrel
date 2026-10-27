@@ -1,0 +1,104 @@
+# -------------------------------------------------------------------------------------------------------------
+# OpenREL - Open Rights Encoding language
+# Version 0.4 (Draft)
+# Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/ EUDAT)
+# This Version: 1 July 2026
+# -------------------------------------------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------------------------------------------
+# Context Types 
+# In OpenREL, Context Types are used to unambigously identify context options and scenarios applicable to agents
+# The Context Types are typically used to define prohibitions.
+# -------------------------------------------------------------------------------------------------------------
+
+
+@prefix openrel: <http://www.w3id.org/ns/openrel/0/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# ------------------------------------------------------------
+# Requestor Context Types
+# ------------------------------------------------------------
+
+openrel:typeContext
+    a skos:ConceptScheme ;
+    skos:prefLabel "Requestor Context Types"@en ;
+    dct:title "Requestor Context Types"@en ;
+    dct:description
+        "A classification of identity, affiliation, research activity and organisational evidence sources that may be used to evaluate claims about a requestor in an OpenREL policy."@en ;
+    dct:created "2026-07-07T00:00:00+00:00"^^xsd:dateTime ;
+    dct:creator <https://orcid.org/0000-0002-0255-5101> ;
+    owl:versionInfo "0.2" .
+
+# ------------------------------------------------------------
+# Context Verification Concepts
+# ------------------------------------------------------------
+
+openrel:context-eidas
+    a skos:Concept ;
+    skos:prefLabel "eIDAS Verification"@en ;
+    skos:definition
+        "Verification of identity or specified attributes using electronic identification or attestations supported by the eIDAS framework."@en ;
+    skos:note
+        "Verification of legal identity does not by itself establish researcher status. Researcher roles or affiliations require appropriate attribute evidence."@en ;
+    rdfs:seeAlso
+        <https://digital-strategy.ec.europa.eu/en/policies/eidas-regulation> ;
+    skos:inScheme openrel:typeContext .
+
+openrel:context-orcid
+    a skos:Concept ;
+    skos:prefLabel "ORCID Verification"@en ;
+    skos:definition
+        "Verification of an ORCID identifier or associated assertions as evidence relevant to the identity, affiliation or research activity of a requestor."@en ;
+    skos:note
+        "The existence of an ORCID record alone does not authenticate the requestor or establish researcher status. Authenticated identifier control and the provenance of associated assertions must be considered separately."@en ;
+    rdfs:seeAlso <https://orcid.org/> ;
+    skos:inScheme openrel:typeContext .
+
+openrel:context-edugain
+    a skos:Concept ;
+    skos:prefLabel "eduGAIN Verification"@en ;
+    skos:definition
+        "Verification of authentication or identity-provider attributes obtained through an identity federation participating in eduGAIN."@en ;
+    skos:note
+        "Successful federated authentication establishes an authentication event, not necessarily researcher status. Affiliation or role claims depend on the attributes released by the identity provider."@en ;
+    rdfs:seeAlso <https://edugain.org/> ;
+    skos:inScheme openrel:typeContext .
+
+openrel:context-skg
+    a skos:Concept ;
+    skos:prefLabel "Scholarly Knowledge Graph Verification"@en ;
+    skos:altLabel "SKG Verification"@en ;
+    skos:definition
+        "Verification of claims concerning research activity, scholarly outputs or affiliations using records from a scholarly knowledge graph."@en ;
+    skos:note
+        "Sources may include OpenAIRE and OpenAlex. The reliability of the evidence depends on record matching, provenance, currency and the nature of the asserted relationship."@en ;
+    rdfs:seeAlso
+        <https://graph.openaire.eu/> ,
+        <https://openalex.org/> ;
+    skos:inScheme openrel:typeContext .
+
+openrel:context-cordis
+    a skos:Concept ;
+    skos:prefLabel "CORDIS Verification"@en ;
+    skos:definition
+        "Verification of an organisation's participation in an EU-funded research or innovation project using CORDIS records."@en ;
+    skos:note
+        "Project participation provides evidence of involvement in funded research or innovation activities, but does not necessarily establish the organisation's current research status or the requestor's affiliation."@en ;
+    rdfs:seeAlso
+        <https://cordis.europa.eu/> ;
+    skos:inScheme openrel:typeContext .
+
+openrel:context-ror
+    a skos:Concept ;
+    skos:prefLabel "ROR Verification"@en ;
+    skos:definition
+        "Verification of an organisation's identity or registry attributes using the Research Organization Registry."@en ;
+    skos:note
+        "A ROR identifier identifies an organisation. It does not by itself verify an individual requestor's affiliation, authorisation or researcher status."@en ;
+    rdfs:seeAlso <https://ror.org/> ;
+    skos:inScheme openrel:typeContext .
+
