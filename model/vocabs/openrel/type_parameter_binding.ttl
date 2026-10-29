@@ -1,0 +1,225 @@
+@prefix openrel: <http://www.w3.org/ns/openrel/0/> .
+@prefix odrl:    <http://www.w3.org/ns/odrl/2/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+
+
+@prefix openrel: <http://www.w3id.org/ns/openrel/0/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+# ------------------------------------------------------------
+# Parameter Binding Source Concept Scheme
+# ------------------------------------------------------------
+
+openrel:ParameterBindingSource
+    a skos:ConceptScheme ;
+    skos:prefLabel "Parameter Binding Sources"@en ;
+    dct:title "Parameter Binding Sources"@en ;
+    skos:definition
+        "A classification of sources, contexts and evaluation mechanisms from which parameter values are obtained during policy instantiation or runtime evaluation."@en ;
+    skos:scopeNote
+        "The concepts are used as values of openrel:resolutionMethod on instances of openrel:Parameter. They identify how values are obtained, not the values themselves."@en ;
+    owl:versionInfo "0.2" .
+
+# ------------------------------------------------------------
+# Explicit and supplied values
+# ------------------------------------------------------------
+
+openrel:PolicyValue
+    a skos:Concept ;
+    skos:prefLabel "Policy Value"@en ;
+    skos:definition
+        "A value explicitly specified in a policy or policy template."@en ;
+    skos:scopeNote
+        "Used when the required value is fixed by the policy rather than obtained from an external context."@en ;
+    skos:example
+        "A fixed duration of 'P30D'^^xsd:duration."@en ;
+    skos:inScheme openrel:ParameterBindingSource .
+
+openrel:SuppliedParameterValue
+    a skos:Concept ;
+    skos:prefLabel "Supplied Parameter Value"@en ;
+    skos:definition
+        "A value explicitly supplied by a human or software system during the instantiation or evaluation of a parameterised policy."@en ;
+    skos:scopeNote
+        "Used when a value must be supplied directly rather than obtained through another predefined binding source. The supplied value may require independent validation."@en ;
+    skos:example
+        "An institutional affiliation entered by a requestor when it cannot be obtained from an existing assertion or request."@en ;
+    skos:inScheme openrel:ParameterBindingSource .
+
+# ------------------------------------------------------------
+# Request and Party contexts
+# ------------------------------------------------------------
+
+openrel:RequestorContext
+    a skos:Concept ;
+    skos:prefLabel "Requestor Context"@en ;
+    skos:definition
+        "A value obtained from the current access or usage request, including information about the requesting Party, requested action or request environment."@en ;
+    skos:scopeNote
+        "Describes request-specific information, as distinct from persistent characteristics of a Party. Relevant assertions may be represented in an ODRL Request or Assertion Policy."@en ;
+    skos:example
+        "The current request's intended purpose, source IP address or device information."@en ;
+    skos:inScheme openrel:ParameterBindingSource .
+
+openrel:PartyContext
+    a skos:Concept ;
+    skos:prefLabel "Party Context"@en ;
+    skos:definition
+        "A value obtained from established characteristics, credentials or assertions associated with a Party."@en ;
+    skos:scopeNote
+        "Primarily describes characteristics that persist beyond an individual request, although their validity may change. Assertions may be recorded in an ODRL Assertion Policy or another trusted identity or attribute source."@en ;
+    skos:example
+        "Institutional affiliation, verified identity, researcher status or an established organisational role."@en ;
+    skos:inScheme openrel:ParameterBindingSource .
+
+openrel:SubjectContext
+    a skos:Concept ;
+    skos:prefLabel "Subject Context"@en ;
+    skos:definition
+        "A value obtained from the permissions, restrictions, preferences or assertions associated with a data subject or another subject whose interests are governed by a policy."@en ;
+    skos:scopeNote
+        "May be represented through consent records, assertions, access policies or other subject-related authorisation information."@en ;
+    skos:example
+        "The categories of data authorised for sharing, evidence of consent or the expiry date of consent."@en ;
+    skos:inScheme openrel:ParameterBindingSource .
+
+# ------------------------------------------------------------
+# Repository and Platform contexts
+# ------------------------------------------------------------
+
+openrel:RepositoryContext
+    a skos:Concept ;
+    skos:prefLabel "Repository Context"@en ;
+    skos:definition
+        "A value obtained from the identity, configuration, policies or administrative context of a repository."@en ;
+    skos:scopeNote
+        "Covers repository-specific requirements and administrative assertions, rather than the operational state of the underlying platform."@en ;
+    skos:example
+        "Repository identifier, repository access requirements, required licence acknowledgement or repository-specific token requirements."@en ;
+    skos:inScheme openrel:ParameterBindingSource .
+
+openrel:PlatformContext
+    a skos:Concept ;
+    skos:prefLabel "Platform Context"@en ;
+    skos:definition
+        "A value obtained from the configuration, capabilities or operational state of the platform on which an Asset is hosted, disseminated or processed."@en ;
+    skos:scopeNote
+        "Covers technical configuration and operational controls, including controls that may apply across multiple repositories or services."@en ;
+    skos:example
+        "Allowlisted IP addresses, robots.txt directives, rate limits or download-volume limits."@en ;
+    skos:inScheme openrel:ParameterBindingSource .
+
+openrel:RuntimeContext
+    a skos:Concept ;
+    skos:prefLabel "Runtime Context"@en ;
+    skos:definition
+        "A value obtained from the current execution environment of the policy evaluator."@en ;
+    skos:scopeNote
+        "Describes conditions available to the evaluator at the time of policy evaluation, independently of persistent Party or Asset metadata."@en ;
+    skos:example
+        "Current date and time, evaluator location or network environment."@en ;
+    skos:inScheme openrel:ParameterBindingSource .
+
+# ------------------------------------------------------------
+# Policy, Event and Contract state
+# ------------------------------------------------------------
+
+openrel:PolicyUsageValue
+    a skos:Concept ;
+    skos:prefLabel "Policy Usage Value"@en ;
+    skos:definition
+        "A value obtained from the recorded history or current state of activities governed by a policy."@en ;
+    skos:scopeNote
+        "May require querying an activity log, usage counter, clearinghouse or another usage-recording service."@en ;
+    skos:example
+        "Number of access events, cumulative download volume or timestamp of first access."@en ;
+    skos:inScheme openrel:ParameterBindingSource .
+
+openrel:EventValue
+    a skos:Concept ;
+    skos:prefLabel "Event Value"@en ;
+    skos:definition
+        "A value obtained from the occurrence, outcome or recorded state of an identifiable event."@en ;
+    skos:scopeNote
+        "The event should be identifiable within the applicable policy or evaluation context."@en ;
+    skos:example
+        "A publication event, approval event or recorded workflow transition."@en ;
+    skos:inScheme openrel:ParameterBindingSource .
+
+openrel:ContractStateValue
+    a skos:Concept ;
+    skos:prefLabel "Contract State Value"@en ;
+    skos:definition
+        "A value obtained from the current or recorded state of an agreement, contract or associated contractual workflow."@en ;
+    skos:scopeNote
+        "Used for contractual information that may be updated through agreement management or related business processes."@en ;
+    skos:example
+        "Contract signature date, agreement validity or payment status."@en ;
+    skos:inScheme openrel:ParameterBindingSource .
+
+# ------------------------------------------------------------
+# Asset and External Reference values
+# ------------------------------------------------------------
+
+openrel:AssetMetadataValue
+    a skos:Concept ;
+    skos:prefLabel "Asset Metadata Value"@en ;
+    skos:definition
+        "A value obtained from metadata describing the Asset or Asset Collection governed by a policy."@en ;
+    skos:scopeNote
+        "The metadata may be embedded in the Asset description or retrieved from a repository, catalogue or metadata service."@en ;
+    skos:example
+        "Asset identifier, publication date, classification, applicable licence or collection membership."@en ;
+    skos:inScheme openrel:ParameterBindingSource .
+
+openrel:ExternalReferenceValue
+    a skos:Concept ;
+    skos:prefLabel "External Reference Value"@en ;
+    skos:definition
+        "A value obtained by retrieving or querying an external information resource or service."@en ;
+    skos:scopeNote
+        "The external source supplies information used in evaluation. A separate test or validation operation may be needed to establish its suitability or correctness."@en ;
+    skos:example
+        "A currency exchange rate, an external registry entry or the reported status of a service endpoint."@en ;
+    skos:inScheme openrel:ParameterBindingSource .
+
+# ------------------------------------------------------------
+# Test and Validation results
+# ------------------------------------------------------------
+
+openrel:AutoTest
+    a skos:Concept ;
+    skos:prefLabel "Automated Test Result"@en ;
+    skos:definition
+        "A value obtained from an automated test or verification process using explicitly defined evaluation rules."@en ;
+    skos:scopeNote
+        "The process may invoke an API or another executable service. The result may be a Boolean decision, measurement, classification or other typed value."@en ;
+    skos:example
+        "Verification of an identity or affiliation through federated AAI, validation of an access ticket or execution of a defined policy-compliance test."@en ;
+    skos:inScheme openrel:ParameterBindingSource .
+
+openrel:HumanTest
+    a skos:Concept ;
+    skos:prefLabel "Human Test Result"@en ;
+    skos:definition
+        "A value obtained from an assessment, verification or decision performed by a human evaluator."@en ;
+    skos:scopeNote
+        "The evaluation may involve professional judgement and should be supported by appropriate evidence or an auditable decision record."@en ;
+    skos:example
+        "Review of a declared research purpose or assessment of whether a proposed use is consistent with recorded consent."@en ;
+    skos:inScheme openrel:ParameterBindingSource .
+
+openrel:AgentTest
+    a skos:Concept ;
+    skos:prefLabel "AI Agent Test Result"@en ;
+    skos:definition
+        "A value obtained from an assessment or verification process performed by an AI agent."@en ;
+    skos:scopeNote
+        "The evaluation may use probabilistic or other AI-based methods. Its result should be distinguished from independently verified facts, and may require confidence information or human review."@en ;
+    skos:example
+        "AI-assisted assessment of a declared research purpose or comparison of proposed data use with consent conditions."@en ;
+    skos:inScheme openrel:ParameterBindingSource .
+

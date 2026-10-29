@@ -1,0 +1,214 @@
+# -------------------------------------------------------------------------------------------------------------
+# OpenREL - Open Rights Encoding language
+# Version 0.4 (Draft)
+# Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/ EUDAT)
+# This Version: 4 August 2026
+# -------------------------------------------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------------------------------------------
+# Parameters
+# In OpenREL, Parameters are modelled as a subclass of Right Operands as a mechanism for run-time evaluation
+# -------------------------------------------------------------------------------------------------------------
+
+@prefix openrel: <http://www.w3id.org/ns/openrel/0/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Temporal context
+
+openrel:startDateParameter
+    a openrel:Parameter ;
+    skos:prefLabel "Start Date"@en ;
+    skos:definition "The start date for a period, usually a period of access."@en ;
+    openrel:parameterName "START_DATE" ;
+    openrel:expectedDatatype xsd:dateTime ;
+    openrel:resolutionMethod openrel:RuntimeContext .
+
+openrel:endDateParameter
+    a openrel:Parameter ;
+    skos:prefLabel "End Date"@en ;
+    skos:definition "The end date for a period, usually a period of access."@en ;
+    openrel:parameterName "END_DATE" ;
+    openrel:expectedDatatype xsd:dateTime ;
+    openrel:resolutionMethod openrel:RuntimeContext .
+
+# Repository and assigner context
+
+openrel:parameterPublisherIRI
+    a openrel:Parameter ;
+    skos:prefLabel "Publisher IRI"@en ;
+    skos:definition "A unique identifier for a publisher (PID, URI, URL)."@en ;
+    openrel:parameterName "PUBLISHER_IRI" ;
+    openrel:expectedDatatype xsd:anyURI ;
+    openrel:resolutionMethod openrel:RepositoryContext .
+
+openrel:parameterAssignerIRI
+    a openrel:Parameter ;
+    skos:prefLabel "Assigner IRI"@en ;
+    skos:definition "A unique identifier for the assigner, such as a curator or rights owner."@en ;
+    openrel:parameterName "ASSIGNER_IRI" ;
+    openrel:expectedDatatype xsd:anyURI ;
+    openrel:resolutionMethod openrel:RepositoryContext .
+
+openrel:parameterTargetIRI
+    a openrel:Parameter ;
+    skos:prefLabel "Target IRI"@en ;
+    skos:definition "An identifier for the target Asset or Asset Collection."@en ;
+    openrel:parameterName "TARGET_IRI" ;
+    openrel:expectedDatatype xsd:anyURI ;
+    openrel:resolutionMethod openrel:AssetMetadataValue .
+
+# Platform context
+
+openrel:parameterInfraIRI
+    a openrel:Parameter ;
+    skos:prefLabel "Infrastructure IRI"@en ;
+    skos:definition "An identifier for the infrastructure on which an Asset may be used."@en ;
+    openrel:parameterName "INFRASTRUCTURE_IRI" ;
+    openrel:expectedDatatype xsd:anyURI ;
+    openrel:resolutionMethod openrel:PlatformContext .
+
+openrel:parameterVolume
+    a openrel:Parameter ;
+    skos:prefLabel "Maximum Download Volume"@en ;
+    skos:definition "A limit on download volume per session, account or ticket."@en ;
+    openrel:parameterName "VOLUME_AS_INTEGER" ;
+    openrel:expectedDatatype xsd:integer ;
+    openrel:resolutionMethod openrel:PlatformContext .
+
+openrel:parameterUnit
+    a openrel:Parameter ;
+    skos:prefLabel "Unit of Measure"@en ;
+    skos:definition "A unit of measurement, potentially associated with a rate or an absolute quantity."@en ;
+    openrel:parameterName "UNIT_OF_MEASURE" ;
+    openrel:expectedDatatype xsd:string ;
+    openrel:resolutionMethod openrel:PlatformContext .
+
+openrel:parameterAuthorisedIP
+    a openrel:Parameter ;
+    skos:prefLabel "Authorised IP Addresses"@en ;
+    skos:definition "A list of authorised IP addresses or address ranges."@en ;
+    openrel:parameterName "AUTHORISED_IP_ARRAY" ;
+    openrel:expectedDatatype xsd:string ;
+    openrel:multipleValues true ;
+    openrel:resolutionMethod openrel:PlatformContext .
+
+openrel:parameterAuthorisedIRI
+    a openrel:Parameter ;
+    skos:prefLabel "Authorised Endpoint IRIs"@en ;
+    skos:definition "A list of authorised endpoint IRIs."@en ;
+    openrel:parameterName "AUTHORISED_IRI_ARRAY" ;
+    openrel:expectedDatatype xsd:anyURI ;
+    openrel:multipleValues true ;
+    openrel:resolutionMethod openrel:PlatformContext .
+
+openrel:parameterClearingHouseAPI
+    a openrel:Parameter ;
+    skos:prefLabel "Clearinghouse API"@en ;
+    skos:definition "The API endpoint for clearinghouse notifications."@en ;
+    openrel:parameterName "CLEARINGHOUSE_API" ;
+    openrel:expectedDatatype xsd:anyURI ;
+    openrel:resolutionMethod openrel:PlatformContext .
+
+openrel:parameterTokenVerificationAPI
+    a openrel:Parameter ;
+    skos:prefLabel "Access Token Verification Endpoint"@en ;
+    skos:definition "An API endpoint used for access token verification."@en ;
+    openrel:parameterName "TOKEN_VERIFICATION_API" ;
+    openrel:expectedDatatype xsd:anyURI ;
+    openrel:resolutionMethod openrel:PlatformContext .
+
+openrel:parameterAccessToken
+    a openrel:Parameter ;
+    skos:prefLabel "Access Token"@en ;
+    skos:definition "An access token provided by the platform."@en ;
+    openrel:parameterName "ACCESS_TOKEN" ;
+    openrel:expectedDatatype xsd:string ;
+    openrel:resolutionMethod openrel:PlatformContext .
+
+# Requesting Party context
+
+openrel:parameterAssigneeIRI
+    a openrel:Parameter ;
+    skos:prefLabel "Assignee IRI"@en ;
+    skos:definition "An identifier for the Party receiving rights under a policy."@en ;
+    openrel:parameterName "ASSIGNEE_IRI" ;
+    openrel:expectedDatatype xsd:anyURI ;
+    openrel:resolutionMethod openrel:PartyContext .
+
+openrel:parameterInstitutionIRI
+    a openrel:Parameter ;
+    skos:prefLabel "Institution IRI"@en ;
+    skos:definition "An identifier for an institution with which the requestor is affiliated."@en ;
+    openrel:parameterName "INSTITUTION_IRI" ;
+    openrel:expectedDatatype xsd:anyURI ;
+    openrel:resolutionMethod openrel:PartyContext .
+
+openrel:parameterPurposeIRI
+    a openrel:Parameter ;
+    skos:prefLabel "Intended Purpose IRI"@en ;
+    skos:definition "An identifier for the intended purpose of use."@en ;
+    openrel:parameterName "INTENDED_PURPOSE" ;
+    openrel:expectedDatatype xsd:anyURI ;
+    openrel:resolutionMethod openrel:PartyContext .
+
+# Data Subject context
+
+openrel:parameterDataSubjectIRI
+    a openrel:Parameter ;
+    skos:prefLabel "Data Subject IRI"@en ;
+    skos:definition "An identifier for the data subject associated with protected information."@en ;
+    openrel:parameterName "DATA_SUBJECT_IRI" ;
+    openrel:expectedDatatype xsd:anyURI ;
+    openrel:resolutionMethod openrel:SubjectContext .
+
+openrel:parameterInformedConsentIRI
+    a openrel:Parameter ;
+    skos:prefLabel "Informed Consent Evidence IRI"@en ;
+    skos:definition "An identifier for evidence documenting informed consent."@en ;
+    openrel:parameterName "INFORMED_CONSENT_IRI" ;
+    openrel:expectedDatatype xsd:anyURI ;
+    openrel:resolutionMethod openrel:SubjectContext .
+
+openrel:parameterConsentExpiryDate
+    a openrel:Parameter ;
+    skos:prefLabel "Informed Consent Expiry Date"@en ;
+    skos:definition "The date and time at which applicable informed consent expires."@en ;
+    openrel:parameterName "INFORMED_CONSENT_EXPIRY" ;
+    openrel:expectedDatatype xsd:dateTime ;
+    openrel:resolutionMethod openrel:SubjectContext .
+
+openrel:parameterDataSpecIRI
+    a openrel:Parameter ;
+    skos:prefLabel "Data Specification IRI"@en ;
+    skos:definition "An identifier for a specification defining the data in scope for access."@en ;
+    openrel:parameterName "DATA_SPECIFICATION_IRI" ;
+    openrel:expectedDatatype xsd:anyURI ;
+    openrel:resolutionMethod openrel:SubjectContext .
+
+openrel:parameterPurposeVerificationIRI
+    a openrel:Parameter ;
+    skos:prefLabel "Purpose Verification IRI"@en ;
+    skos:definition "An identifier for a manual or automated purpose-verification mechanism."@en ;
+    openrel:parameterName "PURPOSE_VERIFICATION_IRI" ;
+    openrel:expectedDatatype xsd:anyURI ;
+    openrel:resolutionMethod openrel:SubjectContext .
+
+# Asset metadata context
+
+openrel:parameterPublicationDate
+    a openrel:Parameter ;
+    skos:prefLabel "Asset Publication Date"@en ;
+    skos:definition "The publication date of an Asset, potentially used for embargo calculations."@en ;
+    openrel:parameterName "TARGET_PUBLICATION_DATE" ;
+    openrel:expectedDatatype xsd:dateTime ;
+    openrel:resolutionMethod openrel:AssetMetadataValue .
+
+openrel:parameterLicenceList
+    a openrel:Parameter ;
+    skos:prefLabel "Asset Licence List"@en ;
+    skos:definition "Identifiers for the licences applicable to an Asset or Asset Collection."@en ;
+    openrel:parameterName "TARGET_LICENCE_LIST" ;
+    openrel:expectedDatatype xsd:anyURI ;
+    openrel:multipleValues true ;
+    openrel:resolutionMethod openrel:AssetMetadataValue .

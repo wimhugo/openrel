@@ -1,9 +1,7 @@
-# OpenREL SHACL Shapes — prototype v0.1
-# Validates structural constraints for OpenREL Policy Collections.
+# OpenREL SHACL Shapes prototype v0.5
+# Validates structural constraints for OpenREL Classes.
 # Load this shapes graph together with the OpenREL ontology and relevant
 # policy instance data when running SHACL validation.
-#
-# This file uses the namespace from the supplied openrel(4).ttl ontology.
 
 @prefix openrel: <http://www.w3.org/ns/openrel/0/> .
 @prefix odrl:    <http://www.w3.org/ns/odrl/2/> .
@@ -12,7 +10,11 @@
 @prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
 
-# Policy Collection — constituent policy references
+# ============================================================
+# Recommended properties for PolicyCollection
+# ============================================================
+
+# Policy Collection constituent policy references
 # An OpenREL Policy Collection MUST reference at least two distinct Policies.
 # Each constituent MUST be an IRI identifying an odrl:Policy instance.
 # sh:class requires type/subclass triples to be accessible during validation.
@@ -32,4 +34,127 @@ openrel:PolicyCollectionShape
         sh:class odrl:Policy ;
         sh:message
             "A Policy Collection MUST reference at least two distinct IRI-identified odrl:Policy instances using openrel:hasPolicy."@en
+    ] .
+
+# ============================================================
+# Recommended properties for EvaluationDetail
+# ============================================================
+
+openrel:EvaluationDetailShape
+    a sh:NodeShape ;
+    sh:targetClass openrel:EvaluationDetail ;
+
+    sh:property [
+        sh:path openrel:comparedSubject ;
+        sh:minCount 1 ;
+        sh:nodeKind sh:IRI ;
+        sh:severity sh:Warning ;
+        sh:message
+            "An evaluation SHOULD identify its comparedSubject."
+    ] ;
+
+    sh:property [
+        sh:path openrel:comparedIndividual ;
+        sh:minCount 1 ;
+        sh:nodeKind sh:IRI ;
+        sh:severity sh:Warning ;
+        sh:message
+            "An evaluation SHOULD identify its comparedIndividual."
+    ] ;
+
+    sh:property [
+        sh:path openrel:evaluationClass ;
+        sh:minCount 1 ;
+        sh:nodeKind sh:IRI ;
+        sh:severity sh:Warning ;
+        sh:message
+            "An evaluation SHOULD identify its evaluationClass."
+    ] ;
+
+    sh:property [
+        sh:path openrel:evaluationOutcome ;
+        sh:minCount 1 ;
+        sh:nodeKind sh:IRI ;
+        sh:severity sh:Warning ;
+        sh:message
+            "An evaluation SHOULD identify its evaluationOutcome."
+    ] ;
+
+    sh:property [
+        sh:path openrel:derivationType ;
+        sh:minCount 1 ;
+        sh:nodeKind sh:IRI ;
+        sh:severity sh:Warning ;
+        sh:message
+            "An evaluation SHOULD identify its derivationType."
+    ] .
+
+# ============================================================
+# Preserve identity of compared resources
+# ============================================================
+
+openrel:EvaluationResourceIdentityShape
+    a sh:NodeShape ;
+    sh:targetClass openrel:EvaluationDetail ;
+
+    sh:property [
+        sh:path openrel:comparedSubject ;
+        sh:nodeKind sh:IRI ;
+        sh:severity sh:Violation ;
+        sh:message
+            "The comparedSubject MUST be identified by an IRI."
+    ] ;
+
+    sh:property [
+        sh:path openrel:comparedIndividual ;
+        sh:nodeKind sh:IRI ;
+        sh:severity sh:Violation ;
+        sh:message
+            "The comparedIndividual MUST be identified by an IRI."
+    ] .
+
+# ============================================================
+# Provenance and rationale recommendations
+# ============================================================
+
+openrel:EvaluationProvenanceShape
+    a sh:NodeShape ;
+    sh:targetClass openrel:EvaluationMapping ;
+
+    sh:or (
+        [
+            sh:property [
+                sh:path openrel:wasDerivedFrom ;
+                sh:minCount 1 ;
+            ]
+        ]
+        [
+            sh:property [
+                sh:path openrel:assertedBy ;
+                sh:minCount 1 ;
+            ]
+        ]
+    ) ;
+
+    sh:severity sh:Warning ;
+    sh:message
+        "An EvaluationMapping SHOULD preserve source provenance, "
+        "using wasDerivedFrom or assertedBy." .
+
+# ============================================================
+# Policy-level evaluation must be distinguishable
+#    from pairwise mapping evidence
+# ============================================================
+
+openrel:PolicyCollectionEvaluationShape
+    a sh:NodeShape ;
+    sh:targetClass openrel:PolicyCollection ;
+
+    sh:property [
+        sh:path openrel:hasEvaluationDetail ;
+        sh:class openrel:EvaluationDetail ;
+        sh:severity sh:Violation ;
+        sh:message
+            "A PolicyCollection evaluation reference MUST identify "
+            "an EvaluationDetail."
     ] .

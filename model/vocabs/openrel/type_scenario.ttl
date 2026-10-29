@@ -1,0 +1,437 @@
+# -------------------------------------------------------------------------------------------------------------
+# OpenREL - Open Rights Encoding language
+# Version 0.4 (Draft)
+# Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/ EUDAT)
+# This Version: 1 July 2026
+# -------------------------------------------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------------------------------------------
+# Scenario Types 
+# In OpenREL, Scenario Types are used to model the human-readable contextual aspects of end users, assets, and 
+# organisations for the purposes of mapping to encoded language or examples
+# -------------------------------------------------------------------------------------------------------------
+
+
+@prefix openrel: <http://www.w3id.org/ns/openrel/0/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# ------------------------------------------------------------
+# Scenario Types - Concept Scheme
+# ------------------------------------------------------------
+
+openrel:typeScenario
+    a skos:ConceptScheme ;
+    skos:prefLabel "Scenario Types"@en ;
+    dct:title "Scenario Definitions (Types)"@en ;
+    dct:description
+        "Human-readable scenarios describing user, Asset, organisational and policy context. Scenarios support the discovery and selection of applicable policy components."@en ;
+    skos:hasTopConcept
+        openrel:group-research-only ,
+        openrel:group-commercial-scenarios ,
+        openrel:group-funding-related ,
+        openrel:group-legal-ethical ,
+        openrel:group-publication-status ,
+        openrel:group-obligations ,
+        openrel:group-open-science ,
+        openrel:group-access-considerations ;
+    dct:created "2026-07-12T00:00:00+00:00"^^xsd:dateTime ;
+    dct:creator <https://orcid.org/0000-0002-0255-5101> ;
+    owl:versionInfo "0.2" .
+
+# ------------------------------------------------------------
+# Research Scenarios
+# ------------------------------------------------------------
+
+openrel:group-research-only
+    a skos:Concept ;
+    skos:prefLabel "Research Only"@en ;
+    skos:definition
+        "Scenarios restricting use of an Asset to research or research-related activities."@en ;
+    openrel:questionSatisfied "Who" ;
+    skos:topConceptOf openrel:typeScenario ;
+    skos:inScheme openrel:typeScenario .
+
+openrel:academic-only
+    a skos:Concept ;
+    skos:prefLabel "Academic Only"@en ;
+    skos:definition
+        "Use of an Asset is restricted to academic research activities."@en ;
+    skos:broader openrel:group-research-only ;
+    openrel:questionSatisfied "Who" ;
+    skos:inScheme openrel:typeScenario .
+
+openrel:confirmed-researcher
+    a skos:Concept ;
+    skos:prefLabel "Confirmed Researcher Only"@en ;
+    skos:definition
+        "Use of an Asset is restricted to persons whose researcher status has been verified according to specified criteria."@en ;
+    skos:broader openrel:group-research-only ;
+    openrel:questionSatisfied "Who" ;
+    skos:inScheme openrel:typeScenario .
+
+openrel:confirmed-rpo
+    a skos:Concept ;
+    skos:prefLabel
+        "Confirmed Research Performing Organisation"@en ;
+    skos:definition
+        "Use of an Asset is restricted to research-performing organisations whose status has been verified according to specified criteria."@en ;
+    skos:broader openrel:group-research-only ;
+    openrel:questionSatisfied "Who" ;
+    skos:inScheme openrel:typeScenario .
+
+openrel:affirmed-research
+    a skos:Concept ;
+    skos:prefLabel "Affirmed Researcher"@en ;
+    skos:definition
+        "A requestor declares researcher status or affiliation with a research or academic institution."@en ;
+    skos:note
+        "Self-declaration does not necessarily constitute independent verification of researcher status or affiliation."@en ;
+    skos:broader openrel:group-research-only ;
+    openrel:questionSatisfied "Who" ;
+    skos:inScheme openrel:typeScenario .
+
+# ------------------------------------------------------------
+# Commercial Use Scenarios
+# ------------------------------------------------------------
+
+openrel:group-commercial-scenarios
+    a skos:Concept ;
+    skos:prefLabel "Commercialisation Scenarios"@en ;
+    skos:definition
+        "Scenarios concerning commercial and non-commercial uses of an Asset."@en ;
+    openrel:questionSatisfied "Why" ;
+    skos:topConceptOf openrel:typeScenario ;
+    skos:inScheme openrel:typeScenario .
+
+openrel:commercial-use
+    a skos:Concept ;
+    skos:prefLabel "Commercial Use Allowed"@en ;
+    skos:definition
+        "Commercial use of an Asset is allowed under the applicable policy."@en ;
+    skos:broader openrel:group-commercial-scenarios ;
+    openrel:questionSatisfied "Why" ;
+    skos:inScheme openrel:typeScenario .
+
+openrel:non-commercial-only
+    a skos:Concept ;
+    skos:prefLabel "Non-Commercial Only"@en ;
+    skos:definition
+        "Use of an Asset is restricted to non-commercial purposes, including applicable research and other activities."@en ;
+    skos:broader openrel:group-commercial-scenarios ;
+    openrel:questionSatisfied "Why" ;
+    skos:inScheme openrel:typeScenario .
+
+# ------------------------------------------------------------
+# Funding-related Scenarios
+# ------------------------------------------------------------
+
+openrel:group-funding-related
+    a skos:Concept ;
+    skos:prefLabel "Funding Considerations"@en ;
+    skos:definition
+        "Scenarios concerning conditions arising from the funding of an Asset or associated activities."@en ;
+    openrel:questionSatisfied "What" ;
+    skos:topConceptOf openrel:typeScenario ;
+    skos:inScheme openrel:typeScenario .
+
+openrel:funding-related
+    a skos:Concept ;
+    skos:prefLabel
+        "Funder-defined Permissions and Prohibitions"@en ;
+    skos:definition
+        "Use of an Asset is subject to permissions, prohibitions or other conditions established by an applicable funding agreement or policy."@en ;
+    skos:broader openrel:group-funding-related ;
+    openrel:questionSatisfied "What" ;
+    skos:inScheme openrel:typeScenario .
+
+openrel:public-funding-open
+    a skos:Concept ;
+    skos:prefLabel "Public Funding - Open Access"@en ;
+    skos:definition
+        "An Asset produced through public funding is subject to applicable open-access or open-licensing requirements."@en ;
+    skos:note
+        "The precise obligations depend on the relevant funding agreement, programme and applicable exceptions."@en ;
+    skos:broader openrel:funding-related ;
+    openrel:questionSatisfied "What" ;
+    skos:inScheme openrel:typeScenario .
+
+# ------------------------------------------------------------
+# Legal and Ethical Scenarios
+# ------------------------------------------------------------
+
+openrel:group-legal-ethical
+    a skos:Concept ;
+    skos:prefLabel "Legal and Ethical Considerations"@en ;
+    skos:definition
+        "Scenarios concerning legal, regulatory and ethical requirements associated with the use of an Asset."@en ;
+    openrel:questionSatisfied "How" ;
+    skos:topConceptOf openrel:typeScenario ;
+    skos:inScheme openrel:typeScenario .
+
+openrel:legal-considerations
+    a skos:Concept ;
+    skos:prefLabel "Legal Considerations"@en ;
+    skos:definition
+        "Use of an Asset is subject to applicable legislation, regulations or other legal requirements."@en ;
+    skos:broader openrel:group-legal-ethical ;
+    openrel:questionSatisfied "How" ;
+    skos:inScheme openrel:typeScenario .
+
+openrel:gdpr-compliance
+    a skos:Concept ;
+    skos:prefLabel "GDPR Compliance"@en ;
+    skos:definition
+        "Processing of personal data is subject to applicable requirements of the General Data Protection Regulation."@en ;
+    skos:note
+        "GDPR compliance does not necessarily require consent; other lawful bases for processing may apply."@en ;
+    skos:broader openrel:legal-considerations ;
+    openrel:questionSatisfied "How" ;
+    skos:inScheme openrel:typeScenario .
+
+openrel:gdpr-controller
+    a skos:Concept ;
+    skos:prefLabel "GDPR Controller"@en ;
+    skos:definition
+        "A processing arrangement requires identification of the data controller and fulfilment of applicable controller responsibilities under the GDPR."@en ;
+    skos:broader openrel:legal-considerations ;
+    openrel:questionSatisfied "How" ;
+    skos:inScheme openrel:typeScenario .
+
+openrel:gdpr-special-category
+    a skos:Concept ;
+    skos:prefLabel "Special Categories of Personal Data"@en ;
+    skos:definition
+        "Processing of special categories of personal data is subject to the conditions and safeguards established by GDPR Article 9."@en ;
+    skos:note
+        "Special categories include data revealing racial or ethnic origin, political opinions, religious or philosophical beliefs, trade union membership, genetic data, specified biometric data, health data and data concerning sex life or sexual orientation."@en ;
+    skos:broader openrel:legal-considerations ;
+    openrel:questionSatisfied "How" ;
+    skos:inScheme openrel:typeScenario .
+
+openrel:ethics-considerations
+    a skos:Concept ;
+    skos:prefLabel "Ethics-Related Considerations"@en ;
+    skos:definition
+        "Use of an Asset is subject to applicable ethical principles, policies, approvals or governance requirements."@en ;
+    skos:broader openrel:group-legal-ethical ;
+    openrel:questionSatisfied "How" ;
+    skos:inScheme openrel:typeScenario .
+
+openrel:consent-gdpr
+    a skos:Concept ;
+    skos:prefLabel "GDPR Consent"@en ;
+    skos:definition
+        "Processing of personal data requires valid data subject consent where consent is relied upon as the applicable lawful basis."@en ;
+    skos:broader openrel:legal-considerations ;
+    openrel:questionSatisfied "How" ;
+    skos:inScheme openrel:typeScenario .
+
+openrel:ethics-approval
+    a skos:Concept ;
+    skos:prefLabel "Ethics Approval"@en ;
+    skos:definition
+        "Access to or use of an Asset requires documented approval from an authorised ethics committee or institutional review board."@en ;
+    skos:broader openrel:ethics-considerations ;
+    openrel:questionSatisfied "How" ;
+    skos:inScheme openrel:typeScenario .
+
+openrel:explicit-consent
+    a skos:Concept ;
+    skos:prefLabel "Explicit Consent"@en ;
+    skos:definition
+        "Specified uses or reuse activities require explicit consent from an appropriately authorised Party."@en ;
+    skos:note
+        "The applicable policy determines when consent must be obtained, which activities it covers and whether additional consent is required for subsequent use."@en ;
+    skos:broader openrel:ethics-considerations ;
+    openrel:questionSatisfied "How" ;
+    skos:inScheme openrel:typeScenario .
+
+# ------------------------------------------------------------
+# Publication Status Scenarios
+# ------------------------------------------------------------
+
+openrel:group-publication-status
+    a skos:Concept ;
+    skos:prefLabel "Publication Status"@en ;
+    skos:definition
+        "Scenarios concerning publication state, embargo, withdrawal or revocation."@en ;
+    openrel:questionSatisfied "When" ;
+    skos:topConceptOf openrel:typeScenario ;
+    skos:inScheme openrel:typeScenario .
+
+openrel:status-revoked
+    a skos:Concept ;
+    skos:prefLabel "Revocation or Withdrawal"@en ;
+    skos:definition
+        "Access to or use of an Asset is subject to restrictions associated with its withdrawal or revocation."@en ;
+    skos:note
+        "The applicable policy determines the effect of withdrawal or revocation on existing rights and previously authorised uses."@en ;
+    skos:broader openrel:group-publication-status ;
+    openrel:questionSatisfied "When" ;
+    skos:inScheme openrel:typeScenario .
+
+openrel:status-embargoed
+    a skos:Concept ;
+    skos:prefLabel "Work is Embargoed"@en ;
+    skos:definition
+        "Access to or use of an Asset is restricted during a defined embargo period."@en ;
+    skos:broader openrel:group-publication-status ;
+    openrel:questionSatisfied "When" ;
+    skos:inScheme openrel:typeScenario .
+
+# ------------------------------------------------------------
+# End User Obligations and Duties
+# ------------------------------------------------------------
+
+openrel:group-obligations
+    a skos:Concept ;
+    skos:prefLabel "End User Obligations and Duties"@en ;
+    skos:definition
+        "Scenarios concerning duties associated with accessing, using or disseminating an Asset."@en ;
+    openrel:questionSatisfied "How" ;
+    skos:topConceptOf openrel:typeScenario ;
+    skos:inScheme openrel:typeScenario .
+
+openrel:attribution
+    a skos:Concept ;
+    skos:prefLabel "Attribution"@en ;
+    skos:definition
+        "Use or reuse of an Asset is subject to an attribution or citation requirement."@en ;
+    skos:broader openrel:group-obligations ;
+    openrel:questionSatisfied "How" ;
+    skos:inScheme openrel:typeScenario .
+
+openrel:licence-preserved
+    a skos:Concept ;
+    skos:prefLabel "Share-Alike"@en ;
+    skos:definition
+        "Distribution of adapted material is subject to applicable requirements to use the same or a compatible licence."@en ;
+    skos:note
+        "Compatibility between licence conditions may affect the ability to combine material from multiple sources."@en ;
+    skos:broader openrel:group-obligations ;
+    openrel:questionSatisfied "How" ;
+    skos:inScheme openrel:typeScenario .
+
+openrel:notification-duty
+    a skos:Concept ;
+    skos:prefLabel "Notification Duties"@en ;
+    skos:definition
+        "Access, use or dissemination of an Asset is subject to specified notification or reporting duties."@en ;
+    skos:broader openrel:group-obligations ;
+    openrel:questionSatisfied "How" ;
+    skos:inScheme openrel:typeScenario .
+
+# ------------------------------------------------------------
+# Open Science Scenarios
+# ------------------------------------------------------------
+
+openrel:group-open-science
+    a skos:Concept ;
+    skos:prefLabel "Open Science Considerations"@en ;
+    skos:definition
+        "Scenarios concerning open access, open science and repository deposit."@en ;
+    openrel:questionSatisfied "How" ;
+    skos:topConceptOf openrel:typeScenario ;
+    skos:inScheme openrel:typeScenario .
+
+openrel:open-access
+    a skos:Concept ;
+    skos:prefLabel "Open Access"@en ;
+    skos:definition
+        "An Asset is intended to be openly accessible, subject to any separately specified conditions governing reuse."@en ;
+    skos:note
+        "Open access does not necessarily imply unrestricted reuse or the absence of attribution and other duties."@en ;
+    skos:broader openrel:group-open-science ;
+    openrel:questionSatisfied "How" ;
+    skos:inScheme openrel:typeScenario .
+
+openrel:public-repository
+    a skos:Concept ;
+    skos:prefLabel "Public Repository"@en ;
+    skos:definition
+        "An Asset is to be deposited or made available through a publicly accessible repository."@en ;
+    skos:broader openrel:group-open-science ;
+    openrel:questionSatisfied "How" ;
+    skos:inScheme openrel:typeScenario .
+
+# ------------------------------------------------------------
+# Access-related Scenarios
+# ------------------------------------------------------------
+
+openrel:group-access-considerations
+    a skos:Concept ;
+    skos:prefLabel "Access Considerations"@en ;
+    skos:definition
+        "Scenarios concerning conditions, limitations and safeguards governing access to Assets."@en ;
+    openrel:questionSatisfied "How" ;
+    skos:topConceptOf openrel:typeScenario ;
+    skos:inScheme openrel:typeScenario .
+
+openrel:trusted-connection
+    a skos:Concept ;
+    skos:prefLabel "Trusted Connections"@en ;
+    skos:definition
+        "Access to an Asset requires a connection satisfying specified security or trust requirements."@en ;
+    skos:broader openrel:group-access-considerations ;
+    openrel:questionSatisfied "How" ;
+    skos:inScheme openrel:typeScenario .
+
+openrel:european-use
+    a skos:Concept ;
+    skos:prefLabel "EU Use"@en ;
+    skos:definition
+        "Access to or use of an Asset is restricted according to a specified European Union location, residence or establishment criterion."@en ;
+    skos:note
+        "The applicable policy must identify whether the criterion concerns the requestor, organisation, processing location or another relevant entity."@en ;
+    skos:broader openrel:group-access-considerations ;
+    openrel:questionSatisfied "How" ;
+    skos:inScheme openrel:typeScenario .
+
+openrel:strict-subset
+    a skos:Concept ;
+    skos:prefLabel "Strictly Necessary Content"@en ;
+    skos:definition
+        "Access to an Asset is limited to the subset of information necessary for a specified purpose or authorised activity."@en ;
+    skos:broader openrel:group-access-considerations ;
+    openrel:questionSatisfied "How" ;
+    skos:inScheme openrel:typeScenario .
+
+openrel:verified-identity
+    a skos:Concept ;
+    skos:prefLabel "Verified Identity"@en ;
+    skos:definition
+        "Access to an Asset requires verification of the requestor's identity using an accepted verification mechanism."@en ;
+    skos:broader openrel:group-access-considerations ;
+    openrel:questionSatisfied "How" ;
+    skos:inScheme openrel:typeScenario .
+
+openrel:system-limitations
+    a skos:Concept ;
+    skos:prefLabel "System Limitations"@en ;
+    skos:definition
+        "Access to or processing of an Asset is restricted to identified or approved systems, devices or applications."@en ;
+    skos:broader openrel:group-access-considerations ;
+    openrel:questionSatisfied "How" ;
+    skos:inScheme openrel:typeScenario .
+
+openrel:formal-toms
+    a skos:Concept ;
+    skos:prefLabel
+        "Technical and Organisational Measures"@en ;
+    skos:definition
+        "Access to or processing of an Asset requires compliance with specified technical, organisational, physical or legal safeguards."@en ;
+    skos:broader openrel:group-access-considerations ;
+    openrel:questionSatisfied "How" ;
+    skos:inScheme openrel:typeScenario .
+
+openrel:tech-limits
+    a skos:Concept ;
+    skos:prefLabel "Technical Access Limits"@en ;
+    skos:definition
+        "Access to an Asset is subject to technical limits such as duration, number of access events or volume of data transferred."@en ;
+    skos:broader openrel:group-access-considerations ;
+    openrel:questionSatisfied "How" ;
+    skos:inScheme openrel:typeScenario .

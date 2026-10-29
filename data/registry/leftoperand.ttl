@@ -1,3 +1,17 @@
+# -------------------------------------------------------------------------------------------------------------
+# OpenREL - Open Rights Encoding language
+# Version 0.4 (Draft)
+# Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/ EUDAT)
+# Created: 1 July 2026
+# This Version: 28 October 2026
+# -------------------------------------------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------------------------------------------
+# Left Operands
+# In OpenREL, Left Operands are modelled on ODRL. OpenREL defines a set of additional Left Operands
+# IDSC Left Operands are also included
+# -------------------------------------------------------------------------------------------------------------
+
 # OpenREL LeftOperand registry - curated draft 0.5
 # Source: leftoperand.ttl (uploaded), with explicit editorial normalisation
 # ODRL and IDSC terms are referenced, not redefined.
@@ -15,19 +29,19 @@ openrel:LeftOperandRegistry a dct:Standard ;
 openrel:consentRequired a odrl:LeftOperand ;
     rdfs:label "Consent Required"@en ;
     rdfs:comment "Requires one or more types of consent to be provided."@en ;
-    dct:description "Editorial: Consent type/approval status; avoid treating concept as proof of consent"@en ;
+    dct:description "Consent type/approval status; avoid treating concept as proof of consent"@en ;
     rdfs:isDefinedBy openrel: .
 
 openrel:agentRole a odrl:LeftOperand ;
     rdfs:label "Agent Role Constraint"@en ;
     rdfs:comment "Requires the Assignee to hold a specific Agent Role."@en ;
-    dct:description "Editorial: Verified role of evaluated Party"@en ;
+    dct:description "Verified role of evaluated Party"@en ;
     rdfs:isDefinedBy openrel: .
 
 openrel:agentAffiliation a odrl:LeftOperand ;
     rdfs:label "Agent Affiliation Constraint"@en ;
     rdfs:comment "Requires the Assignee to be Affiliated with a Specific Institution."@en ;
-    dct:description "Editorial: Verified organisation affiliation; distinguish affiliation from organisation identity"@en ;
+    dct:description "Verified organisation affiliation; distinguish affiliation from organisation identity"@en ;
     rdfs:isDefinedBy openrel: .
 
 openrel:usageLimitation a odrl:LeftOperand ;
@@ -38,7 +52,7 @@ openrel:usageLimitation a odrl:LeftOperand ;
 
 openrel:accessCategory a odrl:LeftOperand ;
     rdfs:label "Access Limitations"@en ;
-    rdfs:comment "Requires the Asset to be used or distributed with typical provisions associated with ab Access Category."@en ;
+    rdfs:comment "Requires the Asset to be used or distributed with typical provisions associated with an Access Category."@en ;
     dct:description "Editorial: Access category is classification, not automatic bundle of enforceable provisions"@en ;
     rdfs:isDefinedBy openrel: .
 
@@ -105,7 +119,7 @@ openrel:legalBasis a odrl:LeftOperand ;
 openrel:ipRange a odrl:LeftOperand ;
     rdfs:label "IP Range"@en ;
     rdfs:comment "Requires that the use or dissemination of the Asset occurs to one of an array of IP addresses."@en ;
-    dct:description "Editorial: Network source/destination and CIDR representation need explicit definition"@en ;
+    dct:description "Network source/destination and CIDR representation need explicit definition"@en ;
     rdfs:isDefinedBy openrel: .
 
 # External LeftOperands: adoption references only; authoritative definitions are external.

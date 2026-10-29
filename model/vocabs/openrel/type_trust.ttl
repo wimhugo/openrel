@@ -1,0 +1,84 @@
+# -------------------------------------------------------------------------------------------------------------
+# OpenREL - Open Rights Encoding language
+# Version 0.4 (Draft)
+# Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/ EUDAT)
+# This Version: 28 October 2026
+# -------------------------------------------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------------------------------------------
+# TRUST Types 
+# Based on IDSC Security Guarantee vocabulary
+# -------------------------------------------------------------------------------------------------------------
+
+@prefix openrel: <http://www.w3id.org/ns/openrel/0/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix idsc: <https://w3id.org/idsa/code/> .
+
+# ------------------------------------------------------------
+# IDS Connector Security Profiles
+# ------------------------------------------------------------
+
+openrel:trustType
+    a skos:ConceptScheme ;
+    skos:prefLabel "IDS Connector Security Profiles"@en ;
+    dct:title "IDS Connector Security Profiles"@en ;
+    dct:description
+        "A classification of IDS Connector security profiles used to express trust and security requirements for access to and processing of Assets."@en ;
+    skos:note
+        "The scheme represents the IDS Base, Trust and Trust+ security profiles. The IDS Base Free profile is not included because this scheme focuses on profiles within the certified IDS trust ecosystem."@en ;
+    dct:source
+        <https://international-data-spaces-association.github.io/InformationModel/> ;
+    dct:created "2026-07-06T00:00:00+00:00"^^xsd:dateTime ;
+    dct:creator
+        <https://orcid.org/0000-0002-0255-5101> ;
+    owl:versionInfo "0.2" .
+
+# ------------------------------------------------------------
+# Base Security Profile
+# ------------------------------------------------------------
+
+openrel:base
+    a skos:Concept ;
+    skos:prefLabel "IDS Base Security Profile"@en ;
+    skos:altLabel "BASE"@en ;
+    skos:definition
+        "The IDS Connector security profile specifying the baseline security and trust requirements for participation in the certified IDS ecosystem."@en ;
+    skos:note
+        "The Base profile establishes the minimum trust mechanisms specified by the applicable IDS security and certification criteria."@en ;
+    rdfs:seeAlso idsc:BASE_SECURITY_PROFILE ;
+    skos:inScheme openrel:trustType .
+
+# ------------------------------------------------------------
+# Trust Security Profile
+# ------------------------------------------------------------
+
+openrel:trust
+    a skos:Concept ;
+    skos:prefLabel "IDS Trust Security Profile"@en ;
+    skos:altLabel "TRUST"@en ;
+    skos:definition
+        "The IDS Connector security profile specifying extended security requirements beyond the baseline IDS security profile."@en ;
+    skos:note
+        "The applicable IDS specification determines the security capabilities and assessment requirements associated with this profile."@en ;
+    rdfs:seeAlso idsc:TRUST_SECURITY_PROFILE ;
+    skos:inScheme openrel:trustType .
+
+# ------------------------------------------------------------
+# Trust+ Security Profile
+# ------------------------------------------------------------
+
+openrel:trust-plus
+    a skos:Concept ;
+    skos:prefLabel "IDS Trust+ Security Profile"@en ;
+    skos:altLabel "TRUST+"@en ;
+    skos:altLabel "Managed Trust"@en ;
+    skos:definition
+        "The IDS Connector security profile specifying enhanced trust and security requirements, including hardware-supported security mechanisms."@en ;
+    skos:note
+        "The IDS Reference Architecture Model associates Trust+ with trusted hardware and hardware-supported security assurances. The applicable certification criteria determine the precise requirements."@en ;
+    rdfs:seeAlso idsc:TRUST_PLUS_SECURITY_PROFILE ;
+    skos:inScheme openrel:trustType .

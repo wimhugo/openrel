@@ -459,7 +459,6 @@ openrel:defaultDuty
 	rdfs:domain odrl:Action ;
 	rdfs:range odrl:Action .
 
-
 ############################################################################################################
 # EVALUATION CLASSES and PROPERTIES
 ############################################################################################################
@@ -472,7 +471,6 @@ openrel:defaultDuty
 # machine-actionable provenance; use dct:source for a textual corpus citation.
 # openrel:allows in corpus data records an observed association,
 # not necessarily logical or legal permission or compatibility.
-
 
 openrel:EvaluationScheme a skos:ConceptScheme ;
     skos:prefLabel "OpenREL Evaluation Vocabulary"@en ;
@@ -614,6 +612,8 @@ openrel:applicableEndpoint a rdf:Property,
     rdfs:domain openrel:NamedConstraint ;
     rdfs:isDefinedBy openrel: ;
     skos:definition "Identifies an endpoint relevant to the interpretation, notification or evaluation of a Named Constraint."@en ;
+    owl:deprecated true ;
+    skos:note "Use odrl:rightOperandReference with an openrel:Parameter as an alternative."@en ;
     skos:note "The endpoint SHOULD be an IRI; no particular endpoint protocol is prescribed."@en .
 
 openrel:constraintScheme a skos:ConceptScheme ;
@@ -662,3 +662,96 @@ openrel:scenario a rdf:Property,
     rdfs:range skos:Concept ;
     skos:definition "Associates a Named Constraint with a scenario or context in which it is relevant."@en ;
     skos:note "Values depend on the separately defined scenario concept scheme."@en .
+
+# Property used to classify scenarios for UIs
+
+openrel:questionSatisfied
+    a rdf:Property ;
+    rdfs:label "Question Satisfied"@en ;
+    rdfs:comment
+        "Identifies the contextual question addressed by a concept, such as Who, What, Why, When, Where or How."@en ;
+    rdfs:domain skos:Concept ;
+    rdfs:range xsd:string .
+
+
+############################################################################################################
+# PARAMETER CLASSES and PROPERTIES
+############################################################################################################
+# OpenREL Parameter schema revised draft 0.5, 2026-10-28
+# OpenREL namespace: http://www.w3id.org/ns/openrel/0/
+# ODRL terms are referenced, not redefined.
+
+# ------------------------------------------------------------
+# Parameter Registry
+# ------------------------------------------------------------
+
+openrel:Parameter
+    a owl:Class ;
+    rdfs:label "Parameter"@en ;
+    rdfs:comment
+        "A reusable definition of a value to be supplied or resolved during policy instantiation or evaluation."@en .
+
+openrel:parameterName
+    a owl:DatatypeProperty ;
+    rdfs:label "Parameter Name"@en ;
+    rdfs:comment
+        "The symbolic name used to identify a parameter in a policy template or evaluation context."@en ;
+    rdfs:domain openrel:Parameter ;
+    rdfs:range xsd:string .
+
+openrel:expectedDatatype
+    a rdf:Property ;
+    rdfs:label "Expected Datatype"@en ;
+    rdfs:comment
+        "Identifies the RDF datatype IRI expected for each resolved parameter value."@en ;
+    rdfs:domain openrel:Parameter .
+
+openrel:resolutionMethod
+    a owl:ObjectProperty ;
+    rdfs:label "Resolution Method"@en ;
+    rdfs:comment
+        "Identifies the binding-source concept describing the context or origin from which a parameter value is obtained."@en ;
+    rdfs:domain openrel:Parameter ;
+    rdfs:range skos:Concept .
+
+openrel:multipleValues
+    a owl:DatatypeProperty ;
+    rdfs:label "Multiple Values"@en ;
+    rdfs:comment
+        "Indicates whether the parameter may resolve to multiple values of the expected datatype."@en ;
+    rdfs:domain openrel:Parameter ;
+    rdfs:range xsd:boolean .
+
+openrel:parameterResolutionService
+    a owl:ObjectProperty ;
+    rdfs:label "Parameter Resolution Service"@en ;
+    rdfs:comment
+        "Associates a Parameter with an optional service interface for resolving or validating its value."@en ;
+    rdfs:domain openrel:Parameter ;
+    rdfs:range openrel:ParameterResolutionService .
+
+# ------------------------------------------------------------
+# Resolution and validation service interface
+# ------------------------------------------------------------
+
+openrel:ParameterResolutionService
+    a owl:Class ;
+    rdfs:subClassOf schema:Service ;
+    rdfs:label "Parameter Resolution Service"@en ;
+    rdfs:comment
+        "An interface definition for a service that resolves or validates parameter values, abstracting authentication, inputs, execution and result extraction."@en .
+
+openrel:interfaceSpecification
+    a owl:ObjectProperty ;
+    rdfs:label "Interface Specification"@en ;
+    rdfs:comment
+        "Identifies a machine-readable interface or workflow specification, such as an OpenAPI description."@en ;
+    rdfs:domain openrel:ParameterResolutionService .
+
+openrel:servicePurpose
+    a owl:ObjectProperty ;
+    rdfs:label "Service Purpose"@en ;
+    rdfs:comment
+        "Identifies whether a service resolves a value, validates a supplied value, or performs both operations."@en ;
+    rdfs:domain openrel:ParameterResolutionService ;
+    rdfs:range skos:Concept .
