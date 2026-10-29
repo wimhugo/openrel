@@ -1,114 +1,83 @@
-# Context and Input Licences
-# --------------------------------------------------------------------------------------------------------------------------------
 # Title: Researcher-Only Access with eIDAS Verification
 # Example Policy
 # OpenREL - Open Rights Encoding language
-# Version 0.4 (Draft)
+# Version 0.5 (Draft)
 # Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/ EUDAT)
-# This Version: 14 July 2026
+# This Version: 29 October 2026
 # --------------------------------------------------------------------------------------------------------------------------------
 
-# context
-@base <http://www.w3.org/ns/openrel/0/> .
-@prefix openrel: <http://www.w3.org/ns/openrel/0/> .
-# RDF-related
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-# general content
-@prefix schema: <http://schema.org/> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
-# rdmi-related
-@prefix dct: <http://purl.org/dc/terms/> .
-@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
-@prefix dcat: <http://www.w3.org/ns/dcat#> .
-@prefix dcatap: <http://data.europa.eu/r5r/> .
-# rights-related
+
+@base <http://www.w3id.org/ns/openrel/0/> .
+
+@prefix openrel: <http://www.w3id.org/ns/openrel/0/> .
 @prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix schema: <http://schema.org/> .
 @prefix cc: <http://creativecommons.org/ns#> .
-@prefix dalicc: <https://dalicc.net/ns#> .
-@prefix ids: <https://w3id.org/idsa/core/> .
-@prefix idsc: <https://w3id.org/idsa/code/> .
-@prefix osl: <http://opensource.org/licenses/> .
-@prefix spdx: <http://spdx.org/rdf/terms#>  .
-@prefix dpv: <https://w3id.org/dpv/> .
-# Policy Libraries and Registries
-@prefix openrellib: <https://github.com/wimhugo/openrel/new/main/data/policy/> .
-@prefix spdxlicense: <http://spdx.org/licenses/> .
-@prefix dalicclib: <https://dalicc.net/licenselibrary/> 
-@prefix lfslib: <https://lfs.labs.dansdemo.nl/api/v1/licenses/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-# --------------------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------
 # Process Rules Metadata
-# --------------------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------
 
-<OR-BY-AC-VI-4.0> a openrel:ProcessRules ;
-    # Alternate identifiers
-    ## dct:relation lfslib:[TO_BE_REGISTERED] ;
+<OR-BY-AC-VI-4.0>
+    a openrel:ProcessRules ;
+    openrel:policyStatus openrel:typeTemplate ;
 
-    dct:publisher "OpenREL" ;
-    dc:title "Researcher-Only Access with eIDAS Verification" ;
+    # Parties and target
     odrl:assigner [ASSIGNER_URI] ;
     odrl:assignee [ASSIGNEE_URI] ;
     odrl:target [TARGET_URI] ;
 
-    # Citation Information
+    # Citation information
     dct:title "OpenREL Academic eIDAS Verified Identity"@en ;
-    dct:alternative "eIDAS Researcher Verification" ;
-    dct:description "Process rules applicable to verify research identity."@en ;
+    dct:alternative "eIDAS Researcher Verification"@en ;
+    dct:description "Process rules applicable to the verification of researcher identity."@en ;
     dct:publisher "OpenREL" ;
-    dct:created "2026-07-12T00:00:00+00:00" ;
-    dct:modified "2026-08-03T00:00:00+00:00" ;
+    dct:created "2026-07-12T00:00:00+00:00"^^xsd:dateTime ;
+    dct:modified "2026-10-29T00:00:00+00:00"^^xsd:dateTime ;
     dct:creator <https://orcid.org/0000-0002-0255-5101> ;
     dct:subject "Identity Verification", "eIDAS", "Researcher" ;
-    openrel:accessType openrel:managed ;    
-    dct:version "4.0" ;
 
-    # Coverage related information
+    openrel:accessType openrel:managed ;
+    schema:version "0.5" ;
+
+    # Coverage and policy status
     cc:jurisdiction openrel:worldwide ;
     openrel:validityType openrel:perpetual ;
     openrel:policyStatus openrel:typeCustomActive ;
 
     # Disclaimers
-    openrel:liabilityLimitation "To the extent possible, in no event will the Licensor be liable to You on any legal theory (including, without limitation, negligence) or otherwise for any direct, special, indirect, incidental, consequential, punitive, exemplary, or other losses, costs, expenses, or damages arising out of this Public License or use of the Licensed Material, even if the Licensor has been advised of the possibility of such losses, costs, expenses, or damages. Where a limitation of liability is not allowed in full or in part, this limitation may not apply to You." ;
-    openrel:warrantyNotice "Unless otherwise separately undertaken by the Licensor, to the extent possible, the Licensor offers the Licensed Material as-is and as-available, and makes no representations or warranties of any kind concerning the Licensed Material, whether express, implied, statutory, or other. This includes, without limitation, warranties of title, merchantability, fitness for a particular purpose, non-infringement, absence of latent or other defects, accuracy, or the presence or absence of errors, whether or not known or discoverable. Where disclaimers of warranties are not allowed in full or in part, this disclaimer may not apply to You." ;
-  
-    # Alternative representations, mappings of SPDX and LFS properties
-    ## openrel:legalcode <> ;
-    ## openrel:policyTextHtml <> ;
-    ## openrel:policyText lfslib:[TO_BE_REGISTERED]/original ;
-    openrel:encodedRules openrellib:OR-BY-AC-VI-4.0 ;
+    openrel:liabilityLimitation ""@en ;
+    openrel:warrantyNotice ""@en ;
 
+    # Alternative representation
+    openrel:encodedRules <https://github.com/wimhugo/openrel/blob/main/data/policy/OR-BY-AC-VI-4.0> ;
 
-# --------------------------------------------------------------------------------------------------------------------------------
-#   Rules
-# --------------------------------------------------------------------------------------------------------------------------------
-    
+# --------------------------------------------------------
+# Rules
+# --------------------------------------------------------
+
     odrl:permission [
-        odrl:action openrel:read ;
-        odrl:constraint <11-eidas-researcher> ;
-    ] ;
-    .
+        odrl:action odrl:use ;
+        odrl:constraint <11-eidas-researcher>
+    ] .
 
-# --------------------------------------
-# Custom Logical Constraints
-# --------------------------------------
+# ---------------------------------------------------------
+# Logical Constraints
+# ---------------------------------------------------------
 
 <11-eidas-researcher>
     a odrl:LogicalConstraint ;
     odrl:or (
         <11-verifiedResearcher>
         openrel:eidasVerifiedResearcher
-        ) 
-    .
+    ) .
 
 <11-verifiedResearcher>
     a odrl:LogicalConstraint ;
     odrl:or (
-        openrel:verifiedResearcher 
+        openrel:verifiedResearcher
         openrel:eidasVerified
-        ) 
-    .
+    ) .
+

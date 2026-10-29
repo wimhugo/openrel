@@ -7,100 +7,71 @@
 # This Process Rule is specific to an Asset and MUST include a date of asset availability calculated from date of publication
 # and indicate the IRI of a specific asset as the target of the policy.
 # OpenREL - Open Rights Encoding language
-# Version 0.4 (Draft)
+# Version 0.5 (Draft)
 # Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/ EUDAT)
-# This Version: 3 August 2026
+# This Version: 29 October 2026
 # --------------------------------------------------------------------------------------------------------------------------------
 
-# context
-@base <http://www.w3.org/ns/openrel/0/> .
-@prefix openrel: <http://www.w3.org/ns/openrel/0/> .
-# RDF-related
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-# general content
-@prefix schema: <http://schema.org/> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
-# rdmi-related
-@prefix dct: <http://purl.org/dc/terms/> .
-@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
-@prefix dcat: <http://www.w3.org/ns/dcat#> .
-@prefix dcatap: <http://data.europa.eu/r5r/> .
-# rights-related
+
+@base <http://www.w3id.org/ns/openrel/0/> .
+
+@prefix openrel: <http://www.w3id.org/ns/openrel/0/> .
 @prefix odrl: <http://www.w3.org/ns/odrl/2/> .
-@prefix cc: <http://creativecommons.org/ns#> .
-@prefix dalicc: <https://dalicc.net/ns#> .
-@prefix ids: <https://w3id.org/idsa/core/> .
-@prefix idsc: <https://w3id.org/idsa/code/> .
-@prefix osl: <http://opensource.org/licenses/> .
-@prefix spdx: <http://spdx.org/rdf/terms#>  .
-@prefix dpv: <https://w3id.org/dpv/> .
-# Policy Libraries and Registries
-@prefix openrellib: <https://github.com/wimhugo/openrel/new/main/data/policy/> .
-@prefix spdxlicense: <http://spdx.org/licenses/> .
-@prefix dalicclib: <https://dalicc.net/licenselibrary/> 
-@prefix lfslib: <https://lfs.labs.dansdemo.nl/api/v1/licenses/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-# --------------------------------------------------------------------------------------------------------------------------------
-# Access Rules Metadata
-# --------------------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------
+# Embargo Policy Metadata
+# ------------------------------------------------------------
 
-<OR-EM-0.4> a openrel:ProcessRules ;
-    # Alternate identifiers
-    # skos:exactMatch spdx:<> ;
-    ## dct:relation lfslib:<TO_BE_REGISTERED> ;
+<OR-EM-0.4>
+    a openrel:AccessRules ;
+    openrel:policyStatus openrel:typeTemplate ;
 
-    # Citation Information
-    dct:title "Embargo" ;
+    # Citation information
+    dct:title "Embargo"@en ;
     dct:publisher "OpenREL" ;
-    dct:created "2026-07-12T00:00:00+00:00" ;
-    dct:modified "2026-08-03T00:00:00+00:00" ;
+    dct:created "2026-07-12T00:00:00+00:00"^^xsd:dateTime ;
+    dct:modified "2026-08-03T00:00:00+00:00"^^xsd:dateTime ;
     dct:creator "Melios Katsamakis - OpenAIRE" ;
     dct:contributor <https://orcid.org/0000-0002-0255-5101> ;
-    dct:subject "Embargo" ;
+    dct:subject "Embargo"@en ;
     openrel:accessType openrel:managed ;
-    dct:source <> ;
-    dct:version "0.4" ;
+    schema:version "0.4" ;
 
-    # Coverage related information
-    # These properties apply only for those policies that explicitly require them, optional for others
-    # openrel:validityType openrel:perpetual ;
+    # Coverage and policy status
     openrel:jurisdiction openrel:worldwide ;
     openrel:policyStatus openrel:typeCustomActive ;
+
+    # Parties and target
     odrl:assigner openrel:parameterAssignerIRI ;
     odrl:assignee openrel:parameterAssigneeIRI ;
     odrl:target openrel:parameterTargetIRI ;
 
-    # Disclaimers
-    # openrel:liabilityLimitation {{Liability Limitation Text}} ;
-    # openrel:warrantyNotice {{Warranty Notice Text}} ;
+    # Alternative representations
+    # openrel:encodedRules <IRI_OF_PUBLISHED_RULES> ;
 
-    # Alternative representations, mappings of SPDX and LFS properties
-    # openrel:legalCode <IRI_TO_LEGAL_CODE> ;
-    ## openrel:policyTextHtml <IRI_TO_HTML_VIEW> ;
-    ## openrel:policyText <IRI_TO_TEXT> ;
-    openrel:encodedRules openrellib:OR-EM-0.4 ;
+    # Optional evaluation results
+    # openrel:permits <IRI_OF_OTHER_POLICY> ;
+    # openrel:contradicts <IRI_OF_OTHER_POLICY> ;
+    # openrel:evaluationDetail <OPENREL_EVALUATION> ;
 
-	# Optional results of evaluation of two policies
-    ## openrel:permits <IRI_OF_OTHER_POLICY> ;
-	## openrel:contradicts <IRI_OF_OTHER_POLICY> ;
-    ## openrel:evaluationDetail <OPENREL_EVALUATION> ;
+    # --------------------------------------------------------
+    # Permission
+    # --------------------------------------------------------
 
-# --------------------------------------------------------------------------------------------------------------------------------
-#   Rules
-# --------------------------------------------------------------------------------------------------------------------------------
-    
     odrl:permission [
-        odrl:action openrel:.use ;
+        odrl:action odrl:use ;
+
         odrl:constraint [
-          odrl:leftOperand odrl:dateTime ; 
-          odrl:operand odrl:gteq ;
-          ### encoded as a policy-based future date from date of publication                 
-          odrl:rightOperand oprenrel:parameterPublicationDate ; 
-          ]
-		]
-    .
+            a odrl:Constraint ;
+            odrl:leftOperand odrl:dateTime ;
+            odrl:operator odrl:gteq ;
+
+            # The embargo end date must be resolved before
+            # the permission can be evaluated.
+            odrl:rightOperandReference
+                openrel:parameterEndDate
+        ]
+    ] .
