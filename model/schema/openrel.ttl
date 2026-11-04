@@ -460,6 +460,24 @@ openrel:defaultDuty
 	rdfs:domain odrl:Action ;
 	rdfs:range odrl:Action .
 
+openrel:contradicts a rdf:Property,
+        owl:ObjectProperty,
+        skos:Concept ;
+    rdfs:label "Contradicting Action"@en ;
+    rdfs:domain odrl:Action ;
+    rdfs:range odrl:Action ;
+    skos:definition "The Action contradicts another Action defined by the property."@en .
+
+openrel:dutySlot a rdf:Property,
+        owl:ObjectProperty,
+        skos:Concept ;
+    rdfs:label "Duty Slot"@en ;
+    rdfs:domain odrl:Action ;
+    rdfs:isDefinedBy openrel: ;
+    rdfs:range skos:Concept ;
+    rdfs:deprecated true ;
+    skos:definition "The Duty typically applies in this temporal slot (pre-action, post-action)."@en .
+
 ############################################################################################################
 # EVALUATION CLASSES and PROPERTIES
 ############################################################################################################
@@ -756,3 +774,17 @@ openrel:servicePurpose
         "Identifies whether a service resolves a value, validates a supplied value, or performs both operations."@en ;
     rdfs:domain openrel:ParameterResolutionService ;
     rdfs:range skos:Concept .
+
+############################################################################################################
+# OPERAND-RELATED CLASSES and PROPERTIES
+############################################################################################################
+
+openrel:operandParameter
+    a owl:ObjectProperty, skos:Concept ;
+    rdfs:label "Operand Parameter"@en ;
+    skos:prefLabel "Operand Parameter"@en ;
+    skos:definition "Associates an ODRL Left Operand with an OpenREL Parameter that specifies how its contextual value is resolved during policy evaluation."@en ;
+    skos:note "This property provides optional OpenREL resolution metadata. It does not modify the ODRL LeftOperand class or the semantics of odrl:leftOperand."@en ;
+    rdfs:domain odrl:LeftOperand ;
+    rdfs:range openrel:Parameter .
+

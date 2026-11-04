@@ -21,13 +21,14 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
 openrel:LeftOperandRegistry a dct:Standard ;
     dct:title "OpenREL LeftOperand Registry"@en ;
     dct:description "OpenREL extensions and adopted external ODRL and IDSC left operands."@en .
 
 openrel:consentRequired a odrl:LeftOperand ;
-    rdfs:label "Consent Required"@en ;
+    rdfs:label "Consent and/ or Authorisation Required"@en ;
     rdfs:comment "Requires one or more types of consent to be provided."@en ;
     dct:description "Consent type/approval status; avoid treating concept as proof of consent"@en ;
     rdfs:isDefinedBy openrel: .
@@ -120,6 +121,22 @@ openrel:ipRange a odrl:LeftOperand ;
     rdfs:label "IP Range"@en ;
     rdfs:comment "Requires that the use or dissemination of the Asset occurs to one of an array of IP addresses."@en ;
     dct:description "Network source/destination and CIDR representation need explicit definition"@en ;
+    rdfs:isDefinedBy openrel: .
+
+openrel:adaptationStatus
+    a odrl:LeftOperand, skos:Concept ;
+    rdfs:label "Adaptation Status"@en ;
+    skos:prefLabel "Adaptation Status"@en ;
+    skos:definition "Indicates whether the asset that is the subject of a requested action constitutes an adaptation of the original licensed material under the applicable licence."@en ;
+    skos:note "The operand evaluates to a Boolean value. True indicates that the asset constitutes an adaptation; false indicates that it does not. Technical modifications that do not constitute adaptations under the applicable licence evaluate to false."@en ;
+    openrel:operandParameter openrel:parameterAdaptationStatus ;   
+    rdfs:isDefinedBy openrel: .
+
+openrel:eidasResearcherStatus
+    a odrl:LeftOperand, skos:Concept ;
+    rdfs:label "eIDAS Researcher Status"@en ;
+    skos:definition "Indicates whether the evaluated requestor has a verified researcher status associated with an eIDAS-verified identity."@en ;
+    openrel:operandParameter openrel:parameterEidasResearcherStatus ;
     rdfs:isDefinedBy openrel: .
 
 # External LeftOperands: adoption references only; authoritative definitions are external.

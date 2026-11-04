@@ -7,7 +7,17 @@
 
 # -------------------------------------------------------------------------------------------------------------
 # Parameters
-# In OpenREL, Parameters are modelled as a subclass of Right Operands as a mechanism for run-time evaluation
+#
+# OpenREL Parameters identify values that are resolved
+# during policy instantiation or runtime evaluation.
+#
+# Parameters may represent variable constraint values,
+# policy party and asset bindings, or contextual values.
+#
+# The resolutionMethod property identifies the context
+# or source from which the value is obtained.
+#
+# Parameters are not restricted to ODRL Right Operands.
 # -------------------------------------------------------------------------------------------------------------
 
 @prefix openrel: <http://www.w3id.org/ns/openrel/0/> .
@@ -50,13 +60,17 @@ openrel:parameterAssignerIRI
     openrel:expectedDatatype xsd:anyURI ;
     openrel:resolutionMethod openrel:RepositoryContext .
 
-openrel:parameterTargetIRI
-    a openrel:Parameter ;
-    skos:prefLabel "Target IRI"@en ;
-    skos:definition "An identifier for the target Asset or Asset Collection."@en ;
-    openrel:parameterName "TARGET_IRI" ;
+# Runtime context
+
+openrel:parameterVerifiedAuthorisations
+    a openrel:Parameter, skos:Concept ;
+    skos:prefLabel "Verified Authorisations"@en ;
+    skos:definition "A collection of IRIs identifying consent and authorisation types for which valid supporting evidence has been verified in the current evaluation context."@en ;
+    skos:note "Each returned IRI MUST identify a concept in openrel:typeConsent. Verification MUST account for the relevant requestor, Asset, intended activity, authorising Party, scope and validity period. Unresolved or inconclusive evidence MUST NOT result in a verified authorisation."@en ;
+    openrel:parameterName "VERIFIED_AUTHORISATIONS" ;
     openrel:expectedDatatype xsd:anyURI ;
-    openrel:resolutionMethod openrel:AssetMetadataValue .
+    openrel:resolutionMethod openrel:RuntimeContext ;
+    openrel:multipleValues true .
 
 # Platform context
 
@@ -144,13 +158,15 @@ openrel:parameterInstitutionIRI
     openrel:expectedDatatype xsd:anyURI ;
     openrel:resolutionMethod openrel:PartyContext .
 
-openrel:parameterPurposeIRI
-    a openrel:Parameter ;
-    skos:prefLabel "Intended Purpose IRI"@en ;
-    skos:definition "An identifier for the intended purpose of use."@en ;
-    openrel:parameterName "INTENDED_PURPOSE" ;
-    openrel:expectedDatatype xsd:anyURI ;
-    openrel:resolutionMethod openrel:PartyContext .
+openrel:parameterEidasResearcherStatus
+    a openrel:Parameter, skos:Concept ;
+    skos:prefLabel "eIDAS Researcher Status"@en ;
+    skos:definition "A Boolean indicating whether the requestor has an eIDAS-verified identity and an accepted researcher-status assertion associated with that identity."@en ;
+    skos:note "The value MUST be derived from validated evidence associated with the evaluated requestor. A self-declared value is insufficient."@en ;
+    openrel:parameterName "EIDAS_RESEARCHER_STATUS" ;
+    openrel:expectedDatatype xsd:boolean ;
+    openrel:resolutionMethod openrel:PartyContext ;
+    openrel:multipleValues false .
 
 # Data Subject context
 
@@ -212,3 +228,33 @@ openrel:parameterLicenceList
     openrel:expectedDatatype xsd:anyURI ;
     openrel:multipleValues true ;
     openrel:resolutionMethod openrel:AssetMetadataValue .
+
+openrel:parameterAdaptationStatus
+    a openrel:Parameter, skos:Concept ;
+    skos:prefLabel "Adaptation Status"@en ;
+    skos:definition "A Boolean indicating whether the asset being evaluated constitutes an adaptation of the original licensed material under the applicable licence."@en ;
+    skos:note "The value MUST be determined with reference to the applicable licence and the relationship between the evaluated asset and the original licensed material. An unknown or unverified status MUST NOT be treated as false."@en ;
+    openrel:parameterName "ADAPTATION_STATUS" ;
+    openrel:expectedDatatype xsd:boolean ;
+    openrel:resolutionMethod openrel:AssetMetadataValue ;
+    openrel:multipleValues false .
+
+openrel:parameterTargetIRI
+    a openrel:Parameter ;
+    skos:prefLabel "Target IRI"@en ;
+    skos:definition "An identifier for the target Asset or Asset Collection."@en ;
+    openrel:parameterName "TARGET_IRI" ;
+    openrel:expectedDatatype xsd:anyURI ;
+    openrel:resolutionMethod openrel:AssetMetadataValue .
+
+# Requestor context
+
+openrel:parameterPurposeIRI
+    a openrel:Parameter ;
+    skos:prefLabel "Intended Purpose IRI"@en ;
+    skos:definition "An identifier for the intended purpose of use."@en ;
+    openrel:parameterName "INTENDED_PURPOSE" ;
+    openrel:expectedDatatype xsd:anyURI ;
+    openrel:resolutionMethod openrel:RequestorContext .
+
+

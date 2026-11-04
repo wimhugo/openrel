@@ -324,6 +324,24 @@ openrel:notification-duty
     openrel:questionSatisfied "How" ;
     skos:inScheme openrel:typeScenario .
 
+openrel:no-derivatives
+    a skos:Concept ;
+    skos:prefLabel "No Derivatives"@en ;
+    skos:definition
+        "Dissemination of an Asset can only take place in unmodified form."@en ;
+    skos:broader openrel:group-obligations ;
+    openrel:questionSatisfied "How" ;
+    skos:inScheme openrel:typeScenario .
+
+openrel:private-use
+    a skos:Concept ;
+    skos:prefLabel "Private Modification and Use"@en ;
+    skos:definition
+        "An Asset can be modified for private use."@en ;
+    skos:broader openrel:group-obligations ;
+    openrel:questionSatisfied "How" ;
+    skos:inScheme openrel:typeScenario .    
+
 # ------------------------------------------------------------
 # Open Science Scenarios
 # ------------------------------------------------------------

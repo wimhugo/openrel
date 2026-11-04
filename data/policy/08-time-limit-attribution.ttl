@@ -1,0 +1,135 @@
+
+# ------------------------------------------------------------------
+# Title: Time-Limited Access + CC BY 4.0
+# OpenREL Composite Policy Example
+# Version 0.5 (Draft)
+# Revised: 4 November 2026
+#
+# Developed by Melios Katsamakis and Prodromos Tsiavos
+# (OpenAIRE), and Wim Hugo (DANS/EUDAT)
+#
+# Combines:
+# 1. Time-Limited Access Rules
+# 2. Creative Commons Attribution 4.0 International Licence
+#
+# Both constituent policies MUST be satisfied for the
+# composite policy to permit the requested action.
+# ------------------------------------------------------------------
+
+@base <http://www.w3id.org/ns/openrel/0/> .
+
+@prefix openrel: <http://www.w3id.org/ns/openrel/0/> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# ------------------------------------------------------------------
+# Policy Collection
+# ------------------------------------------------------------------
+
+<OR-BY-TL-4.0>
+    a openrel:PolicyCollection ;
+
+    # Citation information
+    dct:title "Time-Limited Access + CC BY 4.0"@en ;
+    dct:description "A composite policy combining time-limited access rules imposed by an organisation or platform with the Creative Commons Attribution 4.0 International licence applicable to the asset."@en ;
+    dct:publisher openrel:parameterPublisherIRI ;
+    dct:created "2026-07-12T00:00:00+00:00"^^xsd:dateTime ;
+    dct:modified "2026-11-04T00:00:00+00:00"^^xsd:dateTime ;
+    dct:creator "Melios Katsamakis - OpenAIRE" ;
+    dct:contributor <https://orcid.org/0000-0002-0255-5101> ;
+    dct:subject
+        "Time-Limited Access",
+        "CC BY 4.0" ;
+    schema:version "0.5" ;
+
+    # Collection metadata
+    openrel:accessType openrel:managed ;
+    openrel:jurisdiction openrel:worldwide ;
+    openrel:policyStatus openrel:typeTemplate ;
+
+    # --------------------------------------------------------------
+    # Constituent Policies
+    # --------------------------------------------------------------
+
+    openrel:hasPolicy
+        <OR-TL-0.4>,
+        <CC-BY-4.0> ;
+
+    # --------------------------------------------------------------
+    # Optional published representation
+    # --------------------------------------------------------------
+
+    # openrel:encodedRules <PUBLISHED_POLICY_RDF_IRI> ;
+
+    # --------------------------------------------------------------
+    # Optional Policy-Level Evaluation (illustrative)
+    # --------------------------------------------------------------
+    #
+    # The following illustrates a CONDITIONAL outcome.
+    # The CC BY 4.0 licence permits the requested use,
+    # but the time interval and applicable licence
+    # obligations have not yet been fully evaluated.
+    #
+    # This is a hypothetical evaluation, not a recorded
+    # decision for an actual request.
+    #
+    # openrel:hasEvaluationDetail [
+    #     a openrel:EvaluationDetail ;
+    #     openrel:comparedSubject <OR-TL-0.4> ;
+    #     openrel:comparedIndividual <CC-BY-4.0> ;
+    #     openrel:evaluationClass odrl:Policy ;
+    #     openrel:evaluationOutcome openrel:policyConditional ;
+    #     openrel:assertedBy <https://orcid.org/0000-0002-0255-5101> ;
+    #     openrel:created "2026-11-04"^^xsd:date ;
+    #     openrel:rationale
+    #         "The CC BY 4.0 licence permits the
+    #          requested use subject to its applicable
+    #          obligations. The additional time-limited
+    #          access conditions must be evaluated
+    #          against the requestor, target asset,
+    #          and applicable start and end dates."@en
+    # ] ;
+
+    # --------------------------------------------------------------
+    # Optional aggregate evaluation outcome
+    # --------------------------------------------------------------
+    #
+    # openrel:policyEvaluationOutcome
+    #     openrel:policyConditional ;
+
+    # --------------------------------------------------------------
+    # End of Policy Collection
+    # --------------------------------------------------------------
+
+# ------------------------------------------------------------------
+# Runtime Binding and Evaluation Notes
+# ------------------------------------------------------------------
+#
+# 1. The collection references two independent policies.
+#    It does not alter their respective permissions,
+#    prohibitions or duties.
+# 2. The Time-Limited Access Rules MUST be instantiated
+#    for the applicable requestor and target asset.
+# 3. The start and end dates MUST be resolved using:
+#       openrel:startDateParameter
+#       openrel:endDateParameter
+# 4. The evaluation MUST use the same requestor, asset
+#    and requested action for both constituent policies.
+# 5. The Time-Limited Access Rules MUST permit the
+#    requested action at the evaluation date/time.
+# 6. The CC BY 4.0 Licence MUST also permit that action,
+#    subject to its applicable obligations.
+# 7. An applicable prohibition or an unsatisfiable
+#    mandatory condition results in DENY.
+# 8. Outstanding mandatory preconditions may produce
+#    CONDITIONAL until satisfied.
+# 9. PERMIT requires all mandatory preconditions to be
+#    satisfied and applicable prohibitions accounted for.
+# 10. The PolicyCollection's intended combination
+#     semantics are conjunctive (AND). The collection
+#     membership triples alone do not encode this
+#     evaluation algorithm.
+#
+# ------------------------------------------------------------------

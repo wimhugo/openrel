@@ -1,130 +1,136 @@
 
+# ------------------------------------------------------------------
 # Title: Time-Limited Access
-# Example Policy
-# Time Limited Access is an Access Rule: imposed by an organisation or platform independently of the licence applicable to the asset
-# The motivation may, for example, be to re-evaluate context of the assignee at the completion of the access period
-# A combination example is also provided
-# This Access Rule is specific to an Assignee and MUST include a date of asset availability and a date on which it ends
-# OpenREL - Open Rights Encoding language
-# Version 0.4 (Draft)
-# Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/ EUDAT)
-# This Version: 3 August 2026
-# --------------------------------------------------------------------------------------------------------------------------------
+# OpenREL Example Access Rules Policy
+# Version 0.5 (Draft)
+# Revised: 4 November 2026
+#
+# Developed by Melios Katsamakis and Prodromos Tsiavos
+# (OpenAIRE), and Wim Hugo (DANS/EUDAT)
+#
+# Time-Limited Access is an Access Rule imposed by an
+# organisation or platform independently of the licence
+# applicable to an asset.
+#
+# Access is permitted only within a defined time interval.
+# The rule is specific to an assignee and an asset.
+#
+# The start and end dates are supplied through runtime
+# Parameters. Both dates MUST be resolved before the
+# policy can be evaluated successfully.
+# ------------------------------------------------------------------
 
-# context
-@base <http://www.w3.org/ns/openrel/0/> .
-@prefix openrel: <http://www.w3.org/ns/openrel/0/> .
-# RDF-related
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+# Namespaces
+
+@base <http://www.w3id.org/ns/openrel/0/> .
+
+@prefix openrel: <http://www.w3id.org/ns/openrel/0/> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix schema: <http://schema.org/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-# general content
-@prefix schema: <http://schema.org/> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
-# rdmi-related
-@prefix dct: <http://purl.org/dc/terms/> .
-@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
-@prefix dcat: <http://www.w3.org/ns/dcat#> .
-@prefix dcatap: <http://data.europa.eu/r5r/> .
-# rights-related
-@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
-@prefix cc: <http://creativecommons.org/ns#> .
-@prefix dalicc: <https://dalicc.net/ns#> .
-@prefix ids: <https://w3id.org/idsa/core/> .
-@prefix idsc: <https://w3id.org/idsa/code/> .
-@prefix osl: <http://opensource.org/licenses/> .
-@prefix spdx: <http://spdx.org/rdf/terms#>  .
-@prefix dpv: <https://w3id.org/dpv/> .
-# Policy Libraries and Registries
-@prefix openrellib: <https://github.com/wimhugo/openrel/new/main/data/policy/> .
-@prefix spdxlicense: <http://spdx.org/licenses/> .
-@prefix dalicclib: <https://dalicc.net/licenselibrary/> 
-@prefix lfslib: <https://lfs.labs.dansdemo.nl/api/v1/licenses/> .
 
-# --------------------------------------------------------------------------------------------------------------------------------
-# Access Rules Metadata
-# --------------------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------
+# Access Rules Policy
+# ------------------------------------------------------------------
 
-<OR-TL-0.4> a openrel:AccessRules ;
-    # Alternate identifiers
-    ## skos:exactMatch lfslib:[TO_BE_REGISTERED] ;
+<OR-TL-0.4>
+    a openrel:AccessRules ;
 
-    # Citation Information
-    dct:title "Time-Limited Access" ;
+    # Citation information
+    dct:title "Time-Limited Access"@en ;
+    dct:description "Access rules permitting an identified assignee to read or download an asset only within a specified time interval. These rules apply independently of the licence governing the asset."@en ;
     dct:publisher openrel:parameterPublisherIRI ;
-    dct:created "2026-07-12T00:00:00+00:00" ;
-    dct:modified "2026-08-03T00:00:00+00:00" ;
-    dct:creator "Melios Katsamakis - OpenAIRE" ;
-    dct:creator <https://orcid.org/0000-0002-0255-5101> ;
-    dct:subject "Time-Limited Access" ;
-    openrel:accessType openrel:managed ;
-    dct:version "0.1" ;
+    dct:created "2026-07-12T00:00:00+00:00"^^xsd:dateTime ;
+    dct:modified "2026-11-04T00:00:00+00:00"^^xsd:dateTime ;
+    dct:creator "Melios Katsamakis - OpenAIRE",
+        <https://orcid.org/0000-0002-0255-5101> ;
+    dct:subject "Time-Limited Access"@en ;
+    schema:version "0.5" ;
 
-    # Coverage related information
-    ## These properties apply only for those policies that explicitly require them, optional for others
-    ## openrel:validityType openrel:perpetual ;
+    # Policy metadata
+    openrel:accessType openrel:managed ;
     openrel:jurisdiction openrel:worldwide ;
-    openrel:policyStatus openrel:typePrivateActive ;
+    openrel:policyStatus openrel:typeTemplate ;
+
+    # Template Parameters for policy parties and asset
+    #
+    # These references MUST be replaced with resolved
+    # party and asset IRIs when the policy is instantiated.
+
     odrl:assigner openrel:parameterAssignerIRI ;
     odrl:assignee openrel:parameterAssigneeIRI ;
     odrl:target openrel:parameterTargetIRI ;
- 
-	# Alternative representations, mappings of SPDX and LFS properties
-    openrel:policyText "**Time Limited Access** is an **Access Rule** imposed by an organisation or platform independently of the licence applicable to the asset. The motivation may, for example, be to re-evaluate context of the assignee at the completion of the access period"@en ;
-    openrel:encodedRules openrellib:OR-TL-0.4 ;
 
-# --------------------------------------------------------------------------------------------------------------------------------
-#   Rules
-# --------------------------------------------------------------------------------------------------------------------------------
-    
+    # Human-readable policy text
+
+    openrel:policyText
+        """Time-Limited Access is an Access Rule imposed
+        by an organisation or platform independently of
+        the licence applicable to the asset.
+
+        Reading and downloading are permitted only
+        between the specified start and end dates.
+
+        Access expires at the end of the defined period.
+        The organisation or platform may subsequently
+        re-evaluate the assignee's eligibility."""@en ;
+
+    # Optional published representation
+    # openrel:encodedRules <PUBLISHED_POLICY_RDF_IRI> ;
+
+    # --------------------------------------------------------------
+    # Permissions
+    # --------------------------------------------------------------
+
     odrl:permission [
-        [odrl:action openrel:read ;
+        a odrl:Permission ;
+        odrl:action openrel:read ;
         odrl:constraint <SD-ED-limits>
-		],
-        [odrl:action openrel:download ;
+    ],
+    [
+        a odrl:Permission ;
+        odrl:action openrel:download ;
         odrl:constraint <SD-ED-limits>
-		]	
-        .
+    ] .
 
-# --------------------------------------------------------------------------------------------------------------------------------
-#   Custom Logical Constraints
-# --------------------------------------------------------------------------------------------------------------------------------
-  
+# ------------------------------------------------------------------
+# Logical Constraint
+# ------------------------------------------------------------------
+
 <SD-ED-limits>
     a odrl:LogicalConstraint ;
-	rdfs:label "Time Interval (parametric)" ;  
+    rdfs:label "Time Interval (parametric)"@en ;
+    skos:definition "A logical constraint requiring the current date and time to fall within the specified start and end dates, inclusive."@en ;
     odrl:and (
-        <validStartDate>
-        <validEndDate>
-    ) 
-    .
-# --------------------------------------------------------------------------------------------------------------------------------
-#   Custom Named Constraints
-# --------------------------------------------------------------------------------------------------------------------------------
-  
-<validStartDate>
-	 a openrel:NamedConstraint ;
-		rdfs:label "Start Date Constraint"@en ;
-		skos:definition "Access is only permitted on or after this date."@en ;
-		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
-		openrel:constraintType openrel:tom ;
-		openrel:scenario openrel:tech-limits ;
-		odrl:leftOperand odrl:dateTime ;
-		odrl:operand odrl:gteq ;
-		odrl:rightOperand openrel:startDateParameter ;
-		.
+        openrel:validStartDate
+        openrel:validEndDate
+    ) .
 
-<validEndDate>
-	 a openrel:NamedConstraint ;
-		rdfs:label "End Date Constraint"@en ;
-		skos:definition "Access is only permitted on or before this date."@en ;
-		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
-		openrel:constraintType openrel:tom ;
-		openrel:scenario openrel:tech-limits ;
-		odrl:leftOperand odrl:dateTime ;
-		odrl:operand odrl:lteq ;
-		odrl:rightOperand openrel:endDateParameter ;
-		.
+
+# ------------------------------------------------------------------
+# Runtime Evaluation Notes
+# ------------------------------------------------------------------
+#
+# 1. The policy MUST be instantiated with an identified
+#    assigner, assignee and target asset.
+# 2. The evaluator MUST resolve:
+#       openrel:startDateParameter
+#       openrel:endDateParameter
+#    Both values MUST be valid xsd:dateTime values.
+# 3. The resolved end date MUST NOT precede the start date.
+# 4. The evaluator MUST compare the current evaluation
+#    date/time with both resolved values.
+# 5. Both Named Constraints MUST be satisfied for either
+#    permission to apply.
+# 6. Unresolved or invalid Parameters MUST NOT result
+#    in a successful permission decision.
+# 7. The permissions apply only to the identified assignee
+#    and target asset.
+# 8. The policy does not replace or override the licence
+#    governing the asset. Both can subsequently be combined
+#    in an openrel:PolicyCollection.
+#
+# ------------------------------------------------------------------

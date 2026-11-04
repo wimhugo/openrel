@@ -72,12 +72,13 @@ openrel:eidasVerified a openrel:NamedConstraint ;
     odrl:rightOperand openrel:context-eidas ;
     openrel:constraintType openrel:context .
 
-openrel:eidasVerifiedResearcher a openrel:NamedConstraint ;
+openrel:eidasVerifiedResearcher
+    a openrel:NamedConstraint ;
     rdfs:label "eIDAS Verified Researcher"@en ;
-    skos:definition "End User has been verified as a Researcher via eIDAS."@en ;
-    odrl:leftOperand openrel:contextLimitation ;
+    skos:definition "The requestor has an eIDAS-verified identity and an accepted researcher-status assertion associated with that identity."@en ;
+    odrl:leftOperand openrel:eidasResearcherStatus ;
     odrl:operator odrl:eq ;
-    odrl:rightOperand openrel:context-eidas ;
+    odrl:rightOperand true ;
     openrel:constraintType openrel:context .
 
 openrel:ethicsApproval a openrel:NamedConstraint ;
@@ -197,3 +198,36 @@ openrel:verifiedResearcher a openrel:NamedConstraint ;
         openrel:confirmed-researcher,
         openrel:confirmed-rpo,
         openrel:academic-only .
+
+openrel:distributeUnmodified
+    a openrel:NamedConstraint, skos:Concept ;
+    rdfs:label "Distribute Unmodified"@en ;
+    skos:definition "Distribution is permitted only when the distributed material is not an adaptation of the licensed material."@en ;
+    skos:note "Technical modifications that do not constitute adaptations under the applicable licence are permitted."@en ;
+    odrl:leftOperand openrel:adaptationStatus ;
+    odrl:operator odrl:eq ;
+    odrl:rightOperand false ;
+    openrel:scenario openrel:no-derivatives,
+        openrel:private-use .    
+
+openrel:validStartDate
+    a openrel:NamedConstraint ;
+    rdfs:label "Start Date Constraint"@en ;
+    skos:definition "Access is only permitted on or after the specified start date."@en ;
+    skos:note "The start date is supplied by a runtime Parameter. The comparison is inclusive."@en ;
+    openrel:constraintType openrel:tom ;
+    openrel:scenario openrel:tech-limits ;
+    odrl:leftOperand odrl:dateTime ;
+    odrl:operator odrl:gteq ;
+    odrl:rightOperandReference openrel:startDateParameter .
+
+openrel:validEndDate
+    a openrel:NamedConstraint ;
+    rdfs:label "End Date Constraint"@en ;
+    skos:definition "Access is only permitted on or before the specified end date."@en ;
+    skos:note "The end date is supplied by a runtime Parameter. The comparison is inclusive."@en ;
+    openrel:constraintType openrel:tom ;
+    openrel:scenario openrel:tech-limits ;
+    odrl:leftOperand odrl:dateTime ;
+    odrl:operator odrl:lteq ;
+    odrl:rightOperandReference openrel:endDateParameter .

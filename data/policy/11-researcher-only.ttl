@@ -1,11 +1,10 @@
-# Title: Researcher-Only Access with eIDAS Verification
-# Example Policy
-# OpenREL - Open Rights Encoding language
-# Version 0.5 (Draft)
-# Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/ EUDAT)
-# This Version: 29 October 2026
-# --------------------------------------------------------------------------------------------------------------------------------
 
+# ------------------------------------------------------------
+# Researcher-Only Access with eIDAS Verification
+# OpenREL Process Rules
+# Version 0.5 (Draft)
+# Revised: 4 November 2026
+# ------------------------------------------------------------
 
 @base <http://www.w3id.org/ns/openrel/0/> .
 
@@ -13,7 +12,6 @@
 @prefix odrl: <http://www.w3.org/ns/odrl/2/> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix schema: <http://schema.org/> .
-@prefix cc: <http://creativecommons.org/ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 # ------------------------------------------------------------
@@ -22,62 +20,111 @@
 
 <OR-BY-AC-VI-4.0>
     a openrel:ProcessRules ;
-    openrel:policyStatus openrel:typeTemplate ;
 
-    # Parties and target
-    odrl:assigner [ASSIGNER_URI] ;
-    odrl:assignee [ASSIGNEE_URI] ;
-    odrl:target [TARGET_URI] ;
+    # resolve at run-time from appropriate context
+    # odrl:assigner <ASSIGNER_IRI> ;
+    # odrl:assignee <ASSIGNEE_IRI> ;
+    # odrl:target <TARGET_IRI> ;
 
-    # Citation information
     dct:title "OpenREL Academic eIDAS Verified Identity"@en ;
+
     dct:alternative "eIDAS Researcher Verification"@en ;
-    dct:description "Process rules applicable to the verification of researcher identity."@en ;
+
+    dct:description
+        """Process rules requiring eIDAS-verified identity
+        and verified researcher status. Researcher status
+        may be established either through an accepted
+        eIDAS assertion that includes researcher status,
+        or through independent trusted verification
+        combined with eIDAS identity verification."""@en ;
+
     dct:publisher "OpenREL" ;
     dct:created "2026-07-12T00:00:00+00:00"^^xsd:dateTime ;
-    dct:modified "2026-10-29T00:00:00+00:00"^^xsd:dateTime ;
+    dct:modified "2026-11-04T00:00:00+00:00"^^xsd:dateTime ;
     dct:creator <https://orcid.org/0000-0002-0255-5101> ;
-    dct:subject "Identity Verification", "eIDAS", "Researcher" ;
+
+    dct:subject
+        "Identity Verification",
+        "eIDAS",
+        "Researcher" ;
 
     openrel:accessType openrel:managed ;
     schema:version "0.5" ;
 
-    # Coverage and policy status
-    cc:jurisdiction openrel:worldwide ;
+    openrel:jurisdiction openrel:worldwide ;
     openrel:validityType openrel:perpetual ;
-    openrel:policyStatus openrel:typeCustomActive ;
+    openrel:policyStatus openrel:typeTemplate ;
 
-    # Disclaimers
-    openrel:liabilityLimitation ""@en ;
-    openrel:warrantyNotice ""@en ;
+    # Replace with the published RDF resource IRI.
+    # openrel:encodedRules <PUBLISHED_POLICY_RDF_IRI> ;
 
-    # Alternative representation
-    openrel:encodedRules <https://github.com/wimhugo/openrel/blob/main/data/policy/OR-BY-AC-VI-4.0> ;
-
-# --------------------------------------------------------
-# Rules
-# --------------------------------------------------------
+    # --------------------------------------------------------
+    # Permission
+    # --------------------------------------------------------
 
     odrl:permission [
+        a odrl:Permission ;
         odrl:action odrl:use ;
+
         odrl:constraint <11-eidas-researcher>
     ] .
 
-# ---------------------------------------------------------
+# ------------------------------------------------------------
 # Logical Constraints
-# ---------------------------------------------------------
+# ------------------------------------------------------------
+
+# Pathway A OR Pathway B
 
 <11-eidas-researcher>
     a odrl:LogicalConstraint ;
     odrl:or (
-        <11-verifiedResearcher>
         openrel:eidasVerifiedResearcher
+        <11-verifiedResearcher>
     ) .
+
+# Pathway B:
+# eIDAS identity AND independently verified researcher status
 
 <11-verifiedResearcher>
     a odrl:LogicalConstraint ;
-    odrl:or (
-        openrel:verifiedResearcher
+    odrl:and (
         openrel:eidasVerified
+        openrel:verifiedResearcher
     ) .
+
+# ------------------------------------------------------------
+# Named Constraint semantics
+# ------------------------------------------------------------
+#
+# openrel:eidasVerifiedResearcher
+#   MUST establish both eIDAS-verified identity and
+#   researcher status associated with that identity.
+#
+# openrel:eidasVerified
+#   MUST establish eIDAS-verified identity.
+#
+# openrel:verifiedResearcher
+#   MUST establish researcher status through an accepted
+#   trusted mechanism.
+#
+# For Pathway B, both assertions MUST refer to the same
+# person, with appropriate identity linking.
+#
+# REVIEW: An identity or researcher-status assertion
+# should include evidence provenance, validity and
+# verification status.
+#
+# ------------------------------------------------------------
+# TEMPLATE STATUS
+# ------------------------------------------------------------
+#
+# This policy remains a template.
+#
+# When instantiated:
+# - Resolve assigner, assignee and target.
+# - Set the appropriate active policy status.
+# - Confirm the trusted sources for researcher status.
+# - Verify that the logical constraints can be evaluated.
+#
+# ------------------------------------------------------------
 

@@ -35,7 +35,7 @@ openrel:anonymize a skos:Concept,
         "odrl: For example, to remove identifying particulars for statistical or for other comparable purposes, or to use the Asset without stating the author/source."@en,
         "odrl: To anonymize all or parts of the Asset."@en ;
     odrl:includedIn odrl:use ;
-    openrel:actionCategory odrl:Duty,
+    openrel:actionCategory openrel:PreDuty,
         odrl:Permission .
 
 openrel:applyLicence a skos:Concept,
@@ -47,7 +47,7 @@ openrel:applyLicence a skos:Concept,
     skos:note "The odrl:licence action is deprecated and replaced by odrl:grantUse"@en,
         "odrl: This action enables the assignee to create policies for the use of the Asset for third parties. The nextPolicy is recommended to be agreed with the third party. Use of temporal constraints is recommended."@en ;
     odrl:includedIn odrl:use ;
-    openrel:actionCategory odrl:Duty,
+    openrel:actionCategory openrel:PostDuty,
         odrl:Permission .
 
 openrel:archive a skos:Concept,
@@ -70,7 +70,7 @@ openrel:assentTo a skos:Concept,
     skos:definition "Agent using the resource assents to/ acknowledges one or more duties."@en ;
     skos:inScheme openrel:ActionScheme ;
     skos:note "Policies and Process Rulesets (e.g. terms of use) often extend access and process conditions that are not part of a licence, but depends on the context of the catalogue/ repository, funder, etc. These may require positive assent (acknowledgement) of a number of rules prior to gaining access to an asset, irrespective of eligibility in respect of licence conditions. Examples: users must register in the repository portal (policy), must assent to licence conditions,  or acknowledge the terms of use (both process duties)."@en ;
-    openrel:actionCategory odrl:Duty .
+    openrel:actionCategory openrel:PreDuty .
 
 openrel:attribute a skos:Concept,
         odrl:Action ;
@@ -95,14 +95,6 @@ openrel:commercialise a skos:Concept,
     openrel:actionCategory odrl:Permission,
         odrl:Prohibition .
 
-openrel:contradicts a rdf:Property,
-        owl:ObjectProperty,
-        skos:Concept ;
-    rdfs:label "Contradicting Action"@en ;
-    rdfs:domain odrl:Action ;
-    rdfs:range odrl:Action ;
-    skos:definition "The Action contradicts another Action defined by the property."@en .
-
 openrel:costRecovery a skos:Concept,
         odrl:Action ;
     rdfs:label "Cost Recovery"@en ;
@@ -114,15 +106,6 @@ openrel:costRecovery a skos:Concept,
     openrel:actionCategory odrl:Permission,
         odrl:Prohibition .
 
-openrel:defaultDuty a rdf:Property,
-        owl:ObjectProperty,
-        skos:Concept ;
-    rdfs:label "Default Duty"@en ;
-    rdfs:domain odrl:Action ;
-    rdfs:isDefinedBy openrel: ;
-    rdfs:range odrl:Action ;
-    skos:definition "The Action typically implies this Duty."@en .
-
 openrel:delete a skos:Concept,
         odrl:Action ;
     rdfs:label "Delete"@en ;
@@ -132,7 +115,7 @@ openrel:delete a skos:Concept,
     skos:note "odrl: To permanently remove all copies of the Asset after it has been used."@en,
         "odrl: Use a constraint to define under which conditions the Asset must be deleted."@en ;
     odrl:includedIn odrl:use ;
-    openrel:actionCategory odrl:Duty,
+    openrel:actionCategory openrel:PostDuty,
         odrl:Permission,
         odrl:Prohibition .
 
@@ -161,15 +144,6 @@ openrel:distribute a skos:Concept,
         odrl:Permission,
         odrl:Prohibition .
 
-openrel:dutySlot a rdf:Property,
-        owl:ObjectProperty,
-        skos:Concept ;
-    rdfs:label "Duty Slot"@en ;
-    rdfs:domain odrl:Action ;
-    rdfs:isDefinedBy openrel: ;
-    rdfs:range skos:Concept ;
-    skos:definition "The Duty typically applies in this temporal slot (pre-action, post-action)."@en .
-
 openrel:encrypt a skos:Concept,
         odrl:Action ;
     rdfs:label "Encrypt"@en ;
@@ -179,7 +153,7 @@ openrel:encrypt a skos:Concept,
     skos:note "odrl: To convert the Asset into a different format."@en,
         "odrl: Typically used to convert the Asset into a different format for consumption on/transfer to a third party system."@en ;
     odrl:includedIn odrl:use ;
-    openrel:actionCategory odrl:Duty,
+    openrel:actionCategory openrel:PreDuty,
         odrl:Permission .
 
 openrel:log a skos:Concept,
@@ -189,7 +163,7 @@ openrel:log a skos:Concept,
     skos:definition "Record an event to a designated logging or audit system."@en ;
     skos:inScheme openrel:ActionScheme ;
     odrl:includedIn odrl:use ;
-    openrel:actionCategory odrl:Duty,
+    openrel:actionCategory openrel:PostDuty,
         odrl:Permission .
 
 openrel:modify a skos:Concept,
@@ -212,7 +186,7 @@ openrel:notify a skos:Concept,
     skos:definition "Send a notification to a defined endpoint upon performing an action."@en ;
     skos:inScheme openrel:ActionScheme ;
     odrl:includedIn odrl:use ;
-    openrel:actionCategory odrl:Duty,
+    openrel:actionCategory openrel:PostDuty,
         odrl:Permission .
 
 openrel:promote a skos:Concept,
@@ -257,7 +231,17 @@ openrel:sensitiveDataConsent a skos:Concept,
         "odrl: May be used as a Duty to ensure that the Assigner or a Party is authorized to approve such actions on a case-by-case basis. May link to a Party with the role “consentingParty” function."@en,
         "odrl: To obtain verifiable consent to perform the requested action in relation to the Asset."@en ;
     odrl:includedIn odrl:obtainConsent ;
-    openrel:actionCategory odrl:Duty .
+    openrel:actionCategory openrel:PreDuty .
+
+openrel:obtainEthicsApproval
+    a odrl:Action, skos:Concept ;
+    rdfs:label "Obtain Ethics Approval"@en ;
+    skos:prefLabel "Obtain Ethics Approval"@en ;
+    skos:definition "To obtain documented approval or clearance from a competent research ethics committee or other authorised ethics review body for a specified activity involving an Asset."@en ;
+    skos:note "When used in an openrel:PreDuty, the required ethics approval MUST be obtained and verified before the associated permitted action is performed. The approval MUST cover the intended activity, relevant Asset and applicable research protocol, and MUST remain valid at the time of evaluation."@en ;
+    odrl:includedIn odrl:use ;
+    rdfs:isDefinedBy openrel: ;
+    openrel:actionCategory openrel:PreDuty .
 
 openrel:shareAlike a skos:Concept,
         odrl:Action ;
@@ -266,7 +250,7 @@ openrel:shareAlike a skos:Concept,
     skos:definition "The Asset or its derivatives may be distributed without modification of its original Policy."@en ;
     skos:inScheme openrel:ActionScheme ;
     skos:note "CC: derivative works be licensed under the same terms or compatible terms as the original work."@en ;
-    openrel:actionCategory odrl:Duty .
+    openrel:actionCategory openrel:PostDuty .
 
 openrel:trademarkUse a skos:Concept,
         odrl:Action ;
