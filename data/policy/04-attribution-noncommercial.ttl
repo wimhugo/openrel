@@ -1,150 +1,224 @@
-# Context and Input Licences
-# --------------------------------------------------------------------------------------------------------------------------------
-# Title: The machine-readable representation of "Creative Commons Attribution Non-Commercial 4.0 International"@en in the DALICC license library
-# Author: DALICC
-# Source: https://dalicc.net/licenselibrary/CC-BY-NC-4.0
-# Licensed under: Attribution 4.0 International (CC BY 4.0) 
-# Amended by and aligned with OpenREL
-# --------------------------------------------------------------------------------------------------------------------------------
-# OpenREL - Open Rights Encoding language
-# Version 0.4 (Draft)
-# Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/ EUDAT)
-# This Version: 04 August 2026
 
-# context
-@base <http://www.w3.org/ns/openrel/0/> .
-@prefix openrel: <http://www.w3.org/ns/openrel/0/> .
-# RDF-related
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-# general content
-@prefix schema: <http://schema.org/> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
-# rdmi-related
-@prefix dct: <http://purl.org/dc/terms/> .
-@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
-@prefix dcat: <http://www.w3.org/ns/dcat#> .
-@prefix dcatap: <http://data.europa.eu/r5r/> .
-# rights-related
+# ------------------------------------------------------------
+# OpenREL Policy: CC BY-NC 4.0 International
+# Derived from the DALICC licence representation
+# OpenREL encoding version 0.4 (Draft)
+# ------------------------------------------------------------
+
+@base <http://www.w3id.org/ns/openrel/0/> .
+
+@prefix openrel: <http://www.w3id.org/ns/openrel/0/> .
 @prefix odrl: <http://www.w3.org/ns/odrl/2/> .
-@prefix cc: <http://creativecommons.org/ns#> .
-@prefix dalicc: <https://dalicc.net/ns#> .
-@prefix ids: <https://w3id.org/idsa/core/> .
-@prefix idsc: <https://w3id.org/idsa/code/> .
-@prefix osl: <http://opensource.org/licenses/> .
-@prefix spdx: <http://spdx.org/rdf/terms#>  .
-@prefix dpv: <https://w3id.org/dpv/> .
-# Policy Libraries and Registries
-@prefix openrellib: <https://github.com/wimhugo/openrel/new/main/data/policy/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix schema: <http://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix spdxlicense: <http://spdx.org/licenses/> .
-@prefix dalicclib: <https://dalicc.net/licenselibrary/> 
+@prefix dalicclib: <https://dalicc.net/licenselibrary/> .
 @prefix lfslib: <https://lfs.labs.dansdemo.nl/api/v1/licenses/> .
 
-# --------------------------------------------------------------------------------------------------------------------------------
-# Licence Metadata
-# --------------------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------
+# Licence metadata
+# ------------------------------------------------------------
 
-<CC-BY-NC-4.0> a openrel:Licence ;
+<CC-BY-NC-4.0>
+    a openrel:Licence ;
+
+    # Provenance
     prov:wasDerivedFrom dalicclib:CC-BY-NC-4.0 ;
-    prov:wasAttributedTo "Giray Havur" ;
+    dct:contributor "Giray Havur" ;
 
     # Alternate identifiers
     dct:relation spdxlicense:CC-BY-NC-4.0 ;
-    dct:relation lfslib:CC-BY-4.0 ;
+    dct:relation lfslib:CC-BY-NC-4.0 ;
 
-    # Citation Information
-    dct:title "Creative Commons Attribution NonCommercial 4.0 International"@en ;
-    dct:alternative 
-        "Attribution NonCommercial 4.0 International",
-        "Attribution-NonCommercial 4.0",
-        "Attribution-NonCommercial 4.0 International",
-        "CC BY NC 4.0",
-        "CC BY NC 4.0 International",
-        "CC BY-NC 4.0",
-        "CC BY-NC 4.0 International",
-        "CC-BY-NC 4.0",
-        "CC-BY-NC 4.0 International",
-        "Creative Commons BY-NC 4.0",
-        "Creative Commons BY-NC 4.0 International" ;
-    dct:description "Free to read and share, but commercial exploitation is not permitted. Attribution required."@en ;
-    skos:note "Commercial purposes - including trademark use, selling, charging a licence fee, use in promotion, or any other direct or indirect commerciaal benefit that derives from use of the asset - is not permitted by the Assigner."@en ;
+    # Citation information
+    dct:title
+        "Creative Commons Attribution-NonCommercial 4.0 International"@en ;
+
+    dct:alternative
+        "Attribution NonCommercial 4.0 International"@en,
+        "Attribution-NonCommercial 4.0"@en,
+        "CC BY NC 4.0"@en,
+        "CC BY NC 4.0 International"@en,
+        "CC BY-NC 4.0"@en,
+        "CC BY-NC 4.0 International"@en,
+        "CC-BY-NC 4.0"@en,
+        "CC-BY-NC 4.0 International"@en,
+        "Creative Commons BY-NC 4.0"@en,
+        "Creative Commons BY-NC 4.0 International"@en ;
+
+    dct:description
+        """Permits sharing and adaptation of the licensed material
+        for noncommercial purposes, provided that attribution
+        requirements are satisfied. Commercial use of the
+        licensed material is not authorised by this licence."""@en ;
+
+    skos:note
+        """NonCommercial means not primarily intended for or
+        directed towards commercial advantage or monetary
+        compensation. The assessment depends on the purpose
+        and circumstances of the particular use."""@en ;
+
     dct:publisher "Creative Commons" ;
-    dct:created "2026-07-12T00:00:00+00:00" ;
-    dct:modified "2026-08-03T00:00:00+00:00" ;
+    dct:created "2026-07-12T00:00:00+00:00"^^xsd:dateTime ;
+    dct:modified "2026-11-04T00:00:00+00:00"^^xsd:dateTime ;
     dct:creator "Melios Katsamakis - OpenAIRE" ;
     dct:creator <https://orcid.org/0000-0002-0255-5101> ;
-    dct:subject "Public Domain" ;
-    openrel:accessType openrel:openAccess ;    
-    dct:source <https://creativecommons.org/licenses/by-sa/4.0> ;
-    dct:version "4.0" ;
+    dct:subject "Attribution", "NonCommercial", "Open Licensing" ;
+    dct:source <https://creativecommons.org/licenses/by-nc/4.0/> ;
+    schema:version "4.0" ;
 
-    # Coverage related information
-    cc:jurisdiction openrel:worldwide ;
+    # Access, coverage and status
+    openrel:accessType openrel:open-access ;
+    openrel:jurisdiction openrel:worldwide ;
     openrel:validityType openrel:perpetual ;
     openrel:policyStatus openrel:typeGlobalActive ;
 
     # Disclaimers
-    openrel:liabilityLimitation "To the extent possible, in no event will the Licensor be liable to You on any legal theory (including, without limitation, negligence) or otherwise for any direct, special, indirect, incidental, consequential, punitive, exemplary, or other losses, costs, expenses, or damages arising out of this Public License or use of the Licensed Material, even if the Licensor has been advised of the possibility of such losses, costs, expenses, or damages. Where a limitation of liability is not allowed in full or in part, this limitation may not apply to You." ;
-    openrel:warrantyNotice "Unless otherwise separately undertaken by the Licensor, to the extent possible, the Licensor offers the Licensed Material as-is and as-available, and makes no representations or warranties of any kind concerning the Licensed Material, whether express, implied, statutory, or other. This includes, without limitation, warranties of title, merchantability, fitness for a particular purpose, non-infringement, absence of latent or other defects, accuracy, or the presence or absence of errors, whether or not known or discoverable. Where disclaimers of warranties are not allowed in full or in part, this disclaimer may not apply to You." ;
+    openrel:liabilityLimitation
+        """To the extent possible, in no event will the Licensor be
+        liable to You on any legal theory (including, without
+        limitation, negligence) or otherwise for any direct,
+        special, indirect, incidental, consequential, punitive,
+        exemplary, or other losses, costs, expenses, or damages
+        arising out of this Public License or use of the Licensed
+        Material, even if the Licensor has been advised of the
+        possibility of such losses, costs, expenses, or damages.
+        Where a limitation of liability is not allowed in full
+        or in part, this limitation may not apply to You."""@en ;
 
-    # Alternative representations, mappings of SPDX and LFS properties
-    openrel:legalcode <https://creativecommons.org/licenses/by-nc/4.0/legalcode> ;
-    openrel:policyTextHtml <https://spdx.org/licenses/CC-BY-NC-4.0.html> ;
-    <https://lfs.labs.dansdemo.nl/api/v1/licenses/CC-BY-NC-4.0/original> ;
-    openrel:encodedRules openrellib:CC-BY-NC-4.0 ;
+    openrel:warrantyNotice
+        """Unless otherwise separately undertaken by the Licensor,
+        to the extent possible, the Licensor offers the Licensed
+        Material as-is and as-available, and makes no
+        representations or warranties of any kind concerning
+        the Licensed Material, whether express, implied,
+        statutory, or other. This includes, without limitation,
+        warranties of title, merchantability, fitness for a
+        particular purpose, non-infringement, absence of latent
+        or other defects, accuracy, or the presence or absence
+        of errors, whether or not known or discoverable. Where
+        disclaimers of warranties are not allowed in full or
+        in part, this disclaimer may not apply to You."""@en ;
 
-# --------------------------------------------------------------------------------------------------------------------------------
-#   Rules
-# --------------------------------------------------------------------------------------------------------------------------------
-    
-        odrl:prohibition [ a odrl:Prohibition ;
-            odrl:action openrel:commercialise ],
-        [ a odrl:Prohibition ;
-            odrl:action openrel:applyLicence ] ;
+    # Alternative representations
+    openrel:legalcode
+        <https://creativecommons.org/licenses/by-nc/4.0/legalcode> ;
 
-        odrl:permission 
-        [ a odrl:Permission ;
-            odrl:action odrl:display ],
-        [ a odrl:Permission ;
-            odrl:action odrl:distribute ;
-            odrl:duty 
-                [ a odrl:Duty ;
-                    odrl:action openrel:attribute ],
-                [ a odrl:Duty ;
-                    odrl:action openrel:notify ;
-                        openrel:namedConstraint openrel:notifyInAsset ;
-                ]   
-        ],
-        [ a odrl:Permission ;
-            odrl:action odrl:modify ;
-            odrl:duty 
-                [ a odrl:Duty ;
-                    odrl:action openrel:attribute ],
-                [ a odrl:Duty ;
-                    odrl:action openrel:notify ;
-                        openrel:namedConstraint openrel:notifyInAsset ;
-                ]   
-        ],
-        [ a odrl:Permission ;
-            odrl:action odrl:derive ;
-            odrl:duty 
-              [ a odrl:Duty ;
-                    odrl:action openrel:attribute ],
-              [ a odrl:Duty ;
-                    odrl:action openrel:notify ;
-                    openrel:namedConstraint openrel:notifyInAsset ;
-              ]
-        ],
-        [ a odrl:Permission ;
-            odrl:action odrl:present ],
-        [ a odrl:Permission ;
-            odrl:action odrl:reproduce ],
-        [ a odrl:Permission ;
-            odrl:action openrel:costRecovery 
-            openrel:namedconstraint openrel:allowDistrubutionFee ;          
+    openrel:policyTextHtml
+        <https://spdx.org/licenses/CC-BY-NC-4.0.html> ;
+
+    openrel:policyText
+        <https://lfs.labs.dansdemo.nl/api/v1/licenses/CC-BY-NC-4.0/original> ;
+
+    # Publication reference pending verification.
+    # openrel:encodedRules <PUBLISHED_POLICY_RDF_IRI> ;
+
+    # --------------------------------------------------------
+    # Prohibitions
+    # --------------------------------------------------------
+
+    odrl:prohibition [
+        a odrl:Prohibition ;
+        odrl:action openrel:commercialise
+    ] ;
+
+    # Commercial-purpose restrictions should
+    # ideally apply to each licensed use, rather than only
+    # to the distinct action openrel:commercialise.
+
+    # --------------------------------------------------------
+    # Permissions
+    # --------------------------------------------------------
+
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:action odrl:display
+    ] ;
+
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:action odrl:distribute ;
+
+        odrl:duty [
+            a openrel:PostDuty ;
+            odrl:action openrel:attribute
         ] ;
-    .
+
+        odrl:duty [
+            a openrel:PostDuty ;
+            odrl:action openrel:notify ;
+            openrel:namedConstraint openrel:notifyInAsset
+        ]
+    ] ;
+
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:action odrl:modify ;
+
+        odrl:duty [
+            a openrel:PostDuty ;
+            odrl:action openrel:attribute
+        ] ;
+
+        odrl:duty [
+            a openrel:PostDuty ;
+            odrl:action openrel:notify ;
+            openrel:namedConstraint openrel:notifyInAsset
+        ]
+    ] ;
+
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:action odrl:derive ;
+
+        odrl:duty [
+            a openrel:PostDuty ;
+            odrl:action openrel:attribute
+        ] ;
+
+        odrl:duty [
+            a openrel:PostDuty ;
+            odrl:action openrel:notify ;
+            openrel:namedConstraint openrel:notifyInAsset
+        ]
+    ] ;
+
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:action odrl:present
+    ] ;
+
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:action odrl:reproduce
+    ] ;
+
+    # Cost recovery is retained since this is not regarded as commercialisation,
+    # but remains subject to the NonCommercial restriction.
+    odrl:permission [
+        a odrl:Permission ;
+        odrl:action openrel:costRecovery ;
+        openrel:namedConstraint openrel:allowDistributionFee
+    ] .
+
+# ------------------------------------------------------------
+# Parameter review
+# ------------------------------------------------------------
+#
+# Future evaluation note:
+# A requestor's intended purpose may need to be represented
+# as a resolved parameter or contextual assertion to determine
+# whether a proposed use is NonCommercial. Such encodings may take the form
+#
+# odrl:permission [
+#     odrl:action odrl:distribute ;
+#     odrl:constraint [
+#         odrl:leftOperand <PURPOSE_OPERAND_IRI> ;
+#         odrl:operator odrl:isA ;
+#         odrl:rightOperandReference
+#             <NONCOMMERCIAL_PURPOSE_PARAMETER_IRI>
+#     ]
+# ] ;
