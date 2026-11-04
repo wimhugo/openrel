@@ -91,6 +91,7 @@ openrel:ethicsApproval a openrel:NamedConstraint ;
     openrel:constraintType openrel:consent ;
     openrel:scenario openrel:ethics-approval .
 
+
 openrel:euUseOnly a openrel:NamedConstraint ;
     rdfs:label "Allow EU-wide Use"@en ;
     skos:definition "Allow the Asset to be used within the current definition of the EU."@en ;

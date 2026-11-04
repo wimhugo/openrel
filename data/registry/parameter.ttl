@@ -72,6 +72,19 @@ openrel:parameterVerifiedAuthorisations
     openrel:resolutionMethod openrel:RuntimeContext ;
     openrel:multipleValues true .
 
+
+openrel:parameterConsentAuthorisation
+    a openrel:Parameter, skos:Concept ;
+    skos:prefLabel "Consent or Authorisation Verification"@en ;
+    skos:definition "The verified consent or authorisation type applicable to the current request, resolved through an authorisation verification service."@en ;
+    skos:note "The service MUST evaluate the authorisation type specified by the associated Constraint's right operand and return its IRI only when the relevant authorisation has been successfully verified. The service MUST distinguish verification failure from an indeterminate result."@en ;
+    openrel:parameterName "CONSENT_AUTHORISATION" ;
+    openrel:expectedDatatype xsd:anyURI ;
+    openrel:multipleValues false ;
+    openrel:resolutionMethod openrel:RuntimeContext ;
+    openrel:parameterResolutionService openrel:consentAuthorisationService .
+
+
 # Platform context
 
 openrel:parameterInfraIRI

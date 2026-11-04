@@ -27,11 +27,15 @@ openrel:LeftOperandRegistry a dct:Standard ;
     dct:title "OpenREL LeftOperand Registry"@en ;
     dct:description "OpenREL extensions and adopted external ODRL and IDSC left operands."@en .
 
-openrel:consentRequired a odrl:LeftOperand ;
-    rdfs:label "Consent and/ or Authorisation Required"@en ;
-    rdfs:comment "Requires one or more types of consent to be provided."@en ;
-    dct:description "Consent type/approval status; avoid treating concept as proof of consent"@en ;
+openrel:consentRequired
+    a odrl:LeftOperand, skos:Concept ;
+    rdfs:label "Consent or Authorisation Required"@en ;
+    skos:prefLabel "Consent or Authorisation Required"@en ;
+    skos:definition "Identifies the type of consent or authorisation whose fulfilment must be verified for the evaluated request."@en ;
+    skos:note "The associated Parameter Resolution Service evaluates the authorisation type identified by the Constraint's right operand. The service MUST return that concept only when valid and applicable evidence establishes that the required authorisation has been obtained. Failed or indeterminate verification MUST NOT satisfy the Constraint."@en ;
+    openrel:operandParameter openrel:parameterConsentAuthorisation ;
     rdfs:isDefinedBy openrel: .
+
 
 openrel:agentRole a odrl:LeftOperand ;
     rdfs:label "Agent Role Constraint"@en ;

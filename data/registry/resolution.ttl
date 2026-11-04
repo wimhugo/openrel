@@ -1,0 +1,13 @@
+
+
+
+
+
+openrel:consentAuthorisationService
+    a openrel:ParameterResolutionService, skos:Concept ;
+    rdfs:label "Consent and Authorisation Verification Service"@en ;
+    skos:prefLabel "Consent and Authorisation Verification Service"@en ;
+    skos:definition "A service that verifies whether the consent or authorisation required by an evaluated Constraint has been obtained and remains valid for the current request."@en ;
+    skos:note "The service MUST receive or otherwise determine the required authorisation concept, requestor, Asset, intended action and applicable context. It MUST verify the authority, provenance, scope and validity of the supporting evidence. A successful resolution MUST return the requested authorisation concept IRI."@en ;
+    # openrel:interfaceSpecification <some OpenAPI specification> ;
+    rdfs:isDefinedBy openrel: .
