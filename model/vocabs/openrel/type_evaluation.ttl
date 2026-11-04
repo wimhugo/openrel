@@ -11,133 +11,141 @@
 # -------------------------------------------------------------------------------------------------------------
 
 # context
-@base <http://www.w3.org/ns/openrel/0/> .
-@prefix : <http://www.w3.org/ns/openrel/0/> . 
-# RDF-related
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@base <http://www.w3id.org/ns/openrel/0/> .
+
+@prefix openrel: <http://www.w3id.org/ns/openrel/0/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-# general content
-@prefix schema: <http://schema.org/> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
-# rdmi-related
 @prefix dct: <http://purl.org/dc/terms/> .
-@prefix dcat: <http://www.w3.org/ns/dcat#> .
-@prefix dcatap: <http://data.europa.eu/r5r/> .
-@prefix r3d: <https://schema.re3data.org/4-0/re3dataV4-0.xsd> .
-@prefix coar: <http://purl.org/coar/> .
-# rights-related
 @prefix odrl: <http://www.w3.org/ns/odrl/2/> .
-@prefix cc: <http://creativecommons.org/ns#> .
 @prefix dalicc: <https://dalicc.net/ns#> .
-@prefix dalicclib: <https://dalicc.net/licenselibrary/> .
-@prefix ids: <https://w3id.org/idsa/core/> .
-@prefix idsc: <https://w3id.org/idsa/code/> .
-@prefix osl: <http://opensource.org/licenses/> .
-@prefix spdx: <http://spdx.org/rdf/terms#>  .
-@prefix spdxlicense: <http://spdx.org/licenses/> .
 
-# -------------------------------------------------------------------------------------------------------------
-# Definition of Scheme and Provenance
-# ----------------------------------------------------- -------------------------------------------------------
+# ------------------------------------------------------------
+# Evaluation Outcome Types
+# ------------------------------------------------------------
 
 openrel:typeEvaluationOutcome
-  a skos:ConceptScheme ;
-  skos:prefLabel "Types of Evaluation Outcomes"@en ;
-  dct:title "Types of Evaluation Outcome"@en ;
-  dct:description "Types of evaluation outcomes when comparing policies and policy elements pairwise by action and constraint ."@en ;
-  skos:hasTopConcept openrel:pairwiseEvaluation, openrel:policyEvaluation ;
-  dct:created "2026-29-06T00:00:00+00:00"^^xsd:datetime ;
-  dct:creator <https://orcid.org/0000-0002-0255-5101> ;
-  owl:versionInfo "0.1" .
-# -------------------------------------------------------------------------------------------------------------
-# Definition of Terms: Pairwise comparisons
-# ----------------------------------------------------- --------------------------------------------------------
+    a skos:ConceptScheme ;
+    skos:prefLabel "Evaluation Outcome Types"@en ;
+    dct:title "Evaluation Outcome Types"@en ;
+    dct:description
+        "A controlled vocabulary of outcomes used to evaluate individual policy elements and policies."@en ;
+    skos:hasTopConcept
+        openrel:pairwiseEvaluation,
+        openrel:policyEvaluation ;
+    dct:created "2026-06-29T00:00:00+00:00"^^xsd:dateTime ;
+    dct:modified "2026-11-04T00:00:00+00:00"^^xsd:dateTime ;
+    dct:creator <https://orcid.org/0000-0002-0255-5101> ;
+    owl:versionInfo "0.5" .
 
-openrel:pairwiseEvaluation 
-  a skos:Concept ;
-  skos:prefLabel "Pairwise Comparison Outcomes"@en ;
-  skos:definition "Actions or constraints pairwise comparison outcomes."@en ;
-  skos:inScheme openrel:typeEvaluationOutcome .
+# ------------------------------------------------------------
+# Pairwise Evaluation Outcomes
+# ------------------------------------------------------------
+
+openrel:pairwiseEvaluation
+    a skos:Concept ;
+    skos:prefLabel "Pairwise Evaluation Outcomes"@en ;
+    skos:definition
+        "A category of outcomes resulting from comparisons between individual policy elements, including actions and constraints."@en ;
+    skos:topConceptOf openrel:typeEvaluationOutcome ;
+    skos:inScheme openrel:typeEvaluationOutcome .
 
 openrel:compatible
-  a skos:Concept ;
-  skos:prefLabel "Action or constraint is directly compatible with another"@en ;
-  rdfs:seeAlso owl:sameAs ;
-  skos:broader openrel:pairwiseEvaluation ;
-  skos:definition "Action or constraint is directly compatible with another and one can be combined in the same policy or in a policy collection."@en ;
-  skos:inScheme openrel:typeEvaluationOutcome .
+    a skos:Concept ;
+    skos:prefLabel "Compatible"@en ;
+    skos:definition
+        "Indicates that the compared actions or constraints are compatible and may coexist within a policy or Policy Collection without an identified conflict."@en ;
+    skos:scopeNote
+        "Compatibility does not establish that the compared resources are identical or semantically equivalent."@en ;
+    skos:broader openrel:pairwiseEvaluation ;
+    skos:inScheme openrel:typeEvaluationOutcome .
 
 openrel:contradicts
-  a skos:Concept ;
-  skos:prefLabel "Action or constraint contradicts another"@en ;
-  skos:exactmatch dalicc:contradicts ;
-  skos:definition "Action or constraint is not compatible with another and can not be combined in the same policy or in a policy collection."@en ;
-  skos:broader openrel:pairwiseEvaluation ;
-  skos:inScheme openrel:typeEvaluationOutcome .
+    a skos:Concept ;
+    skos:prefLabel "Contradicts"@en ;
+    skos:definition
+        "Indicates that the compared actions or constraints are in conflict under the applicable evaluation context and cannot be jointly satisfied."@en ;
+    rdfs:seeAlso dalicc:contradicts ;
+    skos:broader openrel:pairwiseEvaluation ;
+    skos:inScheme openrel:typeEvaluationOutcome .
 
-openrel:allows 
-  a skos:Concept ;
-  skos:prefLabel "allows"@en ;
-  skos:definition "Indicates that a prohibition on the subject action can co-exist with a permission on the object action within the same policy."@en ;
-  skos:broader openrel:pairwiseEvaluation ;
-  skos:scopeNote "One of the OpenREL type_evaluation relations used by the Reasoner."@en ;
-  skos:inScheme openrel:typeEvaluationOutcome .
+openrel:allows
+    a skos:Concept ;
+    skos:prefLabel "Allows"@en ;
+    skos:definition
+        "Indicates that a Prohibition on the subject action can coexist with a Permission on the object action within the same policy."@en ;
+    skos:scopeNote
+        "An evaluation relation used by the OpenREL reasoner for comparisons involving Prohibitions and Permissions. The result is specific to the compared actions and their rule roles."@en ;
+    skos:broader openrel:pairwiseEvaluation ;
+    skos:inScheme openrel:typeEvaluationOutcome .
 
 openrel:includedIn
-  a skos:Concept ;
-  skos:prefLabel "Action or constraint is included in another"@en ;
-  skos:closematch odrl:includedIn ;
-  skos:definition "Action or constraint is included in another and can be combined in the same policy or in a policy collection."@en ;
-  skos:note "This ODRL property is made applicable also to constraints and named constraints."@en ;
-  skos:broader openrel:pairwiseEvaluation ;
-  skos:inScheme openrel:typeEvaluationOutcome .
+    a skos:Concept ;
+    skos:prefLabel "Included In"@en ;
+    skos:definition
+        "Indicates that the scope or meaning of the subject action or constraint is included within that of the compared object action or constraint."@en ;
+    rdfs:seeAlso odrl:includedIn ;
+    skos:note
+        "Extends the use of inclusion comparisons to constraints and Named Constraints. This evaluation outcome does not change the formal domain or range of odrl:includedIn."@en ;
+    skos:broader openrel:pairwiseEvaluation ;
+    skos:inScheme openrel:typeEvaluationOutcome .
 
 openrel:implies
-  a skos:Concept ;
-  skos:prefLabel "Action or constraint implies another"@en ;
-  skos:closematch odrl:implies ;
-  skos:definition "Action or constraint implies another and can be combined in the same policy or in a policy collection."@en ;
-  skos:broader openrel:pairwiseEvaluation ;
-  skos:inScheme openrel:typeEvaluationOutcome .
+    a skos:Concept ;
+    skos:prefLabel "Implies"@en ;
+    skos:definition
+        "Indicates that satisfaction or applicability of the subject action or constraint entails satisfaction or applicability of the compared object action or constraint under the evaluation context."@en ;
+    skos:broader openrel:pairwiseEvaluation ;
+    skos:inScheme openrel:typeEvaluationOutcome .
 
 openrel:missing
-  a skos:Concept ;
-  skos:prefLabel "Action or constraint is missing"@en ;
-  skos:definition "Action or constraint is not present as an action or constraint in the policy being compared."@en ;
-  skos:broader openrel:pairwiseEvaluation ;
-  skos:inScheme openrel:typeEvaluationOutcome .
+    a skos:Concept ;
+    skos:prefLabel "Missing"@en ;
+    skos:definition
+        "Indicates that an expected action or constraint is absent from the policy being compared."@en ;
+    skos:scopeNote
+        "An absence is not necessarily a contradiction. Its significance depends on the requirements of the policy evaluation."@en ;
+    skos:broader openrel:pairwiseEvaluation ;
+    skos:inScheme openrel:typeEvaluationOutcome .
 
-# -------------------------------------------------------------------------------------------------------------
-# Definition of Terms: Policy-level comparisons
-# ----------------------------------------------------- --------------------------------------------------------
+# ------------------------------------------------------------
+# Policy-Level Evaluation Outcomes
+# ------------------------------------------------------------
 
-openrel:policyEvaluation 
-  a skos:Concept ;
-  skos:prefLabel "Policy Level Outcomes"@en ;
-  skos:definition "Outcomes related to policy comparisons, which can be aggregated from pairwise comparisons."@en ;
-  skos:inScheme openrel:typeEvaluationOutcome .
+openrel:policyEvaluation
+    a skos:Concept ;
+    skos:prefLabel "Policy-Level Evaluation Outcomes"@en ;
+    skos:definition
+        "A category of outcomes resulting from evaluation of an individual policy, an access request against a policy, or the combined application of policies."@en ;
+    skos:topConceptOf openrel:typeEvaluationOutcome ;
+    skos:inScheme openrel:typeEvaluationOutcome .
 
 openrel:policyPermit
-  a skos:Concept ;
-  skos:prefLabel "PERMIT"@en ;
-  skos:broader openrel:policyEvaluation  ;
-  skos:definition "Policy permits the co-application of another policy, or a request satsisfies a licence or offer ."@en ;
-  skos:inScheme openrel:typeEvaluationOutcome .
+    a skos:Concept ;
+    skos:prefLabel "PERMIT"@en ;
+    skos:definition
+        "Indicates that the evaluated request or combined application of policies is permitted, with all applicable prohibitions accounted for and all mandatory preconditions satisfied."@en ;
+    skos:broader openrel:policyEvaluation ;
+    skos:inScheme openrel:typeEvaluationOutcome .
 
 openrel:policyConditional
-  a skos:Concept ;
-  skos:prefLabel "CONDITIONAL"@en ;
-  skos:broader openrel:policyEvaluation  ;
-  skos:definition "Policy permits the co-application of another policy, provided additional rules are satisfied. Often requires human evluation."@en ;
-  skos:inScheme openrel:typeEvaluationOutcome .
+    a skos:Concept ;
+    skos:prefLabel "CONDITIONAL"@en ;
+    skos:definition
+        "Indicates that the evaluated request or combined application of policies may be permitted, provided that outstanding mandatory conditions or PreDuties are satisfied."@en ;
+    skos:scopeNote
+        "The evaluation should identify the outstanding conditions and any required verification, including human assessment where applicable."@en ;
+    skos:broader openrel:policyEvaluation ;
+    skos:inScheme openrel:typeEvaluationOutcome .
 
 openrel:policyDeny
-  a skos:Concept ;
-  skos:prefLabel "DENY"@en ;
-  skos:broader openrel:policyEvaluation  ;
-  skos:definition "Policy does not permit the co-application of another policy."@en ;
-  skos:inScheme openrel:typeEvaluationOutcome .
+    a skos:Concept ;
+    skos:prefLabel "DENY"@en ;
+    skos:definition
+        "Indicates that the evaluated request or combined application of policies is not permitted because an applicable Prohibition exists or a mandatory condition cannot be satisfied."@en ;
+    skos:scopeNote
+        "The evaluation should identify the applicable Prohibition, unsatisfied condition, or other reason supporting the denial."@en ;
+    skos:broader openrel:policyEvaluation ;
+    skos:inScheme openrel:typeEvaluationOutcome .

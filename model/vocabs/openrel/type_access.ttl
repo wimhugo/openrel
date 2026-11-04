@@ -6,7 +6,7 @@
 # IMPORTANT: Source namespace preserved. Confirm against the canonical OpenREL namespace.
 
 @prefix r3d: <https://github.com/wimhugo/kb-attributes-eden-fidelis-trsp/blob/main/model/vocabs/r3d/> .
-@prefix openrel: <http://www.w3.org/ns/openrel/0/> .
+@prefix openrel: <http://www.w3id.org/ns/openrel/0/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .

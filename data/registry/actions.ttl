@@ -307,8 +307,7 @@ dalicc:attachoffer a odrl:Action ;
     skos:note "Not used in any DALICC license encoding. No skos matches."@en .
 
 dalicc:chargeDistributionFee a odrl:Action ;
-    rdfs:label "Charge D
-    istribution Fee"@en ;
+    rdfs:label "Charge Distribution Fee"@en ;
     rdfs:comment "The distribution of the Licensed Material [to a third party] is provided on a [costly] cost recovery basis."@en ;
     rdfs:isDefinedBy dalicc: ;
     skos:note "Used in 334 DALICC encodings."@en .
@@ -515,7 +514,7 @@ odrl:give a skos:Concept,
     rdfs:isDefinedBy odrl: ;
     skos:definition "To transfer the ownership of the Asset to a third party without compensation and while deleting the original asset."@en ;
     skos:scopeNote "Non-Normative"@en ;
-    odrl:includedIn openrel:transfer .
+    odrl:includedIn odrl:transfer .
 
 odrl:grantUse a skos:Concept,
         odrl:Action ;
@@ -633,7 +632,7 @@ odrl:sell a skos:Concept,
     rdfs:isDefinedBy odrl: ;
     skos:definition "To transfer the ownership of the Asset to a third party with compensation and while deleting the original asset."@en ;
     skos:scopeNote "Non-Normative"@en ;
-    odrl:includedIn openrel:transfer .
+    odrl:includedIn odrl:transfer .
 
 odrl:stream a skos:Concept,
         odrl:Action ;

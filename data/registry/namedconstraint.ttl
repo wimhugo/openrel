@@ -14,7 +14,7 @@ openrel:academicUseOnly a openrel:NamedConstraint ;
     skos:definition "Asset MUST only be used for Academic Research or Applications"@en ;
     skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en,
         "Linked to several scenarios related to academic and research use and validation."@en ;
-    odrl:leftOperand openrel:usePurpose ;
+    odrl:leftOperand odrl:purpose ;
     odrl:operator odrl:eq ;
     odrl:rightOperand openrel:academicResearch ;
     openrel:constraintType openrel:purpose ;
@@ -117,7 +117,7 @@ openrel:managedAccess a openrel:NamedConstraint ;
     skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
     odrl:leftOperand openrel:accessCategory ;
     odrl:operator odrl:eq ;
-    odrl:rightOperand openrel:managed-access ;
+    odrl:rightOperand openrel:managed ;
     openrel:constraintType openrel:tom ;
     openrel:scenario openrel:formal-toms .
 
@@ -196,4 +196,4 @@ openrel:verifiedResearcher a openrel:NamedConstraint ;
         openrel:affirmed-research,
         openrel:confirmed-researcher,
         openrel:confirmed-rpo,
-        openrel:research-only .
+        openrel:academic-only .
