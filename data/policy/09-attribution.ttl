@@ -79,7 +79,7 @@
     dct:subject "Public Domain" ;
     openrel:accessType openrel:openAccess ;    
     dct:source <https://creativecommons.org/licenses/by/4.0/> ;
-    schema:version "4.0" ;
+    dct:version "4.0" ;
 
     # Coverage related information
     cc:jurisdiction openrel:worldwide ;

@@ -37,7 +37,7 @@
     dct:contributor <https://orcid.org/0000-0002-0255-5101> ;
     dct:subject "Public Domain"@en ;
     dct:source <https://creativecommons.org/publicdomain/zero/1.0/> ;
-    schema:version "1.0" ;
+    dct:version "1.0" ;
 
     # Access and coverage
     openrel:accessType openrel:open-access ;

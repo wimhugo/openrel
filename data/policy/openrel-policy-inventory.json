@@ -1,0 +1,151 @@
+{
+  "policies": [
+    {
+      "iri": "http://www.w3id.org/ns/openrel/0/CC0-1.0",
+      "title": "Creative Commons Zero v1.0 Universal",
+      "description": "Anyone can read, download, share, and reuse this resource freely, for any purpose including commercial use.",
+      "accessType": "http://www.w3id.org/ns/openrel/0/open-access",
+      "status": "http://www.w3id.org/ns/openrel/0/typeGlobalActive"
+    },
+    {
+      "iri": "http://www.w3id.org/ns/openrel/0/CC-BY-SA-4.0",
+      "title": "Creative Commons Attribution-ShareAlike 4.0 International",
+      "description": "The licence permits sharing and adaptation of the licensed material, including for commercial purposes. Attribution is required, and shared adaptations must be licensed under the same or a compatible licence as specified by CC BY-SA 4.0.",
+      "accessType": "http://www.w3id.org/ns/openrel/0/open-access",
+      "status": "http://www.w3id.org/ns/openrel/0/typeGlobalActive"
+    },
+    {
+      "iri": "http://www.w3id.org/ns/openrel/0/CC-BY-NC-4.0",
+      "title": "Creative Commons Attribution-NonCommercial 4.0 International",
+      "description": "Permits sharing and adaptation of the licensed material for noncommercial purposes, provided that attribution requirements are satisfied. Commercial use of the licensed material is not authorised by this licence.",
+      "accessType": "http://www.w3id.org/ns/openrel/0/open-access",
+      "status": "http://www.w3id.org/ns/openrel/0/typeGlobalActive"
+    },
+    {
+      "iri": "http://www.w3id.org/ns/openrel/0/CC-BY-ND-4.0",
+      "title": "Creative Commons Attribution-NoDerivatives 4.0 International",
+      "description": "Permits sharing of the licensed material, including commercially, subject to attribution. Adaptations may be created privately, but sharing adapted material is not authorised by this licence.",
+      "accessType": "http://www.w3id.org/ns/openrel/0/open-access",
+      "status": "http://www.w3id.org/ns/openrel/0/typeGlobalActive"
+    },
+    {
+      "iri": "http://www.w3id.org/ns/openrel/0/OR-BY-AC-VI-NC-4.0",
+      "title": "eIDAS Verified Researcher + CC BY-NC 4.0",
+      "description": "A composite policy combining eIDAS-verified researcher eligibility requirements with the Creative Commons Attribution-NonCommercial 4.0 International licence.",
+      "accessType": "http://www.w3id.org/ns/openrel/0/managed",
+      "status": "http://www.w3id.org/ns/openrel/0/typeTemplate"
+    },
+    {
+      "iri": "http://www.w3id.org/ns/openrel/0/OR-TL-0.4",
+      "title": "Time-Limited Access",
+      "description": "Access rules permitting an identified assignee to read or download an asset only within a specified time interval. These rules apply independently of the licence governing the asset.",
+      "accessType": "http://www.w3id.org/ns/openrel/0/managed",
+      "status": "http://www.w3id.org/ns/openrel/0/typeTemplate"
+    },
+    {
+      "iri": "http://www.w3id.org/ns/openrel/0/OR-BY-TL-4.0",
+      "title": "Time-Limited Access + CC BY 4.0",
+      "description": "A composite policy combining time-limited access rules imposed by an organisation or platform with the Creative Commons Attribution 4.0 International licence applicable to the asset.",
+      "accessType": "http://www.w3id.org/ns/openrel/0/managed",
+      "status": "http://www.w3id.org/ns/openrel/0/typeTemplate"
+    },
+    {
+      "iri": "http://www.w3id.org/ns/openrel/0/CC-BY-4.0",
+      "title": "Creative Commons Attribution 4.0 International",
+      "description": "Anyone can read, download, share, and adapt for any purpose, provided the original author is credited.",
+      "accessType": "http://www.w3id.org/ns/openrel/0/openAccess",
+      "status": "http://www.w3id.org/ns/openrel/0/typeGlobalActive"
+    },
+    {
+      "iri": "http://www.w3id.org/ns/openrel/0/OR-BY-AC-VI-4.0",
+      "title": "OpenREL Academic eIDAS Verified Identity",
+      "description": "Process rules requiring eIDAS-verified identity and verified researcher status. Researcher status may be established either through an accepted eIDAS assertion that includes researcher status, or through independent trusted verification combined with eIDAS identity verification.",
+      "accessType": "http://www.w3id.org/ns/openrel/0/managed",
+      "status": "http://www.w3id.org/ns/openrel/0/typeTemplate"
+    },
+    {
+      "iri": "http://www.w3id.org/ns/openrel/0/OR-EA-0.4",
+      "title": "Consent and Ethics Approval Required",
+      "description": "Access rules requiring both consent for the intended use of an asset and approval from an authorised ethics review body before the requested action is permitted.",
+      "accessType": "http://www.w3id.org/ns/openrel/0/managed",
+      "status": "http://www.w3id.org/ns/openrel/0/typeTemplate"
+    },
+    {
+      "iri": "http://www.w3id.org/ns/openrel/0/OR-EU-0.5",
+      "title": "EU-Only Geographical Restriction",
+      "description": "An access and usage policy requiring all uses of an Asset to occur within the legal territory of the European Union. Use includes downloading, copying, storage, hosting, processing, transformation, analysis, archiving, backup, restoration and other forms of use. The restriction applies throughout the Asset's lifecycle, including after initial access or transfer.",
+      "accessType": "http://www.w3id.org/ns/openrel/0/managed",
+      "status": "http://www.w3id.org/ns/openrel/0/typeTemplate"
+    },
+    {
+      "iri": "http://www.w3id.org/ns/openrel/0/OR-OPENAIRE-PRIVACY-2.8",
+      "title": "OpenAIRE Personal Data Processing Policy",
+      "description": "An illustrative machine-readable representation of personal data processing practices, restrictions, obligations and data subject rights associated with OpenAIRE services.",
+      "accessType": null,
+      "status": "http://www.w3id.org/ns/openrel/0/typeCustomActive"
+    },
+    {
+      "iri": "http://www.w3id.org/ns/openrel/0/OR-AI-TR-PL-0.5",
+      "title": "Trust+ Certified Endpoint with Clearinghouse Reporting",
+      "description": "A policy permitting use of an Asset only through an endpoint or connector with a verified IDS Trust+ security profile, and requiring notification of each use to a designated clearinghouse.",
+      "accessType": "http://www.w3id.org/ns/openrel/0/managed",
+      "status": "http://www.w3id.org/ns/openrel/0/typeTemplate"
+    },
+    {
+      "iri": "http://www.w3id.org/ns/openrel/0/OR-EM-0.5",
+      "title": "Embargo",
+      "description": "An Access Rule that permits use of an Asset only on or after the end of an embargo period. The embargo release date is supplied at runtime through a Parameter.",
+      "accessType": "http://www.w3id.org/ns/openrel/0/managed",
+      "status": "http://www.w3id.org/ns/openrel/0/typeTemplate"
+    },
+    {
+      "iri": "http://www.w3id.org/ns/openrel/0/OR-BY-EM-0.2",
+      "title": "CC BY 4.0 with Embargo",
+      "description": "A collection combining a CC BY 4.0 licence with an Access Rule governing the earliest date of authorised access or use of an Asset. The embargo does not modify the terms of the CC BY 4.0 licence.",
+      "accessType": "http://www.w3id.org/ns/openrel/0/managed",
+      "status": "http://www.w3id.org/ns/openrel/0/typeTemplate"
+    },
+    {
+      "iri": "http://www.w3id.org/ns/openrel/0/OR-SD-IN-0.5",
+      "title": "Institutional Data Sovereignty",
+      "description": "A policy restricting the use of an Asset to infrastructure authorised by a designated institution and to agents with verified institutional affiliation.",
+      "accessType": "http://www.w3id.org/ns/openrel/0/managed",
+      "status": "http://www.w3id.org/ns/openrel/0/typeTemplate"
+    },
+    {
+      "iri": "http://www.w3id.org/ns/openrel/0/OR-DS-0.5",
+      "title": "Data Space Baseline Access Rules",
+      "description": "Requires the requesting agent to have an eIDAS-verified identity before use of an Asset governed by the Data Space.",
+      "accessType": "http://www.w3id.org/ns/openrel/0/managed",
+      "status": "http://www.w3id.org/ns/openrel/0/typeTemplate"
+    },
+    {
+      "iri": "http://www.w3id.org/ns/openrel/0/OR-IN-RO-0.5",
+      "title": "Repository Researcher-Only Access Rules",
+      "description": "A baseline repository access policy permitting use of an Asset only by agents whose researcher role has been established through an accepted assertion or verification mechanism.",
+      "accessType": "http://www.w3id.org/ns/openrel/0/managed",
+      "status": "http://www.w3id.org/ns/openrel/0/typeTemplate"
+    },
+    {
+      "iri": "http://www.w3id.org/ns/openrel/0/OR-IN-DS-CC-BY-0.5",
+      "title": "Data Space and Researcher Access with CC BY 4.0",
+      "description": "A collection combining a Data Space identity-verification requirement, a repository researcher-status requirement, and the Creative Commons Attribution 4.0 International licence. Inclusion of these policies does not assert their compatibility or establish an aggregate authorisation outcome.",
+      "accessType": "http://www.w3id.org/ns/openrel/0/managed",
+      "status": "http://www.w3id.org/ns/openrel/0/typeTemplate"
+    },
+    {
+      "iri": "http://www.w3id.org/ns/openrel/0/OR-IN-HV-0.5",
+      "title": "Harvesting Access Conditions",
+      "description": "A repository policy permitting harvesting by verified agents, subject to cumulative data-volume and execution-count limits and mandatory audit logging.",
+      "accessType": "http://www.w3id.org/ns/openrel/0/managed",
+      "status": "http://www.w3id.org/ns/openrel/0/typeTemplate"
+    },
+    {
+      "iri": "http://www.w3id.org/ns/openrel/0/OR-AI-AU-0.5",
+      "title": "Agentic AI - Delegated Access with Audit Trail",
+      "description": "Template for controlled AI-agent access with identity and trust checks, scoped delegation, purpose and consent checks, data minimisation and audit duties.",
+      "accessType": "http://www.w3id.org/ns/openrel/0/managed",
+      "status": "http://www.w3id.org/ns/openrel/0/typeTemplate"
+    }
+  ]
+}

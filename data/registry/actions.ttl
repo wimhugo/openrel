@@ -214,7 +214,7 @@ openrel:reproduce a skos:Concept,
         odrl:Action ;
     rdfs:label "Reproduce"@en ;
     rdfs:isDefinedBy openrel: ;
-    skos:definition "Copy or replicate a resource without modification, in any form."@en ;
+    skos:definition "Copy, download, or replicate a resource without modification, in any form."@en ;
     skos:inScheme openrel:ActionScheme ;
     skos:note "To make duplicate copies of the Asset in any material form."@en ;
     odrl:includedIn odrl:use ;
@@ -685,13 +685,5 @@ odrl:watermark a skos:Concept,
     skos:scopeNote "Non-Normative"@en ;
     odrl:includedIn odrl:use .
 
-openrel:actionCategory a rdf:Property,
-        owl:ObjectProperty,
-        skos:Concept ;
-    rdfs:label "Action Category"@en ;
-    rdfs:domain odrl:Action ;
-    rdfs:isDefinedBy openrel: ;
-    rdfs:range rdfs:Class ;
-    skos:definition "The Action is typically applicable to these Rules."@en .
 
 

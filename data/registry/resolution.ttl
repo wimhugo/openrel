@@ -1,6 +1,21 @@
 
+# -------------------------------------------------------------------------------------------------------------
+# OpenREL - Open Rights Encoding language
+# Version 0.5 (Draft)
+# Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/ EUDAT)
+# This Version: 4 August 2026
+# -------------------------------------------------------------------------------------------------------------
 
+# -------------------------------------------------------------------------------------------------------------
+# Resolution Endpoints
+#
+# These individuals define endpoints that resolve parameters for a specific context
+# -------------------------------------------------------------------------------------------------------------
 
+@prefix openrel: <http://www.w3id.org/ns/openrel/0/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 
 openrel:consentAuthorisationService

@@ -188,7 +188,7 @@ openrel:AccessRules
 	a rdfs:Class, owl:Class, skos:Concept ;
 	rdfs:isDefinedBy openrel: ;
 	rdfs:subClassOf odrl:Policy ;
-	owl:disjointWith odrl:Agreement, odrl:Offer, odrl:Privacy, odrl:Request, odrl:Assertion , odrl:Ticket, openrel:ProcessRules ;
+	owl:disjointWith odrl:Agreement, odrl:Offer, odrl:Request, odrl:Assertion , odrl:Ticket, openrel:ProcessRules ;
 	rdfs:label "Access Rule(s)"@en ;
 	skos:definition "A Policy that defines conditions of access that are not generally considered to be part of a licence, but depends on the context."@en ;
 	skos:note "Such access rules may include, for example, the terms and conditions of use associated with a specific repository, data service, or institution. It is usually institutional policy driven."@en ;
@@ -200,11 +200,14 @@ openrel:ProcessRules
 	a rdfs:Class , owl:Class, skos:Concept ;
 	rdfs:isDefinedBy openrel: ;
 	rdfs:subClassOf odrl:Policy ;
-	owl:disjointWith odrl:Agreement, odrl:Offer, odrl:Privacy, odrl:Request, odrl:Assertion , odrl:Ticket, openrel:AccessRules ;
+	owl:disjointWith odrl:Agreement, odrl:Offer, odrl:Request, odrl:Assertion , odrl:Ticket, openrel:AccessRules ;
 	rdfs:label "Process Rule(s)"@en ;
-	skos:definition "A Policy that defines formalities associated with the process of gaining access associated with sofwtare or dissemination channels."@en ;
-	skos:note "Such process rules may include, or example, steps related to interaction of a software platform, infrastricture, federation, or dissemination channel with an Assignee."@en ;
+	skos:definition "A Policy that defines formalities associated with the process of gaining access associated primarily with software or dissemination channels."@en ;
+	skos:note "Such process rules may include, or example, steps related to interaction of a software platform, infrastructure, federation, or dissemination channel with an Assignee."@en ;
  	skos:note "Unique to a software platform or dissemination channel."@en ;
+    skos:note "Process Rules MAY govern activities before, during, and after access to an Asset, including processing, storage, disclosure, retention, deletion, security, and notification."@en ;
+    skos:note "Process Rules MAY describe organisational or technical procedures, including privacy and personal data processing policies. A Policy MAY be classified as both openrel:ProcessRules and odrl:Privacy when it satisfies the requirements of both classes."@en ;
+    skos:note"Process Rules may apply to software platforms, repositories, services, organisations, and other processing environments."@en ;
  	skos:scopeNote "Non-Normative"@en ;
 	.
 
@@ -370,6 +373,24 @@ openrel:encodedRules a owl:ObjectProperty, skos:Concept ;
     rdfs:range odrl:Policy ;
     skos:note "Alternative representations, mappings of SPDX and LFS properties. The linked resource should be typed as an ODRL policy or a suitable OpenREL policy class."@en .
 
+# integration with GDPR and other (non-personal) subject rights
+
+openrel:subjectRights
+    a rdf:Property, owl:ObjectProperty, skos:Concept ;
+    rdfs:isDefinedBy openrel: ;
+    rdfs:domain [ a owl:Class ; owl:unionOf (
+        openrel:Licence openrel:AccessRules
+        openrel:ProcessRules openrel:PolicyCollection
+    ) ] ;
+    rdfs:range skos:Concept ;
+    rdfs:label "Subject Rights"@en ;
+    skos:prefLabel "Subject Rights"@en ;
+    skos:definition "Identifies a right available to a subject in relation to an Asset or processing activity governed by an OpenREL Policy."@en ;
+    skos:note "Values SHOULD be concepts from the OpenREL Subject Rights vocabulary or another identified rights vocabulary."@en ;
+    skos:note "The property MAY identify rights of natural persons, organisations, communities, or other subjects, including rights concerning personal and non-personal information."@en ;
+    skos:note "The presence of a right does not imply that it applies unconditionally. Applicability, limitations, and enforcement depend on the relevant legal, contractual, or ethical framework."@en ;
+    skos:note "This property provides descriptive metadata. It does not itself create an ODRL Permission, Prohibition, or Duty."@en .
+
 # Specific properties appliable to openrel:PolicyCollection
 
 openrel:hasPolicy
@@ -379,22 +400,6 @@ openrel:hasPolicy
     skos:note "Policy Collection: identifies the constituent Policies grouped by a Policy Collection. Each referenced Policy may belong to any ODRL or OpenREL Policy subclass. A Policy Collection must reference at least two Policies."@en ;
     rdfs:domain openrel:PolicyCollection ;
     rdfs:range odrl:Policy .
-
-openrel:hasEvaluationDetail
-    a rdf:Property, owl:ObjectProperty, skos:Concept ;
-    rdfs:label "has evaluation detail"@en ;
-    skos:definition "Associates a Policy Collection with an Evaluation Detail recording the outcome of a comparison involving its constituent Policies."@en ;
-    skos:note "A Policy Collection MAY have multiple Evaluation Details representing different comparison purposes, evaluation contexts, or evaluation events. Each Evaluation Detail MAY reference one or more Evaluation Mappings as supporting evidence."@en ;
-    rdfs:domain openrel:PolicyCollection ;
-    rdfs:range openrel:EvaluationDetail .
-
-openrel:policyEvaluationOutcome
-    a rdf:Property, owl:ObjectProperty, skos:Concept ;
-    rdfs:label "policy evaluation outcome"@en ;
-    skos:definition "Identifies the overall outcome of evaluating or comparing the Policies contained in a Policy Collection."@en ;
-    skos:note "The outcome MUST be one of PERMIT, CONDITIONAL, or DENY. It represents the aggregate policy-level decision and is distinct from the individual relationship outcomes recorded by Evaluation Mappings."@en ;
-    rdfs:domain openrel:PolicyCollection ;
-    rdfs:range skos:Concept .
 
 ############################################################################################################
 # RULE CLASSES and PROPERTIES
@@ -460,13 +465,15 @@ openrel:defaultDuty
 	rdfs:domain odrl:Action ;
 	rdfs:range odrl:Action .
 
-openrel:contradicts a rdf:Property,
+openrel:contradictsAction a rdf:Property,
         owl:ObjectProperty,
         skos:Concept ;
     rdfs:label "Contradicting Action"@en ;
     rdfs:domain odrl:Action ;
     rdfs:range odrl:Action ;
-    skos:definition "The Action contradicts another Action defined by the property."@en .
+    rdfs:deprecated true ;
+    skos:definition "The Action contradicts another Action defined by the property."@en ;
+    skos:note "These contradictions are now indicated using the 'openrel:comparedSubject openrel:contradicts' encoding."@en .
 
 openrel:dutySlot a rdf:Property,
         owl:ObjectProperty,
@@ -502,31 +509,53 @@ openrel:EvaluationScheme a skos:ConceptScheme ;
 
 openrel:EvaluationDetail a owl:Class, skos:Concept ;
     rdfs:label "Evaluation Detail"@en ;
-    skos:definition "A record of a directed comparison between two resources, identifying the comparison class and the asserted outcome."@en ;
-    skos:note "Comparisons MAY concern Actions, Constraints, Policies or other resources. The record does not change either compared resource."@en .
+    skos:definition "A record of a directed pairwise comparison between two RDF resources, identifying their relationship, comparison context, outcome, and supporting evidence."@en ;
+    skos:note "An Evaluation Detail records a pairwise comparison and does not itself determine the aggregate PolicyCollection outcome."@en .
 
 openrel:EvaluationMapping a owl:Class, skos:Concept ;
     rdfs:subClassOf openrel:EvaluationDetail ;
     rdfs:label "Evaluation Mapping"@en ;
-    skos:definition "An Evaluation Detail recording a reusable mapping or relationship between two resources."@en ;
-    skos:note "Mappings SHOULD be maintained separately from the source vocabulary definitions."@en .
+    skos:definition "A reusable Evaluation Detail representing a previously established relationship between two RDF resources."@en ;
+    skos:note "Mappings MAY be derived from semantic assertions, corpus observations, or human review. Their evidential strength depends on the derivation method and supporting provenance."@en .
 
 openrel:hasEvaluation a rdf:Property, owl:ObjectProperty, skos:Concept ;
+    rdfs:domain openrel:PolicyCollection ;
+    rdfs:range openrel:EvaluationDetail ;
     rdfs:label "has evaluation"@en ;
-    skos:definition "Links a resource to a recorded evaluation involving that resource."@en ;
+    skos:definition "Associates a PolicyCollection with one or more pairwise comparison records, including reusable EvaluationMapping instances."@en ;
+    skos:note "Evaluation records MAY be identified by IRIs or represented as blank nodes. Multiple records MAY contribute to the aggregate policy evaluation outcome."@en .
+
+openrel:hasEvaluationDetail
+    a rdf:Property, owl:ObjectProperty, skos:Concept ;
+    rdfs:label "has evaluation detail"@en ;
+    skos:definition "Associates a Policy Collection with an Evaluation Detail recording the outcome of a comparison involving its constituent Policies."@en ;
+    skos:note "A Policy Collection MAY have multiple Evaluation Details representing different comparison purposes, evaluation contexts, or evaluation events. Each Evaluation Detail MAY reference one or more Evaluation Mappings as supporting evidence."@en ;
+    rdfs:domain openrel:PolicyCollection ;
+    owl:deprecated true ;
     rdfs:range openrel:EvaluationDetail .
 
+openrel:policyEvaluationOutcome
+    a rdf:Property, owl:ObjectProperty, skos:Concept ;
+    rdfs:domain openrel:PolicyCollection ;
+    rdfs:range skos:Concept ;
+    rdfs:label "policy evaluation outcome"@en ;
+    skos:definition "Identifies the aggregate decision resulting from evaluation of the constituent Policies of a PolicyCollection."@en ;
+    skos:note "Values MUST be PERMIT, CONDITIONAL, or DENY from the OpenREL evaluation-outcome vocabulary. The outcome is distinct from the relationships recorded in individual EvaluationDetails."@en ;
+    skos:note "An aggregate outcome is meaningful only within its applicable evaluation context, including relevant parameters and conditions."@en .
+
 openrel:comparedSubject a rdf:Property, owl:ObjectProperty, skos:Concept ;
+    rdfs:domain openrel:EvaluationDetail ;
+    rdfs:range rdfs:Resource ;
     rdfs:label "compared subject"@en ;
-    skos:definition "Identifies the source resource in a directed comparison."@en ;
-    skos:note "The source resource MAY be an Action, Constraint, Policy or another RDF resource."@en ;
-    rdfs:domain openrel:EvaluationDetail .
+    skos:definition "Identifies the source resource in a directed pairwise comparison."@en ;
+    skos:note "The source resource MAY be an Action, Constraint, Policy or another RDF resource."@en .
 
 openrel:comparedIndividual a rdf:Property, owl:ObjectProperty, skos:Concept ;
+    rdfs:domain openrel:EvaluationDetail ;
+    rdfs:range rdfs:Resource ;
     rdfs:label "compared individual"@en ;
-    skos:definition "Identifies the target resource in a directed comparison."@en ;
-    skos:note "Direction is significant for relationships such as odrl:includedIn."@en ;
-    rdfs:domain openrel:EvaluationDetail .
+    skos:definition "Identifies the target resource in a directed pairwise comparison."@en ;
+    skos:note "Direction is significant for relationships such as odrl:includedIn."@en .
 
 openrel:evaluationClass a rdf:Property, owl:ObjectProperty, skos:Concept ;
     rdfs:label "evaluation class"@en ;
@@ -539,6 +568,13 @@ openrel:evaluationOutcome a rdf:Property, owl:ObjectProperty, skos:Concept ;
     skos:definition "Identifies the asserted relationship or outcome of a comparison."@en ;
     skos:note "The value MAY be a concept from the evaluation-outcome scheme or an existing relationship predicate such as odrl:includedIn; the latter is referenced, not asserted directly."@en ;
     rdfs:domain openrel:EvaluationDetail .
+
+openrel:evaluationOutcome a rdf:Property, owl:ObjectProperty, skos:Concept ;
+    rdfs:domain openrel:EvaluationDetail ;
+    rdfs:range skos:Concept ;
+    rdfs:label "evaluation outcome"@en ;
+    skos:definition "Identifies the normalised relationship established between two compared resources."@en ;
+    skos:note "Values SHOULD be selected from the OpenREL pairwise evaluation-outcome vocabulary. Original source predicates SHOULD be recorded separately using openrel:sourceRelation."@en .
 
 openrel:derivationType a rdf:Property, owl:ObjectProperty, skos:Concept ;
     rdfs:label "derivation type"@en ;
@@ -567,6 +603,13 @@ openrel:sourceRelation a rdf:Property, owl:ObjectProperty, skos:Concept ;
     skos:note "May coincide with evaluationOutcome, but distinguishes source wording from a normalised outcome."@en ;
     rdfs:domain openrel:EvaluationDetail .
 
+openrel:sourceRelation a rdf:Property, owl:ObjectProperty, skos:Concept ;
+    rdfs:domain openrel:EvaluationDetail ;
+    rdfs:range rdf:Property ;
+    rdfs:label "source relation"@en ;
+    skos:definition "Identifies the RDF predicate used to express the relationship in the original source assertion."@en ;
+    skos:note "The source predicate is preserved separately from the normalised evaluation outcome."@en .
+
 openrel:rationale a rdf:Property, owl:DatatypeProperty, skos:Concept ;
     rdfs:label "rationale"@en ;
     skos:definition "Provides a human-readable explanation of the comparison or its supporting evidence."@en ;
@@ -581,19 +624,20 @@ openrel:support a rdf:Property, owl:DatatypeProperty, skos:Concept ;
     rdfs:range xsd:nonNegativeInteger .
 
 openrel:assertedBy a rdf:Property, owl:ObjectProperty, skos:Concept ;
-    rdfs:label "asserted by"@en ;
-    skos:definition "Identifies an agent responsible for asserting the evaluation."@en ;
-    skos:note "Use an IRI for an agent; for a plain-text name, use dct:creator."@en ;
     rdfs:domain openrel:EvaluationDetail ;
-    rdfs:subPropertyOf prov:wasAttributedTo .
+    rdfs:range prov:Agent ;
+    rdfs:subPropertyOf prov:wasAttributedTo ;
+    rdfs:label "asserted by"@en ;
+    skos:definition "Identifies the agent responsible for asserting a comparison result."@en .
 
 openrel:created a rdf:Property, owl:DatatypeProperty, skos:Concept ;
-    rdfs:label "created"@en ;
-    skos:definition "Records when the evaluation assertion was created."@en ;
-    skos:note "Prefer dct:created for general provenance metadata."@en ;
+    rdfs:subPropertyOf dct:created ;
     rdfs:domain openrel:EvaluationDetail ;
     rdfs:range xsd:dateTime ;
-    rdfs:subPropertyOf dct:created .
+    owl:deprecated true ;
+    rdfs:label "created"@en ;
+    skos:definition "Legacy property recording the creation timestamp of an evaluation assertion."@en ;
+    skos:note "Use dct:created for new evaluation records."@en .
 
 openrel:wasDerivedFrom a rdf:Property, skos:Concept ;
     rdfs:label "was derived from"@en ;
@@ -608,9 +652,7 @@ openrel:wasDerivedFrom a rdf:Property, skos:Concept ;
 # OpenREL Named Constraint schema revised draft 0.5, 2026-10-27
 # OpenREL namespace: http://www.w3id.org/ns/openrel/0/
 # ODRL terms are referenced, not redefined.
-# EDITORIAL: The standard odrl:constraint may be used directly; openrel:namedConstraint
-# is an optional convenience link, not a replacement for ODRL.
-# EDITORIAL: Endpoint, legal-basis and parameter schemas are developed separately.
+# The standard odrl:constraint may be used directly; openrel:namedConstraint is an optional convenience link, not a replacement for ODRL.
 
 # Class Definition
 
@@ -631,9 +673,8 @@ openrel:applicableEndpoint a rdf:Property,
     rdfs:domain openrel:NamedConstraint ;
     rdfs:isDefinedBy openrel: ;
     skos:definition "Identifies an endpoint relevant to the interpretation, notification or evaluation of a Named Constraint."@en ;
-    owl:deprecated true ;
     skos:note "Use odrl:rightOperandReference with an openrel:Parameter as an alternative."@en ;
-    skos:note "The endpoint SHOULD be an IRI; no particular endpoint protocol is prescribed."@en .
+    skos:note "The endpoint SHOULD be an URL or a resolvable parameter; no particular endpoint protocol is prescribed."@en .
 
 openrel:constraintScheme a skos:ConceptScheme ;
     dct:contributor <https://orcid.org/0000-0003-2459-6817> ;

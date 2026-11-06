@@ -1,0 +1,237 @@
+# -------------------------------------------------------------------------------------------------------------
+# OpenREL - Open Rights Encoding language
+# Version 0.5 (Draft)
+# Developed by Wim Hugo (DANS/ EUDAT), Melios Katsamakis and Prodromos Tsiavos (OpenAIRE)
+# This Version: 05 November 2026
+# -------------------------------------------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------------------------------------------
+# Data Subject Right Types 
+# In OpenREL, Data Subject Right Types are used to unambiguously identify the rights afforded to data subjects
+# Rights include, but are not limited to, the rights if human subjects under GDPR. 
+# -------------------------------------------------------------------------------------------------------------
+
+@base <http://www.w3id.org/ns/openrel/0/> .
+@prefix openrel: <http://www.w3id.org/ns/openrel/0/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dpv: <https://w3id.org/dpv#> .
+@prefix eu-gdpr: <https://w3id.org/dpv/legal/eu/gdpr#> .
+
+openrel:typeSubjectRights
+    a skos:ConceptScheme ;
+    skos:prefLabel "Types of Subject Rights"@en ;
+    dct:title "Types of Subject Rights"@en ;
+    dct:description "A controlled vocabulary of rights held by subjects in relation to data, information, knowledge, and other protected resources."@en ;
+    skos:note "Subjects may include natural persons, organisations, communities, and other collective rights holders. Rights may arise from legal, contractual, customary, or ethical frameworks. Inclusion in this vocabulary does not establish that a right applies in every jurisdiction or context. GDPR mappings identify related provisions applicable to personal data."@en ;
+    dct:creator <https://orcid.org/0000-0002-0255-5101> ;
+    owl:versionInfo "0.5" .
+
+# Rights with related GDPR provisions
+
+openrel:inform-of-collection
+    a skos:Concept ;
+    skos:prefLabel "Right to Information about Collection"@en ;
+    skos:definition "A right to be informed when information concerning a subject is collected directly from that subject, where the applicable framework requires such notice."@en ;
+    skos:closeMatch eu-gdpr:A13 ;
+    skos:note "GDPR Article 13 concerns information provided when personal data is collected from the data subject."@en ;
+    dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_13/oj> ;
+    skos:inScheme openrel:typeSubjectRights .
+
+openrel:inform-sources
+    a skos:Concept ;
+    skos:prefLabel "Right to Information about Sources"@en ;
+    skos:definition "A right to be informed about the sources of information concerning a subject when that information was obtained from other parties or sources, where required."@en ;
+    skos:closeMatch eu-gdpr:A14 ;
+    skos:note "GDPR Article 14 concerns information provided when personal data was not obtained from the data subject."@en ;
+    dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_14/oj> ;
+    skos:inScheme openrel:typeSubjectRights .
+
+openrel:right-access
+    a skos:Concept ;
+    skos:prefLabel "Right to Access"@en ;
+    skos:definition "A right held by a subject to access information or resources concerning that subject, subject to applicable conditions and limitations."@en ;
+    skos:closeMatch eu-gdpr:A15 ;
+    skos:note "GDPR Article 15 establishes a specific right of access to personal data. The OpenREL concept may also apply under other frameworks."@en ;
+    dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_15/oj> ;
+    skos:inScheme openrel:typeSubjectRights .
+
+openrel:right-rectification
+    a skos:Concept ;
+    skos:prefLabel "Right to Rectification"@en ;
+    skos:definition "A right to request correction or completion of inaccurate or incomplete information concerning a subject, where applicable."@en ;
+    skos:closeMatch eu-gdpr:A16 ;
+    skos:note "GDPR Article 16 concerns rectification of inaccurate personal data and completion of incomplete personal data."@en ;
+    dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_16/oj> ;
+    skos:inScheme openrel:typeSubjectRights .
+
+openrel:right-erasure
+    a skos:Concept ;
+    skos:prefLabel "Right to Erasure"@en ;
+    skos:altLabel "Right to be Forgotten"@en ;
+    skos:definition "A right to request erasure of information concerning a subject when the applicable grounds and conditions for erasure are met."@en ;
+    skos:closeMatch eu-gdpr:A17 ;
+    skos:note "GDPR Article 17 establishes a conditional right to erasure of personal data; it is not an unconditional right to erase all subject-related information."@en ;
+    dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_17/oj> ;
+    skos:inScheme openrel:typeSubjectRights .
+
+openrel:right-restriction
+    a skos:Concept ;
+    skos:prefLabel "Right to Restriction of Processing"@en ;
+    skos:definition "A right to require specified processing of information concerning a subject to be restricted under applicable conditions."@en ;
+    skos:closeMatch eu-gdpr:A18 ;
+    skos:note "GDPR Article 18 concerns restriction of processing of personal data in specified circumstances."@en ;
+    dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_18/oj> ;
+    skos:inScheme openrel:typeSubjectRights .
+
+openrel:right-notification
+    a skos:Concept ;
+    skos:prefLabel "Right to Notification of Changes"@en ;
+    skos:definition "A right to receive or benefit from required notifications concerning rectification, erasure, or restriction of processing of information about a subject."@en ;
+    skos:closeMatch eu-gdpr:A19 ;
+    skos:note "GDPR Article 19 primarily imposes an obligation on controllers to communicate rectification, erasure, or restriction to recipients, and to inform the data subject about recipients if requested."@en ;
+    dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_19/oj> ;
+    skos:inScheme openrel:typeSubjectRights .
+
+openrel:right-portability
+    a skos:Concept ;
+    skos:prefLabel "Right to Data Portability"@en ;
+    skos:definition "A right to receive specified information concerning a subject in a usable format and, where applicable, to transmit it to another recipient or service."@en ;
+    skos:closeMatch eu-gdpr:A20 ;
+    skos:note "GDPR Article 20 applies to qualifying personal data under specific conditions and provides for a structured, commonly used, machine-readable format."@en ;
+    dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_20/oj> ;
+    skos:inScheme openrel:typeSubjectRights .
+
+openrel:right-object
+    a skos:Concept ;
+    skos:prefLabel "Right to Object to Processing"@en ;
+    skos:definition "A right to object to specified processing or use of information concerning a subject, under the applicable framework."@en ;
+    skos:closeMatch eu-gdpr:A21 ;
+    skos:note "GDPR Article 21 provides rights to object to certain processing of personal data, subject to its specified grounds and conditions."@en ;
+    dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_21/oj> ;
+    skos:inScheme openrel:typeSubjectRights .
+
+openrel:right-non-automation
+    a skos:Concept ;
+    skos:prefLabel "Right Not to Be Subject to Certain Automated Decisions"@en ;
+    skos:definition "A right not to be subject to specified decisions based solely on automated processing, where the applicable framework provides that protection."@en ;
+    skos:closeMatch eu-gdpr:A22 ;
+    skos:note "GDPR Article 22 addresses decisions based solely on automated processing, including profiling, that produce legal or similarly significant effects, subject to exceptions and safeguards."@en ;
+    dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_22/oj> ;
+    skos:inScheme openrel:typeSubjectRights .
+
+openrel:right-intervention
+    a skos:Concept ;
+    skos:prefLabel "Right to Human Intervention"@en ;
+    skos:definition "A right to obtain human intervention in specified automated decision-making processes where required by the applicable framework."@en ;
+    skos:closeMatch eu-gdpr:A22-3-a ;
+    skos:note "GDPR Article 22(3) provides safeguards in the circumstances specified by that provision."@en ;
+    dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_22/oj> ;
+    skos:inScheme openrel:typeSubjectRights .
+
+openrel:right-point-of-view
+    a skos:Concept ;
+    skos:prefLabel "Right to Express a Point of View"@en ;
+    skos:definition "A right to express a subject's position or perspective in a specified decision-making or review process."@en ;
+    skos:closeMatch eu-gdpr:A22-3-b ;
+    skos:note "GDPR Article 22(3) includes the opportunity to express a point of view as a safeguard in applicable automated decision-making circumstances."@en ;
+    dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_22/oj> ;
+    skos:inScheme openrel:typeSubjectRights .
+
+openrel:right-contest
+    a skos:Concept ;
+    skos:prefLabel "Right to Contest a Decision"@en ;
+    skos:definition "A right to challenge or contest a decision affecting a subject, where the applicable framework provides for such a challenge."@en ;
+    skos:closeMatch eu-gdpr:A22-3-c ;
+    skos:note "GDPR Article 22(3) includes a safeguard to contest the decision in the circumstances covered by that provision."@en ;
+    dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_22/oj> ;
+    skos:inScheme openrel:typeSubjectRights .
+
+openrel:right-withdraw
+    a skos:Concept ;
+    skos:prefLabel "Right to Withdraw Consent"@en ;
+    skos:definition "A right to withdraw consent previously given for specified processing or use of information or resources, where such withdrawal is permitted."@en ;
+    skos:closeMatch eu-gdpr:A7-3 ;
+    skos:note "GDPR Article 7(3) concerns withdrawal of consent to personal-data processing and states that withdrawal does not affect the lawfulness of processing before withdrawal."@en ;
+    dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_7/par_3/oj> ;
+    skos:inScheme openrel:typeSubjectRights .
+
+openrel:right-complaint
+    a skos:Concept ;
+    skos:prefLabel "Right to Lodge a Complaint"@en ;
+    skos:definition "A right to lodge a complaint with an appropriate oversight or supervisory body about an alleged infringement of applicable rights."@en ;
+    skos:closeMatch eu-gdpr:A77 ;
+    skos:note "GDPR Article 77 concerns the right to lodge a complaint with a supervisory authority."@en ;
+    dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_77/oj> ;
+    skos:inScheme openrel:typeSubjectRights .
+
+openrel:remedy-supervisory
+    a skos:Concept ;
+    skos:prefLabel "Right to Judicial Remedy against Supervisory Decisions"@en ;
+    skos:definition "A right to seek an effective judicial remedy against a decision or failure to act by a competent supervisory authority, where provided by law."@en ;
+    skos:closeMatch eu-gdpr:A78 ;
+    skos:note "GDPR Article 78 concerns effective judicial remedies against supervisory authorities, including rights of natural and legal persons in specified circumstances."@en ;
+    dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_78/oj> ;
+    skos:inScheme openrel:typeSubjectRights .
+
+openrel:remedy-infringement
+    a skos:Concept ;
+    skos:prefLabel "Right to Judicial Remedy for Rights Infringement"@en ;
+    skos:definition "A right to seek an effective judicial remedy where rights concerning a subject have allegedly been infringed, under applicable law."@en ;
+    skos:closeMatch eu-gdpr:A79 ;
+    skos:note "GDPR Article 79 concerns an effective judicial remedy against a controller or processor for infringements of rights resulting from personal-data processing."@en ;
+    dct:source <https://eur-lex.europa.eu/eli/reg/2016/679/art_79/oj> ;
+    skos:inScheme openrel:typeSubjectRights .
+
+# Additional rights for personal, non-personal and collective subjects.
+# These concepts do not assert universal legal enforceability.
+
+openrel:right-prior-consent
+    a skos:Concept ;
+    skos:prefLabel "Right to Prior Consent"@en ;
+    skos:definition "A right to require the subject's consent before specified collection, access, processing, disclosure, or reuse of protected information or resources."@en ;
+    skos:note "May arise from legal, contractual, customary, or ethical frameworks, including arrangements governing community knowledge or research participation. Distinct from the right to withdraw consent."@en ;
+    skos:inScheme openrel:typeSubjectRights .
+
+openrel:right-withdraw-authorisation
+    a skos:Concept ;
+    skos:prefLabel "Right to Withdraw Authorisation"@en ;
+    skos:definition "A right to revoke an authorisation previously granted for specified access, use, processing, or disclosure of protected information or resources, subject to applicable limitations."@en ;
+    skos:note "An authorisation may be based on mechanisms other than consent. Withdrawal may not affect acts lawfully performed before revocation."@en ;
+    skos:inScheme openrel:typeSubjectRights .
+
+openrel:right-benefit-sharing
+    a skos:Concept ;
+    skos:prefLabel "Right to Benefit Sharing"@en ;
+    skos:definition "A right to participate in or receive agreed benefits arising from specified use or exploitation of information, knowledge, or other resources associated with a subject."@en ;
+    skos:note "May be relevant to traditional knowledge, genetic resources, community contributions, and negotiated research agreements; the applicable framework determines entitlement and scope."@en ;
+    skos:inScheme openrel:typeSubjectRights .
+
+openrel:right-attribution
+    a skos:Concept ;
+    skos:prefLabel "Right to Attribution"@en ;
+    skos:definition "A right to appropriate acknowledgement of a subject's authorship, contribution, custodianship, or other recognised relationship to information, knowledge, or resources."@en ;
+    skos:note "The basis and form of attribution depend on the relevant legal, contractual, customary, or ethical framework."@en ;
+    skos:inScheme openrel:typeSubjectRights .
+
+openrel:right-confidentiality
+    a skos:Concept ;
+    skos:prefLabel "Right to Confidentiality"@en ;
+    skos:definition "A right to require that specified information concerning a subject be protected against unauthorised access or disclosure."@en ;
+    skos:note "May apply to personal information, trade secrets, sensitive community knowledge, and other protected information under an applicable framework."@en ;
+    skos:inScheme openrel:typeSubjectRights .
+
+openrel:right-collective-decision
+    a skos:Concept ;
+    skos:prefLabel "Right to Collective Decision-Making"@en ;
+    skos:definition "A right of a collective subject to participate in, approve, or determine decisions about specified uses of resources associated with that collective subject."@en ;
+    skos:note "May be exercised through recognised representatives or community governance procedures; its existence and scope depend on the applicable framework."@en ;
+    skos:inScheme openrel:typeSubjectRights .
+
+openrel:right-restrict-disclosure
+    a skos:Concept ;
+    skos:prefLabel "Right to Restrict Disclosure"@en ;
+    skos:definition "A right to limit disclosure of specified protected information or resources to defined recipients, purposes, conditions, or contexts."@en ;
+    skos:note "May be relevant to sensitive ecological locations, traditional knowledge, confidential commercial information, or other restricted information. This right is distinct from restricting all processing."@en ;
+    skos:inScheme openrel:typeSubjectRights .

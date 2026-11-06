@@ -2,7 +2,7 @@
 # OpenREL Named Constraint registry revised draft 0.5, 2026-10-27
 
 @prefix dct: <http://purl.org/dc/terms/> .
-@prefix loc: <http://www.w3id.org/ns/openrel/0/loc/> .
+@prefix loc: <https://w3id.org/dpv/loc#> .
 @prefix odrl: <http://www.w3.org/ns/odrl/2/> .
 @prefix openrel: <http://www.w3id.org/ns/openrel/0/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -22,7 +22,7 @@ openrel:academicUseOnly a openrel:NamedConstraint ;
         openrel:affirmed-research,
         openrel:confirmed-researcher,
         openrel:confirmed-rpo,
-        openrel:research-only .
+        openrel:academic-only .
 
 openrel:allowDistributionFee a openrel:NamedConstraint ;
     rdfs:label "Allow Distribution Fee"@en ;
@@ -55,14 +55,14 @@ openrel:consentLegal a openrel:NamedConstraint ;
         openrel:gdpr-controller .
 
 openrel:consentPrior a openrel:NamedConstraint ;
-    rdfs:label "Consent is Required Prior to Access"@en ;
-    skos:definition "Allow access to the Asset or Asset Collection only when applicable consent has been obtained before access."@en ;
+    rdfs:label "Consent is Required and Verified to Access"@en ;
+    skos:definition "Allow access to the Asset or Asset Collection only when applicable consent has been obtained before access, and this has been verified."@en ;
     skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
     odrl:leftOperand openrel:consentRequired ;
     odrl:operator odrl:eq ;
     odrl:rightOperand openrel:consent-reuse-before ;
     openrel:constraintType openrel:consent ;
-    openrel:scenario openrel:ethics-approval .
+    openrel:scenario openrel:explicit-consent .
 
 openrel:eidasVerified a openrel:NamedConstraint ;
     rdfs:label "eIDAS Verified Identity"@en ;
@@ -82,15 +82,14 @@ openrel:eidasVerifiedResearcher
     openrel:constraintType openrel:context .
 
 openrel:ethicsApproval a openrel:NamedConstraint ;
-    rdfs:label "Ethics Approval Required"@en ;
-    skos:definition "Allow access to the Asset or Asset Collection only when an institutional review board has confirmed ethics approval."@en ;
+    rdfs:label "Ethics Approval Required and Verified"@en ;
+    skos:definition "Allow access to the Asset or Asset Collection only when an institutional review board has confirmed ethics approval and this has been verified."@en ;
     skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
     odrl:leftOperand openrel:consentRequired ;
     odrl:operator odrl:eq ;
     odrl:rightOperand openrel:consent-ethics ;
     openrel:constraintType openrel:consent ;
     openrel:scenario openrel:ethics-approval .
-
 
 openrel:euUseOnly a openrel:NamedConstraint ;
     rdfs:label "Allow EU-wide Use"@en ;
@@ -101,6 +100,29 @@ openrel:euUseOnly a openrel:NamedConstraint ;
     odrl:rightOperand loc:EU27 ;
     openrel:constraintType openrel:context ;
     openrel:scenario openrel:european-use .
+
+openrel:institutionalInfrastructure a openrel:NamedConstraint, skos:Concept ;
+    rdfs:label "Institutional Infrastructure Only"@en ;
+    skos:definition "Requires an Asset to be used only on infrastructure authorised by the designated institution."@en ;
+    odrl:leftOperand openrel:processingInfrastructure ;
+    odrl:operator odrl:eq ;
+    odrl:rightOperandReference openrel:parameterInfraIRI ;
+    openrel:scenario openrel:formal-toms .
+
+openrel:institutionalAffiliation a openrel:NamedConstraint, skos:Concept ;
+    rdfs:label "Institutional Affiliation Required"@en ;
+    skos:definition "Requires the evaluated Assignee to have verified affiliation with the designated institution."@en ;
+    odrl:leftOperand openrel:agentAffiliation ;
+    odrl:operator odrl:eq ;
+    odrl:rightOperandReference openrel:parameterInstitutionIRI ;
+    openrel:scenario openrel:formal-toms .
+
+openrel:externalRecipient a openrel:NamedConstraint, skos:Concept ;
+    rdfs:label "External Institutional Recipient"@en ;
+    skos:definition "Identifies a distribution request where the intended recipient is not affiliated with the designated institution."@en ;
+    odrl:leftOperand openrel:recipientAffiliation ;
+    odrl:operator odrl:neq ;
+    odrl:rightOperandReference openrel:parameterInstitutionIRI .
 
 openrel:logUse a openrel:NamedConstraint ;
     rdfs:label "Record Usage in a Log"@en ;
@@ -153,6 +175,7 @@ openrel:notifyClearingHouse a openrel:NamedConstraint ;
     odrl:leftOperand openrel:notificationDuty ;
     odrl:operator odrl:eq ;
     odrl:rightOperand openrel:notify-clearinghouse ;
+    openrel:applicableEndpoint openrel:parameterClearingHouseAPI ;
     openrel:constraintType openrel:notification ;
     openrel:scenario openrel:notification-duty .
 
@@ -174,7 +197,8 @@ openrel:openAccess a openrel:NamedConstraint ;
     odrl:operator odrl:eq ;
     odrl:rightOperand openrel:open-access ;
     openrel:constraintType openrel:tom ;
-    openrel:scenario openrel:formal-toms .
+    openrel:scenario openrel:formal-toms, 
+        openrel:open-access-os .
 
 openrel:trustPlus a openrel:NamedConstraint ;
     rdfs:label "Verified Trust+"@en ;
@@ -187,9 +211,10 @@ openrel:trustPlus a openrel:NamedConstraint ;
     openrel:constraintType openrel:access ;
     openrel:scenario openrel:trusted-connection .
 
-openrel:verifiedResearcher a openrel:NamedConstraint ;
-    rdfs:label "Asserted Researcher"@en ;
-    skos:definition "A general assertion or inference that the end user has the role of a researcher."@en ;
+openrel:verifiedResearcher a openrel:NamedConstraint, skos:Concept ;
+    rdfs:label "Verified Researcher"@en ;
+    skos:definition "A constraint requiring the evaluated agent to have a recognised researcher role, established through an accepted assertion or verification mechanism."@en ;
+    skos:note "The policy evaluation process MUST determine whether the evidence establishing researcher status meets the applicable repository assurance requirements."@en ;
     odrl:leftOperand openrel:agentRole ;
     odrl:operator odrl:eq ;
     odrl:rightOperand openrel:researcher ;
@@ -197,11 +222,9 @@ openrel:verifiedResearcher a openrel:NamedConstraint ;
     openrel:scenario openrel:academic-only,
         openrel:affirmed-research,
         openrel:confirmed-researcher,
-        openrel:confirmed-rpo,
-        openrel:academic-only .
+        openrel:confirmed-rpo .
 
-openrel:distributeUnmodified
-    a openrel:NamedConstraint, skos:Concept ;
+openrel:distributeUnmodified a openrel:NamedConstraint, skos:Concept ;
     rdfs:label "Distribute Unmodified"@en ;
     skos:definition "Distribution is permitted only when the distributed material is not an adaptation of the licensed material."@en ;
     skos:note "Technical modifications that do not constitute adaptations under the applicable licence are permitted."@en ;
@@ -211,8 +234,25 @@ openrel:distributeUnmodified
     openrel:scenario openrel:no-derivatives,
         openrel:private-use .    
 
-openrel:validStartDate
-    a openrel:NamedConstraint ;
+openrel:volumeLimit a openrel:NamedConstraint, skos:Concept ;
+    rdfs:label "Usage Volume Limit"@en ;
+    skos:definition "A usage constraint requiring the measured or projected cumulative data volume associated with an Action to remain within a specified maximum."@en ;
+    skos:note "The Left Operand resolves to the accumulated usage volume, including the proposed Action. The maximum permitted volume is resolved from parameterVolume. The evaluator MUST establish the accounting scope, period and compatible measurement units."@en ;
+    openrel:constraintType openrel:usage ;
+    odrl:leftOperand openrel:usageVolume ;
+    odrl:operator odrl:lteq ;
+    odrl:rightOperandReference openrel:parameterVolume .
+
+openrel:countLimit a openrel:NamedConstraint, skos:Concept ;
+    rdfs:label "Usage Count Limit"@en ;
+    skos:definition "A usage constraint requiring the number of executions of an Action within a defined accounting scope to remain within a specified maximum."@en ;
+    skos:note "The Left Operand resolves to the accumulated execution count, including the proposed Action. The maximum permitted count is resolved from parameterUsageCount. The evaluator MUST establish the accounting scope and counting period."@en ;
+    openrel:constraintType openrel:usage ;
+    odrl:leftOperand openrel:usageCount ;
+    odrl:operator odrl:lteq ;
+    odrl:rightOperandReference openrel:parameterUsageCount .
+
+openrel:validStartDate a openrel:NamedConstraint ;
     rdfs:label "Start Date Constraint"@en ;
     skos:definition "Access is only permitted on or after the specified start date."@en ;
     skos:note "The start date is supplied by a runtime Parameter. The comparison is inclusive."@en ;
@@ -222,8 +262,7 @@ openrel:validStartDate
     odrl:operator odrl:gteq ;
     odrl:rightOperandReference openrel:startDateParameter .
 
-openrel:validEndDate
-    a openrel:NamedConstraint ;
+openrel:validEndDate a openrel:NamedConstraint ;
     rdfs:label "End Date Constraint"@en ;
     skos:definition "Access is only permitted on or before the specified end date."@en ;
     skos:note "The end date is supplied by a runtime Parameter. The comparison is inclusive."@en ;
@@ -232,3 +271,11 @@ openrel:validEndDate
     odrl:leftOperand odrl:dateTime ;
     odrl:operator odrl:lteq ;
     odrl:rightOperandReference openrel:endDateParameter .
+
+openrel:calculatedStartDate a openrel:NamedConstraint, skos:Concept ;
+    rdfs:label "Calculated Start Date Constraint"@en ;
+    skos:definition "Permits the associated action only when the evaluation date and time is on or after a dynamically calculated start date."@en ;
+    odrl:leftOperand odrl:dateTime ;
+    odrl:operator odrl:gteq ;
+    odrl:rightOperandReference openrel:parameterCalculatedStartDate ;
+        openrel:scenario openrel:status-embargoed .  

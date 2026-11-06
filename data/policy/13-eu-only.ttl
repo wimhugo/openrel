@@ -1,98 +1,62 @@
-# Context and Input Licences
-# --------------------------------------------------------------------------------------------------------------------------------
-# Title: EU-Only Geographical Restriction
-# Example Policy
-# OpenREL - Open Rights Encoding language
-# Version 0.4 (Draft)
-# Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/ EUDAT)
-# This Version: 14 July 2026
-# --------------------------------------------------------------------------------------------------------------------------------
 
-# context
-@base <http://www.w3.org/ns/openrel/0/> .
-@prefix openrel: <http://www.w3.org/ns/openrel/0/> .
-# RDF-related
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+# ------------------------------------------------------------------
+# OpenREL Example Policy
+# Title: EU-Only Geographical Restriction
+# Version: 0.5 (Draft)
+# Type: Access Rules
+# ------------------------------------------------------------------
+
+@base <http://www.w3id.org/ns/openrel/0/> .
+@prefix openrel: <http://www.w3id.org/ns/openrel/0/> .
+
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-# general content
 @prefix schema: <http://schema.org/> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
-# rdmi-related
-@prefix dct: <http://purl.org/dc/terms/> .
-@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
-@prefix dcat: <http://www.w3.org/ns/dcat#> .
-@prefix dcatap: <http://data.europa.eu/r5r/> .
-# rights-related
-@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
-@prefix cc: <http://creativecommons.org/ns#> .
-@prefix dalicc: <https://dalicc.net/ns#> .
-@prefix ids: <https://w3id.org/idsa/core/> .
-@prefix idsc: <https://w3id.org/idsa/code/> .
-@prefix osl: <http://opensource.org/licenses/> .
-@prefix spdx: <http://spdx.org/rdf/terms#>  .
-@prefix dpv: <https://w3id.org/dpv/> .
-# Policy Libraries and Registries
-@prefix openrellib: <https://github.com/wimhugo/openrel/new/main/data/policy/> .
-@prefix spdxlicense: <http://spdx.org/licenses/> .
-@prefix dalicclib: <https://dalicc.net/licenselibrary/> 
-@prefix lfslib: <https://lfs.labs.dansdemo.nl/api/v1/licenses/> .
 
-# --------------------------------------------------------------------------------------------------------------------------------
-# Access Rules Metadata
-# --------------------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------
+# Policy Metadata
+# ------------------------------------------------------------------
 
-<OR-EU-0.4> a openrel:AccessRules ;
-    # Alternate identifiers
-    ## skos:exactMatch lfslib:[TO_BE_REGISTERED] ;
+<OR-EU-0.5>
+    a openrel:AccessRules ;
 
-    # Citation Information
-    dc:title "EU-Only Geographical Restriction" ;
-    dct:alternative "Use in EU Only" ;
+    dct:title "EU-Only Geographical Restriction"@en ;
+    dct:alternative "Use Within the European Union Only"@en ;
+    dct:description "An access and usage policy requiring all uses of an Asset to occur within the legal territory of the European Union. Use includes downloading, copying, storage, hosting, processing, transformation, analysis, archiving, backup, restoration and other forms of use. The restriction applies throughout the Asset's lifecycle, including after initial access or transfer."@en ;
+    dct:subject
+        "Geographical restriction"@en ;
     dct:publisher openrel:parameterPublisherIRI ;
-    dct:created "2026-07-12T00:00:00+00:00" ;
-    dct:modified "2026-08-03T00:00:00+00:00" ;
     dct:creator "Melios Katsamakis - OpenAIRE" ;
     dct:creator <https://orcid.org/0000-0002-0255-5101> ;
-    dct:subject "Time-Limited Access" ;
-    openrel:accessType openrel:managed ;
-    dct:version "0.1" ;
+    dct:created "2026-07-12T00:00:00Z"^^xsd:dateTime ;
+    dct:modified "2026-11-05T00:00:00Z"^^xsd:dateTime ;
+    dct.version "0.5" ;
 
-    # Coverage related information
-    # These properties apply only for those policies that explicitly require them, optional for others
-    # openrel:validityType openrel:perpetual ;
-    openrel:jurisdiction openrel:worldwide ;
-    openrel:policyStatus openrel:typePrivateActive ;
+    openrel:accessType openrel:managed ;
+    openrel:policyStatus openrel:typeTemplate ;
+
+    # Template parameters
     odrl:assigner openrel:parameterAssignerIRI ;
     odrl:assignee openrel:parameterAssigneeIRI ;
     odrl:target openrel:parameterTargetIRI ;
 
-    # Alternative representations, mappings of SPDX and LFS properties
-    openrel:policyText "**Time Limited Access** is an **Access Rule** imposed by an organisation or platform independently of the licence applicable to the asset. The motivation may, for example, be to re-evaluate context of the assignee at the completion of the access period"@en ;
-    openrel:encodedRules openrellib:OR-EU-0.4 ;
+    # Machine-readable representation
+    openrel:encodedRules <OR-EU-0.5> ;
 
-# --------------------------------------------------------------------------------------------------------------------------------
-#   Rules
-# --------------------------------------------------------------------------------------------------------------------------------
-    
+# ------------------------------------------------------------------
+# Rules
+# ------------------------------------------------------------------
+
     odrl:permission [
+        a odrl:Permission ;
+        # Generic use, encompassing narrower use actions
         odrl:action openrel:use ;
-        odrl:namedconstraint openrel:euUseOnly ;
-    ] ;
-    
-    openrel:evaluation "permit | deny" ;
-    openrel:machineActionable "true" 
-.
+        # Reusable geographical constraint
+        odrl:constraint openrel:euUseOnly
+    ] .
 
-# --------------------------------------
-# Custom Logical Constraints
-# --------------------------------------
-# None
-
-# --------------------------------------
-# Custom Named Constraints
-# --------------------------------------
-# None
+# To include specific end uses in the limitations, either duplicate the permission
+# with a narrower action, or add end use actions that do not exist in actions.ttl
+# via a pull request to extend the instances of actions.

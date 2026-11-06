@@ -241,10 +241,8 @@ openrel:ethics-approval
 openrel:explicit-consent
     a skos:Concept ;
     skos:prefLabel "Explicit Consent"@en ;
-    skos:definition
-        "Specified uses or reuse activities require explicit consent from an appropriately authorised Party."@en ;
-    skos:note
-        "The applicable policy determines when consent must be obtained, which activities it covers and whether additional consent is required for subsequent use."@en ;
+    skos:definition "Specified uses or reuse activities require explicit consent from an appropriately authorised Party."@en ;
+    skos:note "The applicable policy determines when consent must be obtained, which activities it covers and whether additional consent is required for subsequent use."@en ;
     skos:broader openrel:ethics-considerations ;
     openrel:questionSatisfied "How" ;
     skos:inScheme openrel:typeScenario .
@@ -355,13 +353,13 @@ openrel:group-open-science
     skos:topConceptOf openrel:typeScenario ;
     skos:inScheme openrel:typeScenario .
 
-openrel:open-access
+openrel:open-access-os
     a skos:Concept ;
     skos:prefLabel "Open Access"@en ;
     skos:definition
         "An Asset is intended to be openly accessible, subject to any separately specified conditions governing reuse."@en ;
     skos:note
-        "Open access does not necessarily imply unrestricted reuse or the absence of attribution and other duties."@en ;
+        "Open access does not necessarily imply unrestricted reuse or the absence of attribution and other duties, for example requirements to be identifiable or respect limits to intensity of use."@en ;
     skos:broader openrel:group-open-science ;
     openrel:questionSatisfied "How" ;
     skos:inScheme openrel:typeScenario .
@@ -437,10 +435,8 @@ openrel:system-limitations
 
 openrel:formal-toms
     a skos:Concept ;
-    skos:prefLabel
-        "Technical and Organisational Measures"@en ;
-    skos:definition
-        "Access to or processing of an Asset requires compliance with specified technical, organisational, physical or legal safeguards."@en ;
+    skos:prefLabel "Technical and Organisational Measures"@en ;
+    skos:definition "Access to or processing of an Asset requires compliance with specified technical, organisational, physical or legal safeguards."@en ;
     skos:broader openrel:group-access-considerations ;
     openrel:questionSatisfied "How" ;
     skos:inScheme openrel:typeScenario .
@@ -448,8 +444,7 @@ openrel:formal-toms
 openrel:tech-limits
     a skos:Concept ;
     skos:prefLabel "Technical Access Limits"@en ;
-    skos:definition
-        "Access to an Asset is subject to technical limits such as duration, number of access events or volume of data transferred."@en ;
+    skos:definition "Access to an Asset is subject to technical limits such as duration, number of access events or volume of data transferred."@en ;
     skos:broader openrel:group-access-considerations ;
     openrel:questionSatisfied "How" ;
     skos:inScheme openrel:typeScenario .

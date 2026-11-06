@@ -23,19 +23,34 @@
 @prefix openrel: <http://www.w3id.org/ns/openrel/0/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 # Temporal context
 
 openrel:startDateParameter
     a openrel:Parameter ;
+    rdfs:isDefinedBy openrel: ;
     skos:prefLabel "Start Date"@en ;
     skos:definition "The start date for a period, usually a period of access."@en ;
     openrel:parameterName "START_DATE" ;
     openrel:expectedDatatype xsd:dateTime ;
     openrel:resolutionMethod openrel:RuntimeContext .
 
+openrel:parameterCalculatedStartDate
+    a openrel:Parameter, skos:Concept ;
+    rdfs:isDefinedBy openrel: ;
+    rdfs:label "Calculated Start Date"@en ;
+    skos:prefLabel "Calculated Start Date"@en ;
+    skos:definition "A start date calculated at runtime from one or more input Parameters using a designated Parameter Resolution Service."@en ;
+    skos:note "The calculation method and required inputs are determined by the associated resolution service. The resulting value MUST conform to xsd:dateTime."@en ;
+    openrel:parameterName "CALCULATED_START_DATE" ;
+    openrel:expectedDatatype xsd:dateTime ;
+    openrel:resolutionMethod openrel:RuntimeContext ;
+    openrel:parameterResolutionService openrel:embargoStartDateService .
+
 openrel:endDateParameter
     a openrel:Parameter ;
+    rdfs:isDefinedBy openrel: ;
     skos:prefLabel "End Date"@en ;
     skos:definition "The end date for a period, usually a period of access."@en ;
     openrel:parameterName "END_DATE" ;
@@ -46,6 +61,7 @@ openrel:endDateParameter
 
 openrel:parameterPublisherIRI
     a openrel:Parameter ;
+    rdfs:isDefinedBy openrel: ;
     skos:prefLabel "Publisher IRI"@en ;
     skos:definition "A unique identifier for a publisher (PID, URI, URL)."@en ;
     openrel:parameterName "PUBLISHER_IRI" ;
@@ -54,6 +70,7 @@ openrel:parameterPublisherIRI
 
 openrel:parameterAssignerIRI
     a openrel:Parameter ;
+    rdfs:isDefinedBy openrel: ;
     skos:prefLabel "Assigner IRI"@en ;
     skos:definition "A unique identifier for the assigner, such as a curator or rights owner."@en ;
     openrel:parameterName "ASSIGNER_IRI" ;
@@ -62,19 +79,9 @@ openrel:parameterAssignerIRI
 
 # Runtime context
 
-openrel:parameterVerifiedAuthorisations
-    a openrel:Parameter, skos:Concept ;
-    skos:prefLabel "Verified Authorisations"@en ;
-    skos:definition "A collection of IRIs identifying consent and authorisation types for which valid supporting evidence has been verified in the current evaluation context."@en ;
-    skos:note "Each returned IRI MUST identify a concept in openrel:typeConsent. Verification MUST account for the relevant requestor, Asset, intended activity, authorising Party, scope and validity period. Unresolved or inconclusive evidence MUST NOT result in a verified authorisation."@en ;
-    openrel:parameterName "VERIFIED_AUTHORISATIONS" ;
-    openrel:expectedDatatype xsd:anyURI ;
-    openrel:resolutionMethod openrel:RuntimeContext ;
-    openrel:multipleValues true .
-
-
 openrel:parameterConsentAuthorisation
     a openrel:Parameter, skos:Concept ;
+    rdfs:isDefinedBy openrel: ;
     skos:prefLabel "Consent or Authorisation Verification"@en ;
     skos:definition "The verified consent or authorisation type applicable to the current request, resolved through an authorisation verification service."@en ;
     skos:note "The service MUST evaluate the authorisation type specified by the associated Constraint's right operand and return its IRI only when the relevant authorisation has been successfully verified. The service MUST distinguish verification failure from an indeterminate result."@en ;
@@ -84,11 +91,11 @@ openrel:parameterConsentAuthorisation
     openrel:resolutionMethod openrel:RuntimeContext ;
     openrel:parameterResolutionService openrel:consentAuthorisationService .
 
-
 # Platform context
 
 openrel:parameterInfraIRI
     a openrel:Parameter ;
+    rdfs:isDefinedBy openrel: ;
     skos:prefLabel "Infrastructure IRI"@en ;
     skos:definition "An identifier for the infrastructure on which an Asset may be used."@en ;
     openrel:parameterName "INFRASTRUCTURE_IRI" ;
@@ -97,22 +104,34 @@ openrel:parameterInfraIRI
 
 openrel:parameterVolume
     a openrel:Parameter ;
+    rdfs:isDefinedBy openrel: ;
     skos:prefLabel "Maximum Download Volume"@en ;
-    skos:definition "A limit on download volume per session, account or ticket."@en ;
+    skos:definition "The maximum permitted quantity of data associated with executions of an Action within a defined accounting scope, such as a within a Ticket, a session, or a period."@en ;
     openrel:parameterName "VOLUME_AS_INTEGER" ;
     openrel:expectedDatatype xsd:integer ;
     openrel:resolutionMethod openrel:PlatformContext .
 
 openrel:parameterUnit
     a openrel:Parameter ;
+    rdfs:isDefinedBy openrel: ;
     skos:prefLabel "Unit of Measure"@en ;
     skos:definition "A unit of measurement, potentially associated with a rate or an absolute quantity."@en ;
     openrel:parameterName "UNIT_OF_MEASURE" ;
     openrel:expectedDatatype xsd:string ;
     openrel:resolutionMethod openrel:PlatformContext .
 
+openrel:parameterUsageCount a openrel:Parameter, skos:Concept ;
+    rdfs:isDefinedBy openrel: ;
+    skos:prefLabel "Maximum Usage Count"@en ;
+    skos:definition "The maximum permitted number of executions of an Action within a defined accounting scope and counting period."@en ;
+    skos:note "The Parameter MUST resolve to a non-negative integer. The counting scope and period MUST be established before evaluating the associated usage constraint."@en ;
+    openrel:parameterName "MAX_USAGE_COUNT" ;
+    openrel:expectedDatatype xsd:nonNegativeInteger ;
+    openrel:resolutionMethod openrel:PlatformContext .
+
 openrel:parameterAuthorisedIP
     a openrel:Parameter ;
+    rdfs:isDefinedBy openrel: ;
     skos:prefLabel "Authorised IP Addresses"@en ;
     skos:definition "A list of authorised IP addresses or address ranges."@en ;
     openrel:parameterName "AUTHORISED_IP_ARRAY" ;
@@ -122,6 +141,7 @@ openrel:parameterAuthorisedIP
 
 openrel:parameterAuthorisedIRI
     a openrel:Parameter ;
+    rdfs:isDefinedBy openrel: ;
     skos:prefLabel "Authorised Endpoint IRIs"@en ;
     skos:definition "A list of authorised endpoint IRIs."@en ;
     openrel:parameterName "AUTHORISED_IRI_ARRAY" ;
@@ -131,6 +151,7 @@ openrel:parameterAuthorisedIRI
 
 openrel:parameterClearingHouseAPI
     a openrel:Parameter ;
+    rdfs:isDefinedBy openrel: ;
     skos:prefLabel "Clearinghouse API"@en ;
     skos:definition "The API endpoint for clearinghouse notifications."@en ;
     openrel:parameterName "CLEARINGHOUSE_API" ;
@@ -139,6 +160,7 @@ openrel:parameterClearingHouseAPI
 
 openrel:parameterTokenVerificationAPI
     a openrel:Parameter ;
+    rdfs:isDefinedBy openrel: ;
     skos:prefLabel "Access Token Verification Endpoint"@en ;
     skos:definition "An API endpoint used for access token verification."@en ;
     openrel:parameterName "TOKEN_VERIFICATION_API" ;
@@ -147,16 +169,27 @@ openrel:parameterTokenVerificationAPI
 
 openrel:parameterAccessToken
     a openrel:Parameter ;
+    rdfs:isDefinedBy openrel: ;
     skos:prefLabel "Access Token"@en ;
     skos:definition "An access token provided by the platform."@en ;
     openrel:parameterName "ACCESS_TOKEN" ;
     openrel:expectedDatatype xsd:string ;
     openrel:resolutionMethod openrel:PlatformContext .
 
+openrel:parameterEmbargoDuration
+    a openrel:Parameter, skos:Concept ;
+    rdfs:isDefinedBy openrel: ;
+    skos:prefLabel "Embargo Duration"@en ;
+    skos:definition "The duration of an embargo period, supplied by the repository or platform for a specified Asset or Asset Collection."@en ;
+    openrel:parameterName "EMBARGO_DURATION" ;
+    openrel:expectedDatatype xsd:duration ;
+    openrel:resolutionMethod openrel:PlatformContext .
+
 # Requesting Party context
 
 openrel:parameterAssigneeIRI
     a openrel:Parameter ;
+    rdfs:isDefinedBy openrel: ;
     skos:prefLabel "Assignee IRI"@en ;
     skos:definition "An identifier for the Party receiving rights under a policy."@en ;
     openrel:parameterName "ASSIGNEE_IRI" ;
@@ -165,6 +198,7 @@ openrel:parameterAssigneeIRI
 
 openrel:parameterInstitutionIRI
     a openrel:Parameter ;
+    rdfs:isDefinedBy openrel: ;
     skos:prefLabel "Institution IRI"@en ;
     skos:definition "An identifier for an institution with which the requestor is affiliated."@en ;
     openrel:parameterName "INSTITUTION_IRI" ;
@@ -173,6 +207,7 @@ openrel:parameterInstitutionIRI
 
 openrel:parameterEidasResearcherStatus
     a openrel:Parameter, skos:Concept ;
+    rdfs:isDefinedBy openrel: ;
     skos:prefLabel "eIDAS Researcher Status"@en ;
     skos:definition "A Boolean indicating whether the requestor has an eIDAS-verified identity and an accepted researcher-status assertion associated with that identity."@en ;
     skos:note "The value MUST be derived from validated evidence associated with the evaluated requestor. A self-declared value is insufficient."@en ;
@@ -185,6 +220,7 @@ openrel:parameterEidasResearcherStatus
 
 openrel:parameterDataSubjectIRI
     a openrel:Parameter ;
+    rdfs:isDefinedBy openrel: ;
     skos:prefLabel "Data Subject IRI"@en ;
     skos:definition "An identifier for the data subject associated with protected information."@en ;
     openrel:parameterName "DATA_SUBJECT_IRI" ;
@@ -193,6 +229,7 @@ openrel:parameterDataSubjectIRI
 
 openrel:parameterInformedConsentIRI
     a openrel:Parameter ;
+    rdfs:isDefinedBy openrel: ;
     skos:prefLabel "Informed Consent Evidence IRI"@en ;
     skos:definition "An identifier for evidence documenting informed consent."@en ;
     openrel:parameterName "INFORMED_CONSENT_IRI" ;
@@ -201,6 +238,7 @@ openrel:parameterInformedConsentIRI
 
 openrel:parameterConsentExpiryDate
     a openrel:Parameter ;
+    rdfs:isDefinedBy openrel: ;
     skos:prefLabel "Informed Consent Expiry Date"@en ;
     skos:definition "The date and time at which applicable informed consent expires."@en ;
     openrel:parameterName "INFORMED_CONSENT_EXPIRY" ;
@@ -209,6 +247,7 @@ openrel:parameterConsentExpiryDate
 
 openrel:parameterDataSpecIRI
     a openrel:Parameter ;
+    rdfs:isDefinedBy openrel: ;
     skos:prefLabel "Data Specification IRI"@en ;
     skos:definition "An identifier for a specification defining the data in scope for access."@en ;
     openrel:parameterName "DATA_SPECIFICATION_IRI" ;
@@ -217,6 +256,7 @@ openrel:parameterDataSpecIRI
 
 openrel:parameterPurposeVerificationIRI
     a openrel:Parameter ;
+    rdfs:isDefinedBy openrel: ;
     skos:prefLabel "Purpose Verification IRI"@en ;
     skos:definition "An identifier for a manual or automated purpose-verification mechanism."@en ;
     openrel:parameterName "PURPOSE_VERIFICATION_IRI" ;
@@ -227,6 +267,7 @@ openrel:parameterPurposeVerificationIRI
 
 openrel:parameterPublicationDate
     a openrel:Parameter ;
+    rdfs:isDefinedBy openrel: ;
     skos:prefLabel "Asset Publication Date"@en ;
     skos:definition "The publication date of an Asset, potentially used for embargo calculations."@en ;
     openrel:parameterName "TARGET_PUBLICATION_DATE" ;
@@ -235,6 +276,7 @@ openrel:parameterPublicationDate
 
 openrel:parameterLicenceList
     a openrel:Parameter ;
+    rdfs:isDefinedBy openrel: ;
     skos:prefLabel "Asset Licence List"@en ;
     skos:definition "Identifiers for the licences applicable to an Asset or Asset Collection."@en ;
     openrel:parameterName "TARGET_LICENCE_LIST" ;
@@ -244,6 +286,7 @@ openrel:parameterLicenceList
 
 openrel:parameterAdaptationStatus
     a openrel:Parameter, skos:Concept ;
+    rdfs:isDefinedBy openrel: ;
     skos:prefLabel "Adaptation Status"@en ;
     skos:definition "A Boolean indicating whether the asset being evaluated constitutes an adaptation of the original licensed material under the applicable licence."@en ;
     skos:note "The value MUST be determined with reference to the applicable licence and the relationship between the evaluated asset and the original licensed material. An unknown or unverified status MUST NOT be treated as false."@en ;
@@ -254,16 +297,18 @@ openrel:parameterAdaptationStatus
 
 openrel:parameterTargetIRI
     a openrel:Parameter ;
+    rdfs:isDefinedBy openrel: ;
     skos:prefLabel "Target IRI"@en ;
     skos:definition "An identifier for the target Asset or Asset Collection."@en ;
     openrel:parameterName "TARGET_IRI" ;
     openrel:expectedDatatype xsd:anyURI ;
     openrel:resolutionMethod openrel:AssetMetadataValue .
 
-# Requestor context
+# Request context
 
 openrel:parameterPurposeIRI
     a openrel:Parameter ;
+    rdfs:isDefinedBy openrel: ;
     skos:prefLabel "Intended Purpose IRI"@en ;
     skos:definition "An identifier for the intended purpose of use."@en ;
     openrel:parameterName "INTENDED_PURPOSE" ;

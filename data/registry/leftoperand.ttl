@@ -36,7 +36,6 @@ openrel:consentRequired
     openrel:operandParameter openrel:parameterConsentAuthorisation ;
     rdfs:isDefinedBy openrel: .
 
-
 openrel:agentRole a odrl:LeftOperand ;
     rdfs:label "Agent Role Constraint"@en ;
     rdfs:comment "Requires the Assignee to hold a specific Agent Role."@en ;
@@ -72,6 +71,13 @@ openrel:assetLocation a odrl:LeftOperand ;
     rdfs:comment "Requires the Asset to be used or persisted in a specific physical or virtual location."@en ;
     dct:description "Editorial: Clarify stored/hosted location versus where use occurs"@en ;
     rdfs:isDefinedBy openrel: .
+
+openrel:processingInfrastructure a odrl:LeftOperand, skos:Concept ;
+    rdfs:isDefinedBy openrel: ;
+    rdfs:label "Processing Infrastructure"@en ;
+    skos:prefLabel "Processing Infrastructure"@en ;
+    skos:definition "Identifies the infrastructure or execution environment on which an Asset is processed or used."@en ;
+    skos:note "The evaluated value SHOULD identify the actual infrastructure performing the requested action. Physical location alone does not establish institutional authorisation."@en .
 
 openrel:notificationDuty a odrl:LeftOperand ;
     rdfs:label "Notification Duty"@en ;
@@ -114,6 +120,12 @@ openrel:locationLimitation a odrl:LeftOperand ;
     rdfs:comment "Requires that the use or dissemination of the Asset occurs within specific location, identified via coordinates, a location IRI, or a country/ region IRI."@en ;
     dct:description "Editorial: Location of use/dissemination; distinguish assetLocation"@en ;
     rdfs:isDefinedBy openrel: .
+
+openrel:harvestedVolume
+    a odrl:LeftOperand, skos:Concept ;
+    rdfs:label "Harvested Volume"@en ;
+    skos:definition "The cumulative quantity of an Asset harvested by an evaluated agent within the applicable accounting period, including the requested operation."@en ;
+    skos:note "The accounting scope, time window and measurement unit MUST be established by the evaluation context. The value MUST include the projected quantity of the requested operation."@en .
 
 openrel:legalBasis a odrl:LeftOperand ;
     rdfs:label "Legal Basis"@en ;

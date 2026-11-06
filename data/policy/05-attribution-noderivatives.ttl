@@ -68,7 +68,7 @@
     dct:contributor <https://orcid.org/0000-0002-0255-5101> ;
     dct:subject "Attribution", "NoDerivatives", "Open Licensing" ;
     dct:source <https://creativecommons.org/licenses/by-nd/4.0/> ;
-    schema:version "4.0" ;
+    dct:version "4.0" ;
 
     # Access, coverage and status
     openrel:accessType openrel:open-access ;
@@ -145,11 +145,8 @@
     # Presentation only allowed for non-modified material
     odrl:permission [
         a odrl:Permission ;
-        odrl:action odrl:present
-
-        openrel:namedConstraint
-            openrel:distributeUnmodified ;
-
+        odrl:action odrl:present ;
+        openrel:namedConstraint openrel:distributeUnmodified ;
         odrl:duty [
             a openrel:PostDuty ;
             odrl:action openrel:attribute

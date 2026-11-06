@@ -5,204 +5,125 @@
 # Repositories may limit access to AI agents and require auditable records of access
 # This Process Rule is specific to an Asset Collection and a Repository harvesting Endpoint
 # OpenREL - Open Rights Encoding language
-# Version 0.4 (Draft)
+# Version 0.5 (Draft)
 # Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/ EUDAT)
-# This Version: 3 August 2026
+# This Version: 5 November 2026
 # --------------------------------------------------------------------------------------------------------------------------------
 
-# context
-@base <http://www.w3.org/ns/openrel/0/> .
-@prefix openrel: <http://www.w3.org/ns/openrel/0/> .
-# RDF-related
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@base <http://www.w3id.org/ns/openrel/0/> .
+@prefix openrel: <http://www.w3id.org/ns/openrel/0/> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dct: <http://purl.org/dc/terms/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-# general content
-@prefix schema: <http://schema.org/> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
-# rdmi-related
-@prefix dct: <http://purl.org/dc/terms/> .
-@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
-@prefix dcat: <http://www.w3.org/ns/dcat#> .
-@prefix dcatap: <http://data.europa.eu/r5r/> .
-# rights-related
-@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
-@prefix cc: <http://creativecommons.org/ns#> .
-@prefix dalicc: <https://dalicc.net/ns#> .
-@prefix ids: <https://w3id.org/idsa/core/> .
-@prefix idsc: <https://w3id.org/idsa/code/> .
-@prefix osl: <http://opensource.org/licenses/> .
-@prefix spdx: <http://spdx.org/rdf/terms#>  .
-@prefix dpv: <https://w3id.org/dpv/> .
-# Policy Libraries and Registries
-@prefix openrellib: <https://github.com/wimhugo/openrel/new/main/data/policy/> .
-@prefix spdxlicense: <http://spdx.org/licenses/> .
-@prefix dalicclib: <https://dalicc.net/licenselibrary/> 
-@prefix lfslib: <https://lfs.labs.dansdemo.nl/api/v1/licenses/> .
 
-# --------------------------------------------------------------------------------------------------------------------------------
-# Access Rules Metadata
-# --------------------------------------------------------------------------------------------------------------------------------
-
-<OR-AI-AU-0.4> a openrel:ProcessRules ;
-    # Alternate identifiers
-    # skos:exactMatch spdx:<> ;
-    # skos:exactMatch lfs:<> ;
-
-    # Citation Information
-    dct:title "Agentic AI — Delegated Access with Audit Trail" ;
-    dct:publisher <> ;
-    dct:created "2026-07-12T00:00:00+00:00" ;
-    dct:modified "2026-08-03T00:00:00+00:00" ;
+<OR-AI-AU-0.5>
+    a openrel:ProcessRules ;
+    
+	dct:title "Agentic AI - Delegated Access with Audit Trail"@en ;
+    dct:description "Template for controlled AI-agent access with identity and trust checks, scoped delegation, purpose and consent checks, data minimisation and audit duties."@en ;
     dct:creator "Melios Katsamakis - OpenAIRE" ;
     dct:contributor <https://orcid.org/0000-0002-0255-5101> ;
-    dct:subject "AI Agent Access and Process" ;
-    openrel:accessType openrel:managed ;
-    dct:source <> ;
-    dct:version "0.4" ;
-
-    # Coverage related information
-    # These properties apply only for those policies that explicitly require them, optional for others
-    # openrel:validityType openrel:perpetual ;
+    dct:created "2026-07-12T00:00:00Z"^^xsd:dateTime ;
+    dct:modified "2026-11-05T00:00:00Z"^^xsd:dateTime ;
+    dct:version "0.5" ;
+    dct:subject "AI Agent Access and Process"@en ;
+    
+	openrel:accessType openrel:managed ;
     openrel:jurisdiction openrel:worldwide ;
-    openrel:policyStatus openrel:typeCustomActive ;
-    odrl:assigner openrel:parameterAssignerIRI ;
+    openrel:policyStatus openrel:typeTemplate ;
+    
+	odrl:assigner openrel:parameterAssignerIRI ;
     odrl:assignee openrel:parameterAssigneeIRI ;
     odrl:target openrel:parameterTargetIRI ;
-
-    # Disclaimers
-    ## openrel:liabilityLimitation {{Liability Limitation Text}} ;
-    ## openrel:warrantyNotice {{Warranty Notice Text}} ;
-
-    # Alternative representations, mappings of SPDX and LFS properties
-    ## openrel:legalcode <> ;
-    ## openrel:policyTextHtml <> ;
-    ## openrel:policyText lfslib:[TO_BE_REGISTERED]/original ;
-    openrel:encodedRules openrel:OR-AI-AU-0.4 ;
-
-	# Optional results of evaluation of two policies
-    ## openrel:permits <IRI_OF_OTHER_POLICY> ;
-	## openrel:contradicts <IRI_OF_OTHER_POLICY> ;
-    ## openrel:evaluationDetail <OPENREL_EVALUATION> ;
-
-# --------------------------------------------------------------------------------------------------------------------------------
-#   Rules
-# --------------------------------------------------------------------------------------------------------------------------------
     
+# ----------------------------------------------------------------------------------------------	
+# Rules
+# ----------------------------------------------------------------------------------------------
+
 	odrl:permission [
-		odrl:action openrel:use ;
-		odrl:constraint <verified-AI-agent> ;
-		odrl:constraint <humanOversight>
-		odrl:duty [
-			a openrel:NamedConstraint
-			@id openrel:notifyClearingHouse ;
-			openrel:applicableEndpoint openrel:parameterClearingHouseAPI
-		  ]
-	  ] ;
+        a odrl:Permission ;
+        odrl:action openrel:use ;
+        odrl:constraint [
+            a odrl:LogicalConstraint ;
+            odrl:and (
+                openrel:eidasVerified
+                openrel:confirmedAIAgent
+                openrel:trustPlus
+                <OR-AI-AU-0.5-token-verified>
+                <OR-AI-AU-0.5-purpose-matched>
+                <OR-AI-AU-0.5-consent-valid>
+                <OR-AI-AU-0.5-consent-unexpired>
+                <OR-AI-AU-0.5-data-minimised>
+            )
+        ] ;
+        odrl:duty [
+            a openrel:PostDuty ;
+            odrl:action openrel:log ;
+            odrl:constraint openrel:logUse
+        ] ;
+        odrl:duty [
+            a openrel:PostDuty ;
+            odrl:action openrel:log ;
+            odrl:constraint openrel:notifyClearingHouse
+        ]
+    ] .
 
-	odrl:prohibition [
-		odrl:action openrel:use ;
-		odrl:constraint <notDeclaredPurpose>
-	] ;
 
-	odrl:obligation [
-		odrl:action openrel:use ;
-		odrl:constraint <dataMinimisationSpec>
-	] ;
-		
-# --------------------------------------------------------------------------------------------------------------------------------
-# Custom Named Constraints
-# --------------------------------------------------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------	
+# Example Named Constraints (provisional)
+# Token comparison is provisional: a valid delegation must also bind
+# the principal, agent, target, action, purpose and expiry.
+# ----------------------------------------------------------------------------------------------
 
-<tokenVerified>
-	 a openrel:NamedConstraint ;
-		rdfs:label "Authorised URI Only"@en ;
-		skos:definition "Asset MUST only distributed to an authorised endpoint URI"@en ;
-		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
-		openrel:constraintType openrel:tom ;
-		openrel:scenario openrel:formal-toms ;
-		odrl:leftOperand openrel:delegationToken ;
-		odrl:operator odrl:eq ;
-		odrl:rightOperand openrel:parameterAccessToken ;
-    	openrel:applicableEndpoint openrel:parameterTokenVerificationAPI
-		.
+<OR-AI-AU-0.5-token-verified>
+    a openrel:NamedConstraint, skos:Concept ;
+    rdfs:label "Delegation token verified"@en ;
+    skos:definition "Checks a delegation token presented by the requesting agent against the platform token context."@en ;
+    skos:note "Token equality alone does not establish delegation scope or validity; the verification endpoint MUST validate signature, expiry, revocation, principal, agent, target, action and purpose."@en ;
+    openrel:constraintType openrel:tom ;
+    odrl:leftOperand openrel:delegationToken ;
+    odrl:operator odrl:eq ;
+    odrl:rightOperandReference openrel:parameterAccessToken ;
+    openrel:applicableEndpoint openrel:parameterTokenVerificationAPI .
 
-<notDeclaredPurpose>
-	 a openrel:NamedConstraint ;
-		rdfs:label "Declared Purpose" ;
-		skos:definition "IRL to a resource with a declared purpose of use." ;
-		skos:note "Purpose drift prohibited — agent may not use data outside declared scope." ;
-		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
-		openrel:constraintType openrel:usage ;
-		openrel:scenario openrel:explicit-consent ;
-		odrl:leftOperand odrl:purpose ;
-		odrl:operator odrl:neq ;
-		odrl:rightOperand openrel:parameterPurposeIRI ;
-		openrel:applicableEndpoint openrel:parameterPurposeVerificationIRI 
-		.
+<OR-AI-AU-0.5-purpose-matched>
+    a openrel:NamedConstraint, skos:Concept ;
+    rdfs:label "Requested purpose matches declared purpose"@en ;
+    skos:definition "Requires the requested use purpose to match the purpose resolved for this request."@en ;
+    skos:note "The resolved purpose MUST also be authorised by the delegation and applicable consent or other legal authorisation."@en ;
+    openrel:constraintType openrel:usage ;
+    odrl:leftOperand odrl:purpose ;
+    odrl:operator odrl:eq ;
+    odrl:rightOperandReference openrel:parameterPurposeIRI ;
+    openrel:applicableEndpoint openrel:parameterPurposeVerificationIRI .
 
-<explicitConsentObtained>
-	 	a openrel:NamedConstraint ;
-		rdfs:label "Explicit Consent Obtained" ;
-		skos:definition "IRL to a resource with explicit consent for the declared purpose of use." ;
-		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
-		openrel:constraintType openrel:usage ;
-		openrel:scenario openrel:explicit-consent ;
-		odrl:assigner openrel:parameterDataSubjectIRI ;
-		odrl:leftOperand openrel:consentRequired ;
-		odrl:operator odrl:eq ;
-		odrl:rightOperand openrel:consent-reuse-before ;
-		openrel:applicableEndpoint openrel:parameterInformedConsentIRI
-		.
+<OR-AI-AU-0.5-consent-valid>
+    a openrel:NamedConstraint, skos:Concept ;
+    rdfs:label "Consent evidence verified"@en ;
+    skos:definition "Requires the consent evidence identified for the request to be verified as applicable and currently valid."@en ;
+    skos:note "The evaluator MUST check the consenting principal, asset/data subset, purpose, scope, revocation status and validity of the evidence. This constraint does not itself encode these checks."@en ;
+    openrel:constraintType openrel:usage ;
+    odrl:leftOperand openrel:consentRequired ;
+    odrl:operator odrl:eq ;
+    odrl:rightOperandReference openrel:parameterInformedConsentIRI .
 
-<consentExpiry>
-	 	a openrel:NamedConstraint ;
-		rdfs:label "Explicit Consent Expires" ;
-		skos:definition "Explicit consent to use the data is time limited." ;
-		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
-		openrel:constraintType openrel:usage ;
-		openrel:scenario openrel:tech-limits ;
-		odrl:assigner openrel:parameterDataSubjectIRI ;
-		odrl:leftOperand odrl:dateTime ;
-		odrl:operator odrl:lteq ;
-		odrl:rightOperand openrel:parameterConsentExpiryDate ;
-		openrel:applicableEndpoint openrel:parameterInformedConsentIRI
-		.
+<OR-AI-AU-0.5-consent-unexpired>
+    a openrel:NamedConstraint, skos:Concept ;
+    rdfs:label "Consent has not expired"@en ;
+    skos:definition "Requires the evaluation time to be no later than the consent expiry timestamp."@en ;
+    openrel:constraintType openrel:usage ;
+    odrl:leftOperand odrl:dateTime ;
+    odrl:operator odrl:lteq ;
+    odrl:rightOperandReference openrel:parameterConsentExpiryDate .
 
-<dataMinimisationSpec>
-	 a openrel:NamedConstraint ;
-		rdfs:label "Data Minimisation Specification"@en ;
-		skos:definition "Data minimisation: agent may only access fields required for declared purpose."@en ;
-		skos:note "For sensitive data, the OpenREL extensions to DPV may be used to encode the specification."@en ;
-		skos:note "Created by OpenREL to assist with compilation and comparison of policies and licences."@en ;
-		openrel:constraintType openrel:tom ;
-		openrel:scenario openrel:formal-toms ;
-		odrl:leftOperand openrel:usageLimitation ;
-		odrl:operator odrl:eq ;
-		odrl:rightOperand openrel:dataMinimisation ;
-    	openrel:applicableEndpoint openrel:parameterDataSpecIRI
-		.
-
-# --------------------------------------------------------------------------------------------------------------------------------
-# Custom Logical Constraints
-# --------------------------------------------------------------------------------------------------------------------------------
-
-<verified-AI-agent>
-    a odrl:LogicalConstraint ;
-    odrl:and (
-        openrel:eidasVerified
-        openrel:confirmedAIAgent
-        openrel:trustPlus
-        <tokenVerified>
-    ) 
-
-<humanOversight>
-    a odrl:LogicalConstraint ;
-    odrl:and (
-		<consentExpiry>
-		<explicitConsentObtained>
-    ) 
-.
+<OR-AI-AU-0.5-data-minimised>
+    a openrel:NamedConstraint, skos:Concept ;
+    rdfs:label "Data subset restricted to authorised specification"@en ;
+    skos:definition "Requires the data selected for access to comply with the authorised data specification."@en ;
+    skos:note "This is a provisional equality test. A proper subset comparison and a request-data-subset LeftOperand are required for interoperable enforcement."@en ;
+    openrel:constraintType openrel:tom ;
+    odrl:leftOperand openrel:usageLimitation ;
+    odrl:operator odrl:eq ;
+    odrl:rightOperandReference openrel:parameterDataSpecIRI .

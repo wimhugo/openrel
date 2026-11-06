@@ -48,7 +48,7 @@
     dct:creator "Melios Katsamakis - OpenAIRE",
         <https://orcid.org/0000-0002-0255-5101> ;
     dct:subject "Time-Limited Access"@en ;
-    schema:version "0.5" ;
+    dct:version "0.5" ;
 
     # Policy metadata
     openrel:accessType openrel:managed ;
@@ -92,7 +92,7 @@
     ],
     [
         a odrl:Permission ;
-        odrl:action openrel:download ;
+        odrl:action openrel:reproduce ;
         odrl:constraint <SD-ED-limits>
     ] .
 

@@ -68,7 +68,7 @@
     dct:creator <https://orcid.org/0000-0002-0255-5101> ;
     dct:subject "Attribution", "NonCommercial", "Open Licensing" ;
     dct:source <https://creativecommons.org/licenses/by-nc/4.0/> ;
-    schema:version "4.0" ;
+    dct:version "4.0" ;
 
     # Access, coverage and status
     openrel:accessType openrel:open-access ;

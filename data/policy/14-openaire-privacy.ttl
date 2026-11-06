@@ -1,183 +1,123 @@
-# Context and Input Licences
 # --------------------------------------------------------------------------------------------------------------------------------
+# OpenREL Example Policy
 # Title: OpenAIRE Personal Data Processing Policy
-# Example Policy
 # OpenREL - Open Rights Encoding language
-# Version 0.4 (Draft)
+# Version 0.5 (Draft)
 # Developed by Melios Katsamakis and Prodromos Tsiavos (OpenAIRE), and Wim Hugo (DANS/ EUDAT)
-# This Version: 30 July 2026
+# This Version: 05 November 2026
+# --------------------------------------------------------------------------------------------------------------------------------
+# This is an illustrative encoding of declared processing practices, not an independent legal authorisation to process personal data.
 # --------------------------------------------------------------------------------------------------------------------------------
 
-# context
-@base <http://www.w3.org/ns/openrel/0/> .
-@prefix openrel: <http://www.w3.org/ns/openrel/0/> .
-# RDF-related
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@base <http://www.w3id.org/ns/openrel/0/> .
+@prefix openrel: <http://www.w3id.org/ns/openrel/0/> .
+
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dct: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-# general content
+@prefix dpv: <https://w3id.org/dpv#> .
 @prefix schema: <http://schema.org/> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
-# rdmi-related
-@prefix dct: <http://purl.org/dc/terms/> .
-@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
-@prefix dcat: <http://www.w3.org/ns/dcat#> .
-@prefix dcatap: <http://data.europa.eu/r5r/> .
-# rights-related
-@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
-@prefix cc: <http://creativecommons.org/ns#> .
-@prefix dalicc: <https://dalicc.net/ns#> .
-@prefix ids: <https://w3id.org/idsa/core/> .
-@prefix idsc: <https://w3id.org/idsa/code/> .
-@prefix osl: <http://opensource.org/licenses/> .
-@prefix spdx: <http://spdx.org/rdf/terms#>  .
-@prefix dpv: <https://w3id.org/dpv/> .
-# Policy Libraries and Registries
-@prefix openrellib: <https://github.com/wimhugo/openrel/new/main/data/policy/> .
-@prefix spdxlicense: <http://spdx.org/licenses/> .
-@prefix dalicclib: <https://dalicc.net/licenselibrary/> 
-@prefix lfslib: <https://lfs.labs.dansdemo.nl/api/v1/licenses/> .
 
-# --------------------------------------------------------------------------------------------------------------------------------
-# Access Rules Metadata
-# --------------------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------
+# Policy metadata
+# ------------------------------------------------------------
 
-<OR-OPENAIRE-PRIVACY-2.7> a openrel:ProcessRules ;
-    # Alternate identifiers
-    ## dct:relation spdx:<> ;
-    ## dct:relation lfs:[TO_BE_REGISTERED] ;
+<OR-OPENAIRE-PRIVACY-2.8>
+    a openrel:ProcessRules, odrl:Privacy ;
 
-    # Citation Information
-    dc:title "OpenAIRE Personal Data Processing Policy" ;
-    dct:alternative "OpenAIRE Privacy Policy" ;
+    dct:title "OpenAIRE Personal Data Processing Policy"@en ;
+    dct:alternative
+        "OpenAIRE Privacy Policy"@en ;
+    dct:description "An illustrative machine-readable representation of personal data processing practices, restrictions, obligations and data subject rights associated with OpenAIRE services."@en ;
     dct:publisher <https://ror.org/019kf3481> ;
-    dct:created "2026-07-12T00:00:00+00:00" ;
-    dct:mofified "2026-31-12T00:00:00+00:00" ;
     dct:creator "Melios Katsamakis - OpenAIRE" ;
-    dct:contributor <https://orcid.org/0000-0002-0255-5101> ;
-    dct:subject "Privacy" ;
-	dct:licence spdxlicense:CC-BY-4.0 ;
+    dct:creator <https://orcid.org/0000-0002-0255-5101> ;
+    dct:created "2026-07-12T00:00:00Z"^^xsd:dateTime ;
+    dct:modified "2026-11-05T00:00:00Z"^^xsd:dateTime ;
     dct:source <https://www.openaire.eu/privacy-policy> ;
-    dct:version "2.7" ;
-
-    # Coverage related information
-    # These properties apply only for those policies that explicitly require them, optional for others
-    openrel:validityType openrel:perpetual ;
-    openrel:jurisdiction openrel:worldwide ;
+    dct:version "2.8-draft" ;
+    dct:subject "Personal data processing"@en ;
     openrel:policyStatus openrel:typeCustomActive ;
-    odrl:assignee <https://openaire.eu> ;
+    openrel:accessType openrel:open-access ;
+
+    # Template parameters, resolved before evaluation
     odrl:assigner openrel:parameterAssignerIRI ;
     odrl:target openrel:parameterTargetIRI ;
 
-    # Disclaimers
-    ## openrel:liabilityLimitation "{{Liability Limitation Text}}" ;
-    ## openrel:warrantyNotice "{{Warranty Notice Text}}" ;
-    
-	# Alternative representations, mappings of SPDX and LFS properties
-    ## openrel:legalCode <IRI_TO_LEGAL_CODE>;
-    ## openrel:policyTextHtml <IRI_TO_HTML_VIEW> ;
-    openrel:policyText <https://www.openaire.eu/privacy-policy> ;
-    openrel:encodedRules openrellib:OR-OPENAIRE-PRIVACY-2.7 ;
-	
-	# Optional results of evaluation of two policies
-    ## openrel:permits <IRI_OF_OTHER_POLICY> ;
-	## openrel:contradicts <IRI_OF_OTHER_POLICY> ;
-    ## openrel:evaluationDetail <OPENREL_EVALUATION> ;
+    # --------------------------------------------------------
+    # Subject rights descriptive metadata - supported rights
+    # --------------------------------------------------------
 
-# --------------------------------------------------------------------------------------------------------------------------------
-#   Rules
-# ---------------------------------- ----------------------------------------------------------------------------------------------
-    
+    openrel:subjectRights
+        openrel:right-access,
+        openrel:right-rectification,
+        openrel:right-erasure,
+        openrel:right-restriction,
+        openrel:right-portability,
+        openrel:right-object,
+        openrel:right-withdraw,
+        openrel:right-complaint,
+        openrel:right-non-automation ;
+
+    # --------------------------------------------------------
+    # Processing permissions
+    # --------------------------------------------------------
+
+    # Newsletter communications, subject to prior consent.
+    # A specific newsletter data target and purpose should
+    # be supplied in the operational policy.
+
     odrl:permission [
-		dct:description "Data may only be used in the EU." ;
+        a odrl:Permission ;
+        dct:description "Processing of newsletter subscription data subject to valid prior consent."@en ;
         odrl:action openrel:use ;
-        odrl:namedconstraint openrel:euUseOnly ;
-    ] ;
-
-    odrl:permission [
-		dct:description "Newsletter — email under explicit consent." ;
-        odrl:action openrel:action.use ;
-        odrl:constraint [
-            odrl:leftOperand openrel:legalBasis ;
-            odrl:operator odrl:eq ;
-            odrl:rightOperand dpv:Consent
-        ] ;
-        odrl:constraint [
-            odrl:leftOperand openrel:leftOperand.purpose ;
-            odrl:operator odrl:eq ;
-            odrl:rightOperand dpv:ServiceProvision
-        ] ;
         odrl:duty [
-            odrl:action sensitiveDataConsent 
-        ] ;
-        odrl:duty [
-            odrl:action openrel:log	;
-			odrl:constraint openrel:logUse ;	
+            a openrel:PreDuty ;
+            odrl:action odrl:obtainConsent ;
+            odrl:constraint openrel:consentPrior
         ]
     ] ;
 
+    # Website analytics.
+    # The legal basis, specific purpose, cookie requirements
+    # and data categories must be confirmed before this rule
+    # can be made operational.
+
     odrl:permission [
-		dct:description "Website visit — IP address/ cookies under legitimate interest." ;
-        odrl:action openrel:use ;
-        odrl:constraint [
-            odrl:leftOperand openrel:legalBasis ;
-            odrl:operator odrl:eq ;
-            odrl:rightOperand dpv:LegitimateInterest
-        ] ;
-        odrl:constraint [
-            odrl:leftOperand openrel:purpose ;
-            odrl:operator odrl:eq ;
-            odrl:rightOperand dpv:Analytics
-        ] ;
-        odrl:duty [
-            odrl:action openrel:encrypt
-        ]
+        a odrl:Permission ;
+        dct:description "Processing of website usage information for analytics, subject to the applicable legal basis and processing conditions."@en ;
+        odrl:action openrel:use
     ] ;
+
+    # --------------------------------------------------------
+    # Processing restrictions
+    # --------------------------------------------------------
 
     odrl:prohibition [
-        dc:description "No third-party sharing outside service provision." ;
-        odrl:action openrel:distribute ;
-        odrl:constraint [
-            odrl:leftOperand openrel:purpose ;
-            odrl:operator odrl:neq ;  
-            odrl:rightOperand dpv:ServiceProvision
-        ]
+        a odrl:Prohibition ;
+        dct:description "Disclosure of personal data for purposes outside the authorised processing purposes is prohibited, except where another applicable legal basis permits or requires disclosure."@en ;
+        odrl:action openrel:distribute
     ] ;
 
-    odrl:prohibition [
-        odrl:action openrel:use ;
-        openrel:namedConstraint openrel:noSpecialCategory
+    # --------------------------------------------------------
+    # Operational obligations
+    # --------------------------------------------------------
+
+    odrl:obligation [
+        a odrl:Duty ;
+        dct:description "Apply appropriate encryption controls to personal data where required by the applicable security measures."@en ;
+        odrl:action openrel:encrypt
     ] ;
-    
-	odrl:permission [
-        odrl:action openrel:delete ;
-        dc:description "Delete on consent withdrawal or erasure request (GDPR Art.17)."
+
+    odrl:obligation [
+        a odrl:Duty ;
+        dct:description "Erase personal data when an applicable erasure obligation arises, subject to statutory exceptions and retention duties."@en ;
+        odrl:action openrel:delete
     ] ;
-    
-	odrl:obligation [
-        odrl:action openrel:notify ;
-        dc:description "Notify data subjects of policy changes within 5 days."
-    ] 
-.
 
-# openrel:dataSubjectRights openrel:right-access ;
-# openrel:dataSubjectRights openrel:right-rectification ;
-# openrel:dataSubjectRights openrel:right-erasure ;
-# openrel:dataSubjectRights openrel:right-restriction ;
-# openrel:dataSubjectRights openrel:right-portability  ;
-
-# --------------------------------------
-# Custom Logical Constraints
-# --------------------------------------
-# None
-
-# --------------------------------------
-# Custom Named Constraints
-# --------------------------------------
-
-# In constraints.ttl
-# openrel:noSpecialCategory
-.
+    odrl:obligation [
+        a odrl:Duty ;
+        dct:description "Provide required notifications to affected data subjects when an applicable notification obligation is triggered."@en ;
+        odrl:action openrel:notify
+    ] .

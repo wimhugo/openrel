@@ -42,7 +42,7 @@
     dct:subject
         "Time-Limited Access",
         "CC BY 4.0" ;
-    schema:version "0.5" ;
+    dct:version "0.5" ;
 
     # Collection metadata
     openrel:accessType openrel:managed ;
@@ -55,7 +55,7 @@
 
     openrel:hasPolicy
         <OR-TL-0.4>,
-        <CC-BY-4.0> ;
+        <CC-BY-4.0> .
 
     # --------------------------------------------------------------
     # Optional published representation

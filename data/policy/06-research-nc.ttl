@@ -33,7 +33,7 @@
         "eIDAS",
         "Non-Commercial",
         "CC BY-NC 4.0" ;
-    schema:version "0.5" ;
+    dct:version "0.5" ;
     openrel:accessType openrel:managed ;
     openrel:jurisdiction openrel:worldwide ;
     openrel:policyStatus openrel:typeTemplate ;

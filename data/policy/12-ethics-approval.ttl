@@ -48,7 +48,7 @@
         "Ethics Approval",
         "Consent",
         "Research Data Access" ;
-    schema:version "0.5" ;
+    dct:version "0.5" ;
 
     # Policy metadata
     openrel:accessType openrel:managed ;
