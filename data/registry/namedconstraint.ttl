@@ -9,6 +9,10 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix trsp: <https://w3id.org/trsp/> .
 
+openrel:NamedConstraintRegistry a dct:Standard ;
+    dct:title "OpenREL Named Constraint Registry"@en ;
+    dct:description "OpenREL predefines a number of Named Constraints on the basis that these were needed for development of example and template Policy encodings."@en .
+
 openrel:academicUseOnly a openrel:NamedConstraint ;
     rdfs:label "Academic Use Only"@en ;
     skos:definition "Asset MUST only be used for Academic Research or Applications"@en ;

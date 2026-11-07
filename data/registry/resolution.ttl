@@ -17,6 +17,10 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+openrel:ServiceRegistry a dct:Standard ;
+    dct:title "OpenREL Service Registry"@en ;
+    dct:description "OpenREL predefines a number of Services on the basis that these were needed for development of example and template Policy encoding."@en .
+
 
 openrel:consentAuthorisationService
     a openrel:ParameterResolutionService, skos:Concept ;

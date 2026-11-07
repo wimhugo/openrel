@@ -1,0 +1,167 @@
+# --------------------------------------------------------------------------------------------------------------------------------
+# OpenREL Ontology - 
+# --------------------------------------------------------------------------------------------------------------------------------
+# Title: OpenREL Context Ontology Extension
+# OpenREL Assertion, Request and Context Resolution Model
+# Additive extension: load alongside the existing OpenREL schema, do not replace it.
+# Canonical namespace: http://www.w3id.org/ns/openrel/0/
+# Author: EOSC Beyond
+# Licensed under: Attribution 4.0 International (CC BY 4.0) 
+# OpenREL - Open Rights Encoding language
+# Version 0.1 (Draft)
+# Developed by Wim Hugo (DANS/ EUDAT)
+# This Version: 06 November 2026
+# --------------------------------------------------------------------------------------------------------------------------------
+
+@prefix openrel: <http://www.w3id.org/ns/openrel/0/> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+
+############################################################################################################
+# ONTOLOGY and SCHEMA METADATA
+############################################################################################################
+
+openrel:Ontology
+    a owl:Ontology ;
+    dct:title "OpenREL Context Schema"@en ;
+    dct:description "OpenREL Assertion, Request and Context Resolution Model. "@en ;
+    dct:created "2026-11-06T00:00:00+00:00"^^xsd:dateTime ;  
+    dct:creator <https://orcid.org/0000-0002-0255-5101> ;  # Wim Hugo
+    owl:versionInfo "0.1" .
+
+############################################################################################################
+# POLICY SUBCLASSES and PROPERTIES
+############################################################################################################
+
+openrel:AssertionPolicy a owl:Class, skos:Concept ;
+    rdfs:subClassOf odrl:Assertion ;
+    rdfs:label "AssertionPolicy"@en ;
+    skos:definition "Reusable ODRL Assertion policy with references to contextual assertions."@en ;
+    skos:note "An AssertionPolicy records claims; it does not by itself grant access."@en .
+
+openrel:RequestPolicy a owl:Class, skos:Concept ;
+    rdfs:subClassOf odrl:Request ;
+    rdfs:label "RequestPolicy"@en ;
+    skos:definition "ODRL Request augmented with reusable assertion policies and request-specific context."@en ;
+    skos:note "The evaluator determines applicable rules and resolution requirements."@en .
+
+openrel:hasAssertionPolicy a owl:ObjectProperty, skos:Concept ;
+    rdfs:domain openrel:RequestPolicy ;
+    rdfs:range openrel:AssertionPolicy ;
+    rdfs:label "hasAssertionPolicy"@en ;
+    skos:definition "Associates a request with a reusable assertion policy."@en ;
+    skos:note "Assertion policies may be reused by multiple requests."@en .
+
+openrel:hasAssertionCollection a owl:ObjectProperty, skos:Concept ;
+    rdfs:domain [ a owl:Class ;
+        owl:unionOf (
+            openrel:AssertionPolicy
+            openrel:RequestPolicy
+        )] ;
+    rdfs:range openrel:AssertionCollection ;
+    rdfs:label "hasAssertionCollection"@en ;
+    skos:definition "Associates an ODRL policy with contextual assertions."@en ;
+    skos:note "Used by OpenREL AssertionPolicy and RequestPolicy subclasses."@en .
+
+############################################################################################################
+# ASSERTION COLLECTION CLASSES and PROPERTIES
+############################################################################################################
+
+openrel:AssertionCollection a owl:Class, skos:Concept ;
+    rdfs:subClassOf skos:Collection ;
+    rdfs:label "AssertionCollection"@en ;
+    skos:definition "A collection of context assertions associated with a request or assertion policy."@en ;
+    skos:note "Membership is through hasAssertion; collections need not be policies."@en .
+
+openrel:ContextAssertion a owl:Class, skos:Concept ;
+    rdfs:subClassOf rdfs:Resource ;
+    rdfs:label "ContextAssertion"@en ;
+    skos:definition "A contextual claim binding a Parameter to a value or a resolution source."@en ;
+    skos:note "A direct assertion has assertedValue; an unresolved assertion can use bindingSource."@en .
+
+openrel:ResolvedAssertion a owl:Class, skos:Concept ;
+    rdfs:subClassOf openrel:ContextAssertion ;
+    rdfs:label "ResolvedAssertion"@en ;
+    skos:definition "A contextual assertion produced by a parameter resolution operation."@en ;
+    skos:note "Keep results separately from reusable assertion definitions to retain history."@en .
+
+openrel:ResolutionResult a owl:Class, skos:Concept ;
+    rdfs:subClassOf rdfs:Resource ;
+    rdfs:label "ResolutionResult"@en ;
+    skos:definition "An auditable record of one parameter resolution service invocation."@en ;
+    skos:note "A service invocation may return multiple ResolvedAssertions, including partial outputs."@en .
+
+openrel:hasAssertion a owl:ObjectProperty, skos:Concept ;
+    rdfs:domain openrel:AssertionCollection ;
+    rdfs:range openrel:ContextAssertion ;
+    rdfs:label "hasAssertion"@en ;
+    skos:definition "Identifies a contextual assertion in a collection."@en ;
+    skos:note "Assertions can be shared across collections."@en .
+
+openrel:assertedParameter a owl:ObjectProperty, skos:Concept ;
+    rdfs:domain openrel:ContextAssertion ;
+    rdfs:range openrel:Parameter ;
+    rdfs:label "assertedParameter"@en ;
+    skos:definition "Identifies the Parameter described by a contextual assertion."@en ;
+    skos:note "The Parameter defines expected datatype or class and multiplicity."@en .
+
+openrel:assertedValue a rdf:Property, skos:Concept ;
+    rdfs:domain openrel:ContextAssertion ;
+    rdfs:range rdfs:Resource ;
+    rdfs:label "assertedValue"@en ;
+    skos:definition "Provides a directly asserted or resolved RDF value."@en ;
+    skos:note "Values may be IRIs or RDF literals; SHACL checks the Parameter expectations."@en .
+
+openrel:bindingSource a owl:ObjectProperty, skos:Concept ;
+    rdfs:domain openrel:ContextAssertion ;
+    rdfs:range openrel:ParameterResolutionService ;
+    rdfs:label "bindingSource"@en ;
+    skos:definition "Identifies the service to resolve or validate an assertion."@en ;
+    skos:note "Only registered or otherwise authorised services should be invoked."@en .
+
+openrel:resolvesAssertion a owl:ObjectProperty, skos:Concept ;
+    rdfs:domain openrel:ResolvedAssertion ;
+    rdfs:range openrel:ContextAssertion ;
+    rdfs:label "resolvesAssertion"@en ;
+    skos:definition "Links a resolved assertion to the assertion it resolves."@en ;
+    skos:note "Do not overwrite the original assertion."@en .
+
+openrel:hasResolvedAssertion a owl:ObjectProperty, skos:Concept ;
+    rdfs:domain openrel:ResolutionResult ;
+    rdfs:range openrel:ResolvedAssertion ;
+    rdfs:label "hasResolvedAssertion"@en ;
+    skos:definition "Identifies an output assertion of a resolution operation."@en ;
+    skos:note "A result can contain multiple outputs."@en .
+
+openrel:resolutionService a owl:ObjectProperty, skos:Concept ;
+    rdfs:domain openrel:ResolutionResult ;
+    rdfs:range openrel:ParameterResolutionService ;
+    rdfs:label "resolutionService"@en ;
+    skos:definition "Identifies the service invoked for a resolution result."@en ;
+    skos:note "The result may also record PROV-O provenance."@en .
+
+openrel:inputParameter a owl:ObjectProperty, skos:Concept ;
+    rdfs:domain openrel:ParameterResolutionService ;
+    rdfs:range openrel:Parameter ;
+    rdfs:label "inputParameter"@en ;
+    skos:definition "Identifies a Parameter required as service input."@en ;
+    skos:note "Multiple input parameters are permitted."@en .
+
+openrel:outputParameter a owl:ObjectProperty, skos:Concept ;
+    rdfs:domain openrel:ParameterResolutionService ;
+    rdfs:range openrel:Parameter ;
+    rdfs:label "outputParameter"@en ;
+    skos:definition "Identifies a Parameter potentially produced by a service."@en ;
+    skos:note "Multiple output parameters are permitted; outputs may be partial."@en .
+
+openrel:expectedClass a owl:ObjectProperty, skos:Concept ;
+    rdfs:domain openrel:Parameter ;
+    rdfs:range rdfs:Class ;
+    rdfs:label "expectedClass"@en ;
+    skos:definition "Identifies the expected RDF class of an IRI-valued Parameter."@en ;
+    skos:note "The class constraint requires supporting RDF type evidence; an IRI alone is insufficient."@en .

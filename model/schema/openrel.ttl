@@ -391,7 +391,7 @@ openrel:subjectRights
     skos:note "The presence of a right does not imply that it applies unconditionally. Applicability, limitations, and enforcement depend on the relevant legal, contractual, or ethical framework."@en ;
     skos:note "This property provides descriptive metadata. It does not itself create an ODRL Permission, Prohibition, or Duty."@en .
 
-# Specific properties appliable to openrel:PolicyCollection
+# Specific properties applicable to openrel:PolicyCollection
 
 openrel:hasPolicy
     a owl:ObjectProperty, skos:Concept ;
@@ -400,6 +400,14 @@ openrel:hasPolicy
     skos:note "Policy Collection: identifies the constituent Policies grouped by a Policy Collection. Each referenced Policy may belong to any ODRL or OpenREL Policy subclass. A Policy Collection must reference at least two Policies."@en ;
     rdfs:domain openrel:PolicyCollection ;
     rdfs:range odrl:Policy .
+
+openrel:resultingPolicy
+    a rdf:Property, owl:ObjectProperty, skos:Concept ;
+    rdfs:domain openrel:PolicyCollection ;
+    rdfs:range odrl:Policy ;
+    rdfs:label "resulting policy"@en ;
+    skos:definition "References an ODRL policy derived by combining the applicable requirements of the policies in a PolicyCollection."@en ;
+    skos:note "A resulting policy is a distinct derived policy, not automatically identical to its input PolicyCollection. The derivation SHOULD preserve provenance, evaluation context, and all applicable restrictions. A denied evaluation need not produce a resulting policy."@en .
 
 ############################################################################################################
 # RULE CLASSES and PROPERTIES

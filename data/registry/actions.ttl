@@ -10,6 +10,12 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+
+openrel:ActionsRegistry a dct:Standard ;
+    dct:title "OpenREL Actions Registry"@en ;
+    dct:description "Actions defined by OpenREL, and extensions to ODRL and other vocabularies, including mappings. OpenREL predefines a number of Actions on the basis that these were needed for development of example and template Policy encodings."@en .
+
+
 openrel:ActionScheme a skos:ConceptScheme ;
     dct:contributor <https://orcid.org/0000-0003-2459-6817> ;
     dct:created "2026-06-29T00:00:00+00:00"^^xsd:dateTime ;

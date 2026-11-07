@@ -13,7 +13,6 @@
 # -------------------------------------------------------------------------------------------------------------
 
 # OpenREL LeftOperand registry - curated draft 0.5
-# Source: leftoperand.ttl (uploaded), with explicit editorial normalisation
 # ODRL and IDSC terms are referenced, not redefined.
 @prefix openrel: <http://www.w3id.org/ns/openrel/0/> .
 @prefix odrl: <http://www.w3.org/ns/odrl/2/> .

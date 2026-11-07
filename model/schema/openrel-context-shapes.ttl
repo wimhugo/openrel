@@ -1,0 +1,85 @@
+
+# OpenREL Assertion, Request and Resolution Model — SHACL draft v0.1
+# Validate instance data together with the existing OpenREL schema.
+@prefix openrel: <http://www.w3id.org/ns/openrel/0/> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+openrel:AssertionPolicyShape a sh:NodeShape ;
+  sh:targetClass openrel:AssertionPolicy ;
+  sh:property [ sh:path openrel:hasAssertionCollection ; sh:class openrel:AssertionCollection ; sh:minCount 1 ] .
+
+openrel:RequestPolicyShape
+    a sh:NodeShape ;
+    sh:targetClass openrel:RequestPolicy ;
+    # At least one AssertionPolicy is mandatory
+    sh:property [
+        sh:path openrel:hasAssertionPolicy ;
+        sh:class openrel:AssertionPolicy ;
+        sh:minCount 1
+    ] ;
+    # Request-specific assertion collections are optional
+    sh:property [
+        sh:path openrel:hasAssertionCollection ;
+        sh:class openrel:AssertionCollection
+    ] .
+
+openrel:AssertionCollectionShape a sh:NodeShape ;
+  sh:targetClass openrel:AssertionCollection ;
+  sh:property [ sh:path openrel:hasAssertion ; sh:class openrel:ContextAssertion ; sh:minCount 1 ] .
+
+openrel:ContextAssertionShape a sh:NodeShape ;
+  sh:targetClass openrel:ContextAssertion ;
+  sh:property [ sh:path openrel:assertedParameter ; sh:class openrel:Parameter ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path openrel:bindingSource ; sh:class openrel:ParameterResolutionService ; sh:maxCount 1 ] ;
+  sh:or (
+    [ sh:property [ sh:path openrel:assertedValue ; sh:minCount 1 ] ]
+    [ sh:property [ sh:path openrel:bindingSource ; sh:minCount 1 ] ]
+  ) ;
+  sh:sparql [
+    sh:message "A single-valued Parameter must not have multiple assertedValue bindings on the same assertion."@en ;
+    sh:select """SELECT $this WHERE {
+      $this openrel:assertedParameter ?p .
+      ?p openrel:multipleValues false .
+      { SELECT $this (COUNT(?v) AS ?n) WHERE { $this openrel:assertedValue ?v } GROUP BY $this }
+      FILTER (?n > 1)
+    }"""
+  ] ;
+  sh:sparql [
+    sh:message "The asserted literal must match the Parameter expectedDatatype."@en ;
+    sh:select """SELECT $this WHERE {
+      $this openrel:assertedParameter ?p ; openrel:assertedValue ?v .
+      ?p openrel:expectedDatatype ?dt .
+      FILTER(isLiteral(?v) && DATATYPE(?v) != ?dt)
+    }"""
+  ] ;
+  sh:sparql [
+    sh:message "A Parameter with expectedClass requires an IRI value with a compatible rdf:type in the validation graph."@en ;
+    sh:select """SELECT $this WHERE {
+      $this openrel:assertedParameter ?p ; openrel:assertedValue ?v .
+      ?p openrel:expectedClass ?class .
+      FILTER(!isIRI(?v) || NOT EXISTS { ?v rdf:type/rdfs:subClassOf* ?class })
+    }"""
+  ] .
+
+openrel:ResolvedAssertionShape a sh:NodeShape ;
+  sh:targetClass openrel:ResolvedAssertion ;
+  sh:property [ sh:path openrel:resolvesAssertion ; sh:class openrel:ContextAssertion ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path openrel:assertedValue ; sh:minCount 1 ] .
+
+openrel:ResolutionResultShape a sh:NodeShape ;
+  sh:targetClass openrel:ResolutionResult ;
+  sh:property [ sh:path openrel:resolutionService ; sh:class openrel:ParameterResolutionService ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path openrel:hasResolvedAssertion ; sh:class openrel:ResolvedAssertion ] .
+
+openrel:ResolutionServiceShape a sh:NodeShape ;
+  sh:targetClass openrel:ParameterResolutionService ;
+  sh:property [ sh:path openrel:inputParameter ; sh:class openrel:Parameter ] ;
+  sh:property [ sh:path openrel:outputParameter ; sh:class openrel:Parameter ; sh:minCount 1 ] .
+
+openrel:ParameterExpectedClassShape a sh:NodeShape ;
+  sh:targetClass openrel:Parameter ;
+  sh:property [ sh:path openrel:expectedClass ; sh:nodeKind sh:IRI ; sh:maxCount 1 ] .

@@ -25,6 +25,10 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
+openrel:ParameterRegistry a dct:Standard ;
+    dct:title "OpenREL Parameter Registry"@en ;
+    dct:description "OpenREL predefines a number of Parameters on the basis that these were needed for development of example and template Policy encoding."@en .
+
 # Temporal context
 
 openrel:startDateParameter
