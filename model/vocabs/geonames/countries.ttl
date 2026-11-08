@@ -1,0 +1,34 @@
+@prefix openrel: <https://openrel.eu/vocab#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<https://sws.geonames.org/2782113/> a skos:Concept ; skos:prefLabel "Austria" ; openrel:isoCode "AT" ; openrel:isEU "true" ; openrel:flag "🇦🇹" .
+<https://sws.geonames.org/2802361/> a skos:Concept ; skos:prefLabel "Belgium" ; openrel:isoCode "BE" ; openrel:isEU "true" ; openrel:flag "🇧🇪" .
+<https://sws.geonames.org/732800/> a skos:Concept ; skos:prefLabel "Bulgaria" ; openrel:isoCode "BG" ; openrel:isEU "true" ; openrel:flag "🇧🇬" .
+<https://sws.geonames.org/3202326/> a skos:Concept ; skos:prefLabel "Croatia" ; openrel:isoCode "HR" ; openrel:isEU "true" ; openrel:flag "🇭🇷" .
+<https://sws.geonames.org/146669/> a skos:Concept ; skos:prefLabel "Cyprus" ; openrel:isoCode "CY" ; openrel:isEU "true" ; openrel:flag "🇨🇾" .
+<https://sws.geonames.org/3077311/> a skos:Concept ; skos:prefLabel "Czech Republic" ; openrel:isoCode "CZ" ; openrel:isEU "true" ; openrel:flag "🇨🇿" .
+<https://sws.geonames.org/2623032/> a skos:Concept ; skos:prefLabel "Denmark" ; openrel:isoCode "DK" ; openrel:isEU "true" ; openrel:flag "🇩🇰" .
+<https://sws.geonames.org/6255148/> a skos:Concept ; skos:prefLabel "European Union" ; openrel:isoCode "EU" ; openrel:flag "🇪🇺" .
+<https://sws.geonames.org/660013/> a skos:Concept ; skos:prefLabel "Finland" ; openrel:isoCode "FI" ; openrel:isEU "true" ; openrel:flag "🇫🇮" .
+<https://sws.geonames.org/3017382/> a skos:Concept ; skos:prefLabel "France" ; openrel:isoCode "FR" ; openrel:isEU "true" ; openrel:flag "🇫🇷" .
+<https://sws.geonames.org/2921044/> a skos:Concept ; skos:prefLabel "Germany" ; openrel:isoCode "DE" ; openrel:isEU "true" ; openrel:flag "🇩🇪" .
+<https://sws.geonames.org/390903/> a skos:Concept ; skos:prefLabel "Greece" ; openrel:isoCode "GR" ; openrel:isEU "true" ; openrel:flag "🇬🇷" .
+<https://sws.geonames.org/719819/> a skos:Concept ; skos:prefLabel "Hungary" ; openrel:isoCode "HU" ; openrel:isEU "true" ; openrel:flag "🇭🇺" .
+<https://sws.geonames.org/2963597/> a skos:Concept ; skos:prefLabel "Ireland" ; openrel:isoCode "IE" ; openrel:isEU "true" ; openrel:flag "🇮🇪" .
+<https://sws.geonames.org/3175395/> a skos:Concept ; skos:prefLabel "Italy" ; openrel:isoCode "IT" ; openrel:isEU "true" ; openrel:flag "🇮🇹" .
+<https://sws.geonames.org/458258/> a skos:Concept ; skos:prefLabel "Latvia" ; openrel:isoCode "LV" ; openrel:isEU "true" ; openrel:flag "🇱🇻" .
+<https://sws.geonames.org/597427/> a skos:Concept ; skos:prefLabel "Lithuania" ; openrel:isoCode "LT" ; openrel:isEU "true" ; openrel:flag "🇱🇹" .
+<https://sws.geonames.org/2960313/> a skos:Concept ; skos:prefLabel "Luxembourg" ; openrel:isoCode "LU" ; openrel:isEU "true" ; openrel:flag "🇱🇺" .
+<https://sws.geonames.org/2562770/> a skos:Concept ; skos:prefLabel "Malta" ; openrel:isoCode "MT" ; openrel:isEU "true" ; openrel:flag "🇲🇹" .
+<https://sws.geonames.org/2750405/> a skos:Concept ; skos:prefLabel "Netherlands" ; openrel:isoCode "NL" ; openrel:isEU "true" ; openrel:flag "🇳🇱" .
+<https://sws.geonames.org/607072/> a skos:Concept ; skos:prefLabel "Norway" ; openrel:isoCode "NO" ; openrel:isEU "false" ; openrel:flag "🇳🇴" .
+<https://sws.geonames.org/798544/> a skos:Concept ; skos:prefLabel "Poland" ; openrel:isoCode "PL" ; openrel:isEU "true" ; openrel:flag "🇵🇱" .
+<https://sws.geonames.org/2264397/> a skos:Concept ; skos:prefLabel "Portugal" ; openrel:isoCode "PT" ; openrel:isEU "true" ; openrel:flag "🇵🇹" .
+<https://sws.geonames.org/798549/> a skos:Concept ; skos:prefLabel "Romania" ; openrel:isoCode "RO" ; openrel:isEU "true" ; openrel:flag "🇷🇴" .
+<https://sws.geonames.org/3057568/> a skos:Concept ; skos:prefLabel "Slovakia" ; openrel:isoCode "SK" ; openrel:isEU "true" ; openrel:flag "🇸🇰" .
+<https://sws.geonames.org/3190538/> a skos:Concept ; skos:prefLabel "Slovenia" ; openrel:isoCode "SI" ; openrel:isEU "true" ; openrel:flag "🇸🇮" .
+<https://sws.geonames.org/2510769/> a skos:Concept ; skos:prefLabel "Spain" ; openrel:isoCode "ES" ; openrel:isEU "true" ; openrel:flag "🇪🇸" .
+<https://sws.geonames.org/2661886/> a skos:Concept ; skos:prefLabel "Sweden" ; openrel:isoCode "SE" ; openrel:isEU "true" ; openrel:flag "🇸🇪" .
+<https://sws.geonames.org/2658434/> a skos:Concept ; skos:prefLabel "Switzerland" ; openrel:isoCode "CH" ; openrel:isEU "false" ; openrel:flag "🇨🇭" .
+<https://sws.geonames.org/2635167/> a skos:Concept ; skos:prefLabel "United Kingdom" ; openrel:isoCode "GB" ; openrel:isEU "false" ; openrel:flag "🇬🇧" .
+<https://sws.geonames.org/6252001/> a skos:Concept ; skos:prefLabel "United States" ; openrel:isoCode "US" ; openrel:isEU "false" ; openrel:flag "🇺🇸" .
