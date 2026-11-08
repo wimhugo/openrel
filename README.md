@@ -1,8 +1,12 @@
 # OpenREL
 >Wim Hugo, DANS/ EUDAT | [orcid:0000-0002-0255-5101](https://orcid.org/0000-0002-0255-5101)
+
 >Melios Katsamakis, OpenAIRE | 
+
 >Prodromos Tsiavos, OpenAIRE | 
+
 >09-11-2026 | [CC BY 4.0](https://spdx.org/licenses/CC-BY-4.0.html)
+
 >Version 0.5.2 (2nd Public Draft)
 ---
 
