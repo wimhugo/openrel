@@ -25,7 +25,7 @@ The example encodes the following human-readable statement:
 
 >"You are permitted to recover costs of making derived works available to third parties, but in doing so, you must only charge a distribution fee and not recover any other costs." 
 
-This example encodes the permission to recover dustribution costs. It utilises the following vocabulary concepts:
+This example encodes the permission to recover distribution costs. It utilises the following vocabulary concepts:
 
 |Concept|Description|Source|
 |:-------|:------|:-----|
