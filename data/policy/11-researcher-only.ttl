@@ -22,9 +22,10 @@
     a openrel:ProcessRules ;
 
     # resolve at run-time from appropriate context
-    # odrl:assigner <ASSIGNER_IRI> ;
-    # odrl:assignee <ASSIGNEE_IRI> ;
-    # odrl:target <TARGET_IRI> ;
+    odrl:assigner openrel:parameterAssignerIRI ;
+    odrl:assignee openrel:parameterAssigneeIRI ;
+    odrl:target openrel:parameterTargetIRI ;
+
 
     dct:title "OpenREL Academic eIDAS Verified Identity"@en ;
 

@@ -82,7 +82,7 @@
     dct:version "4.0" ;
 
     # Coverage related information
-    cc:jurisdiction openrel:worldwide ;
+    openrel:jurisdiction openrel:worldwide ;
     openrel:validityType openrel:perpetual ;
     openrel:policyStatus openrel:typeGlobalActive ;
 
