@@ -1,25 +1,14 @@
 # OpenREL
 The **OpenREL** registry and knowledge base, serving as a redirection target for the **OpenREL** namespace and an API source.
 
-## OpenREL profile package
+[Documentation](https://github.com/wimhugo/openrel/tree/main/docs)
 
-This package extends ODRL with OpenREL policy subclasses and structural grouping resources.
-
-### Main files
-- `openrel-profile.ttl` — profile metadata
-- `openrel-classes.ttl` — OpenREL classes
-- `openrel-relationships.ttl` — OpenREL properties and relationships
-- `openrel-vocabularies.ttl` — SKOS concept schemes and concept collections
-- `openrel-shapes.ttl` — SHACL node/property shapes
-- `openrel-all.ttl` — concatenated convenience file
-
-### Added examples
-- `openrel-example-graph.ttl` — compact Turtle example graph
-- `openrel-example-graph.jsonld` — same example graph in JSON-LD
-- `jsonld-templates/` — starter JSON-LD templates for the principal ODRL and OpenREL classes
-
-### Notes
-- OpenREL is modeled here as an ODRL profile extension.
-- `odrl:obligation` is used for Duties attached directly to a Policy.
-- `odrl:duty` is used for Duties attached to a Permission.
-- `openrel:assigner` and `openrel:assignee` are extension properties that allow Party Collections to play those roles where needed.
+1. [Specification V 0.5.2](https://github.com/wimhugo/openrel/blob/main/docs/w3c/OpenREL_v0.5.2_Annexes.pdf)
+2. [EOSC Beyond Specification Report V 0.5.2](https://github.com/wimhugo/openrel/blob/main/docs/w3c/OpenREL_v0.5.2_Report.pdf)
+3. [Guidance](https://github.com/wimhugo/openrel/blob/main/docs/guide/00_index.md)
+4. [Schema](https://github.com/wimhugo/openrel/tree/main/model/schema)
+5. [Vocabularies](https://github.com/wimhugo/openrel/tree/main/model/vocabs/openrel)
+6. [Supporting Vocabularies](https://github.com/wimhugo/openrel/tree/main/model/vocabs)
+7. [Registry](https://github.com/wimhugo/openrel/tree/main/data/registry)
+8. [Mappings/ Reasoner](https://github.com/wimhugo/openrel/tree/main/data/reasoner)
+9. [Encoding Examples](https://github.com/wimhugo/openrel/tree/main/data/policy)
