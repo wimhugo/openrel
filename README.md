@@ -1,7 +1,7 @@
 # OpenREL
 The **OpenREL** registry and knowledge base, serving as a redirection target for the **OpenREL** namespace and an API source.
 
-[Documentation](https://github.com/wimhugo/openrel/tree/main/docs)
+Documentation and Resources
 
 1. [Specification V 0.5.2](https://github.com/wimhugo/openrel/blob/main/docs/w3c/OpenREL_v0.5.2_Annexes.pdf)
 2. [EOSC Beyond Specification Report V 0.5.2](https://github.com/wimhugo/openrel/blob/main/docs/w3c/OpenREL_v0.5.2_Report.pdf)
