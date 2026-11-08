@@ -1,13 +1,17 @@
 # Consent and Protection of Sensitive Data
 
-> OpenREL user guidance | Aligned with OpenREL Specification V0.5.2 | CC BY 4.0
+>Wim Hugo, DANS/ EUDAT | 
+>
+>Melios Katsamakis, OpenAIRE | 
+>
+>Prodromos Tsiavos, OpenAIRE | 
+>
+>09-07-2026 | [CC BY 4.0](https://spdx.org/licenses/CC-BY-4.0.html)
+---
 
-> This is implementation guidance. The specification and published RDF/SHACL definitions take precedence if any discrepancy is found.
+## Context 
 
-OpenREL supports policy expressions involving sensitive research data beyond personal data, including commercially confidential information, culturally sensitive knowledge and threatened-species location data.
+ODRL makes provision for the description of a *Constraint*, and using the *Named Constraint* subclass defined by OpenREL, one can elaborate the personal data protection context of informed and GDPR-related consent for ***natural persons***.
 
-For personal data, reuse the Data Privacy Vocabulary (DPV) and applicable legal concepts where appropriate. For other sensitive data, define the subject, protected scope, permitted purposes, affected Assets or subsets and any duties or restrictions using explicit, verifiable policy expressions.
+There are, however, many other categories of sensitive data - related to indigenous communnities, environmental concerns such as threatened species, commercially confidental information, and the like. DPV is clearly not designed to model these considerations, but it would be desirable to do so using patterms similar to those in DPV. OpenREL provides extensions of and refinements to the DPV Data Class to generalise its use and accommodate a range of additional sensitive data concerns.
 
-Consent, approval and authorisation are not synonymous. The current specification provides relevant constraint types, subject-rights vocabularies and `openrel:subjectRights` metadata. An assertion that consent exists may require independent validation before access is permitted.
-
-Avoid claiming that an OpenREL expression by itself establishes legal compliance.
