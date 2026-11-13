@@ -1,0 +1,1314 @@
+openapi: 3.0.3
+info:
+  title: OpenREL KB API
+  version: 0.4.0
+  description: API for accessing OpenREL knowledge base vocabulary sources. RDF-backed endpoints return Turtle (text/turtle) by default; application/json and application/ld+json are alternative representations.
+tags:
+  - name: Class Instances
+    description: ""
+  - name: ODRL Classes
+    description: ""
+  - name: ODRL Individuals
+    description: ""
+  - name: Policy Index
+    description: ""
+  - name: Indexing
+    description: ""
+  - name: Mappings
+    description: ""
+  - name: Classes
+    description: ""
+paths:
+  /openrel/api/v0.4/actions:
+    get:
+      tags:
+        - Class Instances
+      summary: List Actions
+      description: "Lists all members of the Actions source file (IRI, label, definition)"
+      parameters:
+        - name: prefix
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by compact identifier prefix
+        - name: format
+          in: query
+          required: false
+          schema:
+            type: string
+            default: ttl
+            enum:
+              - ttl
+              - json
+              - json-ld
+          description: Response representation. ttl (RDF Turtle) is native and the default; json and json-ld are alternatives. The Accept header is honoured as well.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            text/turtle:
+              description: Native default representation (RDF Turtle)
+              schema:
+                type: string
+            application/ld+json:
+              description: JSON-LD alternative (Accept: application/ld+json, or ?format=json-ld)
+              schema:
+                type: object
+            application/json:
+              description: Plain JSON alternative (Accept: application/json, or ?format=json)
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    iri:
+                      type: string
+                    label:
+                      type: string
+                    definition:
+                      type: string
+  /openrel/api/v0.4/odrl/classes:
+    get:
+      tags:
+        - ODRL Classes
+      summary: List ODRL classes
+      description: "Lists the ODRL 2.2 classes (Policy, Rule, Asset, Party, Action, Constraint, â€¦) defined in the cached ODRL vocabulary."
+      parameters:
+        - name: prefix
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by compact identifier prefix
+        - name: format
+          in: query
+          required: false
+          schema:
+            type: string
+            default: ttl
+            enum:
+              - ttl
+              - json
+              - json-ld
+          description: Response representation. ttl (RDF Turtle) is native and the default; json and json-ld are alternatives. The Accept header is honoured as well.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            text/turtle:
+              description: Native default representation (RDF Turtle)
+              schema:
+                type: string
+            application/ld+json:
+              description: JSON-LD alternative (Accept: application/ld+json, or ?format=json-ld)
+              schema:
+                type: object
+            application/json:
+              description: Plain JSON alternative (Accept: application/json, or ?format=json)
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    iri:
+                      type: string
+                    label:
+                      type: string
+                    definition:
+                      type: string
+  /openrel/api/v0.4/odrl/classes/{id}:
+    get:
+      tags:
+        - ODRL Classes
+      summary: Get an ODRL class
+      description: Returns a single ODRL class with all of its declared properties.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Member IRI or compact identifier
+        - name: prefix
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by compact identifier prefix
+        - name: format
+          in: query
+          required: false
+          schema:
+            type: string
+            default: ttl
+            enum:
+              - ttl
+              - json
+              - json-ld
+          description: Response representation. ttl (RDF Turtle) is native and the default; json and json-ld are alternatives. The Accept header is honoured as well.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            text/turtle:
+              description: Native default representation (RDF Turtle)
+              schema:
+                type: string
+            application/ld+json:
+              description: JSON-LD alternative (Accept: application/ld+json, or ?format=json-ld)
+              schema:
+                type: object
+            application/json:
+              description: Plain JSON alternative (Accept: application/json, or ?format=json)
+              schema:
+                type: object
+                properties:
+                  iri:
+                    type: string
+                  label:
+                    type: string
+                  definition:
+                    type: string
+  /openrel/api/v0.4/odrl/individuals:
+    get:
+      tags:
+        - ODRL Individuals
+      summary: List ODRL individuals
+      description: "Lists the ODRL 2.2 named individuals: actions, operands, operators, conflict terms and party/asset scope terms."
+      parameters:
+        - name: prefix
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by compact identifier prefix
+        - name: format
+          in: query
+          required: false
+          schema:
+            type: string
+            default: ttl
+            enum:
+              - ttl
+              - json
+              - json-ld
+          description: Response representation. ttl (RDF Turtle) is native and the default; json and json-ld are alternatives. The Accept header is honoured as well.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            text/turtle:
+              description: Native default representation (RDF Turtle)
+              schema:
+                type: string
+            application/ld+json:
+              description: JSON-LD alternative (Accept: application/ld+json, or ?format=json-ld)
+              schema:
+                type: object
+            application/json:
+              description: Plain JSON alternative (Accept: application/json, or ?format=json)
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    iri:
+                      type: string
+                    label:
+                      type: string
+                    definition:
+                      type: string
+  /openrel/api/v0.4/odrl/individuals/{id}:
+    get:
+      tags:
+        - ODRL Individuals
+      summary: Get an ODRL individual
+      description: Returns a single ODRL individual with all of its declared properties.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Member IRI or compact identifier
+        - name: prefix
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by compact identifier prefix
+        - name: format
+          in: query
+          required: false
+          schema:
+            type: string
+            default: ttl
+            enum:
+              - ttl
+              - json
+              - json-ld
+          description: Response representation. ttl (RDF Turtle) is native and the default; json and json-ld are alternatives. The Accept header is honoured as well.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            text/turtle:
+              description: Native default representation (RDF Turtle)
+              schema:
+                type: string
+            application/ld+json:
+              description: JSON-LD alternative (Accept: application/ld+json, or ?format=json-ld)
+              schema:
+                type: object
+            application/json:
+              description: Plain JSON alternative (Accept: application/json, or ?format=json)
+              schema:
+                type: object
+                properties:
+                  iri:
+                    type: string
+                  label:
+                    type: string
+                  definition:
+                    type: string
+  /openrel/api/v0.4/policy-index:
+    get:
+      tags:
+        - Policy Index
+      summary: List the curated Policy Index (discovery catalogue for the Wizard)
+      description: "Returns the raw policy_index.json document ({ version, policies[] }) from the repo. Primary discovery path for the standalone and in-app Policy Wizard."
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    iri:
+                      type: string
+                    label:
+                      type: string
+                    definition:
+                      type: string
+  /openrel/api/v0.4/actions/{id}:
+    get:
+      tags:
+        - Class Instances
+      summary: Get Actions by ID
+      description: Returns a single member matching the IRI filter
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Member IRI or compact identifier
+        - name: prefix
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by compact identifier prefix
+        - name: format
+          in: query
+          required: false
+          schema:
+            type: string
+            default: ttl
+            enum:
+              - ttl
+              - json
+              - json-ld
+          description: Response representation. ttl (RDF Turtle) is native and the default; json and json-ld are alternatives. The Accept header is honoured as well.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            text/turtle:
+              description: Native default representation (RDF Turtle)
+              schema:
+                type: string
+            application/ld+json:
+              description: JSON-LD alternative (Accept: application/ld+json, or ?format=json-ld)
+              schema:
+                type: object
+            application/json:
+              description: Plain JSON alternative (Accept: application/json, or ?format=json)
+              schema:
+                type: object
+                properties:
+                  iri:
+                    type: string
+                  label:
+                    type: string
+                  definition:
+                    type: string
+  /openrel/api/v0.4/constraints:
+    get:
+      tags:
+        - Class Instances
+      summary: List Constraint and Named Constraint Instances
+      description: "List all instances of Constraints and Named Constraints (IRI, Label, Definition)"
+      parameters:
+        - name: format
+          in: query
+          required: false
+          schema:
+            type: string
+            default: ttl
+            enum:
+              - ttl
+              - json
+              - json-ld
+          description: Response representation. ttl (RDF Turtle) is native and the default; json and json-ld are alternatives. The Accept header is honoured as well.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            text/turtle:
+              description: Native default representation (RDF Turtle)
+              schema:
+                type: string
+            application/ld+json:
+              description: JSON-LD alternative (Accept: application/ld+json, or ?format=json-ld)
+              schema:
+                type: object
+            application/json:
+              description: Plain JSON alternative (Accept: application/json, or ?format=json)
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    iri:
+                      type: string
+                    label:
+                      type: string
+                    definition:
+                      type: string
+  /openrel/api/v0.4/policies:
+    get:
+      tags:
+        - Class Instances
+      summary: List Policies
+      description: "Lists all policy templates (one per TTL file in data/policy) as {iri, label, definition}. Folder mode."
+      parameters:
+        - name: prefix
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by compact identifier prefix
+        - name: format
+          in: query
+          required: false
+          schema:
+            type: string
+            default: ttl
+            enum:
+              - ttl
+              - json
+              - json-ld
+          description: Response representation. ttl (RDF Turtle) is native and the default; json and json-ld are alternatives. The Accept header is honoured as well.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            text/turtle:
+              description: Native default representation (RDF Turtle)
+              schema:
+                type: string
+            application/ld+json:
+              description: JSON-LD alternative (Accept: application/ld+json, or ?format=json-ld)
+              schema:
+                type: object
+            application/json:
+              description: Plain JSON alternative (Accept: application/json, or ?format=json)
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    iri:
+                      type: string
+                    label:
+                      type: string
+                    definition:
+                      type: string
+  /openrel/api/v0.4/policies/{id}:
+    get:
+      tags:
+        - Class Instances
+      summary: Policy Details
+      description: "Returns a single policy. Use format=ttl (or Accept: text/turtle) to get the raw Turtle for client-side N3.js parsing; default format=json returns parsed member + properties."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: "Policy IRI or compact identifier (e.g. openrel:CC0-1.0)"
+        - name: prefix
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by compact identifier prefix
+        - name: format
+          in: query
+          required: false
+          schema:
+            type: string
+            default: ttl
+            enum:
+              - ttl
+              - json
+              - json-ld
+          description: Response representation. ttl (RDF Turtle) is native and the default; json and json-ld are alternatives. The Accept header is honoured as well.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            text/turtle:
+              description: Native default representation (RDF Turtle)
+              schema:
+                type: string
+            application/ld+json:
+              description: JSON-LD alternative (Accept: application/ld+json, or ?format=json-ld)
+              schema:
+                type: object
+            application/json:
+              description: Plain JSON alternative (Accept: application/json, or ?format=json)
+              schema:
+                type: object
+                properties:
+                  iri:
+                    type: string
+                  label:
+                    type: string
+                  definition:
+                    type: string
+  /openrel/api/v0.4/constraints/{id}:
+    get:
+      tags:
+        - Class Instances
+      summary: Constraint and Named Constraint Details
+      description: Constraints and Named Constraints details
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The id of the resource to retrieve
+        - name: format
+          in: query
+          required: false
+          schema:
+            type: string
+            default: ttl
+            enum:
+              - ttl
+              - json
+              - json-ld
+          description: Response representation. ttl (RDF Turtle) is native and the default; json and json-ld are alternatives. The Accept header is honoured as well.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            text/turtle:
+              description: Native default representation (RDF Turtle)
+              schema:
+                type: string
+            application/ld+json:
+              description: JSON-LD alternative (Accept: application/ld+json, or ?format=json-ld)
+              schema:
+                type: object
+            application/json:
+              description: Plain JSON alternative (Accept: application/json, or ?format=json)
+              schema:
+                type: object
+                properties:
+                  iri:
+                    type: string
+                  label:
+                    type: string
+                  definition:
+                    type: string
+  /openrel/api/v0.4/countries:
+    get:
+      tags:
+        - Class Instances
+      summary: List Countries
+      description: Lists all countries in scope of OpenREL
+      parameters:
+        - name: prefix
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by compact identifier prefix
+        - name: format
+          in: query
+          required: false
+          schema:
+            type: string
+            default: ttl
+            enum:
+              - ttl
+              - json
+              - json-ld
+          description: Response representation. ttl (RDF Turtle) is native and the default; json and json-ld are alternatives. The Accept header is honoured as well.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            text/turtle:
+              description: Native default representation (RDF Turtle)
+              schema:
+                type: string
+            application/ld+json:
+              description: JSON-LD alternative (Accept: application/ld+json, or ?format=json-ld)
+              schema:
+                type: object
+            application/json:
+              description: Plain JSON alternative (Accept: application/json, or ?format=json)
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    iri:
+                      type: string
+                    label:
+                      type: string
+                    definition:
+                      type: string
+  /openrel/api/v0.4/countries/{id}:
+    get:
+      tags:
+        - Class Instances
+      summary: Country Details
+      description: Lists country details
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The id of the resource to retrieve
+        - name: prefix
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by compact identifier prefix
+        - name: format
+          in: query
+          required: false
+          schema:
+            type: string
+            default: ttl
+            enum:
+              - ttl
+              - json
+              - json-ld
+          description: Response representation. ttl (RDF Turtle) is native and the default; json and json-ld are alternatives. The Accept header is honoured as well.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            text/turtle:
+              description: Native default representation (RDF Turtle)
+              schema:
+                type: string
+            application/ld+json:
+              description: JSON-LD alternative (Accept: application/ld+json, or ?format=json-ld)
+              schema:
+                type: object
+            application/json:
+              description: Plain JSON alternative (Accept: application/json, or ?format=json)
+              schema:
+                type: object
+                properties:
+                  iri:
+                    type: string
+                  label:
+                    type: string
+                  definition:
+                    type: string
+  /openrel/api/v0.4/leftoperands:
+    get:
+      tags:
+        - Class Instances
+      summary: List Left Operand Instances
+      description: "List all instances of Left Operands (IRI, Label, Definition)"
+      parameters:
+        - name: format
+          in: query
+          required: false
+          schema:
+            type: string
+            default: ttl
+            enum:
+              - ttl
+              - json
+              - json-ld
+          description: Response representation. ttl (RDF Turtle) is native and the default; json and json-ld are alternatives. The Accept header is honoured as well.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            text/turtle:
+              description: Native default representation (RDF Turtle)
+              schema:
+                type: string
+            application/ld+json:
+              description: JSON-LD alternative (Accept: application/ld+json, or ?format=json-ld)
+              schema:
+                type: object
+            application/json:
+              description: Plain JSON alternative (Accept: application/json, or ?format=json)
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    iri:
+                      type: string
+                    label:
+                      type: string
+                    definition:
+                      type: string
+  /openrel/api/v0.4/leftoperands/{id}:
+    get:
+      tags:
+        - Class Instances
+      summary: Detsails of a Left Operand Instance
+      description: "Details of a Left Operand "
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The id of the resource to retrieve
+        - name: format
+          in: query
+          required: false
+          schema:
+            type: string
+            default: ttl
+            enum:
+              - ttl
+              - json
+              - json-ld
+          description: Response representation. ttl (RDF Turtle) is native and the default; json and json-ld are alternatives. The Accept header is honoured as well.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            text/turtle:
+              description: Native default representation (RDF Turtle)
+              schema:
+                type: string
+            application/ld+json:
+              description: JSON-LD alternative (Accept: application/ld+json, or ?format=json-ld)
+              schema:
+                type: object
+            application/json:
+              description: Plain JSON alternative (Accept: application/json, or ?format=json)
+              schema:
+                type: object
+                properties:
+                  iri:
+                    type: string
+                  label:
+                    type: string
+                  definition:
+                    type: string
+  /openrel/api/v0.4/parameters/{id}:
+    get:
+      tags:
+        - Class Instances
+      summary: Parameter Details
+      description: "Lists all members of the Parameters source file (IRI, label, definition)"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The id of the resource to retrieve
+        - name: prefix
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by compact identifier prefix
+        - name: format
+          in: query
+          required: false
+          schema:
+            type: string
+            default: ttl
+            enum:
+              - ttl
+              - json
+              - json-ld
+          description: Response representation. ttl (RDF Turtle) is native and the default; json and json-ld are alternatives. The Accept header is honoured as well.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            text/turtle:
+              description: Native default representation (RDF Turtle)
+              schema:
+                type: string
+            application/ld+json:
+              description: JSON-LD alternative (Accept: application/ld+json, or ?format=json-ld)
+              schema:
+                type: object
+            application/json:
+              description: Plain JSON alternative (Accept: application/json, or ?format=json)
+              schema:
+                type: object
+                properties:
+                  iri:
+                    type: string
+                  label:
+                    type: string
+                  definition:
+                    type: string
+  /openrel/api/v0.4/policies/index:
+    post:
+      tags:
+        - Indexing
+      summary: Re-index the Policy Index with auto-derived metadata
+      description: "Extracts legal-code links, citation metadata, and publication info from the canonical policy TTL files and merges them into the curated Policy Index (preserving human-curated fields). Accepts an optional policy_iris list (empty = all); dry_run returns a diff, otherwise writes the updated index back via a pull request."
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    iri:
+                      type: string
+                    label:
+                      type: string
+                    definition:
+                      type: string
+  /openrel/api/v0.4/scenarios/{id}:
+    get:
+      tags:
+        - Class Instances
+      summary: Scenario Definitions
+      description: Scenario details
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The id of the resource to retrieve
+        - name: prefix
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by compact identifier prefix
+        - name: format
+          in: query
+          required: false
+          schema:
+            type: string
+            default: ttl
+            enum:
+              - ttl
+              - json
+              - json-ld
+          description: Response representation. ttl (RDF Turtle) is native and the default; json and json-ld are alternatives. The Accept header is honoured as well.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            text/turtle:
+              description: Native default representation (RDF Turtle)
+              schema:
+                type: string
+            application/ld+json:
+              description: JSON-LD alternative (Accept: application/ld+json, or ?format=json-ld)
+              schema:
+                type: object
+            application/json:
+              description: Plain JSON alternative (Accept: application/json, or ?format=json)
+              schema:
+                type: object
+                properties:
+                  iri:
+                    type: string
+                  label:
+                    type: string
+                  definition:
+                    type: string
+  /openrel/api/v0.4/scenarios:
+    get:
+      tags:
+        - Class Instances
+      summary: List Scenarios
+      description: "Lists all members of the Scenario source file (IRI, label, definition)"
+      parameters:
+        - name: prefix
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by compact identifier prefix
+        - name: format
+          in: query
+          required: false
+          schema:
+            type: string
+            default: ttl
+            enum:
+              - ttl
+              - json
+              - json-ld
+          description: Response representation. ttl (RDF Turtle) is native and the default; json and json-ld are alternatives. The Accept header is honoured as well.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            text/turtle:
+              description: Native default representation (RDF Turtle)
+              schema:
+                type: string
+            application/ld+json:
+              description: JSON-LD alternative (Accept: application/ld+json, or ?format=json-ld)
+              schema:
+                type: object
+            application/json:
+              description: Plain JSON alternative (Accept: application/json, or ?format=json)
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    iri:
+                      type: string
+                    label:
+                      type: string
+                    definition:
+                      type: string
+  /openrel/api/v0.4/parameters:
+    get:
+      tags:
+        - Class Instances
+      summary: List Parameters
+      description: "Lists all members of the Parameters source file (IRI, label, definition)"
+      parameters:
+        - name: prefix
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by compact identifier prefix
+        - name: format
+          in: query
+          required: false
+          schema:
+            type: string
+            default: ttl
+            enum:
+              - ttl
+              - json
+              - json-ld
+          description: Response representation. ttl (RDF Turtle) is native and the default; json and json-ld are alternatives. The Accept header is honoured as well.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            text/turtle:
+              description: Native default representation (RDF Turtle)
+              schema:
+                type: string
+            application/ld+json:
+              description: JSON-LD alternative (Accept: application/ld+json, or ?format=json-ld)
+              schema:
+                type: object
+            application/json:
+              description: Plain JSON alternative (Accept: application/json, or ?format=json)
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    iri:
+                      type: string
+                    label:
+                      type: string
+                    definition:
+                      type: string
+  /openrel/api/v0.4/mappings:
+    get:
+      tags:
+        - Mappings
+      summary: List Mappings
+      description: "Lists all inverse mapping entries from the system-managed mappings.ttl file. Use ?prefix=odrl: to filter by vocabulary."
+      parameters:
+        - name: prefix
+          in: query
+          required: false
+          schema:
+            type: string
+          description: "Filter by compact identifier prefix (e.g. odrl:, idsc:, dalicc:)"
+        - name: format
+          in: query
+          required: false
+          schema:
+            type: string
+            default: ttl
+            enum:
+              - ttl
+              - json
+              - json-ld
+          description: Response representation. ttl (RDF Turtle) is native and the default; json and json-ld are alternatives. The Accept header is honoured as well.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            text/turtle:
+              description: Native default representation (RDF Turtle)
+              schema:
+                type: string
+            application/ld+json:
+              description: JSON-LD alternative (Accept: application/ld+json, or ?format=json-ld)
+              schema:
+                type: object
+            application/json:
+              description: Plain JSON alternative (Accept: application/json, or ?format=json)
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    iri:
+                      type: string
+                    label:
+                      type: string
+                    definition:
+                      type: string
+  /openrel/api/v0.4/actionclasses:
+    get:
+      tags:
+        - Classes
+      summary: List Action Classes
+      description: "Lists all members of the Action class and its subclasses (IRI, label, definition)"
+      parameters:
+        - name: prefix
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by compact identifier prefix
+        - name: format
+          in: query
+          required: false
+          schema:
+            type: string
+            default: ttl
+            enum:
+              - ttl
+              - json
+              - json-ld
+          description: Response representation. ttl (RDF Turtle) is native and the default; json and json-ld are alternatives. The Accept header is honoured as well.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            text/turtle:
+              description: Native default representation (RDF Turtle)
+              schema:
+                type: string
+            application/ld+json:
+              description: JSON-LD alternative (Accept: application/ld+json, or ?format=json-ld)
+              schema:
+                type: object
+            application/json:
+              description: Plain JSON alternative (Accept: application/json, or ?format=json)
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    iri:
+                      type: string
+                    label:
+                      type: string
+                    definition:
+                      type: string
+  /openrel/api/v0.4/actionclasses/{id}:
+    get:
+      tags:
+        - Classes
+      summary: List Action Class Details
+      description: Lists details of an Action class or subclass
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The id of the resource to retrieve
+        - name: prefix
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by compact identifier prefix
+        - name: format
+          in: query
+          required: false
+          schema:
+            type: string
+            default: ttl
+            enum:
+              - ttl
+              - json
+              - json-ld
+          description: Response representation. ttl (RDF Turtle) is native and the default; json and json-ld are alternatives. The Accept header is honoured as well.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            text/turtle:
+              description: Native default representation (RDF Turtle)
+              schema:
+                type: string
+            application/ld+json:
+              description: JSON-LD alternative (Accept: application/ld+json, or ?format=json-ld)
+              schema:
+                type: object
+            application/json:
+              description: Plain JSON alternative (Accept: application/json, or ?format=json)
+              schema:
+                type: object
+                properties:
+                  iri:
+                    type: string
+                  label:
+                    type: string
+                  definition:
+                    type: string
+  /openrel/api/v0.4/constraintclasses:
+    get:
+      tags:
+        - Classes
+      summary: List Constraint Classes
+      description: "Lists all members of the Assets class and its subclasses (IRI, label, definition)"
+      parameters:
+        - name: prefix
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by compact identifier prefix
+        - name: format
+          in: query
+          required: false
+          schema:
+            type: string
+            default: ttl
+            enum:
+              - ttl
+              - json
+              - json-ld
+          description: Response representation. ttl (RDF Turtle) is native and the default; json and json-ld are alternatives. The Accept header is honoured as well.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            text/turtle:
+              description: Native default representation (RDF Turtle)
+              schema:
+                type: string
+            application/ld+json:
+              description: JSON-LD alternative (Accept: application/ld+json, or ?format=json-ld)
+              schema:
+                type: object
+            application/json:
+              description: Plain JSON alternative (Accept: application/json, or ?format=json)
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    iri:
+                      type: string
+                    label:
+                      type: string
+                    definition:
+                      type: string
+  /openrel/api/v0.4/constraintclasses/{id}:
+    get:
+      tags:
+        - Classes
+      summary: Constraint Class Details
+      description: Provide details of a member of the Constraints class
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The id of the resource to retrieve
+        - name: prefix
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by compact identifier prefix
+        - name: format
+          in: query
+          required: false
+          schema:
+            type: string
+            default: ttl
+            enum:
+              - ttl
+              - json
+              - json-ld
+          description: Response representation. ttl (RDF Turtle) is native and the default; json and json-ld are alternatives. The Accept header is honoured as well.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            text/turtle:
+              description: Native default representation (RDF Turtle)
+              schema:
+                type: string
+            application/ld+json:
+              description: JSON-LD alternative (Accept: application/ld+json, or ?format=json-ld)
+              schema:
+                type: object
+            application/json:
+              description: Plain JSON alternative (Accept: application/json, or ?format=json)
+              schema:
+                type: object
+                properties:
+                  iri:
+                    type: string
+                  label:
+                    type: string
+                  definition:
+                    type: string
+  /openrel/api/v0.4/leftoperandclasses:
+    get:
+      tags:
+        - Classes
+      summary: List of Left Operand Classes
+      description: "Left Operand class listing (IRI, Label, Definition)"
+      parameters:
+        - name: prefix
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by compact identifier prefix
+        - name: format
+          in: query
+          required: false
+          schema:
+            type: string
+            default: ttl
+            enum:
+              - ttl
+              - json
+              - json-ld
+          description: Response representation. ttl (RDF Turtle) is native and the default; json and json-ld are alternatives. The Accept header is honoured as well.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            text/turtle:
+              description: Native default representation (RDF Turtle)
+              schema:
+                type: string
+            application/ld+json:
+              description: JSON-LD alternative (Accept: application/ld+json, or ?format=json-ld)
+              schema:
+                type: object
+            application/json:
+              description: Plain JSON alternative (Accept: application/json, or ?format=json)
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    iri:
+                      type: string
+                    label:
+                      type: string
+                    definition:
+                      type: string
+  /openrel/api/v0.4/leftoperandclasses/{id}:
+    get:
+      tags:
+        - Classes
+      summary: Left Operand Class Details
+      description: Member details of the Left Operand class
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The id of the resource to retrieve
+        - name: prefix
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by compact identifier prefix
+        - name: format
+          in: query
+          required: false
+          schema:
+            type: string
+            default: ttl
+            enum:
+              - ttl
+              - json
+              - json-ld
+          description: Response representation. ttl (RDF Turtle) is native and the default; json and json-ld are alternatives. The Accept header is honoured as well.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            text/turtle:
+              description: Native default representation (RDF Turtle)
+              schema:
+                type: string
+            application/ld+json:
+              description: JSON-LD alternative (Accept: application/ld+json, or ?format=json-ld)
+              schema:
+                type: object
+            application/json:
+              description: Plain JSON alternative (Accept: application/json, or ?format=json)
+              schema:
+                type: object
+                properties:
+                  iri:
+                    type: string
+                  label:
+                    type: string
+                  definition:
+                    type: string
